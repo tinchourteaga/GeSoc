@@ -15,8 +15,11 @@ public class PasswordValidator {
     }
 
     private static boolean checkCommonPasswords(String password){
-        //Verifica contra las 10000 pass del archivo
-        return true;
+        //Verifica contra las 10000 pass mas usadas. Ver si no flashee
+        List<String> commonPasswords = new ArrayList();
+        commonPasswords.add("papa"); // para que no rompa las bolas de momento
+
+        return commonPasswords.stream().anyMatch(pass -> pass.equals(password));
     }
 
     private static boolean checkPasswordLength(String password){

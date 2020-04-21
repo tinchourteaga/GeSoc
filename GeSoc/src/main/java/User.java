@@ -11,9 +11,7 @@ public class User {
         this.password = password;
     }
 
-    private static void makeOperation(/*Operacion operacion*/){
+    private static void makeOperation(/*Operation operation*/){
 
     }
-
-
 }

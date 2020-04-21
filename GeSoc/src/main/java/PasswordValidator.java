@@ -1,25 +1,29 @@
 import javax.swing.*;
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class PasswordValidator {
     //singleton class
-    static public void validate(String password) throws PasswordException {
-        if(checkCommonPasswords(password)){
-            throw new PasswordException();
-        }
+    static public void validate(String password) throws IOException, CommonPasswordException, LengthException, SpecialCharacterException, NumberException {
+        if(checkCommonPasswords(password)) throw new CommonPasswordException();
 
-        //Hacer las otras validaciones
+        if(!checkPasswordLength(password)) throw new LengthException();
 
+        if(!hasSpecialCharacters(password)) throw new SpecialCharacterException();
 
+        if(!hasNumbers(password)) throw new NumberException();
+
+        //Si pasa todos los if la password es valida
     }
 
-    private static boolean checkCommonPasswords(String password){
-        //Verifica contra las 10000 pass mas usadas. Ver si no flashee
-        List<String> commonPasswords = new ArrayList();
-        commonPasswords.add("papa"); // para que no rompa las bolas de momento
+    private static boolean checkCommonPasswords(String password) throws IOException {
+        List<String> commonPasswords = getCommonPasswords();
 
-        return commonPasswords.stream().anyMatch(pass -> pass.equals(password));
+        return commonPasswords.stream().anyMatch(commonPassword -> commonPassword.equals(password));
     }
 
     private static boolean checkPasswordLength(String password){
@@ -36,5 +40,20 @@ public class PasswordValidator {
         List<Character> passwordCharacters = StringConverter.makeListOfString(password);
 
         return passwordCharacters.stream().anyMatch(StringConverter::isNumber);
+    }
+
+    //Vamos a manejar el geteo de las passwords con un archivo
+    private static List<String> getCommonPasswords() throws IOException {
+        String line;
+        List<String> commonPassword = new ArrayList();
+
+        File file = new File("10000_commonPasswords.txt");
+
+        BufferedReader buffer = new BufferedReader(new FileReader(file));
+
+        while ((line = buffer.readLine()) != null)
+            commonPassword.add(line);
+
+        return commonPassword;
     }
 }

@@ -9,7 +9,7 @@ public class User {
     private User(String role, String name, String password) throws PasswordException, SpecialCharacterException, CommonPasswordException, NumberException, LengthException, IOException {
         this.role = role;
         this.name = name;
-        PasswordValidator.validate(password);
+        PasswordValidator.validatePassword(password);
         this.password = password;
     }
 

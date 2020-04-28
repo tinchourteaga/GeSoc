@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class PasswordValidator {
     //singleton class
-    static public void validate(String password) throws IOException, CommonPasswordException, LengthException, SpecialCharacterException, NumberException {
+    static public void validatePassword(String password) throws IOException, CommonPasswordException, LengthException, SpecialCharacterException, NumberException {
         if(checkCommonPasswords(password)) throw new CommonPasswordException();
 
         if(!checkPasswordLength(password)) throw new LengthException();

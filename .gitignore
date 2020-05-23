@@ -185,3 +185,11 @@ fabric.properties
 hs_err_pid*
 
 # End of https://www.gitignore.io/api/java,eclipse,intellij
+GeSoc/pom.xml
+GeSoc/Grupo_5.iml
+GeSoc/.idea/vcs.xml
+GeSoc/.idea/modules.xml
+GeSoc/.idea/misc.xml
+GeSoc/.idea/jarRepositories.xml
+GeSoc/.idea/compiler.xml
+GeSoc/.idea/.name

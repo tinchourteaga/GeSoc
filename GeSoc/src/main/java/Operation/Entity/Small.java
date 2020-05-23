@@ -1,6 +1,6 @@
 package Operation.Entity;
 
-public class Small {
+public class Small  extends Category{
     String description;
     String name;
 }

@@ -1,6 +1,6 @@
 package Operation.Entity;
 
-public class LegalEntity {
+public class LegalEntity extends Entity{
     String businessName;
     String cuit;
     String postalCode;

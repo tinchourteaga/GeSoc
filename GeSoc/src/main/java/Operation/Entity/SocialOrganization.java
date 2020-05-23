@@ -1,4 +1,4 @@
 package Operation.Entity;
 
-public class SocialOrganization {
+public class SocialOrganization extends LegalEntity{
 }

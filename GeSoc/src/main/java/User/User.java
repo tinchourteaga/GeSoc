@@ -1,6 +1,8 @@
 package User;
 
 import java.io.IOException;
+
+import Operation.Operation;
 import Validation.*;
 import Validation.Exceptions.*;
 
@@ -15,5 +17,9 @@ public class User {
         this.name = name;
         PasswordValidator.validatePassword(password);
         this.password = password;
+    }
+
+    private void makeOperation(Operation operation){
+
     }
 }

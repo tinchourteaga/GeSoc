@@ -1,6 +1,8 @@
 package Operation.Entity;
 
-public class Company {
+public class Company extends LegalEntity{
+
+    Category category;
 
     public Company(){
 

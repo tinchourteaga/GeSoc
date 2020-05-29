@@ -1,6 +1,6 @@
 package Operacion.Entidad;
 
-public class Pequenia {
+public class Pequenia extends Categoria{
     String descripcion;
     String nombre;
 }

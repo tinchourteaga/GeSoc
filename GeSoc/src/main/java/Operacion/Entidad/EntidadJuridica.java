@@ -1,6 +1,6 @@
 package Operacion.Entidad;
 
-public class EntidadJuridica {
+public class EntidadJuridica extends Entidad{
     String razonSocial;
     String cuit;
     String codigoPostal;

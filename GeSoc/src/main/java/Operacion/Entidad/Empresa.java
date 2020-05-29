@@ -1,6 +1,8 @@
 package Operacion.Entidad;
 
-public class Empresa {
+public class Empresa extends EntidadJuridica {
+
+    Categoria categoria;
 
     public Empresa(){
 

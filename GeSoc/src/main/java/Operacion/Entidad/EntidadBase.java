@@ -1,4 +1,6 @@
 package Operacion.Entidad;
 
-public class EntidadBase {
+public class EntidadBase extends Entidad{
+    EntidadJuridica entidadJuridicaAsociada;
+
 }

@@ -8,4 +8,7 @@ public class Operacion {
     Date fecha;
     Float valor;
     List<Item> listaItems = new ArrayList<Item>();
+    MetodoPago metodoPago;
+    Proveedor proveedor;
+    DocumentoComercial documentoComercial;
 }

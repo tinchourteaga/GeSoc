@@ -1,6 +1,6 @@
 package Operacion.Entidad;
 
-public class Micro {
+public class Micro extends Category{
     String description;
     String name;
 }

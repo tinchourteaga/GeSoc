@@ -1,6 +1,6 @@
 package Operacion.Entidad;
 
-import Operacion.Operacion;
+import Operacion.Core.Operacion;
 
 import java.util.List;
 

@@ -1,8 +1,7 @@
 package Usuario;
-import Operacion.Operacion;
+import Operacion.Core.Operacion;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RolRevisorCompra extends Rol{
 

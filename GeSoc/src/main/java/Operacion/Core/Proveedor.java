@@ -1,4 +1,4 @@
-package Operacion;
+package Operacion.Core;
 
 public class Proveedor {
 

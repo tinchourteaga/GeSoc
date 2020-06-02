@@ -1,6 +1,6 @@
 package Usuario.Exepciones;
 
-import Operacion.Operacion;
+import Operacion.Core.Operacion;
 import Usuario.Usuario;
 
 public class NoTengoPermisosExceptionDeRevisarCompra extends Exception {

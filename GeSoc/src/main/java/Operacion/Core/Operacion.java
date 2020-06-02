@@ -1,20 +1,20 @@
-package Operacion;
+package Operacion.Core;
 
 import Usuario.Usuario;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Operacion {
-    Date fecha;
+    LocalDate fecha;
     Float valor;
     List<Item> listaItems = new ArrayList<Item>();
     MetodoPago metodoPago;
     Proveedor proveedor;
     DocumentoComercial documentoComercial;
     
-    public Operacion(Date unaFecha,float importe,List<Item> items,MetodoPago metodo,Proveedor unProveedor, DocumentoComercial unDocumento){
+    public Operacion(LocalDate unaFecha,float importe,List<Item> items,MetodoPago metodo,Proveedor unProveedor, DocumentoComercial unDocumento){
        this.fecha=unaFecha;
        this.valor=importe;
        this.listaItems=items;

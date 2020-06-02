@@ -1,4 +1,6 @@
-package Operacion;
+package Operacion.Core;
+
+import Operacion.Operacion;
 
 public class DocumentoComercial {
     TipoDocumentoComercial tipo;

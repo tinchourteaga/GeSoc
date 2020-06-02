@@ -2,7 +2,7 @@ package Usuario;
 
 import java.io.IOException;
 
-import Operacion.Operacion;
+import Operacion.Core.Operacion;
 import Usuario.Exepciones.ContraseniasDistintasException;
 import Usuario.Exepciones.NoTengoPermisosException;
 import Usuario.Exepciones.NoTengoPermisosExceptionDeCompra;

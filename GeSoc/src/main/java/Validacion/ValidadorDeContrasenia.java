@@ -11,7 +11,7 @@ import java.util.*;
 
 public class ValidadorDeContrasenia {
     //singleton class
-    private static List<IValidacion> listaDeValidaciones = new ArrayList<IValidacion>(){{
+    private static List<IValidacion> Validaciones = new ArrayList<IValidacion>(){{
         add(new ChequearLongitudContrasenia());
         add(new ChequearContraseniaComun());
         add(new ContieneNumero());
@@ -19,7 +19,7 @@ public class ValidadorDeContrasenia {
 
     public static void validarContrasenia(String contrasenia) {
         //No me gusta como esta esto
-        listaDeValidaciones.forEach(validacion -> {
+        Validaciones.forEach(validacion -> {
             try {
                 validacion.validar(contrasenia);
             } catch(ExcepcionContraseniaComun e) {

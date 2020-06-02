@@ -1,8 +1,10 @@
 package DAO;
 
+import Usuario.Usuario;
+
 public class RepositorioUsuario {
 
-    private DAOUsuario dao
+    private DAOUsuario dao;
 
     public void setDao(DAOUsuario dao) {
         this.dao = dao;
@@ -11,16 +13,16 @@ public class RepositorioUsuario {
     public void agregar(Usuario usuario){
         this.dao.agregar(usuario);
     }
-    public void modificar(Usuario usuario, Usuario nuevousuario){
-        this.dao.modificar(usuario, nuevousuario);
+    public void modificar(Usuario usuario, Usuario nuevoUsuario){
+        this.dao.modificar(usuario, nuevoUsuario);
     }
     public void eliminar(Usuario usuario){
         this.dao.eliminar(usuario);
     }
     public boolean existe(Usuario usuario) {
-        return this.dao.existe(Usuario);
+        return this.dao.existe(usuario);
     }
-    public Usuario buscar(Usuario usuario){
+    public int buscar(Usuario usuario){
         return this.dao.buscar(usuario);
     }
 }

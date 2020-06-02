@@ -1,0 +1,12 @@
+package Usuario;
+
+public enum Accion {
+    CREAR_USUARIO,
+    REALIZAR_OPERACION,
+    REVISAR_OPERACION,
+    ASIGNAR_ROL,
+    CREAR_COMPRA,
+    REALIZAR_COMPRA,
+    REVISAR_COMRPA
+    ;
+}

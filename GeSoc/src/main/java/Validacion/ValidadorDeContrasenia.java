@@ -11,28 +11,25 @@ import java.util.*;
 
 public class ValidadorDeContrasenia {
     //singleton class
-    private static List<IValidacion> Validaciones = new ArrayList<IValidacion>(){{
-        add(new ChequearLongitudContrasenia());
-        add(new ChequearContraseniaComun());
-        add(new ContieneNumero());
-        add(new ContieneCaracterEspecial());}};
+    private static List<IValidacion> Validaciones = new ArrayList<IValidacion>();
 
-    public static void validarContrasenia(String contrasenia) {
+    public static void validarContrasenia(String contrasenia) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         //No me gusta como esta esto
-        Validaciones.forEach(validacion -> {
-            try {
-                validacion.validar(contrasenia);
-            } catch(ExcepcionContraseniaComun e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ExcepcionLongitud e) {
-                e.printStackTrace();
-            } catch (ExcepcionNumero e) {
-                e.printStackTrace();
-            } catch (ExcepcionCaracterEspecial e) {
-                e.printStackTrace();
-            }
-        });
+        for (IValidacion validacion : Validaciones) {
+            validacion.validar(contrasenia);
+        }
     }
+    public static void agregarValidacion(IValidacion nuevaValidacion) {
+        Validaciones.add(nuevaValidacion);
+    }
+    public static void removerValidacion(IValidacion viejaValidacion) {
+        Validaciones.remove(viejaValidacion);
+    }
+    public static void removerTodasLasValidaciones(){
+        Validaciones= new ArrayList();
+    }
+    public static void AgregarTodasLasValidaciones(List<IValidacion>validacioensNuevas){
+        Validaciones.addAll(validacioensNuevas);
+    }
+
 }

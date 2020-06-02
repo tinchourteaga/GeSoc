@@ -12,7 +12,7 @@ public class ValidadorDeOperacion {
 
     }};
     static EstrategiaRevision estrategia;
-    static List<String/*Mensaje*/> mensajes = new ArrayList();
+    static List<Mensaje> mensajes = new ArrayList();
 
     public static void validarCustomSinBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
         validacionesEspecificas.forEach(validacion -> {

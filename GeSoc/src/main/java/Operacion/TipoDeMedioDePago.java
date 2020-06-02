@@ -1,6 +1,6 @@
 package Operacion;
 
-public enum MedioDePago {
+public enum TipoDeMedioDePago {
     EFECTIVO,
     TARJETA_DEBITO,
     TARJETA_CREDITO,

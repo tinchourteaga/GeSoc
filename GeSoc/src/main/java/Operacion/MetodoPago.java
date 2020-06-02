@@ -1,6 +1,6 @@
 package Operacion;
 
 public class MetodoPago {
-    MedioDePago tipo;
+    TipoDeMedioDePago tipo;
     String descripcion;
 }

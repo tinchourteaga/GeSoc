@@ -13,8 +13,8 @@ public class RolRevisorCompra extends Rol{
 
         this.Acciones = new ArrayList() {{
             add(Accion.CREAR_USUARIO);
-            add(Accion.REALIZAR_OPERACION);
-            add(Accion.REVISAR_OPERACION);
+            add(Accion.REALIZAR_COMPRA);
+            add(Accion.REVISAR_COMPRA);
         }};
     }
 }

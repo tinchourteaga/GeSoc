@@ -1,5 +1,7 @@
 package Operacion;
 
+import Usuario.Usuario;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -24,5 +26,12 @@ public class Operacion {
     }
 
     public void realizar() {
+        //esto no lo implemento porque toda
+    }
+
+    //esto es de 2da entrega no lo implemento todavia
+    public void revisar(Usuario usuario) {
+    }
+    public void validar(){
     }
 }

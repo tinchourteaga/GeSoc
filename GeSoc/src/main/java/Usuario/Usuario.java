@@ -16,4 +16,13 @@ public class Usuario {
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
         this.contrasenia = contrasenia;
     }
+
+    private cambiarPassword(String passwordAnterior, String passwordNueva){
+        if (this.contrasenia.compareTo(passwordAnterior){
+            this.contrasenia=passwordNueva;
+        }
+    }
+    public String getNombre(){
+        return this.nombre;
+    }
 }

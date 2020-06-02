@@ -59,7 +59,7 @@ public class Usuario {
         }
 
 
-    private void cambiarContrasenia(String passwordAnterior, String passwordNueva){
+    private void cambiarContrasenia(String passwordAnterior, String passwordNueva) throws ContraseniasDistintasException {
         if (this.contrasenia.equals(passwordAnterior)){
             this.contrasenia=passwordNueva;
         }else{

@@ -26,7 +26,7 @@ public class Operacion {
     }
 
     public void realizar() {
-        //esto no lo implemento porque toda
+        //esto no lo implemento porque todavia no sabemos que hace bien
     }
 
     //esto es de 2da entrega no lo implemento todavia

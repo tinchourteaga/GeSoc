@@ -1,6 +1,6 @@
 package Operacion.Core;
 
-import Operacion.Operacion;
+import Operacion.Core.Operacion;
 
 public class MetodoPago {
     TipoDeMedioDePago tipo;

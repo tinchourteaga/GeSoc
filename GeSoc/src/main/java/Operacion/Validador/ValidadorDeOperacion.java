@@ -12,15 +12,17 @@ public class ValidadorDeOperacion {
 
     }};
     static EstrategiaRevision estrategia;
+    static List<String/*Mensaje*/> mensajes = new ArrayList();
 
     public static void validarCustomSinBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
         validacionesEspecificas.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
             } catch (NoCumpleValidacionException e) {
-                e.printStackTrace();
+                agregarValidacionFallida(unaOperacion);
             }
         });
+        agregarValidacionExitosa(unaOperacion);
     }
 
     public static void validarCustomConBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
@@ -37,8 +39,15 @@ public class ValidadorDeOperacion {
             try {
                 validacion.validar(unaOperacion);
             } catch (NoCumpleValidacionException e) {
-                e.printStackTrace();
+                agregarValidacionFallida(unaOperacion);
             }
         });
+        agregarValidacionExitosa(unaOperacion);
+    }
+    public static void agregarValidacionExitosa(Operacion unaOperacion){
+        //creo el msj que ahora es una clase
+    }
+    public static void agregarValidacionFallida(Operacion unaOperacion){
+        //creo el msj que ahora es una clase
     }
 }

@@ -1,6 +1,7 @@
 package Usuario;
 
 import java.io.IOException;
+import java.util.List;
 
 import Operacion.Core.Operacion;
 import Usuario.Exepciones.ContraseniasDistintasException;
@@ -12,12 +13,12 @@ import Validacion.Excepciones.*;
 
 public class Usuario {
 
-    private Rol rol;
+    private List<Rol> roles;
     private String nombre;
     private String contrasenia;
 
-    private Usuario(Rol rol, String nombre, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
-        this.rol = rol;
+    private Usuario(List<Rol> roles, String nombre, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
+        this.roles = roles;
         this.nombre = nombre;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
         this.contrasenia = contrasenia;
@@ -28,8 +29,8 @@ public class Usuario {
         return nombre;
     }
 
-    public Rol getRol() {
-        return rol;
+    public List<Rol> getRoles() {
+        return roles;
     }
 
     public String getContrasenia() {
@@ -38,7 +39,7 @@ public class Usuario {
 
     public void realizarOperacionCompra(Operacion operacion) throws NoTengoPermisosException, NoTengoPermisosExceptionDeCompra {
         //no se si esto esta bien, lo dejo hasta estar seguro de que compra y egreso son lo mismo
-        if (rol.tengoPermisosPara(Accion.REALIZAR_COMPRA)) {
+        if (roles.stream().allMatch(rol->rol.tengoPermisosPara(Accion.REALIZAR_COMPRA))) {
             operacion.realizar();
         } else {
             throw new NoTengoPermisosExceptionDeCompra(this,operacion);
@@ -46,7 +47,7 @@ public class Usuario {
     }
 
     public void revisarCompra(Operacion compra) throws  NoTengoPermisosExceptionDeRevisarCompra {
-        if (rol.tengoPermisosPara(Accion.REVISAR_COMPRA)) {
+        if (roles.stream().allMatch(rol->rol.tengoPermisosPara(Accion.REVISAR_COMPRA))) {
             compra.revisar(this);
         } else {
             throw new NoTengoPermisosExceptionDeRevisarCompra(this,compra);

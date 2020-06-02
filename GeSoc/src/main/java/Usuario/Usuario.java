@@ -3,6 +3,7 @@ package Usuario;
 import java.io.IOException;
 
 import Operacion.Operacion;
+import Usuario.Exepciones.ContraseniasDistintasException;
 import Usuario.Exepciones.NoTengoPermisosException;
 import Usuario.Exepciones.NoTengoPermisosExceptionDeCompra;
 import Usuario.Exepciones.NoTengoPermisosExceptionDeRevisarCompra;
@@ -21,6 +22,7 @@ public class Usuario {
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
         this.contrasenia = contrasenia;
     }
+
 
     public String getNombre() {
         return nombre;
@@ -55,4 +57,16 @@ public class Usuario {
         public void setContrasenia (String contraseniaNueva){
             contrasenia = contraseniaNueva;
         }
+
+
+    private void cambiarContrasenia(String passwordAnterior, String passwordNueva){
+        if (this.contrasenia.equals(passwordAnterior)){
+            this.contrasenia=passwordNueva;
+        }else{
+
+            throw new ContraseniasDistintasException();
+        }
     }
+
+}
+

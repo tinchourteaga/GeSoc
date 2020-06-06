@@ -1,4 +1,4 @@
-package Operacion.Entidad;
+package Operacion.Entidad.Categorias;
 
 public class Categoria {
     //TipoActividad descripcion;

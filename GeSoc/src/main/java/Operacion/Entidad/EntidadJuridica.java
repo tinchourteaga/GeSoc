@@ -10,13 +10,13 @@ public class EntidadJuridica extends Entidad{
     String codigoPostal;
     String codigoDeInscripcion;
     String tipo;
-    TipoActividad actividad;
+    Sector actividad;
     Integer cantidadPersonal;
     Float promedioVentasAnuales;
 
     public EntidadJuridica(String nombreEntidad, String descripcionEntidad, List<Operacion> operacionesEntidad,
                            String rs,String cuitEntidad,String cp,String ci,
-                           String tipo,TipoActividad actividad,Integer personal,Float promedio) {
+                           String tipo,Sector actividad,Integer personal,Float promedio) {
         super(nombreEntidad, descripcionEntidad, operacionesEntidad);
 
         this.razonSocial = rs;

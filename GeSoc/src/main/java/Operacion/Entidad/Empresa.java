@@ -1,6 +1,7 @@
 package Operacion.Entidad;
 
 import Operacion.Core.Operacion;
+import Operacion.Entidad.Categorias.Categoria;
 
 import java.util.List;
 
@@ -13,13 +14,7 @@ public class Empresa extends EntidadJuridica {
                    TipoActividad actividad,Integer personal,Float promedio){
         super(nombreEntidad,descripcionEntidad,operacionesEntidad,
                 rs,cuitEntidad,cp,ci,tipo,actividad,personal,promedio);
-
-        this.determinarCategoria();
     }
 
-    public void determinarCategoria(){
-        Actividad miActividad=new Actividad(this.actividad);
-        this.categoria=miActividad.calcularCategoria(this);
 
-    }
 }

@@ -1,11 +1,17 @@
 package Operacion.Entidad.Categorias;
 
-public class Categoria {
-    //TipoActividad descripcion;
-    //TipoCategoria nombre; //correccion falta cambiar el constructor para setearlo bien
-    //Integer personalMaximo;
-    //Float ventasAnuales;
+import Operacion.Entidad.Sector;
 
-    String nombre;
-    String descripcion;
+public class Categoria {
+    Sector descripcion;
+    TipoCategoria nombre; //correccion falta cambiar el constructor para setearlo bien
+    Integer personalMaximo;
+    Float ventasAnuales;
+
+    public Categoria(Sector descripcion, TipoCategoria nombre, Integer personalMaximo,Float ventasAnuales){
+        this.descripcion=descripcion;
+        this.nombre=nombre;
+        this.personalMaximo=personalMaximo;
+        this.ventasAnuales=ventasAnuales;
+    }
 }

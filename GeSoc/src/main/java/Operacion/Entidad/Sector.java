@@ -1,6 +1,6 @@
 package Operacion.Entidad;
 
-public enum TipoActividad {
+public enum Sector{
     CONSTRUCCION,
     COMERCIO,
     SERVICIOS,

@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 public class Categorizador {
     private static DAOCategoria bolsaValores=new DAOMemoriaCategoria();
- static HashMap<KeyCategoria,Categoria> categorias = new HashMap<KeyCategoria,Categoria>();
+    private static HashMap<KeyCategoria,Categoria> categorias = bolsaValores.obtenerMapaDeCategorias();//hay que actualizarlo cada cierto tiempo quizas?
 
 
     public static DAOCategoria getBolsaValores() {
@@ -93,14 +93,14 @@ public class Categorizador {
     }
 
     private static Categoria determinarCategoriaConstrucion(Empresa unaEmpresa) {
-        float ventasAnualesTramo1=bolsaValores.getVentasAnualesTramo1Construcion();
-        float ventasAnualesPequenia=bolsaValores.getVentasAnualesPequeniaConstrucion();
-        float ventasAnualesMicro=bolsaValores.getventasAnualesMicroConstrucion();
-        int personalOcupadoMicro=bolsaValores.getPersonalOcupadoMicroConstrucion();
-        int personalOcupadoPequenia=bolsaValores.getPersonalOcupadoPequeniaConstrucion();
-        int personalOcupadoTramo1=bolsaValores.getPersonalOcupadoTramo1Construcion();
-        float ventasAnualesTramo2=bolsaValores.getVentasAnualesTramo2Construcion();
-        int personalOcupadoTramo2=bolsaValores.getpersonalOcupadoTramo2Construcion();
+        float ventasAnualesTramo1=bolsaValores.getVentasAnualesTramo1Construccion();
+        float ventasAnualesPequenia=bolsaValores.getVentasAnualesPequeniaConstruccion();
+        float ventasAnualesMicro=bolsaValores.getventasAnualesMicroConstruccion();
+        int personalOcupadoMicro=bolsaValores.getPersonalOcupadoMicroConstruccion();
+        int personalOcupadoPequenia=bolsaValores.getPersonalOcupadoPequeniaConstruccion();
+        int personalOcupadoTramo1=bolsaValores.getPersonalOcupadoTramo1Construccion();
+        float ventasAnualesTramo2=bolsaValores.getVentasAnualesTramo2Construccion();
+        int personalOcupadoTramo2=bolsaValores.getpersonalOcupadoTramo2Construccion();
 
         return determinarTamanio(unaEmpresa, ventasAnualesTramo1, ventasAnualesPequenia,
                 ventasAnualesMicro, personalOcupadoMicro, personalOcupadoPequenia, personalOcupadoTramo1,
@@ -152,15 +152,5 @@ public class Categorizador {
         return categorias.get(new KeyCategoria(TipoCategoria.PEQUENIA,actividad));
     }
 
-    private static class KeyCategoria {
-        TipoCategoria tipoCategoria;
-        Sector sector;
 
-          public KeyCategoria(TipoCategoria tipoCategoria,
-                  Sector sector){
-              this.tipoCategoria=tipoCategoria;
-              this.sector=sector;
-          }
-
-    }
 }

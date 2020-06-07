@@ -1,6 +1,11 @@
 package Operacion.Entidad.Categorias;
 
+import java.util.HashMap;
+
 public interface DAOCategoria {
+
+    HashMap<KeyCategoria,Categoria>  obtenerMapaDeCategorias();
+
     //DATOS AGROPECUARIO
     float getVentasAnualesTramo1Agropecuario();
     float getVentasAnualesPequeniaAgropecuario();
@@ -39,14 +44,14 @@ public interface DAOCategoria {
     float getVentasAnualesTramo2Servicios();
     int getpersonalOcupadoTramo2Servicios();
     //DATOS COSNTRUCCIONES
-    float getVentasAnualesTramo1Construcion();
-    float getVentasAnualesPequeniaConstrucion();
-    float getventasAnualesMicroConstrucion();
-    int getPersonalOcupadoMicroConstrucion();
-    int getPersonalOcupadoPequeniaConstrucion();
-    int getPersonalOcupadoTramo1Construcion();
-    float getVentasAnualesTramo2Construcion();
-    int getpersonalOcupadoTramo2Construcion();
+    float getVentasAnualesTramo1Construccion();
+    float getVentasAnualesPequeniaConstruccion();
+    float getventasAnualesMicroConstruccion();
+    int getPersonalOcupadoMicroConstruccion();
+    int getPersonalOcupadoPequeniaConstruccion();
+    int getPersonalOcupadoTramo1Construccion();
+    float getVentasAnualesTramo2Construccion();
+    int getpersonalOcupadoTramo2Construccion();
 
 
 }

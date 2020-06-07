@@ -1,7 +1,108 @@
 package Operacion.Entidad.Categorias;
 
+import Operacion.Entidad.Sector;
+
+import java.util.HashMap;
+
 public class DAOMemoriaCategoria implements DAOCategoria {
 
+
+    @Override
+    public HashMap<KeyCategoria, Categoria> obtenerMapaDeCategorias() {
+        HashMap<KeyCategoria, Categoria> nuevoMap= new HashMap<KeyCategoria, Categoria>();
+
+        //las 4 agropecuarias
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MICRO, Sector.AGROPECUARIO),
+                new Categoria(Sector.AGROPECUARIO,TipoCategoria.MICRO,
+                this.getPersonalOcupadoMicroAgropecuario(),
+                        this.getventasAnualesMicroAgropecuario()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.PEQUENIA, Sector.AGROPECUARIO),
+                new Categoria(Sector.AGROPECUARIO,TipoCategoria.PEQUENIA,
+                        this.getPersonalOcupadoPequeniaAgropecuario(),
+                        this.getVentasAnualesPequeniaAgropecuario()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_1, Sector.AGROPECUARIO),
+                new Categoria(Sector.AGROPECUARIO,TipoCategoria.MEDIANA_TRAMO_1,
+                        this.getPersonalOcupadoTramo1Agropecuario(),
+                        this.getVentasAnualesTramo1Agropecuario()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_2, Sector.AGROPECUARIO),
+                new Categoria(Sector.AGROPECUARIO,TipoCategoria.MEDIANA_TRAMO_2,
+                        this.getpersonalOcupadoTramo2Agropecuario(),
+                        this.getVentasAnualesTramo2Agropecuario()));
+
+        //las 4 iym
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MICRO, Sector.INDUSTRIA_Y_MINERIA),
+                new Categoria(Sector.INDUSTRIA_Y_MINERIA,TipoCategoria.MICRO,
+                        this.getPersonalOcupadoMicroIYM(),
+                        this.getventasAnualesMicroIYM()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.PEQUENIA, Sector.INDUSTRIA_Y_MINERIA),
+                new Categoria(Sector.INDUSTRIA_Y_MINERIA,TipoCategoria.PEQUENIA,
+                        this.getPersonalOcupadoPequeniaIYM(),
+                        this.getVentasAnualesPequeniaIYM()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_1, Sector.INDUSTRIA_Y_MINERIA),
+                new Categoria(Sector.INDUSTRIA_Y_MINERIA,TipoCategoria.MEDIANA_TRAMO_1,
+                        this.getPersonalOcupadoTramo1IYM(),
+                        this.getVentasAnualesTramo1IYM()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_2, Sector.INDUSTRIA_Y_MINERIA),
+                new Categoria(Sector.INDUSTRIA_Y_MINERIA,TipoCategoria.MEDIANA_TRAMO_2,
+                        this.getpersonalOcupadoTramo2IYM(),
+                        this.getVentasAnualesTramo2IYM()));
+
+        //las 4 de servicios
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MICRO, Sector.SERVICIOS),
+                new Categoria(Sector.SERVICIOS,TipoCategoria.MICRO,
+                        this.getPersonalOcupadoMicroServicios(),
+                        this.getventasAnualesMicroServicios()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.PEQUENIA, Sector.SERVICIOS),
+                new Categoria(Sector.SERVICIOS,TipoCategoria.PEQUENIA,
+                        this.getPersonalOcupadoPequeniaServicios(),
+                        this.getVentasAnualesPequeniaServicios()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_1, Sector.SERVICIOS),
+                new Categoria(Sector.SERVICIOS,TipoCategoria.MEDIANA_TRAMO_1,
+                        this.getPersonalOcupadoTramo1Servicios(),
+                        this.getVentasAnualesTramo1Servicios()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_2, Sector.SERVICIOS),
+                new Categoria(Sector.SERVICIOS,TipoCategoria.MEDIANA_TRAMO_2,
+                        this.getpersonalOcupadoTramo2Servicios(),
+                        this.getVentasAnualesTramo2Servicios()));
+
+        //las 4 construcciones
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MICRO, Sector.CONSTRUCCION),
+                new Categoria(Sector.CONSTRUCCION,TipoCategoria.MICRO,
+                        this.getPersonalOcupadoMicroConstruccion(),
+                        this.getventasAnualesMicroConstruccion()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.PEQUENIA, Sector.CONSTRUCCION),
+                new Categoria(Sector.CONSTRUCCION,TipoCategoria.PEQUENIA,
+                        this.getPersonalOcupadoPequeniaConstruccion(),
+                        this.getVentasAnualesPequeniaConstruccion()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_1, Sector.CONSTRUCCION),
+                new Categoria(Sector.CONSTRUCCION,TipoCategoria.MEDIANA_TRAMO_1,
+                        this.getPersonalOcupadoTramo1Construccion(),
+                        this.getVentasAnualesTramo1Construccion()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_2, Sector.CONSTRUCCION),
+                new Categoria(Sector.CONSTRUCCION,TipoCategoria.MEDIANA_TRAMO_2,
+                        this.getpersonalOcupadoTramo2Construccion(),
+                        this.getVentasAnualesTramo2Construccion()));
+
+        //las 4 de comercio
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MICRO, Sector.COMERCIO),
+                new Categoria(Sector.COMERCIO,TipoCategoria.MICRO,
+                        this.getPersonalOcupadoMicroComercio(),
+                        this.getventasAnualesMicroComercio()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.PEQUENIA, Sector.COMERCIO),
+                new Categoria(Sector.COMERCIO,TipoCategoria.PEQUENIA,
+                        this.getPersonalOcupadoPequeniaComercio(),
+                        this.getVentasAnualesPequeniaComercio()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_1, Sector.COMERCIO),
+                new Categoria(Sector.COMERCIO,TipoCategoria.MEDIANA_TRAMO_1,
+                        this.getPersonalOcupadoTramo1Comercio(),
+                        this.getVentasAnualesTramo1Comercio()));
+        nuevoMap.put(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_2, Sector.COMERCIO),
+                new Categoria(Sector.COMERCIO,TipoCategoria.MEDIANA_TRAMO_2,
+                        this.getpersonalOcupadoTramo2Comercio(),
+                        this.getVentasAnualesTramo2Comercio()));
+
+        return nuevoMap;
+    }
 
     //datos Agropecuarios
     @Override
@@ -149,35 +250,35 @@ public class DAOMemoriaCategoria implements DAOCategoria {
 
     //datos Construccion
     @Override
-    public float getVentasAnualesTramo1Construcion() {
+    public float getVentasAnualesTramo1Construccion() {
         return 503880000;
     }
     @Override
-    public float getVentasAnualesPequeniaConstrucion() {
+    public float getVentasAnualesPequeniaConstruccion() {
         return 90310000;
     }
     @Override
-    public float getventasAnualesMicroConstrucion() {
+    public float getventasAnualesMicroConstruccion() {
         return 15230000;
     }
     @Override
-    public int getPersonalOcupadoMicroConstrucion() {
+    public int getPersonalOcupadoMicroConstruccion() {
         return 12;
     }
     @Override
-    public int getPersonalOcupadoPequeniaConstrucion() {
+    public int getPersonalOcupadoPequeniaConstruccion() {
         return 45;
     }
     @Override
-    public int getPersonalOcupadoTramo1Construcion() {
+    public int getPersonalOcupadoTramo1Construccion() {
         return 200;
     }
     @Override
-    public float getVentasAnualesTramo2Construcion() {
+    public float getVentasAnualesTramo2Construccion() {
         return 755740000;
     }
     @Override
-    public int getpersonalOcupadoTramo2Construcion() {
+    public int getpersonalOcupadoTramo2Construccion() {
         return 590;
     }
 }

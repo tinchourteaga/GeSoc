@@ -2,7 +2,6 @@ package Operacion.Entidad.Categorias;
 
 import Operacion.Entidad.Empresa;
 import Operacion.Entidad.Sector;
-import com.sun.prism.paint.ImagePattern;
 
 import java.util.HashMap;
 
@@ -10,6 +9,13 @@ public class Categorizador {
     private static DAOCategoria bolsaValores=new DAOMemoriaCategoria();
     private static HashMap<KeyCategoria,Categoria> categorias = bolsaValores.obtenerMapaDeCategorias();//hay que actualizarlo cada cierto tiempo quizas?
 
+    public static HashMap<KeyCategoria, Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public static void setCategorias(HashMap<KeyCategoria, Categoria> categorias) {
+        Categorizador.categorias = categorias;
+    }
 
     public static DAOCategoria getBolsaValores() {
         return bolsaValores;

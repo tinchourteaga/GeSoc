@@ -13,9 +13,7 @@ public class RepositorioUsuario {
     public void agregar(Usuario usuario){
         this.dao.agregar(usuario);
     }
-    public void modificar(Usuario usuario, Usuario nuevoUsuario){
-        this.dao.modificar(usuario, nuevoUsuario);
-    }
+    public void modificar(Usuario usuario, Usuario usuarioModificado){ this.dao.modificar(usuario, usuarioModificado); }
     public void eliminar(Usuario usuario){
         this.dao.eliminar(usuario);
     }

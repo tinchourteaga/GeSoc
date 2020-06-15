@@ -18,5 +18,4 @@ public class Empresa extends EntidadJuridica {
        Categorizador.determinarCategoria(this);
     }
 
-
 }

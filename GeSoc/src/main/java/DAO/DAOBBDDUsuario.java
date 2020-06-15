@@ -16,9 +16,9 @@ public class DAOBBDDUsuario implements DAOUsuario {
     public void agregar(Usuario usuario){
         usuarios.add(usuario);
     }
-    public void modificar(Usuario usuario, Usuario nuevoUsuario){
-        eliminar(usuario);
-        agregar(nuevoUsuario);
+    public void modificar(Usuario usuario, Usuario usuarioModificado){
+        this.eliminar(usuario);
+        this.agregar(usuarioModificado);
     }
     public void eliminar(Usuario usuario){
         usuarios.remove(usuario);

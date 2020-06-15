@@ -7,32 +7,31 @@ import java.util.List;
 
 public class DAOMemoriaUsuario implements DAOUsuario {
 
-    private List<Usuario> listausuarios;
+    private List<Usuario> listaUsuarios;
 
     public DAOMemoriaUsuario(){
-        listausuarios = new ArrayList<Usuario>();
+        listaUsuarios = new ArrayList<Usuario>();
     }
 
     public void agregar(Usuario usuario) {
-        if (existe(usuario)) {
-            listausuarios.add(usuario);
-        }
+        if (this.existe(usuario))
+            listaUsuarios.add(usuario);
     }
 
-    public void modificar(Usuario usuario, Usuario nuevoUsuario) {
+    public void modificar(Usuario usuario, Usuario usuarioModificado) {
         int indiceUsuario;
-        if (existe(usuario)){
+        if (this.existe(usuario)){
             indiceUsuario=buscar(usuario);
-            listausuarios.add(indiceUsuario, nuevoUsuario);
+            listaUsuarios.add(indiceUsuario, usuarioModificado);
         }
     }
 
     public void eliminar(Usuario usuario) {
-        listausuarios.remove(usuario);
+        listaUsuarios.remove(usuario);
     }
 
     public boolean existe(Usuario usuario) {
-        if (buscar(usuario) != -1){
+        if (this.buscar(usuario) != -1){
             return true;
         }else{
             return false;
@@ -40,6 +39,6 @@ public class DAOMemoriaUsuario implements DAOUsuario {
     }
 
     public int buscar(Usuario usuario) {
-        return listausuarios.indexOf(usuario.getNombre());
+        return listaUsuarios.indexOf(usuario.getNombre());
     }
 }

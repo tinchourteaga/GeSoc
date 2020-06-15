@@ -14,4 +14,20 @@ public class Categoria {
         this.personalMaximo=personalMaximo;
         this.ventasAnuales=ventasAnuales;
     }
+
+    public Sector getDescripcion() {
+        return descripcion;
+    }
+
+    public TipoCategoria getNombre() {
+        return nombre;
+    }
+
+    public Integer getPersonalMaximo() {
+        return personalMaximo;
+    }
+
+    public Float getVentasAnuales() {
+        return ventasAnuales;
+    }
 }

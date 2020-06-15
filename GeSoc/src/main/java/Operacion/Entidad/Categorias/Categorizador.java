@@ -7,13 +7,13 @@ import java.util.HashMap;
 
 public class Categorizador {
     private static DAOCategoria bolsaValores=new DAOMemoriaCategoria();
-    private static HashMap<KeyCategoria,Categoria> categorias = bolsaValores.obtenerMapaDeCategorias();//hay que actualizarlo cada cierto tiempo quizas?
+    private static HashMap<String,Categoria> categorias = bolsaValores.obtenerMapaDeCategorias();//hay que actualizarlo cada cierto tiempo quizas?
 
-    public static HashMap<KeyCategoria, Categoria> getCategorias() {
+    public static HashMap<String, Categoria> getCategorias() {
         return categorias;
     }
 
-    public static void setCategorias(HashMap<KeyCategoria, Categoria> categorias) {
+    public static void setCategorias(HashMap<String, Categoria> categorias) {
         Categorizador.categorias = categorias;
     }
 
@@ -143,19 +143,19 @@ public class Categorizador {
     }
 
     private static Categoria getcategoriaMedianaTramo1(Sector actividad) {
-        return categorias.get(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_1,actividad));
+        return categorias.get((TipoCategoria.MEDIANA_TRAMO_1.toString()+"-"+actividad.toString()));
     }
 
     private static Categoria getcategoriaMedianaTramo2(Sector actividad) {
-        return categorias.get(new KeyCategoria(TipoCategoria.MEDIANA_TRAMO_2,actividad));
+        return categorias.get((TipoCategoria.MEDIANA_TRAMO_2.toString()+"-"+actividad.toString()));
     }
 
     private static Categoria getcategoriaMicro(Sector actividad) {
-        return categorias.get(new KeyCategoria(TipoCategoria.MICRO,actividad));
+        return categorias.get((TipoCategoria.MICRO.toString()+"-"+actividad.toString()));
     }
 
     private static Categoria getcategoriaPequenia(Sector actividad) {
-        return categorias.get(new KeyCategoria(TipoCategoria.PEQUENIA,actividad));
+        return categorias.get((TipoCategoria.PEQUENIA.toString()+"-"+actividad.toString()));
     }
 
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public interface DAOCategoria {
 
-    HashMap<KeyCategoria,Categoria>  obtenerMapaDeCategorias();
+    HashMap<String,Categoria>  obtenerMapaDeCategorias();
 
     //DATOS AGROPECUARIO
     float getVentasAnualesTramo1Agropecuario();

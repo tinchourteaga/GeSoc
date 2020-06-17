@@ -14,40 +14,40 @@ public class ValidadorDeOperacion {
     static EstrategiaRevision estrategia;
     static List<Mensaje> mensajes = new ArrayList();
 
-    public static void validarCustomSinBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
+    public static void validarCustomSinBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {
         validacionesEspecificas.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
             } catch (NoCumpleValidacionException e) {
-                agregarValidacionFallida(unaOperacion);
+                agregarValidacionFallida(unaOperacion,unUsuario);
             }
         });
-        agregarValidacionExitosa(unaOperacion);
+        agregarValidacionExitosa(unaOperacion,unUsuario);
     }
 
-    public static void validarCustomConBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
-        validarDefault(unaOperacion);
-        validarCustomSinBasicas(unaOperacion, validacionesEspecificas);
+    public static void validarCustomConBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {
+        validarDefault(unaOperacion,unUsuario);
+        validarCustomSinBasicas(unaOperacion, validacionesEspecificas,unUsuario);
     }
 
     public static void asignarRevisorA(Operacion unaOperacion, Usuario revisor) {
         estrategia.revisar(unaOperacion,revisor);
     }
 
-    public static void validarDefault(Operacion unaOperacion) {
+    public static void validarDefault(Operacion unaOperacion, Usuario unUsuario) {
         validaciones.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
             } catch (NoCumpleValidacionException e) {
-                agregarValidacionFallida(unaOperacion);
+                agregarValidacionFallida(unaOperacion,unUsuario);
             }
         });
-        agregarValidacionExitosa(unaOperacion);
+        agregarValidacionExitosa(unaOperacion,unUsuario);
     }
-    public static void agregarValidacionExitosa(Operacion unaOperacion){
-        //creo el msj que ahora es una clase
+    public static void agregarValidacionExitosa(Operacion unaOperacion, Usuario unUsuario){
+        //Creo el msj que ahora es una clase
     }
-    public static void agregarValidacionFallida(Operacion unaOperacion){
-        //creo el msj que ahora es una clase
+    public static void agregarValidacionFallida(Operacion unaOperacion, Usuario unUsuario){
+        //Creo el msj que ahora es una clase
     }
 }

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.List;
 
 import Operacion.Core.Operacion;
+import Rol.Acciones.Accion;
+import Rol.Acciones.RealizarCompra;
 import Rol.Rol;
 import Rol.Exepciones.ContraseniasDistintasException;
 import Rol.Exepciones.NoTengoPermisosException;
@@ -39,24 +41,18 @@ public class Usuario {
     }
 
     public void realizarOperacionCompra(Operacion operacion) throws NoTengoPermisosException, NoTengoPermisosExceptionDeCompra {
-        //no se si esto esta bien, lo dejo hasta estar seguro de que compra y egreso son lo mismo
-        if (roles.stream().allMatch(rol->rol.tengoPermisosPara(Accion.REALIZAR_COMPRA))) {
-            operacion.realizar();
-        } else {
-            throw new NoTengoPermisosExceptionDeCompra(this,operacion);
-        }
+        Accion unaAccion = new RealizarCompra(operacion,this);
+        roles.forEach(unRol -> {
+            try {
+                unRol.tengoPermisosPara(unaAccion);
+            } catch (NoTengoPermisosException e) {
+                e.printStackTrace();
+            }
+        });
+        unaAccion.realizar(this);
     }
 
-    public void revisarCompra(Operacion compra) throws  NoTengoPermisosExceptionDeRevisarCompra {
-        if (roles.stream().allMatch(rol->rol.tengoPermisosPara(Accion.REVISAR_COMPRA))) {
-            compra.revisar(this);
-        } else {
-            throw new NoTengoPermisosExceptionDeRevisarCompra(this,compra);
-        }
-    }
-
-
-        public void setContrasenia (String contraseniaNueva){
+    public void setContrasenia (String contraseniaNueva){
             contrasenia = contraseniaNueva;
         }
 

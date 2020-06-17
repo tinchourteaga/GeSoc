@@ -1,6 +1,7 @@
 package Rol;
 
 import Rol.Acciones.Accion;
+import Rol.Exepciones.NoTengoPermisosException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,11 @@ import java.util.List;
 public abstract class Rol {
 
 
-    protected List<Accion> acciones = new ArrayList();
+    public List<Accion> acciones = new ArrayList();
 
-    public boolean tengoPermisosPara(final Accion unaAccion){
-        return acciones.stream().anyMatch(accion-> accion.equals(unaAccion));
+    public void tengoPermisosPara(Accion unaAccion) throws NoTengoPermisosException {
+        if(!acciones.stream().anyMatch(accion-> accion.equals(unaAccion))){
+            throw new NoTengoPermisosException();
+        }
     }
 }

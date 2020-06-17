@@ -1,11 +1,16 @@
 package Rol;
 
-import Usuario.Usuario;
-public class RolEstandar {
+import Rol.Acciones.Accion;
 
-    public bool tengoPermisos(Enum accion){
-        return false
-    }
-    private cambiarPassword(Usuario usuario){
+import java.util.ArrayList;
+
+public class RolEstandar extends Rol {
+
+    public RolEstandar() {
+
+        this.acciones = new ArrayList() {{
+
+        }};
     }
 }
+

@@ -1,4 +1,4 @@
-package Usuario.Exepciones;
+package Rol.Exepciones;
 
 public class NoTengoPermisosException extends Exception {
     public NoTengoPermisosException(){

@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.util.List;
 
 import Operacion.Core.Operacion;
-import Usuario.Exepciones.ContraseniasDistintasException;
-import Usuario.Exepciones.NoTengoPermisosException;
-import Usuario.Exepciones.NoTengoPermisosExceptionDeCompra;
-import Usuario.Exepciones.NoTengoPermisosExceptionDeRevisarCompra;
+import Rol.Rol;
+import Rol.Exepciones.ContraseniasDistintasException;
+import Rol.Exepciones.NoTengoPermisosException;
+import Rol.Exepciones.NoTengoPermisosExceptionDeCompra;
+import Rol.Exepciones.NoTengoPermisosExceptionDeRevisarCompra;
 import Validacion.*;
 import Validacion.Excepciones.*;
 

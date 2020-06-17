@@ -1,5 +1,6 @@
-package Usuario;
+package Rol;
 import Operacion.Core.Operacion;
+import Rol.Acciones.Accion;
 
 import java.util.ArrayList;
 
@@ -10,10 +11,8 @@ public class RolRevisorCompra extends Rol{
     public RolRevisorCompra(Operacion operacion) {
         this.operacionARevisar=operacion;
 
-        this.Acciones = new ArrayList() {{
-            add(Accion.CREAR_USUARIO);
-            add(Accion.REALIZAR_COMPRA);
-            add(Accion.REVISAR_COMPRA);
+        this.acciones = new ArrayList() {{
+            //add(new DarDeAltaRevisor(); aca metemos las acciones de esta forma
         }};
     }
 }

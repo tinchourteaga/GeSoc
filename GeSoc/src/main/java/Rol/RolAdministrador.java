@@ -1,9 +1,14 @@
 package Rol;
 
-public class RolAdministrador {
+import Rol.Acciones.Accion;
 
-    public bool tengoPermisos(Enum accion){
-        return false
+import java.util.ArrayList;
+
+public class RolAdministrador extends Rol {
+    public RolAdministrador() {
+
+        this.acciones = new ArrayList() {{
+
+        }};
     }
-
 }

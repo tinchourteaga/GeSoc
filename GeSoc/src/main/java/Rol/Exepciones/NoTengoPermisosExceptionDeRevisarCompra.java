@@ -1,4 +1,4 @@
-package Usuario.Exepciones;
+package Rol.Exepciones;
 
 import Operacion.Core.Operacion;
 import Usuario.Usuario;

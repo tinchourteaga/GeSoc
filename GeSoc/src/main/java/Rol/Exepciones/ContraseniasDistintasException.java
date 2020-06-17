@@ -1,4 +1,4 @@
-package Usuario.Exepciones;
+package Rol.Exepciones;
 
 public class ContraseniasDistintasException extends Exception {
     public ContraseniasDistintasException(){

@@ -12,6 +12,7 @@ public class Operacion {
     List<Item> listaItems = new ArrayList<Item>();
     MetodoPago metodoPago;
     Proveedor proveedor;
+    Categoria unaCategoria;
     DocumentoComercial documentoComercial;
     
     public Operacion(LocalDate unaFecha,float importe,List<Item> items,MetodoPago metodo,Proveedor unProveedor, DocumentoComercial unDocumento){

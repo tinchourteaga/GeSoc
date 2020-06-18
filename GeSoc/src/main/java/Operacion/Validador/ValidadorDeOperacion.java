@@ -14,7 +14,7 @@ public class ValidadorDeOperacion {
     static DAOValidacion repositorio = new MemoriaValidacion();
 
     static List<ValidacionOperacion> validaciones =repositorio.obtenerValidaciones();
-    
+
     static EstrategiaRevision estrategia;
 
     public static void validarCustomSinBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {

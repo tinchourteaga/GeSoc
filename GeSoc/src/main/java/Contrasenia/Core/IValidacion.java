@@ -1,6 +1,6 @@
-package Validacion;
+package Contrasenia.Core;
 
-import Validacion.Excepciones.*;
+import Contrasenia.Excepciones.*;
 import java.io.IOException;
 
 public interface IValidacion {

@@ -3,6 +3,7 @@ package Usuario;
 import java.io.IOException;
 import java.util.List;
 
+import Contrasenia.Core.ValidadorDeContrasenia;
 import Operacion.Core.Operacion;
 import Rol.Acciones.Accion;
 import Rol.Acciones.RealizarCompra;
@@ -10,9 +11,7 @@ import Rol.Rol;
 import Rol.Exepciones.ContraseniasDistintasException;
 import Rol.Exepciones.NoTengoPermisosException;
 import Rol.Exepciones.NoTengoPermisosExceptionDeCompra;
-import Rol.Exepciones.NoTengoPermisosExceptionDeRevisarCompra;
-import Validacion.*;
-import Validacion.Excepciones.*;
+import Contrasenia.Excepciones.*;
 
 public class Usuario {
 

@@ -1,4 +1,4 @@
-package Validacion.Excepciones;
+package Contrasenia.Excepciones;
 
 public class ExcepcionLongitud extends Exception{
     public ExcepcionLongitud(){

@@ -1,17 +1,21 @@
-package Validacion;
+package Contrasenia.Core;
 
-import Validacion.Excepciones.ExcepcionContraseniaComun;
-import Validacion.Excepciones.ExcepcionLongitud;
-import Validacion.Excepciones.ExcepcionNumero;
-import Validacion.Excepciones.ExcepcionCaracterEspecial;
+import Contrasenia.DAO.DAOValidacion;
+import Contrasenia.DAO.MemoriaValidacion;
+import Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Contrasenia.Excepciones.ExcepcionLongitud;
+import Contrasenia.Excepciones.ExcepcionNumero;
+import Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 
 import java.io.*;
 import java.util.*;
 
 
 public class ValidadorDeContrasenia {
+
+    private static DAOValidacion repositorio = new MemoriaValidacion();
     //singleton class
-    private static List<IValidacion> Validaciones = new ArrayList<IValidacion>();
+    private static List<IValidacion> Validaciones = repositorio.obtenerValidaciones();
 
     public static void validarContrasenia(String contrasenia) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         //No me gusta como esta esto

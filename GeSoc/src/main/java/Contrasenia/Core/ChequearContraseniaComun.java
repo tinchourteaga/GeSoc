@@ -1,4 +1,4 @@
-package Validacion;
+package Contrasenia.Core;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import Validacion.Excepciones.*;
+import Contrasenia.Excepciones.*;
 
 public class ChequearContraseniaComun implements IValidacion {
     private static List<String> contraseniaComun;

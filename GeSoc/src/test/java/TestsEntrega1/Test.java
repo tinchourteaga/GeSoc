@@ -1,11 +1,10 @@
 package TestsEntrega1;
 
-import Validacion.*;
-import org.junit.*;
-import Validacion.Excepciones.ExcepcionCaracterEspecial;
-import Validacion.Excepciones.ExcepcionContraseniaComun;
-import Validacion.Excepciones.ExcepcionLongitud;
-import Validacion.Excepciones.ExcepcionNumero;
+import Contrasenia.Core.*;
+import Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Contrasenia.Excepciones.ExcepcionLongitud;
+import Contrasenia.Excepciones.ExcepcionNumero;
 
 import java.io.IOException;
 

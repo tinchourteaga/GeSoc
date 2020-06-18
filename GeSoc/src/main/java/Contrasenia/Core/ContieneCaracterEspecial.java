@@ -1,6 +1,6 @@
-package Validacion;
+package Contrasenia.Core;
 
-import Validacion.Excepciones.*;
+import Contrasenia.Excepciones.*;
 import Convertidor.ConvertidorString;
 import java.util.List;
 

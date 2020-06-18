@@ -1,6 +1,8 @@
 package Operacion.Validador;
 
 import Operacion.Core.Operacion;
+import Operacion.Validador.DAO.DAOValidacion;
+import Operacion.Validador.DAO.MemoriaValidacion;
 import Operacion.Validador.Excepciones.NoCumpleValidacionException;
 import Usuario.Usuario;
 
@@ -8,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ValidadorDeOperacion {
-    static List<ValidacionOperacion> validaciones = new ArrayList() {{
 
-    }};
+    static DAOValidacion repositorio = new MemoriaValidacion();
+
+    static List<ValidacionOperacion> validaciones =repositorio.obtenerValidaciones();
+    
     static EstrategiaRevision estrategia;
-    static List<Mensaje> mensajes = new ArrayList();
 
     public static void validarCustomSinBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {
         validacionesEspecificas.forEach(validacion -> {

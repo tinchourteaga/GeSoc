@@ -1,6 +1,6 @@
-package Validacion;
+package Contrasenia.Core;
 
-import Validacion.Excepciones.*;
+import Contrasenia.Excepciones.*;
 
 public class ChequearLongitudContrasenia implements IValidacion {
 

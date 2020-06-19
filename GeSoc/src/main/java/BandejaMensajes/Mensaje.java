@@ -3,12 +3,12 @@ package BandejaMensajes;
 import java.util.Date;
 
 public class Mensaje {
-    String fechaCreado;
-    String fechaLeido;
+    Date fechaCreado;
+    Date fechaLeido;
     String mensajeResultado;
     Boolean leido = false;
 
-    public Mensaje(String fechaCreado, String fechaLeido, String mensajeResultado, Boolean leido) {
+    public Mensaje(Date fechaCreado, Date fechaLeido, String mensajeResultado, Boolean leido) {
         this.fechaCreado = fechaCreado;
         this.fechaLeido = fechaLeido;
         this.mensajeResultado = mensajeResultado;

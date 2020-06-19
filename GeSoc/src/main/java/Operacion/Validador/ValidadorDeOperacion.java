@@ -3,6 +3,7 @@ package Operacion.Validador;
 import Operacion.Core.Operacion;
 import Operacion.Validador.DAO.DAOValidacion;
 import Operacion.Validador.DAO.MemoriaValidacion;
+import Operacion.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Operacion.Validador.Excepciones.NoCumpleValidacionException;
 import Usuario.Usuario;
 
@@ -13,7 +14,7 @@ public class ValidadorDeOperacion {
 
     static DAOValidacion repositorio = new MemoriaValidacion();
 
-    static List<ValidacionOperacion> validaciones =repositorio.obtenerValidaciones();
+    static List<ValidacionOperacion> validaciones = repositorio.obtenerValidaciones();
 
     static EstrategiaRevision estrategia;
 
@@ -21,15 +22,15 @@ public class ValidadorDeOperacion {
         validacionesEspecificas.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
-            } catch (NoCumpleValidacionException e) {
-                agregarValidacionFallida(unaOperacion,unUsuario);
+            } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
+                agregarValidacionFallida(unaOperacion);
             }
         });
-        agregarValidacionExitosa(unaOperacion,unUsuario);
+        agregarValidacionExitosa(unaOperacion);
     }
 
-    public static void validarCustomConBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {
-        validarDefault(unaOperacion,unUsuario);
+    public static void validarCustomConBasicas(Operacion unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
+        validarDefault(unaOperacion);
         validarCustomSinBasicas(unaOperacion, validacionesEspecificas,unUsuario);
     }
 
@@ -37,20 +38,25 @@ public class ValidadorDeOperacion {
         estrategia.revisar(unaOperacion,revisor);
     }
 
-    public static void validarDefault(Operacion unaOperacion, Usuario unUsuario) {
+    public static void validarDefault(Operacion unaOperacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
         validaciones.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
-            } catch (NoCumpleValidacionException e) {
-                agregarValidacionFallida(unaOperacion,unUsuario);
+            } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
+                agregarValidacionFallida(unaOperacion);
             }
         });
-        agregarValidacionExitosa(unaOperacion,unUsuario);
+
+        agregarValidacionExitosa(unaOperacion);
     }
-    public static void agregarValidacionExitosa(Operacion unaOperacion, Usuario unUsuario){
+
+    public static void agregarValidacionExitosa(Operacion unaOperacion){
         //Creo el msj que ahora es una clase
     }
-    public static void agregarValidacionFallida(Operacion unaOperacion, Usuario unUsuario){
+    public static void agregarValidacionFallida(Operacion unaOperacion){
         //Creo el msj que ahora es una clase
     }
+
+
+
 }

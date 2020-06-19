@@ -6,13 +6,16 @@ public class Proveedor {
     String nombreApellido;
     String cuitODni;
     String direccion;
+    Presupuesto presupuesto;
 
-    public Proveedor(String rs,String nombreYApellido,String CUITODNI,String unaDireccion) {
+    public Proveedor(String rs,String nombreYApellido,String CUITODNI,String unaDireccion, Presupuesto presupuesto) {
         this.razonSocial=rs;
         this.nombreApellido=nombreYApellido;
         this.cuitODni=CUITODNI;
         this.direccion=unaDireccion;
+        this.presupuesto=presupuesto;
     }
+
     public String getRazonSocial() {
         return razonSocial;
     }
@@ -29,6 +32,7 @@ public class Proveedor {
         return direccion;
     }
 
-
-
+    public Presupuesto getPresupuesto() {
+        return presupuesto;
+    }
 }

@@ -7,4 +7,8 @@ public class Presupuesto {
     float valor;
     List<Detalle> detalles;
     DocumentoComercial documentoComercial;
+
+    public float getValor() {
+        return valor;
+    }
 }

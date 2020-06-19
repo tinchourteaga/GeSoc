@@ -1,6 +1,8 @@
 package Planificador;
 
 import Operacion.Core.Operacion;
+import Operacion.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
+import Operacion.Validador.Excepciones.NoCumpleValidacionException;
 import Operacion.Validador.ValidadorDeOperacion;
 import Usuario.Usuario;
 
@@ -33,10 +35,14 @@ public class Planificador {
             public void run() {
                 try{
                     Thread.sleep(tiempoDeValidacionEnMiliSegundos,tiempoDeValidacionEnNanoSegundos);
-                    ValidadorDeOperacion.validarDefault(unaOperacion,unUsuario);
+                    ValidadorDeOperacion.validarDefault(unaOperacion);
                 }
                 catch(InterruptedException e){
                     System.out.println(e);
+                } catch (NoCumpleValidacionDeCriterioException e) {
+                    e.printStackTrace();
+                } catch (NoCumpleValidacionException e) {
+                    e.printStackTrace();
                 }
             }
         };

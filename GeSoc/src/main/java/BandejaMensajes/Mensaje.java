@@ -1,5 +1,7 @@
 package BandejaMensajes;
 
+import java.util.Date;
+
 public class Mensaje {
     String fechaCreado;
     String fechaLeido;
@@ -14,6 +16,6 @@ public class Mensaje {
     }
 
     public void leer(){
-
+        this.fechaLeido = new Date();
     }
 }

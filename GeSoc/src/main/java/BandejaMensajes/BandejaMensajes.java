@@ -2,6 +2,7 @@ package BandejaMensajes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BandejaMensajes {
 
@@ -15,8 +16,12 @@ public class BandejaMensajes {
 
     }
 
-    public void filtrarPorLeidos(){
-
+    public List<Mensaje> filtrarPorLeidos(){
+        List<Mensaje> mensajesLeidos = new ArrayList<Mensaje>();
+        mensajesLeidos =this.mensajes.stream()
+                     .filter(x -> x.fechaLeido != null )
+                     .collect(Collectors.toList());
+	    return mensajesLeidos;
     }
 
     public void agregarMensaje(Mensaje mensaje){

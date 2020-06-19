@@ -1,14 +1,13 @@
 package Rol;
-import Operacion.Core.Operacion;
-import Rol.Acciones.Accion;
+import Egreso.Core.Egreso;
 
 import java.util.ArrayList;
 
 public class RolRevisorCompra extends Rol{
 
-    private Operacion operacionARevisar;
+    private Egreso operacionARevisar;
 
-    public RolRevisorCompra(Operacion operacion) {
+    public RolRevisorCompra(Egreso operacion) {
         this.operacionARevisar=operacion;
 
         this.acciones = new ArrayList() {{

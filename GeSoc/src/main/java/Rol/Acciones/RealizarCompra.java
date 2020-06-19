@@ -1,15 +1,15 @@
 package Rol.Acciones;
 
-import Operacion.Core.Operacion;
+import Egreso.Core.Egreso;
 import Rol.Rol;
 import Usuario.Usuario;
 
 import java.util.List;
 
 public class RealizarCompra implements Accion{
-    Operacion operacion;
+    Egreso operacion;
 
-    public RealizarCompra(Operacion operacion, Usuario unUsuario) {
+    public RealizarCompra(Egreso operacion, Usuario unUsuario) {
         this.operacion = operacion;
         List<Rol> roles = unUsuario.getRoles();
         roles.forEach(unRol -> unRol.acciones.add(this));

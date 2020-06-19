@@ -1,11 +1,10 @@
 package TestsEntrega2;
 
-import Operacion.Core.Operacion;
-import Operacion.Entidad.Categorias.*;
-import Operacion.Entidad.Empresa;
-import Operacion.Entidad.Sector;
+import Egreso.Core.Egreso;
+import Egreso.Entidad.Categorias.*;
+import Egreso.Entidad.Empresa;
+import Egreso.Entidad.Sector;
 import org.junit.*;
-import static org.junit.Assert.*;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class Test {
     String cp = null;
     String ci = null;
     String tipo = null;
-    List<Operacion> operaciones = null;
+    List<Egreso> operaciones = null;
 
     @Before
     public void init(){

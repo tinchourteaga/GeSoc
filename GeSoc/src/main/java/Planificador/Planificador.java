@@ -1,14 +1,12 @@
 package Planificador;
 
-import Operacion.Core.Operacion;
-import Operacion.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Operacion.Validador.Excepciones.NoCumpleValidacionException;
-import Operacion.Validador.ValidadorDeOperacion;
+import Egreso.Core.Egreso;
+import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
+import Egreso.Validador.Excepciones.NoCumpleValidacionException;
+import Egreso.Validador.ValidadorDeOperacion;
 import Usuario.Usuario;
 
-import java.time.DateTimeException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.TimerTask;
 
@@ -28,7 +26,7 @@ public class Planificador {
     private Planificador(){
     }
 
-    public void ejecutar(long tiempoDeValidacionEnMiliSegundos, int tiempoDeValidacionEnNanoSegundos,Operacion unaOperacion, Usuario unUsuario){
+    public void ejecutar(long tiempoDeValidacionEnMiliSegundos, int tiempoDeValidacionEnNanoSegundos,Egreso unaOperacion, Usuario unUsuario){
 
         TimerTask hiloDeTarea = new TimerTask() {
             @Override
@@ -50,7 +48,7 @@ public class Planificador {
         eventos.add(hiloDeTarea);
     }
 
-    public void ejecutar(long tiempoDeValidacionEnMiliSegundos,Operacion unaOperacion, Usuario unUsuario){
+    public void ejecutar(long tiempoDeValidacionEnMiliSegundos,Egreso unaOperacion, Usuario unUsuario){
 
         this.ejecutar(tiempoDeValidacionEnMiliSegundos,0,unaOperacion,unUsuario);
     }

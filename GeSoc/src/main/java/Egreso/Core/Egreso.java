@@ -1,5 +1,6 @@
 package Egreso.Core;
 
+import Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Egreso.Validador.Excepciones.NoCumpleValidacionException;

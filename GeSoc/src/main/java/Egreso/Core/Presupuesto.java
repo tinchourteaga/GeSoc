@@ -1,5 +1,7 @@
 package Egreso.Core;
 
+import Egreso.Core.CriteriosDeCategorizacion.Categoria;
+
 import java.util.List;
 
 public class Presupuesto {

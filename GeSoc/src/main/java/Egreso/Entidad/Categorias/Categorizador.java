@@ -130,15 +130,14 @@ public class Categorizador {
     private static Categoria determinarTamanio(Empresa empresa,float ventasAnualesTramo1,float ventasAnualesPequenia,
                                                float ventasAnualesMicro,int personalOcupadoMicro,int personalOcupadoPequenia,int personalOcupadoTramo1,
                                                float ventasAnualesTramo2,int personalOcupadoTramo2) {
-        
-        if (empresa.getCantidadPersonal() >= personalOcupadoTramo2 || empresa.getPromedioVentasAnuales() >= ventasAnualesTramo2) {
 
+        if (empresa.getCantidadPersonal() >= personalOcupadoTramo1 || empresa.getPromedioVentasAnuales() >= ventasAnualesTramo1) {
             return getcategoriaMedianaTramo2(empresa.getActividad());
         }
-        if (empresa.getCantidadPersonal() >= personalOcupadoTramo1 || empresa.getPromedioVentasAnuales() >= ventasAnualesTramo1) {
+        if (empresa.getCantidadPersonal() >= personalOcupadoPequenia || empresa.getPromedioVentasAnuales() >= ventasAnualesPequenia) {
             return getcategoriaMedianaTramo1(empresa.getActividad());
         }
-        if (empresa.getCantidadPersonal() >= personalOcupadoPequenia || empresa.getPromedioVentasAnuales() >= ventasAnualesPequenia) {
+        if (empresa.getCantidadPersonal() >= personalOcupadoMicro || empresa.getPromedioVentasAnuales() >= ventasAnualesMicro) {
             return getcategoriaPequenia(empresa.getActividad());
         }
 

@@ -1,6 +1,7 @@
 package Egreso.Core;
 
 import Egreso.Core.CriteriosDeCategorizacion.Categoria;
+import Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Egreso.Validador.Excepciones.NoCumpleValidacionException;
@@ -21,7 +22,8 @@ public class Egreso {
     Proveedor proveedorSeleccionado;
     Categoria unaCategoria;
     DocumentoComercial documentoComercial;
-    CriterioSeleccionProveedor criterio;
+    CriterioSeleccionProveedor criterioSeleccionProveedor;
+    Criterio criterioDeCategorizacion;
 
 
     public Egreso(LocalDate unaFecha,float importe,List<Item> items,MetodoPago metodo,List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
@@ -37,11 +39,11 @@ public class Egreso {
     }
 
     public void setCriterio(CriterioSeleccionProveedor criterio){
-        this.criterio = criterio;
+        this.criterioSeleccionProveedor = criterio;
     }
 
     public CriterioSeleccionProveedor getCriterio(){
-        return this.criterio;
+        return this.criterioSeleccionProveedor;
     }
 
     public List<Proveedor> getProveedores() {
@@ -58,6 +60,18 @@ public class Egreso {
 
     //esto es de 2da entrega no lo implemento todavia
     public void revisar(Usuario usuario) {
+    }
+
+    public Criterio getCriterioDeCategorizacion() {
+        return criterioDeCategorizacion;
+    }
+
+    public void asignarCriterioDeCategorizacion(Criterio criterioDeCategorizacion) {
+        this.criterioDeCategorizacion = criterioDeCategorizacion;
+    }
+
+    public void obtenerCategoria() {
+        criterioDeCategorizacion.aplicar(this);
     }
 
     public void validar() throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {

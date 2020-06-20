@@ -1,5 +1,6 @@
 package Egreso.Core.CriteriosDeCategorizacion;
 
+import Egreso.Core.Egreso;
 import Egreso.Entidad.Entidad;
 
 import java.util.HashMap;
@@ -7,7 +8,7 @@ import java.util.HashMap;
 public abstract class Criterio {
     HashMap<String,Categoria> categorias;
 
-    public abstract void aplicar(Entidad unaEntidad);
+    public abstract void aplicar(Egreso unaEgreso);
 
     public HashMap<String, Categoria> getCategorias() {
         return categorias;

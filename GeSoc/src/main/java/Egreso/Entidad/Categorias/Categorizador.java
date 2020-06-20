@@ -77,7 +77,7 @@ public class Categorizador {
         int personalOcupadoTramo1=bolsaValores.getPersonalOcupadoTramo1IYM();
         float ventasAnualesTramo2=bolsaValores.getVentasAnualesTramo2IYM();
         int personalOcupadoTramo2=bolsaValores.getpersonalOcupadoTramo2IYM();
-        //deberia delegarlo en un objeto?
+
         return determinarTamanio(unaEmpresa, ventasAnualesTramo1, ventasAnualesPequenia,
                 ventasAnualesMicro, personalOcupadoMicro, personalOcupadoPequenia, personalOcupadoTramo1,
                 ventasAnualesTramo2, personalOcupadoTramo2);
@@ -130,16 +130,19 @@ public class Categorizador {
     private static Categoria determinarTamanio(Empresa empresa,float ventasAnualesTramo1,float ventasAnualesPequenia,
                                                float ventasAnualesMicro,int personalOcupadoMicro,int personalOcupadoPequenia,int personalOcupadoTramo1,
                                                float ventasAnualesTramo2,int personalOcupadoTramo2) {
-        if (empresa.getCantidadPersonal() < personalOcupadoMicro || empresa.getPromedioVentasAnuales() < ventasAnualesMicro) {
-            return getcategoriaMicro(empresa.getActividad());
+        
+        if (empresa.getCantidadPersonal() >= personalOcupadoTramo2 || empresa.getPromedioVentasAnuales() >= ventasAnualesTramo2) {
+
+            return getcategoriaMedianaTramo2(empresa.getActividad());
         }
-        if (empresa.getCantidadPersonal() < personalOcupadoPequenia || empresa.getPromedioVentasAnuales() < ventasAnualesPequenia) {
-            return getcategoriaPequenia(empresa.getActividad());
-        }
-        if (empresa.getCantidadPersonal() < personalOcupadoTramo1 || empresa.getPromedioVentasAnuales() < ventasAnualesTramo1) {
+        if (empresa.getCantidadPersonal() >= personalOcupadoTramo1 || empresa.getPromedioVentasAnuales() >= ventasAnualesTramo1) {
             return getcategoriaMedianaTramo1(empresa.getActividad());
         }
-        return getcategoriaMedianaTramo2(empresa.getActividad());
+        if (empresa.getCantidadPersonal() >= personalOcupadoPequenia || empresa.getPromedioVentasAnuales() >= ventasAnualesPequenia) {
+            return getcategoriaPequenia(empresa.getActividad());
+        }
+
+        return getcategoriaMicro(empresa.getActividad());
     }
 
     private static Categoria getcategoriaMedianaTramo1(Sector actividad) {

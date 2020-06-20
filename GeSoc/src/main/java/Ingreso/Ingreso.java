@@ -13,7 +13,9 @@ public class Ingreso {
     String descripcion;
     Egreso operacionAsociada;
     //De aca para abajo no sabemos si esta bien
-    MetodoPago medioPago;
+    //al final no estaba bien y lo deberiamos dejar sin esas cosas
+    //por eso las comento
+   /* MetodoPago medioPago;
     DocumentoComercial documentoComercial;
-    TipoDeIngreso tipoDeIngreso;
+    TipoDeIngreso tipoDeIngreso;*/
 }

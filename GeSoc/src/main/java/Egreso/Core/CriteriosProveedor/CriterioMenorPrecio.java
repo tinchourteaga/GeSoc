@@ -29,7 +29,7 @@ public class CriterioMenorPrecio implements CriterioSeleccionProveedor{
 
         List<Presupuesto> listaPresupuestos = proveedores.stream().map(prov -> prov.getPresupuesto()).collect(Collectors.toList());
 
-        boolean flag = listaPresupuestos.stream().allMatch(presupuesto -> presupuesto.getValor() > presupuestoMasBarato.getValor());
+        boolean flag = listaPresupuestos.stream().allMatch(presupuesto -> presupuesto.getValor() >= presupuestoMasBarato.getValor());
 
         if(!flag){
             throw new NoCumpleValidacionDeCriterioException();

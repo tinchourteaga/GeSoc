@@ -25,6 +25,18 @@ public class ValidadorDeOperacion {
 
     static EstrategiaRevision estrategia;
 
+    public static DAOValidacion getRepositorio() {
+        return repositorio;
+    }
+
+    public static List<ValidacionOperacion> getValidaciones() {
+        return validaciones;
+    }
+
+    public static EstrategiaRevision getEstrategia() {
+        return estrategia;
+    }
+
     //este seria con roles compartidos donde devuelvo el msj
     public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {
         AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(new Date(), null, "Paso exitosamente todas las Validaciones"));

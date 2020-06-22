@@ -10,6 +10,12 @@ public class Presupuesto {
     List<Detalle> detalles;
     DocumentoComercial documentoComercial;
 
+    public Presupuesto(List<Categoria> categorias, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial) {
+        this.categorias = categorias;
+        this.valor = valor;
+        this.detalles = detalles;
+        this.documentoComercial = documentoComercial;
+    }
 
     public List<Categoria> getCategorias() {
         return categorias;

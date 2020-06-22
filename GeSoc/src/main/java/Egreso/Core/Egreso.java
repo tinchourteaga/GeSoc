@@ -12,11 +12,12 @@ import Usuario.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Egreso {
 
-    LocalDate fecha;
+    Date fecha;
     Float valor;
     List<Item> listaItems = new ArrayList<Item>();
     MetodoDePago metodoDePago;
@@ -38,7 +39,7 @@ public class Egreso {
         this.ingresoOpcional = ingresoOpcional;
     }
 
-    public Egreso(LocalDate unaFecha, float importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
+    public Egreso(Date unaFecha, float importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.fecha=unaFecha;
        this.valor=importe;
        this.listaItems=items;

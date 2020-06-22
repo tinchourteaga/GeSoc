@@ -19,4 +19,20 @@ public class Mensaje {
         this.fechaLeido = new Date();
         this.leido=true;
     }
+
+    public Date getFechaCreado() {
+        return fechaCreado;
+    }
+
+    public Date getFechaLeido() {
+        return fechaLeido;
+    }
+
+    public String getMensajeResultado() {
+        return mensajeResultado;
+    }
+
+    public Boolean getLeido() {
+        return leido;
+    }
 }

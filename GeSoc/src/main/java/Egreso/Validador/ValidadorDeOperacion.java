@@ -1,5 +1,6 @@
 package Egreso.Validador;
 
+import BandejaMensajes.Mensaje;
 import Egreso.Core.Egreso;
 import Egreso.Validador.DAO.DAOValidacion;
 import Egreso.Validador.DAO.MemoriaValidacion;
@@ -7,7 +8,9 @@ import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Usuario.Usuario;
 
+import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ValidadorDeOperacion {
 
@@ -17,15 +20,16 @@ public class ValidadorDeOperacion {
 
     static EstrategiaRevision estrategia;
 
-    public static void validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {
+    public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {
+        AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(new Date(), null, "Paso exitosamente todas las Validaciones", false));
         validacionesEspecificas.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
             } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
-                agregarValidacionFallida(unaOperacion);
+                mensaje.set(new Mensaje(new Date(), null, e.toString(), false));
             }
         });
-        agregarValidacionExitosa(unaOperacion);
+        return mensaje.get();
     }
 
     public static void validarCustomConBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
@@ -37,23 +41,17 @@ public class ValidadorDeOperacion {
         estrategia.revisar(unaOperacion,revisor);
     }
 
-    public static void validarDefault(Egreso unaOperacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
+    public static Mensaje validarDefault(Egreso unaOperacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
+        AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(new Date(), null, "Paso exitosamente todas las Validaciones", false));
         validaciones.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
             } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
-                agregarValidacionFallida(unaOperacion);
+                 mensaje.set(new Mensaje(new Date(), null, e.toString(), false));
             }
         });
+        return mensaje.get();
 
-        agregarValidacionExitosa(unaOperacion);
-    }
-
-    public static void agregarValidacionExitosa(Egreso unaOperacion){
-        //Creo el msj que ahora es una clase
-    }
-    public static void agregarValidacionFallida(Egreso unaOperacion){
-        //Creo el msj que ahora es una clase
     }
 
 

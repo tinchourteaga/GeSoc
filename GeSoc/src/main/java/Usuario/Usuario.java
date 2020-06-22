@@ -19,7 +19,7 @@ public class Usuario {
     private String nombre;
     private String contrasenia;
 
-    private Usuario(List<Rol> roles, String nombre, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
+    public Usuario(List<Rol> roles, String nombre, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
         this.roles = roles;
         this.nombre = nombre;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);

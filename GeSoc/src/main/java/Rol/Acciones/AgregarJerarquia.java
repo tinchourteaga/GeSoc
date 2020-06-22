@@ -30,10 +30,14 @@ public class AgregarJerarquia implements Accion {
         this.criterioAsociado = criterioAsociado;
     }
 
-    public AgregarJerarquia(Criterio criterio, JerarquiaRecursiva unaJerarquia){
+    public AgregarJerarquia(Criterio criterio, JerarquiaRecursiva unaJerarquia) {
 
-        this.criterioAsociado=criterio;
-        this.jerarquiaAsociada=unaJerarquia;
+        this.criterioAsociado = criterio;
+        this.jerarquiaAsociada = unaJerarquia;
 
     }
+
+
+
+
 }

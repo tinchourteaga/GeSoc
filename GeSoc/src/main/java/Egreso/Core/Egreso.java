@@ -27,7 +27,7 @@ public class Egreso {
     CriterioSeleccionProveedor criterioSeleccionProveedor;
     Criterio criterioDeCategorizacion;
     Ingreso ingresoOpcional;
-    List<Categoria> categorias;//son varias categorias
+    List<Categoria> categorias=new ArrayList<>();//son varias categorias
     /* un ejemplo seria que tenes Alcance de proyecto Internacional
     y despues tamanio de alguna otra cosa*/
 
@@ -88,5 +88,9 @@ public class Egreso {
 
         //roles exclusivos
         ValidadorDeOperacion.validarDefault(this);
+    }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
     }
 }

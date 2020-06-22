@@ -3,20 +3,24 @@ package Egreso.Core.CriteriosDeCategorizacion;
 import Egreso.Core.Egreso;
 import Egreso.Entidad.Entidad;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Criterio {
-    HashMap<String,Categoria> categorias;
+    List<Categoria> categorias=new ArrayList<>();
 
-    public abstract void aplicar(Egreso unaEgreso);
+    public abstract void aplicar(Egreso unaEgreso);//en este metodo voy a hacer algo como
+    /*egreso.categorias.add(una categoria que elijo segun el criterio)*/
 
-    public HashMap<String, Categoria> getCategorias() {
+    public List<Categoria> getCategorias() {
         return categorias;
     }
-    public void agregarCategoria(Categoria unaCateogoria,String nombre) {
-        categorias.put(nombre,unaCateogoria);
+    public void agregarCategoria(Categoria unaCateogoria) {
+        categorias.add(unaCateogoria);
     }
     public Categoria obtenerCategoria(String nombre) {
-        return categorias.get(nombre);
+        return categorias.stream().filter(categoria->categoria.nombreDeCategoria.equals(nombre)).collect(Collectors.toList()).get(0);
     }
 }

@@ -20,10 +20,12 @@ public class Egreso {
     MetodoPago metodoPago;
     List<Proveedor> proveedores = new ArrayList<Proveedor>();
     Proveedor proveedorSeleccionado;
-    Categoria unaCategoria;
     DocumentoComercial documentoComercial;
     CriterioSeleccionProveedor criterioSeleccionProveedor;
     Criterio criterioDeCategorizacion;
+    List<Categoria> categorias;//son varias categorias
+    /* un ejemplo seria que tenes Alcance de proyecto Internacional
+    y despues tamanio de alguna otra cosa*/
 
 
     public Egreso(LocalDate unaFecha,float importe,List<Item> items,MetodoPago metodo,List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){

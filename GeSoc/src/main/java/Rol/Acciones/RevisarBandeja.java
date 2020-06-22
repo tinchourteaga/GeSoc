@@ -12,6 +12,10 @@ public class RevisarBandeja implements Accion {
 
     @Override
     public void realizar(Usuario usuario) {
+        //esto probablemente toquemos mas en la entrega 5
+    }
 
+    public BandejaMensajes getBandejaAsociada() {
+        return bandejaAsociada;
     }
 }

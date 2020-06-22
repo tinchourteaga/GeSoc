@@ -1,6 +1,7 @@
 package BandejaMensajes;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,8 @@ public class BandejaMensajes {
         this.mensajes = new ArrayList<Mensaje>();
     }
 
-    public void filtrarPorFecha(){
+    public List<Mensaje> filtrarPorFecha(Date fecha) {
+    return mensajes.stream().filter(mensaje-> mensaje.fechaCreado.getTime()>=fecha.getTime()).collect(Collectors.toList());
 
     }
 

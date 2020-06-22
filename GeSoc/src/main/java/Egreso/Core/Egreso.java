@@ -19,7 +19,7 @@ public class Egreso {
     LocalDate fecha;
     Float valor;
     List<Item> listaItems = new ArrayList<Item>();
-    MetodoPago metodoPago;
+    MetodoDePago metodoDePago;
     List<Proveedor> proveedores = new ArrayList<Proveedor>();
     Proveedor proveedorSeleccionado;
     DocumentoComercial documentoComercial;
@@ -38,11 +38,11 @@ public class Egreso {
         this.ingresoOpcional = ingresoOpcional;
     }
 
-    public Egreso(LocalDate unaFecha, float importe, List<Item> items, MetodoPago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
+    public Egreso(LocalDate unaFecha, float importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.fecha=unaFecha;
        this.valor=importe;
        this.listaItems=items;
-       this.metodoPago=metodo;
+       this.metodoDePago=metodo;
        this.proveedores=proveedores;
        this.documentoComercial=unDocumento;
        this.setCriterio(criterio);
@@ -68,9 +68,6 @@ public class Egreso {
 
 
 
-    //esto es de 2da entrega no lo implemento todavia
-    public void revisar(Usuario usuario) {
-    }
 
     public Criterio getCriterioDeCategorizacion() {
         return criterioDeCategorizacion;
@@ -84,7 +81,11 @@ public class Egreso {
         criterioDeCategorizacion.aplicar(this);
     }
 
-    public Mensaje validar() throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-        return ValidadorDeOperacion.validarDefault(this);
+    public /*Mensaje*/ void validar() throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
+        //con roles compartidos
+        //return ValidadorDeOperacion.validarDefault(this);
+
+        //roles exclusivos
+        ValidadorDeOperacion.validarDefault(this);
     }
 }

@@ -6,11 +6,14 @@ import Usuario.Usuario;
 public class LeerMensaje implements Accion {
     Mensaje mensajeAsociado;
 
-    public LeerMensaje() {
+    public LeerMensaje(Mensaje mensajeAsociado) {
+        this.mensajeAsociado=mensajeAsociado;
     }
 
     @Override
     public void realizar(Usuario usuario) {
 
+        //probablemente haya que hacer algo con esto despues con la capa presentacion
+        mensajeAsociado.leer();
     }
 }

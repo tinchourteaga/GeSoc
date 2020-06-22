@@ -17,9 +17,13 @@ public abstract class Rol {
             throw new NoTengoPermisosException();
         }
     }
-    /* No se si este metodo tiene sentido ponerlo aca o en el usuario lo dejo comentado por las dudas
+    /*No se si este metodo tiene sentido ponerlo aca o en el usuario lo dejo comentado por las dudas
+     */
+
     public void realizarAccion(Accion unaAccion, Usuario unUsuario) throws NoTengoPermisosException {
         tengoPermisosPara(unaAccion);
         unaAccion.realizar(unUsuario);
-    }*/
+    }
+
+
 }

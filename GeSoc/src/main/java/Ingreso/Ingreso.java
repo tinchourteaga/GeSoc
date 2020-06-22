@@ -1,7 +1,7 @@
 package Ingreso;
 
 import Egreso.Core.DocumentoComercial;
-import Egreso.Core.MetodoPago;
+import Egreso.Core.MetodoDePago;
 import Egreso.Core.Egreso;
 
 import java.util.Date;
@@ -24,4 +24,15 @@ public class Ingreso {
        this.descripcion=descripcion;
    }
 
+    public double getValor() {
+        return valor;
+    }
+
+    public Date getFecha() {
+        return fecha;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 }

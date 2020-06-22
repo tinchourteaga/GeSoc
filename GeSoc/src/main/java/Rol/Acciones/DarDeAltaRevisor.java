@@ -1,8 +1,12 @@
 package Rol.Acciones;
 
 import Egreso.Core.Egreso;
+import Rol.Mensajero;
 import Rol.RolRevisorCompra;
 import Usuario.Usuario;
+
+import java.util.Date;
+import java.util.List;
 
 public class DarDeAltaRevisor implements Accion {
     Usuario revisor;
@@ -15,7 +19,13 @@ public class DarDeAltaRevisor implements Accion {
     @Override
     public void realizar(Usuario usuario) {
 
+        //roles compartidos
+        //List<RolRevisorCompra> revisores=Mensajero.obtenerRevisoresDe(egreso);
+        //RolRevisorCompra rol=revisores.get(0);
+        //rol.fechaDeRegistro.put(revisor,new Date());
+        //roles excluyentes
         RolRevisorCompra rolRevisor= new RolRevisorCompra(egreso);
         usuario.getRoles().add(rolRevisor);
+
     }
 }

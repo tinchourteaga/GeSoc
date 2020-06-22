@@ -16,7 +16,7 @@ public class CriterioMenorPrecio implements CriterioSeleccionProveedor{
     @Override
     public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
         proveedores.sort((Proveedor prov1, Proveedor prov2) ->
-                (int)(prov2.getPresupuesto().getValor() - prov1.getPresupuesto().getValor()));
+                (int)(prov1.getPresupuesto().getValor() - prov2.getPresupuesto().getValor()));
 
         return proveedores.stream().findFirst().orElse(null);
     }

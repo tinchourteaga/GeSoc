@@ -16,7 +16,7 @@ public class ValidarCompraPertenecePresupuesto implements ValidacionOperacion{
         List<Presupuesto> listaPresupuestos = proveedores.stream().map(prov -> prov.getPresupuesto()).collect(Collectors.toList());
         Presupuesto presupuestoSeleccionado = operacion.getProveedorSeleccionado().getPresupuesto();
 
-        boolean flag = listaPresupuestos.stream().anyMatch(prespuesto -> presupuestoSeleccionado.equals(presupuestoSeleccionado));
+        boolean flag = listaPresupuestos.stream().anyMatch(prespuesto -> prespuesto.equals(presupuestoSeleccionado));
 
         if(!flag){
             throw new NoCumpleValidacionException();

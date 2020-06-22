@@ -7,14 +7,13 @@ import Contrasenia.Excepciones.ExcepcionLongitud;
 import Contrasenia.Excepciones.ExcepcionNumero;
 import Egreso.Core.*;
 
-import Egreso.Core.CriteriosDeCategorizacion.JerarquiaHoja;
-import Egreso.Core.CriteriosDeCategorizacion.JerarquiaRecursiva;
-import Rol.Acciones.Accion;
+import Egreso.Core.CriteriosDeCategorizacion.Categoria;
+import Egreso.Core.CriteriosDeCategorizacion.Criterio;
+import Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
 import Rol.Acciones.AgregarJerarquia;
 import Rol.Exepciones.NoTengoPermisosException;
 import Rol.Rol;
 import Rol.RolAdministrador;
-import TestsEntrega3.CriterioDummy.CriterioDummy;
 import TestsEntrega3.CriterioDummy.CriterioFalla;
 import Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
@@ -73,9 +72,17 @@ public class Test {
     @org.junit.Test
     public void testJerarquias() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun, NoTengoPermisosException {
         RolAdministrador roladmin=new RolAdministrador();
-        JerarquiaHoja hoja=new JerarquiaHoja(new CriterioDummy());
-        JerarquiaRecursiva jerarquiaNueva= new JerarquiaRecursiva(new CriterioDummy(),hoja);
-        AgregarJerarquia agregarJerarquia=new AgregarJerarquia(new CriterioDummy (),jerarquiaNueva);
+        List<Categoria> categorias=new ArrayList<>();
+        categorias.add(new Categoria("descripcion1","nombre1"));
+        categorias.add(new Categoria("descripcion2","nombre2"));
+        categorias.add(new Categoria("descripcion3","nombre3"));
+        categorias.add(new Categoria("descripcion4","nombre4"));
+        Criterio criterioDummy=new Criterio(categorias,"dummy","dummy");
+        Jerarquia hoja=new Jerarquia(criterioDummy,new ArrayList<>());
+        List<Jerarquia>hojas=new ArrayList<>();
+        hojas.add(hoja);
+        Jerarquia jerarquiaNueva= new Jerarquia(criterioDummy,hojas);
+        AgregarJerarquia agregarJerarquia=new AgregarJerarquia(criterioDummy,jerarquiaNueva);
         roladmin.acciones.add(agregarJerarquia);
         List<Rol>roles=new ArrayList<>();
         roles.add(roladmin);
@@ -94,24 +101,11 @@ public class Test {
         proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816","ccfc",presupuestos.get(3)));
         proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",presupuestos.get(4)));
 
-
-
         Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
-
-
         roladmin.realizarAccion(agregarJerarquia,unUsuario);
-
-        agregarJerarquia.getJerarquiaAsociada().aplicar(unEgreso);
-
-        String mensaje=unEgreso.getCategorias().stream().map(categoria->categoria.getNombreDeCategoria()).collect(Collectors.toList()).toString();
-
-        Assert.assertEquals("[dummy, dummy, dummy]",mensaje);
-
-
+        int cantidad_criterios=agregarJerarquia.getJerarquiaAsociada().getHijos().size()+1+agregarJerarquia.getJerarquiaAsociada().getHijos().get(0).getHijos().size();
+        Assert.assertEquals(cantidad_criterios,3);
     }
-
-
-
 
     @org.junit.Test
     public void testValidadorPasaOperacion(){

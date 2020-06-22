@@ -78,10 +78,6 @@ public class Egreso {
         this.criterioDeCategorizacion = criterioDeCategorizacion;
     }
 
-    public void obtenerCategoria() {
-        criterioDeCategorizacion.aplicar(this);
-    }
-
     public /*Mensaje*/ void validar() throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
         //con roles compartidos
         //return ValidadorDeOperacion.validarDefault(this);

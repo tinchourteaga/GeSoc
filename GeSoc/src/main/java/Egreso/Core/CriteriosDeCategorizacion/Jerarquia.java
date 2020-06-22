@@ -2,7 +2,27 @@ package Egreso.Core.CriteriosDeCategorizacion;
 
 import Egreso.Core.Egreso;
 
-public interface Jerarquia {
+import java.util.ArrayList;
+import java.util.List;
 
-    void aplicar(Egreso unEgreso);
+public class Jerarquia {
+
+    Criterio criterio;
+    List<Jerarquia> hijos=new ArrayList<>();
+
+    public Jerarquia(Criterio criterio, List<Jerarquia> hijos) {
+        this.criterio = criterio;
+        this.hijos = hijos;
+    }
+
+    public Criterio getCriterio() {
+        return criterio;
+    }
+
+    public List<Jerarquia> getHijos() {
+        return hijos;
+    }
+    public void agregarHijo(Jerarquia unajerarquia){
+        hijos.add(unajerarquia);
+    }
 }

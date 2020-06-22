@@ -1,24 +1,29 @@
 package Rol.Acciones;
 
 import Egreso.Core.CriteriosDeCategorizacion.Criterio;
-import Egreso.Core.CriteriosDeCategorizacion.JerarquiaRecursiva;
+import Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
 import Usuario.Usuario;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AgregarJerarquia implements Accion {
 
-    JerarquiaRecursiva jerarquiaAsociada;
+    Jerarquia jerarquiaAsociada;
     Criterio criterioAsociado;
     @Override
     public void realizar(Usuario usuario) {
-        this.setJerarquiaAsociada(new JerarquiaRecursiva(criterioAsociado,jerarquiaAsociada));
+        List<Jerarquia> hijos=new ArrayList<>();
+        hijos.add(jerarquiaAsociada);
+        this.setJerarquiaAsociada(new Jerarquia(criterioAsociado,hijos));
         //habria que cambiar el aplicar jerarquia
     }
 
-    public JerarquiaRecursiva getJerarquiaAsociada() {
+    public Jerarquia getJerarquiaAsociada() {
         return jerarquiaAsociada;
     }
 
-    public void setJerarquiaAsociada(JerarquiaRecursiva jerarquiaAsociada) {
+    public void setJerarquiaAsociada(Jerarquia jerarquiaAsociada) {
         this.jerarquiaAsociada = jerarquiaAsociada;
     }
 
@@ -30,7 +35,7 @@ public class AgregarJerarquia implements Accion {
         this.criterioAsociado = criterioAsociado;
     }
 
-    public AgregarJerarquia(Criterio criterio, JerarquiaRecursiva unaJerarquia) {
+    public AgregarJerarquia(Criterio criterio, Jerarquia unaJerarquia) {
 
         this.criterioAsociado = criterio;
         this.jerarquiaAsociada = unaJerarquia;

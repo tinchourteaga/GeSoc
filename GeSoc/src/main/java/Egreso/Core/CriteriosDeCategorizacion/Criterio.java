@@ -8,11 +8,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Criterio {
+public class Criterio {
     List<Categoria> categorias=new ArrayList<>();
+    String nombreCriterio;
+    String descripcion;
 
-    public abstract void aplicar(Egreso unaEgreso);//en este metodo voy a hacer algo como
-    /*egreso.categorias.add(una categoria que elijo segun el criterio)*/
+    public Criterio(List<Categoria> categorias, String nombreCriterio, String descripcion) {
+        this.categorias = categorias;
+        this.nombreCriterio = nombreCriterio;
+        this.descripcion = descripcion;
+    }
+
+    public String getNombreCriterio() {
+        return nombreCriterio;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
 
     public List<Categoria> getCategorias() {
         return categorias;

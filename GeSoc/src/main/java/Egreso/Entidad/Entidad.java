@@ -1,18 +1,32 @@
 package Egreso.Entidad;
 
 import Egreso.Core.Egreso;
+import Ingreso.Ingreso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Entidad {
     String descripcion;
     String nombre;
-    List<Egreso> operaciones;
+    protected List<Egreso> egresos=new ArrayList<>();
+    protected List<Ingreso> ingresos=new ArrayList<>();
+    public void agregarEgreso(Egreso unEgreso){
+        egresos.add(unEgreso);
+    }
+
+    public void agregarIngreso(Ingreso unIngreso){
+        ingresos.add(unIngreso);
+    }
+
+    public void removerEgreso(Egreso unEgreso){egresos.remove(unEgreso);}
+
+    public void removerIngreso(Ingreso unIngreso){ingresos.remove(unIngreso);}
 
     public Entidad(String nombreEntidad, String descripcionEntidad, List<Egreso> operacionesEntidad){
         this.descripcion=descripcionEntidad;
         this.nombre=nombreEntidad;
-        this.operaciones=operacionesEntidad;
+        this.egresos=operacionesEntidad;
 
     }
 
@@ -25,22 +39,7 @@ public class Entidad {
         return nombre;
     }
     public List<Egreso> getOperaciones() {
-        return operaciones;
-    }
-    public void agregarOperacion(Egreso unaOperacion){
-        operaciones.add(unaOperacion);
+        return egresos;
     }
 
-    public void removerOperacion(Egreso unaOperacion){
-        operaciones.remove(unaOperacion);
-    }
-    public Egreso buscarOperacionPorIndice(int numero){
-        return operaciones.get(numero);
-    }
-    public boolean tieneOperacion(Egreso operacion){
-        return operaciones.contains(operacion);
-    }
-    public int indiceDeOperacion(Egreso operacion){
-        return operaciones.indexOf(operacion);
-    }
 }

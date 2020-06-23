@@ -14,7 +14,7 @@ public class RolAdministrador extends Rol {
     public RolAdministrador() {
 
         this.acciones = new ArrayList<>();//hay que agregar lo que son acciones privilegiadas(?
-        RepositorioUsuario.getTodosLosUsuario().forEach(usuario->crearAccionesRevisores(usuario));
+        //RepositorioUsuario.getTodosLosUsuario().forEach(usuario->crearAccionesRevisores(usuario));
 
        //  RepositorioEgresos.getTodosLosEgresos().forEach(egreso->RepositorioJerarquia.getTodosLasJerarquias().forEach(jerarquia->crearAccionesJerarquiaAplicar(jerarquia,egreso)));
        // RepositorioCriterios.getTodosLosCriterios().forEach(criterio->RepositorioJerarquia.getTodosLasJerarquias().forEach(jerarquia->crearAccionesJerarquiaAplicar(criterio,jerarquia)));

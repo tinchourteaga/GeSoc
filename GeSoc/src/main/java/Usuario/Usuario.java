@@ -1,15 +1,9 @@
 package Usuario;
-
 import java.io.IOException;
 import java.util.List;
-
 import Contrasenia.Core.ValidadorDeContrasenia;
-import Egreso.Core.Egreso;
-import Rol.Acciones.Accion;
 import Rol.Rol;
 import Rol.Exepciones.ContraseniasDistintasException;
-import Rol.Exepciones.NoTengoPermisosException;
-import Rol.Exepciones.NoTengoPermisosExceptionDeCompra;
 import Contrasenia.Excepciones.*;
 
 public class Usuario {
@@ -38,7 +32,7 @@ public class Usuario {
         return contrasenia;
     }
 
-    //esto lo hace el usuario desde la GUI
+    //esto lo hace la organizacion desde la GUI
    /* public void realizarOperacionCompra(Egreso operacion) throws NoTengoPermisosException, NoTengoPermisosExceptionDeCompra {
         Accion unaAccion = new RealizarCompra(operacion,this);
         roles.forEach(unRol -> {

@@ -29,4 +29,9 @@ public class DAOBBDDUsuario implements DAOUsuario {
     public int buscar(Usuario usuario) {
         return usuarios.indexOf(usuario);
     }
+
+    @Override
+    public List<Usuario> getAllUsuarios() {
+        return usuarios;
+    }
 }

@@ -41,4 +41,9 @@ public class DAOMemoriaUsuario implements DAOUsuario {
     public int buscar(Usuario usuario) {
         return listaUsuarios.indexOf(usuario.getNombre());
     }
+
+    @Override
+    public List<Usuario> getAllUsuarios() {
+        return listaUsuarios;
+    }
 }

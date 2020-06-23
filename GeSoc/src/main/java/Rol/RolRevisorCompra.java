@@ -1,8 +1,10 @@
 package Rol;
 import BandejaMensajes.BandejaMensajes;
 import Egreso.Core.Egreso;
+import Rol.Acciones.Accion;
 import Rol.Acciones.LeerMensaje;
 import Rol.Acciones.RevisarBandeja;
+import Rol.Exepciones.NoTengoPermisosException;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +27,14 @@ public class RolRevisorCompra extends Rol{
 
     public Egreso getOperacionARevisar() {
         return operacionARevisar;
+    }
+
+    @Override
+    public void tengoPermisosPara(Accion unaAccion) throws NoTengoPermisosException {
+        boolean tengoAccion=acciones.contains(unaAccion);
+        if(!tengoAccion){
+            throw new NoTengoPermisosException();
+        }
     }
 }
 

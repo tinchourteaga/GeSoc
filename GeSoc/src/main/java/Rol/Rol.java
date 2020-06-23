@@ -14,13 +14,9 @@ public abstract class Rol {
 
     public List<Accion> acciones = new ArrayList();
 
-    public void tengoPermisosPara(Accion unaAccion) throws NoTengoPermisosException {
-        if(!acciones.stream().anyMatch(accion-> accion.equals(unaAccion))){
-            throw new NoTengoPermisosException();
-        }
-    }
-    /*No se si este metodo tiene sentido ponerlo aca o en el usuario lo dejo comentado por las dudas
-     */
+    public abstract void tengoPermisosPara(Accion unaAccion) throws NoTengoPermisosException ;
+    //se si este metodo tiene sentido ponerlo aca o en el usuario lo dejo comentado por las dudas
+
 
     public void realizarAccion(Accion unaAccion) throws NoTengoPermisosException, NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
         tengoPermisosPara(unaAccion);

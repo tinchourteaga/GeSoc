@@ -32,8 +32,10 @@ public class Planificador {
             @Override
             public void run() {
                 try{
-                    Thread.sleep(tiempoDeValidacionEnMiliSegundos,tiempoDeValidacionEnNanoSegundos);
-                    ValidadorDeOperacion.validarDefault(unaOperacion);
+                    while(!unaOperacion.isEstaVerificada()) {
+                        Thread.sleep(tiempoDeValidacionEnMiliSegundos, tiempoDeValidacionEnNanoSegundos);
+                        ValidadorDeOperacion.validarDefault(unaOperacion);
+                    }
                 }
                 catch(InterruptedException e){
                     System.out.println(e);

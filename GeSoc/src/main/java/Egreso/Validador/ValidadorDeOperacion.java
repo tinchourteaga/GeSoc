@@ -43,6 +43,7 @@ public class ValidadorDeOperacion {
         validacionesEspecificas.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
+                unaOperacion.setEstaVerificada(true);
             } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
                 mensaje.set(new Mensaje(new Date(), null, e.toString()));
             }

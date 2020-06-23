@@ -14,6 +14,7 @@ import java.util.List;
 
 public class Egreso {
 
+    private boolean estaVerificada=false;
     private Date fecha;
     private Float valor;
     private List<Item> listaItems = new ArrayList<Item>();
@@ -87,5 +88,13 @@ public class Egreso {
         List<Categoria> todasLasCategorias=new ArrayList();
         criterios.forEach(criterio->criterio.getCategorias().forEach(categoria->todasLasCategorias.add(categoria)));
         return todasLasCategorias;
+    }
+
+    public boolean isEstaVerificada() {
+        return estaVerificada;
+    }
+
+    public void setEstaVerificada(boolean estaVerificada) {
+        this.estaVerificada = estaVerificada;
     }
 }

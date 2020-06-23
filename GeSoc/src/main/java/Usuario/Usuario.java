@@ -6,7 +6,6 @@ import java.util.List;
 import Contrasenia.Core.ValidadorDeContrasenia;
 import Egreso.Core.Egreso;
 import Rol.Acciones.Accion;
-import Rol.Acciones.RealizarCompra;
 import Rol.Rol;
 import Rol.Exepciones.ContraseniasDistintasException;
 import Rol.Exepciones.NoTengoPermisosException;
@@ -39,7 +38,8 @@ public class Usuario {
         return contrasenia;
     }
 
-    public void realizarOperacionCompra(Egreso operacion) throws NoTengoPermisosException, NoTengoPermisosExceptionDeCompra {
+    //esto lo hace el usuario desde la GUI
+   /* public void realizarOperacionCompra(Egreso operacion) throws NoTengoPermisosException, NoTengoPermisosExceptionDeCompra {
         Accion unaAccion = new RealizarCompra(operacion,this);
         roles.forEach(unRol -> {
             try {
@@ -49,7 +49,7 @@ public class Usuario {
             }
         });
         unaAccion.realizar(this);
-    }
+    }*/
 
     public void setContrasenia (String contraseniaNueva){
             contrasenia = contraseniaNueva;

@@ -1,5 +1,7 @@
 package Rol;
 
+import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
+import Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Rol.Acciones.Accion;
 import Rol.Exepciones.NoTengoPermisosException;
 import Usuario.Usuario;
@@ -20,9 +22,9 @@ public abstract class Rol {
     /*No se si este metodo tiene sentido ponerlo aca o en el usuario lo dejo comentado por las dudas
      */
 
-    public void realizarAccion(Accion unaAccion, Usuario unUsuario) throws NoTengoPermisosException {
+    public void realizarAccion(Accion unaAccion) throws NoTengoPermisosException, NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
         tengoPermisosPara(unaAccion);
-        unaAccion.realizar(unUsuario);
+        unaAccion.realizar();
     }
 
 

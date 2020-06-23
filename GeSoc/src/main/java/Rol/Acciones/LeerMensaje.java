@@ -11,7 +11,7 @@ public class LeerMensaje implements Accion {
     }
 
     @Override
-    public void realizar(Usuario usuario) {
+    public void realizar() {
 
         //probablemente haya que hacer algo con esto despues con la capa presentacion
         mensajeAsociado.leer();

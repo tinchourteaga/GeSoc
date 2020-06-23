@@ -17,7 +17,7 @@ public class DarDeAltaRevisor implements Accion {
     }
 
     @Override
-    public void realizar(Usuario usuario) {
+    public void realizar() {
 
         //roles compartidos
         //List<RolRevisorCompra> revisores=Mensajero.obtenerRevisoresDe(egreso);
@@ -25,7 +25,7 @@ public class DarDeAltaRevisor implements Accion {
         //rol.fechaDeRegistro.put(revisor,new Date());
         //roles excluyentes
         RolRevisorCompra rolRevisor= new RolRevisorCompra(egreso);
-        usuario.getRoles().add(rolRevisor);
+        revisor.getRoles().add(rolRevisor);
 
     }
 }

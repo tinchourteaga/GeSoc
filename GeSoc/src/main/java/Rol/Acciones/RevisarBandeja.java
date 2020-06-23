@@ -11,7 +11,7 @@ public class RevisarBandeja implements Accion {
     }
 
     @Override
-    public void realizar(Usuario usuario) {
+    public void realizar() {
         //esto probablemente toquemos mas en la entrega 5
     }
 

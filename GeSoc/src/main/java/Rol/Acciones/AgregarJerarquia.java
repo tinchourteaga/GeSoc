@@ -12,7 +12,7 @@ public class AgregarJerarquia implements Accion {
     Jerarquia jerarquiaAsociada;
     Criterio criterioAsociado;
     @Override
-    public void realizar(Usuario usuario) {
+    public void realizar() {
         List<Jerarquia> hijos=new ArrayList<>();
         hijos.add(jerarquiaAsociada);
         this.setJerarquiaAsociada(new Jerarquia(criterioAsociado,hijos));

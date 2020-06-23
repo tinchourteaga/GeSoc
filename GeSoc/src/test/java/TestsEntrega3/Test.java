@@ -70,7 +70,7 @@ public class Test {
     }
 
     @org.junit.Test
-    public void testJerarquias() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun, NoTengoPermisosException {
+    public void testJerarquias() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun, NoTengoPermisosException, NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
         RolAdministrador roladmin=new RolAdministrador();
         List<Categoria> categorias=new ArrayList<>();
         categorias.add(new Categoria("descripcion1","nombre1"));
@@ -102,7 +102,7 @@ public class Test {
         proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",presupuestos.get(4)));
 
         Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
-        roladmin.realizarAccion(agregarJerarquia,unUsuario);
+        roladmin.realizarAccion(agregarJerarquia);
         int cantidad_criterios=agregarJerarquia.getJerarquiaAsociada().getHijos().size()+1+agregarJerarquia.getJerarquiaAsociada().getHijos().get(0).getHijos().size();
         Assert.assertEquals(cantidad_criterios,3);
     }

@@ -1,7 +1,9 @@
 package Egreso.Entidad;
 
 import Egreso.Core.Egreso;
+import Ingreso.Ingreso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class EntidadJuridica extends Entidad{
@@ -13,6 +15,8 @@ public class EntidadJuridica extends Entidad{
     protected Sector actividad;
     protected Integer cantidadPersonal;
     protected Float promedioVentasAnuales;
+    protected List<Egreso> egresos=new ArrayList<>();
+    protected List<Ingreso> ingresos=new ArrayList<>();
 
     public EntidadJuridica(String nombreEntidad, String descripcionEntidad, List<Egreso> operacionesEntidad,
                            String rs,String cuitEntidad,String cp,String ci,
@@ -92,4 +96,15 @@ public class EntidadJuridica extends Entidad{
     public void setPromedioVentasAnuales(Float promedioVentasAnuales) {
         this.promedioVentasAnuales = promedioVentasAnuales;
     }
+    public void agregarEgreso(Egreso unEgreso){
+        egresos.add(unEgreso);
+    }
+
+    public void agregarIngreso(Ingreso unIngreso){
+        ingresos.add(unIngreso);
+    }
+
+    public void removerEgreso(Egreso unEgreso){egresos.remove(unEgreso);}
+
+    public void removerIngreso(Ingreso unIngreso){ingresos.remove(unIngreso);}
 }

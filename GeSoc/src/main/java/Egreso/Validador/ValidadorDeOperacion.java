@@ -38,7 +38,7 @@ public class ValidadorDeOperacion {
     }
 
     //este seria con roles compartidos donde devuelvo el msj
-    public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) {
+    public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
         AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(new Date(), null, "Paso exitosamente todas las Validaciones"));
         validacionesEspecificas.forEach(validacion -> {
             try {
@@ -52,7 +52,7 @@ public class ValidadorDeOperacion {
 
     public static void validarCustomConBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
         validarDefault(unaOperacion);
-        validarCustomSinBasicas(unaOperacion, validacionesEspecificas,unUsuario);
+        validarCustomSinBasicas(unaOperacion, validacionesEspecificas);
     }
 
     public static void asignarRevisorA(Egreso unaOperacion, Usuario revisor) {
@@ -60,21 +60,12 @@ public class ValidadorDeOperacion {
     }
 
     public static void validarDefault(Egreso unaOperacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-        AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(new Date(), null, "Paso exitosamente todas las Validaciones"));
-        validaciones.forEach(validacion -> {
-            try {
-                validacion.validar(unaOperacion);
-            } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
-                 mensaje.set(new Mensaje(new Date(), null, e.toString()));
-            }
-        });
-        //esto es para roles compartidos
-        //return mensaje.get();
 
+        Mensaje mensaje= validarCustomSinBasicas(unaOperacion,validaciones);
 
         //esto es con roles independientes
         List<RolRevisorCompra> revisores=Mensajero.obtenerRevisoresDe(unaOperacion);
-        revisores.forEach(rol->enviarMensaje(rol,mensaje.get()));
+        revisores.forEach(rol->enviarMensaje(rol,mensaje));
     }
 
     private static void enviarMensaje(RolRevisorCompra rol, Mensaje mensaje) {

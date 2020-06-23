@@ -48,7 +48,7 @@ public class Test {
 
 
         Egreso unEgreso=new Egreso(new Date(),100000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
-        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones(), null);
+        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals( new NoCumpleValidacionDeCriterioException().toString(),fallo.getMensajeResultado());
     }
     @org.junit.Test
@@ -64,7 +64,7 @@ public class Test {
 
 
         Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
-        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones(), null);
+        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals(new NoCumpleValidacionException().toString(),fallo.getMensajeResultado());
         //no entiendo porque no da este tests
     }
@@ -126,7 +126,7 @@ public class Test {
 
 
         Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
-        Mensaje cumplio=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones(), null);
+        Mensaje cumplio=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals("Paso exitosamente todas las Validaciones",cumplio.getMensajeResultado());
         //no entiendo porque no da este tests
     }

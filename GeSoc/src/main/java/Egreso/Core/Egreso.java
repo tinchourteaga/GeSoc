@@ -1,6 +1,6 @@
 package Egreso.Core;
 
-import BandejaMensajes.Mensaje;
+
 import Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
@@ -8,26 +8,22 @@ import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Egreso.Validador.ValidadorDeOperacion;
 import Ingreso.Ingreso;
-import Usuario.Usuario;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Egreso {
 
-    Date fecha;
-    Float valor;
-    List<Item> listaItems = new ArrayList<Item>();
-    MetodoDePago metodoDePago;
-    List<Proveedor> proveedores = new ArrayList<Proveedor>();
-    Proveedor proveedorSeleccionado;
-    DocumentoComercial documentoComercial;
-    CriterioSeleccionProveedor criterioSeleccionProveedor;
-    Criterio criterioDeCategorizacion;
-    Ingreso ingresoOpcional;
-    List<Categoria> categorias=new ArrayList<>();//son varias categorias
+    private Date fecha;
+    private Float valor;
+    private List<Item> listaItems = new ArrayList<Item>();
+    private MetodoDePago metodoDePago;
+    private List<Proveedor> proveedores = new ArrayList<Proveedor>();
+    private Proveedor proveedorSeleccionado;
+    private DocumentoComercial documentoComercial;
+    private CriterioSeleccionProveedor criterioSeleccionProveedor;
+    private Ingreso ingresoOpcional;
+    private List<Criterio> criterios=new ArrayList<>();//son varias categorias
     /* un ejemplo seria que tenes Alcance de proyecto Internacional
     y despues tamanio de alguna otra cosa*/
 
@@ -70,12 +66,12 @@ public class Egreso {
 
 
 
-    public Criterio getCriterioDeCategorizacion() {
-        return criterioDeCategorizacion;
+    public List<Criterio> getCriterioDeCategorizacion() {
+        return criterios;
     }
 
     public void asignarCriterioDeCategorizacion(Criterio criterioDeCategorizacion) {
-        this.criterioDeCategorizacion = criterioDeCategorizacion;
+        this.criterios.add(criterioDeCategorizacion);
     }
 
     public /*Mensaje*/ void validar() throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
@@ -87,6 +83,9 @@ public class Egreso {
     }
 
     public List<Categoria> getCategorias() {
-        return categorias;
+
+        List<Categoria> todasLasCategorias=new ArrayList();
+        criterios.forEach(criterio->criterio.getCategorias().forEach(categoria->todasLasCategorias.add(categoria)));
+        return todasLasCategorias;
     }
 }

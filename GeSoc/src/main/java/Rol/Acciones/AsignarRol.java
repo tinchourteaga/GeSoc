@@ -5,15 +5,18 @@ import Usuario.Usuario;
 
 public class AsignarRol implements Accion{
 
-    Rol rolAAsignar;
-    Usuario usuarioQueLoNecesita;
-    public AsignarRol(Rol rol, Usuario usuario) {
-        this.rolAAsignar=rol;
-        this.usuarioQueLoNecesita=usuario;
-    }
+    private Rol rolAAsignar;
+    private Usuario usuarioQueLoNecesita;
 
     @Override
     public void realizar() {
         usuarioQueLoNecesita.getRoles().add(rolAAsignar);
     }
+
+    public AsignarRol(Rol rol, Usuario usuario) {
+        this.rolAAsignar=rol;
+        this.usuarioQueLoNecesita=usuario;
+    }
+
+
 }

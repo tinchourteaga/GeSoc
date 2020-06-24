@@ -29,23 +29,23 @@ public class Categorizador {
 
         switch(unaEmpresa.getActividad()){
             case INDUSTRIA_Y_MINERIA:
-            unaEmpresa.categoria = determinarCategoriaIYM(unaEmpresa);
+            unaEmpresa.setCategoria( determinarCategoriaIYM(unaEmpresa));
             break;
 
             case AGROPECUARIO:
-            unaEmpresa.categoria = determinarCategoriaAgropecuario(unaEmpresa);
+                unaEmpresa.setCategoria(determinarCategoriaAgropecuario(unaEmpresa));
             break;
 
             case COMERCIO:
-            unaEmpresa.categoria = determinarCategoriaComercio(unaEmpresa);
+                unaEmpresa.setCategoria(determinarCategoriaComercio(unaEmpresa));
             break;
 
             case CONSTRUCCION:
-            unaEmpresa.categoria = determinarCategoriaConstrucion(unaEmpresa);
+                unaEmpresa.setCategoria(determinarCategoriaConstrucion(unaEmpresa));
             break;
 
             case SERVICIOS:
-            unaEmpresa.categoria = determinarCategoriaServicios(unaEmpresa);
+                unaEmpresa.setCategoria(determinarCategoriaServicios(unaEmpresa));
             break;
 
         }

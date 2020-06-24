@@ -4,8 +4,8 @@ import Egreso.Core.Egreso;
 
 public class Categoria {
     //El Usuario va a poder crear sus propias categorias
-   String descripicion;
-   String nombreDeCategoria;
+   private String descripicion;
+   private String nombreDeCategoria;
 
     public Categoria(String desc, String nombreDeCategoria) {
         this.descripicion=desc;

@@ -1,4 +1,4 @@
-package Egreso.Validador;
+package Egreso.Validador.Validaciones;
 
 import Egreso.Core.Egreso;
 import Egreso.Core.Presupuesto;
@@ -8,7 +8,7 @@ import Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ValidarCompraPertenecePresupuesto implements ValidacionOperacion{
+public class ValidarCompraPertenecePresupuesto implements ValidacionOperacion {
 
     @Override
     public void validar(Egreso operacion) throws NoCumpleValidacionException {

@@ -13,7 +13,6 @@ public class Mensajero {
     public static void agregarRevisor(RolRevisorCompra revisorCompra) {
         revisores.add(revisorCompra);
     }
-
     public static List<RolRevisorCompra> obtenerRevisoresDe(Egreso unEgreso) {
         return revisores.stream().filter(revisor -> revisor.getOperacionARevisar().equals(unEgreso)).collect(Collectors.toList());
     }

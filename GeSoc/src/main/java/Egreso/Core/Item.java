@@ -1,10 +1,9 @@
 package Egreso.Core;
 
-import Egreso.Core.Egreso;
 
 public class Item {
-    Float valor;
-    String descripcion;
+    private Float valor;
+    private String descripcion;
 
     public Float getValor() {
         return valor;

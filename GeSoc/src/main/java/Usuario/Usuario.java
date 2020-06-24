@@ -23,38 +23,21 @@ public class Usuario {
     public String getNombre() {
         return nombre;
     }
-
     public List<Rol> getRoles() {
         return roles;
     }
-
     public String getContrasenia() {
         return contrasenia;
     }
-
-    //esto lo hace la organizacion desde la GUI
-   /* public void realizarOperacionCompra(Egreso operacion) throws NoTengoPermisosException, NoTengoPermisosExceptionDeCompra {
-        Accion unaAccion = new RealizarCompra(operacion,this);
-        roles.forEach(unRol -> {
-            try {
-                unRol.tengoPermisosPara(unaAccion);
-            } catch (NoTengoPermisosException e) {
-                e.printStackTrace();
-            }
-        });
-        unaAccion.realizar(this);
-    }*/
-
-    public void setContrasenia (String contraseniaNueva){
-            contrasenia = contraseniaNueva;
+    private void setContrasenia (String contraseniaNueva) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
+        ValidadorDeContrasenia.validarContrasenia(contraseniaNueva);
+        this.contrasenia = contraseniaNueva;
         }
 
-
-    private void cambiarContrasenia(String passwordAnterior, String passwordNueva) throws ContraseniasDistintasException {
+    public void cambiarContrasenia(String passwordAnterior, String passwordNueva) throws ContraseniasDistintasException, IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         if (this.contrasenia.equals(passwordAnterior)){
-            this.contrasenia=passwordNueva;
+            this.setContrasenia(passwordNueva);
         }else{
-
             throw new ContraseniasDistintasException();
         }
     }

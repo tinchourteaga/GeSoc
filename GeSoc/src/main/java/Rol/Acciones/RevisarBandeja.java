@@ -4,7 +4,7 @@ import BandejaMensajes.BandejaMensajes;
 import Usuario.Usuario;
 
 public class RevisarBandeja implements Accion {
-    BandejaMensajes bandejaAsociada;
+    private BandejaMensajes bandejaAsociada;
 
     public RevisarBandeja(BandejaMensajes bandejaAsociada) {
         this.bandejaAsociada = bandejaAsociada;

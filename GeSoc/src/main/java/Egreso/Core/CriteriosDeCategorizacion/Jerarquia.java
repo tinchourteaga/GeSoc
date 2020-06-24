@@ -7,8 +7,8 @@ import java.util.List;
 
 public class Jerarquia {
 
-    Criterio criterio;
-    List<Jerarquia> hijos=new ArrayList<>();
+    private Criterio criterio;
+    private List<Jerarquia> hijos;
 
     public Jerarquia(Criterio criterio, List<Jerarquia> hijos) {
         this.criterio = criterio;

@@ -1,17 +1,21 @@
 package Egreso.Core.CriteriosProveedor;
 
 import Egreso.Core.Egreso;
-import Egreso.Core.Presupuesto;
 import Egreso.Core.Proveedor;
 import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Egreso.Validador.Excepciones.NoCumpleValidacionException;
-import Egreso.Validador.ValidacionOperacion;
+import Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
+import Egreso.Validador.Validaciones.ValidacionOperacion;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CriterioMenorPrecio implements CriterioSeleccionProveedor{
-    ValidacionOperacion validacionOperacion;
+
+    private ValidacionOperacion validacionOperacion;
+
+    public CriterioMenorPrecio() {
+        this.validacionOperacion = new ValidacionPresupuestoMenor();
+    }
 
     @Override
     public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
@@ -23,17 +27,7 @@ public class CriterioMenorPrecio implements CriterioSeleccionProveedor{
 
     @Override
     public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-        List<Proveedor> proveedores = operacion.getProveedores();
-        Proveedor proveedor = this.seleccionarProveedor(proveedores);
-        Presupuesto presupuestoMasBarato = proveedor.getPresupuesto();
-
-        List<Presupuesto> listaPresupuestos = proveedores.stream().map(prov -> prov.getPresupuesto()).collect(Collectors.toList());
-
-        boolean flag = listaPresupuestos.stream().allMatch(presupuesto -> presupuesto.getValor() >= presupuestoMasBarato.getValor());
-
-        if(!flag){
-            throw new NoCumpleValidacionDeCriterioException();
-        }
+        validacionOperacion.validar(operacion);
     }
 
 }

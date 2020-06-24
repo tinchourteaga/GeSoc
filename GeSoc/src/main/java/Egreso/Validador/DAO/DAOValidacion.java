@@ -1,6 +1,6 @@
 package Egreso.Validador.DAO;
 
-import Egreso.Validador.ValidacionOperacion;
+import Egreso.Validador.Validaciones.ValidacionOperacion;
 
 import java.util.List;
 

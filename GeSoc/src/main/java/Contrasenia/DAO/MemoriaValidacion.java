@@ -15,7 +15,6 @@ public class MemoriaValidacion implements DAOValidacion{
             add(obtenerContieneNumero());
         }};
     }
-
     @Override
     public IValidacion obtenerChequearContraseniaComun() {
         return new ChequearContraseniaComun();

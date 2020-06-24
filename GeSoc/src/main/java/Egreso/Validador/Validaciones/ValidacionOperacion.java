@@ -1,4 +1,4 @@
-package Egreso.Validador;
+package Egreso.Validador.Validaciones;
 
 import Egreso.Core.Egreso;
 import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;

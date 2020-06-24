@@ -47,7 +47,7 @@ public class Test {
         proveedores.add(new Proveedor("aldasd","aaaa bjbb","28433672816","ffff",presupuestos.get(4)));
 
 
-        Egreso unEgreso=new Egreso(new Date(),100000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
+        Egreso unEgreso=new Egreso(new Date(),100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals( new NoCumpleValidacionDeCriterioException().toString(),fallo.getMensajeResultado());
     }
@@ -63,7 +63,7 @@ public class Test {
         proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",presupuestos.get(1)));
 
 
-        Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals(new NoCumpleValidacionException().toString(),fallo.getMensajeResultado());
         //no entiendo porque no da este tests
@@ -83,7 +83,7 @@ public class Test {
         hojas.add(hoja);
         Jerarquia jerarquiaNueva= new Jerarquia(criterioDummy,hojas);
         AgregarJerarquia agregarJerarquia=new AgregarJerarquia(criterioDummy,jerarquiaNueva);
-        roladmin.acciones.add(agregarJerarquia);
+        roladmin.getAcciones().add(agregarJerarquia);
         List<Rol>roles=new ArrayList<>();
         roles.add(roladmin);
         Usuario unUsuario=new Usuario(roles,"pepito","SiestaContr4senia no funca me m@deo");
@@ -101,7 +101,7 @@ public class Test {
         proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816","ccfc",presupuestos.get(3)));
         proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",presupuestos.get(4)));
 
-        Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         roladmin.realizarAccion(agregarJerarquia);
         int cantidad_criterios=agregarJerarquia.getJerarquiaAsociada().getHijos().size()+1+agregarJerarquia.getJerarquiaAsociada().getHijos().get(0).getHijos().size();
         Assert.assertEquals(cantidad_criterios,3);
@@ -125,7 +125,7 @@ public class Test {
 
 
 
-        Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje cumplio=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals("Paso exitosamente todas las Validaciones",cumplio.getMensajeResultado());
         //no entiendo porque no da este tests

@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Criterio {
-    List<Categoria> categorias=new ArrayList<>();
-    String nombreCriterio;
-    String descripcion;
+    private List<Categoria> categorias;
+    private String nombreCriterio;
+    private String descripcion;
 
     public Criterio(List<Categoria> categorias, String nombreCriterio, String descripcion) {
         this.categorias = categorias;
@@ -34,6 +34,6 @@ public class Criterio {
         categorias.add(unaCateogoria);
     }
     public Categoria obtenerCategoria(String nombre) {
-        return categorias.stream().filter(categoria->categoria.nombreDeCategoria.equals(nombre)).collect(Collectors.toList()).get(0);
+        return categorias.stream().filter(categoria->categoria.getNombreDeCategoria().equals(nombre)).collect(Collectors.toList()).get(0);
     }
 }

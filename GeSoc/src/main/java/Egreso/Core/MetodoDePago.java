@@ -3,6 +3,27 @@ package Egreso.Core;
 import Egreso.Core.Egreso;
 
 public class MetodoDePago {
-    TipoDeMedioDePago tipo;
-    String descripcion;
+    private TipoDeMedioDePago tipo;
+    private String descripcion;
+
+    public MetodoDePago(TipoDeMedioDePago tipo, String descripcion) {
+        this.tipo = tipo;
+        this.descripcion = descripcion;
+    }
+
+    public TipoDeMedioDePago getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(TipoDeMedioDePago tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
 }

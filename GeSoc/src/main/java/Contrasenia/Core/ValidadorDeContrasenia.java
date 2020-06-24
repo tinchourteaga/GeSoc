@@ -15,25 +15,35 @@ public class ValidadorDeContrasenia {
 
     private static DAOValidacion repositorio = new MemoriaValidacion();
     //singleton class
-    private static List<IValidacion> Validaciones = repositorio.obtenerValidaciones();
+    private static List<IValidacion> validaciones = repositorio.obtenerValidaciones();
 
     public static void validarContrasenia(String contrasenia) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
-        //No me gusta como esta esto
-        for (IValidacion validacion : Validaciones) {
-            validacion.validar(contrasenia);
-        }
+        validaciones.forEach(validacion-> {
+            try {
+                validacion.validar(contrasenia);
+            } catch (ExcepcionContraseniaComun excepcionContraseniaComun) {
+                excepcionContraseniaComun.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ExcepcionLongitud excepcionLongitud) {
+                excepcionLongitud.printStackTrace();
+            } catch (ExcepcionNumero excepcionNumero) {
+                excepcionNumero.printStackTrace();
+            } catch (ExcepcionCaracterEspecial excepcionCaracterEspecial) {
+                excepcionCaracterEspecial.printStackTrace();
+            }
+        });//cuando tengamos presentacion esos prints vuelan
+        // y se tranforman en hermosas mariposas digo... pantallas
     }
     public static void agregarValidacion(IValidacion nuevaValidacion) {
-        Validaciones.add(nuevaValidacion);
+        validaciones.add(nuevaValidacion);
     }
     public static void removerValidacion(IValidacion viejaValidacion) {
-        Validaciones.remove(viejaValidacion);
+        validaciones.remove(viejaValidacion);
     }
-    public static void removerTodasLasValidaciones(){
-        Validaciones= new ArrayList();
-    }
+    public static void removerTodasLasValidaciones(){ validaciones.clear(); }
     public static void AgregarTodasLasValidaciones(List<IValidacion>validacioensNuevas){
-        Validaciones.addAll(validacioensNuevas);
+        validaciones.addAll(validacioensNuevas);
     }
 
 }

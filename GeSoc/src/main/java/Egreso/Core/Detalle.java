@@ -1,8 +1,8 @@
 package Egreso.Core;
 
 public class Detalle {
-    float valor;
-    String descripcion;
+    private float valor;
+    private String descripcion;
 
     public float getValor() {
         return valor;

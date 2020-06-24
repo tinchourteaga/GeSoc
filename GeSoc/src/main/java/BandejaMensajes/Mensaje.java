@@ -6,7 +6,7 @@ public class Mensaje {
     Date fechaCreado;
     Date fechaLeido;
     String mensajeResultado;
-    Boolean leido = false;
+    Boolean leido;
 
     public Mensaje(Date fechaCreado, Date fechaLeido, String mensajeResultado) {
         this.fechaCreado = fechaCreado;

@@ -36,7 +36,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                                             actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -50,7 +50,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -64,7 +64,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -78,7 +78,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -92,7 +92,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -104,7 +104,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -116,7 +116,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -128,7 +128,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -142,7 +142,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -154,7 +154,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -166,7 +166,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -178,7 +178,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -192,7 +192,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -205,7 +205,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -217,7 +217,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -229,7 +229,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -243,7 +243,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -255,7 +255,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -267,7 +267,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -279,7 +279,7 @@ public class Test {
         Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
                 actividad, personal, promedio);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -295,6 +295,6 @@ public class Test {
                 actividad, personal, promedio);
 
         //El resultado esperado es uqe sea MEDIANA TRAMO 2 porque de dos categorias siempre me quedo con la mayor
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.categoria.getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
 }

@@ -1,24 +1,25 @@
 package Egreso.Core;
 
 import Egreso.Core.CriteriosDeCategorizacion.Categoria;
+import Egreso.Core.CriteriosDeCategorizacion.Criterio;
 
 import java.util.List;
 
 public class Presupuesto {
-    List<Categoria> categorias;
-    float valor;
-    List<Detalle> detalles;
-    DocumentoComercial documentoComercial;
+    private List<Criterio> criterios;
+    private float valor;
+    private List<Detalle> detalles;
+    private DocumentoComercial documentoComercial;
 
-    public Presupuesto(List<Categoria> categorias, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial) {
-        this.categorias = categorias;
+    public Presupuesto(List<Criterio> criterios, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial) {
+        this.criterios = criterios;
         this.valor = valor;
         this.detalles = detalles;
         this.documentoComercial = documentoComercial;
     }
 
-    public List<Categoria> getCategorias() {
-        return categorias;
+    public List<Criterio> getCriterios() {
+        return criterios;
     }
 
     public float getValor() {

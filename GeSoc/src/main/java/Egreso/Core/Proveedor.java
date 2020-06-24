@@ -2,11 +2,11 @@ package Egreso.Core;
 
 public class Proveedor {
 
-    String razonSocial;
-    String nombreApellido;
-    String cuitODni;
-    String direccion;
-    Presupuesto presupuesto;
+    private String razonSocial;
+    private String nombreApellido;
+    private String cuitODni;
+    private String direccion;
+    private Presupuesto presupuesto;
 
     public Proveedor(String rs,String nombreYApellido,String CUITODNI,String unaDireccion, Presupuesto presupuesto) {
         this.razonSocial=rs;

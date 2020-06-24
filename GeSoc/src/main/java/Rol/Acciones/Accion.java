@@ -5,5 +5,5 @@ import Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Usuario.Usuario;
 
 public interface Accion {
-    void realizar() throws NoCumpleValidacionException, NoCumpleValidacionDeCriterioException;
+    void realizar();
 }

@@ -1,8 +1,8 @@
-package Egreso.Validador;
+package Egreso.Validador.EstrategiasRevision;
 
 import Egreso.Core.Egreso;
 import Usuario.Usuario;
 
 public interface EstrategiaRevision {
-   public void revisar(Egreso operacion, Usuario usuario);
+   void revisar(Egreso operacion);
 }

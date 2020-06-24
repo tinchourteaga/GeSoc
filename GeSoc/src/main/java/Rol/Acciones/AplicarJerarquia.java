@@ -2,8 +2,6 @@ package Rol.Acciones;
 
 import Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
 import Egreso.Core.Egreso;
-import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Egreso.Validador.Excepciones.NoCumpleValidacionException;
 
 public class AplicarJerarquia implements Accion {
     private Jerarquia jerarquiaAAplicar;
@@ -15,7 +13,7 @@ public class AplicarJerarquia implements Accion {
     }
 
     @Override
-    public void realizar() throws NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
+    public void realizar(){
         jerarquiaAAplicar.aplicar(egresoAQuienAplco);
     }
 }

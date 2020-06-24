@@ -1,10 +1,10 @@
 package Egreso.Validador.DAO;
 
 
-import Egreso.Validador.ValidacionOperacion;
-import Egreso.Validador.ValidarCantidadPresupuestos;
-import Egreso.Validador.ValidarCompraPertenecePresupuesto;
-import Egreso.Validador.ValidarCriterioProveedor;
+import Egreso.Validador.Validaciones.ValidacionOperacion;
+import Egreso.Validador.Validaciones.ValidarCantidadPresupuestos;
+import Egreso.Validador.Validaciones.ValidarCompraPertenecePresupuesto;
+import Egreso.Validador.Validaciones.ValidarCriterioProveedor;
 
 import java.util.ArrayList;
 import java.util.List;

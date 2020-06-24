@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Empresa extends EntidadJuridica {
 
-    public Categoria categoria;
+    private Categoria categoria;
 
     public Empresa(String nombreEntidad, String descripcionEntidad, List<Egreso> operacionesEntidad,
                    String rs,String cuitEntidad,String cp,String ci,String tipo,
@@ -18,4 +18,11 @@ public class Empresa extends EntidadJuridica {
        Categorizador.determinarCategoria(this);
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
 }

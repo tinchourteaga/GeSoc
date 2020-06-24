@@ -1,38 +1,45 @@
 package Ingreso;
 
-import Egreso.Core.DocumentoComercial;
-import Egreso.Core.MetodoDePago;
 import Egreso.Core.Egreso;
+import Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 
 import java.util.Date;
+import java.util.List;
 
 public class Ingreso {
 
-    double valor;
-    Date fecha;
-    String descripcion;
-   // Egreso operacionAsociada= null;
-    //De aca para abajo no sabemos si esta bien
-    //al final no estaba bien y lo deberiamos dejar sin esas cosas
-    //por eso las comento
-   /* MetodoPago medioPago;
-    DocumentoComercial documentoComercial;
-    TipoDeIngreso tipoDeIngreso;*/
-   public Ingreso(double valor,Date fecha,String descripcion){
+    private double valor;
+    private Date fecha;
+    private String descripcion;
+    private List<Egreso> gastadoEn;
+
+   public Ingreso(double valor,Date fecha,String descripcion,List<Egreso>egresos){
        this.valor=valor;
        this.fecha=fecha;
        this.descripcion=descripcion;
+       this.gastadoEn=egresos;
    }
 
+   //GETTERS
     public double getValor() {
         return valor;
     }
-
     public Date getFecha() {
         return fecha;
     }
-
     public String getDescripcion() {
         return descripcion;
+    }
+    public List<Egreso> getGastadoEn() {
+        return gastadoEn;
+    }
+    public void agregarEgreso(Egreso unEgreso) throws NoPuedoAsignarMasDineroDelQueTengoException {
+       double gastoTotal=gastadoEn.stream().mapToDouble(egreso->egreso.getValor().doubleValue()).sum()+unEgreso.getValor().doubleValue();
+       if(gastoTotal<this.valor){
+           gastadoEn.add(unEgreso);
+       }else{
+           throw new NoPuedoAsignarMasDineroDelQueTengoException();
+       }
+
     }
 }

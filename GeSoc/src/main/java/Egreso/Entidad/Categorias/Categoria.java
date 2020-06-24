@@ -3,10 +3,10 @@ package Egreso.Entidad.Categorias;
 import Egreso.Entidad.Sector;
 
 public class Categoria {
-    Sector descripcion;
-    TipoCategoria nombre; //correccion falta cambiar el constructor para setearlo bien
-    Integer personalMaximo;
-    Float ventasAnuales;
+    private Sector descripcion;
+    private TipoCategoria nombre;
+    private Integer personalMaximo;
+    private Float ventasAnuales;
 
     public Categoria(Sector descripcion, TipoCategoria nombre, Integer personalMaximo,Float ventasAnuales){
         this.descripcion=descripcion;

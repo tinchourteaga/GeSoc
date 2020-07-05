@@ -25,7 +25,7 @@ public class Egreso {
 
     public Egreso(Date unaFecha, float importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
-        this.fecha=unaFecha;
+       this.fecha=unaFecha;
        this.valor=importe;
        this.listaItems=items;
        this.metodoDePago=metodo;
@@ -33,7 +33,7 @@ public class Egreso {
        this.documentoComercial=unDocumento;
        this.setCriterio(criterio);
        this.proveedorSeleccionado = criterio.seleccionarProveedor(this.proveedores);
-        this.estaVerificada=false;
+       this.estaVerificada=false;
     }
 
     public void setCriterio(CriterioSeleccionProveedor criterio){

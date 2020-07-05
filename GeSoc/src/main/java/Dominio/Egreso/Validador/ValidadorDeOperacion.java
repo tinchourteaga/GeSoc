@@ -16,6 +16,7 @@ import Persistencia.DAO.DAOMemoria;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
@@ -34,16 +35,28 @@ public class ValidadorDeOperacion {
     public static EstrategiaRevision getEstrategia() {
         return estrategia;
     }
+    public static void setEstrategia(EstrategiaRevision nuevaEstrategia) {
+        ValidadorDeOperacion.estrategia = nuevaEstrategia;
+    }
+    public static void validarPorEstrategia(Egreso egreso){
+        estrategia.revisar(egreso);
+    }
     public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
         AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(new Date(), null, "Paso exitosamente todas las Validaciones"));
+
+        AtomicBoolean flag = new AtomicBoolean(true);
+
         validacionesEspecificas.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
-                unaOperacion.setEstaVerificada(true);
+                //unaOperacion.setEstaVerificada(true);
             } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
                 mensaje.set(new Mensaje(new Date(), null, e.toString()));
+                unaOperacion.setEstaVerificada(false);
+                flag.set(false);
             }
         });
+        unaOperacion.setEstaVerificada(flag.get());
         return mensaje.get();
     }
 

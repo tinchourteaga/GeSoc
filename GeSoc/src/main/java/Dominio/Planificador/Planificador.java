@@ -4,6 +4,7 @@ import Dominio.Egreso.Core.Egreso;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
 import java.util.TimerTask;
 
 public class Planificador {
@@ -25,22 +26,22 @@ public class Planificador {
 
     public void ejecutar(long tiempoDeValidacionEnMiliSegundos, int tiempoDeValidacionEnNanoSegundos,Egreso unaOperacion){
 
+        System.out.println("Estoy a punto de correr el hilo");
         TimerTask hiloDeTarea = new TimerTask() {
             @Override
             public void run() {
-                try{
-                    while(!unaOperacion.isEstaVerificada()) {
-                        Thread.sleep(tiempoDeValidacionEnMiliSegundos, tiempoDeValidacionEnNanoSegundos);
-                        ValidadorDeOperacion.validarDefault(unaOperacion);
-                        //si no cumple una validacion la vuelvo a hacer hasta que
-                        // este marcada como que aprobo las validaciones
-                    }
-                }
-                catch(InterruptedException e){
-                    System.out.println(e);
-                }
+                System.out.println("Estoy por entrar al while");
+                //Thread.sleep(tiempoDeValidacionEnMiliSegundos, tiempoDeValidacionEnNanoSegundos);
+                ValidadorDeOperacion.validarDefault(unaOperacion);
+                //si no cumple una validacion la vuelvo a hacer hasta que
+                // este marcada como que aprobo las validaciones
+                System.out.println("Estoy loopeando");
+                System.out.println("Termine de verificar");
             }
         };
+        //hiloDeTarea.run();
+        Timer cronometro = new Timer(true);
+        cronometro.scheduleAtFixedRate(hiloDeTarea,0,tiempoDeValidacionEnMiliSegundos);
         eventos.add(hiloDeTarea);
     }
 

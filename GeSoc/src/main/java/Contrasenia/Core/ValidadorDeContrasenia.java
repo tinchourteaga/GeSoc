@@ -9,6 +9,7 @@ import Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 
 import java.io.*;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class ValidadorDeContrasenia {
@@ -17,23 +18,21 @@ public class ValidadorDeContrasenia {
     //singleton class
     private static List<IValidacion> validaciones = repositorio.obtenerValidaciones();
 
-    public static void validarContrasenia(String contrasenia) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+    public static boolean validarContrasenia(String contrasenia) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+
+        AtomicBoolean esSegura = new AtomicBoolean(true);
+
         validaciones.forEach(validacion-> {
             try {
                 validacion.validar(contrasenia);
-            } catch (ExcepcionContraseniaComun excepcionContraseniaComun) {
-                excepcionContraseniaComun.printStackTrace();
-            } catch (IOException e) {
+            }  catch (IOException | ExcepcionContraseniaComun | ExcepcionLongitud | ExcepcionNumero | ExcepcionCaracterEspecial e) {
                 e.printStackTrace();
-            } catch (ExcepcionLongitud excepcionLongitud) {
-                excepcionLongitud.printStackTrace();
-            } catch (ExcepcionNumero excepcionNumero) {
-                excepcionNumero.printStackTrace();
-            } catch (ExcepcionCaracterEspecial excepcionCaracterEspecial) {
-                excepcionCaracterEspecial.printStackTrace();
+                esSegura.set(false);
             }
         });//cuando tengamos presentacion esos prints vuelan
         // y se tranforman en hermosas mariposas digo... pantallas
+
+        return esSegura.get();
     }
     public static void agregarValidacion(IValidacion nuevaValidacion) {
         validaciones.add(nuevaValidacion);

@@ -8,8 +8,9 @@ public class DarDeAltaRevisor implements Accion {
     private Usuario revisor;
     private Egreso egreso;
 
-    public DarDeAltaRevisor(Usuario revisor) {
+    public DarDeAltaRevisor(Usuario revisor, Egreso egreso) {
         this.revisor = revisor;
+        this.egreso = egreso;
     }
 
     @Override

@@ -31,9 +31,10 @@ public class Usuario {
         return contrasenia;
     }
     private void setContrasenia (String contraseniaNueva) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
-        ValidadorDeContrasenia.validarContrasenia(contraseniaNueva);
-        this.contrasenia = contraseniaNueva;
+        if(ValidadorDeContrasenia.validarContrasenia(contraseniaNueva)){
+            this.contrasenia = contraseniaNueva;
         }
+    }
 
     public void cambiarContrasenia(String passwordAnterior, String passwordNueva) throws ContraseniasDistintasException, IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         if (this.contrasenia.equals(passwordAnterior)){

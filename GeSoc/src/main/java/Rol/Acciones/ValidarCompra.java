@@ -9,5 +9,6 @@ public class ValidarCompra implements Accion{
     public void realizar() {
         operacion.validar();
     }
+
     public ValidarCompra(Egreso operacion) {this.operacion = operacion;}
 }

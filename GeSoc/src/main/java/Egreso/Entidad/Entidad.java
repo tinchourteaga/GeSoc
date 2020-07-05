@@ -28,6 +28,7 @@ public abstract class Entidad {
     public List<Egreso> getOperaciones() {
         return egresos;
     }
+
     public Entidad(String nombreEntidad, String descripcionEntidad, List<Egreso> operacionesEntidad){
         this.descripcion=descripcionEntidad;
         this.nombre=nombreEntidad;

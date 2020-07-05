@@ -14,14 +14,14 @@ public class BandejaMensajes {
     }
 
     public List<Mensaje> filtrarPorFecha(Date fecha) {
-    return mensajes.stream().filter(mensaje-> mensaje.fechaCreado.getTime()>=fecha.getTime()).collect(Collectors.toList());
+    return mensajes.stream().filter(mensaje-> mensaje.getFechaCreado().getTime()>=fecha.getTime()).collect(Collectors.toList());
 
     }
 
     public List<Mensaje> filtrarPorLeidos(){
         List<Mensaje> mensajesLeidos = new ArrayList<Mensaje>();
         mensajesLeidos =this.mensajes.stream()
-                     .filter(x -> x.fechaLeido != null )
+                     .filter(x -> x.getFechaLeido() != null )
                      .collect(Collectors.toList());
 	    return mensajesLeidos;
     }

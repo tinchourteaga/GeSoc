@@ -6,7 +6,6 @@ import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
 import Egreso.Validador.Validaciones.ValidacionOperacion;
-
 import java.util.List;
 
 public class CriterioMenorPrecio implements CriterioSeleccionProveedor{

@@ -1,6 +1,6 @@
 package Egreso.Core;
 
-import Egreso.Core.Egreso;
+
 
 public class DocumentoComercial {
     private TipoDocumentoComercial tipo;

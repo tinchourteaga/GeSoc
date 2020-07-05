@@ -1,12 +1,12 @@
 package TestsEntrega1;
 
-import Contrasenia.Core.*;
-import Contrasenia.Excepciones.ExcepcionCaracterEspecial;
-import Contrasenia.Excepciones.ExcepcionContraseniaComun;
-import Contrasenia.Excepciones.ExcepcionLongitud;
-import Contrasenia.Excepciones.ExcepcionNumero;
-import Rol.Exepciones.ContraseniasDistintasException;
-import Usuario.Usuario;
+import Dominio.Contrasenia.Core.*;
+import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
+import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Rol.Exepciones.ContraseniasDistintasException;
+import Dominio.Usuario.Usuario;
 import org.junit.Assert;
 
 import java.io.IOException;

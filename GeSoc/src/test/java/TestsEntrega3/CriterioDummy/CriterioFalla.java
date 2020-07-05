@@ -1,11 +1,11 @@
 package TestsEntrega3.CriterioDummy;
 
 
-import Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-import Egreso.Core.Egreso;
-import Egreso.Core.Proveedor;
-import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Egreso.Validador.Excepciones.NoCumpleValidacionException;
+import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
+import Dominio.Egreso.Core.Egreso;
+import Dominio.Egreso.Core.Proveedor;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 
 import java.util.List;
 

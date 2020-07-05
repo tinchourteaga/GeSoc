@@ -1,32 +1,31 @@
 package TestsEntrega3;
 
-import BandejaMensajes.Mensaje;
-import Contrasenia.Excepciones.ExcepcionCaracterEspecial;
-import Contrasenia.Excepciones.ExcepcionContraseniaComun;
-import Contrasenia.Excepciones.ExcepcionLongitud;
-import Contrasenia.Excepciones.ExcepcionNumero;
-import Egreso.Core.*;
+import Dominio.BandejaMensajes.Mensaje;
+import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
+import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Egreso.Core.*;
 
-import Egreso.Core.CriteriosDeCategorizacion.Categoria;
-import Egreso.Core.CriteriosDeCategorizacion.Criterio;
-import Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
-import Rol.Acciones.AgregarJerarquia;
-import Rol.Exepciones.NoTengoPermisosException;
-import Rol.Rol;
-import Rol.RolAdministrador;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
+import Dominio.Rol.Acciones.AgregarJerarquia;
+import Dominio.Rol.Exepciones.NoTengoPermisosException;
+import Dominio.Rol.Rol;
+import Dominio.Rol.RolAdministrador;
+import Dominio.Usuario.Usuario;
 import TestsEntrega3.CriterioDummy.CriterioFalla;
-import Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
-import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Egreso.Validador.Excepciones.NoCumpleValidacionException;
-import Egreso.Validador.ValidadorDeOperacion;
-import Usuario.Usuario;
+import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
+import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import org.junit.Assert;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class Test {
     @org.junit.Test

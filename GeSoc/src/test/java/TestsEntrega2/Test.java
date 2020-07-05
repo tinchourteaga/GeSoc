@@ -1,9 +1,9 @@
 package TestsEntrega2;
 
-import Egreso.Core.Egreso;
-import Egreso.Entidad.Categorias.*;
-import Egreso.Entidad.Empresa;
-import Egreso.Entidad.Sector;
+import Dominio.Egreso.Core.Egreso;
+import Dominio.Egreso.Entidad.Categorias.*;
+import Dominio.Egreso.Entidad.Empresa;
+import Dominio.Egreso.Entidad.Sector;
 import org.junit.*;
 
 import java.util.List;

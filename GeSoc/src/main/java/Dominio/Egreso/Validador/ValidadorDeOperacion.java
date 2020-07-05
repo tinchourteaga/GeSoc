@@ -1,0 +1,67 @@
+package Dominio.Egreso.Validador;
+
+import Dominio.BandejaMensajes.Mensaje;
+import Dominio.Egreso.Core.Egreso;
+import Dominio.Egreso.Validador.DAO.DAOValidacion;
+import Dominio.Egreso.Validador.DAO.MemoriaValidacion;
+import Dominio.Egreso.Validador.EstrategiasRevision.EstrategiaRevision;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
+import Dominio.Egreso.Validador.Validaciones.ValidacionOperacion;
+import Dominio.Rol.Acciones.LeerMensaje;
+import Dominio.Rol.Acciones.RevisarBandeja;
+import Dominio.Rol.Mensajero;
+import Dominio.Rol.RolRevisorCompra;
+import Dominio.Usuario.Usuario;
+
+import java.util.Date;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
+import java.util.stream.Collectors;
+
+public class ValidadorDeOperacion {
+
+    private static DAOValidacion repositorio = new MemoriaValidacion();
+    private static List<ValidacionOperacion> validaciones = repositorio.obtenerValidaciones();
+    private static EstrategiaRevision estrategia;
+
+    public static DAOValidacion getRepositorio() {
+        return repositorio;
+    }
+    public static List<ValidacionOperacion> getValidaciones() {
+        return validaciones;
+    }
+    public static EstrategiaRevision getEstrategia() {
+        return estrategia;
+    }
+    public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
+        AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(new Date(), null, "Paso exitosamente todas las Validaciones"));
+        validacionesEspecificas.forEach(validacion -> {
+            try {
+                validacion.validar(unaOperacion);
+                unaOperacion.setEstaVerificada(true);
+            } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
+                mensaje.set(new Mensaje(new Date(), null, e.toString()));
+            }
+        });
+        return mensaje.get();
+    }
+
+    public static void validarCustomConBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas, Usuario unUsuario) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
+        validarDefault(unaOperacion);
+        validarCustomSinBasicas(unaOperacion, validacionesEspecificas);
+    }
+
+    public static void validarDefault(Egreso unaOperacion){
+        Mensaje mensaje= validarCustomSinBasicas(unaOperacion,validaciones);
+        List<RolRevisorCompra> revisores=Mensajero.obtenerRevisoresDe(unaOperacion);
+        revisores.forEach(rol->enviarMensaje(rol,mensaje));
+    }
+
+    private static void enviarMensaje(RolRevisorCompra rol, Mensaje mensaje) {
+       RevisarBandeja accionRevisor= (RevisarBandeja) rol.getAcciones().stream().filter(accion -> accion.getClass().equals(RevisarBandeja.class)).collect(Collectors.toList()).get(0);
+       rol.getAcciones().add(new LeerMensaje(mensaje));
+       accionRevisor.getBandejaAsociada().agregarMensaje(mensaje);
+    }
+
+}

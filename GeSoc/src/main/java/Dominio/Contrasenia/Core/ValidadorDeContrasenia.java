@@ -1,11 +1,11 @@
 package Dominio.Contrasenia.Core;
 
-import Dominio.Contrasenia.DAO.DAOValidacion;
-import Dominio.Contrasenia.DAO.MemoriaValidacion;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOMemoria;
 
 import java.io.*;
 import java.util.*;
@@ -14,9 +14,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ValidadorDeContrasenia {
 
-    private static DAOValidacion repositorio = new MemoriaValidacion();
+    private static DAO repositorio = new DAOMemoria<IValidacion>();
     //singleton class
-    private static List<IValidacion> validaciones = repositorio.obtenerValidaciones();
+    private static List<IValidacion> validaciones = repositorio.getAllElementos();
 
     public static boolean validarContrasenia(String contrasenia) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
 

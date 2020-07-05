@@ -2,8 +2,6 @@ package Dominio.Egreso.Validador;
 
 import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Egreso.Core.Egreso;
-import Dominio.Egreso.Validador.DAO.DAOValidacion;
-import Dominio.Egreso.Validador.DAO.MemoriaValidacion;
 import Dominio.Egreso.Validador.EstrategiasRevision.EstrategiaRevision;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
@@ -13,6 +11,8 @@ import Dominio.Rol.Acciones.RevisarBandeja;
 import Dominio.Rol.Mensajero;
 import Dominio.Rol.RolRevisorCompra;
 import Dominio.Usuario.Usuario;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOMemoria;
 
 import java.util.Date;
 import java.util.List;
@@ -21,11 +21,11 @@ import java.util.stream.Collectors;
 
 public class ValidadorDeOperacion {
 
-    private static DAOValidacion repositorio = new MemoriaValidacion();
-    private static List<ValidacionOperacion> validaciones = repositorio.obtenerValidaciones();
+    private static DAO repositorio = new DAOMemoria<>();
+    private static List<ValidacionOperacion> validaciones = repositorio.getAllElementos();
     private static EstrategiaRevision estrategia;
 
-    public static DAOValidacion getRepositorio() {
+    public static DAO getRepositorio() {
         return repositorio;
     }
     public static List<ValidacionOperacion> getValidaciones() {

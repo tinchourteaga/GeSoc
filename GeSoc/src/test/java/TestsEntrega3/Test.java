@@ -10,6 +10,10 @@ import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
+import Dominio.Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
+import Dominio.Egreso.Validador.Validaciones.ValidarCantidadPresupuestos;
+import Dominio.Egreso.Validador.Validaciones.ValidarCompraPertenecePresupuesto;
+import Dominio.Egreso.Validador.Validaciones.ValidarCriterioProveedor;
 import Dominio.Rol.Acciones.AgregarJerarquia;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import Dominio.Rol.Rol;
@@ -47,7 +51,7 @@ public class Test {
 
 
         Egreso unEgreso=new Egreso(new Date(),100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
-        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
+        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(new ValidacionPresupuestoMenor()); add(new ValidarCompraPertenecePresupuesto()); add(new ValidarCantidadPresupuestos()); add(new ValidarCriterioProveedor());}}));
         Assert.assertEquals( new NoCumpleValidacionDeCriterioException().toString(),fallo.getMensajeResultado());
     }
     @org.junit.Test
@@ -63,9 +67,8 @@ public class Test {
 
 
         Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
-        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
+        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(new ValidacionPresupuestoMenor()); add(new ValidarCompraPertenecePresupuesto()); add(new ValidarCantidadPresupuestos()); add(new ValidarCriterioProveedor());}}));
         Assert.assertEquals(new NoCumpleValidacionException().toString(),fallo.getMensajeResultado());
-        //no entiendo porque no da este tests
     }
 
     @org.junit.Test

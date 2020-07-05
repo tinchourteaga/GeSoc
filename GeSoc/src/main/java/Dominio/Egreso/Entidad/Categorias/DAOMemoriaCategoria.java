@@ -1,7 +1,6 @@
 package Dominio.Egreso.Entidad.Categorias;
 
 import Dominio.Egreso.Entidad.Sector;
-
 import java.util.HashMap;
 
 public class DAOMemoriaCategoria implements DAOCategoria {

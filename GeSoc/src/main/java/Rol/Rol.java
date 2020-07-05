@@ -4,9 +4,6 @@ import Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Rol.Acciones.Accion;
 import Rol.Exepciones.NoTengoPermisosException;
-import Usuario.Usuario;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Rol {

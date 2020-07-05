@@ -5,7 +5,6 @@ import Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Egreso.Validador.ValidadorDeOperacion;
-import Ingreso.Ingreso;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

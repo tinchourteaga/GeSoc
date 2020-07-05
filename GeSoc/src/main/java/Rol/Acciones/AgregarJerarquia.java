@@ -2,8 +2,6 @@ package Rol.Acciones;
 
 import Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
-import Usuario.Usuario;
-
 import java.util.ArrayList;
 import java.util.List;
 

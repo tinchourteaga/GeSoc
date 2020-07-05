@@ -2,11 +2,10 @@ package Egreso.Entidad;
 
 import Egreso.Core.Egreso;
 import Ingreso.Ingreso;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class Entidad {
+public abstract class Entidad {
     protected String descripcion;
     protected String nombre;
     protected List<Egreso> egresos;

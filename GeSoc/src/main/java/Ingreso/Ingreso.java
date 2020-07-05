@@ -2,7 +2,6 @@ package Ingreso;
 
 import Egreso.Core.Egreso;
 import Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
-
 import java.util.Date;
 import java.util.List;
 

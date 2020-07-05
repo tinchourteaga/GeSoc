@@ -1,6 +1,5 @@
 package TestsEntrega1;
 
-
 import Contrasenia.Core.*;
 import Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Contrasenia.Excepciones.ExcepcionContraseniaComun;
@@ -8,7 +7,6 @@ import Contrasenia.Excepciones.ExcepcionLongitud;
 import Contrasenia.Excepciones.ExcepcionNumero;
 import Rol.Exepciones.ContraseniasDistintasException;
 import Usuario.Usuario;
-
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -100,8 +98,5 @@ public class Test {
         usuario.cambiarContrasenia("S4R4z@78P212EyR","qwerty");
 
     }
-
-
-
 
 }

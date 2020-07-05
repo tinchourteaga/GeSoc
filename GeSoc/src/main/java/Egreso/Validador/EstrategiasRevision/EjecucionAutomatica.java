@@ -2,6 +2,7 @@ package Egreso.Validador.EstrategiasRevision;
 
 import Egreso.Core.Egreso;
 import Planificador.Planificador;
+
 public class EjecucionAutomatica implements EstrategiaRevision {
 
     private long tiempoDeEsperaMili;

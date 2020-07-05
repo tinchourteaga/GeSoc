@@ -1,7 +1,5 @@
 package Egreso.Core;
 
-import Egreso.Core.Egreso;
-
 public class MetodoDePago {
     private TipoDeMedioDePago tipo;
     private String descripcion;

@@ -1,8 +1,6 @@
 package Egreso.Core.CriteriosDeCategorizacion;
 
 import Egreso.Core.Egreso;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Jerarquia {

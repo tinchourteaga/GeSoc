@@ -1,7 +1,6 @@
 package Egreso.Entidad;
 
 import Egreso.Core.Egreso;
-
 import java.util.List;
 
 public class EntidadBase extends Entidad{

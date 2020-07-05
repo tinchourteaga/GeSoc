@@ -1,6 +1,5 @@
 package Egreso.Core;
 
-
 public class Item {
     private Float valor;
     private String descripcion;

@@ -2,7 +2,6 @@ package Rol;
 
 import Rol.Acciones.Accion;
 import Rol.Exepciones.NoTengoPermisosException;
-
 import java.util.ArrayList;
 
 public class RolEstandar extends Rol {

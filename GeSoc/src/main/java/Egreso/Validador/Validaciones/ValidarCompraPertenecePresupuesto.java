@@ -4,7 +4,6 @@ import Egreso.Core.Egreso;
 import Egreso.Core.Presupuesto;
 import Egreso.Core.Proveedor;
 import Egreso.Validador.Excepciones.NoCumpleValidacionException;
-
 import java.util.List;
 import java.util.stream.Collectors;
 

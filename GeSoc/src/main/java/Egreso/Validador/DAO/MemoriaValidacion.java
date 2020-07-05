@@ -1,6 +1,5 @@
 package Egreso.Validador.DAO;
 
-
 import Egreso.Validador.Validaciones.ValidacionOperacion;
 import Egreso.Validador.Validaciones.ValidarCantidadPresupuestos;
 import Egreso.Validador.Validaciones.ValidarCompraPertenecePresupuesto;

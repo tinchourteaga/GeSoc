@@ -1,12 +1,9 @@
 package Egreso.Entidad;
 
 import Egreso.Core.Egreso;
-import Ingreso.Ingreso;
-
-import java.util.ArrayList;
 import java.util.List;
 
-public class EntidadJuridica extends Entidad{
+public abstract class EntidadJuridica extends Entidad{
     protected String razonSocial;
     protected String cuit;
     protected String codigoPostal;

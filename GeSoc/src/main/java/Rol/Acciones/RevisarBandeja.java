@@ -1,7 +1,6 @@
 package Rol.Acciones;
 
 import BandejaMensajes.BandejaMensajes;
-import Usuario.Usuario;
 
 public class RevisarBandeja implements Accion {
     private BandejaMensajes bandejaAsociada;

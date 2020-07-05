@@ -2,7 +2,6 @@ package Egreso.Entidad.Categorias;
 
 import Egreso.Entidad.Empresa;
 import Egreso.Entidad.Sector;
-
 import java.util.HashMap;
 
 public class Categorizador {

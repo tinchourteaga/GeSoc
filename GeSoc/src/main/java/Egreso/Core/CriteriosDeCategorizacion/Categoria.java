@@ -1,7 +1,5 @@
 package Egreso.Core.CriteriosDeCategorizacion;
 
-import Egreso.Core.Egreso;
-
 public class Categoria {
     //El Usuario va a poder crear sus propias categorias
    private String descripicion;

@@ -1,10 +1,5 @@
 package Egreso.Core.CriteriosDeCategorizacion;
 
-import Egreso.Core.Egreso;
-import Egreso.Entidad.Entidad;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 

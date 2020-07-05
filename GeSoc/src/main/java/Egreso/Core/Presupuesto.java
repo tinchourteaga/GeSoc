@@ -1,6 +1,5 @@
 package Egreso.Core;
 
-
 import Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import java.util.List;
 

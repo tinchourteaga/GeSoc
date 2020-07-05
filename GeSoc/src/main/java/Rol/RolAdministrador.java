@@ -1,13 +1,7 @@
 package Rol;
 
-import DAO.RepositorioUsuario;
-import Egreso.Core.CriteriosDeCategorizacion.Criterio;
-import Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
-import Egreso.Core.Egreso;
 import Rol.Acciones.*;
 import Rol.Exepciones.NoTengoPermisosException;
-import Usuario.Usuario;
-
 import java.util.ArrayList;
 
 public class RolAdministrador extends Rol {

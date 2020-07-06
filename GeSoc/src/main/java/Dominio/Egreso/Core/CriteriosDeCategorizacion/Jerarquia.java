@@ -3,7 +3,7 @@ package Dominio.Egreso.Core.CriteriosDeCategorizacion;
 import Dominio.Egreso.Core.Egreso;
 import java.util.List;
 
-public class Jerarquia {
+public class    Jerarquia {
 
     private Criterio criterio;
     private List<Jerarquia> hijos;

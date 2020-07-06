@@ -25,14 +25,14 @@ public class Main {
         presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         List<Proveedor> proveedores=new ArrayList();
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",presupuestos.get(0)));
+        /*proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",presupuestos.get(0)));
         proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",presupuestos.get(2)));
         proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",presupuestos.get(1)));
-
+        */
 
         Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
 
-        ValidadorDeOperacion.getRepositorio().getAllElementos().addAll((new ArrayList(){{add(new ValidacionPresupuestoMenor()); add(new ValidarCompraPertenecePresupuesto()); add(new ValidarCantidadPresupuestos()); add(new ValidarCriterioProveedor());}}));
+        ValidadorDeOperacion.getRepositorio().getAllElementos().addAll((new ArrayList(){{add(new ValidacionPresupuestoMenor(proveedores)); add(new ValidarCompraPertenecePresupuesto(proveedores)); add(new ValidarCantidadPresupuestos(proveedores)); add(new ValidarCriterioProveedor());}}));
 
         //ValidadorDeOperacion.validarDefault(unEgreso);
         ValidadorDeOperacion.validarPorEstrategia(unEgreso);

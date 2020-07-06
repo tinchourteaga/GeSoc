@@ -1,6 +1,8 @@
 package Dominio.Egreso.Core;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
+
+import java.util.Date;
 import java.util.List;
 
 public class Presupuesto {
@@ -9,11 +11,18 @@ public class Presupuesto {
     private List<Detalle> detalles;
     private DocumentoComercial documentoComercial;
 
+    public Date getFecha() {
+        return fecha;
+    }
+
+    private Date fecha;
+
     public Presupuesto(List<Criterio> criterios, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial) {
         this.criterios = criterios;
         this.valor = valor;
         this.detalles = detalles;
         this.documentoComercial = documentoComercial;
+        this.fecha = new Date();
     }
 
     public List<Criterio> getCriterios() {

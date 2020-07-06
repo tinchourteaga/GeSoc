@@ -29,18 +29,23 @@ public class ValidadorDeOperacion {
     public static DAO getRepositorio() {
         return repositorio;
     }
+
     public static List<ValidacionOperacion> getValidaciones() {
         return validaciones;
     }
+
     public static EstrategiaRevision getEstrategia() {
         return estrategia;
     }
+
     public static void setEstrategia(EstrategiaRevision nuevaEstrategia) {
         ValidadorDeOperacion.estrategia = nuevaEstrategia;
     }
+
     public static void validarPorEstrategia(Egreso egreso){
         estrategia.revisar(egreso);
     }
+
     public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
         AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(new Date(), null, "Paso exitosamente todas las Validaciones"));
 
@@ -49,7 +54,6 @@ public class ValidadorDeOperacion {
         validacionesEspecificas.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
-                //unaOperacion.setEstaVerificada(true);
             } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
                 mensaje.set(new Mensaje(new Date(), null, e.toString()));
                 unaOperacion.setEstaVerificada(false);

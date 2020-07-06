@@ -3,6 +3,7 @@ package TestsEntrega3.CriterioDummy;
 
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Core.Egreso;
+import Dominio.Egreso.Core.Presupuesto;
 import Dominio.Egreso.Core.Proveedor;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
@@ -20,5 +21,10 @@ public class CriterioFalla implements CriterioSeleccionProveedor {
     public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
 
         throw new NoCumpleValidacionDeCriterioException();
+    }
+
+    @Override
+    public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos){
+        return presupuestos.get(0);
     }
 }

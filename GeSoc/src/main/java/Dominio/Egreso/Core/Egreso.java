@@ -16,7 +16,6 @@ public class Egreso {
     private Float valor;
     private List<Item> listaItems ;
     private MetodoDePago metodoDePago;
-    private List<Proveedor> proveedores ;
     private Proveedor proveedorSeleccionado;
     private DocumentoComercial documentoComercial;
     private CriterioSeleccionProveedor criterioSeleccionProveedor;
@@ -29,10 +28,9 @@ public class Egreso {
        this.valor=importe;
        this.listaItems=items;
        this.metodoDePago=metodo;
-       this.proveedores=proveedores;
        this.documentoComercial=unDocumento;
        this.setCriterio(criterio);
-       this.proveedorSeleccionado = criterio.seleccionarProveedor(this.proveedores);
+       this.proveedorSeleccionado = criterio.seleccionarProveedor(proveedores);
        this.estaVerificada=false;
     }
 
@@ -41,9 +39,6 @@ public class Egreso {
     }
     public CriterioSeleccionProveedor getCriterio(){
         return this.criterioSeleccionProveedor;
-    }
-    public List<Proveedor> getProveedores() {
-        return proveedores;
     }
     public Proveedor getProveedorSeleccionado() {
         return proveedorSeleccionado;

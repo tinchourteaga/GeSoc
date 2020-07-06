@@ -10,12 +10,19 @@ import java.util.stream.Collectors;
 public class ValidarCantidadPresupuestos implements ValidacionOperacion {
     Integer presupuestosRequeridos = 4;
 
+    public ValidarCantidadPresupuestos(List<Proveedor> proveedores) {
+        this.proveedores = proveedores;
+    }
+
+    public List<Proveedor> getProveedores() {
+        return proveedores;
+    }
+
+    private List<Proveedor> proveedores;
     @Override
     public void validar(Egreso operacion) throws NoCumpleValidacionException {
-        List<Proveedor> proveedores = operacion.getProveedores();
-        List<Presupuesto> listaPresupuestos = proveedores.stream().map(prov -> prov.getPresupuesto()).collect(Collectors.toList());
 
-        if(listaPresupuestos.size() < presupuestosRequeridos){
+        if(proveedores.size() < presupuestosRequeridos){
             throw new NoCumpleValidacionException();
         }
     }

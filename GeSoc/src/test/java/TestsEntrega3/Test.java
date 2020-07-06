@@ -10,10 +10,7 @@ import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
-import Dominio.Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
-import Dominio.Egreso.Validador.Validaciones.ValidarCantidadPresupuestos;
-import Dominio.Egreso.Validador.Validaciones.ValidarCompraPertenecePresupuesto;
-import Dominio.Egreso.Validador.Validaciones.ValidarCriterioProveedor;
+import Dominio.Egreso.Validador.Validaciones.*;
 import Dominio.Rol.Acciones.AgregarJerarquia;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import Dominio.Rol.Rol;
@@ -42,32 +39,40 @@ public class Test {
         presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         presupuestos.add(new Presupuesto(new ArrayList<>(),56000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         List<Proveedor> proveedores=new ArrayList();
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",presupuestos.get(5)));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",presupuestos.get(1)));
-        proveedores.add(new Proveedor("ahdasd","aaaa bcbb","28453672816","dddd",presupuestos.get(2)));
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",presupuestos.get(0)));
-        proveedores.add(new Proveedor("ajdasd","aaaa bhbb","28443672816","eeee",presupuestos.get(3)));
-        proveedores.add(new Proveedor("aldasd","aaaa bjbb","28433672816","ffff",presupuestos.get(4)));
+        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",new ArrayList(){{add(presupuestos.get(5));}}));
+        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",new ArrayList(){{add(presupuestos.get(1));}}));
+        proveedores.add(new Proveedor("ahdasd","aaaa bcbb","28453672816","dddd",new ArrayList(){{add(presupuestos.get(2));}}));
+        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",new ArrayList(){{add(presupuestos.get(0));}}));
+        proveedores.add(new Proveedor("ajdasd","aaaa bhbb","28443672816","eeee",new ArrayList(){{add(presupuestos.get(3));}}));
+        proveedores.add(new Proveedor("aldasd","aaaa bjbb","28433672816","ffff",new ArrayList(){{add(presupuestos.get(4));}}));
 
+        ValidacionPresupuestoMenor validacion1 = new ValidacionPresupuestoMenor(proveedores);
+        ValidarCompraPertenecePresupuesto validacion2 = new ValidarCompraPertenecePresupuesto(proveedores);
+        ValidarCantidadPresupuestos validacion3 = new ValidarCantidadPresupuestos(proveedores);
+        ValidarCriterioProveedor validacion4 = new ValidarCriterioProveedor();
 
         Egreso unEgreso=new Egreso(new Date(),100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
-        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(new ValidacionPresupuestoMenor()); add(new ValidarCompraPertenecePresupuesto()); add(new ValidarCantidadPresupuestos()); add(new ValidarCriterioProveedor());}}));
+        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
         Assert.assertEquals( new NoCumpleValidacionDeCriterioException().toString(),fallo.getMensajeResultado());
     }
     @org.junit.Test
-    public void testValidadorNoPasaOperacion(){
-        List<Presupuesto> presupuestos=new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        List<Proveedor> proveedores=new ArrayList();
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",presupuestos.get(0)));
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",presupuestos.get(2)));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",presupuestos.get(1)));
+    public void testValidadorNoPasaOperacion() {
+        List<Presupuesto> presupuestos = new ArrayList<>();
+        presupuestos.add(new Presupuesto(new ArrayList<>(), 51000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc")));
+        presupuestos.add(new Presupuesto(new ArrayList<>(), 52000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc")));
+        presupuestos.add(new Presupuesto(new ArrayList<>(), 53000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc")));
+        List<Proveedor> proveedores = new ArrayList();
+        proveedores.add(new Proveedor("asdasd", "aaaa bbbb", "28483672816", "aaaa", new ArrayList(){{add(presupuestos.get(0));}}));
+        proveedores.add(new Proveedor("agdasd", "aaaa b4bb", "28493672816", "bbbb", new ArrayList(){{add(presupuestos.get(2));}}));
+        proveedores.add(new Proveedor("aydasd", "aaaa bbtb", "28473672816", "cccc", new ArrayList(){{add(presupuestos.get(1));}}));
 
+        ValidacionPresupuestoMenor validacion1 = new ValidacionPresupuestoMenor(proveedores);
+        ValidarCompraPertenecePresupuesto validacion2 = new ValidarCompraPertenecePresupuesto(proveedores);
+        ValidarCantidadPresupuestos validacion3 = new ValidarCantidadPresupuestos(proveedores);
+        ValidarCriterioProveedor validacion4 = new ValidarCriterioProveedor();
 
         Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
-        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(new ValidacionPresupuestoMenor()); add(new ValidarCompraPertenecePresupuesto()); add(new ValidarCantidadPresupuestos()); add(new ValidarCriterioProveedor());}}));
+        Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
         Assert.assertEquals(new NoCumpleValidacionException().toString(),fallo.getMensajeResultado());
     }
 
@@ -97,11 +102,11 @@ public class Test {
         presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
 
         List<Proveedor> proveedores=new ArrayList<>();
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",presupuestos.get(0)));
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",presupuestos.get(2)));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",presupuestos.get(1)));
-        proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816","ccfc",presupuestos.get(3)));
-        proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",presupuestos.get(4)));
+        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",new ArrayList(){{add(presupuestos.get(0));}}));
+        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",new ArrayList(){{add(presupuestos.get(2));}}));
+        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",new ArrayList(){{add(presupuestos.get(1));}}));
+        proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816","ccfc",new ArrayList(){{add(presupuestos.get(3));}}));
+        proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",new ArrayList(){{add(presupuestos.get(4));}}));
 
         Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         roladmin.realizarAccion(agregarJerarquia);
@@ -119,11 +124,11 @@ public class Test {
         presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
 
         List<Proveedor> proveedores=new ArrayList();
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",presupuestos.get(0)));
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",presupuestos.get(2)));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",presupuestos.get(1)));
-        proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816","ccfc",presupuestos.get(3)));
-        proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",presupuestos.get(4)));
+        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",new ArrayList(){{add(presupuestos.get(0));}}));
+        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",new ArrayList(){{add(presupuestos.get(2));}}));
+        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",new ArrayList(){{add(presupuestos.get(1));}}));
+        proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816","ccfc",new ArrayList(){{add(presupuestos.get(3));}}));
+        proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",new ArrayList(){{add(presupuestos.get(4));}}));
 
 
 

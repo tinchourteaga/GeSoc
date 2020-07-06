@@ -47,9 +47,9 @@ public class Test {
         proveedores.add(new Proveedor("aldasd","aaaa bjbb","28433672816","ffff",new ArrayList(){{add(presupuestos.get(4));}}));
 
         ValidacionPresupuestoMenor validacion1 = new ValidacionPresupuestoMenor(proveedores);
-        ValidarCompraPertenecePresupuesto validacion2 = new ValidarCompraPertenecePresupuesto(proveedores);
-        ValidarCantidadPresupuestos validacion3 = new ValidarCantidadPresupuestos(proveedores);
-        ValidarCriterioProveedor validacion4 = new ValidarCriterioProveedor();
+        ValidacionCompraPertenecePresupuesto validacion2 = new ValidacionCompraPertenecePresupuesto(proveedores);
+        ValidacionCantidadPresupuestos validacion3 = new ValidacionCantidadPresupuestos(proveedores);
+        ValidacionCriterioProveedor validacion4 = new ValidacionCriterioProveedor();
 
         Egreso unEgreso=new Egreso(new Date(),100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
@@ -67,9 +67,9 @@ public class Test {
         proveedores.add(new Proveedor("aydasd", "aaaa bbtb", "28473672816", "cccc", new ArrayList(){{add(presupuestos.get(1));}}));
 
         ValidacionPresupuestoMenor validacion1 = new ValidacionPresupuestoMenor(proveedores);
-        ValidarCompraPertenecePresupuesto validacion2 = new ValidarCompraPertenecePresupuesto(proveedores);
-        ValidarCantidadPresupuestos validacion3 = new ValidarCantidadPresupuestos(proveedores);
-        ValidarCriterioProveedor validacion4 = new ValidarCriterioProveedor();
+        ValidacionCompraPertenecePresupuesto validacion2 = new ValidacionCompraPertenecePresupuesto(proveedores);
+        ValidacionCantidadPresupuestos validacion3 = new ValidacionCantidadPresupuestos(proveedores);
+        ValidacionCriterioProveedor validacion4 = new ValidacionCriterioProveedor();
 
         Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));

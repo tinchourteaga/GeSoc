@@ -12,7 +12,6 @@ public class Detalle {
     public float getValor() {
         return valor;
     }
-
     public String getDescripcion() {
         return descripcion;
     }

@@ -1,6 +1,5 @@
 package Dominio.Egreso.Core;
 
-
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
@@ -20,7 +19,6 @@ public class Egreso {
     private DocumentoComercial documentoComercial;
     private CriterioSeleccionProveedor criterioSeleccionProveedor;
     private List<Criterio> criterios;
-
 
     public Egreso(Date unaFecha, float importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();

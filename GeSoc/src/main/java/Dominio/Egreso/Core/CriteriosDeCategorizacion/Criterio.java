@@ -17,11 +17,9 @@ public class Criterio {
     public String getNombreCriterio() {
         return nombreCriterio;
     }
-
     public String getDescripcion() {
         return descripcion;
     }
-
     public List<Categoria> getCategorias() {
         return categorias;
     }

@@ -13,7 +13,6 @@ import Dominio.Rol.RolRevisorCompra;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOMemoria;
-
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;

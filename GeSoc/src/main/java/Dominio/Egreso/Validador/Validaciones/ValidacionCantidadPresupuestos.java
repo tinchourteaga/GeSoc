@@ -1,16 +1,14 @@
 package Dominio.Egreso.Validador.Validaciones;
 
 import Dominio.Egreso.Core.Egreso;
-import Dominio.Egreso.Core.Presupuesto;
 import Dominio.Egreso.Core.Proveedor;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class ValidarCantidadPresupuestos implements ValidacionOperacion {
+public class ValidacionCantidadPresupuestos implements ValidacionOperacion {
     Integer presupuestosRequeridos = 4;
 
-    public ValidarCantidadPresupuestos(List<Proveedor> proveedores) {
+    public ValidacionCantidadPresupuestos(List<Proveedor> proveedores) {
         this.proveedores = proveedores;
     }
 

@@ -1,7 +1,6 @@
 package Dominio.Egreso.Core;
 
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-
 import java.util.List;
 
 public class Proveedor {
@@ -23,24 +22,19 @@ public class Proveedor {
     public String getRazonSocial() {
         return razonSocial;
     }
-
     public String getNombreApellido() {
         return nombreApellido;
     }
-
     public String getCuitODni() {
         return cuitODni;
     }
-
     public String getDireccion() {
         return direccion;
     }
-
     public List<Presupuesto> getPresupuestos() {
         return presupuestos;
     }
-
-    public Presupuesto getPresupuestoCriterio(CriterioSeleccionProveedor criterio){
-        return criterio.seleccionarPresupuesto(presupuestos);
-    }
+    public Presupuesto getPresupuestoCriterio(CriterioSeleccionProveedor criterio){ return criterio.seleccionarPresupuesto(presupuestos); }
+    public void setNombreApellido(String nombreApellido) { this.nombreApellido = nombreApellido; }
+    public void setDireccion(String direccion) { this.direccion = direccion; }
 }

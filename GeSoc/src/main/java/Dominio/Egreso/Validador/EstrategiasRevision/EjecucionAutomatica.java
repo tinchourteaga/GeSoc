@@ -22,15 +22,12 @@ public class EjecucionAutomatica implements EstrategiaRevision {
     public long getTiempoDeEsperaMili() {
         return tiempoDeEsperaMili;
     }
-
     public void setTiempoDeEsperaMili(long tiempoDeEsperaMili) {
         this.tiempoDeEsperaMili = tiempoDeEsperaMili;
     }
-
     public int getTiempoDeEsperaNano() {
         return tiempoDeEsperaNano;
     }
-
     public void setTiempoDeEsperaNano(int tiempoDeEsperaNano) {
         this.tiempoDeEsperaNano = tiempoDeEsperaNano;
     }

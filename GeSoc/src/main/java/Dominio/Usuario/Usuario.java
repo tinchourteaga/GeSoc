@@ -20,7 +20,6 @@ public class Usuario {
         this.contrasenia = contrasenia;
     }
 
-
     public String getNombre() {
         return nombre;
     }
@@ -30,18 +29,18 @@ public class Usuario {
     public String getContrasenia() {
         return contrasenia;
     }
+
     private void setContrasenia (String contraseniaNueva) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
         if(ValidadorDeContrasenia.validarContrasenia(contraseniaNueva)){
             this.contrasenia = contraseniaNueva;
         }
     }
 
-    public void cambiarContrasenia(String passwordAnterior, String passwordNueva) throws ContraseniasDistintasException, IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
-        if (this.contrasenia.equals(passwordAnterior)){
-            this.setContrasenia(passwordNueva);
+    public void cambiarContrasenia(String contraseniaAnterior, String contraseniaNueva) throws ContraseniasDistintasException, IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+        if (this.contrasenia.equals(contraseniaAnterior)){
+            this.setContrasenia(contraseniaNueva);
         }else{
             throw new ContraseniasDistintasException();
         }
     }
-
 }

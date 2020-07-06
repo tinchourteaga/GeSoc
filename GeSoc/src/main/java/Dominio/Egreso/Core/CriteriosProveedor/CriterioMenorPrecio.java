@@ -7,10 +7,8 @@ import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioExceptio
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Dominio.Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
 import Dominio.Egreso.Validador.Validaciones.ValidacionOperacion;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 public class CriterioMenorPrecio implements CriterioSeleccionProveedor{

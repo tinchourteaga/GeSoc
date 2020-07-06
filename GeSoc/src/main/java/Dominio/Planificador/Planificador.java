@@ -26,20 +26,18 @@ public class Planificador {
 
     public void ejecutar(long tiempoDeValidacionEnMiliSegundos, int tiempoDeValidacionEnNanoSegundos,Egreso unaOperacion){
 
-        System.out.println("Estoy a punto de correr el hilo");
         TimerTask hiloDeTarea = new TimerTask() {
             @Override
             public void run() {
-                System.out.println("Estoy por entrar al while");
-                //Thread.sleep(tiempoDeValidacionEnMiliSegundos, tiempoDeValidacionEnNanoSegundos);
                 ValidadorDeOperacion.validarDefault(unaOperacion);
                 //si no cumple una validacion la vuelvo a hacer hasta que
                 // este marcada como que aprobo las validaciones
-                System.out.println("Estoy loopeando");
-                System.out.println("Termine de verificar");
+                if(unaOperacion.isEstaVerificada()){
+                    this.cancel();
+                    eventos.remove(this);
+                }
             }
         };
-        //hiloDeTarea.run();
         Timer cronometro = new Timer(true);
         cronometro.scheduleAtFixedRate(hiloDeTarea,0,tiempoDeValidacionEnMiliSegundos);
         eventos.add(hiloDeTarea);

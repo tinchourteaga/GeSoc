@@ -2,7 +2,7 @@ package Dominio.Egreso.Entidad.Categorias;
 
 import Dominio.Egreso.Entidad.Sector;
 
-public class Categoria {
+public class Categoria{
     private Sector descripcion;
     private TipoCategoria nombre;
     private Integer personalMaximo;
@@ -18,15 +18,12 @@ public class Categoria {
     public Sector getDescripcion() {
         return descripcion;
     }
-
     public TipoCategoria getNombre() {
         return nombre;
     }
-
     public Integer getPersonalMaximo() {
         return personalMaximo;
     }
-
     public Float getVentasAnuales() {
         return ventasAnuales;
     }

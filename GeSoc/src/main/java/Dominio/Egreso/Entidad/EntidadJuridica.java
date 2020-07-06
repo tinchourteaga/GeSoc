@@ -1,6 +1,7 @@
 package Dominio.Egreso.Entidad;
 
 public abstract class EntidadJuridica extends Entidad{
+
     protected String razonSocial;
     protected String cuit;
     protected String codigoPostal;
@@ -10,9 +11,7 @@ public abstract class EntidadJuridica extends Entidad{
     protected Integer cantidadPersonal;
     protected Float promedioVentasAnuales;
 
-
     public EntidadJuridica(String nombreEntidad, String descripcionEntidad, String rs,String cuitEntidad,String ci) {
-
         super(nombreEntidad, descripcionEntidad);
         this.razonSocial = rs;
         this.cuit = cuitEntidad;
@@ -65,9 +64,5 @@ public abstract class EntidadJuridica extends Entidad{
     public Float getPromedioVentasAnuales() {
         return promedioVentasAnuales;
     }
-    public void setPromedioVentasAnuales(Float promedioVentasAnuales) {
-        this.promedioVentasAnuales = promedioVentasAnuales;
-    }
-
-
+    public void setPromedioVentasAnuales(Float promedioVentasAnuales) {this.promedioVentasAnuales = promedioVentasAnuales; }
 }

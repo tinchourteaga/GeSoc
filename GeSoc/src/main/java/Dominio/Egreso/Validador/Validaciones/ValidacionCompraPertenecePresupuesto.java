@@ -4,14 +4,12 @@ import Dominio.Egreso.Core.Egreso;
 import Dominio.Egreso.Core.Presupuesto;
 import Dominio.Egreso.Core.Proveedor;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ValidarCompraPertenecePresupuesto implements ValidacionOperacion {
+public class ValidacionCompraPertenecePresupuesto implements ValidacionOperacion {
 
-    public ValidarCompraPertenecePresupuesto(List<Proveedor> proveedores) {
+    public ValidacionCompraPertenecePresupuesto(List<Proveedor> proveedores) {
         this.proveedores = proveedores;
     }
 

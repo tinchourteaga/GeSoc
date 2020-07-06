@@ -1,13 +1,12 @@
 package Dominio;
 
-import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
 import Dominio.Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
-import Dominio.Egreso.Validador.Validaciones.ValidarCantidadPresupuestos;
-import Dominio.Egreso.Validador.Validaciones.ValidarCompraPertenecePresupuesto;
-import Dominio.Egreso.Validador.Validaciones.ValidarCriterioProveedor;
+import Dominio.Egreso.Validador.Validaciones.ValidacionCantidadPresupuestos;
+import Dominio.Egreso.Validador.Validaciones.ValidacionCompraPertenecePresupuesto;
+import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 
 import java.util.ArrayList;
@@ -32,7 +31,7 @@ public class Main {
 
         Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
 
-        ValidadorDeOperacion.getRepositorio().getAllElementos().addAll((new ArrayList(){{add(new ValidacionPresupuestoMenor(proveedores)); add(new ValidarCompraPertenecePresupuesto(proveedores)); add(new ValidarCantidadPresupuestos(proveedores)); add(new ValidarCriterioProveedor());}}));
+        ValidadorDeOperacion.getRepositorio().getAllElementos().addAll((new ArrayList(){{add(new ValidacionPresupuestoMenor(proveedores)); add(new ValidacionCompraPertenecePresupuesto(proveedores)); add(new ValidacionCantidadPresupuestos(proveedores)); add(new ValidacionCriterioProveedor());}}));
 
         //ValidadorDeOperacion.validarDefault(unEgreso);
         ValidadorDeOperacion.validarPorEstrategia(unEgreso);

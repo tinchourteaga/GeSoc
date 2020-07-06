@@ -7,11 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Entidad {
+
     protected String descripcion;
     protected String nombre;
     protected List<Egreso> egresos;
     protected List<Ingreso> ingresos;
     protected List<Criterio> criterios;
+
+    public Entidad(String nombreEntidad, String descripcionEntidad){
+        this.descripcion=descripcionEntidad;
+        this.nombre=nombreEntidad;
+        this.egresos=new ArrayList<Egreso>();
+        this.ingresos=new ArrayList<Ingreso>();
+        this.criterios=new ArrayList<Criterio>();
+    }
 
     public void agregarEgreso(Egreso unEgreso){
         egresos.add(unEgreso);
@@ -31,13 +40,4 @@ public abstract class Entidad {
         return egresos;
     }
     public List<Criterio> getCriterios() { return criterios;}
-
-    public Entidad(String nombreEntidad, String descripcionEntidad){
-        this.descripcion=descripcionEntidad;
-        this.nombre=nombreEntidad;
-        this.egresos=new ArrayList<Egreso>();
-        this.ingresos=new ArrayList<Ingreso>();
-        this.criterios=new ArrayList<Criterio>();
-    }
-
 }

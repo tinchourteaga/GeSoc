@@ -5,7 +5,6 @@ import Dominio.Egreso.Validador.ValidadorDeOperacion;
 
 public class EstrategiaManual implements EstrategiaRevision {
 
-
     @Override
     public void revisar(Egreso operacion) {
         System.out.println("Vamos a ejecutar validaciones para la operacion " + operacion);

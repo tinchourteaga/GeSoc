@@ -33,8 +33,13 @@ public class Test {
         Float promedio = 12000000f;
 
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                                            actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
@@ -47,8 +52,13 @@ public class Test {
         Float promedio = 48420000f;
 
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
@@ -60,9 +70,13 @@ public class Test {
         Integer personal = 35;
         Float promedio = 345410000f;
 
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
@@ -74,9 +88,13 @@ public class Test {
         Integer personal = 120;
         Float promedio = 547850000f;
 
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
@@ -89,8 +107,13 @@ public class Test {
         Integer personal = 6;
         Float promedio = 29730000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
@@ -101,8 +124,13 @@ public class Test {
         Integer personal = 20;
         Float promedio = 178800000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
@@ -113,8 +141,13 @@ public class Test {
         Integer personal = 110;
         Float promedio = 1502740000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
@@ -125,8 +158,13 @@ public class Test {
         Integer personal = 200;
         Float promedio = 2146800000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
@@ -139,8 +177,13 @@ public class Test {
         Integer personal = 10;
         Float promedio = 15220000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
@@ -151,8 +194,13 @@ public class Test {
         Integer personal = 30;
         Float promedio = 90300000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
@@ -163,8 +211,13 @@ public class Test {
         Integer personal = 160;
         Float promedio = 503850000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
@@ -175,8 +228,13 @@ public class Test {
         Integer personal = 515;
         Float promedio = 755740000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
@@ -189,8 +247,13 @@ public class Test {
         Integer personal = 13;
         Float promedio = 26510000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
@@ -200,10 +263,14 @@ public class Test {
         Sector actividad = Sector.INDUSTRIA_Y_MINERIA;
         Integer personal = 50;
         Float promedio = 190400000f;
-        /////////////////190410000
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
@@ -214,8 +281,13 @@ public class Test {
         Integer personal = 110;
         Float promedio = 1190320000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
@@ -226,8 +298,13 @@ public class Test {
         Integer personal = 400;
         Float promedio = 1739590000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
@@ -240,8 +317,13 @@ public class Test {
         Integer personal = 5;
         Float promedio = 8100000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
     }
@@ -252,8 +334,13 @@ public class Test {
         Integer personal = 25;
         Float promedio = 50930000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
     }
@@ -264,8 +351,13 @@ public class Test {
         Integer personal = 100;
         Float promedio = 425110000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
     }
@@ -276,8 +368,13 @@ public class Test {
         Integer personal = 520;
         Float promedio = 607200000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
     }
@@ -291,8 +388,13 @@ public class Test {
         Integer personal = 4; //Por personal deberia ser Micro
         Float promedio = 547890000f; //Por ventas deberia ser MedTramo2
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, operaciones, rs, cuit, cp, ci, tipo,
-                actividad, personal, promedio);
+        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+
+        empresaMicro.setActividad(actividad);
+        empresaMicro.setCantidadPersonal(personal);
+        empresaMicro.setPromedioVentasAnuales(promedio);
+
+        Categorizador.determinarCategoria(empresaMicro);
 
         //El resultado esperado es uqe sea MEDIANA TRAMO 2 porque de dos categorias siempre me quedo con la mayor
         Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());

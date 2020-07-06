@@ -1,8 +1,5 @@
 package Dominio.Egreso.Entidad;
 
-import Dominio.Egreso.Core.Egreso;
-import java.util.List;
-
 public abstract class EntidadJuridica extends Entidad{
     protected String razonSocial;
     protected String cuit;
@@ -14,21 +11,13 @@ public abstract class EntidadJuridica extends Entidad{
     protected Float promedioVentasAnuales;
 
 
-    public EntidadJuridica(String nombreEntidad, String descripcionEntidad, List<Egreso> operacionesEntidad,
-                           String rs,String cuitEntidad,String cp,String ci,
-                           String tipo,Sector actividad,Integer personal,Float promedio) {
-        super(nombreEntidad, descripcionEntidad, operacionesEntidad);
+    public EntidadJuridica(String nombreEntidad, String descripcionEntidad, String rs,String cuitEntidad,String ci) {
 
+        super(nombreEntidad, descripcionEntidad);
         this.razonSocial = rs;
         this.cuit = cuitEntidad;
-        this.codigoPostal = cp;
         this.codigoDeInscripcion = ci;
-        this.tipo = tipo;
-        this.actividad = actividad;
-        this.cantidadPersonal = personal;
-        this.promedioVentasAnuales = promedio;
     }
-
 
     //GETTERS Y SETTERS
     public String getRazonSocial() {

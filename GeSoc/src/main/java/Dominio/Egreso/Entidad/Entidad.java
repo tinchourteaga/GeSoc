@@ -29,10 +29,10 @@ public abstract class Entidad {
         return egresos;
     }
 
-    public Entidad(String nombreEntidad, String descripcionEntidad, List<Egreso> operacionesEntidad){
+    public Entidad(String nombreEntidad, String descripcionEntidad){
         this.descripcion=descripcionEntidad;
         this.nombre=nombreEntidad;
-        this.egresos=operacionesEntidad;
+        this.egresos=new ArrayList<Egreso>();
         this.ingresos=new ArrayList<Ingreso>();
     }
 

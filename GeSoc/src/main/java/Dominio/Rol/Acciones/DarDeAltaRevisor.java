@@ -15,8 +15,8 @@ public class DarDeAltaRevisor implements Accion {
 
     @Override
     public void realizar() {
-        RolRevisorCompra rolRevisor= new RolRevisorCompra(egreso);
-        revisor.getRoles().add(rolRevisor);
-
+        RolRevisorCompra rolRevisor = new RolRevisorCompra();
+        revisor.setRol(rolRevisor);
+        rolRevisor.agregarEgreso(egreso);
     }
 }

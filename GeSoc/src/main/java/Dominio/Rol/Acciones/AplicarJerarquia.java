@@ -1,19 +1,19 @@
 package Dominio.Rol.Acciones;
 
-import Dominio.Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Egreso;
 
 public class AplicarJerarquia implements Accion {
-    private Jerarquia jerarquiaAAplicar;
-    private Egreso egresoAQuienAplco;
+    private Criterio criterio;
+    private Egreso egresoAQuienAplico;
 
-    public AplicarJerarquia(Jerarquia jerarquiaAAplicar, Egreso egresoAQuienAplco) {
-        this.jerarquiaAAplicar = jerarquiaAAplicar;
-        this.egresoAQuienAplco = egresoAQuienAplco;
+    public AplicarJerarquia(Criterio criterio, Egreso egresoAQuienAplico) {
+        this.criterio = criterio;
+        this.egresoAQuienAplico = egresoAQuienAplico;
     }
 
     @Override
     public void realizar(){
-        jerarquiaAAplicar.aplicar(egresoAQuienAplco);
+        criterio.aplicar(egresoAQuienAplico);
     }
 }

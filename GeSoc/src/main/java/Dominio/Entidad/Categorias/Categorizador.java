@@ -1,7 +1,7 @@
-package Dominio.Egreso.Entidad.Categorias;
+package Dominio.Entidad.Categorias;
 
-import Dominio.Egreso.Entidad.Empresa;
-import Dominio.Egreso.Entidad.Sector;
+import Dominio.Entidad.Empresa;
+import Dominio.Entidad.Sector;
 import java.util.HashMap;
 
 public class Categorizador {

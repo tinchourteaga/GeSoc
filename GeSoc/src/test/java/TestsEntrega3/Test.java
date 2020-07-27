@@ -9,7 +9,6 @@ import Dominio.Egreso.Core.*;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
-import Dominio.Egreso.Core.CriteriosDeCategorizacion.Jerarquia;
 import Dominio.Egreso.Validador.Validaciones.*;
 import Dominio.Rol.Acciones.AgregarJerarquia;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
@@ -85,15 +84,11 @@ public class Test {
         categorias.add(new Categoria("descripcion3","nombre3"));
         categorias.add(new Categoria("descripcion4","nombre4"));
         Criterio criterioDummy=new Criterio(categorias,"dummy","dummy");
-        Jerarquia hoja=new Jerarquia(criterioDummy,new ArrayList<>());
-        List<Jerarquia>hojas=new ArrayList<>();
-        hojas.add(hoja);
-        Jerarquia jerarquiaNueva= new Jerarquia(criterioDummy,hojas);
-        AgregarJerarquia agregarJerarquia=new AgregarJerarquia(criterioDummy,jerarquiaNueva);
+        Criterio criterioDummyHijo=new Criterio(categorias,"dummyHijo","dummyHijo");
+        AgregarJerarquia agregarJerarquia=new AgregarJerarquia(criterioDummy,criterioDummyHijo);
         roladmin.getAcciones().add(agregarJerarquia);
-        List<Rol>roles=new ArrayList<>();
-        roles.add(roladmin);
-        Usuario unUsuario=new Usuario(roles,"pepito","SiestaContr4senia no funca me m@deo");
+        RolAdministrador rolPrueba = new RolAdministrador();
+        Usuario unUsuario=new Usuario(rolPrueba,"pepito","SiestaContr4senia no funca me m@deo");
         List<Presupuesto> presupuestos=new ArrayList<>();
         presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
@@ -110,8 +105,7 @@ public class Test {
 
         Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         roladmin.realizarAccion(agregarJerarquia);
-        int cantidad_criterios=agregarJerarquia.getJerarquiaAsociada().getHijos().size()+1+agregarJerarquia.getJerarquiaAsociada().getHijos().get(0).getHijos().size();
-        Assert.assertEquals(cantidad_criterios,3);
+        Assert.assertEquals(criterioDummyHijo, criterioDummy.getHijos().get(0));
     }
 
     @org.junit.Test

@@ -10,7 +10,7 @@ public class AsignarRol implements Accion{
 
     @Override
     public void realizar() {
-        usuarioQueLoNecesita.getRoles().add(rolAAsignar);
+        usuarioQueLoNecesita.setRol(rolAAsignar);
     }
 
     public AsignarRol(Rol rol, Usuario usuario) {

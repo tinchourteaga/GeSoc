@@ -1,4 +1,4 @@
-package Dominio.Egreso.Entidad;
+package Dominio.Entidad;
 
 public class EntidadBase extends Entidad{
 

@@ -6,20 +6,19 @@ import Dominio.Rol.Acciones.Accion;
 import Dominio.Rol.Acciones.RevisarBandeja;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RolRevisorCompra extends Rol{
 
-    private Egreso operacionARevisar;
+    private List<Egreso> operacionesARevisar;
 
-    public RolRevisorCompra(Egreso operacion) {
-        this.operacionARevisar=operacion;
-        this.acciones = new ArrayList() {{
-            add(new RevisarBandeja(new BandejaMensajes()));
-        }};
+    public RolRevisorCompra() {
+        this.operacionesARevisar = new ArrayList<Egreso>();
+        this.acciones = new ArrayList();
     }
 
-    public Egreso getOperacionARevisar() {
-        return operacionARevisar;
+    public List<Egreso> getOperacionesARevisar() {
+        return operacionesARevisar;
     }
 
     @Override
@@ -28,6 +27,10 @@ public class RolRevisorCompra extends Rol{
         if(!tengoAccion){
             throw new NoTengoPermisosException();
         }
+    }
+
+    public void agregarEgreso(Egreso egreso){
+        operacionesARevisar.add(egreso);
     }
 }
 

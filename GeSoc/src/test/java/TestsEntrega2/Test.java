@@ -1,9 +1,11 @@
 package TestsEntrega2;
 
 import Dominio.Egreso.Core.Egreso;
-import Dominio.Egreso.Entidad.Categorias.*;
-import Dominio.Egreso.Entidad.Empresa;
-import Dominio.Egreso.Entidad.Sector;
+import Dominio.Entidad.Categorias.*;
+import Dominio.Entidad.Empresa;
+import Dominio.Entidad.EntidadJuridica;
+import Dominio.Entidad.Sector;
+import Dominio.Entidad.TipoEntidadJuridica;
 import org.junit.*;
 
 import java.util.List;
@@ -17,6 +19,7 @@ public class Test {
     String ci = null;
     String tipo = null;
     List<Egreso> operaciones = null;
+    Empresa empresa = new Empresa();
 
     @Before
     public void init(){
@@ -32,16 +35,15 @@ public class Test {
         Integer personal = 3;
         Float promedio = 12000000f;
 
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        Categorizador.determinarCategoria(empresa);
 
-        Categorizador.determinarCategoria(empresaMicro);
-
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -51,16 +53,15 @@ public class Test {
         Integer personal = 9;
         Float promedio = 48420000f;
 
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        Categorizador.determinarCategoria(empresa);
 
-        Categorizador.determinarCategoria(empresaMicro);
-
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -70,15 +71,15 @@ public class Test {
         Integer personal = 35;
         Float promedio = 345410000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -88,15 +89,15 @@ public class Test {
         Integer personal = 120;
         Float promedio = 547850000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresa.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -107,15 +108,15 @@ public class Test {
         Integer personal = 6;
         Float promedio = 29730000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -124,15 +125,15 @@ public class Test {
         Integer personal = 20;
         Float promedio = 178800000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -141,15 +142,15 @@ public class Test {
         Integer personal = 110;
         Float promedio = 1502740000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -158,15 +159,15 @@ public class Test {
         Integer personal = 200;
         Float promedio = 2146800000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresa.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -177,15 +178,15 @@ public class Test {
         Integer personal = 10;
         Float promedio = 15220000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -194,15 +195,15 @@ public class Test {
         Integer personal = 30;
         Float promedio = 90300000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -211,15 +212,15 @@ public class Test {
         Integer personal = 160;
         Float promedio = 503850000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -228,15 +229,15 @@ public class Test {
         Integer personal = 515;
         Float promedio = 755740000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresa.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -247,15 +248,15 @@ public class Test {
         Integer personal = 13;
         Float promedio = 26510000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -264,15 +265,15 @@ public class Test {
         Integer personal = 50;
         Float promedio = 190400000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -281,15 +282,15 @@ public class Test {
         Integer personal = 110;
         Float promedio = 1190320000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -298,15 +299,15 @@ public class Test {
         Integer personal = 400;
         Float promedio = 1739590000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresa.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -317,15 +318,15 @@ public class Test {
         Integer personal = 5;
         Float promedio = 8100000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MICRO, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MICRO, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -334,15 +335,15 @@ public class Test {
         Integer personal = 25;
         Float promedio = 50930000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.PEQUENIA, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.PEQUENIA, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -351,15 +352,15 @@ public class Test {
         Integer personal = 100;
         Float promedio = 425110000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_1, empresa.getCategoria().getNombre());
     }
 
     @org.junit.Test
@@ -368,15 +369,15 @@ public class Test {
         Integer personal = 520;
         Float promedio = 607200000f;
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresa.getCategoria().getNombre());
     }
 
     /////////////////////////////////////////////////////////////
@@ -388,15 +389,15 @@ public class Test {
         Integer personal = 4; //Por personal deberia ser Micro
         Float promedio = 547890000f; //Por ventas deberia ser MedTramo2
 
-        Empresa empresaMicro = new Empresa(nombre, descripcion, rs, cuit, ci);
+        EntidadJuridica entidadJuridica = new EntidadJuridica(nombre,descripcion, empresa);
 
-        empresaMicro.setActividad(actividad);
-        empresaMicro.setCantidadPersonal(personal);
-        empresaMicro.setPromedioVentasAnuales(promedio);
+        entidadJuridica.getTipoEntidadJuridica().setActividad(actividad);
+        entidadJuridica.getTipoEntidadJuridica().setCantidadPersonal(personal);
+        entidadJuridica.getTipoEntidadJuridica().setPromedioVentasAnuales(promedio);
 
-        Categorizador.determinarCategoria(empresaMicro);
+        Categorizador.determinarCategoria(empresa);
 
         //El resultado esperado es uqe sea MEDIANA TRAMO 2 porque de dos categorias siempre me quedo con la mayor
-        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresaMicro.getCategoria().getNombre());
+        Assert.assertEquals(TipoCategoria.MEDIANA_TRAMO_2, empresa.getCategoria().getNombre());
     }
 }

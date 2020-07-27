@@ -2,6 +2,8 @@ package Dominio.Usuario;
 
 import java.io.IOException;
 import java.util.List;
+
+import Dominio.BandejaMensajes.BandejaMensajes;
 import Dominio.Contrasenia.Core.ValidadorDeContrasenia;
 import Dominio.Rol.Rol;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
@@ -9,23 +11,33 @@ import Dominio.Contrasenia.Excepciones.*;
 
 public class Usuario {
 
-    private List<Rol> roles;
+    private Rol rol;
     private String nombre;
     private String contrasenia;
+    private BandejaMensajes bandejaDeMensajes;
 
-    public Usuario(List<Rol> roles, String nombre, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
-        this.roles = roles;
+    public Usuario(Rol rol, String nombre, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
+        this.rol = rol;
         this.nombre = nombre;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
         this.contrasenia = contrasenia;
+        this.bandejaDeMensajes = new BandejaMensajes();
     }
 
     public String getNombre() {
         return nombre;
     }
-    public List<Rol> getRoles() {
-        return roles;
+    public Rol getRol() {
+        return rol;
     }
+    public void setRol(Rol unRol){
+        this.rol = unRol;
+    }
+
+    public BandejaMensajes getBandejaDeMensajes() {
+        return bandejaDeMensajes;
+    }
+
     public String getContrasenia() {
         return contrasenia;
     }

@@ -1,4 +1,4 @@
-package Dominio.Egreso.Entidad.Categorias;
+package Dominio.Entidad.Categorias;
 
 public enum TipoCategoria {
     MICRO,

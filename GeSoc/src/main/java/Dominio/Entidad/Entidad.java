@@ -1,4 +1,4 @@
-package Dominio.Egreso.Entidad;
+package Dominio.Entidad;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Egreso;

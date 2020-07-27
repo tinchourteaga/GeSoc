@@ -70,14 +70,13 @@ public class ValidadorDeOperacion {
 
     public static void validarDefault(Egreso unaOperacion){
         Mensaje mensaje= validarCustomSinBasicas(unaOperacion,validaciones);
-        List<RolRevisorCompra> revisores=Mensajero.obtenerRevisoresDe(unaOperacion);
+        List<Usuario> revisores=Mensajero.obtenerRevisoresDe(unaOperacion);
         revisores.forEach(rol->enviarMensaje(rol,mensaje));
     }
 
-    private static void enviarMensaje(RolRevisorCompra rol, Mensaje mensaje) {
-       RevisarBandeja accionRevisor= (RevisarBandeja) rol.getAcciones().stream().filter(accion -> accion.getClass().equals(RevisarBandeja.class)).collect(Collectors.toList()).get(0);
-       rol.getAcciones().add(new LeerMensaje(mensaje));
-       accionRevisor.getBandejaAsociada().agregarMensaje(mensaje);
+    private static void enviarMensaje(Usuario usuario, Mensaje mensaje) {
+       usuario.getRol().getAcciones().add(new LeerMensaje(mensaje));
+       usuario.getBandejaDeMensajes().agregarMensaje(mensaje);
     }
 
 }

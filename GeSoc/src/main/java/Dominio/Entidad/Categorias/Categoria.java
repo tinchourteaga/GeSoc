@@ -1,6 +1,6 @@
-package Dominio.Egreso.Entidad.Categorias;
+package Dominio.Entidad.Categorias;
 
-import Dominio.Egreso.Entidad.Sector;
+import Dominio.Entidad.Sector;
 
 public class Categoria{
     private Sector descripcion;

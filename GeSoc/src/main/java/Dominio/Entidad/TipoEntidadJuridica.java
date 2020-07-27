@@ -1,22 +1,13 @@
-package Dominio.Egreso.Entidad;
+package Dominio.Entidad;
 
-public abstract class EntidadJuridica extends Entidad{
-
+public abstract class TipoEntidadJuridica {
     protected String razonSocial;
     protected String cuit;
     protected String codigoPostal;
     protected String codigoDeInscripcion;
-    protected String tipo;
     protected Sector actividad;
     protected Integer cantidadPersonal;
     protected Float promedioVentasAnuales;
-
-    public EntidadJuridica(String nombreEntidad, String descripcionEntidad, String rs,String cuitEntidad,String ci) {
-        super(nombreEntidad, descripcionEntidad);
-        this.razonSocial = rs;
-        this.cuit = cuitEntidad;
-        this.codigoDeInscripcion = ci;
-    }
 
     //GETTERS Y SETTERS
     public String getRazonSocial() {
@@ -42,12 +33,6 @@ public abstract class EntidadJuridica extends Entidad{
     }
     public void setCodigoDeInscripcion(String codigoDeInscripcion) {
         this.codigoDeInscripcion = codigoDeInscripcion;
-    }
-    public String getTipo() {
-        return tipo;
-    }
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
     }
     public Sector getActividad() {
         return actividad;

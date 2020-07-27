@@ -35,33 +35,46 @@ public class Egreso {
     public void setCriterio(CriterioSeleccionProveedor criterio){
         this.criterioSeleccionProveedor = criterio;
     }
+
     public CriterioSeleccionProveedor getCriterio(){
         return this.criterioSeleccionProveedor;
     }
+
     public Proveedor getProveedorSeleccionado() {
         return proveedorSeleccionado;
     }
+
     public List<Criterio> getCriterioDeCategorizacion() {
         return criterios;
     }
+
     public Date getFecha() { return fecha; }
+
     public Float getValor() {return valor; }
+
     public List<Item> getListaItems() {return listaItems; }
+
     public MetodoDePago getMetodoDePago() { return metodoDePago; }
+
     public DocumentoComercial getDocumentoComercial() { return documentoComercial; }
+
     public void asignarCriterioDeCategorizacion(Criterio criterioDeCategorizacion) {this.criterios.add(criterioDeCategorizacion); }
+
     public void validar(){
         ValidadorDeOperacion.validarDefault(this);
     }
+
     public List<Categoria> getCategorias() {
 
         List<Categoria> todasLasCategorias=new ArrayList();
         criterios.forEach(criterio->criterio.getCategorias().forEach(categoria->todasLasCategorias.add(categoria)));
         return todasLasCategorias;
     }
+
     public boolean isEstaVerificada() {
         return estaVerificada;
     }
+
     public void setEstaVerificada(boolean estaVerificada) {
         this.estaVerificada = estaVerificada;
     }

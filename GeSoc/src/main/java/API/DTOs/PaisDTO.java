@@ -1,4 +1,4 @@
-package API;
+package API.DTOs;
 
 public class PaisDTO {
      private String id;

@@ -1,6 +1,11 @@
 package API;
 
+import API.DTOs.MonedaDTO;
+import API.DTOs.NombreYID;
+import API.DTOs.PaisDTO;
+import API.DTOs.ZipCodeDTO;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
@@ -8,7 +13,6 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +31,36 @@ public class ControllerMonedaLocal {
     private ControllerMonedaLocal() throws IOException {
         pedirPaises();
         pedirMonedas();
+    }
+
+    private ZipCodeDTO pedirInformacionCodigoPostal(String nombrePais, String zipCode) throws IOException {
+
+        PaisDTO paisBuscado=paises.stream().filter(pais->pais.getName().equals(nombrePais)).collect(Collectors.toList()).get(0);
+
+        String request="/countries/"+paisBuscado.getId() +"/zip_codes/"+zipCode;
+        HttpEntity entidad= crearRequest(request);
+        String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
+        ZipCodeDTO zipCodeObj=null;
+        if (responseStr != null && !responseStr.isEmpty()) {
+            JsonParser parser = new JsonParser();
+            JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
+            zipCodeObj=crearDTOZipCode(responseObj);
+        }
+
+        return zipCodeObj;
+    }
+
+    private ZipCodeDTO crearDTOZipCode(JsonObject responseObj) {
+
+        int zipCode=responseObj.get("zip_code").getAsInt();
+        JsonObject stateJson= responseObj.getAsJsonObject("state");
+        NombreYID state=new NombreYID(stateJson.get("name").getAsString(),stateJson.get("id").getAsString());
+        JsonObject countryJson= responseObj.getAsJsonObject("country");
+        NombreYID country=new NombreYID(countryJson.get("name").getAsString(),countryJson.get("id").getAsString());
+        JsonObject cityJson= responseObj.getAsJsonObject("city");
+        NombreYID city=new NombreYID(cityJson.get("name").getAsString(),cityJson.get("id").getAsString());
+
+        return new ZipCodeDTO(state,country,zipCode,city);
     }
 
     private void pedirMonedas() throws IOException {
@@ -69,7 +103,6 @@ public class ControllerMonedaLocal {
         }
         return instancia;
     }
-
 
     private PaisDTO getPais(String nombrePais) {
         return paises.stream().filter(pais->pais.getName().equals(nombrePais)).collect(Collectors.toList()).get(0);

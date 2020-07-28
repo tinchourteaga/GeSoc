@@ -1,4 +1,4 @@
-package API;
+package API.DTOs;
 
 public class MonedaDTO {
     private String symbol;

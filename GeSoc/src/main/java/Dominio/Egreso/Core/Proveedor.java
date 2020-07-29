@@ -1,6 +1,9 @@
 package Dominio.Egreso.Core;
 
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
+import Dominio.Entidad.Direccion;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Proveedor {
@@ -8,15 +11,15 @@ public class Proveedor {
     private String razonSocial;
     private String nombreApellido;
     private String cuitODni;
-    private String direccion;
+    private Direccion direccion;
     private List<Presupuesto> presupuestos;
 
-    public Proveedor(String rs,String nombreYApellido,String CUITODNI,String unaDireccion, List<Presupuesto> presupuesto) {
+    public Proveedor(String rs,String nombreYApellido,String cuitODni,Direccion unaDireccion) {
         this.razonSocial=rs;
         this.nombreApellido=nombreYApellido;
-        this.cuitODni=CUITODNI;
+        this.cuitODni=cuitODni;
         this.direccion=unaDireccion;
-        this.presupuestos=presupuesto;
+        this.presupuestos= new ArrayList<Presupuesto>();
     }
 
     public String getRazonSocial() {
@@ -28,7 +31,7 @@ public class Proveedor {
     public String getCuitODni() {
         return cuitODni;
     }
-    public String getDireccion() {
+    public Direccion getDireccion() {
         return direccion;
     }
     public List<Presupuesto> getPresupuestos() {
@@ -36,5 +39,5 @@ public class Proveedor {
     }
     public Presupuesto getPresupuestoCriterio(CriterioSeleccionProveedor criterio){ return criterio.seleccionarPresupuesto(presupuestos); }
     public void setNombreApellido(String nombreApellido) { this.nombreApellido = nombreApellido; }
-    public void setDireccion(String direccion) { this.direccion = direccion; }
+    public void setDireccion(Direccion direccion) { this.direccion = direccion; }
 }

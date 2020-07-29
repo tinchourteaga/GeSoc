@@ -3,7 +3,7 @@ package Dominio.Entidad;
 public abstract class TipoEntidadJuridica {
     protected String razonSocial;
     protected String cuit;
-    protected String codigoPostal;
+    protected DireccionPostal direccionPostal;
     protected String codigoDeInscripcion;
     protected Sector actividad;
     protected Integer cantidadPersonal;
@@ -22,11 +22,11 @@ public abstract class TipoEntidadJuridica {
     public void setCuit(String cuit) {
         this.cuit = cuit;
     }
-    public String getCodigoPostal() {
-        return codigoPostal;
+    public DireccionPostal getDireccionPostal() {
+        return direccionPostal;
     }
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
+    public void setDireccionPostal(DireccionPostal direccionPostal) {
+        this.direccionPostal = direccionPostal;
     }
     public String getCodigoDeInscripcion() {
         return codigoDeInscripcion;

@@ -2,6 +2,7 @@ package API.DTOs;
 
 public class ZipCodeDTO {
 
+
     private NombreYID state;
     private NombreYID country;
     private int zipCode;

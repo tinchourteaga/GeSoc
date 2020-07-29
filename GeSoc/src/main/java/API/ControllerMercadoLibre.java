@@ -19,16 +19,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-public class ControllerMonedaLocal {
+public class ControllerMercadoLibre {
 
     private String urlDominio="https://api.mercadolibre.com";
 
-    private static ControllerMonedaLocal instancia=null;
+    private static ControllerMercadoLibre instancia=null;
 
     private List<PaisDTO> paises=new ArrayList<PaisDTO>();
     private List<MonedaDTO> monedas=new ArrayList<MonedaDTO>();
 
-    private ControllerMonedaLocal() throws IOException {
+    private ControllerMercadoLibre() throws IOException {
         pedirPaises();
         pedirMonedas();
     }
@@ -69,7 +69,11 @@ public class ControllerMonedaLocal {
         if (responseStr != null && !responseStr.isEmpty()) {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
-            responseObj.forEach(jsonElemnt-> monedas.add(new MonedaDTO(jsonElemnt.getAsJsonObject().get("symbol").toString(),jsonElemnt.getAsJsonObject().get("decimal_places").getAsInt(),jsonElemnt.getAsJsonObject().get("description").toString(),jsonElemnt.getAsJsonObject().get("id").toString())));
+            responseObj.forEach(jsonElemnt-> monedas.add(new MonedaDTO(
+                    jsonElemnt.getAsJsonObject().get("symbol").toString(),
+                    jsonElemnt.getAsJsonObject().get("decimal_places").getAsInt(),
+                    jsonElemnt.getAsJsonObject().get("description").toString(),
+                    jsonElemnt.getAsJsonObject().get("id").toString())));
         }
 
     }
@@ -90,13 +94,17 @@ public class ControllerMonedaLocal {
         if (responseStr != null && !responseStr.isEmpty()) {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
-            responseObj.forEach(jsonElemnt -> paises.add(new PaisDTO(jsonElemnt.getAsJsonObject().get("id").toString(), jsonElemnt.getAsJsonObject().get("name").toString(), jsonElemnt.getAsJsonObject().get("locale").toString(), jsonElemnt.getAsJsonObject().get("currency_id").toString())));
+            responseObj.forEach(jsonElemnt -> paises.add(new PaisDTO(
+                    jsonElemnt.getAsJsonObject().get("id").toString(),
+                    jsonElemnt.getAsJsonObject().get("name").toString(),
+                    jsonElemnt.getAsJsonObject().get("locale").toString(),
+                    jsonElemnt.getAsJsonObject().get("currency_id").toString())));
         }
     }
-    public ControllerMonedaLocal getControllerMonedaLocal(){
+    public ControllerMercadoLibre getControllerMonedaLocal(){
         if(instancia==null){
             try {
-                instancia=new ControllerMonedaLocal();
+                instancia=new ControllerMercadoLibre();
             } catch (IOException e) {
                 e.printStackTrace();
             }

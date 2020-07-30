@@ -8,6 +8,7 @@ import Dominio.Egreso.Validador.Validaciones.ValidacionCantidadPresupuestos;
 import Dominio.Egreso.Validador.Validaciones.ValidacionCompraPertenecePresupuesto;
 import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
+import Dominio.Entidad.Direccion;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,14 +20,18 @@ public class Main {
 
         ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(19,33));
 
+        Direccion direc = new Direccion("Larralde", "2454", "3");
+
         List<Presupuesto> presupuestos=new ArrayList<>();
         presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         List<Proveedor> proveedores=new ArrayList();
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",presupuestos));
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",presupuestos));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",presupuestos));
+        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));
+        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816",direc));
+        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816",direc));
+
+        proveedores.forEach(prov -> prov.getPresupuestos().addAll(presupuestos));
 
         Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
 

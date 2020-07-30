@@ -10,6 +10,7 @@ import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Validador.Validaciones.*;
+import Dominio.Entidad.Direccion;
 import Dominio.Rol.Acciones.AgregarJerarquia;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import Dominio.Rol.Rol;
@@ -24,10 +25,14 @@ import org.junit.Assert;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
 public class Test {
+
+    Direccion direc = new Direccion("Larralde", "2454", "3");
+
     @org.junit.Test
     public void testValidadorNoPasaCriterio(){
         List<Presupuesto> presupuestos=new ArrayList<>();
@@ -38,12 +43,18 @@ public class Test {
         presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         presupuestos.add(new Presupuesto(new ArrayList<>(),56000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
         List<Proveedor> proveedores=new ArrayList();
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",new ArrayList(){{add(presupuestos.get(5));}}));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",new ArrayList(){{add(presupuestos.get(1));}}));
-        proveedores.add(new Proveedor("ahdasd","aaaa bcbb","28453672816","dddd",new ArrayList(){{add(presupuestos.get(2));}}));
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",new ArrayList(){{add(presupuestos.get(0));}}));
-        proveedores.add(new Proveedor("ajdasd","aaaa bhbb","28443672816","eeee",new ArrayList(){{add(presupuestos.get(3));}}));
-        proveedores.add(new Proveedor("aldasd","aaaa bjbb","28433672816","ffff",new ArrayList(){{add(presupuestos.get(4));}}));
+        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816",direc));
+        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816",direc));
+        proveedores.add(new Proveedor("ahdasd","aaaa bcbb","28453672816",direc));
+        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));
+        proveedores.add(new Proveedor("ajdasd","aaaa bhbb","28443672816",direc));
+        proveedores.add(new Proveedor("aldasd","aaaa bjbb","28433672816",direc));
+
+        List<Integer> numeros = new ArrayList<Integer>(Arrays.asList(5,1,2,0,3,4));
+
+        for(int i=0; i < numeros.size(); i++){
+            proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
+        }
 
         ValidacionPresupuestoMenor validacion1 = new ValidacionPresupuestoMenor(proveedores);
         ValidacionCompraPertenecePresupuesto validacion2 = new ValidacionCompraPertenecePresupuesto(proveedores);
@@ -61,9 +72,15 @@ public class Test {
         presupuestos.add(new Presupuesto(new ArrayList<>(), 52000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc")));
         presupuestos.add(new Presupuesto(new ArrayList<>(), 53000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc")));
         List<Proveedor> proveedores = new ArrayList();
-        proveedores.add(new Proveedor("asdasd", "aaaa bbbb", "28483672816", "aaaa", new ArrayList(){{add(presupuestos.get(0));}}));
-        proveedores.add(new Proveedor("agdasd", "aaaa b4bb", "28493672816", "bbbb", new ArrayList(){{add(presupuestos.get(2));}}));
-        proveedores.add(new Proveedor("aydasd", "aaaa bbtb", "28473672816", "cccc", new ArrayList(){{add(presupuestos.get(1));}}));
+        proveedores.add(new Proveedor("asdasd", "aaaa bbbb", "28483672816", direc));
+        proveedores.add(new Proveedor("agdasd", "aaaa b4bb", "28493672816", direc));
+        proveedores.add(new Proveedor("aydasd", "aaaa bbtb", "28473672816", direc));
+
+        List<Integer> numeros = new ArrayList<Integer>(Arrays.asList(0,2,1));
+
+        for(int i=0; i < numeros.size(); i++){
+            proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
+        }
 
         ValidacionPresupuestoMenor validacion1 = new ValidacionPresupuestoMenor(proveedores);
         ValidacionCompraPertenecePresupuesto validacion2 = new ValidacionCompraPertenecePresupuesto(proveedores);
@@ -97,11 +114,17 @@ public class Test {
         presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
 
         List<Proveedor> proveedores=new ArrayList<>();
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",new ArrayList(){{add(presupuestos.get(0));}}));
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",new ArrayList(){{add(presupuestos.get(2));}}));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",new ArrayList(){{add(presupuestos.get(1));}}));
-        proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816","ccfc",new ArrayList(){{add(presupuestos.get(3));}}));
-        proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",new ArrayList(){{add(presupuestos.get(4));}}));
+        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));
+        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816",direc));
+        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816",direc));
+        proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816",direc));
+        proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816",direc));
+
+        List<Integer> numeros = new ArrayList<Integer>(Arrays.asList(0,2,1,3,4));
+
+        for(int i=0; i < numeros.size(); i++){
+            proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
+        }
 
         Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         roladmin.realizarAccion(agregarJerarquia);
@@ -118,13 +141,17 @@ public class Test {
         presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
 
         List<Proveedor> proveedores=new ArrayList();
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816","aaaa",new ArrayList(){{add(presupuestos.get(0));}}));
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816","bbbb",new ArrayList(){{add(presupuestos.get(2));}}));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816","cccc",new ArrayList(){{add(presupuestos.get(1));}}));
-        proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816","ccfc",new ArrayList(){{add(presupuestos.get(3));}}));
-        proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816","ccgc",new ArrayList(){{add(presupuestos.get(4));}}));
+        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));
+        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816",direc));
+        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816",direc));
+        proveedores.add(new Proveedor("aydasd","aa6a bbtb","28573672816",direc));
+        proveedores.add(new Proveedor("aydasd","aata bbtb","28773672816",direc));
 
+        List<Integer> numeros = new ArrayList<Integer>(Arrays.asList(0,2,1,3,4));
 
+        for(int i=0; i < numeros.size(); i++){
+            proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
+        }
 
         Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje cumplio=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());

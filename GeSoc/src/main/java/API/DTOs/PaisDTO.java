@@ -1,5 +1,8 @@
 package API.DTOs;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PaisDTO {
      private String id;
      private String name;

@@ -1,9 +1,9 @@
 package API;
 
-import API.DTOs.MonedaDTO;
-import API.DTOs.NombreYID;
-import API.DTOs.PaisDTO;
-import API.DTOs.ZipCodeDTO;
+import API.DTOs.*;
+import API.Excepciones.ExcepcionCodigoNoEncontrado;
+import API.Excepciones.ExcepcionNoSePudoConvertir;
+import API.Excepciones.NoExisteMonedaException;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -33,7 +33,44 @@ public class ControllerMercadoLibre {
         pedirMonedas();
     }
 
-    private ZipCodeDTO pedirInformacionCodigoPostal(String nombrePais, String zipCode) throws IOException {
+    public ConversionDTO convertirMoneda(String nombreMonedaActual, String nombreMonedaAConvertir) throws IOException, ExcepcionNoSePudoConvertir, NoExisteMonedaException {
+
+        MonedaDTO monedaActual=getMoneda(nombreMonedaActual);
+        MonedaDTO monedaAConvertir=getMoneda(nombreMonedaAConvertir);
+        if(monedaActual==null){
+            throw new NoExisteMonedaException(nombreMonedaActual);
+        }
+        if(nombreMonedaAConvertir==null){
+
+            throw new NoExisteMonedaException(nombreMonedaAConvertir);
+        }
+        String request="/currency_conversions/search?from="+monedaActual.getId()+"&to="+monedaAConvertir.getId();
+        HttpEntity entidad= crearRequest(request);
+        String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
+        ConversionDTO conversion=null;
+        if (responseStr != null && !responseStr.isEmpty()) {
+            JsonParser parser = new JsonParser();
+            JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
+            conversion=crearDTOConversion(responseObj,monedaActual,monedaAConvertir);
+        }else{
+
+            throw new ExcepcionNoSePudoConvertir(nombreMonedaActual,nombreMonedaAConvertir);
+        }
+
+        return conversion;
+
+
+    }
+
+    private ConversionDTO crearDTOConversion(JsonObject responseObj, MonedaDTO monedaActual, MonedaDTO monedaAConvertir) {
+
+        JsonObject ratio= responseObj.getAsJsonObject("ratio");
+        JsonObject ratioMercadoPago= responseObj.getAsJsonObject("mercado_pago_ratio");
+        return new ConversionDTO(monedaActual,monedaAConvertir,ratio.getAsDouble(),ratioMercadoPago.getAsDouble());
+    }
+
+
+    public ZipCodeDTO pedirInformacionCodigoPostal(String nombrePais, String zipCode) throws IOException, ExcepcionCodigoNoEncontrado {
 
         PaisDTO paisBuscado=paises.stream().filter(pais->pais.getName().equals(nombrePais)).collect(Collectors.toList()).get(0);
 
@@ -45,6 +82,9 @@ public class ControllerMercadoLibre {
             JsonParser parser = new JsonParser();
             JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
             zipCodeObj=crearDTOZipCode(responseObj);
+        }else{
+
+            throw new ExcepcionCodigoNoEncontrado(nombrePais,zipCode);
         }
 
         return zipCodeObj;
@@ -112,11 +152,11 @@ public class ControllerMercadoLibre {
         return instancia;
     }
 
-    private PaisDTO getPais(String nombrePais) {
+    public PaisDTO getPais(String nombrePais) {
         return paises.stream().filter(pais->pais.getName().equals(nombrePais)).collect(Collectors.toList()).get(0);
     }
 
-    private MonedaDTO getMoneda(String nombreMoneda) {
+    public MonedaDTO getMoneda(String nombreMoneda) {
         return monedas.stream().filter(moneda->moneda.getDescription().equals(nombreMoneda)).collect(Collectors.toList()).get(0);
     }
 

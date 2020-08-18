@@ -1,5 +1,7 @@
 package TestsEntrega3;
 
+import API.ControllerMercadoLibre;
+import API.DTOs.PaisDTO;
 import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
@@ -22,12 +24,16 @@ import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioExceptio
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import org.junit.Assert;
+import org.mockito.configuration.IMockitoConfiguration;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class Test {
 
@@ -61,7 +67,7 @@ public class Test {
         ValidacionCantidadPresupuestos validacion3 = new ValidacionCantidadPresupuestos(proveedores);
         ValidacionCriterioProveedor validacion4 = new ValidacionCriterioProveedor();
 
-        Egreso unEgreso=new Egreso(new Date(),100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
+        Egreso unEgreso=new Egreso(new Date(),"Argentina",100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
         Assert.assertEquals( new NoCumpleValidacionDeCriterioException().toString(),fallo.getMensajeResultado());
     }
@@ -87,13 +93,14 @@ public class Test {
         ValidacionCantidadPresupuestos validacion3 = new ValidacionCantidadPresupuestos(proveedores);
         ValidacionCriterioProveedor validacion4 = new ValidacionCriterioProveedor();
 
-        Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(new Date(),"Argentina",51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
         Assert.assertEquals(new NoCumpleValidacionException().toString(),fallo.getMensajeResultado());
     }
 
     @org.junit.Test
     public void testJerarquias() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun, NoTengoPermisosException, NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
+
         RolAdministrador roladmin=new RolAdministrador();
         List<Categoria> categorias=new ArrayList<>();
         categorias.add(new Categoria("descripcion1","nombre1"));
@@ -126,7 +133,7 @@ public class Test {
             proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
         }
 
-        Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(new Date(),"Argentina",53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         roladmin.realizarAccion(agregarJerarquia);
         Assert.assertEquals(criterioDummyHijo, criterioDummy.getHijos().get(0));
     }
@@ -153,7 +160,7 @@ public class Test {
             proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
         }
 
-        Egreso unEgreso=new Egreso(new Date(),53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(new Date(),"Argentina",53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje cumplio=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals("Paso exitosamente todas las Validaciones",cumplio.getMensajeResultado());
         //no entiendo porque no da este tests

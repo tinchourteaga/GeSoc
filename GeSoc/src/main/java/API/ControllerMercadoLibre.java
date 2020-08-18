@@ -110,10 +110,10 @@ public class ControllerMercadoLibre {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
             responseObj.forEach(jsonElemnt-> monedas.add(new MonedaDTO(
-                    jsonElemnt.getAsJsonObject().get("symbol").toString(),
+                    jsonElemnt.getAsJsonObject().get("symbol").getAsString(),
                     jsonElemnt.getAsJsonObject().get("decimal_places").getAsInt(),
-                    jsonElemnt.getAsJsonObject().get("description").toString(),
-                    jsonElemnt.getAsJsonObject().get("id").toString())));
+                    jsonElemnt.getAsJsonObject().get("description").getAsString(),
+                    jsonElemnt.getAsJsonObject().get("id").getAsString())));
         }
 
     }
@@ -131,17 +131,19 @@ public class ControllerMercadoLibre {
         HttpEntity entidad = crearRequest("/classified_locations/countries");
 
         String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
+
         if (responseStr != null && !responseStr.isEmpty()) {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
             responseObj.forEach(jsonElemnt -> paises.add(new PaisDTO(
-                    jsonElemnt.getAsJsonObject().get("id").toString(),
-                    jsonElemnt.getAsJsonObject().get("name").toString(),
-                    jsonElemnt.getAsJsonObject().get("locale").toString(),
-                    jsonElemnt.getAsJsonObject().get("currency_id").toString())));
+                    jsonElemnt.getAsJsonObject().get("id").getAsString(),
+                    jsonElemnt.getAsJsonObject().get("name").getAsString(),
+                    jsonElemnt.getAsJsonObject().get("locale").getAsString(),
+                    jsonElemnt.getAsJsonObject().get("currency_id").getAsString())));
+            
         }
     }
-    public ControllerMercadoLibre getControllerMonedaLocal(){
+    public static ControllerMercadoLibre getControllerMercadoLibre(){
         if(instancia==null){
             try {
                 instancia=new ControllerMercadoLibre();
@@ -158,6 +160,10 @@ public class ControllerMercadoLibre {
 
     public MonedaDTO getMoneda(String nombreMoneda) {
         return monedas.stream().filter(moneda->moneda.getDescription().equals(nombreMoneda)).collect(Collectors.toList()).get(0);
+    }
+
+    public MonedaDTO getMonedaByID(String idMoneda) {
+        return monedas.stream().filter(moneda->moneda.getId().equals(idMoneda)).collect(Collectors.toList()).get(0);
     }
 
 }

@@ -1,5 +1,11 @@
 package Dominio.Entidad;
 
+import API.ControllerMercadoLibre;
+import API.DTOs.ZipCodeDTO;
+import API.Excepciones.ExcepcionCodigoNoEncontrado;
+
+import java.io.IOException;
+
 public class DireccionPostal {
     private Direccion direccion;
     private int cp;
@@ -7,12 +13,24 @@ public class DireccionPostal {
     private String provincia;
     private String ciudad;
 
-    public DireccionPostal(Direccion direccion, int cp, String pais, String provincia, String ciudad) {
+    public DireccionPostal(Direccion direccion, int cp, String pais) {
+
+        ControllerMercadoLibre controller;
+        ZipCodeDTO zipCodeDTO;
+
         this.direccion = direccion;
         this.cp = cp;
         this.pais = pais;
-        this.provincia = provincia;
-        this.ciudad = ciudad;
+        controller = ControllerMercadoLibre.getControllerMercadoLibre();
+        try {
+            zipCodeDTO = controller.pedirInformacionCodigoPostal(pais,String.valueOf(cp));
+            this.provincia = zipCodeDTO.getState().getName();
+            this.ciudad = zipCodeDTO.getCity().getName();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ExcepcionCodigoNoEncontrado excepcionCodigoNoEncontrado) {
+            excepcionCodigoNoEncontrado.printStackTrace();
+        }
     }
 
     public Direccion getDireccion() {

@@ -1,5 +1,6 @@
 package Dominio;
 
+import API.ControllerMercadoLibre;
 import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
@@ -11,6 +12,7 @@ import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Direccion;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class Main {
 
     public static void main (String [ ] args) {
 
-        ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(19,33));
+        /*ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(19,33));
 
         Direccion direc = new Direccion("Larralde", "2454", "3");
 
@@ -33,7 +35,7 @@ public class Main {
 
         proveedores.forEach(prov -> prov.getPresupuestos().addAll(presupuestos));
 
-        Egreso unEgreso=new Egreso(new Date(),51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(new Date(),"Argentina", 51000,new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
 
         ValidadorDeOperacion.getValidaciones().clear();
         ValidadorDeOperacion.getValidaciones().addAll((new ArrayList(){{add(new ValidacionPresupuestoMenor(proveedores)); add(new ValidacionCompraPertenecePresupuesto(proveedores)); add(new ValidacionCantidadPresupuestos(proveedores)); add(new ValidacionCriterioProveedor());}}));
@@ -43,7 +45,11 @@ public class Main {
         System.out.println(unEgreso.isEstaVerificada());
 
 
-        System.out.println(unEgreso.isEstaVerificada());
+        System.out.println(unEgreso.isEstaVerificada());*/
+
+        ControllerMercadoLibre.getControllerMercadoLibre();
+
+        System.out.println(ControllerMercadoLibre.getControllerMercadoLibre().getPais("Argentina"));
 
     }
 }

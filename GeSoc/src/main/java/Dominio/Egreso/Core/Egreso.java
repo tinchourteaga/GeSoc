@@ -4,6 +4,8 @@ import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
+import Dominio.Moneda.Valor;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +14,7 @@ public class Egreso {
 
     private boolean estaVerificada;
     private Date fecha;
-    private Float valor;
+    private Valor valor;
     private List<Item> listaItems ;
     private MetodoDePago metodoDePago;
     private Proveedor proveedorSeleccionado;
@@ -20,10 +22,10 @@ public class Egreso {
     private CriterioSeleccionProveedor criterioSeleccionProveedor;
     private List<Criterio> criterios;
 
-    public Egreso(Date unaFecha, float importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
+    public Egreso(Date unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
        this.fecha=unaFecha;
-       this.valor=importe;
+        this.valor= new Valor(pais,importe);
        this.listaItems=items;
        this.metodoDePago=metodo;
        this.documentoComercial=unDocumento;
@@ -50,7 +52,7 @@ public class Egreso {
 
     public Date getFecha() { return fecha; }
 
-    public Float getValor() {return valor; }
+    public Valor getValor() {return valor; }
 
     public List<Item> getListaItems() {return listaItems; }
 

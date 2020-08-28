@@ -3,23 +3,23 @@ package API.DTOs;
 public class ZipCodeDTO {
 
 
-    private NombreYID state;
-    private NombreYID country;
+    private Provincia state;
+    private Pais country;
     private int zipCode;
-    private NombreYID city;
+    private Ciudad city;
 
-    public ZipCodeDTO(NombreYID state, NombreYID country, int zipCode, NombreYID city) {
+    public ZipCodeDTO(Provincia state, Pais country, int zipCode, Ciudad city) {
         this.state = state;
         this.country = country;
         this.zipCode = zipCode;
         this.city = city;
     }
 
-    public NombreYID getState() {
+    public Provincia getState() {
         return state;
     }
 
-    public NombreYID getCountry() {
+    public Pais getCountry() {
         return country;
     }
 
@@ -27,7 +27,7 @@ public class ZipCodeDTO {
         return zipCode;
     }
 
-    public NombreYID getCity() {
+    public Ciudad getCity() {
         return city;
     }
 }

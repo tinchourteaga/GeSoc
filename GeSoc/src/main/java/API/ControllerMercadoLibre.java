@@ -70,9 +70,9 @@ public class ControllerMercadoLibre {
     }
 
 
-    public ZipCodeDTO pedirInformacionCodigoPostal(String nombrePais, String zipCode) throws IOException, ExcepcionCodigoNoEncontrado {
+    public ZipCodeDTO pedirInformacionCodigoPostal(Pais nombrePais, String zipCode) throws IOException, ExcepcionCodigoNoEncontrado {
 
-        PaisDTO paisBuscado=paises.stream().filter(pais->pais.getName().equals(nombrePais)).collect(Collectors.toList()).get(0);
+        PaisDTO paisBuscado=paises.stream().filter(pais->pais.getName().equals(nombrePais.getName())).collect(Collectors.toList()).get(0);
 
         String request="/countries/"+paisBuscado.getId() +"/zip_codes/"+zipCode;
         HttpEntity entidad= crearRequest(request);
@@ -84,7 +84,7 @@ public class ControllerMercadoLibre {
             zipCodeObj=crearDTOZipCode(responseObj);
         }else{
 
-            throw new ExcepcionCodigoNoEncontrado(nombrePais,zipCode);
+            throw new ExcepcionCodigoNoEncontrado(nombrePais.getName(),zipCode);
         }
 
         return zipCodeObj;
@@ -94,11 +94,11 @@ public class ControllerMercadoLibre {
 
         int zipCode=responseObj.get("zip_code").getAsInt();
         JsonObject stateJson= responseObj.getAsJsonObject("state");
-        NombreYID state=new NombreYID(stateJson.get("name").getAsString(),stateJson.get("id").getAsString());
+        Provincia state=new Provincia(stateJson.get("id").getAsString(),stateJson.get("name").getAsString());
         JsonObject countryJson= responseObj.getAsJsonObject("country");
-        NombreYID country=new NombreYID(countryJson.get("name").getAsString(),countryJson.get("id").getAsString());
+        Pais country=new Pais(countryJson.get("id").getAsString(),countryJson.get("name").getAsString());
         JsonObject cityJson= responseObj.getAsJsonObject("city");
-        NombreYID city=new NombreYID(cityJson.get("name").getAsString(),cityJson.get("id").getAsString());
+        Ciudad city=new Ciudad(cityJson.get("id").getAsString(),cityJson.get("name").getAsString());
 
         return new ZipCodeDTO(state,country,zipCode,city);
     }

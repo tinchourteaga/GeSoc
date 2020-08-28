@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/2020-ma-ma-group-05.iml" filepath="$PROJECT_DIR$/.idea/2020-ma-ma-group-05.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GeSoc/Grupo_5.iml" filepath="$PROJECT_DIR$/GeSoc/Grupo_5.iml" />
+    </modules>
+  </component>
+</project>

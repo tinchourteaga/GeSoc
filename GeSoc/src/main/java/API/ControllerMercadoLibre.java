@@ -3,6 +3,7 @@ package API;
 import API.DTOs.*;
 import API.Excepciones.ExcepcionCodigoNoEncontrado;
 import API.Excepciones.ExcepcionNoSePudoConvertir;
+import API.Excepciones.ExcepcionProvinciaNoEncontrada;
 import API.Excepciones.NoExisteMonedaException;
 import Lugares.Ciudad;
 import Lugares.Pais;
@@ -29,6 +30,7 @@ public class ControllerMercadoLibre {
     private static ControllerMercadoLibre instancia=null;
 
     private List<PaisDTO> paises=new ArrayList<PaisDTO>();
+    private List<ProvinciaDTO> provincias=new ArrayList<ProvinciaDTO>();
     private List<MonedaDTO> monedas=new ArrayList<MonedaDTO>();
 
     private ControllerMercadoLibre() throws IOException {
@@ -63,6 +65,45 @@ public class ControllerMercadoLibre {
         return conversion;
 
 
+    }
+
+    public Provincia generarDatosDeProvincia(String id) throws IOException, ExcepcionProvinciaNoEncontrada {
+
+        ProvinciaDTO busqueda=provincias.stream().filter(provincia->provincia.getId().equals(id)).collect(Collectors.toList()).get(0);
+        Provincia retorno=null;
+        if(busqueda==null) {
+            busqueda= obtenerDatosProvincia(id);
+            provincias.add(busqueda);
+        }
+        retorno=new Provincia(busqueda.getId(),busqueda.getName());
+        return retorno;
+    }
+
+    private ProvinciaDTO obtenerDatosProvincia(String id) throws IOException, ExcepcionProvinciaNoEncontrada {
+
+        String request="/classified_locations/states/"+id;
+        HttpEntity entidad= crearRequest(request);
+        String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
+        ProvinciaDTO nuevaProvincia=null;
+        if (responseStr != null && !responseStr.isEmpty()) {
+            JsonParser parser = new JsonParser();
+            JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
+            nuevaProvincia=crearDTOProvincia(responseObj);
+        }else{
+
+            throw new ExcepcionProvinciaNoEncontrada(id);
+        }
+
+        return nuevaProvincia;
+    }
+
+    private ProvinciaDTO crearDTOProvincia(JsonObject responseObj) {
+        JsonObject id= responseObj.getAsJsonObject("id");
+        JsonObject nombre= responseObj.getAsJsonObject("name");
+        JsonArray ciudades= responseObj.getAsJsonArray("cities");
+        ProvinciaDTO nuevaProvincia= new ProvinciaDTO(id.getAsString(),nombre.getAsString());
+        ciudades.forEach(ciudad->nuevaProvincia.agregarCiudad(new CiudadDTO(ciudad.getAsJsonObject().get("id").getAsString(),ciudad.getAsJsonObject().get("name").getAsString())));
+        return nuevaProvincia;
     }
 
     private ConversionDTO crearDTOConversion(JsonObject responseObj, MonedaDTO monedaActual, MonedaDTO monedaAConvertir) {
@@ -138,13 +179,40 @@ public class ControllerMercadoLibre {
         if (responseStr != null && !responseStr.isEmpty()) {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
-            responseObj.forEach(jsonElemnt -> paises.add(new PaisDTO(
-                    jsonElemnt.getAsJsonObject().get("id").getAsString(),
-                    jsonElemnt.getAsJsonObject().get("name").getAsString(),
-                    jsonElemnt.getAsJsonObject().get("locale").getAsString(),
-                    jsonElemnt.getAsJsonObject().get("currency_id").getAsString())));
+            responseObj.forEach(jsonElemnt -> {
+                try {
+                    paises.add(new PaisDTO(
+                            jsonElemnt.getAsJsonObject().get("id").getAsString(),
+                            jsonElemnt.getAsJsonObject().get("name").getAsString(),
+                            jsonElemnt.getAsJsonObject().get("locale").getAsString(),
+                            jsonElemnt.getAsJsonObject().get("currency_id").getAsString()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
             
         }
+    }
+    public List<ProvinciaDTO> obtenerProvinciasDe(String id_pais) throws IOException {
+        List<ProvinciaDTO>lista=new ArrayList<>();
+
+        HttpEntity entidad = crearRequest("/classified_locations/countries/"+id_pais);
+
+        String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
+        if (responseStr != null && !responseStr.isEmpty()) {
+            JsonParser parser = new JsonParser();
+            JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
+            responseObj.getAsJsonArray("states").forEach(state-> {
+                try {
+                    lista.add(obtenerDatosProvincia( state.getAsJsonObject().get("id").getAsString()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ExcepcionProvinciaNoEncontrada excepcionProvinciaNoEncontrada) {
+                    excepcionProvinciaNoEncontrada.printStackTrace();
+                }
+            });
+        }
+        return lista;
     }
     public static ControllerMercadoLibre getControllerMercadoLibre(){
         if(instancia==null){

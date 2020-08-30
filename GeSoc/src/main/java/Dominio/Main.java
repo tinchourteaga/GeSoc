@@ -49,7 +49,7 @@ public class Main {
 
         ControllerMercadoLibre.getControllerMercadoLibre();
 
-        System.out.println(ControllerMercadoLibre.getControllerMercadoLibre().getPais("Argentina"));
+        System.out.println(ControllerMercadoLibre.getControllerMercadoLibre().getPais("Argentina").getProvincias());
 
     }
 }

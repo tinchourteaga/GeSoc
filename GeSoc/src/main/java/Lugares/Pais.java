@@ -1,4 +1,4 @@
-package API.DTOs;
+package Lugares;
 
 public class Pais {
     String id;

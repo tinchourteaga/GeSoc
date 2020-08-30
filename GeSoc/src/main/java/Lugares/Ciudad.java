@@ -1,10 +1,10 @@
-package API.DTOs;
+package Lugares;
 
-public class Provincia {
+public class Ciudad {
     String id;
     String name;
 
-    public Provincia (String id, String name){
+    public Ciudad (String id, String name){
         this.id = id;
         this.name = name;
     }
@@ -17,7 +17,5 @@ public class Provincia {
     public String getName() {
         return name;
     }
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 }

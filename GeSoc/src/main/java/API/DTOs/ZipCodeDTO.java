@@ -1,5 +1,9 @@
 package API.DTOs;
 
+import Lugares.Ciudad;
+import Lugares.Pais;
+import Lugares.Provincia;
+
 public class ZipCodeDTO {
 
 

@@ -1,14 +1,13 @@
 package Dominio.Entidad;
 
 import API.ControllerMercadoLibre;
-import API.DTOs.Ciudad;
-import API.DTOs.Pais;
-import API.DTOs.Provincia;
+import Lugares.Ciudad;
+import Lugares.Pais;
+import Lugares.Provincia;
 import API.DTOs.ZipCodeDTO;
 import API.Excepciones.ExcepcionCodigoNoEncontrado;
 
 import java.io.IOException;
-import java.nio.file.ProviderNotFoundException;
 
 public class DireccionPostal {
     private Direccion direccion;

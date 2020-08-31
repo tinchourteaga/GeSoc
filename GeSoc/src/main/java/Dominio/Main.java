@@ -1,6 +1,7 @@
 package Dominio;
 
 import API.ControllerMercadoLibre;
+import API.DTOs.ProvinciaDTO;
 import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
@@ -11,10 +12,8 @@ import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Direccion;
 
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 public class Main {
 
@@ -47,9 +46,21 @@ public class Main {
 
         System.out.println(unEgreso.isEstaVerificada());*/
 
-        ControllerMercadoLibre.getControllerMercadoLibre();
+        ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
 
-        System.out.println(ControllerMercadoLibre.getControllerMercadoLibre().getPais("Argentina").getProvincias());
+        System.out.println("Ingrese un pais: ");
+        Scanner s = new Scanner(System.in);
+        String nombrePais = s.nextLine();
+        System.out.println(varController.getPais(nombrePais));
+
+        try {
+            List<ProvinciaDTO> provinciaDTOS = varController.obtenerLasProviciasDeUnPais(varController.getPais(nombrePais).getId());
+
+            provinciaDTOS.forEach(x->System.out.println(x.getName()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }

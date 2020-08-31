@@ -316,7 +316,7 @@ public class ControllerMercadoLibre {
             JsonParser parser = new JsonParser();
             JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
 
-            responseObj.getAsJsonArray("states").forEach
+            responseObj.getAsJsonArray("cities").forEach
                     (x->retorno.add(new CiudadDTO(x.getAsJsonObject().get("id").getAsString(),
                             x.getAsJsonObject().get("name").getAsString())));
         }

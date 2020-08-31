@@ -1,6 +1,7 @@
 package Dominio;
 
 import API.ControllerMercadoLibre;
+import API.DTOs.CiudadDTO;
 import API.DTOs.ProvinciaDTO;
 import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
@@ -56,11 +57,23 @@ public class Main {
         try {
             List<ProvinciaDTO> provinciaDTOS = varController.obtenerLasProviciasDeUnPais(varController.getPais(nombrePais).getId());
 
-            provinciaDTOS.forEach(x->System.out.println(x.getName()));
+            provinciaDTOS.forEach(x->System.out.println(x.getName() + "ID:" + x.getId()));
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        System.out.println("Ingrese un provincia: ");
+        Scanner w = new Scanner(System.in);
+        String nombreProv = w.nextLine();
+
+        try {
+            List<CiudadDTO> ciudadesDTOS = varController.obtenerLasCiudadesDeUnaProvincia(nombreProv);
+
+            ciudadesDTOS.forEach(x->System.out.println(x.getName()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

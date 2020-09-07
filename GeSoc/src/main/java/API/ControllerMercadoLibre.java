@@ -5,6 +5,7 @@ import API.Excepciones.*;
 import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
+import Persistencia.DAO.DAOMemoria;
 import Persistencia.Repositorio;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -27,13 +28,11 @@ public class ControllerMercadoLibre {
 
     private static ControllerMercadoLibre instancia=null;
 
-    private List<PaisDTO> paises=new ArrayList<PaisDTO>();
-    private List<ProvinciaDTO> provincias=new ArrayList<ProvinciaDTO>();
-    private List<CiudadDTO> ciudades=new ArrayList<>();
-    private List<MonedaDTO> monedas=new ArrayList<MonedaDTO>();
-    private Repositorio paisesRepo = new Repositorio();
-    private Repositorio provinciasRepo = new Repositorio();
-    private Repositorio ciudadesRepo = new Repositorio();
+
+    private Repositorio paisesRepo = new Repositorio(new DAOMemoria<PaisDTO>());
+    private Repositorio provinciasRepo = new Repositorio(new DAOMemoria<ProvinciaDTO>());
+    private Repositorio ciudadesRepo = new Repositorio(new DAOMemoria<CiudadDTO>());
+    private Repositorio monedasRepo = new Repositorio(new DAOMemoria<MonedaDTO>());
 
     private ControllerMercadoLibre() throws IOException {
         pedirPaises();
@@ -73,25 +72,6 @@ public class ControllerMercadoLibre {
 
 
 
-    public ZipCodeDTO pedirInformacionCodigoPostal(Pais nombrePais, String zipCode) throws IOException, ExcepcionCodigoNoEncontrado {
-
-        PaisDTO paisBuscado=paises.stream().filter(pais->pais.getName().equals(nombrePais.getName())).collect(Collectors.toList()).get(0);
-
-        String request="/countries/"+paisBuscado.getId() +"/zip_codes/"+zipCode;
-        HttpEntity entidad= crearRequest(request);
-        String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
-        ZipCodeDTO zipCodeObj=null;
-        if (responseStr != null && !responseStr.isEmpty()) {
-            JsonParser parser = new JsonParser();
-            JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
-            zipCodeObj=crearDTOZipCode(responseObj);
-        }else{
-
-            throw new ExcepcionCodigoNoEncontrado(nombrePais.getName(),zipCode);
-        }
-
-        return zipCodeObj;
-    }
 
     private void pedirMonedas() throws IOException {
         HttpEntity entidad= crearRequest("/currencies");
@@ -99,7 +79,7 @@ public class ControllerMercadoLibre {
         if (responseStr != null && !responseStr.isEmpty()) {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
-            responseObj.forEach(jsonElemnt-> monedas.add(new MonedaDTO(
+            responseObj.forEach(jsonElemnt-> monedasRepo.agregar(new MonedaDTO(
                     jsonElemnt.getAsJsonObject().get("symbol").getAsString(),
                     jsonElemnt.getAsJsonObject().get("decimal_places").getAsInt(),
                     jsonElemnt.getAsJsonObject().get("description").getAsString(),
@@ -127,7 +107,7 @@ public class ControllerMercadoLibre {
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
             responseObj.forEach(jsonElemnt -> {
                 try {
-                    paises.add(new PaisDTO(
+                    paisesRepo.agregar(new PaisDTO(
                             jsonElemnt.getAsJsonObject().get("id").getAsString(),
                             jsonElemnt.getAsJsonObject().get("name").getAsString(),
                             jsonElemnt.getAsJsonObject().get("locale").getAsString(),
@@ -173,15 +153,15 @@ public class ControllerMercadoLibre {
     }
 
     public PaisDTO getPais(String nombrePais) {
-        return paises.stream().filter(pais->pais.getName().equals(nombrePais)).collect(Collectors.toList()).get(0);
+        return (PaisDTO) paisesRepo.buscarPorNombre(nombrePais);
     }
 
     public MonedaDTO getMoneda(String nombreMoneda) {
-        return monedas.stream().filter(moneda->moneda.getDescription().equals(nombreMoneda)).collect(Collectors.toList()).get(0);
+        return (MonedaDTO) monedasRepo.buscarPorNombre(nombreMoneda);
     }
 
     public MonedaDTO getMonedaByID(String idMoneda) {
-        return monedas.stream().filter(moneda->moneda.getId().equals(idMoneda)).collect(Collectors.toList()).get(0);
+        return (MonedaDTO) monedasRepo.buscarPorId(idMoneda);
     }
 
     private ZipCodeDTO crearDTOZipCode(JsonObject responseObj) {
@@ -234,11 +214,11 @@ public class ControllerMercadoLibre {
 
     public Provincia generarDatosDeProvincia(String idProvincia) throws IOException, ExcepcionProvinciaNoEncontrada {
 
-        ProvinciaDTO busqueda = provincias.stream().filter(provincia->provincia.getId().equals(idProvincia)).collect(Collectors.toList()).get(0);
+        ProvinciaDTO busqueda = (ProvinciaDTO) provinciasRepo.buscarPorId(idProvincia);
         Provincia retorno=null;
         if(busqueda==null) {
             busqueda= obtenerDatosProvincia(idProvincia);
-            provincias.add(busqueda);
+            provinciasRepo.agregar(busqueda);
         }
         retorno=new Provincia(busqueda.getId(),busqueda.getName());
         return retorno;
@@ -294,11 +274,11 @@ public class ControllerMercadoLibre {
 
     public Ciudad generarDatosDeCiudad(String idCiudad) throws IOException, ExcepcionCiudadNoEncontrada {
 
-        CiudadDTO busqueda = ciudades.stream().filter(ciudad->ciudad.getId().equals(idCiudad)).collect(Collectors.toList()).get(0);
+        CiudadDTO busqueda = (CiudadDTO) ciudadesRepo.buscarPorId(idCiudad);
         Ciudad retorno=null;
         if(busqueda==null) {
             busqueda= obtenerDatosCiudad(idCiudad);
-            ciudades.add(busqueda);
+            ciudadesRepo.agregar(busqueda);
         }
         retorno=new Ciudad(busqueda.getId(),busqueda.getName());
         return retorno;
@@ -323,4 +303,5 @@ public class ControllerMercadoLibre {
 
         return retorno;
     }
+
 }

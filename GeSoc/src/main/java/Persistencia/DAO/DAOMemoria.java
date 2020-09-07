@@ -2,7 +2,6 @@ package Persistencia.DAO;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -11,7 +10,7 @@ public class DAOMemoria <T> implements DAO  {
     private List<Object> listaElementos;
 
     public DAOMemoria(){
-        listaElementos = new ArrayList<Object>();
+        listaElementos = new ArrayList<>();
     }
 
     public <T> void agregar(T elemento) {
@@ -44,6 +43,16 @@ public class DAOMemoria <T> implements DAO  {
     }
 
     @Override
+    public  Object buscarPorId(String id) {
+        return this.getAllElementos().stream().filter(obj ->((IdClass) obj).getId().equals(id));
+    }
+
+    @Override
+    public  Object buscarPorNombre(String nombre) {
+        return this.getAllElementos().stream().filter(obj ->((NameClass) obj).getNombre().equals(nombre));
+    }
+
+    @Override
     public List<Object> getAllElementos() {
         return listaElementos;
     }
@@ -51,5 +60,21 @@ public class DAOMemoria <T> implements DAO  {
     @Override
     public List<Object> getAllElementosFrom(Class unaClase){
         return listaElementos.stream().filter(objeto -> objeto.getClass().equals(unaClase)).collect(Collectors.toList());
+    }
+
+    public class NameClass{
+        private String nombre;
+
+        public String getNombre() {
+            return nombre;
+        }
+    }
+
+    public class IdClass{
+        private String id;
+
+        public String getId() {
+            return id;
+        }
     }
 }

@@ -10,4 +10,6 @@ public interface DAO {
     <T> int buscar(T usuario);
     <T> List<T> getAllElementos();
     <T> List<T> getAllElementosFrom(Class unaClase);
+    Object buscarPorId(String id);
+    Object buscarPorNombre(String nombre);
 }

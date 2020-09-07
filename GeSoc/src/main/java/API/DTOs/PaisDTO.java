@@ -1,8 +1,11 @@
 package API.DTOs;
 
+import Persistencia.InterfacesPersistencia.IdPersistedClass;
+import Persistencia.InterfacesPersistencia.NamePersistedClass;
+
 import java.io.IOException;
 
-public class PaisDTO {
+public class PaisDTO  implements IdPersistedClass, NamePersistedClass {
      private String id;
      private String name;
      private String locale;
@@ -15,6 +18,7 @@ public class PaisDTO {
         this.currency_id = currency_id;
     }
 
+    @Override
     public String getId() {
         return id;
     }
@@ -26,5 +30,10 @@ public class PaisDTO {
     }
     public String getCurrency_id() {
         return currency_id;
+    }
+
+    @Override
+    public String getNombre() {
+        return name;
     }
 }

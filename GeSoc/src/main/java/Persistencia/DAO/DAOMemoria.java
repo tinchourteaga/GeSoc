@@ -1,5 +1,8 @@
 package Persistencia.DAO;
 
+import Persistencia.InterfacesPersistencia.IdPersistedClass;
+import Persistencia.InterfacesPersistencia.NamePersistedClass;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,7 +17,7 @@ public class DAOMemoria <T> implements DAO  {
     }
 
     public <T> void agregar(T elemento) {
-        if (this.existe(elemento))
+        if (!this.existe(elemento))
             listaElementos.add(elemento);
     }
 
@@ -44,12 +47,21 @@ public class DAOMemoria <T> implements DAO  {
 
     @Override
     public  Object buscarPorId(String id) {
-        return this.getAllElementos().stream().filter(obj ->((IdClass) obj).getId().equals(id));
+
+        List<Object> candidatos=this.getAllElementos().stream().filter(obj ->((IdPersistedClass) obj).getId().equals(id)).collect(Collectors.toList());
+        if(candidatos!=null){
+            return candidatos.get(0);
+        }
+        return null;
     }
 
     @Override
-    public  Object buscarPorNombre(String nombre) {
-        return this.getAllElementos().stream().filter(obj ->((NameClass) obj).getNombre().equals(nombre));
+    public Object buscarPorNombre(String nombre) {
+        List<Object> candidatos=this.getAllElementos().stream().filter(obj ->((NamePersistedClass) obj).getNombre().equals(nombre)).collect(Collectors.toList());
+        if(candidatos!=null){
+            return candidatos.get(0);
+        }
+        return null;
     }
 
     @Override
@@ -62,19 +74,5 @@ public class DAOMemoria <T> implements DAO  {
         return listaElementos.stream().filter(objeto -> objeto.getClass().equals(unaClase)).collect(Collectors.toList());
     }
 
-    public class NameClass{
-        private String nombre;
 
-        public String getNombre() {
-            return nombre;
-        }
-    }
-
-    public class IdClass{
-        private String id;
-
-        public String getId() {
-            return id;
-        }
-    }
 }

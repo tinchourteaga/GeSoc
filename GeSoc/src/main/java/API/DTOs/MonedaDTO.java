@@ -1,6 +1,9 @@
 package API.DTOs;
 
-public class MonedaDTO {
+import Persistencia.InterfacesPersistencia.IdPersistedClass;
+import Persistencia.InterfacesPersistencia.NamePersistedClass;
+
+public class MonedaDTO implements IdPersistedClass, NamePersistedClass {
     private String symbol;
     private int decimal_places;
     private String description;
@@ -22,7 +25,13 @@ public class MonedaDTO {
     public String getDescription() {
         return description;
     }
+   @Override
     public String getId() {
         return id;
+    }
+
+    @Override
+    public String getNombre() {
+        return description;
     }
 }

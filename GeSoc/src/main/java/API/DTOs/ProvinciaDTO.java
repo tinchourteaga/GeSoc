@@ -1,6 +1,9 @@
 package API.DTOs;
 
-public class ProvinciaDTO {
+import Persistencia.InterfacesPersistencia.IdPersistedClass;
+import Persistencia.InterfacesPersistencia.NamePersistedClass;
+
+public class ProvinciaDTO  implements IdPersistedClass, NamePersistedClass {
         String id;
         String name;
 
@@ -9,6 +12,7 @@ public class ProvinciaDTO {
             this.name = name;
         }
 
+        @Override
         public String getId() { return id; }
         public void setId(String id) {
             this.id = id;
@@ -20,4 +24,9 @@ public class ProvinciaDTO {
         public void setName(String name) {
             this.name = name;
         }
+
+    @Override
+    public String getNombre() {
+        return name;
+    }
 }

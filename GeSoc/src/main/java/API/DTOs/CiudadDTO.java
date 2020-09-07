@@ -1,6 +1,9 @@
 package API.DTOs;
 
-public class CiudadDTO {
+import Persistencia.InterfacesPersistencia.IdPersistedClass;
+import Persistencia.InterfacesPersistencia.NamePersistedClass;
+
+public class CiudadDTO implements IdPersistedClass, NamePersistedClass {
     private String id;
     private String name;
 
@@ -9,11 +12,17 @@ public class CiudadDTO {
         this.name = name;
     }
 
+    @Override
     public String getId() {
         return id;
     }
 
     public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getNombre() {
         return name;
     }
 }

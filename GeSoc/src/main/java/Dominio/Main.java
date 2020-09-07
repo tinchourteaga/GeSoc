@@ -18,7 +18,7 @@ import java.util.*;
 
 public class Main {
 
-    public static void main (String [ ] args) {
+    public static void main(String[] args) {
 
         /*ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(19,33));
 
@@ -47,6 +47,9 @@ public class Main {
 
         System.out.println(unEgreso.isEstaVerificada());*/
 
+        //otro test
+
+        /*
         ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
 
         System.out.println("Ingrese un pais: ");
@@ -75,5 +78,13 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    */
+
+        //debug time
+        ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
+
+        varController.getPais("Argentina");
+
+
     }
 }

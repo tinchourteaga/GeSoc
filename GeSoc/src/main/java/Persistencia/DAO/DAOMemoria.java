@@ -1,8 +1,10 @@
 package Persistencia.DAO;
 
+import Persistencia.InterfacesPersistencia.IdPersistedClass;
+import Persistencia.InterfacesPersistencia.NamePersistedClass;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 
@@ -11,11 +13,11 @@ public class DAOMemoria <T> implements DAO  {
     private List<Object> listaElementos;
 
     public DAOMemoria(){
-        listaElementos = new ArrayList<Object>();
+        listaElementos = new ArrayList<>();
     }
 
     public <T> void agregar(T elemento) {
-        if (this.existe(elemento))
+        if (!this.existe(elemento))
             listaElementos.add(elemento);
     }
 
@@ -44,6 +46,25 @@ public class DAOMemoria <T> implements DAO  {
     }
 
     @Override
+    public  Object buscarPorId(String id) {
+
+        List<Object> candidatos=this.getAllElementos().stream().filter(obj ->((IdPersistedClass) obj).getId().equals(id)).collect(Collectors.toList());
+        if(candidatos!=null){
+            return candidatos.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Object buscarPorNombre(String nombre) {
+        List<Object> candidatos=this.getAllElementos().stream().filter(obj ->((NamePersistedClass) obj).getNombre().equals(nombre)).collect(Collectors.toList());
+        if(candidatos!=null){
+            return candidatos.get(0);
+        }
+        return null;
+    }
+
+    @Override
     public List<Object> getAllElementos() {
         return listaElementos;
     }
@@ -52,4 +73,6 @@ public class DAOMemoria <T> implements DAO  {
     public List<Object> getAllElementosFrom(Class unaClase){
         return listaElementos.stream().filter(objeto -> objeto.getClass().equals(unaClase)).collect(Collectors.toList());
     }
+
+
 }

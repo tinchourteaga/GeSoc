@@ -1,6 +1,8 @@
 package Dominio;
 
 import API.ControllerMercadoLibre;
+import API.DTOs.CiudadDTO;
+import API.DTOs.ProvinciaDTO;
 import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
@@ -11,14 +13,12 @@ import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Direccion;
 
-import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
-import java.util.Date;
-import java.util.List;
+import java.io.IOException;
+import java.util.*;
 
 public class Main {
 
-    public static void main (String [ ] args) {
+    public static void main(String[] args) {
 
         /*ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(19,33));
 
@@ -47,9 +47,44 @@ public class Main {
 
         System.out.println(unEgreso.isEstaVerificada());*/
 
-        ControllerMercadoLibre.getControllerMercadoLibre();
+        //otro test
 
-        System.out.println(ControllerMercadoLibre.getControllerMercadoLibre().getPais("Argentina"));
+        /*
+        ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
+
+        System.out.println("Ingrese un pais: ");
+        Scanner s = new Scanner(System.in);
+        String nombrePais = s.nextLine();
+        System.out.println(varController.getPais(nombrePais));
+
+        try {
+            List<ProvinciaDTO> provinciaDTOS = varController.obtenerLasProviciasDeUnPais(varController.getPais(nombrePais).getId());
+
+            provinciaDTOS.forEach(x->System.out.println(x.getName() + "ID:" + x.getId()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Ingrese un provincia: ");
+        Scanner w = new Scanner(System.in);
+        String nombreProv = w.nextLine();
+
+        try {
+            List<CiudadDTO> ciudadesDTOS = varController.obtenerLasCiudadesDeUnaProvincia(nombreProv);
+
+            ciudadesDTOS.forEach(x->System.out.println(x.getName()));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    */
+
+        //debug time
+        ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
+
+        varController.getPais("Argentina");
+
 
     }
 }

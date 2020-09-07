@@ -29,6 +29,16 @@ public class DAOBBDD implements DAO {
     }
 
     @Override
+    public Object buscarPorId(String id) {
+        return null;
+    }
+
+    @Override
+    public Object buscarPorNombre(String nombre) {
+        return null;
+    }
+
+    @Override
     public List<Object> getAllElementos() {
         return listaElementos;
     }

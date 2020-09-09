@@ -12,9 +12,10 @@ import Dominio.Egreso.Validador.Validaciones.ValidacionCompraPertenecePresupuest
 import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Direccion;
-
 import java.io.IOException;
 import java.util.*;
+
+import Servidor.Servidor;
 
 public class Main {
 
@@ -81,10 +82,10 @@ public class Main {
     */
 
         //debug time
-        ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
+        //ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
 
-        varController.getPais("Argentina");
+        //varController.getPais("Argentina");
 
-
+        Servidor.levantarServidor();
     }
 }

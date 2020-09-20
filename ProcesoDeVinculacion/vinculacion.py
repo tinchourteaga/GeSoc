@@ -1,3 +1,6 @@
+from importe import Importe
+import json
+
 class Vinculacion:
     ingresos=[]
     egresos=[]
@@ -12,13 +15,13 @@ class Vinculacion:
 
         #Cargo ingresos
         for ingreso in data['ingresos']:
-            temp = importe(ingreso[0],ingreso[1],ingreso[2])
+            temp = Importe(ingreso[0],ingreso[1],ingreso[2])
             print("ingreso: ", temp.fecha)
             self.addIngresos(temp)
 
         # Cargo egresos
         for egreso in data['egresos']:
-            temp = importe(egreso[0],egreso[1],egreso[2])
+            temp = Importe(egreso[0],egreso[1],egreso[2])
             print("egreso: ", temp.fecha)
             self.addEgresos(temp)
         #Cargo Criterio

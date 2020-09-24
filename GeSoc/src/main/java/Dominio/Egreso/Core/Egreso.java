@@ -6,23 +6,47 @@ import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Moneda.Valor;
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
+@Entity
+@Table(name = "dom_egresos")
 public class Egreso {
+    @Id
+    @GeneratedValue
+    private int egreso;
 
-    private boolean estaVerificada;
-    private Date fecha;
-    private Valor valor;
-    private List<Item> listaItems ;
-    private MetodoDePago metodoDePago;
+    // ver la relacion egreso - proveedor - presupuesto
+    @Transient
     private Proveedor proveedorSeleccionado;
+
+    @Column(name = "validado")
+    private boolean estaVerificada;
+
+    @Column(name = "fecha", columnDefinition = "DATE")
+    private LocalDate fecha;
+
+    @Transient
+    private Valor valor;
+
+    @Transient
+    private List<Item> listaItems ;
+
+    @Transient
+    private MetodoDePago metodoDePago;
+
+    @Transient
     private DocumentoComercial documentoComercial;
+
+    @Transient
     private CriterioSeleccionProveedor criterioSeleccionProveedor;
+
+    @Transient
     private List<Criterio> criterios;
 
-    public Egreso(Date unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
+    public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
        this.fecha=unaFecha;
         this.valor= new Valor(pais,importe);
@@ -50,7 +74,7 @@ public class Egreso {
         return criterios;
     }
 
-    public Date getFecha() { return fecha; }
+    public LocalDate getFecha() { return fecha; }
 
     public Valor getValor() {return valor; }
 

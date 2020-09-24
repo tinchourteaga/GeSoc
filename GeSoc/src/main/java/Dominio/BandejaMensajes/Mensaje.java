@@ -1,14 +1,33 @@
 package Dominio.BandejaMensajes;
 
-import java.util.Date;
+import Dominio.Usuario.Usuario;
+import javax.persistence.*;
+import java.time.LocalDate;
 
+@Entity
+@Table(name = "men_mensajes")
 public class Mensaje {
-    private Date fechaCreado;
-    private Date fechaLeido;
+    @Id
+    @GeneratedValue
+    private int id_mensaje;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario", referencedColumnName = "usuario")
+    private Usuario usuario;
+
+    @Column(name = "mensaje")
     private String mensajeResultado;
+
+    @Column(name = "fecha_creado", columnDefinition = "DATE")
+    private LocalDate fechaCreado;
+
+    @Column(name = "fecha_leido", columnDefinition = "DATE")
+    private LocalDate fechaLeido;
+
+    @Column(name = "leido")
     private Boolean leido;
 
-    public Mensaje(Date fechaCreado, Date fechaLeido, String mensajeResultado) {
+    public Mensaje(LocalDate fechaCreado, LocalDate fechaLeido, String mensajeResultado) {
         this.fechaCreado = fechaCreado;
         this.fechaLeido = fechaLeido;
         this.mensajeResultado = mensajeResultado;
@@ -16,15 +35,13 @@ public class Mensaje {
     }
 
     public void leer(){
-        this.fechaLeido = new Date();
+        this.fechaLeido = LocalDate.now();
         this.leido=true;
     }
 
-    public Date getFechaCreado() {
-        return fechaCreado;
-    }
+    public LocalDate getFechaCreado() { return fechaCreado; }
 
-    public Date getFechaLeido() {
+    public LocalDate getFechaLeido() {
         return fechaLeido;
     }
 

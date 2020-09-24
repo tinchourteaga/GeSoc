@@ -1,21 +1,24 @@
 package Dominio.BandejaMensajes;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Embeddable;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Embeddable
 public class BandejaMensajes {
-
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Mensaje> mensajes;
 
     public BandejaMensajes() {
         this.mensajes = new ArrayList<Mensaje>();
     }
 
-    public List<Mensaje> filtrarPorFecha(Date fecha) {
-    return mensajes.stream().filter(mensaje-> mensaje.getFechaCreado().getTime()>=fecha.getTime()).collect(Collectors.toList());
-
+    public List<Mensaje> filtrarPorFecha(LocalDate fecha) {
+        return mensajes.stream().filter(mensaje-> fecha.isBefore(mensaje.getFechaCreado())).collect(Collectors.toList());
     }
 
     public List<Mensaje> filtrarPorLeidos(){

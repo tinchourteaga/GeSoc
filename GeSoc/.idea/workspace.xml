@@ -19,11 +19,57 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83cdc46c-7ec7-4c5c-a38e-7700bfdda6a3" name="Default Changelist" comment="" />
+    <list default="true" id="83cdc46c-7ec7-4c5c-a38e-7700bfdda6a3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Converters/LocalDateAttributeConverter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/ContextTest/ContextTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/GeSoc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GeSoc.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_classmate_1_3_4.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_protobuf_protobuf_java_3_6_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_istack_istack_commons_runtime_3_0_7.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_sun_xml_fastinfoset_FastInfoset_1_2_15.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_activation_javax_activation_api_1_2_0.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_xml_bind_jaxb_api_2_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_8_0_17.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_9_11.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_dom4j_dom4j_2_1_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_jaxb_runtime_2_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_glassfish_jaxb_txw2_2_3_1.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_1_0_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_4_4_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_jandex_2_0_5_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_logging_jboss_logging_3_3_2_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_1_1_Final.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jvnet_staxex_stax_ex_1_8.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/BandejaMensajes/BandejaMensajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/BandejaMensajes/BandejaMensajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/BandejaMensajes/Mensaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/BandejaMensajes/Mensaje.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Egreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Egreso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Presupuesto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Presupuesto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Proveedor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Proveedor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Validador/ValidadorDeOperacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Validador/ValidadorDeOperacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Usuario/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Usuario/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestsEntrega1/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestsEntrega1/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestsEntrega3/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestsEntrega3/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/META-INF/persistence.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -37,15 +83,27 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/templates" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/test" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ContextTest" />
+      <recent name="TestsEntrega4" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Lenovo\Desktop\Git\2020-ma-ma-group-05\GeSoc\src\test" />
       <recent name="C:\Users\Lenovo\Desktop\Git\2020-ma-ma-group-05\GeSoc\src\main\resources\templates" />
     </key>
   </component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ContextTest (1)">
+    <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Dominio.Main" />
       <module name="GeSoc" />
       <extension name="coverage">
@@ -58,9 +116,90 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="All in GeSoc" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GeSoc" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ContextTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GeSoc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ContextTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ContextTest" />
+      <option name="MAIN_CLASS_NAME" value="ContextTest.ContextTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ContextTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GeSoc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TestsEntrega4" />
+      <option name="MAIN_CLASS_NAME" value="TestsEntrega4.ContextTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ContextTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GeSoc" />
+      <option name="PACKAGE_NAME" value="TestsEntrega4" />
+      <option name="MAIN_CLASS_NAME" value="TestsEntrega4.ContextTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GeSoc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestsEntrega2.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TestsEntrega2" />
+      <option name="MAIN_CLASS_NAME" value="TestsEntrega2.Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="GeSoc" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestsEntrega3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TestsEntrega3" />
+      <option name="MAIN_CLASS_NAME" value="TestsEntrega3.Test" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.ContextTest (1)" />
+        <item itemvalue="JUnit.ContextTest" />
+        <item itemvalue="JUnit.ContextTest (1)" />
+        <item itemvalue="JUnit.All in GeSoc" />
+        <item itemvalue="JUnit.Test (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -87,5 +226,77 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="309" y="42" key="#Inspections" timestamp="1600899494932">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="309" y="42" key="#Inspections/0.0.1366.728@0.0.1366.728" timestamp="1600899494932" />
+    <state x="275" y="22" key="#Intentions" timestamp="1600919165512">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="22" key="#Intentions/0.0.1366.728@0.0.1366.728" timestamp="1600919165512" />
+    <state x="163" y="0" key="#Project_Structure" timestamp="1600895246307">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="163" y="0" key="#Project_Structure/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600895246307" />
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1600895895035">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="137" y="19" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600895895035" />
+    <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser" timestamp="1600896498759">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="488" y="70" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896498759" />
+    <state x="278" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1600910997034">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="278" y="288" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1366.728@0.0.1366.728" timestamp="1600910997034" />
+    <state x="466" y="233" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1600900693699">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="466" y="233" width="433" height="268" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1600900693699" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1600926652903">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1600926652903" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1600926652903">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1600926652903" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1600926652903">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1600926652903" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1600926652903">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1600926652903" />
+    <state x="213" y="19" key="Maven.ArtifactSearchDialog" timestamp="1600897200146">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="213" y="19" key="Maven.ArtifactSearchDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896075490" />
+    <state x="213" y="19" key="Maven.ArtifactSearchDialog/0.0.1366.728@0.0.1366.728" timestamp="1600897200146" />
+    <state x="184" y="9" key="SettingsEditor" timestamp="1600897393063">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="9" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1600897393063" />
+    <state x="287" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1600920031766">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="287" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1366.728@0.0.1366.728" timestamp="1600920031766" />
+    <state x="339" y="162" key="run.anything.popup" timestamp="1600907457974">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1600907457974" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1600910854338">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1600910854338" />
   </component>
 </project>

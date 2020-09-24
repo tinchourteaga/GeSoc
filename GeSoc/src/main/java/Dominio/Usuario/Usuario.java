@@ -1,24 +1,43 @@
 package Dominio.Usuario;
 
-import java.io.IOException;
-import java.util.List;
-
 import Dominio.BandejaMensajes.BandejaMensajes;
 import Dominio.Contrasenia.Core.ValidadorDeContrasenia;
-import Dominio.Rol.Rol;
+import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
+import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
-import Dominio.Contrasenia.Excepciones.*;
+import Dominio.Rol.Rol;
 
+import javax.persistence.*;
+import java.io.IOException;
+
+@Entity
+@Table(name = "pers_usuarios")
 public class Usuario {
+    @Id
+    @GeneratedValue
+    private int usuario;
 
-    private Rol rol;
+    @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "apellido")
+    private String apellido;
+
+    @Column(name = "clave")
     private String contrasenia;
+
+    @Transient
+    private Rol rol;
+
+    @Embedded
     private BandejaMensajes bandejaDeMensajes;
 
-    public Usuario(Rol rol, String nombre, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
+    public Usuario(Rol rol, String nombre, String apellido, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
         this.rol = rol;
         this.nombre = nombre;
+        this.apellido = apellido;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
         this.contrasenia = contrasenia;
         this.bandejaDeMensajes = new BandejaMensajes();
@@ -26,6 +45,9 @@ public class Usuario {
 
     public String getNombre() {
         return nombre;
+    }
+    public String getApellido() {
+        return apellido;
     }
     public Rol getRol() {
         return rol;

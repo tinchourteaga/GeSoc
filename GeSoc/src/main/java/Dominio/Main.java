@@ -1,26 +1,10 @@
 package Dominio;
 
-import API.ControllerMercadoLibre;
-import API.DTOs.CiudadDTO;
-import API.DTOs.ProvinciaDTO;
-import Dominio.Egreso.Core.*;
-import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
-import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
-import Dominio.Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCantidadPresupuestos;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCompraPertenecePresupuesto;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
-import Dominio.Egreso.Validador.ValidadorDeOperacion;
-import Dominio.Entidad.Direccion;
-import java.io.IOException;
-import java.util.*;
-
 import Servidor.Servidor;
 
 public class Main {
 
     public static void main(String[] args) {
-
         /*ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(19,33));
 
         Direccion direc = new Direccion("Larralde", "2454", "3");

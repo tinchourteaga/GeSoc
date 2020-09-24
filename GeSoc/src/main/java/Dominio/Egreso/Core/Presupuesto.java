@@ -1,6 +1,7 @@
 package Dominio.Egreso.Core;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
+
 import java.util.Date;
 import java.util.List;
 

@@ -3,21 +3,47 @@ package Dominio.Egreso.Core;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Entidad.Direccion;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "pers_proveedores")
 public class Proveedor {
+    @Id
+    @GeneratedValue
+    private int proveedor;
 
+    @Column(name = "razon_social")
     private String razonSocial;
-    private String nombreApellido;
-    private String cuitODni;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "apellido")
+    private String apellido;
+
+    @Column(name = "nro_documento")
+    private String documento;
+
+    @Transient
     private Direccion direccion;
+
+    //@OneToMany(mappedBy = "proveedorSeleccionado", cascade = CascadeType.ALL)
+    @Transient
     private List<Presupuesto> presupuestos;
 
-    public Proveedor(String rs,String nombreYApellido,String cuitODni,Direccion unaDireccion) {
+    public Proveedor(String nombre, String apellido, String dni, Direccion unaDireccion) {
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.documento=dni;
+        this.direccion=unaDireccion;
+        this.presupuestos= new ArrayList<Presupuesto>();
+    }
+
+    public Proveedor(String rs, String cuitOcuil, Direccion unaDireccion) {
         this.razonSocial=rs;
-        this.nombreApellido=nombreYApellido;
-        this.cuitODni=cuitODni;
+        this.documento=cuitOcuil;
         this.direccion=unaDireccion;
         this.presupuestos= new ArrayList<Presupuesto>();
     }
@@ -25,11 +51,11 @@ public class Proveedor {
     public String getRazonSocial() {
         return razonSocial;
     }
-    public String getNombreApellido() {
-        return nombreApellido;
+    public String getNombre() {
+        return nombre;
     }
-    public String getCuitODni() {
-        return cuitODni;
+    public String getDocumento() {
+        return documento;
     }
     public Direccion getDireccion() {
         return direccion;
@@ -38,6 +64,7 @@ public class Proveedor {
         return presupuestos;
     }
     public Presupuesto getPresupuestoCriterio(CriterioSeleccionProveedor criterio){ return criterio.seleccionarPresupuesto(presupuestos); }
-    public void setNombreApellido(String nombreApellido) { this.nombreApellido = nombreApellido; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setApellido(String apellido) { this.apellido= apellido; }
     public void setDireccion(Direccion direccion) { this.direccion = direccion; }
 }

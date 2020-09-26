@@ -32,6 +32,10 @@ public abstract class Entidad {
     @Transient
     protected List<Criterio> criterios;
 
+    @OneToOne
+    @JoinColumn(name = "entidad_juridica_asociada", referencedColumnName = "entidad")
+    protected EntidadJuridica entidad_juridica_asociada;
+
     public Entidad(String nombreEntidad, String descripcionEntidad){
         this.descripcion=descripcionEntidad;
         this.nombre=nombreEntidad;

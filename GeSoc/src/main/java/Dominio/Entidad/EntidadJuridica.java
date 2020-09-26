@@ -6,7 +6,7 @@ import javax.persistence.*;
 @DiscriminatorValue("J")
 @Embeddable
 public class EntidadJuridica extends Entidad{
-    @Embedded
+    @Transient
     private TipoEntidadJuridica tipoEntidadJuridica;
 
     public EntidadJuridica(String nombreEntidad, String descripcionEntidad, TipoEntidadJuridica tipo) {

@@ -14,7 +14,5 @@ public class LocalDateAttributeConverter implements AttributeConverter<LocalDate
     }
 
     @Override
-    public LocalDate convertToEntityAttribute(Date sqlDate) {
-        return sqlDate == null ? null : sqlDate.toLocalDate();
-    }
+    public LocalDate convertToEntityAttribute(Date sqlDate) { return sqlDate == null ? null : sqlDate.toLocalDate(); }
 }

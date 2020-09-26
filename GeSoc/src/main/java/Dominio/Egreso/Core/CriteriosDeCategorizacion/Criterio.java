@@ -20,7 +20,7 @@ public class Criterio {
     @ManyToOne
     @JoinColumn(name = "criterio_padre", referencedColumnName = "criterio")
     private Criterio criterio_padre;
-    
+
     @OneToMany(mappedBy = "hijos", cascade = CascadeType.ALL)
     private List<Criterio> hijos;
 

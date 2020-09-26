@@ -1,12 +1,15 @@
 package Dominio.Entidad;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Embedded;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "dom_entidades_juridicas")
 @Embeddable
 public abstract class TipoEntidadJuridica {
+    @Id
+    @GeneratedValue
+    private int entidad_juridica;
+
     @Column(name = "razon_social")
     protected String razonSocial;
 

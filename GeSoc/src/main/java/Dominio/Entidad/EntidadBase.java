@@ -1,7 +1,11 @@
 package Dominio.Entidad;
 
-public class EntidadBase extends Entidad{
+import javax.persistence.*;
 
+@Entity
+@DiscriminatorValue("B")
+public class EntidadBase extends Entidad{
+    @Embedded
     EntidadJuridica entidadJuridicaAsociada;
 
     public EntidadBase(String nombreEntidad, String descripcionEntidad,EntidadJuridica entidadAsociada) {

@@ -8,11 +8,34 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class>Dominio.BandejaMensajes.Mensaje</class>
-        <class>Dominio.BandejaMensajes.BandejaMensajes</class>
+        <class>Dominio.BandejaMensajes.Mensaje</class> <!-- Ok -->
+        <class>Dominio.BandejaMensajes.BandejaMensajes</class> <!-- Ok -->
         <class>Dominio.Usuario.Usuario</class>
         <class>Dominio.Egreso.Core.Egreso</class>
-        <class>Dominio.Egreso.Core.Proveedor</class>
+        <class>Dominio.Egreso.Core.Proveedor</class> <!-- Ok -->
+        <class>Dominio.Egreso.Core.Item</class> <!-- Ok -->
+        <class>Dominio.Egreso.Core.DocumentoComercial</class> <!-- Ok -->
+        <class>Dominio.Egreso.Core.TipoDocumentoComercial</class> <!-- Ok -->
+        <class>Dominio.Egreso.Core.MetodoDePago</class>
+        <class>Dominio.Egreso.Core.TipoDeMetodoDePago</class>
+        <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio</class>
+        <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio</class> <!-- Ok -->
+        <class>Dominio.Entidad.Sector</class> <!-- Ok -->
+        <class>Dominio.Entidad.Categorias.Categoria</class> <!-- Ok -->
+        <class>Dominio.Entidad.Categorias.TipoCategoria</class> <!-- Ok -->
+        <class>Dominio.Entidad.Entidad</class>
+        <class>Dominio.Entidad.EntidadBase</class>
+        <class>Dominio.Entidad.EntidadJuridica</class>
+        <class>Dominio.Entidad.TipoEntidadJuridica</class>
+        <class>Dominio.Entidad.DireccionPostal</class>
+        <class>Dominio.Entidad.Direccion</class>
+        <class>Dominio.Egreso.Core.Presupuesto</class>
+        <class>Dominio.Egreso.Core.Detalle</class> <!-- Ok -->
+        <class>Dominio.Ingreso.Ingreso</class> <!-- Ok -->
+        <class>Dominio.Moneda.Valor</class> <!-- Ok -->
+        <class>API.DTOs.PaisDTO</class> <!-- Ok -->
+        <class>API.DTOs.ProvinciaDTO</class> <!-- Ok -->
+        <class>API.DTOs.CiudadDTO</class> <!-- Ok -->
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
@@ -25,7 +48,7 @@
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
             <property name="use_sql_comments" value="true"/>
-            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
         </properties>
 
     </persistence-unit>

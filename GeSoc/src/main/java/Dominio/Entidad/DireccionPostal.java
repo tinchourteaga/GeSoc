@@ -1,18 +1,30 @@
 package Dominio.Entidad;
 
-import Lugares.Ciudad;
-import Lugares.Pais;
-import Lugares.Provincia;
+import API.DTOs.CiudadDTO;
+import API.DTOs.PaisDTO;
+import API.DTOs.ProvinciaDTO;
 
+import javax.persistence.*;
 
+@Embeddable
 public class DireccionPostal {
+    @Embedded
     private Direccion direccion;
-    private int cp;
-    private Pais pais;
-    private Provincia provincia;
-    private Ciudad ciudad;
 
-    public DireccionPostal(Direccion direccion, int cp, Pais pais) {
+    @Transient
+    private int cp;
+
+    @Transient
+    private PaisDTO pais;
+
+    @Transient
+    private ProvinciaDTO provincia;
+
+    @OneToOne
+    @JoinColumn(name = "ciudad")
+    private CiudadDTO ciudad;
+
+    public DireccionPostal(Direccion direccion, int cp, PaisDTO pais) {
 
         this.direccion = direccion;
         this.cp = cp;
@@ -35,27 +47,25 @@ public class DireccionPostal {
         this.cp = cp;
     }
 
-    public Pais getPais() {
-        return pais;
-    }
+    public PaisDTO getPais() { return pais; }
 
-    public void setPais(Pais pais) {
+    public void setPais(PaisDTO pais) {
         this.pais = pais;
     }
 
-    public Provincia getProvincia() {
+    public ProvinciaDTO getProvincia() {
         return provincia;
     }
 
-    public void setProvincia(Provincia provincia) {
+    public void setProvincia(ProvinciaDTO provincia) {
         this.provincia = provincia;
     }
 
-    public Ciudad getCiudad() {
+    public CiudadDTO getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(Ciudad ciudad) {
+    public void setCiudad(CiudadDTO ciudad) {
         this.ciudad = ciudad;
     }
 }

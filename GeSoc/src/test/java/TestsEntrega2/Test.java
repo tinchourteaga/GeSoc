@@ -1,12 +1,13 @@
 package TestsEntrega2;
 
 import Dominio.Egreso.Core.Egreso;
-import Dominio.Entidad.Categorias.*;
+import Dominio.Entidad.Categorias.Categoria;
+import Dominio.Entidad.Categorias.TipoCategoria;
 import Dominio.Entidad.Empresa;
 import Dominio.Entidad.EntidadJuridica;
 import Dominio.Entidad.Sector;
-import Dominio.Entidad.TipoEntidadJuridica;
-import org.junit.*;
+import org.junit.Assert;
+import org.junit.Before;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,9 +32,9 @@ public class Test {
 
         Sector actividad = new Sector(new ArrayList<>(),"AGROPECUARIO"," ");
 
-        Categoria categoria1 = new Categoria(TipoCategoria.MICRO,2,1000f);
-        Categoria categoria2 = new Categoria(TipoCategoria.MEDIANA_TRAMO_1,7,13000f);
-        Categoria categoria3 = new Categoria(TipoCategoria.MEDIANA_TRAMO_2,15,25000f);
+        Categoria categoria1 = new Categoria(actividad, TipoCategoria.MICRO,2,1000f);
+        Categoria categoria2 = new Categoria(actividad, TipoCategoria.MEDIANA_TRAMO_1,7,13000f);
+        Categoria categoria3 = new Categoria(actividad, TipoCategoria.MEDIANA_TRAMO_2,15,25000f);
 
         actividad.agregarCategoria(categoria1);
         actividad.agregarCategoria(categoria2);

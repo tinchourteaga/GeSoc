@@ -1,9 +1,10 @@
 package Dominio.Egreso.Core;
 
-import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
+import Dominio.Ingreso.Ingreso;
 import Dominio.Moneda.Valor;
 
 import javax.persistence.*;
@@ -18,8 +19,8 @@ public class Egreso {
     @GeneratedValue
     private int egreso;
 
-    // ver la relacion egreso - proveedor - presupuesto
-    @Transient
+    @ManyToOne
+    @JoinColumn(name = "proveedor", referencedColumnName = "proveedor")
     private Proveedor proveedorSeleccionado;
 
     @Column(name = "validado")
@@ -28,28 +29,34 @@ public class Egreso {
     @Column(name = "fecha", columnDefinition = "DATE")
     private LocalDate fecha;
 
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "valor")
     private Valor valor;
 
-    @Transient
-    private List<Item> listaItems ;
+    @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL)
+    private List<Item> listaItems;
 
-    @Transient
+    @Embedded
     private MetodoDePago metodoDePago;
 
-    @Transient
+    @OneToOne
+    @JoinColumn(name = "documento_comercial")
     private DocumentoComercial documentoComercial;
 
     @Transient
     private CriterioSeleccionProveedor criterioSeleccionProveedor;
 
-    @Transient
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Criterio> criterios;
+
+    @ManyToOne
+    @JoinColumn(name = "ingreso", referencedColumnName = "ingreso")
+    private Ingreso ingreso;
 
     public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
        this.fecha=unaFecha;
-        this.valor= new Valor(pais,importe);
+       this.valor= new Valor(pais,importe);
        this.listaItems=items;
        this.metodoDePago=metodo;
        this.documentoComercial=unDocumento;
@@ -90,11 +97,11 @@ public class Egreso {
         ValidadorDeOperacion.validarDefault(this);
     }
 
-    public List<Categoria> getCategorias() {
+    public List<CategoriaCriterio> getCategorias() {
 
-        List<Categoria> todasLasCategorias=new ArrayList();
-        criterios.forEach(criterio->criterio.getCategorias().forEach(categoria->todasLasCategorias.add(categoria)));
-        return todasLasCategorias;
+        List<CategoriaCriterio> todasLasCategoriaCriterios =new ArrayList();
+        criterios.forEach(criterio->criterio.getCategoriaCriterios().forEach(categoriaCriterio -> todasLasCategoriaCriterios.add(categoriaCriterio)));
+        return todasLasCategoriaCriterios;
     }
 
     public boolean isEstaVerificada() {

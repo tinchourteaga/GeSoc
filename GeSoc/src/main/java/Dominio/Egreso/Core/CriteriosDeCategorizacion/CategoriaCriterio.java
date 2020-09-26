@@ -1,11 +1,26 @@
 package Dominio.Egreso.Core.CriteriosDeCategorizacion;
 
-public class Categoria {
-    //El Usuario va a poder crear sus propias categorias
-   private String descripicion;
-   private String nombreDeCategoria;
+import javax.persistence.*;
 
-    public Categoria(String desc, String nombreDeCategoria) {
+@Entity
+@Table(name = "dom_categorias")
+public class CategoriaCriterio {
+    //El Usuario va a poder crear sus propias categorias
+    @Id
+    @GeneratedValue
+    private int categoria;
+
+    @Column(name = "nombre")
+    private String nombreDeCategoria;
+
+    @Column(name = "descripcion")
+    private String descripicion;
+
+    @ManyToOne
+    @JoinColumn(name = "criterio", referencedColumnName = "criterio")
+    private Criterio criterio;
+
+    public CategoriaCriterio(String desc, String nombreDeCategoria) {
         this.descripicion=desc;
         this.nombreDeCategoria=nombreDeCategoria;
     }

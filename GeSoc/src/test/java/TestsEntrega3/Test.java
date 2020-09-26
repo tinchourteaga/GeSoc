@@ -1,11 +1,12 @@
 package TestsEntrega3;
 
+import API.ControllerMercadoLibre;
 import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
-import Dominio.Egreso.Core.CriteriosDeCategorizacion.Categoria;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Core.*;
@@ -17,6 +18,7 @@ import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
 import Dominio.Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Direccion;
+import Dominio.Entidad.DireccionPostal;
 import Dominio.Rol.Acciones.AgregarJerarquia;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import Dominio.Rol.RolAdministrador;
@@ -31,8 +33,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Test {
+    ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
 
-    Direccion direc = new Direccion("Larralde", "2454", "3");
+    DireccionPostal direc = new DireccionPostal(new Direccion("Larralde", "2454", "3", "A"), 1850, varController.getPais("Argentina"));
 
     @org.junit.Test
     public void testValidadorNoPasaCriterio(){
@@ -97,13 +100,13 @@ public class Test {
     public void testJerarquias() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun, NoTengoPermisosException, NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
 
         RolAdministrador roladmin=new RolAdministrador();
-        List<Categoria> categorias=new ArrayList<>();
-        categorias.add(new Categoria("descripcion1","nombre1"));
-        categorias.add(new Categoria("descripcion2","nombre2"));
-        categorias.add(new Categoria("descripcion3","nombre3"));
-        categorias.add(new Categoria("descripcion4","nombre4"));
-        Criterio criterioDummy=new Criterio(categorias,"dummy","dummy");
-        Criterio criterioDummyHijo=new Criterio(categorias,"dummyHijo","dummyHijo");
+        List<CategoriaCriterio> categoriaCriterios =new ArrayList<>();
+        categoriaCriterios.add(new CategoriaCriterio("descripcion1","nombre1"));
+        categoriaCriterios.add(new CategoriaCriterio("descripcion2","nombre2"));
+        categoriaCriterios.add(new CategoriaCriterio("descripcion3","nombre3"));
+        categoriaCriterios.add(new CategoriaCriterio("descripcion4","nombre4"));
+        Criterio criterioDummy=new Criterio(categoriaCriterios,"dummy","dummy");
+        Criterio criterioDummyHijo=new Criterio(categoriaCriterios,"dummyHijo","dummyHijo");
         AgregarJerarquia agregarJerarquia=new AgregarJerarquia(criterioDummy,criterioDummyHijo);
         roladmin.getAcciones().add(agregarJerarquia);
         RolAdministrador rolPrueba = new RolAdministrador();

@@ -6,14 +6,27 @@ import API.DTOs.MonedaDTO;
 import API.Excepciones.ExcepcionNoSePudoConvertir;
 import API.Excepciones.NoExisteMonedaException;
 
+import javax.persistence.*;
 import java.io.IOException;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "mon_valor")
 public class Valor {
+    @Id
+    @GeneratedValue
+    private int moneda;
 
+    @Column(name = "nombre")
     private String tipoDeMoneda;
-    private String pais;
+
+    @Column(name = "simbolo")
     private String simbolo;
+
+    @Column(name = "pais")
+    private String pais;
+
+    @Column(name = "importe")
     private double importe;
 
     public Valor(String pais, double importe) {

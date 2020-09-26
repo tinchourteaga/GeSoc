@@ -9,13 +9,13 @@ import java.time.LocalDate;
 public class Mensaje {
     @Id
     @GeneratedValue
-    private int id_mensaje;
+    private int mensaje;
 
     @ManyToOne
     @JoinColumn(name = "usuario", referencedColumnName = "usuario")
     private Usuario usuario;
 
-    @Column(name = "mensaje")
+    @Column(name = "cuerpo_mensaje")
     private String mensajeResultado;
 
     @Column(name = "fecha_creado", columnDefinition = "DATE")

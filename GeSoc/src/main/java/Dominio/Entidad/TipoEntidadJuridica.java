@@ -1,12 +1,31 @@
 package Dominio.Entidad;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
+import javax.persistence.Transient;
+
+@Embeddable
 public abstract class TipoEntidadJuridica {
+    @Column(name = "razon_social")
     protected String razonSocial;
+
+    @Column(name = "cuit_cuil")
     protected String cuit;
+
+    @Embedded
     protected DireccionPostal direccionPostal;
+
+    @Column(name = "cod_igj")
     protected String codigoDeInscripcion;
+
+    @Transient // Ver
     protected Sector actividad;
+
+    @Column(name = "cant_personal")
     protected Integer cantidadPersonal;
+
+    @Column(name = "prom_ventas_anuales")
     protected Float promedioVentasAnuales;
 
     //GETTERS Y SETTERS

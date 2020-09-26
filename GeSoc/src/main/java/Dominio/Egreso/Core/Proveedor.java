@@ -1,7 +1,7 @@
 package Dominio.Egreso.Core;
 
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-import Dominio.Entidad.Direccion;
+import Dominio.Entidad.DireccionPostal;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -26,14 +26,16 @@ public class Proveedor {
     @Column(name = "nro_documento")
     private String documento;
 
-    @Transient
-    private Direccion direccion;
+    @Embedded
+    private DireccionPostal direccion;
 
-    //@OneToMany(mappedBy = "proveedorSeleccionado", cascade = CascadeType.ALL)
-    @Transient
+    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL)
     private List<Presupuesto> presupuestos;
 
-    public Proveedor(String nombre, String apellido, String dni, Direccion unaDireccion) {
+    @OneToMany(mappedBy = "proveedorSeleccionado", cascade = CascadeType.ALL)
+    private List<Egreso> egreso;
+
+    public Proveedor(String nombre, String apellido, String dni, DireccionPostal unaDireccion) {
         this.nombre=nombre;
         this.apellido=apellido;
         this.documento=dni;
@@ -41,7 +43,7 @@ public class Proveedor {
         this.presupuestos= new ArrayList<Presupuesto>();
     }
 
-    public Proveedor(String rs, String cuitOcuil, Direccion unaDireccion) {
+    public Proveedor(String rs, String cuitOcuil, DireccionPostal unaDireccion) {
         this.razonSocial=rs;
         this.documento=cuitOcuil;
         this.direccion=unaDireccion;
@@ -57,7 +59,7 @@ public class Proveedor {
     public String getDocumento() {
         return documento;
     }
-    public Direccion getDireccion() {
+    public DireccionPostal getDireccion() {
         return direccion;
     }
     public List<Presupuesto> getPresupuestos() {
@@ -66,5 +68,5 @@ public class Proveedor {
     public Presupuesto getPresupuestoCriterio(CriterioSeleccionProveedor criterio){ return criterio.seleccionarPresupuesto(presupuestos); }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setApellido(String apellido) { this.apellido= apellido; }
-    public void setDireccion(Direccion direccion) { this.direccion = direccion; }
+    public void setDireccion(DireccionPostal direccion) { this.direccion = direccion; }
 }

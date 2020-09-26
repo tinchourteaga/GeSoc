@@ -28,6 +28,7 @@ public class Usuario {
     @Column(name = "clave")
     private String contrasenia;
 
+    //@Embedded
     @Transient
     private Rol rol;
 

@@ -1,5 +1,6 @@
 package Dominio.Usuario;
 
+import Converters.RolAttributeConverter;
 import Dominio.BandejaMensajes.BandejaMensajes;
 import Dominio.Contrasenia.Core.ValidadorDeContrasenia;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
@@ -28,8 +29,8 @@ public class Usuario {
     @Column(name = "clave")
     private String contrasenia;
 
-   // @Column(name = "rol", columnDefinition = "ROL")
-    @Transient
+    @Column(name = "rol")
+    @Convert(converter = RolAttributeConverter.class)
     private Rol rol;
 
     @Embedded

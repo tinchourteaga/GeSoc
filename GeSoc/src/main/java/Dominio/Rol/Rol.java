@@ -3,10 +3,8 @@ package Dominio.Rol;
 import Dominio.Rol.Acciones.Accion;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 
-import javax.persistence.Embeddable;
 import java.util.List;
 
-@Embeddable
 public abstract class Rol {
     protected List<Accion> acciones;
 

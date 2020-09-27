@@ -5,9 +5,12 @@ import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Ingreso.Ingreso;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -79,6 +82,16 @@ public class Main {
 
         //Servidor.levantarServidor();
 
-        ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        Ingreso unIngreso = new Ingreso("Argentina",1557, LocalDate.parse("2014-02-14"),"pruebita",new ArrayList<>());
+        Ingreso otroIngreso = new Ingreso("Brasil",1357, LocalDate.parse("2020-02-07"),"pruebita2",new ArrayList<>());
+
+        List<Ingreso> ingresos = new ArrayList<>();
+
+        ingresos.add(unIngreso);
+        ingresos.add(otroIngreso);
+
+        ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), ingresos,new ArrayList<>(),new ArrayList<>());
+
+        //ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
     }
 }

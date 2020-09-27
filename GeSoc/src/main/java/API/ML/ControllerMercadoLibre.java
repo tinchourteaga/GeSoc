@@ -1,7 +1,11 @@
-package API;
+package API.ML;
 
-import API.DTOs.*;
-import API.Excepciones.*;
+import API.ML.DTOs.*;
+import API.ML.Excepciones.ExcepcionCiudadNoEncontrada;
+import API.ML.Excepciones.ExcepcionNoSePudoConvertir;
+import API.ML.Excepciones.ExcepcionProvinciaNoEncontrada;
+import API.ML.Excepciones.NoExisteMonedaException;
+import API.RequestMaker.RequestMaker;
 import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
@@ -12,14 +16,10 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 
 public class ControllerMercadoLibre {
@@ -90,11 +90,7 @@ public class ControllerMercadoLibre {
 
     private HttpEntity crearRequest(String pedido) throws IOException {
         String url = urlDominio+pedido;
-        CloseableHttpClient client = HttpClients.createDefault();
-        HttpGet get = new HttpGet(url);
-        CloseableHttpResponse resp = null;
-        resp = client.execute(get);
-        return resp.getEntity();
+      return RequestMaker.getInstance().crearGET(url);
     }
 
     private void pedirPaises() throws IOException {

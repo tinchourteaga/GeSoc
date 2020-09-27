@@ -1,4 +1,4 @@
-package API.DTOs;
+package API.ML.DTOs;
 
 import Lugares.Ciudad;
 import Lugares.Pais;

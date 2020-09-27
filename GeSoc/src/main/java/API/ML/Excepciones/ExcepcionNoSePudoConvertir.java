@@ -1,4 +1,4 @@
-package API.Excepciones;
+package API.ML.Excepciones;
 
 public class ExcepcionNoSePudoConvertir extends Exception {
     public ExcepcionNoSePudoConvertir(String nombreMonedaActual, String nombreMonedaAConvertir) {

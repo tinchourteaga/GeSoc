@@ -1,4 +1,4 @@
-package API.Excepciones;
+package API.ML.Excepciones;
 
 public class ExcepcionProvinciaNoEncontrada extends Exception {
     public ExcepcionProvinciaNoEncontrada(String id) {

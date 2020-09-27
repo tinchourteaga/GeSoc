@@ -1,4 +1,4 @@
-package API.Excepciones;
+package API.ML.Excepciones;
 
 public class NoExisteMonedaException extends Throwable {
     public NoExisteMonedaException(String nombreMoneda) {

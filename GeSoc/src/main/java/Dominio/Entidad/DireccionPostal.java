@@ -1,8 +1,8 @@
 package Dominio.Entidad;
 
-import API.DTOs.CiudadDTO;
-import API.DTOs.PaisDTO;
-import API.DTOs.ProvinciaDTO;
+import API.ML.DTOs.CiudadDTO;
+import API.ML.DTOs.PaisDTO;
+import API.ML.DTOs.ProvinciaDTO;
 
 import javax.persistence.*;
 

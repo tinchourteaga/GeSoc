@@ -1,4 +1,4 @@
-package API.DTOs;
+package API.ML.DTOs;
 
 import Persistencia.InterfacesPersistencia.IdPersistedClass;
 import Persistencia.InterfacesPersistencia.NamePersistedClass;

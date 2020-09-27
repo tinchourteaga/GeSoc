@@ -1,4 +1,4 @@
-package API.DTOs;
+package API.ML.DTOs;
 
 public class ConversionDTO {
     private MonedaDTO monedaActual;

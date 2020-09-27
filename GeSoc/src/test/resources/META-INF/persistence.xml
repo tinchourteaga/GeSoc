@@ -31,15 +31,15 @@
         <class>Dominio.Entidad.EntidadBase</class> <!-- Ok -->
         <class>Dominio.Entidad.EntidadJuridica</class> <!-- Ok -->
         <class>Dominio.Entidad.TipoEntidadJuridica</class> <!-- Ok -->
-        <class>Dominio.Entidad.DireccionPostal</class>
-        <class>Dominio.Entidad.Direccion</class>
+        <class>Dominio.Entidad.DireccionPostal</class> <!-- Ok -->
+        <class>Dominio.Entidad.Direccion</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.Presupuesto</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.Detalle</class> <!-- Ok -->
         <class>Dominio.Ingreso.Ingreso</class> <!-- Ok -->
         <class>Dominio.Moneda.Valor</class> <!-- Ok -->
-        <class>API.DTOs.PaisDTO</class>
-        <class>API.DTOs.ProvinciaDTO</class>
-        <class>API.DTOs.CiudadDTO</class>
+        <class>Lugares.Pais</class> <!-- Ok -->
+        <class>Lugares.Provincia</class> <!-- Ok -->
+        <class>Lugares.Ciudad</class> <!-- Ok -->
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>

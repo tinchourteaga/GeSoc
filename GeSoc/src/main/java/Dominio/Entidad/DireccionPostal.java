@@ -1,8 +1,8 @@
 package Dominio.Entidad;
 
-import API.ML.DTOs.CiudadDTO;
-import API.ML.DTOs.PaisDTO;
-import API.ML.DTOs.ProvinciaDTO;
+import Lugares.Ciudad;
+import Lugares.Pais;
+import Lugares.Provincia;
 
 import javax.persistence.*;
 
@@ -15,16 +15,16 @@ public class DireccionPostal {
     private int cp;
 
     @Transient
-    private PaisDTO pais;
+    private Pais pais;
 
     @Transient
-    private ProvinciaDTO provincia;
+    private Provincia provincia;
 
     @OneToOne
     @JoinColumn(name = "ciudad")
-    private CiudadDTO ciudad;
+    private Ciudad ciudad;
 
-    public DireccionPostal(Direccion direccion, int cp, PaisDTO pais) {
+    public DireccionPostal(Direccion direccion, int cp, Pais pais) {
 
         this.direccion = direccion;
         this.cp = cp;
@@ -47,25 +47,25 @@ public class DireccionPostal {
         this.cp = cp;
     }
 
-    public PaisDTO getPais() { return pais; }
+    public Pais getPais() { return pais; }
 
-    public void setPais(PaisDTO pais) {
+    public void setPais(Pais pais) {
         this.pais = pais;
     }
 
-    public ProvinciaDTO getProvincia() {
+    public Provincia getProvincia() {
         return provincia;
     }
 
-    public void setProvincia(ProvinciaDTO provincia) {
+    public void setProvincia(Provincia provincia) {
         this.provincia = provincia;
     }
 
-    public CiudadDTO getCiudad() {
+    public Ciudad getCiudad() {
         return ciudad;
     }
 
-    public void setCiudad(CiudadDTO ciudad) {
+    public void setCiudad(Ciudad ciudad) {
         this.ciudad = ciudad;
     }
 }

@@ -1,6 +1,5 @@
 package TestsEntrega3;
 
-import API.ML.ControllerMercadoLibre;
 import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
@@ -23,6 +22,7 @@ import Dominio.Rol.Acciones.AgregarJerarquia;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import Dominio.Rol.RolAdministrador;
 import Dominio.Usuario.Usuario;
+import Lugares.Pais;
 import TestsEntrega3.CriterioDummy.CriterioFalla;
 import org.junit.Assert;
 
@@ -33,9 +33,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Test {
-    ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
-
-    DireccionPostal direc = new DireccionPostal(new Direccion("Larralde", "2454", "3", "A"), 1850, varController.getPais("Argentina"));
+    DireccionPostal direc = new DireccionPostal(new Direccion("Larralde", "2454", "3", "A"), 1850, new Pais("AR","Argentina"));
 
     @org.junit.Test
     public void testValidadorNoPasaCriterio(){

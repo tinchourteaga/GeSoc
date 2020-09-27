@@ -10,11 +10,11 @@ import java.util.List;
 
 public class VinculadorPropio implements Vinculador {
 
-    private String urlDominio="";//poner el dominio aca
+    private String urlDominio="http://localhost:4575/";//poner el dominio aca
     @Override
     public void vincular(List<Egreso> egresos, List<Ingreso> ingresos,List<String> criterios, List<Condicion> condiciones) throws IOException {
 
-        String json="{\"ingresos\" :[";
+        String json="\"vinculacion\":{\"ingresos\" :[";
         String finalJson = json;
         for (int i=0;i<ingresos.size();i++){
                 json= json.concat(new Gson().toJson(ingresos.get(i)));

@@ -1,6 +1,8 @@
 package Dominio;
 
-import Servidor.Servidor;
+import API.Vinculacion.ControllerVinculacion;
+
+import java.util.ArrayList;
 
 public class Main {
 
@@ -70,6 +72,9 @@ public class Main {
 
         //varController.getPais("Argentina");
 
-        Servidor.levantarServidor();
+        //Servidor.levantarServidor();
+
+
+        ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
     }
 }

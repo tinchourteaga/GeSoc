@@ -12,7 +12,6 @@ public class Sector {
     @GeneratedValue
     private int sector;
 
-    // VER QUÉ CARAJOS ES EL FETCH Y LAzy
     @OneToMany(mappedBy = "sector", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Categoria> categorias;
 

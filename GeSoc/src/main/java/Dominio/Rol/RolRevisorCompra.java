@@ -12,15 +12,15 @@ import java.util.List;
 @Embeddable
 public class RolRevisorCompra extends Rol{
     @ManyToMany(cascade = CascadeType.ALL)
-    private List<Egreso> operacionesARevisar;
+    private List<Egreso> egresos;
 
     public RolRevisorCompra() {
-        this.operacionesARevisar = new ArrayList<Egreso>();
+        this.egresos = new ArrayList<Egreso>();
         this.acciones = new ArrayList();
     }
 
     public List<Egreso> getOperacionesARevisar() {
-        return operacionesARevisar;
+        return egresos;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class RolRevisorCompra extends Rol{
     }
 
     public void agregarEgreso(Egreso egreso){
-        operacionesARevisar.add(egreso);
+        egresos.add(egreso);
     }
 }
 

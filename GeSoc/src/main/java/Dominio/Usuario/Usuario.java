@@ -8,6 +8,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
 import Dominio.Rol.Rol;
+import Dominio.Rol.RolRevisorCompra;
 
 import javax.persistence.*;
 import java.io.IOException;
@@ -28,9 +29,11 @@ public class Usuario {
     @Column(name = "clave")
     private String contrasenia;
 
-    @Column(name = "rol")
     @Embedded
     private Rol rol;
+
+    @Embedded
+    private RolRevisorCompra revisor;
 
     @Embedded
     private BandejaMensajes bandejaDeMensajes;

@@ -5,10 +5,14 @@ import Dominio.Rol.Exepciones.NoTengoPermisosException;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 import java.util.List;
+
 @Embeddable
 public abstract class Rol {
+    @Transient
     protected List<Accion> acciones;
+
     @Column(name = "rol")
     protected String nombre;
 

@@ -23,13 +23,13 @@ public abstract class Entidad {
     @Column(name = "descripcion")
     protected String descripcion;
 
-    @Transient
+    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     protected List<Egreso> egresos;
 
     @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     protected List<Ingreso> ingresos;
 
-    @Transient
+    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     protected List<Criterio> criterios;
 
     @OneToOne

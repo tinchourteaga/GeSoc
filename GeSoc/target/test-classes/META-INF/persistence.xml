@@ -10,7 +10,7 @@
 
         <class>Dominio.BandejaMensajes.Mensaje</class> <!-- Ok -->
         <class>Dominio.BandejaMensajes.BandejaMensajes</class> <!-- Ok -->
-        <class>Dominio.Usuario.Usuario</class>
+        <class>Dominio.Usuario.Usuario</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.Egreso</class>
         <class>Dominio.Egreso.Core.Proveedor</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.Item</class> <!-- Ok -->

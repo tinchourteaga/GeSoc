@@ -13,7 +13,7 @@ public class Presupuesto {
     @GeneratedValue
     private int presupuesto;
 
-    @Transient
+    @OneToMany(mappedBy = "criterio", cascade = CascadeType.ALL)
     private List<Criterio> criterios;
 
     @Column(name = "valor")

@@ -10,15 +10,15 @@
 
         <class>Dominio.BandejaMensajes.Mensaje</class> <!-- Ok -->
         <class>Dominio.BandejaMensajes.BandejaMensajes</class> <!-- Ok -->
-        <class>Dominio.Usuario.Usuario</class>
-        <class>Dominio.Egreso.Core.Egreso</class>
+        <class>Dominio.Usuario.Usuario</class> <!-- Ok -->
+        <class>Dominio.Egreso.Core.Egreso</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.Proveedor</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.Item</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.DocumentoComercial</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.TipoDocumentoComercial</class> <!-- Ok -->
-        <class>Dominio.Egreso.Core.MetodoDePago</class>
-        <class>Dominio.Egreso.Core.TipoDeMetodoDePago</class>
-        <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio</class>
+        <class>Dominio.Egreso.Core.MetodoDePago</class> <!-- Ok -->
+        <class>Dominio.Egreso.Core.TipoDeMetodoDePago</class> <!-- Ok -->
+        <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio</class> <!-- Ok -->
         <class>Dominio.Entidad.Sector</class> <!-- Ok -->
         <class>Dominio.Entidad.Categorias.Categoria</class> <!-- Ok -->
@@ -29,7 +29,7 @@
         <class>Dominio.Entidad.TipoEntidadJuridica</class>
         <class>Dominio.Entidad.DireccionPostal</class>
         <class>Dominio.Entidad.Direccion</class>
-        <class>Dominio.Egreso.Core.Presupuesto</class>
+        <class>Dominio.Egreso.Core.Presupuesto</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.Detalle</class> <!-- Ok -->
         <class>Dominio.Ingreso.Ingreso</class> <!-- Ok -->
         <class>Dominio.Moneda.Valor</class> <!-- Ok -->

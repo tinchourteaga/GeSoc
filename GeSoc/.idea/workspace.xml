@@ -20,10 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83cdc46c-7ec7-4c5c-a38e-7700bfdda6a3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Converters/RolAttributeConverter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Rol/Rol.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Rol/Rol.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Usuario/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Usuario/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/BandejaMensajes/Mensaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/BandejaMensajes/Mensaje.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/CriteriosDeCategorizacion/Criterio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/CriteriosDeCategorizacion/Criterio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Egreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Egreso.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Presupuesto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Presupuesto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Entidad/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Entidad/Entidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -236,26 +240,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1366.728@0.0.1366.728" timestamp="1601159719883" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1601161400280">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1601169916089">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1601161400280" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1601161400280">
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1601169916089" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1601169916089">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1601161400280" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1601161400280">
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1601169916089" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1601169916088">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1601161400280" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1601161400280">
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1601169916088" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1601169916089">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1601161400280" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1601169916089" />
     <state x="213" y="19" key="Maven.ArtifactSearchDialog" timestamp="1600897200146">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

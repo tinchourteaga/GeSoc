@@ -15,7 +15,8 @@ public class Mensaje {
     @JoinColumn(name = "usuario", referencedColumnName = "usuario")
     private Usuario usuario;
 
-    @Column(name = "cuerpo_mensaje")
+    @Lob
+    @Column(name = "cuerpo_mensaje", length = 15000)
     private String mensajeResultado;
 
     @Column(name = "fecha_creado", columnDefinition = "DATE")

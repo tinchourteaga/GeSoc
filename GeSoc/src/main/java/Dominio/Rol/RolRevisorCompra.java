@@ -5,12 +5,13 @@ import Dominio.Rol.Acciones.Accion;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 
 import javax.persistence.CascadeType;
-import javax.persistence.OneToMany;
+import javax.persistence.Embeddable;
+import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
-
+@Embeddable
 public class RolRevisorCompra extends Rol{
-    @OneToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Egreso> operacionesARevisar;
 
     public RolRevisorCompra() {

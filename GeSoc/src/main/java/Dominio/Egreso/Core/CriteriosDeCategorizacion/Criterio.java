@@ -1,6 +1,8 @@
 package Dominio.Egreso.Core.CriteriosDeCategorizacion;
 
 import Dominio.Egreso.Core.Egreso;
+import Dominio.Egreso.Core.Presupuesto;
+import Dominio.Entidad.Entidad;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,6 +31,14 @@ public class Criterio {
 
     @Column(name = "descripcion")
     private String descripcion;
+
+    @ManyToOne
+    @JoinColumn(name = "entidad", referencedColumnName = "entidad")
+    private Entidad entidad;
+
+    @ManyToOne
+    @JoinColumn(name = "presupuesto", referencedColumnName = "presupuesto")
+    private Presupuesto presupuesto;
 
     public Criterio(List<CategoriaCriterio> categoriaCriterios, String nombreCriterio, String descripcion) {
         this.categoriaCriterios = categoriaCriterios;

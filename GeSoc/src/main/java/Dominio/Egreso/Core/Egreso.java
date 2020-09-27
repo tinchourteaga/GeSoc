@@ -4,6 +4,7 @@ import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
+import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Ingreso;
 import Dominio.Moneda.Valor;
 
@@ -52,6 +53,10 @@ public class Egreso {
     @ManyToOne
     @JoinColumn(name = "ingreso", referencedColumnName = "ingreso")
     private Ingreso ingreso;
+
+    @ManyToOne
+    @JoinColumn(name = "entidad", referencedColumnName = "entidad")
+    private Entidad entidad;
 
     public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();

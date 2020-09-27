@@ -6,11 +6,12 @@ class Criterio(metaclass=abc.ABCMeta):
         pass
 
 class OrdenValorPrimeroEgreso(Criterio):
+
     def aplicar(self,ingresos, egresos, condicion):
         print("OrdenValorPrimeroEgreso")
 
 
-class OrdenValorPrimeroIgreso(Criterio):
+class OrdenValorPrimeroIngreso(Criterio):
     def aplicar(self,ingresos, egresos,condicion):
         print("OrdenValorPrimeroIgreso")
         ingresos.sort(key=lambda x: x.getValor())

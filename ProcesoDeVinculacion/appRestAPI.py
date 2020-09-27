@@ -22,8 +22,5 @@ class appRestAPI:
     @app.route('/api/add_message/<uuid>', methods=['POST'])
     def add_message(uuid):
         content = request.get_json(silent=True)
-        print(content) # Do your processing
-        #content["mytext"] = "Respuesta"
         asociar = Vinculacion(content)
-        print(content)  # Do your processing
         return content

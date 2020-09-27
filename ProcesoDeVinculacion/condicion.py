@@ -9,8 +9,9 @@ class Condicion(metaclass=abc.ABCMeta):
         pass
 
 class PeriodoAceptacion(Condicion):
-    def __init__(self, valor):
-        self.valor = valor
+
+    def __init__(self, parametros: list):
+        self.valor = parametros[0]
 
     def cumple(self,ingreso: Importe,egreso:Importe) -> bool:
          if (ingreso.getFecha() - egreso.getFecha()).days < self.valor :
@@ -18,3 +19,5 @@ class PeriodoAceptacion(Condicion):
          else:
             return False
 
+    def getValor(self):
+        return self.valor

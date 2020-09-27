@@ -1,7 +1,12 @@
 package Dominio.Entidad;
 
-public class EntidadJuridica extends Entidad{
+import javax.persistence.*;
 
+@Entity
+@DiscriminatorValue("J")
+@Embeddable
+public class EntidadJuridica extends Entidad{
+    @Transient
     private TipoEntidadJuridica tipoEntidadJuridica;
 
     public EntidadJuridica(String nombreEntidad, String descripcionEntidad, TipoEntidadJuridica tipo) {

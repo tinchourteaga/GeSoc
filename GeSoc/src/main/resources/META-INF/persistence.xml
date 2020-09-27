@@ -8,20 +8,28 @@
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
-        <class></class>
+        <class>Dominio.BandejaMensajes.Mensaje</class>
+        <class>Dominio.BandejaMensajes.BandejaMensajes</class>
+        <class>Dominio.Usuario.Usuario</class>
+        <class>Dominio.Egreso.Core.Egreso</class>
+        <class>Dominio.Egreso.Core.Proveedor</class>
+        <class>Dominio.Egreso.Core.Item</class> <!-- Ok -->
+        <class>Dominio.Entidad.Sector</class>
+        <class>Dominio.Entidad.Categorias.Categoria</class>
+        <class>Dominio.Entidad.Categorias.TipoCategoria</class>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class"/>
 
-            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" />
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/unisocial" />
-            <property name="hibernate.connection.username" value="root" />
-            <property name="hibernate.connection.password" value="123456" />
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gesoc5-tst?serverTimezone=UTC"/>
+            <property name="hibernate.connection.username" value="root"/>
+            <property name="hibernate.connection.password" value="5s56MrEh0"/>
 
-            <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.format_sql" value="true" />
-            <property name="use_sql_comments" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="use_sql_comments" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
         </properties>
 
     </persistence-unit>

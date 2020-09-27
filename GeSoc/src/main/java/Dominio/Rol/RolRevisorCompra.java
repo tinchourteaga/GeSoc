@@ -1,24 +1,26 @@
 package Dominio.Rol;
 
-import Dominio.BandejaMensajes.BandejaMensajes;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Rol.Acciones.Accion;
-import Dominio.Rol.Acciones.RevisarBandeja;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Embeddable;
+import javax.persistence.ManyToMany;
 import java.util.ArrayList;
 import java.util.List;
-
+@Embeddable
 public class RolRevisorCompra extends Rol{
-
-    private List<Egreso> operacionesARevisar;
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Egreso> egresos;
 
     public RolRevisorCompra() {
-        this.operacionesARevisar = new ArrayList<Egreso>();
+        this.egresos = new ArrayList<Egreso>();
         this.acciones = new ArrayList();
     }
 
     public List<Egreso> getOperacionesARevisar() {
-        return operacionesARevisar;
+        return egresos;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class RolRevisorCompra extends Rol{
     }
 
     public void agregarEgreso(Egreso egreso){
-        operacionesARevisar.add(egreso);
+        egresos.add(egreso);
     }
 }
 

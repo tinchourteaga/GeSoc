@@ -1,12 +1,41 @@
 package Dominio.Entidad;
 
+import Dominio.Entidad.Categorias.Categoria;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "dom_entidades_juridicas")
+@Embeddable
 public abstract class TipoEntidadJuridica {
+    @Id
+    @GeneratedValue
+    private int entidad_juridica;
+
+    @Column(name = "razon_social")
     protected String razonSocial;
+
+    @Column(name = "cuit_cuil")
     protected String cuit;
+
+    @Embedded
     protected DireccionPostal direccionPostal;
+
+    @Column(name = "cod_igj")
     protected String codigoDeInscripcion;
+
+    @OneToOne
+    @JoinColumn(name = "actividad", referencedColumnName = "sector")
     protected Sector actividad;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria", referencedColumnName = "categoria")
+    protected Categoria categoria;
+
+    @Column(name = "cant_personal")
     protected Integer cantidadPersonal;
+
+    @Column(name = "prom_ventas_anuales")
     protected Float promedioVentasAnuales;
 
     //GETTERS Y SETTERS

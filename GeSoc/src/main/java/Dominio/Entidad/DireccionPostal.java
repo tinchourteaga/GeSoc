@@ -4,12 +4,24 @@ import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
 
+import javax.persistence.*;
 
+@Embeddable
 public class DireccionPostal {
+    @Embedded
     private Direccion direccion;
+
+    @Transient
     private int cp;
+
+    @Transient
     private Pais pais;
+
+    @Transient
     private Provincia provincia;
+
+    @OneToOne
+    @JoinColumn(name = "ciudad")
     private Ciudad ciudad;
 
     public DireccionPostal(Direccion direccion, int cp, Pais pais) {
@@ -35,9 +47,7 @@ public class DireccionPostal {
         this.cp = cp;
     }
 
-    public Pais getPais() {
-        return pais;
-    }
+    public Pais getPais() { return pais; }
 
     public void setPais(Pais pais) {
         this.pais = pais;

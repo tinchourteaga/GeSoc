@@ -1,8 +1,24 @@
 package Lugares;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "geo_ciudades")
+
 public class Ciudad {
+    @Id
+    @GeneratedValue
+    private int ciudad;
+
+    @Transient
     String id;
+
+    @Column(name = "nombre")
     String name;
+
+    @ManyToOne
+    @JoinColumn(name = "provincia", referencedColumnName = "provincia")
+    private Provincia provincia;
 
     public Ciudad (String id, String name){
         this.id = id;

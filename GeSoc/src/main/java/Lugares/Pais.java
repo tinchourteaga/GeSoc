@@ -1,8 +1,23 @@
 package Lugares;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
+@Table(name = "geo_paises")
 public class Pais {
+    @Id
+    @GeneratedValue
+    private int pais;
+
+    @Transient
     String id;
+
+    @Column(name = "nombre")
     String name;
+
+    @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL)
+    private List<Provincia> provincias;
 
     public Pais (String id, String name){
         this.id = id;

@@ -1,5 +1,7 @@
 package Dominio.Entidad;
 
+import Dominio.Entidad.Categorias.Categoria;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,8 +24,13 @@ public abstract class TipoEntidadJuridica {
     @Column(name = "cod_igj")
     protected String codigoDeInscripcion;
 
-    @Transient // Ver
+    @OneToOne
+    @JoinColumn(name = "actividad", referencedColumnName = "sector")
     protected Sector actividad;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria", referencedColumnName = "categoria")
+    protected Categoria categoria;
 
     @Column(name = "cant_personal")
     protected Integer cantidadPersonal;

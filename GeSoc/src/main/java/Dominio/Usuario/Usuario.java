@@ -50,8 +50,14 @@ public class Usuario {
     public String getNombre() {
         return nombre;
     }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
     public String getApellido() {
         return apellido;
+    }
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
     public Rol getRol() {
         return rol;
@@ -67,8 +73,9 @@ public class Usuario {
     public String getContrasenia() {
         return contrasenia;
     }
+   // public void setContrasenia(String contrasenia){ this.contrasenia = contrasenia; }
 
-    private void setContrasenia (String contraseniaNueva) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
+    public void setContrasenia (String contraseniaNueva) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
         if(ValidadorDeContrasenia.validarContrasenia(contraseniaNueva)){
             this.contrasenia = contraseniaNueva;
         }

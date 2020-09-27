@@ -1,12 +1,17 @@
 package Dominio;
 
 import API.Vinculacion.ControllerVinculacion;
+import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
+import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         /*ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(19,33));
 
         Direccion direc = new Direccion("Larralde", "2454", "3");
@@ -73,7 +78,6 @@ public class Main {
         //varController.getPais("Argentina");
 
         //Servidor.levantarServidor();
-
 
         ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
     }

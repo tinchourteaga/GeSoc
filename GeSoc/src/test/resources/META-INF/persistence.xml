@@ -23,10 +23,10 @@
         <class>Dominio.Entidad.Sector</class> <!-- Ok -->
         <class>Dominio.Entidad.Categorias.Categoria</class> <!-- Ok -->
         <class>Dominio.Entidad.Categorias.TipoCategoria</class> <!-- Ok -->
-        <class>Dominio.Entidad.Entidad</class>
-        <class>Dominio.Entidad.EntidadBase</class>
-        <class>Dominio.Entidad.EntidadJuridica</class>
-        <class>Dominio.Entidad.TipoEntidadJuridica</class>
+        <class>Dominio.Entidad.Entidad</class> <!-- Ok -->
+        <class>Dominio.Entidad.EntidadBase</class> <!-- Ok -->
+        <class>Dominio.Entidad.EntidadJuridica</class> <!-- Ok -->
+        <class>Dominio.Entidad.TipoEntidadJuridica</class> <!-- Ok -->
         <class>Dominio.Entidad.DireccionPostal</class>
         <class>Dominio.Entidad.Direccion</class>
         <class>Dominio.Egreso.Core.Presupuesto</class> <!-- Ok -->

@@ -24,8 +24,10 @@ class Importe:
 
     def esImporteAplicable(self, importe):
         if self.importe >= importe:
+            print("aplicable")
             return True
         else:
+            print("NOaplicable")
             return False
 
     def RestarImporte(self,importe):

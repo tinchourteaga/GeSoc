@@ -1,17 +1,19 @@
 from flask import jsonify
 
-from condicion import PeriodoAceptacion
+from condiciones import Condiciones
 from criterio import OrdenValorPrimeroIngreso, OrdenValorPrimeroEgreso
+from criterios import Criterios
 from fecha import Fecha
 from importe import Importe
 
-import json
 
 class Vinculacion:
     ingresos=[]
     egresos=[]
-    criterios=[]
-    periodoMax = 0   #cantidad de dias posterior al ingreso donde vale asociarlo con el egreso.
+    criterios: Criterios = ""
+    condiciones: Condiciones=""
+
+    #cantidad de dias posterior al ingreso donde vale asociarlo con el egreso.
 
     def __init__(self,jsonInput):
         #Recibo el json con todo el dataset
@@ -32,15 +34,13 @@ class Vinculacion:
         return self.ingresos
     def getCriterios(self):
         return self.criterios
-    def getCondicion(self):
-        return self.periodoMax
+    def getCondiciones(self):
+        return self.condiciones
 
     def addIngreso(self,ingreso):
         self.ingresos.append(ingreso)
     def addEgreso(self,egreso):
         self.egresos.append(egreso)
-    def addCriterio(self,criterio):
-        self.criterios.append(criterio)
 
     def inicializarIngresos(self,ingresos):
         # Cargo ingresos
@@ -48,7 +48,7 @@ class Vinculacion:
         for ingreso in ingresos:
             fecha = Fecha.toString(ingreso.get("fecha"))
             temp = Importe(ingreso.get("ingreso"), fecha, ingreso.get("valor"))
-            print("ingreso: ", temp.fecha)
+#            print("ingreso: ", temp.fecha)
             self.addIngreso(temp)
 
     def inicializarEgresos(self, egresos):
@@ -61,21 +61,16 @@ class Vinculacion:
 
     def inicializarCondiciones(self, condiciones):
         # Cargo Periodo de aceptacion
-        for condicion in condiciones:
-            if condicion.get("nombreCondicion") == "PeriodoAceptacion":
-                temp = PeriodoAceptacion(condicion.get('parametros'))
-            self.addCondicion(temp)
+        self.condiciones = Condiciones(condiciones)
 
-    def inicializarCriterios(self,criterios):
+
+    def inicializarCriterios(self, criterios):
         #Cargo Criterio
-        for criterio in criterios:
-            if criterio == "OrdenValorPrimeroIngreso":
-                temp = OrdenValorPrimeroIngreso()
-            elif criterio == "OrdenValorPrimeroEgreso":
-                temp = OrdenValorPrimeroEgreso()
-            self.addCriterio(temp)
+        self.criterios = Criterios(criterios)
 
 
-    #def asociar(self):
+    def aplicar(self):
+        result = self.criterios.aplicar(self.ingresos,self.egresos,self.condiciones)
 
+        return result
 

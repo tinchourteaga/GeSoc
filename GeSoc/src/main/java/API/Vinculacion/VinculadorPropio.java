@@ -10,7 +10,7 @@ import java.util.List;
 
 public class VinculadorPropio implements Vinculador {
 
-    private String urlDominio="http://localhost:4575/";//poner el dominio aca
+    private String urlDominio="http://localhost:5000/api/add_message/1234";//poner el dominio aca
 
     //Dominio Python: http://localhost:5000/api/add_message/1234
     //Dominio Java2: http://localhost:4575/

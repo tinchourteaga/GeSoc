@@ -22,8 +22,8 @@ class appRestAPI:
     @app.route('/api/add_message/<uuid>', methods=['POST'])
     def add_message(uuid):
         asociar = SolicitudVinculacion(request)
-        resultado=asociar.aplicar()
-        #print(resultado[0])
+        asociar.solicitarVinculacion()
+        resultado=asociar.parseoCompletoJSONs()
         return jsonify(resultado)
 
 

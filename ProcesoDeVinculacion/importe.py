@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from valor import Valor
+
 
 class Importe:
     codigo=0
@@ -9,7 +11,7 @@ class Importe:
     def __init__(self,codigo,fecha,importe):
         self.codigo=codigo
         self.fecha=datetime.strptime(fecha, "%d/%m/%Y")
-        self.importe=float(importe)
+        self.importe=Valor.getImporte(importe)
 
     def getValor(self):
         return self.importe

@@ -2,6 +2,7 @@ from flask import jsonify
 
 from condicion import PeriodoAceptacion
 from criterio import OrdenValorPrimeroIngreso, OrdenValorPrimeroEgreso
+from fecha import Fecha
 from importe import Importe
 
 import json
@@ -13,7 +14,6 @@ class Vinculacion:
     periodoMax = 0   #cantidad de dias posterior al ingreso donde vale asociarlo con el egreso.
 
     def __init__(self,jsonInput):
-        #data = jsonInput.json()
         #Recibo el json con todo el dataset
 
         if jsonInput is None:
@@ -23,9 +23,6 @@ class Vinculacion:
             self.inicializarEgresos(jsonInput.json["egresos"])
             self.inicializarCondiciones(jsonInput.json["condiciones"])
             self.inicializarCriterios(jsonInput.json["criterios"])
-
-
-
 
 
 
@@ -47,31 +44,27 @@ class Vinculacion:
 
     def inicializarIngresos(self,ingresos):
         # Cargo ingresos
-        print("Im in")
-        print(ingresos[0]["descripcion"])
-
-        print("Im in")
-        print(ingresos[0].get("descripcion"))
 
         for ingreso in ingresos:
-            temp = Importe(ingreso.get("descripcion"), ingreso.get("fecha"), ingreso.get("valor"))
+            fecha = Fecha.toString(ingreso.get("fecha"))
+            temp = Importe(ingreso.get("ingreso"), fecha, ingreso.get("valor"))
             print("ingreso: ", temp.fecha)
             self.addIngreso(temp)
 
     def inicializarEgresos(self, egresos):
         # Cargo egresos
         for egreso in egresos:
-            temp = Importe(egreso.get("descripcion"), egreso.get("fecha"), egreso.get("valor"))
+            fecha = Fecha.toString(egreso.get("fecha"))
+            temp = Importe(egreso.get("egreso"), fecha, egreso.get("valor"))
 #            print("egreso: ", temp.fecha)
             self.addEgreso(temp)
 
     def inicializarCondiciones(self, condiciones):
         # Cargo Periodo de aceptacion
         for condicion in condiciones:
-            if condicion == "PeriodoAceptacion":
+            if condicion.get("nombreCondicion") == "PeriodoAceptacion":
                 temp = PeriodoAceptacion(condicion.get('parametros'))
             self.addCondicion(temp)
-        self.periodoMax = data['condicion']
 
     def inicializarCriterios(self,criterios):
         #Cargo Criterio

@@ -23,4 +23,4 @@ class appRestAPI:
     def add_message(uuid):
         asociar = Vinculacion(request)
 
-        return request
+        return jsonify({"respuesta":"respondido"})

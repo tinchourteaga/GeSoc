@@ -10,7 +10,7 @@ import java.util.List;
 
 public class VinculadorPropio implements Vinculador {
 
-    private String urlDominio="http://localhost:5000/api/add_message/1234";//poner el dominio aca
+    private String urlDominio="http://localhost:4575/";//poner el dominio aca
 
     //Dominio Python: http://localhost:5000/api/add_message/1234
     //Dominio Java2: http://localhost:4575/
@@ -18,26 +18,47 @@ public class VinculadorPropio implements Vinculador {
     @Override
     public void vincular(List<Egreso> egresos, List<Ingreso> ingresos,List<String> criterios, List<Condicion> condiciones) throws IOException {
 
-        String json="\"vinculacion\":{\"ingresos\" :[";
+        String json="{\"ingresos\" :[";
         String finalJson = json;
-        for (int i=0;i<ingresos.size();i++){
+
+        if(0<ingresos.size())
+            json= json.concat(new Gson().toJson(ingresos.get(0)));
+
+        for (int i=1;i<ingresos.size();i++){
+                json= json + ",";
                 json= json.concat(new Gson().toJson(ingresos.get(i)));
+
         }
         json=json.concat("],");
         json=json.concat("\"egresos\" :[");
-        for (int i=0;i<egresos.size();i++){
+
+        if(0<egresos.size())
+            json= json.concat(new Gson().toJson(egresos.get(0)));
+
+        for (int i=1;i<egresos.size();i++){
+            json= json + ",";
             json= json.concat(new Gson().toJson(egresos.get(i)));
         }
         json=json.concat("],");
 
         json=json.concat("\"criterios\" :[");
-        for (int i=0;i<criterios.size();i++){
+
+        if(0<criterios.size())
+            json= json.concat(new Gson().toJson(criterios.get(0)));
+
+        for (int i=1;i<criterios.size();i++){
+            json= json + ",";
             json= json.concat(new Gson().toJson(criterios.get(i)));
         }
         json=json.concat("],");
 
         json=json.concat("\"condiciones\" :[");
-        for (int i=0;i<condiciones.size();i++){
+
+        if(0<condiciones.size())
+            json= json.concat(new Gson().toJson(condiciones.get(0)));
+
+        for (int i=1;i<condiciones.size();i++){
+            json= json + ",";
             json= json.concat(new Gson().toJson(condiciones.get(i)));
         }
         json=json.concat("]}");

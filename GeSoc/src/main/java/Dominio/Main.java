@@ -1,10 +1,15 @@
 package Dominio;
 
+import API.Vinculacion.Condicion;
 import API.Vinculacion.ControllerVinculacion;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Egreso.Core.*;
+import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Dominio.Ingreso.Ingreso;
 
 import java.io.IOException;
@@ -86,11 +91,60 @@ public class Main {
         Ingreso otroIngreso = new Ingreso("Brasil",1357, LocalDate.parse("2020-02-07"),"pruebita2",new ArrayList<>());
 
         List<Ingreso> ingresos = new ArrayList<>();
-
         ingresos.add(unIngreso);
         ingresos.add(otroIngreso);
 
-        ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), ingresos,new ArrayList<>(),new ArrayList<>());
+        Egreso unEgreso = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", 8888, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
+            @Override
+            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
+                return null;
+            }
+
+            @Override
+            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
+
+            }
+
+            @Override
+            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
+                return null;
+            }
+        });
+
+        Egreso otroEgreso = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay", 2222, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
+            @Override
+            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
+                return null;
+            }
+
+            @Override
+            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
+
+            }
+
+            @Override
+            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
+                return null;
+            }
+        });
+
+        List<Egreso> egresos = new ArrayList<>();
+        egresos.add(unEgreso);
+        egresos.add(otroEgreso);
+
+        List<String> criterios =new ArrayList<>();
+        criterios.add("OrdenValorPrimeroEgreso");
+        criterios.add("OrdenValorPrimeroIngreso");
+
+        List<Condicion> condiciones = new ArrayList<>();
+        List<Object> parametros = new ArrayList<>();
+        parametros.add(7);
+
+        Condicion condicion = new Condicion("PeriodoAceptacion",parametros);
+
+        condiciones.add(condicion);
+
+        ControllerVinculacion.obtenerInstacia().vincular(egresos, ingresos, criterios,condiciones);
 
         //ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
     }

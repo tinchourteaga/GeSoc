@@ -1,76 +1,29 @@
-from flask import jsonify
-
-from condiciones import Condiciones
-from criterio import OrdenValorPrimeroIngreso, OrdenValorPrimeroEgreso
-from criterios import Criterios
-from fecha import Fecha
-from importe import Importe
+from flask import Flask, request, jsonify, json
 
 
 class Vinculacion:
-    ingresos=[]
-    egresos=[]
-    criterios: Criterios = ""
-    condiciones: Condiciones=""
+    # La juega de ingreso o de egreso (segun convenga)
+    movimientoAsociado = ""
 
-    #cantidad de dias posterior al ingreso donde vale asociarlo con el egreso.
+    # La juega de egresos o de ingresos(segun convenga)
+    vinculados = []
 
-    def __init__(self,jsonInput):
-        #Recibo el json con todo el dataset
+    criterio = ""
 
-        if jsonInput is None:
-            return jsonify("El JSON recibido no es valido")
-        else:
-            self.inicializarIngresos(jsonInput.json["ingresos"])
-            self.inicializarEgresos(jsonInput.json["egresos"])
-            self.inicializarCondiciones(jsonInput.json["condiciones"])
-            self.inicializarCriterios(jsonInput.json["criterios"])
+    condiciones = []
 
+    def __init__(self, unMovimientoAsociado, unCriterio):
+        self.criterio = unCriterio
+        self.movimientoAsociado = unMovimientoAsociado
 
+    def agregarVinculado(self, unVinculado):
+        self.vinculados.append(unVinculado)
 
-    def getEgresos(self):
-        return self.egresos
-    def getIngresos(self):
-        return self.ingresos
-    def getCriterios(self):
-        return self.criterios
-    def getCondiciones(self):
-        return self.condiciones
+    def agregarCondicion(self, unaCondicion):
+        self.condiciones.append(unaCondicion)
 
-    def addIngreso(self,ingreso):
-        self.ingresos.append(ingreso)
-    def addEgreso(self,egreso):
-        self.egresos.append(egreso)
-
-    def inicializarIngresos(self,ingresos):
-        # Cargo ingresos
-
-        for ingreso in ingresos:
-            fecha = Fecha.toString(ingreso.get("fecha"))
-            temp = Importe(ingreso.get("ingreso"), fecha, ingreso.get("valor"))
-#            print("ingreso: ", temp.fecha)
-            self.addIngreso(temp)
-
-    def inicializarEgresos(self, egresos):
-        # Cargo egresos
-        for egreso in egresos:
-            fecha = Fecha.toString(egreso.get("fecha"))
-            temp = Importe(egreso.get("egreso"), fecha, egreso.get("valor"))
-#            print("egreso: ", temp.fecha)
-            self.addEgreso(temp)
-
-    def inicializarCondiciones(self, condiciones):
-        # Cargo Periodo de aceptacion
-        self.condiciones = Condiciones(condiciones)
-
-
-    def inicializarCriterios(self, criterios):
-        #Cargo Criterio
-        self.criterios = Criterios(criterios)
-
-
-    def aplicar(self):
-        result = self.criterios.aplicar(self.ingresos,self.egresos,self.condiciones)
-
-        return result
-
+    def armarJSONParaGesoc(self):
+        data_set = {"movimiento-asociado": self.movimientoAsociado, "vinculados": self.vinculados,
+                    "criterio": self.criterio, "condiciones": self.condiciones}
+        json_dump = json.dumps(data_set)
+        return json_dump

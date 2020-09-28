@@ -102,6 +102,7 @@ class SolicitudVinculacion:
             result= self.condiciones[i].cumple(ingreso,egreso)
             if not result:
                 break;
+            i += 1
         return result
 
     def parseoCompletoJSONs(self):

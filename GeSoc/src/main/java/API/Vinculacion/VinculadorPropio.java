@@ -46,16 +46,27 @@ public class VinculadorPropio implements Vinculador {
 
         JsonObject objetito = (JsonObject) new JsonParser().parse(jsonElemnt.getAsString());
         Integer id_movimiento=objetito.get("movimiento-asociado").getAsInt();
-        List<Integer> ids_asociados=new ArrayList();
-        JsonArray objetito2 = (JsonArray) new JsonParser().parse(objetito.get("vinculados").getAsString());
-        //JsonArray array=objetito2.getAsJsonObject().get("vinculados").getAsJsonArray();
-        objetito2.forEach(id-> ids_asociados.add(id.getAsInt()));
+        String lista = (objetito.get("vinculados").getAsString());
+        List<Integer> ids_asociados=obtenerListaDeIntsFromString(lista);
+
         String tipoVinculacion=objetito.getAsJsonObject().get("criterio").getAsString();
         if(tipoVinculacion.equals("OrdenValorPrimerIngreso")){
          reflejarVinculacionEgresoIngreso(id_movimiento, ids_asociados,egresos,ingresos);
         }else {
             reflejarVinculacionIngresoEgreso(id_movimiento, ids_asociados,egresos,ingresos);
         }
+    }
+
+    private List<Integer> obtenerListaDeIntsFromString(String lista) {
+        List<Integer> retorno=new ArrayList();
+
+        String listaSinCorchetes=lista.subSequence(1,lista.length()).toString();
+        String[] magia= listaSinCorchetes.split(",");
+        for (int i=0; i<magia.length;i++){
+        retorno.add(Integer.valueOf(magia[i]));
+        }
+
+        return retorno;
     }
 
     private void reflejarVinculacionIngresoEgreso(Integer id_movimiento, List<Integer> ids_asociados, List<Egreso> egresos, List<Ingreso> ingresos) {

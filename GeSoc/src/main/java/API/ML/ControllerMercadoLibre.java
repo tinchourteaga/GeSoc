@@ -20,6 +20,7 @@ import org.apache.http.HttpEntity;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class ControllerMercadoLibre {
@@ -29,13 +30,32 @@ public class ControllerMercadoLibre {
     private static ControllerMercadoLibre instancia=null;
 
 
-    private Repositorio paisesRepo = new Repositorio(new DAOMemoria<PaisDTO>());
-    private Repositorio provinciasRepo = new Repositorio(new DAOMemoria<ProvinciaDTO>());
-    private Repositorio ciudadesRepo = new Repositorio(new DAOMemoria<CiudadDTO>());
+    private Repositorio paisesRepo = new Repositorio(new DAOMemoria<Pais>());
+    private Repositorio provinciasRepo = new Repositorio(new DAOMemoria<Provincia>());
+    private Repositorio ciudadesRepo = new Repositorio(new DAOMemoria<Ciudad>());
     private Repositorio monedasRepo = new Repositorio(new DAOMemoria<MonedaDTO>());
 
     private ControllerMercadoLibre() throws IOException {
         pedirPaises();
+        paisesRepo.getTodosLosElementos().forEach(pais->{Pais unPais = (Pais)pais;
+            try {
+                unPais.getProvincias().addAll(this.obtenerLasProviciasDeUnPais(unPais.getId()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        List<List<Provincia>> listaDeProvincias = paisesRepo.getTodosLosElementos().stream().map(pais->{Pais unPais = (Pais)pais;
+        return unPais.getProvincias();}).collect(Collectors.toList());
+
+        List<Provincia> provincias = listaDeProvincias.stream().flatMap(List::stream).collect(Collectors.toList());
+
+        provincias.forEach(provincia-> {
+            try {
+                provincia.getCiudades().addAll(this.obtenerLasCiudadesDeUnaProvincia(provincia.getId()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
         pedirMonedas();
     }
 
@@ -102,15 +122,11 @@ public class ControllerMercadoLibre {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
             responseObj.forEach(jsonElemnt -> {
-                try {
-                    paisesRepo.agregar(new PaisDTO(
-                            jsonElemnt.getAsJsonObject().get("id").getAsString(),
-                            jsonElemnt.getAsJsonObject().get("name").getAsString(),
-                            jsonElemnt.getAsJsonObject().get("locale").getAsString(),
-                            jsonElemnt.getAsJsonObject().get("currency_id").getAsString()));
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                paisesRepo.agregar(new Pais(
+                        jsonElemnt.getAsJsonObject().get("id").getAsString(),
+                        jsonElemnt.getAsJsonObject().get("name").getAsString(),
+                        jsonElemnt.getAsJsonObject().get("locale").getAsString(),
+                        jsonElemnt.getAsJsonObject().get("currency_id").getAsString()));
             });
             
         }
@@ -148,8 +164,8 @@ public class ControllerMercadoLibre {
         return instancia;
     }
 
-    public PaisDTO getPais(String nombrePais) {
-        return (PaisDTO) paisesRepo.buscarPorNombre(nombrePais);
+    public Pais getPais(String nombrePais) {
+        return (Pais) paisesRepo.buscarPorNombre(nombrePais);
     }
 
     public MonedaDTO getMoneda(String nombreMoneda) {
@@ -220,9 +236,9 @@ public class ControllerMercadoLibre {
         return retorno;
     }
 
-    public List<ProvinciaDTO> obtenerLasProviciasDeUnPais(String idPais) throws IOException {
+    public List<Provincia> obtenerLasProviciasDeUnPais(String idPais) throws IOException {
 
-        List<ProvinciaDTO> retorno = new ArrayList<ProvinciaDTO>();
+        List<Provincia> retorno = new ArrayList<Provincia>();
 
         HttpEntity entidad = crearRequest("/classified_locations/countries/" + idPais);
 
@@ -233,7 +249,7 @@ public class ControllerMercadoLibre {
             JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
 
             responseObj.getAsJsonArray("states").forEach
-                    (x->retorno.add(new ProvinciaDTO(x.getAsJsonObject().get("id").getAsString(),
+                    (x->retorno.add(new Provincia(x.getAsJsonObject().get("id").getAsString(),
                             x.getAsJsonObject().get("name").getAsString())));
         }
 
@@ -280,9 +296,9 @@ public class ControllerMercadoLibre {
         return retorno;
     }
 
-    public List<CiudadDTO> obtenerLasCiudadesDeUnaProvincia(String idProvincia) throws IOException {
+    public List<Ciudad> obtenerLasCiudadesDeUnaProvincia(String idProvincia) throws IOException {
 
-        List<CiudadDTO> retorno = new ArrayList<CiudadDTO>();
+        List<Ciudad> retorno = new ArrayList<Ciudad>();
 
         HttpEntity entidad = crearRequest("/classified_locations/states/" + idProvincia);
 
@@ -293,7 +309,7 @@ public class ControllerMercadoLibre {
             JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
 
             responseObj.getAsJsonArray("cities").forEach
-                    (x->retorno.add(new CiudadDTO(x.getAsJsonObject().get("id").getAsString(),
+                    (x->retorno.add(new Ciudad(x.getAsJsonObject().get("id").getAsString(),
                             x.getAsJsonObject().get("name").getAsString())));
         }
 

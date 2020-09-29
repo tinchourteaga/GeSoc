@@ -33,19 +33,19 @@ public class Presupuesto {
     @JoinColumn(name = "proveedor", referencedColumnName = "proveedor")
     private Proveedor proveedor;
 
-    public Presupuesto(List<Criterio> criterios, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial) {
+    public Presupuesto(List<Criterio> criterios, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
         this.criterios = criterios;
         this.valor = valor;
         this.detalles = detalles;
         this.documentoComercial = documentoComercial;
-        this.fecha = LocalDate.now();
+        this.proveedor = proveedor;
     }
 
-    public List<Criterio> getCriterios() {
-        return criterios;
-    }
+    public List<Criterio> getCriterios() { return criterios; }
     public float getValor() { return valor;}
     public List<Detalle> getDetalles() {return detalles;}
     public DocumentoComercial getDocumentoComercial() { return documentoComercial;}
-    public LocalDate getFecha() {return fecha; }
+    public LocalDate getFecha() { return fecha; }
+    public void setFecha(LocalDate fecha) { this.fecha = fecha; }
+    public void setDetalles(List<Detalle> detalles) { this.detalles = detalles; }
 }

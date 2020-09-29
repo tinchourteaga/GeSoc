@@ -3,8 +3,7 @@ package Lugares;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "geo_ciudades")
-
+@Table(name = "geo_ciudades"/*, uniqueConstraints = @UniqueConstraint(columnNames = {"ciudad", "provincia"})*/)
 public class Ciudad {
     @Id
     @GeneratedValue
@@ -20,9 +19,15 @@ public class Ciudad {
     @JoinColumn(name = "provincia", referencedColumnName = "provincia")
     private Provincia provincia;
 
-    public Ciudad (String id, String name){
+    public Ciudad(String id, String name){
         this.id = id;
         this.name = name;
+    }
+
+    public Ciudad(String id, String name, Provincia provincia){
+        this.id = id;
+        this.name = name;
+        this.provincia = provincia;
     }
 
     public String getId() { return id; }

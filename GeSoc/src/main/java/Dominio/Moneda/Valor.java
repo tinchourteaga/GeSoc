@@ -31,17 +31,19 @@ public class Valor {
 
     public Valor(String pais, double importe) {
 
-        ControllerMercadoLibre controller;
-        controller = ControllerMercadoLibre.getControllerMercadoLibre();
+        //ControllerMercadoLibre controller;
+        //controller = ControllerMercadoLibre.getControllerMercadoLibre();
 
-        String nombreMoneda = controller.getPais(pais).getCurrency_id();
-        MonedaDTO monedaDTO = controller.getMonedaByID(nombreMoneda);
+        //String nombreMoneda = controller.getPais(pais).getCurrency_id();
+        //MonedaDTO monedaDTO = controller.getMonedaByID(nombreMoneda);
 
         BigDecimal importeNuevo = new BigDecimal(importe);
 
-        this.simbolo = monedaDTO.getSymbol();
-        this.tipoDeMoneda = monedaDTO.getDescription();
-        this.importe = importeNuevo.setScale(monedaDTO.getDecimal_places()).doubleValue();
+        //this.simbolo = monedaDTO.getSymbol();
+        //this.tipoDeMoneda = monedaDTO.getDescription();
+        //this.importe = importeNuevo.setScale(monedaDTO.getDecimal_places()).doubleValue();
+
+        this.importe = importe;
         this.pais = pais;
     }
 

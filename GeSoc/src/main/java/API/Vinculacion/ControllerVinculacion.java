@@ -20,6 +20,7 @@ public class ControllerVinculacion {
     }
 
     public void vincular(List<Egreso> egresos, List<Ingreso> ingresos,List<String> criterios, List<Condicion> condiciones){
+
         try {
             unVinculador.vincular(egresos,ingresos,criterios,condiciones);
         } catch (IOException e) {

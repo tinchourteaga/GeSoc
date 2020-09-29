@@ -60,7 +60,7 @@ public class VinculadorPropio implements Vinculador {
     private List<Integer> obtenerListaDeIntsFromString(String lista) {
         List<Integer> retorno=new ArrayList();
 
-        String listaSinCorchetes=lista.subSequence(1,lista.length()).toString();
+        String listaSinCorchetes=lista.replaceAll("]","").replaceAll(" ","").substring(1);
         String[] magia= listaSinCorchetes.split(",");
         for (int i=0; i<magia.length;i++){
         retorno.add(Integer.valueOf(magia[i]));

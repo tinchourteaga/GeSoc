@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from flask import json
+
 from valor import Valor
 
 
@@ -44,4 +46,7 @@ class Importe:
         self.importe=self.importe - importe
 
     def getJsonFormat(self):
-        return "{" + str(self.__class__.__name__) + ":{" + str(self.codigo) + "}}"
+        data={}
+        data[str(self.__class__.__name__)] = self.codigo
+        json_data = json.dumps(data)
+        return json_data

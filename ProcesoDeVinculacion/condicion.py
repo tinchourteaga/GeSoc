@@ -3,13 +3,12 @@ import abc
 from importe import Importe
 
 class Condicion(metaclass=abc.ABCMeta):
-    valor = 0
     @abc.abstractmethod
     def cumple(self,ingreso:Importe,egreso:Importe):
         pass
 
 class PeriodoAceptacion(Condicion):
-
+    valor = 0
     def __init__(self, parametros: list):
         self.valor = parametros[0]
 
@@ -27,4 +26,4 @@ class PeriodoAceptacion(Condicion):
         return self.valor
 
     def getJsonFormat(self):
-        return "{" + str(self.__class__.__name__) + ":{" + str(self.valor) + "}}"
+        return "{" + str(self.__class__.__name__) + ":" + str(self.valor) + "}"

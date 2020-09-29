@@ -62,7 +62,9 @@ public class Ingreso {
        }
 
     }
-
+    public void setIngreso(int ingreso) {
+        this.ingreso = ingreso;
+    }
     public int getIngreso() {
         return ingreso;
     }

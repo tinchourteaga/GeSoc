@@ -27,16 +27,23 @@ class Vinculacion:
 
     def armarJSONParaGesoc(self):
 
-        stringPaMandar = "movimiento-asociado:" + self.movimientoAsociado.getJsonFormat() \
-                         + ",vinculados:" + self.listAJSON(self.vinculados) \
-                         + ",criterio:" + self.criterio.getJsonFormat() \
-                         + ",condiciones:" + self.listAJSON(self.condiciones)
+        #stringPaMandar = "movimiento-asociado:" + self.movimientoAsociado.getJsonFormat() \
+        #                 + ",vinculados:" + self.listAJSON(self.vinculados) \
+        #                 + ",criterio:" + self.criterio.getJsonFormat() \
+        #                 + ",condiciones:" + self.listAJSON(self.condiciones)
 
         #data_set = {"movimiento-asociado": self.movimientoAsociado, "vinculados": self.vinculados,
         #            "criterio": self.criterio, "condiciones": self.condiciones}
         #json_dump = json.dumps(data_set)
 
-        return stringPaMandar
+        data={}
+        data['movimiento-asociado'] = self.movimientoAsociado.getCodigo()
+        data['vinculados'] = str(list(map(lambda x:x.getCodigo(),self.vinculados)))
+        data['criterio'] = str(self.criterio.__class__.__name__)
+        data['condiciones'] = str(list(map(lambda x:str(x.__class__.__name__),self.condiciones)))
+        json_data = json.dumps(data)
+
+        return json_data
 
     def listAJSON(self,list):
         retorno = "["

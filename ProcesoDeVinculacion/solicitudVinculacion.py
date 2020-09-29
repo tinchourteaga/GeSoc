@@ -117,6 +117,7 @@ class SolicitudVinculacion:
         listaDeJSONs = []
         for unaVinculacion in self.vinculaciones:
             listaDeJSONs.append(unaVinculacion.armarJSONParaGesoc())
+
         return listaDeJSONs
 
 

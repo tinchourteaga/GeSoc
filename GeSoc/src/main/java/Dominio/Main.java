@@ -87,10 +87,12 @@ public class Main {
 
         //Servidor.levantarServidor();
 
-        Ingreso unIngreso = new Ingreso("Argentina",1557, LocalDate.parse("2014-02-14"),"pruebita",new ArrayList<>());
-        Ingreso otroIngreso = new Ingreso("Brasil",1357, LocalDate.parse("2020-02-07"),"pruebita2",new ArrayList<>());
+        Ingreso unIngreso = new Ingreso("Argentina",557000, LocalDate.parse("2014-02-14"),"pruebita",new ArrayList<>());
+        Ingreso otroIngreso = new Ingreso("Brasil",135000, LocalDate.parse("2020-02-07"),"pruebita2",new ArrayList<>());
 
         List<Ingreso> ingresos = new ArrayList<>();
+        unIngreso.setIngreso(1);
+        otroIngreso.setIngreso(2);
         ingresos.add(unIngreso);
         ingresos.add(otroIngreso);
 
@@ -129,6 +131,8 @@ public class Main {
         });
 
         List<Egreso> egresos = new ArrayList<>();
+        unEgreso.setEgreso(1);
+        unEgreso.setEgreso(2);
         egresos.add(unEgreso);
         egresos.add(otroEgreso);
 
@@ -147,5 +151,9 @@ public class Main {
         ControllerVinculacion.obtenerInstacia().vincular(egresos, ingresos, criterios,condiciones);
 
         //ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+
+        System.out.println("Los egresos vinculados al ingreso "+unIngreso.getIngreso()+" es: "+unIngreso.getGastadoEn());
+
+        System.out.println("Los egresos vinculados al ingreso "+otroIngreso.getIngreso()+" es: "+otroIngreso.getGastadoEn());
     }
 }

@@ -4,10 +4,7 @@ import API.RequestMaker.RequestMaker;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 import Dominio.Ingreso.Ingreso;
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 
@@ -42,11 +39,18 @@ public class VinculadorPropio implements Vinculador {
 
     private void generarVinculacion(JsonElement jsonElemnt, List<Egreso> egresos, List<Ingreso> ingresos) {
 
-        Integer id_movimiento=jsonElemnt.getAsJsonObject().getAsJsonObject("movimiento-asociado").getAsJsonObject("Importe").getAsInt();
+
+        System.out.println(jsonElemnt);
+        System.out.println(jsonElemnt.isJsonPrimitive());
+        System.out.println(jsonElemnt.isJsonObject());
+
+        JsonObject objetito = (JsonObject) new JsonParser().parse(jsonElemnt.getAsString());
+        Integer id_movimiento=objetito.get("movimiento-asociado").getAsInt();
         List<Integer> ids_asociados=new ArrayList();
-        JsonArray array=jsonElemnt.getAsJsonObject().getAsJsonObject("vinculados").getAsJsonObject("Importe").getAsJsonArray();
-        array.forEach(id-> ids_asociados.add(id.getAsInt()));
-        String tipoVinculacion=jsonElemnt.getAsJsonObject().get("criterio").getAsString();
+        JsonArray objetito2 = (JsonArray) new JsonParser().parse(objetito.get("vinculados").getAsString());
+        //JsonArray array=objetito2.getAsJsonObject().get("vinculados").getAsJsonArray();
+        objetito2.forEach(id-> ids_asociados.add(id.getAsInt()));
+        String tipoVinculacion=objetito.getAsJsonObject().get("criterio").getAsString();
         if(tipoVinculacion.equals("OrdenValorPrimerIngreso")){
          reflejarVinculacionEgresoIngreso(id_movimiento, ids_asociados,egresos,ingresos);
         }else {
@@ -57,27 +61,35 @@ public class VinculadorPropio implements Vinculador {
     private void reflejarVinculacionIngresoEgreso(Integer id_movimiento, List<Integer> ids_asociados, List<Egreso> egresos, List<Ingreso> ingresos) {
 
         List<Ingreso> ingresosVinculados=ingresos.stream().filter(ingreso->ids_asociados.contains(ingreso.getIngreso())).collect(Collectors.toList());
-        Egreso egresoVinculado = egresos.stream().filter(egreso->egreso.getEgreso()==id_movimiento).collect(Collectors.toList()).get(0);
+
+        List<Egreso> egresosAux = egresos.stream().filter(egreso->egreso.getEgreso()==id_movimiento).collect(Collectors.toList());
+
+        if(!egresosAux.isEmpty()){
+            Egreso egresoVinculado = egresosAux.get(0);
         ingresosVinculados.forEach(ingresoAVincular-> {
             try {
                 ingresoAVincular.agregarEgreso(egresoVinculado);
             } catch (NoPuedoAsignarMasDineroDelQueTengoException e) {
                 e.printStackTrace();//no deberia pasar esto a menos que la api este mal
             }
-        });
+        });}
     }
 
     private void reflejarVinculacionEgresoIngreso(Integer id_movimiento, List<Integer> ids_asociados, List<Egreso> egresos, List<Ingreso> ingresos) {
 
         List<Egreso> egresosVinculados=egresos.stream().filter(egreso->ids_asociados.contains(egreso.getEgreso())).collect(Collectors.toList());
-        Ingreso ingresoVinculado = ingresos.stream().filter(egreso->egreso.getIngreso()==id_movimiento).collect(Collectors.toList()).get(0);
+
+        List<Ingreso> ingresosAux = ingresos.stream().filter(egreso->egreso.getIngreso()==id_movimiento).collect(Collectors.toList());
+
+        if(!ingresosAux.isEmpty()){
+        Ingreso ingresoVinculado = ingresosAux.get(0);
         egresosVinculados.forEach(egresoAVincular-> {
             try {
                 ingresoVinculado.agregarEgreso(egresoAVincular);
             } catch (NoPuedoAsignarMasDineroDelQueTengoException e) {
                 e.printStackTrace();//no deberia pasar esto a menos que la api este mal
             }
-        });
+        });}
 
     }
 

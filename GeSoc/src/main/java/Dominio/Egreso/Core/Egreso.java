@@ -16,6 +16,7 @@ import java.util.List;
 @Entity
 @Table(name = "dom_egresos")
 public class Egreso {
+
     @Id
     @GeneratedValue
     private int egreso;
@@ -117,6 +118,9 @@ public class Egreso {
         this.estaVerificada = estaVerificada;
     }
 
+    public void setEgreso(int egreso) {
+        this.egreso = egreso;
+    }
     public int getEgreso() {
         return egreso;
     }

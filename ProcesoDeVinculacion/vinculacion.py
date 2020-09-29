@@ -26,4 +26,5 @@ class Vinculacion:
         data_set = {"movimiento-asociado": self.movimientoAsociado, "vinculados": self.vinculados,
                     "criterio": self.criterio, "condiciones": self.condiciones}
         json_dump = json.dumps(data_set)
+        print(json_dump)
         return json_dump

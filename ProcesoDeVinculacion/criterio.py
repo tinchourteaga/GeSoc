@@ -15,7 +15,7 @@ class OrdenValorPrimerEgreso(Criterio):
     vinculacion = ""
 
     def aplicar(self,ingreso, egresosYaFiltrados):
-        self.valorDelIngreso = ingreso
+        self.valorDelIngreso = ingreso.getValor()
         self.vinculacion = Vinculacion(ingreso,self)
         egresosYaFiltrados.sort(key=lambda x: x.getValor())
         for unEgreso in egresosYaFiltrados:
@@ -26,7 +26,7 @@ class OrdenValorPrimerEgreso(Criterio):
 
 
     def ordenPorValorPrimerEgreso(self,unEgreso):
-        if(self.valorDelIngreso >= unEgreso.getValor()):
+        if self.valorDelIngreso >= unEgreso.getValor():
             self.valorDelIngreso -= unEgreso.getValor()
             self.vinculacion.agregarVinculado(unEgreso)
 
@@ -37,7 +37,7 @@ class OrdenFechaPrimerEgreso(Criterio):
     vinculacion = ""
 
     def aplicar(self,ingreso, egresosYaFiltrados):
-        self.valorDelIngreso = ingreso
+        self.valorDelIngreso = ingreso.getValor()
         self.vinculacion = Vinculacion(ingreso,self)
         egresosYaFiltrados.sort(key=lambda x: x.getFecha())
         for unEgreso in egresosYaFiltrados:
@@ -57,7 +57,7 @@ class OrdenValorPrimerIngreso(Criterio):
     vinculacion = ""
 
     def aplicar(self,egreso, ingresos):
-        self.valorDelEgreso = egreso
+        self.valorDelEgreso = egreso.getValor()
         self.vinculacion = Vinculacion(egreso,self)
         ingresos.sort(key=lambda x: x.getValor())
         for unIngreso in ingresos:

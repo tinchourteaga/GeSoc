@@ -93,12 +93,13 @@ class SolicitudVinculacion:
 
         for unCriterio in self.criterios:
             for unIngreso in self.ingresos:
-                listaFiltrada = filter(lambda x:self.cumpleTodasLasCondiciones(unIngreso,x),self.egresos)
+                # listaFiltrada = [unEgreso for unEgreso in self.egresos if self.cumpleTodasLasCondiciones(unIngreso,unEgreso)]
+                listaFiltrada = list(filter(lambda x:self.cumpleTodasLasCondiciones(unIngreso,x),self.egresos))
                 self.addVinculacion(unCriterio.aplicar(unIngreso, listaFiltrada))
 
     def cumpleTodasLasCondiciones(self, ingreso: Importe, egreso: Importe):
         i=0
-        while i <= len(self.condiciones):
+        while i < len(self.condiciones):
             result= self.condiciones[i].cumple(ingreso,egreso)
             if not result:
                 break;

@@ -62,4 +62,8 @@ public class Ingreso {
        }
 
     }
+
+    public int getIngreso() {
+        return ingreso;
+    }
 }

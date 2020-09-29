@@ -2,7 +2,7 @@
 
 from flask import Flask, request, jsonify
 
-from vinculacion import Vinculacion
+from solicitudVinculacion import SolicitudVinculacion
 
 
 class appRestAPI:
@@ -21,6 +21,9 @@ class appRestAPI:
 
     @app.route('/api/add_message/<uuid>', methods=['POST'])
     def add_message(uuid):
-        asociar = Vinculacion(request)
+        asociar = SolicitudVinculacion(request)
+        asociar.solicitarVinculacion()
+        resultado=asociar.parseoCompletoJSONs()
+        return jsonify(resultado)
 
-        return request
+

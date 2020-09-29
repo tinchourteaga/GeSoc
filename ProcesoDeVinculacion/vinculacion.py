@@ -1,88 +1,56 @@
-from flask import jsonify
+from flask import Flask, request, jsonify, json
 
-from condicion import PeriodoAceptacion
-from criterio import OrdenValorPrimeroIngreso, OrdenValorPrimeroEgreso
+from condicion import Condicion
 from importe import Importe
 
-import json
 
 class Vinculacion:
-    ingresos=[]
-    egresos=[]
-    criterios=[]
-    periodoMax = 0   #cantidad de dias posterior al ingreso donde vale asociarlo con el egreso.
+    # La juega de ingreso o de egreso (segun convenga)
+    movimientoAsociado : Importe = ""
 
-    def __init__(self,jsonInput):
-        #data = jsonInput.json()
-        #Recibo el json con todo el dataset
+    # La juega de egresos o de ingresos(segun convenga)
+    vinculados : Importe = []
 
-        if jsonInput is None:
-            return jsonify("El JSON recibido no es valido")
-        else:
-            self.inicializarIngresos(jsonInput.json["ingresos"])
-            self.inicializarEgresos(jsonInput.json["egresos"])
-            self.inicializarCondiciones(jsonInput.json["condiciones"])
-            self.inicializarCriterios(jsonInput.json["criterios"])
+    criterio = ""
 
+    condiciones : Condicion = []
 
+    def __init__(self, unMovimientoAsociado, unCriterio):
+        self.criterio = unCriterio
+        self.movimientoAsociado = unMovimientoAsociado
 
+    def agregarVinculado(self, unVinculado):
+        self.vinculados.append(unVinculado)
 
+    def agregarCondiciones(self, unaLista):
+        self.condiciones.extend(unaLista)
 
+    def armarJSONParaGesoc(self):
 
-    def getEgresos(self):
-        return self.egresos
-    def getIngresos(self):
-        return self.ingresos
-    def getCriterios(self):
-        return self.criterios
-    def getCondicion(self):
-        return self.periodoMax
+        stringPaMandar = "movimiento-asociado:" + self.movimientoAsociado.getJsonFormat() \
+                         + ",vinculados:" + self.listAJSON(self.vinculados) \
+                         + ",criterio:" + self.criterio.getJsonFormat() \
+                         + ",condiciones:" + self.listAJSON(self.condiciones)
 
-    def addIngreso(self,ingreso):
-        self.ingresos.append(ingreso)
-    def addEgreso(self,egreso):
-        self.egresos.append(egreso)
-    def addCriterio(self,criterio):
-        self.criterios.append(criterio)
+        #data_set = {"movimiento-asociado": self.movimientoAsociado, "vinculados": self.vinculados,
+        #            "criterio": self.criterio, "condiciones": self.condiciones}
+        #json_dump = json.dumps(data_set)
 
-    def inicializarIngresos(self,ingresos):
-        # Cargo ingresos
-        print("Im in")
-        print(ingresos[0]["descripcion"])
+        return stringPaMandar
 
-        print("Im in")
-        print(ingresos[0].get("descripcion"))
+    def listAJSON(self,list):
+        retorno = "["
+        x = 0
 
-        for ingreso in ingresos:
-            temp = Importe(ingreso.get("descripcion"), ingreso.get("fecha"), ingreso.get("valor"))
-            print("ingreso: ", temp.fecha)
-            self.addIngreso(temp)
+        if(len(list)>0):
+            retorno += list[0].getJsonFormat()
+            del list[0]
 
-    def inicializarEgresos(self, egresos):
-        # Cargo egresos
-        for egreso in egresos:
-            temp = Importe(egreso.get("descripcion"), egreso.get("fecha"), egreso.get("valor"))
-#            print("egreso: ", temp.fecha)
-            self.addEgreso(temp)
+            for i in list:
+                retorno += ","
+                retorno += list[x].getJsonFormat()
+                x += 1
 
-    def inicializarCondiciones(self, condiciones):
-        # Cargo Periodo de aceptacion
-        for condicion in condiciones:
-            if condicion == "PeriodoAceptacion":
-                temp = PeriodoAceptacion(condicion.get('parametros'))
-            self.addCondicion(temp)
-        self.periodoMax = data['condicion']
-
-    def inicializarCriterios(self,criterios):
-        #Cargo Criterio
-        for criterio in criterios:
-            if criterio == "OrdenValorPrimeroIngreso":
-                temp = OrdenValorPrimeroIngreso()
-            elif criterio == "OrdenValorPrimeroEgreso":
-                temp = OrdenValorPrimeroEgreso()
-            self.addCriterio(temp)
-
-
-    #def asociar(self):
+        return retorno + "]"
 
 

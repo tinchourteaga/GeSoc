@@ -1,33 +1,103 @@
 
 import abc
+from vinculacion import Vinculacion
+
+
 class Criterio(metaclass=abc.ABCMeta):
     @abc.abstractmethod
-    def aplicar(self,ingresos, egresos, condicion):
+    def aplicar(self,ingreso, egresosYaFiltrados):
         pass
 
-class OrdenValorPrimeroEgreso(Criterio):
 
-    def aplicar(self,ingresos, egresos, condicion):
-        print("OrdenValorPrimeroEgreso")
+class OrdenValorPrimerEgreso(Criterio):
+
+    valorDelIngreso = 0
+    vinculacion = ""
+    egresosAux = []
+
+    def aplicar(self,ingreso, egresosYaFiltrados):
+        self.valorDelIngreso = ingreso.getValorImporte()
+        self.vinculacion = Vinculacion(ingreso,self)
+        egresosYaFiltrados.sort(key=lambda x: x.getValorImporte())
 
 
-class OrdenValorPrimeroIngreso(Criterio):
-    def aplicar(self,ingresos, egresos,condicion):
-        print("OrdenValorPrimeroIgreso")
-        ingresos.sort(key=lambda x: x.getValor())
-        egresos.sort(key=lambda x: x.getValor())
-        resultado=[dict()]
+        for unEgreso in egresosYaFiltrados:
+            if(self.egresosAux.count(unEgreso) == 0):
+                self.ordenPorValorPrimerEgreso(unEgreso)
+        #list(egresosYaFiltrados - self.vinculacion.egresos)
 
-        for ingreso in ingresos:
-            tempDict = {
-                "codigoIngreso": ingreso.getCodigo(),
-                "codiosEgresos": [],
-            }
-            for egreso in egresos:
-                if ingreso.esImporteAplicable(egreso.getValor()) and condicion.cumple(ingreso,egreso):
-                    ingreso.RestarImporte(egreso.getValor())
-                    tempDict["codiosEgresos"].append(egreso.getCodigo())
-                    egresos.remove(egreso)
-            resultado.append(tempDict)
+        return self.vinculacion
+
+
+    def ordenPorValorPrimerEgreso(self,unEgreso):
+            if self.valorDelIngreso >= unEgreso.getValorImporte() and unEgreso.getEstoyVinculado() == 0:
+                self.valorDelIngreso -= unEgreso.getValorImporte()
+                self.vinculacion.agregarVinculado(unEgreso)
+                self.addEgresoAux(unEgreso)
+                unEgreso.setEstoyVinculado(1)
+
+    def addEgresoAux(self, unEgreso):
+        self.egresosAux.append(unEgreso)
+
+    def getJsonFormat(self):
+        return str(self.__class__.__name__)
+
+
+class OrdenFechaPrimerEgreso(Criterio):
+
+    valorDelIngreso = ""
+    vinculacion = ""
+    egresosAux = []
+
+    def aplicar(self,ingreso, egresosYaFiltrados):
+        self.valorDelIngreso = ingreso.getValorImporte()
+        self.vinculacion = Vinculacion(ingreso,self)
+        egresosYaFiltrados.sort(key=lambda x: x.getFecha())
+        for unEgreso in egresosYaFiltrados:
+            if(self.egresosAux.count(unEgreso) != 0):
+                self.ordenPorFechaPrimerEgreso(unEgreso)
+
+        return self.vinculacion
+
+    def ordenPorFechaPrimerEgreso(self,unEgreso):
+            if(self.valorDelIngreso >= unEgreso.getValorImporte()):
+                self.valorDelIngreso -= unEgreso.getValorImporte()
+                self.vinculacion.agregarVinculado(unEgreso)
+                self.addEgresoAux(unEgreso)
+
+    def addEgresoAux(self, unEgreso):
+        self.egresosAux.append(unEgreso)
+
+    def getJsonFormat(self):
+        return str(self.__class__.__name__)
+
+class OrdenValorPrimerIngreso(Criterio):
+
+    valorDelEgreso = ""
+    vinculacion = ""
+    ingresosAux = []
+
+    def aplicar(self,egreso, ingresos):
+        self.valorDelEgreso = egreso.getValorImporte()
+        self.vinculacion = Vinculacion(egreso,self)
+        ingresos.sort(key=lambda x: x.getValorImporte())
+        for unIngreso in ingresos:
+            if(self.ingresosAux.count(unIngreso) != 0):
+                self.ordenPorValorPrimerIngreso(unIngreso)
+        #list(egresosYaFiltrados - self.vinculacion.egresos)
+
+        return self.vinculacion
+
+    def ordenPorValorPrimerIngreso(self,unIngreso):
+            if(self.valorDelEgreso >= unIngreso.getValorImporte()):
+                self.valorDelEgreso -= unIngreso.getValorImporte()
+                self.vinculacion.agregarVinculado(unIngreso)
+                self.addIngresoAux(unIngreso)
+
+    def addIngresoAux(self, unIngreso):
+        self.ingresosAux.append(unIngreso)
+
+    def getJsonFormat(self):
+        return str(self.__class__.__name__)
 
 

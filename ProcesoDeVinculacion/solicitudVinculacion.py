@@ -8,8 +8,8 @@ from vinculacion import Vinculacion
 
 
 class SolicitudVinculacion:
-    ingresos = []
-    egresos = []
+    ingresos : Importe = []
+    egresos : Importe = []
     criterios: Criterio = []
     condiciones: Condicion = []
     vinculaciones : Vinculacion = []
@@ -47,6 +47,7 @@ class SolicitudVinculacion:
         self.condiciones.append(condicion)
     def addVinculacion(self,vinculacion):
         self.vinculaciones.append(vinculacion)
+        vinculacion.agregarCondiciones(self.condiciones)
 
     def inicializarIngresos(self,ingresos):
         # Cargo ingresos
@@ -95,10 +96,16 @@ class SolicitudVinculacion:
             for unIngreso in self.ingresos:
                 # listaFiltrada = [unEgreso for unEgreso in self.egresos if self.cumpleTodasLasCondiciones(unIngreso,unEgreso)]
                 listaFiltrada = list(filter(lambda x:self.cumpleTodasLasCondiciones(unIngreso,x),self.egresos))
-                self.addVinculacion(unCriterio.aplicar(unIngreso, listaFiltrada))
+                listaDeBools = list(map(lambda y:y.getEstoyVinculado()==0,listaFiltrada))
+                if(all(listaDeBools) and len(listaDeBools) != 0):
+                    self.addVinculacion(unCriterio.aplicar(unIngreso, listaFiltrada))
 
     def cumpleTodasLasCondiciones(self, ingreso: Importe, egreso: Importe):
         i=0
+
+        if(egreso.getEstoyVinculado()==1):
+            return False
+
         while i < len(self.condiciones):
             result= self.condiciones[i].cumple(ingreso,egreso)
             if not result:

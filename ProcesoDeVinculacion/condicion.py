@@ -25,3 +25,6 @@ class PeriodoAceptacion(Condicion):
 
     def getValor(self):
         return self.valor
+
+    def getJsonFormat(self):
+        return "{" + str(self.__class__.__name__) + ":{" + str(self.valor) + "}}"

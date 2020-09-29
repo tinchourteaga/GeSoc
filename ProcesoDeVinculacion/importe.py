@@ -33,4 +33,5 @@ class Importe:
     def RestarImporte(self,importe):
         self.importe=self.importe - importe
 
-
+    def getJsonFormat(self):
+        return "{" + str(self.__class__.__name__) + ":{" + str(self.codigo) + "}}"

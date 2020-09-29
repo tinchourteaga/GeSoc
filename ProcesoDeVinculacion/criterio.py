@@ -30,6 +30,9 @@ class OrdenValorPrimerEgreso(Criterio):
             self.valorDelIngreso -= unEgreso.getValor()
             self.vinculacion.agregarVinculado(unEgreso)
 
+    def getJsonFormat(self):
+        return str(self.__class__.__name__)
+
 
 class OrdenFechaPrimerEgreso(Criterio):
 
@@ -50,6 +53,8 @@ class OrdenFechaPrimerEgreso(Criterio):
             self.valorDelIngreso -= unEgreso.getValor()
             self.vinculacion.agregarVinculado(unEgreso)
 
+    def getJsonFormat(self):
+        return str(self.__class__.__name__)
 
 class OrdenValorPrimerIngreso(Criterio):
 
@@ -71,7 +76,7 @@ class OrdenValorPrimerIngreso(Criterio):
             self.valorDelEgreso -= unIngreso.getValor()
             self.vinculacion.agregarVinculado(unIngreso)
 
-
-
+    def getJsonFormat(self):
+        return str(self.__class__.__name__)
 
 

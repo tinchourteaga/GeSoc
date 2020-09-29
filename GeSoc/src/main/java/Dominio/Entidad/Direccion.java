@@ -24,6 +24,8 @@ public class Direccion {
         this.departamento = departamento;
     }
 
+    protected Direccion() { }
+
     public String getCalle() {
         return calle;
     }

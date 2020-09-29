@@ -24,12 +24,15 @@ public class DireccionPostal {
     @JoinColumn(name = "ciudad")
     private Ciudad ciudad;
 
-    public DireccionPostal(Direccion direccion, int cp, Pais pais) {
-
+    public DireccionPostal(Direccion direccion, int cp, Pais pais, Provincia provincia, Ciudad ciudad) {
         this.direccion = direccion;
         this.cp = cp;
         this.pais = pais;
+        this.provincia = provincia;
+        this.ciudad = ciudad;
     }
+
+    protected DireccionPostal() { }
 
     public Direccion getDireccion() {
         return direccion;

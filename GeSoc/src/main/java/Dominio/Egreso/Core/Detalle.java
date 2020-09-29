@@ -3,7 +3,7 @@ package Dominio.Egreso.Core;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dom_detalle_presupuestos")
+@Table(name = "dom_detalle_presupuestos", uniqueConstraints = @UniqueConstraint(columnNames = {"detalle", "presupuesto"}))
 public class Detalle {
     @Id
     @GeneratedValue
@@ -29,5 +29,8 @@ public class Detalle {
     }
     public String getDescripcion() {
         return descripcion;
+    }
+    public void setPresupuesto(Presupuesto presupuesto) {
+        this.presupuesto = presupuesto;
     }
 }

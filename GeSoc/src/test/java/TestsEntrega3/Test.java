@@ -22,7 +22,9 @@ import Dominio.Rol.Acciones.AgregarJerarquia;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import Dominio.Rol.RolAdministrador;
 import Dominio.Usuario.Usuario;
+import Lugares.Ciudad;
 import Lugares.Pais;
+import Lugares.Provincia;
 import TestsEntrega3.CriterioDummy.CriterioFalla;
 import org.junit.Assert;
 
@@ -33,17 +35,19 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Test {
-    DireccionPostal direc = new DireccionPostal(new Direccion("Larralde", "2454", "3", "A"), 1850, new Pais("AR","Argentina"));
+    DireccionPostal direc = new DireccionPostal(new Direccion("Larralde", "2454", "3", "A"), 1850, new Pais("AR","Argentina"), new Provincia("BSAS","Buenos Aires"), new Ciudad("A", "Adrogué"));
+    Proveedor prov = new Proveedor("Razon Social", "28-49367281-6", direc);
+    LocalDate fecha = LocalDate.of(2019, 8, 25);
 
     @org.junit.Test
     public void testValidadorNoPasaCriterio(){
         List<Presupuesto> presupuestos=new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),504000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),56000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),504000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),56000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
         List<Proveedor> proveedores=new ArrayList();
         proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816",direc));
         proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816",direc));
@@ -70,9 +74,9 @@ public class Test {
     @org.junit.Test
     public void testValidadorNoPasaOperacion() {
         List<Presupuesto> presupuestos = new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(), 51000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(), 52000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(), 53000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc")));
+        presupuestos.add(new Presupuesto(new ArrayList<>(), 51000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(), 52000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(), 53000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
         List<Proveedor> proveedores = new ArrayList();
         proveedores.add(new Proveedor("asdasd", "aaaa bbbb", "28483672816", direc));
         proveedores.add(new Proveedor("agdasd", "aaaa b4bb", "28493672816", direc));
@@ -110,11 +114,11 @@ public class Test {
         RolAdministrador rolPrueba = new RolAdministrador();
         Usuario unUsuario=new Usuario(rolPrueba,"pepito", "fachero","SiestaContr4senia no funca me m@deo");
         List<Presupuesto> presupuestos=new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),54000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),54000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
 
         List<Proveedor> proveedores=new ArrayList<>();
         proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));
@@ -137,11 +141,11 @@ public class Test {
     @org.junit.Test
     public void testValidadorPasaOperacion(){
         List<Presupuesto> presupuestos=new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),54000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),54000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
 
         List<Proveedor> proveedores=new ArrayList();
         proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));

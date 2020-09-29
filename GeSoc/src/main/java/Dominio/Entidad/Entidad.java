@@ -62,4 +62,7 @@ public abstract class Entidad {
         return egresos;
     }
     public List<Criterio> getCriterios() { return criterios;}
+    public void setEgresos(List<Egreso> egresos) { this.egresos = egresos; }
+    public void setIngresos(List<Ingreso> ingresos) { this.ingresos = ingresos; }
+    public void setCriterios(List<Criterio> criterios) { this.criterios = criterios; }
 }

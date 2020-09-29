@@ -38,7 +38,7 @@ class Vinculacion:
 
         data={}
         data['movimiento-asociado'] = self.movimientoAsociado.getCodigo()
-        data['vinculados'] = str(list(map(lambda x:x.getCodigo(),self.vinculados)))
+        data['vinculados'] = list(map(lambda x:x.getCodigo(),self.vinculados))
         data['criterio'] = str(self.criterio.__class__.__name__)
         data['condiciones'] = str(list(map(lambda x:str(x.__class__.__name__),self.condiciones)))
         json_data = json.dumps(data)

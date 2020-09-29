@@ -39,19 +39,17 @@ public class VinculadorPropio implements Vinculador {
 
     private void generarVinculacion(JsonElement jsonElemnt, List<Egreso> egresos, List<Ingreso> ingresos) {
 
-
-        System.out.println(jsonElemnt);
-        System.out.println(jsonElemnt.isJsonPrimitive());
-        System.out.println(jsonElemnt.isJsonObject());
-
         JsonObject objetito = (JsonObject) new JsonParser().parse(jsonElemnt.getAsString());
         Integer id_movimiento=objetito.get("movimiento-asociado").getAsInt();
-        String lista = (objetito.get("vinculados").getAsString());
-        List<Integer> ids_asociados=obtenerListaDeIntsFromString(lista);
+        JsonArray lista = (objetito.get("vinculados").getAsJsonArray());
+        List<Integer> ids_asociados = new ArrayList<>();
+        lista.forEach(unId->ids_asociados.add(unId.getAsInt()));
+        System.out.println(ids_asociados);
 
         String tipoVinculacion=objetito.getAsJsonObject().get("criterio").getAsString();
-        if(tipoVinculacion.equals("OrdenValorPrimerIngreso")){
-         reflejarVinculacionEgresoIngreso(id_movimiento, ids_asociados,egresos,ingresos);
+        if(tipoVinculacion.equals("OrdenValorPrimerEgreso")){
+            System.out.println(tipoVinculacion);
+            reflejarVinculacionEgresoIngreso(id_movimiento, ids_asociados,egresos,ingresos);
         }else {
             reflejarVinculacionIngresoEgreso(id_movimiento, ids_asociados,egresos,ingresos);
         }

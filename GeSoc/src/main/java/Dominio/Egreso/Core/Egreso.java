@@ -116,4 +116,8 @@ public class Egreso {
     public void setEstaVerificada(boolean estaVerificada) {
         this.estaVerificada = estaVerificada;
     }
+
+    public int getEgreso() {
+        return egreso;
+    }
 }

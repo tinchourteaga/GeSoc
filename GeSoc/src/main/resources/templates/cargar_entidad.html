@@ -76,10 +76,10 @@
           </div>
         </div>
 
-        <!-- EntradaNombreFicticio (Text Field) -->
-        <div id="u289" class="ax_default text_field" data-label="EntradaNombreFicticio">
+        <!-- EntradaNombreFicticio1 (Text Field) -->
+        <div id="u289" class="ax_default text_field" data-label="EntradaNombreFicticio1">
           <div id="u289_div" class=""></div>
-          <input id="u289_input" type="text" value="" class="u289_input"/>
+          <input name="nombreFicticio1" id="u289_input" type="text" value="" class="u289_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -124,7 +124,7 @@
       <!-- JurídicaBase (Droplist) -->
       <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
         <div id="u295_div" class=""></div>
-        <select id="u295_input" class="u295_input">
+        <select name="tipoEntidad" id="u295_input" class="u295_input">
           <option class="u295_input_option" value="Seleccionar una opción">Seleccionar una opción</option>
           <option class="u295_input_option" value="Entidad Jurídica">Entidad Jurídica</option>
           <option class="u295_input_option" value="Entidad Base">Entidad Base</option>
@@ -153,13 +153,13 @@
         <!-- EntradaCUIL/CUIT (Text Field) -->
         <div id="u299" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
           <div id="u299_div" class=""></div>
-          <input id="u299_input" type="text" value="" class="u299_input"/>
+          <input name="cuilOCuit" id="u299_input" type="text" value="" class="u299_input"/>
         </div>
 
         <!-- Unnamed (Droplist) -->
         <div id="u300" class="ax_default droplist">
           <div id="u300_div" class=""></div>
-          <select id="u300_input" class="u300_input">
+          <select name="pais" id="u300_input" class="u300_input">
             <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
             <option class="u300_input_option" value="Alemania">Alemania</option>
             <option class="u300_input_option" value="Bélgica">Bélgica</option>
@@ -179,17 +179,17 @@
         </div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u301" class="ax_default primary_button">
+        <button id="u301" class="ax_default primary_button">
           <div id="u301_div" class=""></div>
           <div id="u301_text" class="text ">
             <p><span>Cargar</span></p>
           </div>
-        </div>
+        </button>
 
         <!-- EntradaRazonSocial (Text Field) -->
         <div id="u302" class="ax_default text_field" data-label="EntradaRazonSocial">
           <div id="u302_div" class=""></div>
-          <input id="u302_input" type="text" value="" class="u302_input"/>
+          <input name="razonSocial" id="u302_input" type="text" value="" class="u302_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -211,7 +211,7 @@
         <!-- Unnamed (Droplist) -->
         <div id="u305" class="ax_default droplist">
           <div id="u305_div" class=""></div>
-          <select id="u305_input" class="u305_input">
+          <select name="provincia" id="u305_input" class="u305_input">
             <option class="u305_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
             <option class="u305_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
             <option class="u305_input_option" value="Buenos Aires">Buenos Aires</option>
@@ -252,7 +252,7 @@
         <!-- Unnamed (Droplist) -->
         <div id="u307" class="ax_default droplist">
           <div id="u307_div" class=""></div>
-          <select id="u307_input" class="u307_input">
+          <select name="ciudad" id="u307_input" class="u307_input">
             <option class="u307_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
             <option class="u307_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
             <option class="u307_input_option" value="Buenos Aires">Buenos Aires</option>
@@ -293,7 +293,7 @@
         <!-- EntradaCalle (Text Field) -->
         <div id="u309" class="ax_default text_field" data-label="EntradaCalle">
           <div id="u309_div" class=""></div>
-          <input id="u309_input" type="text" value="" class="u309_input"/>
+          <input name="calle" id="u309_input" type="text" value="" class="u309_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -307,7 +307,7 @@
         <!-- EntradaNumero (Text Field) -->
         <div id="u311" class="ax_default text_field" data-label="EntradaNumero">
           <div id="u311_div" class=""></div>
-          <input id="u311_input" type="text" value="" class="u311_input"/>
+          <input name="numeroCalle" id="u311_input" type="text" value="" class="u311_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -321,7 +321,7 @@
         <!-- EntradaPiso (Text Field) -->
         <div id="u313" class="ax_default text_field" data-label="EntradaPiso">
           <div id="u313_div" class=""></div>
-          <input id="u313_input" type="text" value="" class="u313_input"/>
+          <input name="piso" id="u313_input" type="text" value="" class="u313_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -335,7 +335,7 @@
         <!-- EntradaDepto (Text Field) -->
         <div id="u315" class="ax_default text_field" data-label="EntradaDepto">
           <div id="u315_div" class=""></div>
-          <input id="u315_input" type="text" value="" class="u315_input"/>
+          <input name="dpto" id="u315_input" type="text" value="" class="u315_input"/>
         </div>
 
         <!-- Unnamed (Shape) -->
@@ -373,7 +373,7 @@
         <!-- EntradaNombreFicticio (Text Field) -->
         <div id="u320" class="ax_default text_field" data-label="EntradaNombreFicticio">
           <div id="u320_div" class=""></div>
-          <input id="u320_input" type="text" value="" class="u320_input"/>
+          <input name="nombreFicticio" id="u320_input" type="text" value="" class="u320_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -395,7 +395,7 @@
         <!-- EntradaCódigoIGJ (Text Field) -->
         <div id="u323" class="ax_default text_field" data-label="EntradaCódigoIGJ">
           <div id="u323_div" class=""></div>
-          <input id="u323_input" type="text" value="" class="u323_input"/>
+          <input name="codInscripcion" id="u323_input" type="text" value="" class="u323_input"/>
         </div>
       </div>
 

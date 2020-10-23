@@ -26,8 +26,21 @@ public class ControllerSesion{
     }
 
     public static Object validarLogin(Request request, Response response){
+        //System.out.println(request.queryParams("password"));
+        String nombreUsuario = request.queryParams("nombreUsuario");
+        String contraseniaUsuario = request.queryParams("contraseniaUsuario");
+        response.redirect("pantalla_principal_usuario");
+        //Boolean usuarioVerificado = clasePers.verificarDatosContraBD(nombreUsuario, contraseniaUsuario);
 
-        response.redirect("/inicio");
+        /*
+        if(usuarioVerificado){
+            response.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO");
+        }else{
+            response.redirect(
+        }
+        */
+
+
         //Hacer todo lo de la sesion
         return null;
     }

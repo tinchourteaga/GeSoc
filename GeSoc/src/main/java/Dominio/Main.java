@@ -1,3 +1,4 @@
+package Dominio;
 
 import Servidor.Servidor;
 

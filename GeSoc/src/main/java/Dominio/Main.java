@@ -1,91 +1,93 @@
 package Dominio;
 
-import API.ControllerMercadoLibre;
-import API.DTOs.CiudadDTO;
-import API.DTOs.ProvinciaDTO;
+import API.Vinculacion.Condicion;
+import API.Vinculacion.ControllerVinculacion;
+import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
+import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Core.*;
-import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
-import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
-import Dominio.Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCantidadPresupuestos;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCompraPertenecePresupuesto;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
-import Dominio.Egreso.Validador.ValidadorDeOperacion;
-import Dominio.Entidad.Direccion;
-import java.io.IOException;
-import java.util.*;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
+import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
+import Dominio.Ingreso.Ingreso;
 
-import Servidor.Servidor;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
 
-        /*ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(19,33));
+        Ingreso unIngreso = new Ingreso("Argentina",557000, LocalDate.parse("2014-02-14"),"pruebita",new ArrayList<>());
+        Ingreso otroIngreso = new Ingreso("Brasil",135000, LocalDate.parse("2020-02-07"),"pruebita2",new ArrayList<>());
 
-        Direccion direc = new Direccion("Larralde", "2454", "3");
+        List<Ingreso> ingresos = new ArrayList<>();
+        unIngreso.setIngreso(1);
+        otroIngreso.setIngreso(2);
+        ingresos.add(unIngreso);
+        ingresos.add(otroIngreso);
 
-        List<Presupuesto> presupuestos=new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc")));
-        List<Proveedor> proveedores=new ArrayList();
-        proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));
-        proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816",direc));
-        proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816",direc));
+        Egreso unEgreso = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", 8888, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
+            @Override
+            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
+                return null;
+            }
 
-        proveedores.forEach(prov -> prov.getPresupuestos().addAll(presupuestos));
+            @Override
+            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
 
-        Egreso unEgreso=new Egreso(new Date(),"Argentina", 51000,new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+            }
 
-        ValidadorDeOperacion.getValidaciones().clear();
-        ValidadorDeOperacion.getValidaciones().addAll((new ArrayList(){{add(new ValidacionPresupuestoMenor(proveedores)); add(new ValidacionCompraPertenecePresupuesto(proveedores)); add(new ValidacionCantidadPresupuestos(proveedores)); add(new ValidacionCriterioProveedor());}}));
-        //ValidadorDeOperacion.getRepositorio().getAllElementos().addAll((new ArrayList(){{add(new ValidacionPresupuestoMenor(proveedores)); add(new ValidacionCompraPertenecePresupuesto(proveedores)); add(new ValidacionCantidadPresupuestos(proveedores)); add(new ValidacionCriterioProveedor());}}));
+            @Override
+            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
+                return null;
+            }
+        });
 
-        ValidadorDeOperacion.validarPorEstrategia(unEgreso);
-        System.out.println(unEgreso.isEstaVerificada());
+        Egreso otroEgreso = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay", 2222, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
+            @Override
+            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
+                return null;
+            }
 
+            @Override
+            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
 
-        System.out.println(unEgreso.isEstaVerificada());*/
+            }
 
-        //otro test
+            @Override
+            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
+                return null;
+            }
+        });
 
-        /*
-        ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
+        List<Egreso> egresos = new ArrayList<>();
+        unEgreso.setEgreso(1);
+        unEgreso.setEgreso(2);
+        egresos.add(unEgreso);
+        egresos.add(otroEgreso);
 
-        System.out.println("Ingrese un pais: ");
-        Scanner s = new Scanner(System.in);
-        String nombrePais = s.nextLine();
-        System.out.println(varController.getPais(nombrePais));
+        List<String> criterios =new ArrayList<>();
+        criterios.add("OrdenValorPrimeroEgreso");
+        criterios.add("OrdenValorPrimeroIngreso");
 
-        try {
-            List<ProvinciaDTO> provinciaDTOS = varController.obtenerLasProviciasDeUnPais(varController.getPais(nombrePais).getId());
+        List<Condicion> condiciones = new ArrayList<>();
+        List<Object> parametros = new ArrayList<>();
+        parametros.add(7);
 
-            provinciaDTOS.forEach(x->System.out.println(x.getName() + "ID:" + x.getId()));
+        Condicion condicion = new Condicion("PeriodoAceptacion",parametros);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        condiciones.add(condicion);
 
-        System.out.println("Ingrese un provincia: ");
-        Scanner w = new Scanner(System.in);
-        String nombreProv = w.nextLine();
+        ControllerVinculacion.obtenerInstacia().vincular(egresos, ingresos, criterios,condiciones);
 
-        try {
-            List<CiudadDTO> ciudadesDTOS = varController.obtenerLasCiudadesDeUnaProvincia(nombreProv);
+        //ControllerVinculacion.obtenerInstacia().vincular(new ArrayList<>(), new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
 
-            ciudadesDTOS.forEach(x->System.out.println(x.getName()));
+        System.out.println("Los egresos vinculados al ingreso "+unIngreso.getIngreso()+" es: "+unIngreso.getGastadoEn());
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    */
-
-        //debug time
-        //ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
-
-        //varController.getPais("Argentina");
-
-        Servidor.levantarServidor();
+        System.out.println("Los egresos vinculados al ingreso "+otroIngreso.getIngreso()+" es: "+otroIngreso.getGastadoEn());
     }
 }

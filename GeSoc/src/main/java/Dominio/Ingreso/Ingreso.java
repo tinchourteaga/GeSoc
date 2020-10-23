@@ -1,19 +1,39 @@
 package Dominio.Ingreso;
 
 import Dominio.Egreso.Core.Egreso;
+import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 import Dominio.Moneda.Valor;
-import java.util.Date;
+
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
+@Entity
+@Table(name = "dom_ingresos")
 public class Ingreso {
+    @Id
+    @GeneratedValue
+    private int ingreso;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "valor")
     private Valor valor;
-    private Date fecha;
+
+    @Column(name = "fecha", columnDefinition = "DATE")
+    private LocalDate fecha;
+
+    @Column(name = "descripcion")
     private String descripcion;
+
+    @ManyToOne
+    @JoinColumn(name = "entidad", referencedColumnName = "entidad")
+    private Entidad entidad;
+
+    @OneToMany(mappedBy = "ingreso", cascade = CascadeType.ALL)
     private List<Egreso> gastadoEn;
 
-   public Ingreso(String pais, double importe, Date fecha,String descripcion,List<Egreso>egresos){
+   public Ingreso(String pais, double importe, LocalDate fecha,String descripcion,List<Egreso>egresos){
        this.valor= new Valor(pais,importe);
        this.fecha=fecha;
        this.descripcion=descripcion;
@@ -24,11 +44,11 @@ public class Ingreso {
     public Valor getValor() {
         return valor;
     }
-    public Date getFecha() {
-        return fecha;
-    }
     public String getDescripcion() {
         return descripcion;
+    }
+    public LocalDate getFecha() {
+        return fecha;
     }
     public List<Egreso> getGastadoEn() {
         return gastadoEn;
@@ -41,5 +61,11 @@ public class Ingreso {
            throw new NoPuedoAsignarMasDineroDelQueTengoException();
        }
 
+    }
+    public void setIngreso(int ingreso) {
+        this.ingreso = ingreso;
+    }
+    public int getIngreso() {
+        return ingreso;
     }
 }

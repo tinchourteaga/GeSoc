@@ -1,23 +1,51 @@
 package Dominio.Egreso.Core;
 
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-import Dominio.Entidad.Direccion;
+import Dominio.Entidad.DireccionPostal;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "pers_proveedores")
 public class Proveedor {
+    @Id
+    @GeneratedValue
+    private int proveedor;
 
+    @Column(name = "razon_social")
     private String razonSocial;
-    private String nombreApellido;
-    private String cuitODni;
-    private Direccion direccion;
+
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "apellido")
+    private String apellido;
+
+    @Column(name = "nro_documento")
+    private String documento;
+
+    @Embedded
+    private DireccionPostal direccion;
+
+    @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL)
     private List<Presupuesto> presupuestos;
 
-    public Proveedor(String rs,String nombreYApellido,String cuitODni,Direccion unaDireccion) {
+    @OneToMany(mappedBy = "proveedorSeleccionado", cascade = CascadeType.ALL)
+    private List<Egreso> egreso;
+
+    public Proveedor(String nombre, String apellido, String dni, DireccionPostal unaDireccion) {
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.documento=dni;
+        this.direccion=unaDireccion;
+        this.presupuestos= new ArrayList<Presupuesto>();
+    }
+
+    public Proveedor(String rs, String cuitOcuil, DireccionPostal unaDireccion) {
         this.razonSocial=rs;
-        this.nombreApellido=nombreYApellido;
-        this.cuitODni=cuitODni;
+        this.documento=cuitOcuil;
         this.direccion=unaDireccion;
         this.presupuestos= new ArrayList<Presupuesto>();
     }
@@ -25,19 +53,20 @@ public class Proveedor {
     public String getRazonSocial() {
         return razonSocial;
     }
-    public String getNombreApellido() {
-        return nombreApellido;
+    public String getNombre() {
+        return nombre;
     }
-    public String getCuitODni() {
-        return cuitODni;
+    public String getDocumento() {
+        return documento;
     }
-    public Direccion getDireccion() {
+    public DireccionPostal getDireccion() {
         return direccion;
     }
     public List<Presupuesto> getPresupuestos() {
         return presupuestos;
     }
     public Presupuesto getPresupuestoCriterio(CriterioSeleccionProveedor criterio){ return criterio.seleccionarPresupuesto(presupuestos); }
-    public void setNombreApellido(String nombreApellido) { this.nombreApellido = nombreApellido; }
-    public void setDireccion(Direccion direccion) { this.direccion = direccion; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setApellido(String apellido) { this.apellido= apellido; }
+    public void setDireccion(DireccionPostal direccion) { this.direccion = direccion; }
 }

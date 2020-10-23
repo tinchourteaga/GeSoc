@@ -3,16 +3,38 @@ package Dominio.Entidad;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Ingreso.Ingreso;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "dom_entidades")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo_entidad")
 public abstract class Entidad {
+    @Id
+    @GeneratedValue
+    private int entidad;
 
-    protected String descripcion;
+    @Column(name = "nombre")
     protected String nombre;
+
+    @Column(name = "descripcion")
+    protected String descripcion;
+
+    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     protected List<Egreso> egresos;
+
+    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     protected List<Ingreso> ingresos;
+
+    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     protected List<Criterio> criterios;
+
+    @OneToOne
+    @JoinColumn(name = "entidad_juridica_asociada", referencedColumnName = "entidad")
+    protected EntidadJuridica entidad_juridica_asociada;
 
     public Entidad(String nombreEntidad, String descripcionEntidad){
         this.descripcion=descripcionEntidad;
@@ -40,4 +62,7 @@ public abstract class Entidad {
         return egresos;
     }
     public List<Criterio> getCriterios() { return criterios;}
+    public void setEgresos(List<Egreso> egresos) { this.egresos = egresos; }
+    public void setIngresos(List<Ingreso> ingresos) { this.ingresos = ingresos; }
+    public void setCriterios(List<Criterio> criterios) { this.criterios = criterios; }
 }

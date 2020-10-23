@@ -2,6 +2,7 @@ package Dominio.Rol;
 
 import Dominio.Rol.Acciones.Accion;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
+
 import java.util.ArrayList;
 
 public class RolEstandar extends Rol {

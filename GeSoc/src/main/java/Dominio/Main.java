@@ -1,24 +1,10 @@
-package Dominio;
 
-import API.Vinculacion.Condicion;
-import API.Vinculacion.ControllerVinculacion;
-import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
-import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
-import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
-import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
-import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-import Dominio.Egreso.Core.*;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
-import Dominio.Ingreso.Ingreso;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import Servidor.Servidor;
 
 public class Main {
 
+    public static void main(String[] args){
+    /* //PROCESO VINCULACIÓN - ENTREGA 4.2
     public static void main(String[] args) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
 
         Ingreso unIngreso = new Ingreso("Argentina",557000, LocalDate.parse("2014-02-14"),"pruebita",new ArrayList<>());
@@ -89,5 +75,8 @@ public class Main {
         System.out.println("Los egresos vinculados al ingreso "+unIngreso.getIngreso()+" es: "+unIngreso.getGastadoEn());
 
         System.out.println("Los egresos vinculados al ingreso "+otroIngreso.getIngreso()+" es: "+otroIngreso.getGastadoEn());
+    */
+
+    Servidor.levantarServidor();
     }
 }

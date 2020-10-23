@@ -1,20 +1,9 @@
 package TestsEntrega4;
 
-import Dominio.Egreso.Core.DocumentoComercial;
-import Dominio.Egreso.Core.Proveedor;
-import Dominio.Egreso.Core.TipoDocumentoComercial;
-import Dominio.Entidad.Direccion;
-import Dominio.Entidad.DireccionPostal;
-import Dominio.Moneda.Valor;
-import Lugares.Ciudad;
-import Lugares.Pais;
-import Lugares.Provincia;
-import Persistencia.EntityManagerHelper;
-
 public class Test{
     //ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
 
-    @org.junit.Test
+    /*@org.junit.Test
     public void persistirProveedor(){
         Pais pais = new Pais("AR", "Argentina");
 

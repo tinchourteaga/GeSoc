@@ -20,13 +20,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83cdc46c-7ec7-4c5c-a38e-7700bfdda6a3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/GeSoc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GeSoc.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/BandejaMensajes/Mensaje.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/BandejaMensajes/Mensaje.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/CriteriosDeCategorizacion/Criterio.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/CriteriosDeCategorizacion/Criterio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Egreso.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Egreso.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Presupuesto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Egreso/Core/Presupuesto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Entidad/Entidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Entidad/Entidad.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ContextTest/ContextTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ContextTest/ContextTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestsEntrega4/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestsEntrega4/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/GeSoc.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/GeSoc.kotlin_module" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/META-INF/persistence.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -75,7 +74,7 @@
       <recent name="C:\Users\Lenovo\Desktop\Git\2020-ma-ma-group-05\GeSoc\src\main\resources\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ContextTest (1)">
+  <component name="RunManager" selected="JUnit.All in GeSoc">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Dominio.Main" />
       <module name="GeSoc" />
@@ -168,10 +167,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.All in GeSoc" />
         <item itemvalue="JUnit.ContextTest (1)" />
         <item itemvalue="JUnit.ContextTest" />
         <item itemvalue="JUnit.ContextTest (1)" />
-        <item itemvalue="JUnit.All in GeSoc" />
         <item itemvalue="JUnit.Test (1)" />
       </list>
     </recent_temporary>

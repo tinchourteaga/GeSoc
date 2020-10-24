@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/crearCategoria" method="post">
 
       <!-- Popup (Dynamic Panel) -->
       <div id="u1366" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
@@ -198,7 +199,7 @@
         <!-- Unnamed (Droplist) -->
         <div id="u1386" class="ax_default droplist">
           <div id="u1386_div" class=""></div>
-          <select id="u1386_input" class="u1386_input">
+          <select name="criterioAsociado" id="u1386_input" class="u1386_input">
             <option class="u1386_input_option" value="Seleccionar un Criterio">Seleccionar un Criterio</option>
             <option class="u1386_input_option" value="Criterio 1">Criterio 1</option>
             <option class="u1386_input_option" value="Criterio 2">Criterio 2</option>
@@ -209,7 +210,7 @@
         <!-- Unnamed (Text Field) -->
         <div id="u1387" class="ax_default text_field">
           <div id="u1387_div" class=""></div>
-          <input id="u1387_input" type="text" value="" class="u1387_input"/>
+          <input name="nombreCategoria" id="u1387_input" type="text" value="" class="u1387_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -231,17 +232,17 @@
         <!-- Unnamed (Text Area) -->
         <div id="u1390" class="ax_default text_area">
           <div id="u1390_div" class=""></div>
-          <textarea id="u1390_input" class="u1390_input"></textarea>
+          <textarea name="descripcion" id="u1390_input" class="u1390_input"></textarea>
         </div>
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u1391" class="ax_default primary_button">
+      <button id="u1391" class="ax_default primary_button">
         <div id="u1391_div" class=""></div>
         <div id="u1391_text" class="text ">
           <p><span>Crear</span></p>
         </div>
-      </div>
+      </button>
 
       <!-- Unnamed (NavBar) -->
 

@@ -67,9 +67,6 @@ public class Servidor {
         Spark.get("/mensajes_no_revisor", ControllerMensajes::visualizarPantallaMensajesNoRevisor, engine);
         Spark.get("/mensajes_revisor", ControllerMensajes::visualizarPantallaMensajesRevisor, engine);
         Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
-
-
-
     }
 
     public static void levantarRutaPOST(){
@@ -81,8 +78,6 @@ public class Servidor {
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);
-
-
     }
 
     public static void levantarRutaDELETE(){

@@ -28,12 +28,25 @@ public class ControllerAsociacion {
     public static Object asociarEgresosYPresupuestos(Request request, Response response) {
 
         String entidad = request.queryParams("entidad");
-        String fecha = request.queryParams("fecha"); //IMPORTANTE: No va a traer nada porque no encontre en el html donde esta el panel!!
+        String fecha = request.queryParams("fecha");
         String metodoPago = request.queryParams("metodoPago");
         String egreso = request.queryParams("egreso");
         String presupuesto = request.queryParams("presupuesto");
 
         response.redirect("asociar_egresos_y_presupuestos");
+
+        return null;
+    }
+
+    public static Object asociarIngresosYEgresos(Request request, Response response) {
+
+        String entidad = request.queryParams("entidad");
+        String fecha = request.queryParams("fecha");
+        String metodoPago = request.queryParams("metodoPago");
+        String egreso = request.queryParams("egreso");
+        String ingreso = request.queryParams("ingreso");
+
+        response.redirect("asociar_ingresos_y_egresos");
 
         return null;
     }

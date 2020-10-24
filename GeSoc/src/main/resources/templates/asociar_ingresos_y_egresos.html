@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/asociarIngresosYEgresos" method="post">
 
       <!-- Unnamed (Group) -->
       <div id="u842" class="ax_default" data-left="45" data-top="348" data-width="42" data-height="28">
@@ -91,7 +92,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u848" class="ax_default droplist">
         <div id="u848_div" class=""></div>
-        <select id="u848_input" class="u848_input">
+        <select name="egreso" id="u848_input" class="u848_input">
           <option class="u848_input_option" value="Seleccionar Egreso">Seleccionar Egreso</option>
           <option class="u848_input_option" value="Egreso 1">Egreso 1</option>
           <option class="u848_input_option" value="Egreso 2">Egreso 2</option>
@@ -110,7 +111,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u850" class="ax_default droplist">
         <div id="u850_div" class=""></div>
-        <select id="u850_input" class="u850_input">
+        <select name="metodoPago" id="u850_input" class="u850_input">
           <option class="u850_input_option" value="Seleccionar Método de Pago">Seleccionar Método de Pago</option>
           <option class="u850_input_option" value="Crédito">Crédito</option>
           <option class="u850_input_option" value="Débito">Débito</option>
@@ -119,12 +120,12 @@
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u851" class="ax_default primary_button">
+      <button id="u851" class="ax_default primary_button">
         <div id="u851_div" class=""></div>
         <div id="u851_text" class="text ">
           <p><span>Cargar</span></p>
         </div>
-      </div>
+      </button>
 
       <!-- Unnamed (Rectangle) -->
       <div id="u852" class="ax_default heading_1">
@@ -145,13 +146,13 @@
       <!-- Unnamed (Text Field) -->
       <div id="u854" class="ax_default text_field">
         <div id="u854_div" class=""></div>
-        <input id="u854_input" type="date" value="Fecha" class="u854_input"/>
+        <input name="fecha" id="u854_input" type="date" value="Fecha" class="u854_input"/>
       </div>
 
       <!-- Unnamed (Droplist) -->
       <div id="u855" class="ax_default droplist">
         <div id="u855_div" class=""></div>
-        <select id="u855_input" class="u855_input">
+        <select name="ingreso" id="u855_input" class="u855_input">
           <option class="u855_input_option" value="Seleccionar Ingreso">Seleccionar Ingreso</option>
           <option class="u855_input_option" value="Ingreso 1">Ingreso 1</option>
           <option class="u855_input_option" value="Ingreso 2">Ingreso 2</option>
@@ -494,7 +495,7 @@
       <!-- Entidades (Droplist) -->
       <div id="u879" class="ax_default droplist" data-label="Entidades">
         <div id="u879_div" class=""></div>
-        <select id="u879_input" class="u879_input">
+        <select name="entidad" id="u879_input" class="u879_input">
           <option class="u879_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
           <option class="u879_input_option" value="Entidad 1">Entidad 1</option>
           <option class="u879_input_option" value="Entidad 2">Entidad 2</option>

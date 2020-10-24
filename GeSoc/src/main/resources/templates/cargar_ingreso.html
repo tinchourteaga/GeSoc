@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/cargarIngreso" method="post">
 
       <!-- Popup & Launcher (Group) -->
       <div id="u728" class="ax_default" data-label="Popup &amp; Launcher" data-left="0" data-top="0" data-width="0" data-height="0">
@@ -189,12 +190,12 @@
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u745" class="ax_default primary_button">
+      <button id="u745" class="ax_default primary_button">
         <div id="u745_div" class=""></div>
         <div id="u745_text" class="text ">
           <p><span>Cargar</span></p>
         </div>
-      </div>
+      </button>
 
       <!-- Unnamed (Rectangle) -->
       <div id="u746" class="ax_default heading_1">
@@ -207,7 +208,7 @@
       <!-- Unnamed (Text Field) -->
       <div id="u747" class="ax_default text_field">
         <div id="u747_div" class=""></div>
-        <input id="u747_input" type="date" value="Fecha" class="u747_input"/>
+        <input name="fecha" id="u747_input" type="date" value="Fecha" class="u747_input"/>
       </div>
 
       <!-- Unnamed (Rectangle) -->
@@ -229,7 +230,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u750" class="ax_default droplist">
         <div id="u750_div" class=""></div>
-        <select id="u750_input" class="u750_input">
+        <select name="moneda" id="u750_input" class="u750_input">
           <option class="u750_input_option" value="Seleccionar Moneda">Seleccionar Moneda</option>
           <option class="u750_input_option" value="Peso">Peso</option>
           <option class="u750_input_option" value="Dólar Estadounidense">Dólar Estadounidense</option>
@@ -596,13 +597,13 @@
       <!-- Unnamed (Text Field) -->
       <div id="u770" class="ax_default text_field">
         <div id="u770_div" class=""></div>
-        <input id="u770_input" type="text" value="" class="u770_input"/>
+        <input name="importe" id="u770_input" type="text" value="" class="u770_input"/>
       </div>
 
       <!-- Unnamed (Text Area) -->
       <div id="u771" class="ax_default text_area">
         <div id="u771_div" class=""></div>
-        <textarea id="u771_input" class="u771_input"></textarea>
+        <textarea name="descripcion" id="u771_input" class="u771_input"></textarea>
       </div>
 
       <!-- Popup (Dynamic Panel) -->
@@ -676,7 +677,7 @@
       <!-- Entidades (Droplist) -->
       <div id="u781" class="ax_default droplist" data-label="Entidades">
         <div id="u781_div" class=""></div>
-        <select id="u781_input" class="u781_input">
+        <select name="entidad" id="u781_input" class="u781_input">
           <option class="u781_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
           <option class="u781_input_option" value="Entidad 1">Entidad 1</option>
           <option class="u781_input_option" value="Entidad 2">Entidad 2</option>

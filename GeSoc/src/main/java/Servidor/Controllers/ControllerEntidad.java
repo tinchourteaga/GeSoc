@@ -26,7 +26,7 @@ public class ControllerEntidad {
         String codInscripcion = request.queryParams("codInscripcion");
 
         //Domicilio
-        String calle = request.queryParams("Calle");
+        String calle = request.queryParams("calle");
         String numeroCalle = request.queryParams("numeroCalle");
         String piso = request.queryParams("piso");
         String dpto = request.queryParams("dpto");

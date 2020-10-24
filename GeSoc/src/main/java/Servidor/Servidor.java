@@ -73,6 +73,8 @@ public class Servidor {
     public static void levantarRutaPOST(){
         Spark.post("/validarLogin", ControllerSesion::validarLogin);
         Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
+        Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
+
     }
 
     public static void levantarRutaDELETE(){

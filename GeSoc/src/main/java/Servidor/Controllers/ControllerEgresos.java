@@ -16,4 +16,14 @@ public class ControllerEgresos {
 
         return vista;
     }
+
+    public static Object cargarEgreso(Request request, Response response) {
+
+
+
+        response.redirect("cargar_entidad");
+
+
+        return null;
+    }
 }

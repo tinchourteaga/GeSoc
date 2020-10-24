@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/asociarEgresosYPresupuestos" method="post">
 
       <!-- Unnamed (Group) -->
       <div id="u631" class="ax_default" data-left="45" data-top="240" data-width="142" data-height="136">
@@ -97,7 +98,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u638" class="ax_default droplist">
         <div id="u638_div" class=""></div>
-        <select id="u638_input" class="u638_input">
+        <select name="egreso" id="u638_input" class="u638_input">
           <option class="u638_input_option" value="Seleccionar Egreso">Seleccionar Egreso</option>
           <option class="u638_input_option" value="Egreso 1">Egreso 1</option>
           <option class="u638_input_option" value="Egreso 2">Egreso 2</option>
@@ -116,7 +117,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u640" class="ax_default droplist">
         <div id="u640_div" class=""></div>
-        <select id="u640_input" class="u640_input">
+        <select name="metodoPago" id="u640_input" class="u640_input">
           <option class="u640_input_option" value="Seleccionar Método de Pago">Seleccionar Método de Pago</option>
           <option class="u640_input_option" value="Crédito">Crédito</option>
           <option class="u640_input_option" value="Débito">Débito</option>
@@ -125,12 +126,12 @@
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u641" class="ax_default primary_button">
+      <button id="u641" class="ax_default primary_button">
         <div id="u641_div" class=""></div>
         <div id="u641_text" class="text ">
           <p><span>Asociar</span></p>
         </div>
-      </div>
+      </button>
 
       <!-- Unnamed (Rectangle) -->
       <div id="u642" class="ax_default heading_1">
@@ -143,7 +144,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u643" class="ax_default droplist">
         <div id="u643_div" class=""></div>
-        <select id="u643_input" class="u643_input">
+        <select name="presupuesto" id="u643_input" class="u643_input">
           <option class="u643_input_option" value="Seleccionar Presupuesto">Seleccionar Presupuesto</option>
           <option class="u643_input_option" value="Presupuesto 1">Presupuesto 1</option>
           <option class="u643_input_option" value="Presupuesto 2">Presupuesto 2</option>
@@ -486,7 +487,7 @@
       <!-- Entidades (Droplist) -->
       <div id="u667" class="ax_default droplist" data-label="Entidades">
         <div id="u667_div" class=""></div>
-        <select id="u667_input" class="u667_input">
+        <select name="entidad" id="u667_input" class="u667_input">
           <option class="u667_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
           <option class="u667_input_option" value="Entidad 1">Entidad 1</option>
           <option class="u667_input_option" value="Entidad 2">Entidad 2</option>

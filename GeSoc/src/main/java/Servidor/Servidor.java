@@ -64,7 +64,7 @@ public class Servidor {
         Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
         Spark.get("/mensajes_no_revisor", ControllerMensajes::visualizarPantallaMensajesNoRevisor, engine);
         Spark.get("/mensajes_revisor", ControllerMensajes::visualizarPantallaMensajesRevisor, engine);
-        Spark.get("/ver_egresos_e_ingresos", ControllerVisualizacionEI::visualizarPantalla, engine);
+        Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
 
 
 
@@ -78,6 +78,8 @@ public class Servidor {
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
+        Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);
+
 
     }
 

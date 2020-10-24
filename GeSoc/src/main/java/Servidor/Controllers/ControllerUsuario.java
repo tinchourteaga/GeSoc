@@ -48,4 +48,26 @@ public class ControllerUsuario {
 
         return vista;
     }
+
+    public static Object administrarUsuarios(Request request, Response response) {
+
+        String apellido = request.queryParams("apellido");
+        String nombre = request.queryParams("nombre");
+        String dni = request.queryParams("dni");
+        String email = request.queryParams("email");
+        String telefono = request.queryParams("telefono");
+        String empresa = request.queryParams("empresa");
+        String rolEnEmpresa = request.queryParams("rolEnEmpresa");
+        String usuario = request.queryParams("usuario");
+
+        if(request.queryParams("checkAdmin") != null){
+            //si entra es admin
+        }
+
+
+        response.redirect("administrar_usuarios");
+
+
+        return null;
+    }
 }

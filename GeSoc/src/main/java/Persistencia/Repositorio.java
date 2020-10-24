@@ -8,13 +8,17 @@ public class Repositorio {
 
     private  DAO dao;
 
+    public Repositorio(DAO dao) {
+        this.dao = dao;
+    }
+
     public void setDao(DAO dao) {
         this.dao = dao;
     }
 
     public void agregar(Object objeto){ dao.agregar(objeto); }
 
-    public void modificar(Object objeto){ dao.modificar(objeto); }
+    public void modificar(Object objeto,Object objeto2){ dao.modificar(objeto,objeto2); }
 
     public void eliminar(Object objeto){ dao.eliminar(objeto); }
 

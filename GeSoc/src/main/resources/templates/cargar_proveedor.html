@@ -47,7 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
-
+      <form action="/cargarProveedor" method="post">
       <!-- Unnamed (Rectangle) -->
       <div id="u940" class="ax_default heading_1">
         <div id="u940_div" class=""></div>
@@ -86,13 +86,13 @@
         <!-- EntradaDNI (Text Field) -->
         <div id="u945" class="ax_default text_field" data-label="EntradaDNI">
           <div id="u945_div" class=""></div>
-          <input id="u945_input" type="text" value="" class="u945_input"/>
+          <input name="dni" id="u945_input" type="text" value="" class="u945_input"/>
         </div>
 
         <!-- Unnamed (Droplist) -->
         <div id="u946" class="ax_default droplist">
           <div id="u946_div" class=""></div>
-          <select id="u946_input" class="u946_input">
+          <select name="pais" id="u946_input" class="u946_input">
             <option class="u946_input_option" value="Seleccionar un País">Seleccionar un País</option>
             <option class="u946_input_option" value="Alemania">Alemania</option>
             <option class="u946_input_option" value="Bélgica">Bélgica</option>
@@ -112,17 +112,17 @@
         </div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u947" class="ax_default primary_button">
+        <button id="u947" class="ax_default primary_button">
           <div id="u947_div" class=""></div>
           <div id="u947_text" class="text ">
             <p><span>Cargar</span></p>
           </div>
-        </div>
+        </button>
 
         <!-- EntradaApellidos (Text Field) -->
         <div id="u948" class="ax_default text_field" data-label="EntradaApellidos">
           <div id="u948_div" class=""></div>
-          <input id="u948_input" type="text" value="" class="u948_input"/>
+          <input name="apellido" id="u948_input" type="text" value="" class="u948_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -136,7 +136,7 @@
         <!-- EntradaNombres (Text Field) -->
         <div id="u950" class="ax_default text_field" data-label="EntradaNombres">
           <div id="u950_div" class=""></div>
-          <input id="u950_input" type="text" value="" class="u950_input"/>
+          <input name="nombre" id="u950_input" type="text" value="" class="u950_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -158,7 +158,7 @@
         <!-- Unnamed (Droplist) -->
         <div id="u953" class="ax_default droplist">
           <div id="u953_div" class=""></div>
-          <select id="u953_input" class="u953_input">
+          <select name="provincia" id="u953_input" class="u953_input">
             <option class="u953_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
             <option class="u953_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
             <option class="u953_input_option" value="Buenos Aires">Buenos Aires</option>
@@ -199,7 +199,7 @@
         <!-- Unnamed (Droplist) -->
         <div id="u955" class="ax_default droplist">
           <div id="u955_div" class=""></div>
-          <select id="u955_input" class="u955_input">
+          <select name="ciudad" id="u955_input" class="u955_input">
             <option class="u955_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
             <option class="u955_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
             <option class="u955_input_option" value="Buenos Aires">Buenos Aires</option>
@@ -240,7 +240,7 @@
         <!-- EntradaCalle (Text Field) -->
         <div id="u957" class="ax_default text_field" data-label="EntradaCalle">
           <div id="u957_div" class=""></div>
-          <input id="u957_input" type="text" value="" class="u957_input"/>
+          <input name="calle" id="u957_input" type="text" value="" class="u957_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -254,7 +254,7 @@
         <!-- EntradaNumero (Text Field) -->
         <div id="u959" class="ax_default text_field" data-label="EntradaNumero">
           <div id="u959_div" class=""></div>
-          <input id="u959_input" type="text" value="" class="u959_input"/>
+          <input name="numero" id="u959_input" type="text" value="" class="u959_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -268,7 +268,7 @@
         <!-- EntradaPiso (Text Field) -->
         <div id="u961" class="ax_default text_field" data-label="EntradaPiso">
           <div id="u961_div" class=""></div>
-          <input id="u961_input" type="text" value="" class="u961_input"/>
+          <input name="piso" id="u961_input" type="text" value="" class="u961_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -282,7 +282,7 @@
         <!-- EntradaDepto (Text Field) -->
         <div id="u963" class="ax_default text_field" data-label="EntradaDepto">
           <div id="u963_div" class=""></div>
-          <input id="u963_input" type="text" value="" class="u963_input"/>
+          <input name="departamento" id="u963_input" type="text" value="" class="u963_input"/>
         </div>
 
         <!-- Unnamed (Shape) -->
@@ -321,7 +321,7 @@
       <!-- PersonaEmpresa (Droplist) -->
       <div id="u968" class="ax_default droplist" data-label="PersonaEmpresa">
         <div id="u968_div" class=""></div>
-        <select id="u968_input" class="u968_input">
+        <select name="seleccionarPersonaEmpresa" id="u968_input" class="u968_input">
           <option class="u968_input_option" value="Seleccionar una opción">Seleccionar una opción</option>
           <option class="u968_input_option" value="Persona">Persona</option>
           <option class="u968_input_option" value="Empresa">Empresa</option>
@@ -350,13 +350,13 @@
         <!-- EntradaCUIL/CUIT (Text Field) -->
         <div id="u972" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
           <div id="u972_div" class=""></div>
-          <input id="u972_input" type="text" value="" class="u972_input"/>
+          <input name="cuilCuit" id="u972_input" type="text" value="" class="u972_input"/>
         </div>
 
         <!-- Unnamed (Droplist) -->
         <div id="u973" class="ax_default droplist">
           <div id="u973_div" class=""></div>
-          <select id="u973_input" class="u973_input">
+          <select name="paisEmp" id="u973_input" class="u973_input">
             <option class="u973_input_option" value="Seleccionar un País">Seleccionar un País</option>
             <option class="u973_input_option" value="Alemania">Alemania</option>
             <option class="u973_input_option" value="Bélgica">Bélgica</option>
@@ -376,17 +376,17 @@
         </div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u974" class="ax_default primary_button">
+        <button id="u974" class="ax_default primary_button">
           <div id="u974_div" class=""></div>
           <div id="u974_text" class="text ">
             <p><span>Cargar</span></p>
           </div>
-        </div>
+        </button>
 
         <!-- EntradaRazonSocial (Text Field) -->
         <div id="u975" class="ax_default text_field" data-label="EntradaRazonSocial">
           <div id="u975_div" class=""></div>
-          <input id="u975_input" type="text" value="" class="u975_input"/>
+          <input name="razonSocial" id="u975_input" type="text" value="" class="u975_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -408,7 +408,7 @@
         <!-- Unnamed (Droplist) -->
         <div id="u978" class="ax_default droplist">
           <div id="u978_div" class=""></div>
-          <select id="u978_input" class="u978_input">
+          <select name="provinciaEmp" id="u978_input" class="u978_input">
             <option class="u978_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
             <option class="u978_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
             <option class="u978_input_option" value="Buenos Aires">Buenos Aires</option>
@@ -449,7 +449,7 @@
         <!-- Unnamed (Droplist) -->
         <div id="u980" class="ax_default droplist">
           <div id="u980_div" class=""></div>
-          <select id="u980_input" class="u980_input">
+          <select name="ciudadEmp" id="u980_input" class="u980_input">
             <option class="u980_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
             <option class="u980_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
             <option class="u980_input_option" value="Buenos Aires">Buenos Aires</option>
@@ -490,7 +490,7 @@
         <!-- EntradaCalle (Text Field) -->
         <div id="u982" class="ax_default text_field" data-label="EntradaCalle">
           <div id="u982_div" class=""></div>
-          <input id="u982_input" type="text" value="" class="u982_input"/>
+          <input name="calleEmp" id="u982_input" type="text" value="" class="u982_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -504,7 +504,7 @@
         <!-- EntradaNumero (Text Field) -->
         <div id="u984" class="ax_default text_field" data-label="EntradaNumero">
           <div id="u984_div" class=""></div>
-          <input id="u984_input" type="text" value="" class="u984_input"/>
+          <input name="numeroEmp" id="u984_input" type="text" value="" class="u984_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -518,7 +518,7 @@
         <!-- EntradaPiso (Text Field) -->
         <div id="u986" class="ax_default text_field" data-label="EntradaPiso">
           <div id="u986_div" class=""></div>
-          <input id="u986_input" type="text" value="" class="u986_input"/>
+          <input name="pisoEmp" id="u986_input" type="text" value="" class="u986_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -532,7 +532,7 @@
         <!-- EntradaDepto (Text Field) -->
         <div id="u988" class="ax_default text_field" data-label="EntradaDepto">
           <div id="u988_div" class=""></div>
-          <input id="u988_input" type="text" value="" class="u988_input"/>
+          <input name="departamentoEmp" id="u988_input" type="text" value="" class="u988_input"/>
         </div>
 
         <!-- Unnamed (Shape) -->

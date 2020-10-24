@@ -1,11 +1,30 @@
 package Persistencia.DAO;
 
+import Persistencia.EntityManagerHelper;
+
 import java.util.List;
 
 public interface DAO {
-    <T> void agregar(T usuario);
-    <T> void modificar(T usuario, T usuarioModificado);
-    <T> void eliminar(T usuario);
+
+   default void agregar(Object objeto){
+       EntityManagerHelper.getEntityManager().getTransaction().begin();
+       EntityManagerHelper.persist(objeto);
+       EntityManagerHelper.getEntityManager().getTransaction().commit();
+   };
+
+   default void modificar(Object objeto){
+       EntityManagerHelper.getEntityManager().getTransaction().begin();
+       EntityManagerHelper.getEntityManager().merge(objeto);
+       EntityManagerHelper.getEntityManager().getTransaction().commit();
+   };
+
+   default void eliminar(Object objeto){
+       EntityManagerHelper.getEntityManager().getTransaction().begin();
+       EntityManagerHelper.getEntityManager().remove(objeto);
+       EntityManagerHelper.getEntityManager().getTransaction().commit();
+   };
+
+
     <T> boolean existe(T usuario);
     <T> int buscar(T usuario);
     <T> List<T> getAllElementos();

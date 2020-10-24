@@ -8,24 +8,15 @@ public class Repositorio {
 
     private  DAO dao;
 
-    public  void setDao(DAO dao) {
-        dao = dao;
+    public void setDao(DAO dao) {
+        this.dao = dao;
     }
 
-    public Repositorio(DAO dao){
+    public void agregar(Object objeto){ dao.agregar(objeto); }
 
-        this.dao=dao;
-}
+    public void modificar(Object objeto){ dao.modificar(objeto); }
 
-    public  <T> void agregar(T elemento){
-        dao.agregar(elemento);
-    }
-
-    public   <T> void modificar(T elemento, T elementoModificado){ dao.modificar(elemento, elementoModificado); }
-
-    public  <T> void eliminar(T elemento){
-        dao.eliminar(elemento);
-    }
+    public void eliminar(Object objeto){ dao.eliminar(objeto); }
 
     public  <T> boolean existe(T elemento) {
         return dao.existe(elemento);

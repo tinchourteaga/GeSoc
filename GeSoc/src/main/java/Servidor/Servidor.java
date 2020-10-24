@@ -76,6 +76,7 @@ public class Servidor {
         Spark.post("/cargarIngreso", ControllerIngresos::cargarIngreso);
         Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);
+        Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
 
     }
 

@@ -16,4 +16,14 @@ public class ControllerPresupuesto {
 
         return vista;
     }
+
+    public static Object cargarPresupuesto(Request request, Response response) {
+
+
+
+        response.redirect("cargar_entidad");
+
+
+        return null;
+    }
 }

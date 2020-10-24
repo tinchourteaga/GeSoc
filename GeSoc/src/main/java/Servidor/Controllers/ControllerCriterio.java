@@ -15,4 +15,18 @@ public class ControllerCriterio {
 
         return vista;
     }
+
+    public static Object crearCriterio(Request request, Response response) {
+
+        System.out.println(request.queryParams("nombreCriterio"));
+        System.out.println(request.queryParams("descripcion"));
+
+        String nombreCriterio = request.queryParams("nombreCriterio");
+        String descripcion = request.queryParams("descripcion");
+
+        response.redirect("crear_criterio");
+
+
+        return null;
+    }
 }

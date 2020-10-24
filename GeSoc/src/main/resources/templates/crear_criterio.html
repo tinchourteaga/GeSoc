@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/crearCriterio" method="post">
 
       <!-- Popup (Dynamic Panel) -->
       <div id="u1280" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
@@ -146,7 +147,7 @@
         <!-- Unnamed (Text Field) -->
         <div id="u1293" class="ax_default text_field">
           <div id="u1293_div" class=""></div>
-          <input id="u1293_input" type="text" value="" class="u1293_input"/>
+          <input name="nombreCriterio" id="u1293_input" type="text" value="" class="u1293_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -160,7 +161,7 @@
         <!-- Unnamed (Text Area) -->
         <div id="u1295" class="ax_default text_area">
           <div id="u1295_div" class=""></div>
-          <textarea id="u1295_input" class="u1295_input"></textarea>
+          <textarea name="descripcion" id="u1295_input" class="u1295_input"></textarea>
         </div>
       </div>
 
@@ -193,12 +194,12 @@
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u1300" class="ax_default primary_button">
+      <button id="u1300" class="ax_default primary_button">
         <div id="u1300_div" class=""></div>
         <div id="u1300_text" class="text ">
           <p><span>Crear</span></p>
         </div>
-      </div>
+      </button>
 
       <!-- Unnamed (Rectangle) -->
       <div id="u1301" class="ax_default heading_1">

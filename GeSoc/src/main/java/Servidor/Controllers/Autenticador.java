@@ -16,7 +16,7 @@ public class Autenticador {
         final Optional<String> maybeUser = Optional.ofNullable(request.session().attribute("idUsuarioActual"));
         final Optional<String> maybeXUser = Optional.ofNullable(request.headers("X-User"));
 
-        if(!request.uri().equals("/")) { //Si es la barra no valido nada, es el login
+        if(!request.uri().equals("/") ||!request.uri().equals("/autenticacion_usuario") ) { //Si es la barra no valido nada es la pantalla principal, o puede ser el login
             if (maybeUser.isPresent()) {
 
                 // ya tenia un usuario en la session y si pasan X-User tiene que ser el mismo ya asignado

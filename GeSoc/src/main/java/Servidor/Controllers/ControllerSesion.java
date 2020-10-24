@@ -1,5 +1,7 @@
 package Servidor.Controllers;
 
+import Servidor.Controllers.Hash.FuncionHash;
+import Servidor.Controllers.Hash.Hash;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -9,6 +11,7 @@ import java.util.Map;
 
 public class ControllerSesion{
 
+    static Hash encriptador=new FuncionHash();
     public static ModelAndView mostrarLogin(Request request, Response response){
 
         Map<String,Object> datos = new HashMap<>();
@@ -29,19 +32,26 @@ public class ControllerSesion{
         //System.out.println(request.queryParams("password"));
         String nombreUsuario = request.queryParams("nombreUsuario");
         String contraseniaUsuario = request.queryParams("contraseniaUsuario");
-        response.redirect("pantalla_principal_usuario");
-        //Boolean usuarioVerificado = clasePers.verificarDatosContraBD(nombreUsuario, contraseniaUsuario);
 
-        /*
+
+
+
+        Boolean usuarioVerificado =verificarDatos(nombreUsuario, contraseniaUsuario);
+
+
         if(usuarioVerificado){
-            response.redirect("https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstleyVEVO");
+            response.redirect("pantalla_principal_usuario");
         }else{
-            response.redirect(
+            response.redirect("/autenticacion_usuario");
         }
-        */
-
-
-        //Hacer todo lo de la sesion
         return null;
+    }
+
+    private static Boolean verificarDatos(String nombreUsuario, String contraseniaUsuario) {
+
+        String contraHasheada= encriptador.funcionHash(contraseniaUsuario);
+        //consultas al dao y devolves si existe un usuario con dicha contraseña
+        //buscas en la base de datos si existe esa contraseña hasheada con el nombre de usuario TODO
+        return true;
     }
 }

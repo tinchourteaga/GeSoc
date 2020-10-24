@@ -47,7 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
-
+      <form action="/cargarEgreso" method="post">
       <!-- Popup & Launcher (Group) -->
       <div id="u494" class="ax_default" data-label="Popup &amp; Launcher" data-left="0" data-top="0" data-width="0" data-height="0">
 
@@ -287,7 +287,7 @@
       <!-- Unnamed (Text Area) -->
       <div id="u524" class="ax_default text_area">
         <div id="u524_div" class=""></div>
-        <textarea id="u524_input" class="u524_input"></textarea>
+        <textarea name="descripcionDocComercial" id="u524_input" class="u524_input"></textarea>
       </div>
 
       <!-- Unnamed (Rectangle) -->
@@ -317,27 +317,27 @@
       <!-- EntradaNombreItem (Text Field) -->
       <div id="u528" class="ax_default text_field" data-label="EntradaNombreItem">
         <div id="u528_div" class=""></div>
-        <input id="u528_input" type="text" value="" class="u528_input"/>
+        <input name="item" id="u528_input" type="text" value="" class="u528_input"/>
       </div>
 
       <!-- EntradaValorItem (Text Field) -->
       <div id="u529" class="ax_default text_field" data-label="EntradaValorItem">
         <div id="u529_div" class=""></div>
-        <input id="u529_input" type="text" value="" class="u529_input"/>
+        <input name="valor" id="u529_input" type="text" value="" class="u529_input"/>
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u530" class="ax_default primary_button">
+      <button id="u530" class="ax_default primary_button">
         <div id="u530_div" class=""></div>
         <div id="u530_text" class="text ">
           <p><span>Cargar</span></p>
         </div>
-      </div>
+      </button>
 
       <!-- Unnamed (Droplist) -->
       <div id="u531" class="ax_default droplist">
         <div id="u531_div" class=""></div>
-        <select id="u531_input" class="u531_input">
+        <select name="seleccionarMetodoPago" id="u531_input" class="u531_input">
           <option class="u531_input_option" selected value="Seleccionar Método de Pago">Seleccionar Método de Pago</option>
           <option class="u531_input_option" value="Crédito">Crédito</option>
           <option class="u531_input_option" value="Débito">Débito</option>
@@ -348,7 +348,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u532" class="ax_default droplist">
         <div id="u532_div" class=""></div>
-        <select id="u532_input" class="u532_input">
+        <select name="proveedor" id="u532_input" class="u532_input">
           <option class="u532_input_option" value="Seleccionar Proveedor">Seleccionar Proveedor</option>
           <option class="u532_input_option" value="Proveedor 1">Proveedor 1</option>
           <option class="u532_input_option" value="Proveedor 2">Proveedor 2</option>
@@ -359,7 +359,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u533" class="ax_default droplist">
         <div id="u533_div" class=""></div>
-        <select id="u533_input" class="u533_input">
+        <select name="documentoComercial" id="u533_input" class="u533_input">
           <option class="u533_input_option" value="Seleccionar Documento Comercial">Seleccionar Documento Comercial</option>
           <option class="u533_input_option" value="Cheque">Cheque</option>
           <option class="u533_input_option" value="Pagaré">Pagaré</option>
@@ -400,7 +400,7 @@
       <!-- Unnamed (Text Field) -->
       <div id="u538" class="ax_default text_field">
         <div id="u538_div" class=""></div>
-        <input id="u538_input" type="date" value="Fecha" class="u538_input"/>
+        <input name="fecha" id="u538_input" type="date" value="Fecha" class="u538_input"/>
       </div>
 
       <!-- Unnamed (Dynamic Panel) -->
@@ -771,7 +771,7 @@
             <p></p>
           </div>
         </label>
-        <input id="u560_input" type="checkbox" value="checkbox"/>
+        <input name="esRevisor" id="u560_input" type="checkbox" value="checkbox"/>
       </div>
 
       <!-- Popup (Dynamic Panel) -->
@@ -845,7 +845,7 @@
       <!-- Entidades (Droplist) -->
       <div id="u570" class="ax_default droplist" data-label="Entidades">
         <div id="u570_div" class=""></div>
-        <select id="u570_input" class="u570_input">
+        <select name="seleccionarEntidad" id="u570_input" class="u570_input">
           <option class="u570_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
           <option class="u570_input_option" value="Entidad 1">Entidad 1</option>
           <option class="u570_input_option" value="Entidad 2">Entidad 2</option>

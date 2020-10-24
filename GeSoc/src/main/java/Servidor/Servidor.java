@@ -4,8 +4,8 @@ import Servidor.Controllers.*;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import static spark.Spark.port;
-import static spark.Spark.staticFiles;
+import static Servidor.Controllers.Autenticador.authenticate;
+import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Servidor {
@@ -40,6 +40,8 @@ public class Servidor {
         levantarRutaDELETE();
         levantarRutaPUT();
         levantarRutaPATCH();
+        before("/*", authenticate);
+        //esto ultimo es para que realice siempre la autenticación
     }
 
     public static void levantarRutaGET(){

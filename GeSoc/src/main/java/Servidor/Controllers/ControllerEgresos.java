@@ -19,10 +19,20 @@ public class ControllerEgresos {
 
     public static Object cargarEgreso(Request request, Response response) {
 
+        String entidad = request.queryParams("seleccionarEntidad");
+        String fecha = request.queryParams("fecha");
+        String metodoPago = request.queryParams("seleccionarMetodoPago");
+        String item = request.queryParams("item");
+        String valorItem = request.queryParams("valor");
+        String proveedor = request.queryParams("proveedor");
+        String documentoComercial = request.queryParams("documentoComercial");
+        String descripcionDocComercial = request.queryParams("descripcionDocComercial");
 
+        if(request.queryParams("esRevisor")!=null){
+            //Es revisor
+        }
 
-        response.redirect("cargar_entidad");
-
+        response.redirect("pantalla_principal_usuario");
 
         return null;
     }

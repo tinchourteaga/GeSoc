@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/crearProyectoFinanciamiento" method="post">
 
       <!-- Popup & Launcher (Group) -->
       <div id="u1542" class="ax_default" data-label="Popup &amp; Launcher" data-left="0" data-top="0" data-width="0" data-height="0">
@@ -209,7 +210,7 @@
               <!-- Total (Text Field) -->
               <div id="u1563" class="ax_default text_field disabled" data-label="Total">
                 <div id="u1563_div" class="disabled"></div>
-                <input id="u1563_input" type="text" value="" class="u1563_input" disabled/>
+                <input name="total" id="u1563_input" type="text" value="" class="u1563_input" disabled/>
               </div>
             </div>
           </div>
@@ -241,17 +242,17 @@
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u1567" class="ax_default primary_button">
+      <button id="u1567" class="ax_default primary_button">
         <div id="u1567_div" class=""></div>
         <div id="u1567_text" class="text ">
           <p><span>Crear</span></p>
         </div>
-      </div>
+      </button>
 
       <!-- Unnamed (Droplist) -->
       <div id="u1568" class="ax_default droplist">
         <div id="u1568_div" class=""></div>
-        <select id="u1568_input" class="u1568_input">
+        <select name="directorResponsable" id="u1568_input" class="u1568_input">
           <option class="u1568_input_option" value="Seleccionar Usuario">Seleccionar Usuario</option>
           <option class="u1568_input_option" value="usuario1">usuario1</option>
           <option class="u1568_input_option" value="usuario2">usuario2</option>
@@ -290,7 +291,7 @@
       <!-- Unnamed (Text Field) -->
       <div id="u1573" class="ax_default text_field">
         <div id="u1573_div" class=""></div>
-        <input id="u1573_input" type="date" value="Fecha" class="u1573_input"/>
+        <input name="fecha" id="u1573_input" type="date" value="Fecha" class="u1573_input"/>
       </div>
 
       <!-- Unnamed (Dynamic Panel) -->
@@ -760,11 +761,11 @@
       <!-- Unnamed (Droplist) -->
       <div id="u1605" class="ax_default droplist">
         <div id="u1605_div" class=""></div>
-        <select id="u1605_input" class="u1605_input">
+        <select name="ingreso" id="u1605_input" class="u1605_input">
           <option class="u1605_input_option" value="Seleccionar Ingreso">Seleccionar Ingreso</option>
-          <option class="u1605_input_option" value="Ingreso 1">Ingreso 1</option>
-          <option class="u1605_input_option" value="Ingreso 2">Ingreso 2</option>
-          <option class="u1605_input_option" value="Ingreso 3">Ingreso 3</option>
+          <option class="u1605_input_option" value="Ingreso1">Ingreso1</option>
+          <option class="u1605_input_option" value="Ingreso2">Ingreso2</option>
+          <option class="u1605_input_option" value="Ingreso3">Ingreso3</option>
         </select>
       </div>
 
@@ -799,7 +800,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u1610" class="ax_default droplist">
         <div id="u1610_div" class=""></div>
-        <select id="u1610_input" class="u1610_input">
+        <select name="moneda" id="u1610_input" class="u1610_input">
           <option class="u1610_input_option" value="Seleccionar Moneda">Seleccionar Moneda</option>
           <option class="u1610_input_option" value="Peso">Peso</option>
           <option class="u1610_input_option" value="Dólar Estadounidense">Dólar Estadounidense</option>
@@ -818,7 +819,7 @@
       <!-- Entidades (Droplist) -->
       <div id="u1612" class="ax_default droplist" data-label="Entidades">
         <div id="u1612_div" class=""></div>
-        <select id="u1612_input" class="u1612_input">
+        <select name="entidad" id="u1612_input" class="u1612_input">
           <option class="u1612_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
           <option class="u1612_input_option" value="Entidad 1">Entidad 1</option>
           <option class="u1612_input_option" value="Entidad 2">Entidad 2</option>

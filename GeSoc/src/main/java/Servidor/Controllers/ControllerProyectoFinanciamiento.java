@@ -16,4 +16,20 @@ public class ControllerProyectoFinanciamiento {
 
         return vista;
     }
+
+    public static Object crearProyectoFinanciamiento(Request request, Response response){
+
+        String entidad = request.queryParams("entidad");
+        String fecha = request.queryParams("fecha");
+        String moneda = request.queryParams("moneda");
+        String directorResponsable = request.queryParams("directorResponsable");
+        String ingreso = request.queryParams("ingreso"); //necesito tener una lista de ingresos
+
+
+        response.redirect("crear_proyecto_de_financiamiento");
+
+        return null;
+    }
+
+
 }

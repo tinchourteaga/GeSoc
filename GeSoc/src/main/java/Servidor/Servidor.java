@@ -16,7 +16,7 @@ public class Servidor {
     public static void levantarServidor(){
 
         enableDebugScreen();
-        port(4575);
+        port(9000);
 
         boolean localhost = true;
         if (localhost) {
@@ -29,7 +29,7 @@ public class Servidor {
 
         //repositorio.inicializarRepo();
 
-        // acceso: http://localhost:4575/
+        // acceso: http://localhost:9000/
         levantarRutas();
     }
 

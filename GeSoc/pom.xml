@@ -72,6 +72,14 @@
             <version>1.8.0-beta0</version>
         </dependency>
 
+        <!-- Mailing -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+            <scope>provided</scope> <!-- add this only if code will run in a java container (i.e. tomcat, etc)-->
+        </dependency>
+
         <!-- Hibernate -->
         <dependency>
             <groupId>org.uqbar-project</groupId>

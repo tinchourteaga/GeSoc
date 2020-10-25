@@ -1,13 +1,28 @@
 package Servidor.Controllers;
 
+import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
+import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Rol.Administrador;
+import Dominio.Rol.Estandar;
+import Dominio.Usuario.Usuario;
+import Persistencia.RepositorioUsuario;
+import Servidor.Controllers.Hash.FuncionHash;
+import Servidor.Controllers.Hash.Hash;
+import Servidor.Controllers.MailSender.SendEmail;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerUsuario {
+
+    static Hash fxHash = new FuncionHash();
 
     public static ModelAndView visualizarPantallaUsuario(Request request, Response response){
 
@@ -49,7 +64,7 @@ public class ControllerUsuario {
         return vista;
     }
 
-    public static Object administrarUsuarios(Request request, Response response) {
+    public static Object administrarUsuarios(Request request, Response response) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
 
         String apellido = request.queryParams("apellido");
         String nombre = request.queryParams("nombre");
@@ -58,16 +73,38 @@ public class ControllerUsuario {
         String telefono = request.queryParams("telefono");
         String empresa = request.queryParams("empresa");
         String rolEnEmpresa = request.queryParams("rolEnEmpresa");
-        String usuario = request.queryParams("usuario");
+        String nombreUsuario = request.queryParams("usuario");
 
         if(request.queryParams("checkAdmin") != null){
-            //si entra es admin
+            persistirUsuarioAdmin(nombre, apellido, nombreUsuario, dni, email);
+        }else{
+            persistirUsuarioEstandar(nombre, apellido, nombreUsuario, dni, email);
         }
-
 
         response.redirect("administrar_usuarios");
 
-
         return null;
+    }
+
+    public static void persistirUsuarioEstandar(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+        Estandar rol = new Estandar();
+        String contraseniaHash = fxHash.funcionHash(dni+new Date().toString());
+        Usuario usuario = new Usuario(rol, nombre, apellido, contraseniaHash);
+        usuario.setPersona(nombre, apellido);
+        RepositorioUsuario.getInstance().agregar(usuario);
+
+        //Enviamos el mail a la persona con su usuario y contrasenia
+        SendEmail.main(email, nombreUsuario, contraseniaHash);
+    }
+
+    public static void persistirUsuarioAdmin(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+        Administrador rol = new Administrador();
+        String contraseniaHash = fxHash.funcionHash(dni+new Date().toString());
+        Usuario usuario = new Usuario(rol, nombre, apellido, contraseniaHash);
+        usuario.setPersona(nombre, apellido);
+        RepositorioUsuario.getInstance().agregar(usuario);
+
+        //Enviamos el mail a la persona con su usuario y contrasenia
+        SendEmail.main(email, nombreUsuario, contraseniaHash);
     }
 }

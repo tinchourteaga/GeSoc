@@ -11,12 +11,12 @@ import Persistencia.RepositorioUsuario;
 import Servidor.Controllers.Hash.FuncionHash;
 import Servidor.Controllers.Hash.Hash;
 import Servidor.Controllers.MailSender.SendEmail;
+import Servidor.Controllers.PasswordGenerator.PasswordGenerator;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -88,23 +88,27 @@ public class ControllerUsuario {
 
     public static void persistirUsuarioEstandar(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Estandar rol = new Estandar();
-        String contraseniaHash = fxHash.funcionHash(dni+new Date().toString());
-        Usuario usuario = new Usuario(rol, nombre, apellido, contraseniaHash, dni, email);
+        String contrasenia = PasswordGenerator.generateRandomPassword(10);
+        Usuario usuario = new Usuario(rol, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona(nombre, apellido);
+
+        //chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
         RepositorioUsuario.getInstance().agregar(usuario);
 
         //Enviamos el mail a la persona con su usuario y contrasenia
-        SendEmail.main(email, nombreUsuario, contraseniaHash);
+        SendEmail.main(email, nombreUsuario, contrasenia);
     }
 
     public static void persistirUsuarioAdmin(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Administrador rol = new Administrador();
-        String contraseniaHash = fxHash.funcionHash(dni+new Date().toString());
-        Usuario usuario = new Usuario(rol, nombre, apellido, contraseniaHash, dni, email);
+        String contrasenia = PasswordGenerator.generateRandomPassword(10);
+        Usuario usuario = new Usuario(rol, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona(nombre, apellido);
+
+        //chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
         RepositorioUsuario.getInstance().agregar(usuario);
 
         //Enviamos el mail a la persona con su usuario y contrasenia
-        SendEmail.main(email, nombreUsuario, contraseniaHash);
+        SendEmail.main(email, nombreUsuario, contrasenia);
     }
 }

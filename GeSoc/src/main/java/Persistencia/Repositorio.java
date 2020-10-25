@@ -37,9 +37,9 @@ public class Repositorio {
         return dao.buscarPorId(id);
     }
 
-    public  <T> Object buscarPorNombre(String nombre){
-        return dao.buscarPorNombre(nombre);
-    }
+    public  <T> Object buscarPorNombre(String nombre){ return dao.buscarPorNombre(nombre); }
+
+    public  <T> Object buscarPorUsuario(String nombre){ return dao.buscarPorNombre(nombre); }
 
     public  <T> List<T> getTodosLosElementos(){
         return dao.getAllElementos();

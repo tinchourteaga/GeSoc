@@ -26,4 +26,13 @@ public class DAOUsuario extends DAOBBDD implements DAO {
         if(usuarios!=null){ return usuarios.get(0); }
         return null;
     }
+
+    @Override
+    public Object buscarPorUsuario(String usuario) {
+        String query = "from Usuario where persona = '" + usuario + "'";
+        List usuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
+        EntityManagerHelper.closeEntityManager();
+        if(usuarios!=null){ return usuarios.get(0); }
+        return null;
+    }
 }

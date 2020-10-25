@@ -47,6 +47,9 @@ public class DAOBBDD implements DAO {
     }
 
     @Override
+    public Object buscarPorUsuario(String usuario) { return null; }
+
+    @Override
     public List<Object> getAllElementos() {
         return listaElementos;
     }

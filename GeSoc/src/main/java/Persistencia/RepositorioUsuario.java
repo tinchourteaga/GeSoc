@@ -17,4 +17,6 @@ public class RepositorioUsuario extends Repositorio {
     public Usuario buscarPorPK(int usuario){ return (Usuario) this.dao.buscarPorPK(usuario); }
 
     public Usuario buscarPorNombre(String nombre){ return (Usuario) this.dao.buscarPorNombre(nombre); }
+
+    public Usuario buscarPorUsuario(String usuario){ return (Usuario) this.dao.buscarPorUsuario(usuario); }
 }

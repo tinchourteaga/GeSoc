@@ -13,4 +13,5 @@ public interface DAO {
     Object buscarPorId(String id);
     Object buscarPorPK(int id);
     Object buscarPorNombre(String nombre);
+    Object buscarPorUsuario(String usuario);
 }

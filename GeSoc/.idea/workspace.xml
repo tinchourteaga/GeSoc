@@ -20,13 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="83cdc46c-7ec7-4c5c-a38e-7700bfdda6a3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/GeSoc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/GeSoc.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/ContextTest/ContextTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ContextTest/ContextTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/TestsEntrega4/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestsEntrega4/Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/GeSoc.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/GeSoc.kotlin_module" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/META-INF/persistence.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/META-INF/persistence.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Dominio/Usuario/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Dominio/Usuario/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/TestsEntrega5/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/TestsEntrega5/Test.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +70,7 @@
       <recent name="C:\Users\Lenovo\Desktop\Git\2020-ma-ma-group-05\GeSoc\src\main\resources\templates" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in GeSoc">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Dominio.Main" />
       <module name="GeSoc" />
@@ -239,26 +235,26 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="413" y="111" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.0.1366.728@0.0.1366.728" timestamp="1601159719883" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1601169916089">
+    <state width="1323" height="212" key="GridCell.Tab.0.bottom" timestamp="1603593138741">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1601169916089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1601169916089">
+    <state width="1323" height="212" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1603593138741" />
+    <state width="1323" height="212" key="GridCell.Tab.0.center" timestamp="1603593138741">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1601169916089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1601169916088">
+    <state width="1323" height="212" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1603593138741" />
+    <state width="1323" height="212" key="GridCell.Tab.0.left" timestamp="1603593138741">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1601169916088" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1601169916089">
+    <state width="1323" height="212" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1603593138741" />
+    <state width="1323" height="212" key="GridCell.Tab.0.right" timestamp="1603593138741">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1600896642089" />
-    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1601169916089" />
+    <state width="1323" height="212" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1603593138741" />
     <state x="213" y="19" key="Maven.ArtifactSearchDialog" timestamp="1600897200146">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

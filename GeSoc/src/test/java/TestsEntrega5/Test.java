@@ -17,7 +17,7 @@ public class Test {
         Estandar rolPrueba = new Estandar();
         String nombre = "pruebita";
         String apellido = "normal";
-        Usuario usuario = new Usuario(rolPrueba, nombre, apellido,"chaybsafsa");
+        Usuario usuario = new Usuario(rolPrueba, nombre, apellido,"chaybsafsa", "41658239", "mail@mail.com");
         usuario.setPersona(nombre, apellido);
         RepositorioUsuario.getInstance().agregar(usuario);
     }
@@ -27,7 +27,7 @@ public class Test {
         Administrador rolPrueba = new Administrador();
         String nombre = "pepito";
         String apellido = "fachero";
-        Usuario usuario= new Usuario(rolPrueba,nombre, apellido, "holaslfmaf");
+        Usuario usuario= new Usuario(rolPrueba,nombre, apellido, "holaslfmaf", "41658239", "mail@mail.com");
         usuario.setPersona(nombre, apellido);
         RepositorioUsuario.getInstance().agregar(usuario);
     }

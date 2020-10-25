@@ -27,6 +27,12 @@ public class Usuario {
     @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "dni")
+    private String dni;
+
+    @Column(name = "mail")
+    private String mail;
+
     @Column(name = "apellido")
     private String apellido;
 
@@ -39,10 +45,15 @@ public class Usuario {
     @Embedded
     private BandejaMensajes bandejaDeMensajes;
 
-    public Usuario(Rol rol, String nombre, String apellido, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
+    @Column(name = "nro_celular")
+    private String celular;
+
+    public Usuario(Rol rol, String nombre, String apellido, String contrasenia, String dni, String mail) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
         this.rol = rol;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.dni = dni;
+        this.mail = mail;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
         this.contrasenia = new FuncionHash().funcionHash(contrasenia);
         this.bandejaDeMensajes = new BandejaMensajes();

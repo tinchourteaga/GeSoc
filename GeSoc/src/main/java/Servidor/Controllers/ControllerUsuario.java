@@ -59,9 +59,17 @@ public class ControllerUsuario {
     public static ModelAndView visualizarPantallaPrincipalUsuario(Request request, Response response){
 
         Map<String,Object> datos = new HashMap<>();
+
+        String nombre=obtenerNombreUsuario(request);
+        nombre="pepito";
+        datos.put("nombreUsuario",nombre);
         ModelAndView vista = new ModelAndView(datos, "pantalla_principal_usuario.html");
 
         return vista;
+    }
+
+    private static String obtenerNombreUsuario(Request request) {
+        return "";
     }
 
     public static Object administrarUsuarios(Request request, Response response) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {

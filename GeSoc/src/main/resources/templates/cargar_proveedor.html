@@ -358,20 +358,9 @@
           <div id="u973_div" class=""></div>
           <select name="paisEmp" id="u973_input" class="u973_input">
             <option class="u973_input_option" value="Seleccionar un País">Seleccionar un País</option>
-            <option class="u973_input_option" value="Alemania">Alemania</option>
-            <option class="u973_input_option" value="Bélgica">Bélgica</option>
-            <option class="u973_input_option" value="Perú">Perú</option>
-            <option class="u973_input_option" value="Francia">Francia</option>
-            <option class="u973_input_option" value="México">México</option>
-            <option class="u973_input_option" value="España">España</option>
-            <option class="u973_input_option" value="Cuba">Cuba</option>
-            <option class="u973_input_option" value="Hungría">Hungría</option>
-            <option class="u973_input_option" value="Argentina">Argentina</option>
-            <option class="u973_input_option" value="Italia">Italia</option>
-            <option class="u973_input_option" value="Brasil">Brasil</option>
-            <option class="u973_input_option" value="Rumania">Rumania</option>
-            <option class="u973_input_option" value="Chile">Chile</option>
-            <option class="u973_input_option" value="Suiza">Suiza</option>
+            {{#each paises}}
+            <option class="u973_input_option" value="{{.}}">{{.}}</option>
+            {{/each}}
           </select>
         </div>
 
@@ -410,31 +399,9 @@
           <div id="u978_div" class=""></div>
           <select name="provinciaEmp" id="u978_input" class="u978_input">
             <option class="u978_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
-            <option class="u978_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
-            <option class="u978_input_option" value="Buenos Aires">Buenos Aires</option>
-            <option class="u978_input_option" value="Catamarca">Catamarca</option>
-            <option class="u978_input_option" value="Córdoba">Córdoba</option>
-            <option class="u978_input_option" value="Corrientes">Corrientes</option>
-            <option class="u978_input_option" value="Chaco">Chaco</option>
-            <option class="u978_input_option" value="Chubut">Chubut</option>
-            <option class="u978_input_option" value="Entre Ríos">Entre Ríos</option>
-            <option class="u978_input_option" value="Formosa">Formosa</option>
-            <option class="u978_input_option" value="Jujuy">Jujuy</option>
-            <option class="u978_input_option" value="La Rioja">La Rioja</option>
-            <option class="u978_input_option" value="Mendoza">Mendoza</option>
-            <option class="u978_input_option" value="Misiones">Misiones</option>
-            <option class="u978_input_option" value="Neuquén">Neuquén</option>
-            <option class="u978_input_option" value="Río Negro">Río Negro</option>
-            <option class="u978_input_option" value="Salta">Salta</option>
-            <option class="u978_input_option" value="San Juan">San Juan</option>
-            <option class="u978_input_option" value="San Luis">San Luis</option>
-            <option class="u978_input_option" value="Santa Fe">Santa Fe</option>
-            <option class="u978_input_option" value="Santiago del Estero">Santiago del Estero</option>
-            <option class="u978_input_option" value="Tucumán">Tucumán</option>
-            <option class="u978_input_option" value="Indeterminada">Indeterminada</option>
-            <option class="u978_input_option" value="La Pampa">La Pampa</option>
-            <option class="u978_input_option" value="Santa Cruz">Santa Cruz</option>
-            <option class="u978_input_option" value="Tierra del Fuego, Antártida e Islas del Atlántico Sur">Tierra del Fuego, Antártida e Islas del Atlántico Sur</option>
+            <!--{{#each document.getElementById('u973_input_option')}}
+            <option class="u978_input_option" value="{{.}}">{{.}}</option>
+            {{/each}}-->
           </select>
         </div>
 
@@ -451,31 +418,9 @@
           <div id="u980_div" class=""></div>
           <select name="ciudadEmp" id="u980_input" class="u980_input">
             <option class="u980_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
-            <option class="u980_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
-            <option class="u980_input_option" value="Buenos Aires">Buenos Aires</option>
-            <option class="u980_input_option" value="Catamarca">Catamarca</option>
-            <option class="u980_input_option" value="Córdoba">Córdoba</option>
-            <option class="u980_input_option" value="Corrientes">Corrientes</option>
-            <option class="u980_input_option" value="Chaco">Chaco</option>
-            <option class="u980_input_option" value="Chubut">Chubut</option>
-            <option class="u980_input_option" value="Entre Ríos">Entre Ríos</option>
-            <option class="u980_input_option" value="Formosa">Formosa</option>
-            <option class="u980_input_option" value="Jujuy">Jujuy</option>
-            <option class="u980_input_option" value="La Rioja">La Rioja</option>
-            <option class="u980_input_option" value="Mendoza">Mendoza</option>
-            <option class="u980_input_option" value="Misiones">Misiones</option>
-            <option class="u980_input_option" value="Neuquén">Neuquén</option>
-            <option class="u980_input_option" value="Río Negro">Río Negro</option>
-            <option class="u980_input_option" value="Salta">Salta</option>
-            <option class="u980_input_option" value="San Juan">San Juan</option>
-            <option class="u980_input_option" value="San Luis">San Luis</option>
-            <option class="u980_input_option" value="Santa Fe">Santa Fe</option>
-            <option class="u980_input_option" value="Santiago del Estero">Santiago del Estero</option>
-            <option class="u980_input_option" value="Tucumán">Tucumán</option>
-            <option class="u980_input_option" value="Indeterminada">Indeterminada</option>
-            <option class="u980_input_option" value="La Pampa">La Pampa</option>
-            <option class="u980_input_option" value="Santa Cruz">Santa Cruz</option>
-            <option class="u980_input_option" value="Tierra del Fuego, Antártida e Islas del Atlántico Sur">Tierra del Fuego, Antártida e Islas del Atlántico Sur</option>
+            <!--{{#each document.getElementById('u973_input_option')}}
+            <option class="u980_input_option" value="{{.}}">{{.}}</option>
+            {{/each}}-->
           </select>
         </div>
 

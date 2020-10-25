@@ -3,17 +3,14 @@ package Dominio.Rol;
 import Dominio.Rol.Acciones.Accion;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.util.List;
 
-@Embeddable
 public abstract class Rol {
     @Transient
     protected List<Accion> acciones;
 
-    @Column(name = "rol")
+    @Transient
     protected String nombre;
 
     public abstract void tengoPermisosPara(Accion unaAccion) throws NoTengoPermisosException ;

@@ -1,5 +1,6 @@
 package Dominio.Usuario;
 
+import Converters.RolAttributeConverter;
 import Dominio.BandejaMensajes.BandejaMensajes;
 import Dominio.Contrasenia.Core.ValidadorDeContrasenia;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
@@ -8,6 +9,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
 import Dominio.Rol.Rol;
+import Servidor.Controllers.Hash.FuncionHash;
 
 import javax.persistence.*;
 import java.io.IOException;
@@ -19,6 +21,9 @@ public class Usuario {
     @GeneratedValue
     private int usuario;
 
+    @Column(name = "nickname")
+    private String persona;
+
     @Column(name = "nombre")
     private String nombre;
 
@@ -28,7 +33,7 @@ public class Usuario {
     @Column(name = "clave")
     private String contrasenia;
 
-    @Embedded
+    @Convert(converter = RolAttributeConverter.class)
     private Rol rol;
 
     @Embedded
@@ -39,10 +44,11 @@ public class Usuario {
         this.nombre = nombre;
         this.apellido = apellido;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
-        this.contrasenia = contrasenia;
+        this.contrasenia = new FuncionHash().funcionHash(contrasenia);
         this.bandejaDeMensajes = new BandejaMensajes();
     }
 
+    public void setPersona(String nombre, String apellido) { this.persona = nombre.charAt(0) + apellido; }
     public String getNombre() {
         return nombre;
     }

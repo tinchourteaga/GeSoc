@@ -3,7 +3,7 @@ package Dominio.Entidad;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue("J")
+@DiscriminatorValue(value = "J")
 @Embeddable
 public class EntidadJuridica extends Entidad{
     @Transient

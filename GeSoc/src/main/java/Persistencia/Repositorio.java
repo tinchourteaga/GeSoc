@@ -6,10 +6,13 @@ import java.util.List;
 
 public class Repositorio {
 
-    private  DAO dao;
+    protected DAO dao;
 
     public Repositorio(DAO dao) {
         this.dao = dao;
+    }
+
+    public Repositorio() {
     }
 
     public void setDao(DAO dao) {

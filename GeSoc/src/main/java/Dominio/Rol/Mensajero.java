@@ -16,7 +16,7 @@ public class Mensajero {
     }
 
     public static List<Usuario> obtenerRevisoresDe(Egreso unEgreso) {
-        return revisores.stream().filter(revisor -> ((RolRevisorCompra)revisor.getRol()).getOperacionesARevisar().contains(unEgreso)).collect(Collectors.toList());
+        return revisores.stream().filter(revisor -> ((Revisor)revisor.getRol()).getOperacionesARevisar().contains(unEgreso)).collect(Collectors.toList());
     }
 
     public void removerRevisor(Usuario revisor){

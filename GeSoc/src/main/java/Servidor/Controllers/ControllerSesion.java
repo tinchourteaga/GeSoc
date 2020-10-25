@@ -5,12 +5,15 @@ import Servidor.Controllers.Hash.Hash;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
+import spark.Session;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class ControllerSesion{
 
+    static Map<String, Session> sesiones= new HashMap<String,Session>();
     static Hash encriptador=new FuncionHash();
     public static ModelAndView mostrarLogin(Request request, Response response){
 
@@ -29,19 +32,22 @@ public class ControllerSesion{
     }
 
     public static Object validarLogin(Request request, Response response){
-        //System.out.println(request.queryParams("password"));
+        System.out.println(request.queryParams("contraseniaUsuario"));
         String nombreUsuario = request.queryParams("nombreUsuario");
         String contraseniaUsuario = request.queryParams("contraseniaUsuario");
-
-
 
 
         Boolean usuarioVerificado =verificarDatos(nombreUsuario, contraseniaUsuario);
 
 
-        if(usuarioVerificado){
+        if(usuarioVerificado && !sesiones.containsValue(nombreUsuario)){
             response.redirect("pantalla_principal_usuario");
+            Session usuario=request.session(true);
+            usuario.attribute("idUsuarioActual",encriptador.funcionHash((new Date()).toInstant().toString()));
+            sesiones.put(nombreUsuario,usuario);
         }else{
+            System.out.println("la sesion existia:"+sesiones.get(nombreUsuario));
+
             response.redirect("/autenticacion_usuario");
         }
         return null;

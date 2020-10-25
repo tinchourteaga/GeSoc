@@ -89,7 +89,7 @@ public class ControllerUsuario {
     public static void persistirUsuarioEstandar(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Estandar rol = new Estandar();
         String contraseniaHash = fxHash.funcionHash(dni+new Date().toString());
-        Usuario usuario = new Usuario(rol, nombre, apellido, contraseniaHash);
+        Usuario usuario = new Usuario(rol, nombre, apellido, contraseniaHash, dni, email);
         usuario.setPersona(nombre, apellido);
         RepositorioUsuario.getInstance().agregar(usuario);
 
@@ -100,7 +100,7 @@ public class ControllerUsuario {
     public static void persistirUsuarioAdmin(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Administrador rol = new Administrador();
         String contraseniaHash = fxHash.funcionHash(dni+new Date().toString());
-        Usuario usuario = new Usuario(rol, nombre, apellido, contraseniaHash);
+        Usuario usuario = new Usuario(rol, nombre, apellido, contraseniaHash, dni, email);
         usuario.setPersona(nombre, apellido);
         RepositorioUsuario.getInstance().agregar(usuario);
 

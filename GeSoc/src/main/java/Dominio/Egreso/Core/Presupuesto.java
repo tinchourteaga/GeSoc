@@ -1,5 +1,6 @@
 package Dominio.Egreso.Core;
 
+import Converters.LocalDateAttributeConverter;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 
 import javax.persistence.*;
@@ -19,7 +20,8 @@ public class Presupuesto {
     @Column(name = "valor")
     private float valor;
 
-    @Column(name = "fecha_creado", columnDefinition = "DATE")
+    @Column(name = "fecha_creado")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
     @OneToMany(mappedBy = "detalle", cascade = CascadeType.ALL)

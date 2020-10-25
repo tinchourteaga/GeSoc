@@ -1,5 +1,6 @@
 package Dominio.Ingreso;
 
+import Converters.LocalDateAttributeConverter;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
@@ -20,7 +21,8 @@ public class Ingreso {
     @JoinColumn(name = "valor")
     private Valor valor;
 
-    @Column(name = "fecha", columnDefinition = "DATE")
+    @Column(name = "fecha")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
     @Column(name = "descripcion")

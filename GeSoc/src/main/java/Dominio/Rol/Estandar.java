@@ -7,9 +7,9 @@ import javax.persistence.Embeddable;
 import java.util.ArrayList;
 
 @Embeddable
-public class RolEstandar extends Rol {
+public class Estandar extends Rol {
 
-    public RolEstandar() {
+    public Estandar() {
         this.acciones = new ArrayList<>();
     }
 

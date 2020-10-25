@@ -9,6 +9,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
 import Dominio.Rol.Rol;
+import Servidor.Controllers.Hash.FuncionHash;
 
 import javax.persistence.*;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class Usuario {
         this.nombre = nombre;
         this.apellido = apellido;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
-        this.contrasenia = contrasenia;
+        this.contrasenia = new FuncionHash().funcionHash(contrasenia);
         this.bandejaDeMensajes = new BandejaMensajes();
     }
 

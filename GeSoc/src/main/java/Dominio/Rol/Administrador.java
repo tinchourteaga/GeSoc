@@ -3,16 +3,12 @@ package Dominio.Rol;
 import Dominio.Rol.Acciones.Accion;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 
-import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import java.util.ArrayList;
 
 @Embeddable
-public class RolAdministrador extends Rol {
-    @Column(name = "rol")
-    protected String nombre;
-
-    public RolAdministrador() {
+public class Administrador extends Rol {
+    public Administrador() {
         this.acciones = new ArrayList<>();//hay que agregar lo que son acciones privilegiadas(?
     }
 

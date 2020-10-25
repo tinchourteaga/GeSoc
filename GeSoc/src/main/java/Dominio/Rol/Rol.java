@@ -11,7 +11,6 @@ public abstract class Rol {
     protected List<Accion> acciones;
 
     @Transient
-    //@Column(name = "rol")
     protected String nombre;
 
     public abstract void tengoPermisosPara(Accion unaAccion) throws NoTengoPermisosException ;

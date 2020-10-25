@@ -3,8 +3,10 @@ package Dominio.Rol;
 import Dominio.Rol.Acciones.Accion;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 
+import javax.persistence.Embeddable;
 import java.util.ArrayList;
 
+@Embeddable
 public class RolEstandar extends Rol {
 
     public RolEstandar() {

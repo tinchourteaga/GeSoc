@@ -20,7 +20,7 @@
         <class>Dominio.Egreso.Core.TipoDeMetodoDePago</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio</class> <!-- Ok -->
-        <class>Dominio.Rol.Rol</class> <!-- Ok -->
+        <!-- <class>Dominio.Rol.Rol</class> Ok -->
         <class>Dominio.Rol.RolEstandar</class> <!-- Ok -->
         <class>Dominio.Rol.RolAdministrador</class> <!-- Ok -->
         <class>Dominio.Rol.RolRevisorCompra</class> <!-- Ok -->

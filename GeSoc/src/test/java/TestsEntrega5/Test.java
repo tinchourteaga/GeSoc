@@ -15,14 +15,20 @@ public class Test {
     @org.junit.Test
     public void persistirUsuarioEstandar() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Estandar rolPrueba = new Estandar();
-        Usuario usuario= new Usuario(rolPrueba,"pruebita", "normal","S4R4z@78P212EyR");
+        String nombre = "pruebita";
+        String apellido = "normal";
+        Usuario usuario = new Usuario(rolPrueba, nombre, apellido,"chaybsafsa");
+        usuario.setPersona(nombre, apellido);
         RepositorioUsuario.getInstance().agregar(usuario);
     }
 
     @org.junit.Test
     public void persistirUsuarioAdmin() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Administrador rolPrueba = new Administrador();
-        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero", "holaslfmaf");
+        String nombre = "pepito";
+        String apellido = "fachero";
+        Usuario usuario= new Usuario(rolPrueba,nombre, apellido, "holaslfmaf");
+        usuario.setPersona(nombre, apellido);
         RepositorioUsuario.getInstance().agregar(usuario);
     }
 }

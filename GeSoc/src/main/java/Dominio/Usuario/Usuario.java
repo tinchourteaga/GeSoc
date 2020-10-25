@@ -21,6 +21,9 @@ public class Usuario {
     @GeneratedValue
     private int usuario;
 
+    @Column(name = "nickname")
+    private String persona;
+
     @Column(name = "nombre")
     private String nombre;
 
@@ -45,6 +48,7 @@ public class Usuario {
         this.bandejaDeMensajes = new BandejaMensajes();
     }
 
+    public void setPersona(String nombre, String apellido) { this.persona = nombre.charAt(0) + apellido; }
     public String getNombre() {
         return nombre;
     }

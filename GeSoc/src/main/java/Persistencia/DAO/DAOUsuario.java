@@ -9,9 +9,7 @@ public class DAOUsuario extends DAOBBDD implements DAO {
     private static DAOUsuario instance;
 
     public static DAOUsuario getInstance() {
-        if(instance == null){
-            instance = new DAOUsuario();
-        }
+        if(instance==null){ instance = new DAOUsuario(); }
         return instance;
     }
 
@@ -25,9 +23,7 @@ public class DAOUsuario extends DAOBBDD implements DAO {
         String query = "from Usuario where nombre = '" + nombre + "'";
         List usuarios =  EntityManagerHelper.getEntityManager().createQuery(query).getResultList();
         EntityManagerHelper.closeEntityManager();
-        if(usuarios!=null){
-            return usuarios.get(0);
-        }
+        if(usuarios!=null){ return usuarios.get(0); }
         return null;
     }
 }

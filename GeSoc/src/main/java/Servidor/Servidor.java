@@ -78,13 +78,15 @@ public class Servidor {
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
 
-
         //to be done
         Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
         Spark.post("/cargarEgreso", ControllerEgresos::cargarEgreso);
         Spark.post("/cargarProveedor", ControllerProveedor::cargarProveedor);
         Spark.post("/crearProyectoFinanciamiento", ControllerProyectoFinanciamiento::crearProyectoFinanciamiento);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);
+
+        //No quiere andar
+        Spark.post("/cargarPresupuesto", ControllerPresupuesto::cargarPresupuesto);
     }
 
     public static void levantarRutaDELETE(){

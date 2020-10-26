@@ -19,9 +19,25 @@ public class ControllerPresupuesto {
 
     public static Object cargarPresupuesto(Request request, Response response) {
 
+        String entidad = request.queryParams("entidad");
+        String fecha = request.queryParams("fecha");
+        String moneda = request.queryParams("moneda");
+        String item = request.queryParams("item");
+        String valorItem = request.queryParams("valor");
+        String proveedor = request.queryParams("proveedor");
+        String documentoComercial = request.queryParams("documentoComercial");
+        String linkComprobante = request.queryParams("linkComprobante");
 
+        System.out.println(entidad);
+        System.out.println(fecha);
+        System.out.println(moneda);
+        System.out.println(item);
+        System.out.println(valorItem);
+        System.out.println(proveedor);
+        System.out.println(documentoComercial);
+        System.out.println(linkComprobante);
 
-        response.redirect("cargar_entidad");
+        response.redirect("pantalla_principal_usuario");
 
 
         return null;

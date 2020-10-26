@@ -77,6 +77,7 @@ public class Servidor {
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
+        Spark.post("/cambiarContrasenia", ControllerUsuario::cambiarContrasenia);
 
         //to be done
         Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
@@ -84,8 +85,6 @@ public class Servidor {
         Spark.post("/cargarProveedor", ControllerProveedor::cargarProveedor);
         Spark.post("/crearProyectoFinanciamiento", ControllerProyectoFinanciamiento::crearProyectoFinanciamiento);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);
-
-        //No quiere andar
         Spark.post("/cargarPresupuesto", ControllerPresupuesto::cargarPresupuesto);
     }
 

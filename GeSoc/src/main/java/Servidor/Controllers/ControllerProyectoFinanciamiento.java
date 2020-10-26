@@ -25,6 +25,7 @@ public class ControllerProyectoFinanciamiento {
         String directorResponsable = request.queryParams("directorResponsable");
         String ingreso = request.queryParams("ingreso"); //necesito tener una lista de ingresos
 
+        
 
         response.redirect("crear_proyecto_de_financiamiento");
 

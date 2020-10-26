@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/cambiarContrasenia" method="post">
 
       <!-- Unnamed (Image) -->
       <div id="u178" class="ax_default image">
@@ -251,7 +252,7 @@
             <!-- ContraseñaActual (Text Field) -->
             <div id="u206" class="ax_default text_field" data-label="ContraseñaActual">
               <div id="u206_div" class=""></div>
-              <input id="u206_input" type="password" value="" class="u206_input"/>
+              <input name="contraActual" id="u206_input" type="password" value="" class="u206_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -265,7 +266,7 @@
             <!-- ContraseñaNueva (Text Field) -->
             <div id="u208" class="ax_default text_field" data-label="ContraseñaNueva">
               <div id="u208_div" class=""></div>
-              <input id="u208_input" type="password" value="" class="u208_input"/>
+              <input name="contraNueva" id="u208_input" type="password" value="" class="u208_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -279,7 +280,7 @@
             <!-- VerificarContraseñaNueva (Text Field) -->
             <div id="u210" class="ax_default text_field" data-label="VerificarContraseñaNueva">
               <div id="u210_div" class=""></div>
-              <input id="u210_input" type="password" value="" class="u210_input"/>
+              <input name="verifContraNueva" id="u210_input" type="password" value="" class="u210_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -353,12 +354,12 @@
         </div>
 
         <!-- Unnamed (Shape) -->
-        <div id="u222" class="ax_default primary_button">
+        <button id="u222" class="ax_default primary_button">
           <img id="u222_img" class="img " src="images/usuario/u201.svg"/>
           <div id="u222_text" class="text ">
             <p><span>Aceptar</span></p>
           </div>
-        </div>
+        </button>
 
         <!-- Top Divider Line (Line) -->
         <div id="u223" class="ax_default line" data-label="Top Divider Line">

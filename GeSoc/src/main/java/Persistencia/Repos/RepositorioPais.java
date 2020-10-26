@@ -1,4 +1,4 @@
-package Persistencia;
+package Persistencia.Repos;
 
 import Lugares.Pais;
 import Persistencia.DAO.DAOBBDD;

@@ -7,7 +7,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
 import Dominio.Usuario.Usuario;
-import Persistencia.Repos.*;
+import Persistencia.Repos.RepositorioUsuario;
 import Servidor.Controllers.Hash.FuncionHash;
 import Servidor.Controllers.Hash.Hash;
 import Servidor.Controllers.MailSender.SendEmail;
@@ -61,7 +61,6 @@ public class ControllerUsuario {
         Map<String,Object> datos = new HashMap<>();
 
         String nombre=obtenerNombreUsuario(request);
-        nombre="pepito";
         datos.put("nombreUsuario",nombre);
         ModelAndView vista = new ModelAndView(datos, "pantalla_principal_usuario.html");
 
@@ -69,7 +68,27 @@ public class ControllerUsuario {
     }
 
     private static String obtenerNombreUsuario(Request request) {
-        return "";
+        return request.queryParams("usuario");
+    }
+
+    public static Object cambiarContrasenia(Request request, Response response){
+        String contraActual = request.queryParams("contraActual");
+        String contraNueva = request.queryParams("contraNueva");
+        String verifContraNueva = request.queryParams("verifContraNueva");
+
+        /*
+        if(contraActual es correcta -after chequear en la bd- && contraActual.equals(verifContraNueva) && contraActual cumple con las restricciones){
+            persisti el cambio en la base luego de hashearla
+        }
+        */
+
+        System.out.println(request.queryParams("contraActual"));
+        System.out.println(request.queryParams("contraNueva"));
+        System.out.println(request.queryParams("verifContraNueva"));
+
+        response.redirect("usuario");
+
+        return null;
     }
 
     public static Object administrarUsuarios(Request request, Response response) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {

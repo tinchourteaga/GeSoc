@@ -64,8 +64,7 @@ public class Servidor {
         Spark.get("/bitacora_operaciones", ControllerBitacora::visualizarPantalla, engine);
         Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
         Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
-        Spark.get("/mensajes_no_revisor", ControllerMensajes::visualizarPantallaMensajesNoRevisor, engine);
-        Spark.get("/mensajes_revisor", ControllerMensajes::visualizarPantallaMensajesRevisor, engine);
+        Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
         Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
     }
 

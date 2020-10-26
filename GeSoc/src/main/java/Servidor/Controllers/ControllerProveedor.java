@@ -1,6 +1,8 @@
 package Servidor.Controllers;
 
 import API.ML.ControllerMercadoLibre;
+import Dominio.Egreso.Core.Proveedor;
+import Dominio.Entidad.DireccionPostal;
 import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
@@ -49,6 +51,7 @@ public class ControllerProveedor {
     public static Object cargarProveedor(Request request, Response response) {
 
         String calle, numero, piso, departamento, pais, provincia, ciudad;
+        DireccionPostal nuevaDir;
 
         String seleccionarPersonaEmpresa = request.queryParams("seleccionarPersonaEmpresa");
 
@@ -65,6 +68,9 @@ public class ControllerProveedor {
                 provincia = request.queryParams("provincia");
                 ciudad = request.queryParams("ciudad");
 
+               nuevaDir = ControllerDirecciones.generarDireccion(calle,numero,piso,departamento,pais,provincia,ciudad);
+
+               Proveedor persona = new Proveedor(nombre, apellido, dni, nuevaDir);
 
                 break;
             case "Empresa":
@@ -77,6 +83,10 @@ public class ControllerProveedor {
                 pais = request.queryParams("paisEmp");
                 provincia = request.queryParams("provinciaEmp");
                 ciudad = request.queryParams("ciudadEmp");
+
+                nuevaDir = ControllerDirecciones.generarDireccion(calle,numero,piso,departamento,pais,provincia,ciudad);
+
+                Proveedor empresa = new Proveedor(razonSocial, cuilCuit, nuevaDir);
 
                 break;
             default:
@@ -91,15 +101,11 @@ public class ControllerProveedor {
         return null;
     }
 
-    public static void persistirEmpresa(String entidad, String fecha, String moneda, String importe, String descripcion){
-
-
+    public static void persistirEmpresa(Proveedor empresa){
         //PERSISTIRLO
     }
 
-    public static void persistirPersona(String entidad, String fecha, String moneda, String importe, String descripcion){
-
-
+    public static void persistirPersona(Proveedor persona){
         //PERSISTIRLO
     }
 }

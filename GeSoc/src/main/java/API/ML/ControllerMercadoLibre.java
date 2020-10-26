@@ -10,7 +10,7 @@ import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
 import Persistencia.DAO.DAOMemoria;
-import Persistencia.Repositorio;
+import Persistencia.Repos.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

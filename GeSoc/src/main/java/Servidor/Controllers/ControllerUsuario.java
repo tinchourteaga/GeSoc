@@ -7,7 +7,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
 import Dominio.Usuario.Usuario;
-import Persistencia.RepositorioUsuario;
+import Persistencia.Repos.*;
 import Servidor.Controllers.Hash.FuncionHash;
 import Servidor.Controllers.Hash.Hash;
 import Servidor.Controllers.MailSender.SendEmail;

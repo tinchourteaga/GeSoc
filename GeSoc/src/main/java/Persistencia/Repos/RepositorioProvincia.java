@@ -1,4 +1,4 @@
-package Persistencia;
+package Persistencia.Repos;
 
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.DAO.DAOProvincia;

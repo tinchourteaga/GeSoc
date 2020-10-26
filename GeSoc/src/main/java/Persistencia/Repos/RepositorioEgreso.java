@@ -1,4 +1,4 @@
-package Persistencia;
+package Persistencia.Repos;
 
 import Dominio.Egreso.Core.Egreso;
 import Persistencia.DAO.DAOBBDD;

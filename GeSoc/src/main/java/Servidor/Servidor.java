@@ -16,7 +16,7 @@ public class Servidor {
     public static void levantarServidor(){
 
         enableDebugScreen();
-        port(4575);
+        port(9000);
 
         boolean localhost = true;
         if (localhost) {
@@ -29,7 +29,7 @@ public class Servidor {
 
         //repositorio.inicializarRepo();
 
-        // acceso: http://localhost:4575/
+        // acceso: http://localhost:9000/
         levantarRutas();
     }
 
@@ -70,15 +70,20 @@ public class Servidor {
     }
 
     public static void levantarRutaPOST(){
+        //done
         Spark.post("/validarLogin", ControllerSesion::validarLogin);
-        Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
         Spark.post("/cargarIngreso", ControllerIngresos::cargarIngreso);
-        Spark.post("/cargarEgreso", ControllerEgresos::cargarEgreso);
-        Spark.post("/cargarProveedor", ControllerProveedor::cargarProveedor);
         Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
+
+
+        //to be done
+        Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
+        Spark.post("/cargarEgreso", ControllerEgresos::cargarEgreso);
+        Spark.post("/cargarProveedor", ControllerProveedor::cargarProveedor);
+        Spark.post("/crearProyectoFinanciamiento", ControllerProyectoFinanciamiento::crearProyectoFinanciamiento);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);
     }
 

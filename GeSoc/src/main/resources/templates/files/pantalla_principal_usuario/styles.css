@@ -213,7 +213,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:89px;
+  width:300px;
   height:23px;
   background:inherit;
   background-color:rgba(255, 255, 255, 0);
@@ -233,7 +233,7 @@
   position:absolute;
   left:62px;
   top:148px;
-  width:89px;
+  width:300px;
   height:23px;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;

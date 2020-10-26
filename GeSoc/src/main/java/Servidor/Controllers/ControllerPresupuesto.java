@@ -37,7 +37,7 @@ public class ControllerPresupuesto {
         System.out.println(documentoComercial);
         System.out.println(linkComprobante);
 
-        response.redirect("pantalla_principal_usuario");
+        response.redirect("cargar_presupuesto");
 
 
         return null;

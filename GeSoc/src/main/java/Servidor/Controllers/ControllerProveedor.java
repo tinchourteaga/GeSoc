@@ -65,17 +65,6 @@ public class ControllerProveedor {
                 provincia = request.queryParams("provincia");
                 ciudad = request.queryParams("ciudad");
 
-                System.out.println(seleccionarPersonaEmpresa);
-                System.out.println(apellido);
-                System.out.println(nombre);
-                System.out.println(dni);
-                System.out.println(calle);
-                System.out.println(numero);
-                System.out.println(piso);
-                System.out.println(departamento);
-                System.out.println(pais);
-                System.out.println(provincia);
-                System.out.println(ciudad);
 
                 break;
             case "Empresa":
@@ -89,17 +78,6 @@ public class ControllerProveedor {
                 provincia = request.queryParams("provinciaEmp");
                 ciudad = request.queryParams("ciudadEmp");
 
-                System.out.println(seleccionarPersonaEmpresa);
-                System.out.println(razonSocial);
-                System.out.println(cuilCuit);
-                System.out.println(calle);
-                System.out.println(numero);
-                System.out.println(piso);
-                System.out.println(departamento);
-                System.out.println(pais);
-                System.out.println(provincia);
-                System.out.println(ciudad);
-
                 break;
             default:
                 //Error: el usuario seleccionó cualquier cosa
@@ -108,8 +86,20 @@ public class ControllerProveedor {
 
 
 
-        response.redirect("pantalla_principal_usuario");
+        response.redirect("cargar_proveedor");
 
         return null;
+    }
+
+    public static void persistirEmpresa(String entidad, String fecha, String moneda, String importe, String descripcion){
+
+
+        //PERSISTIRLO
+    }
+
+    public static void persistirPersona(String entidad, String fecha, String moneda, String importe, String descripcion){
+
+
+        //PERSISTIRLO
     }
 }

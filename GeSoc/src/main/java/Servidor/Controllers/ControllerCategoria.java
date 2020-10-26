@@ -1,5 +1,6 @@
 package Servidor.Controllers;
 
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -18,13 +19,22 @@ public class ControllerCategoria {
 
     public static Object crearCategoria(Request request, Response response) {
 
-        String nombreCriterio = request.queryParams("nombreCategoria");
+        String nombreCategoria = request.queryParams("nombreCategoria");
         String descripcion = request.queryParams("descripcion");
         String criterioAsociado = request.queryParams("criterioAsociado");
 
+        //persistirCategoria(nombreCategoria, descripcion, criterioAsociado);
+
         response.redirect("crear_categoria");
 
-
         return null;
+    }
+
+    public static void persistirCategoria(String nombre, String descripcion, String criterioAsociado){
+
+        CategoriaCriterio categoria = new CategoriaCriterio(descripcion, nombre);
+
+        //PERSISTIRLO
+        //Tengo que buscar el criterioAsociado y meterle esta nueva categoria
     }
 }

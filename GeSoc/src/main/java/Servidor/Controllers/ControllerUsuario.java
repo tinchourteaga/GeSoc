@@ -116,7 +116,9 @@ public class ControllerUsuario {
         usuario.setPersona(nombre, apellido);
 
         //chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
-        RepositorioUsuario.getInstance().agregar(usuario);
+        if(RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario) == null) {
+            RepositorioUsuario.getInstance().agregar(usuario);
+        }
 
         //Enviamos el mail a la persona con su usuario y contrasenia
         SendEmail.main(email, nombreUsuario, contrasenia);

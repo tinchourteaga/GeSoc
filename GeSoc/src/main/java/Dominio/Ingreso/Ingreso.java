@@ -35,8 +35,8 @@ public class Ingreso {
     @OneToMany(mappedBy = "ingreso", cascade = CascadeType.ALL)
     private List<Egreso> gastadoEn;
 
-   public Ingreso(String pais, double importe, LocalDate fecha,String descripcion,List<Egreso>egresos){
-       this.valor= new Valor(pais,importe);
+   public Ingreso(String moneda, double importe, LocalDate fecha,String descripcion,List<Egreso>egresos){
+       this.valor= new Valor(moneda,importe);
        this.fecha=fecha;
        this.descripcion=descripcion;
        this.gastadoEn=egresos;

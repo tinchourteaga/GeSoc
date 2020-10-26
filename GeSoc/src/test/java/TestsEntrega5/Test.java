@@ -12,6 +12,8 @@ import Persistencia.RepositorioUsuario;
 import java.io.IOException;
 
 public class Test {
+    //ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
+
     @org.junit.Test
     public void persistirUsuarioEstandar() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Estandar rolPrueba = new Estandar();

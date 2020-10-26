@@ -1,5 +1,6 @@
 package Dominio.Egreso.Core;
 
+import Converters.LocalDateAttributeConverter;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
@@ -16,7 +17,6 @@ import java.util.List;
 @Entity
 @Table(name = "dom_egresos")
 public class Egreso {
-
     @Id
     @GeneratedValue
     private int egreso;
@@ -28,7 +28,8 @@ public class Egreso {
     @Column(name = "validado")
     private boolean estaVerificada;
 
-    @Column(name = "fecha", columnDefinition = "DATE")
+    @Column(name = "fecha")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
     @OneToOne

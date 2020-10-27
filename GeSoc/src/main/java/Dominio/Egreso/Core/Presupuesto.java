@@ -10,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "dom_presupuestos")
 public class Presupuesto {
+
     @Id
     @GeneratedValue
     private int presupuesto;
@@ -50,4 +51,12 @@ public class Presupuesto {
     public LocalDate getFecha() { return fecha; }
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
     public void setDetalles(List<Detalle> detalles) { this.detalles = detalles; }
+    public int getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(int presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+
 }

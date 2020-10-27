@@ -173,6 +173,11 @@
   width:1350px;
   height:70px;
 }
+.centerTable { margin: 0px auto; }
+#u5757 {
+  width:900px;
+  padding-left:350px;
+}
 #u1452 {
   border-width:0px;
   position:absolute;

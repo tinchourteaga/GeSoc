@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "dom_categorias")
 public class CategoriaCriterio {
+
     //El Usuario va a poder crear sus propias categorias
     @Id
     @GeneratedValue
@@ -36,4 +37,6 @@ public class CategoriaCriterio {
     public void CambiarNombreCategoria(String nuevoNombreDeCategoria) {
         this.nombreDeCategoria = nombreDeCategoria;
     }
+    public int getCategoria() { return categoria; }
+    public void setCategoria(int categoria) { this.categoria = categoria; }
 }

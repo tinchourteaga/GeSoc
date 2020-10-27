@@ -60,6 +60,8 @@ public class Egreso {
     @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     private Entidad entidad;
 
+    private Presupuesto presupuestoPactado;
+
     public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
        this.fecha=unaFecha;
@@ -124,5 +126,17 @@ public class Egreso {
     }
     public int getEgreso() {
         return egreso;
+    }
+
+    public Entidad getEntidad() {return entidad;}
+
+    public void setEntidad(Entidad entidad) {this.entidad = entidad;}
+
+    public Presupuesto getPresupuestoPactado() {
+        return presupuestoPactado;
+    }
+
+    public void setPresupuestoPactado(Presupuesto presupuestoPactado) {
+        this.presupuestoPactado = presupuestoPactado;
     }
 }

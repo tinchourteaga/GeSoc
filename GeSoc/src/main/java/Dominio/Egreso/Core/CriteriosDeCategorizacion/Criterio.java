@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 @Entity
 @Table(name = "dom_criterios")
 public class Criterio {
+
     @Id
     @GeneratedValue
     private int criterio;
@@ -78,5 +79,13 @@ public class Criterio {
     public void aplicar(Egreso egreso){
         hijos.forEach(hijo -> hijo.aplicar(egreso));
         egreso.getCriterioDeCategorizacion().add(this);
+    }
+
+    public int getCriterio() {
+        return criterio;
+    }
+
+    public void setCriterio(int criterio) {
+        this.criterio = criterio;
     }
 }

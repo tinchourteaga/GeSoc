@@ -87,6 +87,11 @@
   font-style:normal;
   font-size:14px;
 }
+.centerTable { margin: 0px auto; }
+#u5858 {
+  width:700px;
+  padding-left:1px;
+}
 #u633 {
   border-width:0px;
   position:absolute;

@@ -13,6 +13,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo_entidad")
 public abstract class Entidad {
+
     @Id
     @GeneratedValue
     private int entidad;
@@ -65,4 +66,6 @@ public abstract class Entidad {
     public void setEgresos(List<Egreso> egresos) { this.egresos = egresos; }
     public void setIngresos(List<Ingreso> ingresos) { this.ingresos = ingresos; }
     public void setCriterios(List<Criterio> criterios) { this.criterios = criterios; }
+    public void setEntidad(int entidad) {this.entidad = entidad;}
+    public int getEntidad() {return entidad;}
 }

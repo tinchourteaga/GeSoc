@@ -51,10 +51,11 @@
       <!-- Egresos (Droplist) -->
       <div id="u1450" class="ax_default droplist" data-label="Egresos">
         <div id="u1450_div" class=""></div>
-        <select id="u1450_input" class="u1450_input">
+        <select id="u1450_input" class="u1450_input" onchange="location.href='ver_ingresos_y_egresos?criterio='+this.value;">
           <option class="u1450_input_option" value="Seleccione un Criterio">Seleccione un Criterio</option>
-          <option class="u1450_input_option" value="Criterio 1">Criterio 1</option>
-          <option class="u1450_input_option" value="Criterio 2">Criterio 2</option>
+          {{#each criterios}}
+          <option class="u1450_input_option" value="{{criterio}}">{{nombreCriterio}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -106,6 +107,51 @@
       <div id="u1457" class="ax_default">
         <div id="u1457_state0" class="panel_state" data-label="State1" style="">
           <div id="u1457_state0_content" class="panel_state_content">
+
+            <table id="u5757" class="centerTable" cellpadding="0" cellspacing="0" style="margin: 0px auto; font-family:verdana; font-size:110%; color:#515559;" >
+              <thead>
+              <tr>
+                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Entidad</th>
+                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Fecha</th>
+                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Operacion</th>
+                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Importe</th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#each ingreso}}
+              <tr style=" border: 1px solid #515559;">
+                <td style=" border: 1px solid #515559;">
+                  {{entidad.nombre}}
+                </td>
+                <td style=" border: 1px solid #515559;">
+                  {{fecha}}
+                </td>
+                <td style=" border: 1px solid #515559;">
+                  ingreso
+                </td>
+                <td style=" border: 1px solid #515559;">
+                  {{valor.importe}}
+                </td>
+              </tr>
+              {{/each}}
+              {{#each egreso}}
+              <tr style=" border: 1px solid #515559;">
+                <td style=" border: 1px solid #515559;">
+                  {{entidad.nombre}}
+                </td>
+                <td style=" border: 1px solid #515559;">
+                  {{fecha}}
+                </td>
+                <td style=" border: 1px solid #515559;">
+                  egreso
+                </td>
+                <td style=" border: 1px solid #515559;">
+                  {{valor.importe}}
+                </td>
+              </tr>
+              {{/each}}
+              </tbody>
+            </table>
 
             <!-- Unnamed (Repeater) -->
             <div id="u1458" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
@@ -575,36 +621,37 @@
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u1476" class="ax_default box_11">
+      <!-- <div id="u1476" class="ax_default box_11">
         <div id="u1476_div" class=""></div>
         <div id="u1476_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Input-Text (Rectangle) -->
-      <div id="u1477" class="ax_default" data-label="Input-Text">
+      <!--<div id="u1477" class="ax_default" data-label="Input-Text">
         <div id="u1477_div" class=""></div>
         <div id="u1477_text" class="text ">
           <p><span>Ingreso</span></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Input-Text (Rectangle) -->
-      <div id="u1478" class="ax_default" data-label="Input-Text">
+      <!-- <div id="u1478" class="ax_default" data-label="Input-Text">
         <div id="u1478_div" class=""></div>
         <div id="u1478_text" class="text ">
           <p><span>Egreso</span></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Egresos (Droplist) -->
       <div id="u1479" class="ax_default droplist" data-label="Egresos">
         <div id="u1479_div" class=""></div>
-        <select id="u1479_input" class="u1479_input">
+        <select id="u1479_input" class="u1479_input" onchange="location.href='ver_ingresos_y_egresos?categoria='+this.value;">
           <option class="u1479_input_option" value="Seleccione una Categoría">Seleccione una Categoría</option>
-          <option class="u1479_input_option" value="Categoría 1">Categoría 1</option>
-          <option class="u1479_input_option" value="Categoría 2">Categoría 2</option>
+          {{#each categorias}}
+          <option class="u1479_input_option" value="{{categoria}}">{{nombreDeCategoria}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -619,11 +666,11 @@
       <!-- Egresos (Droplist) -->
       <div id="u1481" class="ax_default droplist" data-label="Egresos">
         <div id="u1481_div" class=""></div>
-        <select id="u1481_input" class="u1481_input">
-          <option class="u1481_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
-          <option class="u1481_input_option" value="Entidad 1">Entidad 1</option>
-          <option class="u1481_input_option" value="Entidad 2">Entidad 2</option>
-          <option class="u1481_input_option" value="Entidad 3">Entidad 3</option>
+        <select id="u1481_input" class="u1481_input" onchange="location.href='ver_ingresos_y_egresos?entidad='+this.value;">
+          <option name="entidadNom" class="u1481_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
+          {{#each entidades}}
+          <option class="u1481_input_option" value="{{entidad}}">{{nombre}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -636,12 +683,12 @@
       </div>
 
       <!-- Input-Text (Rectangle) -->
-      <div id="u1483" class="ax_default" data-label="Input-Text">
+      <!-- <div id="u1483" class="ax_default" data-label="Input-Text">
         <div id="u1483_div" class=""></div>
         <div id="u1483_text" class="text ">
           <p><span>Entidad</span></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Unnamed (NavBar) -->
 

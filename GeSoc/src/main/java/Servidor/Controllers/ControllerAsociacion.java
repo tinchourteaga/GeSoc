@@ -190,8 +190,8 @@ public class ControllerAsociacion {
         String egreso = request.queryParams("egreso");
         String presupuesto = request.queryParams("presupuesto");
 
-        Integer egresoId = Integer.valueOf(egreso);
-        Integer presupuestoId = Integer.valueOf(presupuesto);
+        //Integer egresoId = Integer.valueOf(egreso);
+        //Integer presupuestoId = Integer.valueOf(presupuesto);
         //Le pasamos los ids a la base así me devuelve los dos objetitos
         //egresoPosta.setPresupuestoPactado(presupuestoPosta);
 
@@ -208,8 +208,8 @@ public class ControllerAsociacion {
         String egreso = request.queryParams("egreso");
         String ingreso = request.queryParams("ingreso");
 
-        Integer egresoId = Integer.valueOf(egreso);
-        Integer ingresoId = Integer.valueOf(ingreso);
+        //Integer egresoId = Integer.valueOf(egreso);
+        //Integer ingresoId = Integer.valueOf(ingreso);
         //Le pasamos los ids a la base así me devuelve los dos objetitos
         //egresoPosta.setPresupuestoPactado(presupuestoPosta);
 

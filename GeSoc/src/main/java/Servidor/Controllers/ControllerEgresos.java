@@ -1,9 +1,12 @@
 package Servidor.Controllers;
 
+import Dominio.Egreso.Core.*;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,11 +31,13 @@ public class ControllerEgresos {
         String documentoComercial = request.queryParams("documentoComercial");
         String descripcionDocComercial = request.queryParams("descripcionDocComercial");
 
+        Egreso egreso = new Egreso(LocalDate.parse(fecha), "Uruguay", 8888, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, descripcionDocComercial), null);
+
         if(request.queryParams("esRevisor")!=null){
             //Es revisor
         }
 
-        response.redirect("pantalla_principal_usuario");
+        response.redirect("cargar_egreso");
 
         return null;
     }

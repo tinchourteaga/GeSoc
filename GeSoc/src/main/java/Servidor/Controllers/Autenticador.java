@@ -35,14 +35,6 @@ public class Autenticador {
                     System.out.println("noHayXUser");
                     halt(HttpStatus.NOT_FOUND_404);
                 }
-				/*
-                final Optional<String> maybeUsuario = usuarioService.fetchUsuario(maybeXUser.get());
-                if (maybeUsuario.isPresent()) {
-                    request.session().attribute("user", maybeUsuario.get());
-                } else {
-                    halt(HttpStatus.UNAUTHORIZED_401);
-                }
-				 */
             }
         }
     };

@@ -1,23 +1,44 @@
 package Servidor.Controllers;
 
+import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
+import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
 import Dominio.Usuario.Usuario;
-import Persistencia.Repos.RepositorioUsuario;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ControllerMensajes {
 
 
     public static ModelAndView visualizarPantallaMensajes(Request request, Response response){
 
-        String nombreUsuario=ControllerSesion.sesiones.keySet().stream().filter(nombre->ControllerSesion.sesiones.get(nombre).equals(request.session())).collect(Collectors.toList()).get(0);
-        Usuario usuario= RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario);//lo obtenes con el nombre de arriba
+        String nombreUsuario= request.session().attribute("nombreUsuario");
+
+        //Usuario usuario= RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario);//lo obtenes con el nombre de arriba
+
+        Usuario usuario = null;
+        try {
+            usuario = new Usuario(new Administrador(), "Pedro", "Pratgay", "@guanteDDS2020","1561684586", "3AMatr@gmail.com");
+        } catch (ExcepcionCaracterEspecial excepcionCaracterEspecial) {
+            excepcionCaracterEspecial.printStackTrace();
+        } catch (ExcepcionContraseniaComun excepcionContraseniaComun) {
+            excepcionContraseniaComun.printStackTrace();
+        } catch (ExcepcionNumero excepcionNumero) {
+            excepcionNumero.printStackTrace();
+        } catch (ExcepcionLongitud excepcionLongitud) {
+            excepcionLongitud.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         if (Estandar.class.equals(usuario.getRol().getClass())) {
             return visualizarPantallaMensajesNoRevisor(request,response);
         }else{

@@ -139,4 +139,12 @@ public class Egreso {
     public void setPresupuestoPactado(Presupuesto presupuestoPactado) {
         this.presupuestoPactado = presupuestoPactado;
     }
+
+    public void setIngreso(Ingreso ingreso) {
+        this.ingreso = ingreso;
+    }
+
+    public Ingreso getIngreso(){
+        return this.ingreso;
+    }
 }

@@ -1,8 +1,8 @@
 package Dominio.Ingreso;
 
 import Converters.LocalDateAttributeConverter;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.Egreso;
-import Dominio.Entidad.Categorias.Categoria;
 import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 import Dominio.Moneda.Valor;
@@ -37,7 +37,7 @@ public class Ingreso {
     @OneToMany(mappedBy = "ingreso", cascade = CascadeType.ALL)
     private List<Egreso> gastadoEn;
 
-    private List<Categoria> categoriasAsociadas = new ArrayList<>();
+    private List<CategoriaCriterio> categoriasAsociadas = new ArrayList<>();
 
    public Ingreso(String moneda, double importe, LocalDate fecha,String descripcion,List<Egreso>egresos){
        this.valor= new Valor(moneda,importe);
@@ -74,13 +74,17 @@ public class Ingreso {
     public int getIngreso() {
         return ingreso;
     }
-    public void agregarCategoria(Categoria unaCategoria){
+    public void agregarCategoria(CategoriaCriterio unaCategoria){
        this.categoriasAsociadas.add(unaCategoria);
     }
-    public void quitarCategoria(Categoria unaCategoria){
+    public void quitarCategoria(CategoriaCriterio unaCategoria){
         this.categoriasAsociadas.remove(unaCategoria);
     }
     public Entidad getEntidad() { return entidad; }
 
     public void setEntidad(Entidad entidad) {this.entidad = entidad; }
+
+    public List<CategoriaCriterio> getCategoriasAsociadas() {
+        return categoriasAsociadas;
+    }
 }

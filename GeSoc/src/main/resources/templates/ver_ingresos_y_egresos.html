@@ -134,6 +134,22 @@
                 </td>
               </tr>
               {{/each}}
+              {{#each egreso}}
+              <tr style=" border: 1px solid black;">
+                <td style=" border: 1px solid black;">
+                  {{entidad.nombre}}
+                </td>
+                <td style=" border: 1px solid black;">
+                  {{fecha}}
+                </td>
+                <td style=" border: 1px solid black;">
+                  egreso
+                </td>
+                <td style=" border: 1px solid black;">
+                  {{valor.importe}}
+                </td>
+              </tr>
+              {{/each}}
               </tbody>
             </table>
 
@@ -634,7 +650,7 @@
         <select id="u1479_input" class="u1479_input" onchange="location.href='ver_ingresos_y_egresos?categoria='+this.value;">
           <option class="u1479_input_option" value="Seleccione una Categoría">Seleccione una Categoría</option>
           {{#each categorias}}
-          <option class="u1479_input_option" value="{{categoria}}">{{nombre}}</option>
+          <option class="u1479_input_option" value="{{categoria}}">{{nombreDeCategoria}}</option>
           {{/each}}
         </select>
       </div>

@@ -125,4 +125,8 @@ public class Egreso {
     public int getEgreso() {
         return egreso;
     }
+
+    public Entidad getEntidad() {return entidad;}
+
+    public void setEntidad(Entidad entidad) {this.entidad = entidad;}
 }

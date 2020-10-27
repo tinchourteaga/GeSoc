@@ -108,6 +108,35 @@
         <div id="u1457_state0" class="panel_state" data-label="State1" style="">
           <div id="u1457_state0_content" class="panel_state_content">
 
+            <table id="u5757" class="centerTable" cellpadding="0" cellspacing="0" style="margin: 0px auto;" >
+              <thead>
+              <tr>
+                <th style=" border: 1px solid black;">Entidad</th>
+                <th style=" border: 1px solid black;">Fecha</th>
+                <th style=" border: 1px solid black;">Operacion</th>
+                <th style=" border: 1px solid black;">Importe</th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#each ingreso}}
+              <tr style=" border: 1px solid black;">
+                <td style=" border: 1px solid black;">
+                  {{entidad.nombre}}
+                </td>
+                <td style=" border: 1px solid black;">
+                  {{fecha}}
+                </td>
+                <td style=" border: 1px solid black;">
+                  ingreso
+                </td>
+                <td style=" border: 1px solid black;">
+                  {{valor.importe}}
+                </td>
+              </tr>
+              {{/each}}
+              </tbody>
+            </table>
+
             <!-- Unnamed (Repeater) -->
             <div id="u1458" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
               <script id="u1458_script" type="axure-repeater-template">
@@ -576,28 +605,28 @@
       </div>
 
       <!-- Unnamed (Rectangle) -->
-      <div id="u1476" class="ax_default box_11">
+      <!-- <div id="u1476" class="ax_default box_11">
         <div id="u1476_div" class=""></div>
         <div id="u1476_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Input-Text (Rectangle) -->
-      <div id="u1477" class="ax_default" data-label="Input-Text">
+      <!--<div id="u1477" class="ax_default" data-label="Input-Text">
         <div id="u1477_div" class=""></div>
         <div id="u1477_text" class="text ">
           <p><span>Ingreso</span></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Input-Text (Rectangle) -->
-      <div id="u1478" class="ax_default" data-label="Input-Text">
+      <!-- <div id="u1478" class="ax_default" data-label="Input-Text">
         <div id="u1478_div" class=""></div>
         <div id="u1478_text" class="text ">
           <p><span>Egreso</span></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Egresos (Droplist) -->
       <div id="u1479" class="ax_default droplist" data-label="Egresos">
@@ -638,12 +667,12 @@
       </div>
 
       <!-- Input-Text (Rectangle) -->
-      <div id="u1483" class="ax_default" data-label="Input-Text">
+      <!-- <div id="u1483" class="ax_default" data-label="Input-Text">
         <div id="u1483_div" class=""></div>
         <div id="u1483_text" class="text ">
           <p><span>Entidad</span></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Unnamed (NavBar) -->
 

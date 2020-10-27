@@ -7,10 +7,12 @@ import Dominio.Entidad.Entidad;
 import Dominio.Entidad.EntidadJuridica;
 import Dominio.Entidad.OrganizacionSocial;
 import Dominio.Entidad.Sector;
+import Dominio.Ingreso.Ingreso;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,6 +28,7 @@ public class ControllerVisualizacionEI {
         List<Entidad> entidades = new ArrayList<>();
         List<Criterio> criterios = new ArrayList<>();
         List<Categoria> categorias = new ArrayList<>();
+        List<Ingreso> ingreso = new ArrayList<>();
 
         Entidad entidadPrueba1 = new EntidadJuridica("entidadPrueba1", "JorgeCampeon",new OrganizacionSocial());
         entidadPrueba1.setEntidad(57);
@@ -43,9 +46,22 @@ public class ControllerVisualizacionEI {
         categoriaPrueba.setCategoria(9);
         categorias.add(categoriaPrueba);
 
+        Ingreso ingresoPrueba = new Ingreso("$",230,LocalDate.of(2020,10,14),"descrip",new ArrayList<>());
+        Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),"descrip2",new ArrayList<>());
+        Ingreso ingresoPrueba3 = new Ingreso("$",3,LocalDate.of(2020,10,14),"descrip3",new ArrayList<>());
+
+        ingresoPrueba.setEntidad(entidadPrueba1);
+        ingresoPrueba2.setEntidad(entidadPrueba2);
+        ingresoPrueba3.setEntidad(entidadPrueba1);
+
+        ingreso.add(ingresoPrueba);
+        ingreso.add(ingresoPrueba2);
+        ingreso.add(ingresoPrueba3);
+
         datos.put("entidades",entidades);
         datos.put("criterios",criterios);
         datos.put("categorias",categorias);
+        datos.put("ingreso",ingreso);
 
         String id = request.queryParams("entidad");
 

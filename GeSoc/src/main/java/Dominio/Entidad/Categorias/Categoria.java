@@ -9,6 +9,7 @@ import java.util.List;
 @Entity
 @Table(name = "ent_categorias")
 public class Categoria{
+
     @Id
     @GeneratedValue
     private int categoria;
@@ -47,4 +48,7 @@ public class Categoria{
     public double getVentasAnuales() {
         return ventasAnuales;
     }
+    public int getCategoria() { return categoria;}
+    public void setCategoria(int categoria) {this.categoria = categoria;}
+
 }

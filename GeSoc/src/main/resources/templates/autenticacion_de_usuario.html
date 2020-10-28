@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/validarLogin" method="post">
 
       <!-- Unnamed (Image) -->
       <div id="u54" class="ax_default image">
@@ -90,7 +91,7 @@
                 <!-- Username Input (Text Field) -->
                 <div id="u61" class="ax_default text_field" data-label="Username Input">
                   <div id="u61_div" class=""></div>
-                  <input id="u61_input" type="text" value="" class="u61_input"/>
+                  <input name="nombreUsuario" id="u61_input" type="text" value="" class="u61_input"/>
                 </div>
 
                 <!-- Password Label (Rectangle) -->
@@ -104,7 +105,7 @@
                 <!-- Password Input (Text Field) -->
                 <div id="u63" class="ax_default text_field" data-label="Password Input">
                   <div id="u63_div" class=""></div>
-                  <input id="u63_input" type="password" value="" class="u63_input"/>
+                  <input name="contraseniaUsuario" id="u63_input" type="password" value="" class="u63_input"/>
                 </div>
 
                 <!-- Unnamed (Checkbox) -->
@@ -127,12 +128,12 @@
                 </div>
 
                 <!-- Unnamed (Rectangle) -->
-                <div id="u66" class="ax_default primary_button">
+                <button type="submit "id="u66" class="ax_default primary_button" >
                   <div id="u66_div" class=""></div>
                   <div id="u66_text" class="text ">
-                    <p><span>Ingresar</span></p>
+                    <p><a type="submit" class="btn btn-red" href="/pantalla_principal_usuario">Ingresar</a></p>
                   </div>
-                </div>
+                </button>
               </div>
 
               <!-- Error Highlight (Rectangle) -->

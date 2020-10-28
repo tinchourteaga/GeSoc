@@ -6,7 +6,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
-import Dominio.Rol.RolAdministrador;
+import Dominio.Rol.Administrador;
 import Dominio.Usuario.Usuario;
 import org.junit.Assert;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Test {
 
-    RolAdministrador rolPrueba = new RolAdministrador();
+    Administrador rolPrueba = new Administrador();
 
     @org.junit.Test(expected = ExcepcionNumero.class)
     public void testContraseniaSinNumeros() throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException, ExcepcionCaracterEspecial, ExcepcionLongitud, ExcepcionContraseniaComun {
@@ -63,7 +63,7 @@ public class Test {
         ValidadorDeContrasenia.agregarValidacion(validacion2);
         ValidadorDeContrasenia.agregarValidacion(validacion3);
         ValidadorDeContrasenia.agregarValidacion(validacion4);
-        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero","S4R4z@78P212EyR");
+        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero","S4R4z@78P212EyR","41658239", "mail@mail.com");
         usuario.cambiarContrasenia("S4R4z@78P212EyR","sarasa");
         Assert.assertEquals(usuario.getContrasenia(),"S4R4z@78P212EyR");
     }
@@ -72,7 +72,7 @@ public class Test {
         ChequearLongitudContrasenia validacion1 =new ChequearLongitudContrasenia();
         ValidadorDeContrasenia.removerTodasLasValidaciones();
         ValidadorDeContrasenia.agregarValidacion(validacion1);
-        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero","S4R4z@78P212EyR");
+        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero","S4R4z@78P212EyR", "41658239", "mail@mail.com");
         usuario.cambiarContrasenia("S4R4z@78P212EyR","s");
         Assert.assertEquals(usuario.getContrasenia(),"S4R4z@78P212EyR");
     }
@@ -81,7 +81,7 @@ public class Test {
         ContieneCaracterEspecial validacion1 =new ContieneCaracterEspecial();
         ValidadorDeContrasenia.removerTodasLasValidaciones();
         ValidadorDeContrasenia.agregarValidacion(validacion1);
-        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero","S4R4z@78P212EyR");
+        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero","S4R4z@78P212EyR", "41658239", "mail@mail.com");
         usuario.cambiarContrasenia("S4R4z@78P212EyR","sarasa");
         Assert.assertEquals(usuario.getContrasenia(),"S4R4z@78P212EyR");
     }
@@ -90,7 +90,7 @@ public class Test {
         ChequearContraseniaComun validacion1 =new ChequearContraseniaComun();
         ValidadorDeContrasenia.removerTodasLasValidaciones();
         ValidadorDeContrasenia.agregarValidacion(validacion1);
-        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero","S4R4z@78P212EyR");
+        Usuario usuario= new Usuario(rolPrueba,"pepito", "fachero","S4R4z@78P212EyR", "41658239", "mail@mail.com");
         usuario.cambiarContrasenia("S4R4z@78P212EyR","qwerty");
         Assert.assertEquals(usuario.getContrasenia(),"S4R4z@78P212EyR");
 

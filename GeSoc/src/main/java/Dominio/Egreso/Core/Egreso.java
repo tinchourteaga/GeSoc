@@ -1,5 +1,6 @@
 package Dominio.Egreso.Core;
 
+import Converters.LocalDateAttributeConverter;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
@@ -16,7 +17,6 @@ import java.util.List;
 @Entity
 @Table(name = "dom_egresos")
 public class Egreso {
-
     @Id
     @GeneratedValue
     private int egreso;
@@ -28,7 +28,8 @@ public class Egreso {
     @Column(name = "validado")
     private boolean estaVerificada;
 
-    @Column(name = "fecha", columnDefinition = "DATE")
+    @Column(name = "fecha")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
     @OneToOne
@@ -58,6 +59,8 @@ public class Egreso {
     @ManyToOne
     @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     private Entidad entidad;
+
+    private Presupuesto presupuestoPactado;
 
     public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
@@ -123,5 +126,25 @@ public class Egreso {
     }
     public int getEgreso() {
         return egreso;
+    }
+
+    public Entidad getEntidad() {return entidad;}
+
+    public void setEntidad(Entidad entidad) {this.entidad = entidad;}
+
+    public Presupuesto getPresupuestoPactado() {
+        return presupuestoPactado;
+    }
+
+    public void setPresupuestoPactado(Presupuesto presupuestoPactado) {
+        this.presupuestoPactado = presupuestoPactado;
+    }
+
+    public void setIngreso(Ingreso ingreso) {
+        this.ingreso = ingreso;
+    }
+
+    public Ingreso getIngreso(){
+        return this.ingreso;
     }
 }

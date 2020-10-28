@@ -23,13 +23,10 @@ public class Valor {
     @Column(name = "simbolo")
     private String simbolo;
 
-    @Column(name = "pais")
-    private String pais;
-
     @Column(name = "importe")
     private double importe;
 
-    public Valor(String pais, double importe) {
+    public Valor(String moneda, double importe) {
 
         //ControllerMercadoLibre controller;
         //controller = ControllerMercadoLibre.getControllerMercadoLibre();
@@ -44,15 +41,11 @@ public class Valor {
         //this.importe = importeNuevo.setScale(monedaDTO.getDecimal_places()).doubleValue();
 
         this.importe = importe;
-        this.pais = pais;
+        this.tipoDeMoneda = moneda;
     }
 
-    public String getTipoDeMoneda() {
+    public String getMoneda() {
         return tipoDeMoneda;
-    }
-
-    public String getPais() {
-        return pais;
     }
 
     public String getSimbolo() {

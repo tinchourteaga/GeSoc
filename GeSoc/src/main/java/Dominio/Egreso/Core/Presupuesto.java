@@ -1,5 +1,6 @@
 package Dominio.Egreso.Core;
 
+import Converters.LocalDateAttributeConverter;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import java.util.List;
 @Entity
 @Table(name = "dom_presupuestos")
 public class Presupuesto {
+
     @Id
     @GeneratedValue
     private int presupuesto;
@@ -19,7 +21,8 @@ public class Presupuesto {
     @Column(name = "valor")
     private float valor;
 
-    @Column(name = "fecha_creado", columnDefinition = "DATE")
+    @Column(name = "fecha_creado")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
     @OneToMany(mappedBy = "detalle", cascade = CascadeType.ALL)
@@ -48,4 +51,12 @@ public class Presupuesto {
     public LocalDate getFecha() { return fecha; }
     public void setFecha(LocalDate fecha) { this.fecha = fecha; }
     public void setDetalles(List<Detalle> detalles) { this.detalles = detalles; }
+    public int getPresupuesto() {
+        return presupuesto;
+    }
+
+    public void setPresupuesto(int presupuesto) {
+        this.presupuesto = presupuesto;
+    }
+
 }

@@ -1,5 +1,7 @@
 package Persistencia.DAO;
 
+import Persistencia.EntityManagerHelper;
+
 import java.util.List;
 
 public class DAOBBDD implements DAO {
@@ -12,14 +14,19 @@ public class DAOBBDD implements DAO {
         //aca setearia la lista de usuarios
     }
     public <T> void agregar(T elemento){
-        listaElementos.add(elemento);
+        EntityManagerHelper.getEntityManager().getTransaction().begin();
+        EntityManagerHelper.persist(elemento);
+        EntityManagerHelper.getEntityManager().getTransaction().commit();
     }
     public <T> void modificar(T elemento, T elementoModificado){
-        this.eliminar(elemento);
-        this.agregar(elementoModificado);
+        EntityManagerHelper.getEntityManager().getTransaction().begin();
+        EntityManagerHelper.getEntityManager().merge(elementoModificado);
+        EntityManagerHelper.getEntityManager().getTransaction().commit();
     }
     public <T> void eliminar(T elemento){
-        listaElementos.remove(elemento);
+        EntityManagerHelper.getEntityManager().getTransaction().begin();
+        EntityManagerHelper.getEntityManager().remove(elemento);
+        EntityManagerHelper.getEntityManager().getTransaction().commit();
     }
     public <T> boolean existe(T elemento) {
         return listaElementos.contains(elemento);
@@ -29,14 +36,18 @@ public class DAOBBDD implements DAO {
     }
 
     @Override
-    public Object buscarPorId(String id) {
-        return null;
-    }
+    public Object buscarPorId(String id) { return null; }
+
+    @Override
+    public Object buscarPorPK(int id) { return null; }
 
     @Override
     public Object buscarPorNombre(String nombre) {
         return null;
     }
+
+    @Override
+    public Object buscarPorUsuario(String usuario) { return null; }
 
     @Override
     public List<Object> getAllElementos() {

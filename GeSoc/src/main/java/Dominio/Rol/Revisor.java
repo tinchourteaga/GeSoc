@@ -4,17 +4,16 @@ import Dominio.Egreso.Core.Egreso;
 import Dominio.Rol.Acciones.Accion;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Embeddable;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Embeddable
-public class RolRevisorCompra extends Rol{
+public class Revisor extends Rol{
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Egreso> egresos;
 
-    public RolRevisorCompra() {
+    public Revisor() {
         this.egresos = new ArrayList<Egreso>();
         this.acciones = new ArrayList();
     }

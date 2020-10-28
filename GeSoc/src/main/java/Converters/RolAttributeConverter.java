@@ -1,9 +1,9 @@
 package Converters;
 
 import Dominio.Rol.Rol;
-import Dominio.Rol.RolAdministrador;
-import Dominio.Rol.RolEstandar;
-import Dominio.Rol.RolRevisorCompra;
+import Dominio.Rol.Administrador;
+import Dominio.Rol.Estandar;
+import Dominio.Rol.Revisor;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -28,11 +28,11 @@ public class RolAttributeConverter implements AttributeConverter<Rol, String> {
     public Rol convertToEntityAttribute(String data) {
         switch(data) {
             case "estandar":
-                return new RolEstandar();
+                return new Estandar();
             case "administrador":
-                return new RolAdministrador();
+                return new Administrador();
             case "revisor":
-                RolRevisorCompra unRevisor=new RolRevisorCompra();
+                Revisor unRevisor=new Revisor();
                 agregarEgresosAsociados(unRevisor);
                 return unRevisor;
             default:
@@ -40,7 +40,7 @@ public class RolAttributeConverter implements AttributeConverter<Rol, String> {
         }
     }
 
-    private void agregarEgresosAsociados(RolRevisorCompra unRevisor) {
+    private void agregarEgresosAsociados(Revisor unRevisor) {
 
         //no puedo usar criteria porque no se como trabajar con la tabla autogenerada RevisorXEgreso
    /*     EntityManager entityManager = EntityManagerSingleton.get();

@@ -1,24 +1,10 @@
 package Dominio;
 
-import API.Vinculacion.Condicion;
-import API.Vinculacion.ControllerVinculacion;
-import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
-import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
-import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
-import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
-import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-import Dominio.Egreso.Core.*;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
-import Dominio.Ingreso.Ingreso;
-
-import java.io.IOException;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
+import Servidor.Servidor;
 public class Main {
 
+    public static void main(String[] args){
+    /* //PROCESO VINCULACIÓN - ENTREGA 4.2
     public static void main(String[] args) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
 
         Ingreso unIngreso = new Ingreso("Argentina",557000, LocalDate.parse("2014-02-14"),"pruebita",new ArrayList<>());
@@ -89,5 +75,76 @@ public class Main {
         System.out.println("Los egresos vinculados al ingreso "+unIngreso.getIngreso()+" es: "+unIngreso.getGastadoEn());
 
         System.out.println("Los egresos vinculados al ingreso "+otroIngreso.getIngreso()+" es: "+otroIngreso.getGastadoEn());
+    */
+
+        Servidor.levantarServidor();
+
+        /*String mailUsuario, usuario, contrasenia;
+
+        // email ID of Recipient.
+        String recipient = "covellojorge@gmail.com";
+
+        // email ID of  Sender.
+        String sender = "orggesoc@gmail.com";
+
+        // using host as localhost
+        String host = "192.168.0.5";
+
+        // Getting system properties
+        Properties properties = System.getProperties();
+
+        // Setting up mail server
+        properties.setProperty("mail.smtp.host", host);
+
+        // creating session object to get properties
+        Session session = Session.getDefaultInstance(properties);
+
+
+            // MimeMessage object.
+            MimeMessage message = new MimeMessage(session);
+
+            // Set From Field: adding senders email to from field.
+        try {
+            message.setFrom(new InternetAddress(sender));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // Set To Field: adding recipient's email to from field.
+        try {
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // Set Subject: subject of the email
+        try {
+            message.setSubject("Usuario y contrasenia");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // set body of the email.
+        try {
+            message.setText("Su usario es: " + "usuario");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        try {
+            message.setText("Su password es: " + "contrasenia");
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+
+        // Send email.
+        try {
+            Transport.send(message);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Mail enviado...");*/
+
+
+
     }
 }

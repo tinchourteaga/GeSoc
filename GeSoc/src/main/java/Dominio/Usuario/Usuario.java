@@ -1,5 +1,6 @@
 package Dominio.Usuario;
 
+import Converters.RolAttributeConverter;
 import Dominio.BandejaMensajes.BandejaMensajes;
 import Dominio.Contrasenia.Core.ValidadorDeContrasenia;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
@@ -19,8 +20,17 @@ public class Usuario {
     @GeneratedValue
     private int usuario;
 
+    @Column(name = "nickname")
+    private String persona;
+
     @Column(name = "nombre")
     private String nombre;
+
+    @Column(name = "dni")
+    private String dni;
+
+    @Column(name = "mail")
+    private String mail;
 
     @Column(name = "apellido")
     private String apellido;
@@ -28,21 +38,27 @@ public class Usuario {
     @Column(name = "clave")
     private String contrasenia;
 
-    @Embedded
+    @Convert(converter = RolAttributeConverter.class)
     private Rol rol;
 
     @Embedded
     private BandejaMensajes bandejaDeMensajes;
 
-    public Usuario(Rol rol, String nombre, String apellido, String contrasenia) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
+    @Column(name = "nro_celular")
+    private String celular;
+
+    public Usuario(Rol rol, String nombre, String apellido, String contrasenia, String dni, String mail) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
         this.rol = rol;
         this.nombre = nombre;
         this.apellido = apellido;
+        this.dni = dni;
+        this.mail = mail;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
         this.contrasenia = contrasenia;
         this.bandejaDeMensajes = new BandejaMensajes();
     }
 
+    public void setPersona(String nombre, String apellido) { this.persona = nombre.charAt(0) + apellido; }
     public String getNombre() {
         return nombre;
     }

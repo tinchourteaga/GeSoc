@@ -1,5 +1,6 @@
 package Dominio.BandejaMensajes;
 
+import Converters.LocalDateAttributeConverter;
 import Dominio.Usuario.Usuario;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,10 +20,12 @@ public class Mensaje {
     @Column(name = "cuerpo_mensaje", length = 15000)
     private String mensajeResultado;
 
-    @Column(name = "fecha_creado", columnDefinition = "DATE")
+    @Column(name = "fecha_creado")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fechaCreado;
 
-    @Column(name = "fecha_leido", columnDefinition = "DATE")
+    @Column(name = "fecha_leido")
+    @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fechaLeido;
 
     @Column(name = "leido")

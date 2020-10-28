@@ -20,7 +20,7 @@ import Dominio.Entidad.Direccion;
 import Dominio.Entidad.DireccionPostal;
 import Dominio.Rol.Acciones.AgregarJerarquia;
 import Dominio.Rol.Exepciones.NoTengoPermisosException;
-import Dominio.Rol.RolAdministrador;
+import Dominio.Rol.Administrador;
 import Dominio.Usuario.Usuario;
 import Lugares.Ciudad;
 import Lugares.Pais;
@@ -101,7 +101,7 @@ public class Test {
     @org.junit.Test
     public void testJerarquias() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun, NoTengoPermisosException, NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
 
-        RolAdministrador roladmin=new RolAdministrador();
+        Administrador roladmin=new Administrador();
         List<CategoriaCriterio> categoriaCriterios =new ArrayList<>();
         categoriaCriterios.add(new CategoriaCriterio("descripcion1","nombre1"));
         categoriaCriterios.add(new CategoriaCriterio("descripcion2","nombre2"));
@@ -111,8 +111,8 @@ public class Test {
         Criterio criterioDummyHijo=new Criterio(categoriaCriterios,"dummyHijo","dummyHijo");
         AgregarJerarquia agregarJerarquia=new AgregarJerarquia(criterioDummy,criterioDummyHijo);
         roladmin.getAcciones().add(agregarJerarquia);
-        RolAdministrador rolPrueba = new RolAdministrador();
-        Usuario unUsuario=new Usuario(rolPrueba,"pepito", "fachero","SiestaContr4senia no funca me m@deo");
+        Administrador rolPrueba = new Administrador();
+        Usuario unUsuario=new Usuario(rolPrueba,"pepito", "fachero","SiestaContr4senia no funca me m@deo", "41658239", "mail@mail.com");
         List<Presupuesto> presupuestos=new ArrayList<>();
         presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
         presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));

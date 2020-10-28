@@ -11,5 +11,7 @@ public interface DAO {
     <T> List<T> getAllElementos();
     <T> List<T> getAllElementosFrom(Class unaClase);
     Object buscarPorId(String id);
+    Object buscarPorPK(int id);
     Object buscarPorNombre(String nombre);
+    Object buscarPorUsuario(String usuario);
 }

@@ -10,7 +10,7 @@ import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
 import Persistencia.DAO.DAOMemoria;
-import Persistencia.Repositorio;
+import Persistencia.Repos.*;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -30,10 +30,10 @@ public class ControllerMercadoLibre {
     private static ControllerMercadoLibre instancia=null;
 
 
-    private Repositorio paisesRepo = new Repositorio(new DAOMemoria<Pais>());
-    private Repositorio provinciasRepo = new Repositorio(new DAOMemoria<Provincia>());
-    private Repositorio ciudadesRepo = new Repositorio(new DAOMemoria<Ciudad>());
-    private Repositorio monedasRepo = new Repositorio(new DAOMemoria<MonedaDTO>());
+    public Repositorio paisesRepo = new Repositorio(new DAOMemoria<Pais>());
+    public Repositorio provinciasRepo = new Repositorio(new DAOMemoria<Provincia>());
+    public Repositorio ciudadesRepo = new Repositorio(new DAOMemoria<Ciudad>());
+    public Repositorio monedasRepo = new Repositorio(new DAOMemoria<MonedaDTO>());
 
     private ControllerMercadoLibre() throws IOException {
         pedirPaises();

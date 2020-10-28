@@ -72,6 +72,13 @@
             <version>1.8.0-beta0</version>
         </dependency>
 
+        <!-- Mailing -->
+        <dependency>
+            <groupId>javax.mail</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.4</version>
+        </dependency>
+
         <!-- Hibernate -->
         <dependency>
             <groupId>org.uqbar-project</groupId>
@@ -128,6 +135,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>

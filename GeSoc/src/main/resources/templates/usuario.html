@@ -47,6 +47,7 @@
   </head>
   <body>
     <div id="base" class="">
+      <form action="/cambiarContrasenia" method="post">
 
       <!-- Unnamed (Image) -->
       <div id="u178" class="ax_default image">
@@ -251,7 +252,7 @@
             <!-- ContraseñaActual (Text Field) -->
             <div id="u206" class="ax_default text_field" data-label="ContraseñaActual">
               <div id="u206_div" class=""></div>
-              <input id="u206_input" type="password" value="" class="u206_input"/>
+              <input name="contraActual" id="u206_input" type="password" value="" class="u206_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -265,7 +266,7 @@
             <!-- ContraseñaNueva (Text Field) -->
             <div id="u208" class="ax_default text_field" data-label="ContraseñaNueva">
               <div id="u208_div" class=""></div>
-              <input id="u208_input" type="password" value="" class="u208_input"/>
+              <input name="contraNueva" id="u208_input" type="password" value="" class="u208_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -279,7 +280,7 @@
             <!-- VerificarContraseñaNueva (Text Field) -->
             <div id="u210" class="ax_default text_field" data-label="VerificarContraseñaNueva">
               <div id="u210_div" class=""></div>
-              <input id="u210_input" type="password" value="" class="u210_input"/>
+              <input name="verifContraNueva" id="u210_input" type="password" value="" class="u210_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -353,12 +354,12 @@
         </div>
 
         <!-- Unnamed (Shape) -->
-        <div id="u222" class="ax_default primary_button">
+        <button id="u222" class="ax_default primary_button">
           <img id="u222_img" class="img " src="images/usuario/u201.svg"/>
           <div id="u222_text" class="text ">
             <p><span>Aceptar</span></p>
           </div>
-        </div>
+        </button>
 
         <!-- Top Divider Line (Line) -->
         <div id="u223" class="ax_default line" data-label="Top Divider Line">
@@ -419,7 +420,7 @@
 
           <!-- Unnamed (Rectangle) -->
           <div id="u232" class="ax_default box_1">
-            <img id="u232_img" class="img " src="images/pantalla_principal_usuario/u126.svg"/>
+            <img id="u232_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
             <div id="u232_text" class="text ">
               <p><span>Gestión de Proyectos Sociales</span></p>
             </div>
@@ -437,7 +438,7 @@
 
       <!-- Unnamed (Rectangle) -->
       <div id="u234" class="ax_default box_1 ax_default_hidden" style="display:none; visibility: hidden">
-        <img id="u234_img" class="img " src="images/pantalla_principal_usuario/u128.svg"/>
+        <img id="u234_img" class="img " src="images/pantalla_principal_usuario/u129.svg"/>
         <div id="u234_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
@@ -445,7 +446,7 @@
 
       <!-- Unnamed (Shape) -->
       <div id="u235" class="ax_default ellipse ax_default_hidden" style="display:none; visibility: hidden">
-        <img id="u235_img" class="img " src="images/pantalla_principal_usuario/u129.svg"/>
+        <img id="u235_img" class="img " src="images/pantalla_principal_usuario/u130.svg"/>
         <div id="u235_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
@@ -465,7 +466,7 @@
 
       <!-- Unnamed (Shape) -->
       <div id="u238" class="ax_default icon">
-        <img id="u238_img" class="img " src="images/pantalla_principal_usuario/u132.svg"/>
+        <img id="u238_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
         <div id="u238_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
@@ -473,7 +474,7 @@
 
       <!-- Unnamed (Shape) -->
       <div id="u239" class="ax_default icon">
-        <img id="u239_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
+        <img id="u239_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
         <div id="u239_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
@@ -481,7 +482,7 @@
 
       <!-- Unnamed (Shape) -->
       <div id="u240" class="ax_default icon">
-        <img id="u240_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
+        <img id="u240_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
         <div id="u240_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
@@ -660,7 +661,7 @@
       </div>
 
       <!-- Usuarios (Group) -->
-      <div id="u265" class="ax_default ax_default_hidden" data-label="Usuarios" style="display:none; visibility: hidden" data-left="300" data-top="340" data-width="200" data-height="30">
+      <div id="u265" class="ax_default ax_default_hidden" data-label="Usuarios" style="display:none; visibility: hidden" data-left="300" data-top="310" data-width="200" data-height="30">
 
         <!-- Tab Label 3 (Rectangle) -->
         <div id="u266" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
@@ -699,18 +700,22 @@
         </div>
       </div>
 
-      <!-- ConfiguracionGeneral (Rectangle) -->
-      <div id="u271" class="ax_default box_3 ax_default_hidden" data-label="ConfiguracionGeneral" selectiongroup="u227Tabs" style="display:none; visibility: hidden">
-        <div id="u271_div" class=""></div>
-        <div id="u271_text" class="text ">
-          <p><span>CONFIGURACIÓN GENERAL</span></p>
-        </div>
-      </div>
-
       <!-- Menu (Dynamic Panel) -->
-      <div id="u272" class="ax_default" data-label="Menu">
-        <div id="u272_state0" class="panel_state" data-label="State1" style="">
-          <div id="u272_state0_content" class="panel_state_content">
+      <div id="u271" class="ax_default" data-label="Menu">
+        <div id="u271_state0" class="panel_state" data-label="State1" style="">
+          <div id="u271_state0_content" class="panel_state_content">
+
+            <!-- Unnamed (Shape) -->
+            <div id="u272" class="ax_default icon">
+              <img id="u272_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
+              <div id="u272_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="u271_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
+          <div id="u271_state1_content" class="panel_state_content">
 
             <!-- Unnamed (Shape) -->
             <div id="u273" class="ax_default icon">
@@ -721,40 +726,28 @@
             </div>
           </div>
         </div>
-        <div id="u272_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
-          <div id="u272_state1_content" class="panel_state_content">
-
-            <!-- Unnamed (Shape) -->
-            <div id="u274" class="ax_default icon">
-              <img id="u274_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
-              <div id="u274_text" class="text " style="display:none; visibility: hidden">
-                <p></p>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <!-- Auditoría (Group) -->
-      <div id="u275" class="ax_default ax_default_hidden" data-label="Auditoría" style="display:none; visibility: hidden" data-left="300" data-top="280" data-width="200" data-height="30">
+      <div id="u274" class="ax_default ax_default_hidden" data-label="Auditoría" style="display:none; visibility: hidden" data-left="300" data-top="280" data-width="200" data-height="30">
 
         <!-- Tab Label 3 (Rectangle) -->
-        <div id="u276" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
-          <div id="u276_div" class=""></div>
-          <div id="u276_text" class="text ">
+        <div id="u275" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
+          <div id="u275_div" class=""></div>
+          <div id="u275_text" class="text ">
             <p><span>AUDITORÍA</span></p>
           </div>
         </div>
 
         <!-- Unnamed (Dynamic Panel) -->
-        <div id="u277" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u277_state0" class="panel_state" data-label="State1" style="">
-            <div id="u277_state0_content" class="panel_state_content">
+        <div id="u276" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+          <div id="u276_state0" class="panel_state" data-label="State1" style="">
+            <div id="u276_state0_content" class="panel_state_content">
 
               <!-- Tab Label 3 (Rectangle) -->
-              <div id="u278" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
-                <div id="u278_div" class=""></div>
-                <div id="u278_text" class="text ">
+              <div id="u277" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
+                <div id="u277_div" class=""></div>
+                <div id="u277_text" class="text ">
                   <p><span>BITÁCORA DE OPERACIONES</span></p>
                 </div>
               </div>
@@ -764,17 +757,17 @@
       </div>
 
       <!-- Entidades (Group) -->
-      <div id="u279" class="ax_default ax_default_hidden" data-label="Entidades" style="display:none; visibility: hidden" data-left="300" data-top="70" data-width="200" data-height="30">
+      <div id="u278" class="ax_default ax_default_hidden" data-label="Entidades" style="display:none; visibility: hidden" data-left="300" data-top="70" data-width="200" data-height="30">
 
         <!-- Unnamed (Dynamic Panel) -->
-        <div id="u280" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u280_state0" class="panel_state" data-label="State1" style="">
-            <div id="u280_state0_content" class="panel_state_content">
+        <div id="u279" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+          <div id="u279_state0" class="panel_state" data-label="State1" style="">
+            <div id="u279_state0_content" class="panel_state_content">
 
               <!-- Tab Label 3 (Rectangle) -->
-              <div id="u281" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
-                <div id="u281_div" class=""></div>
-                <div id="u281_text" class="text ">
+              <div id="u280" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
+                <div id="u280_div" class=""></div>
+                <div id="u280_text" class="text ">
                   <p><span>CARGAR ENTIDAD</span></p>
                 </div>
               </div>
@@ -783,31 +776,31 @@
         </div>
 
         <!-- Tab Label 3 (Rectangle) -->
-        <div id="u282" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
-          <div id="u282_div" class=""></div>
-          <div id="u282_text" class="text ">
+        <div id="u281" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u227Tabs">
+          <div id="u281_div" class=""></div>
+          <div id="u281_text" class="text ">
             <p><span>ENTIDADES</span></p>
           </div>
         </div>
       </div>
 
       <!-- Unnamed (Shape) -->
-      <div id="u283" class="ax_default icon">
-        <img id="u283_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
-        <div id="u283_text" class="text " style="display:none; visibility: hidden">
+      <div id="u282" class="ax_default icon">
+        <img id="u282_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
+        <div id="u282_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
       </div>
       <div id="u227" style="display:none; visibility:hidden;"></div>
 
       <!-- RUTA USUARIO (Group) -->
-      <div id="u284" class="ax_default ax_default_hidden" data-label="RUTA USUARIO" style="display:none; visibility: hidden" data-left="322" data-top="30" data-width="346" data-height="40">
+      <div id="u283" class="ax_default ax_default_hidden" data-label="RUTA USUARIO" style="display:none; visibility: hidden" data-left="322" data-top="30" data-width="346" data-height="40">
 
         <!-- Tab Label 3 (Rectangle) -->
-        <div id="u285" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="Tabs">
-          <div id="u285_div" class=""></div>
-          <div id="u285_text" class="text ">
-            <p><span>USUARIO</span></p>
+        <div id="u284" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="Tabs">
+          <div id="u284_div" class=""></div>
+          <div id="u284_text" class="text ">
+            <p><span>&gt;&gt; USUARIO</span></p>
           </div>
         </div>
       </div>

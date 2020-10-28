@@ -56,12 +56,12 @@ public class Test{
         EntityManagerHelper.commit();
     }
 
-    /* @org.junit.Test
+    @org.junit.Test
     public void persistirPresupuesto(){
-        persistirProveedor();
+        //persistirProveedor();
         Proveedor proveedor = (Proveedor) EntityManagerHelper.createQuery("from Proveedor where razonSocial = 'Razon Social'").getSingleResult();
 
-        persistirDocumentoComercial();
+        //persistirDocumentoComercial();
         DocumentoComercial doc = (DocumentoComercial) EntityManagerHelper.createQuery("from DocumentoComercial where tipo = 'REMITO'").getSingleResult();
 
         Presupuesto presupuesto = new Presupuesto(new ArrayList<>(),51000, new ArrayList<>(), doc, proveedor);
@@ -70,7 +70,5 @@ public class Test{
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(presupuesto);
         EntityManagerHelper.commit();
-
-        // Este no funciona por la fecha, pero no entiendo porqué
-    } */
+    }*/
 }

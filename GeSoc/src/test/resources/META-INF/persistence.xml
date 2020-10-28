@@ -20,10 +20,10 @@
         <class>Dominio.Egreso.Core.TipoDeMetodoDePago</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio</class> <!-- Ok -->
         <class>Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio</class> <!-- Ok -->
-        <class>Dominio.Rol.Rol</class> <!-- Ok -->
-        <class>Dominio.Rol.RolEstandar</class> <!-- Ok -->
-        <class>Dominio.Rol.RolAdministrador</class> <!-- Ok -->
-        <class>Dominio.Rol.RolRevisorCompra</class> <!-- Ok -->
+        <!-- <class>Dominio.Rol.Rol</class> Ok -->
+        <class>Dominio.Rol.Estandar</class> <!-- Ok -->
+        <class>Dominio.Rol.Administrador</class> <!-- Ok -->
+        <class>Dominio.Rol.Revisor</class> <!-- Ok -->
         <class>Dominio.Entidad.Sector</class> <!-- Ok -->
         <class>Dominio.Entidad.Categorias.Categoria</class> <!-- Ok -->
         <class>Dominio.Entidad.Categorias.TipoCategoria</class> <!-- Ok -->

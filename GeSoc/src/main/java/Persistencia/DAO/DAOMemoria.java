@@ -52,6 +52,9 @@ public class DAOMemoria <T> implements DAO  {
     }
 
     @Override
+    public Object buscarPorPK(int id) { return null; }
+
+    @Override
     public Object buscarPorNombre(String nombre) {
         List<Object> candidatos=this.getAllElementos().stream().filter(obj ->((Pais) obj).getName().equals(nombre)).collect(Collectors.toList());
         if(candidatos!=null){
@@ -59,6 +62,9 @@ public class DAOMemoria <T> implements DAO  {
         }
         return null;
     }
+
+    @Override
+    public Object buscarPorUsuario(String usuario) { return null; }
 
     @Override
     public List<Object> getAllElementos() {

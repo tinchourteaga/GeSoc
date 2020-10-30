@@ -32,16 +32,9 @@ public class Autenticador {
                 // no tenia usuario en la session y tienen que pasarlo en X-User para asignarlo
 
                 if (!maybeXUser.isPresent() || maybeXUser.filter(Strings::isNullOrEmpty).isPresent()) {
+                    System.out.println("noHayXUser");
                     halt(HttpStatus.NOT_FOUND_404);
                 }
-				/*
-                final Optional<String> maybeUsuario = usuarioService.fetchUsuario(maybeXUser.get());
-                if (maybeUsuario.isPresent()) {
-                    request.session().attribute("user", maybeUsuario.get());
-                } else {
-                    halt(HttpStatus.UNAUTHORIZED_401);
-                }
-				 */
             }
         }
     };

@@ -9,7 +9,6 @@ import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
 import Dominio.Rol.Rol;
-import Servidor.Controllers.Hash.FuncionHash;
 
 import javax.persistence.*;
 import java.io.IOException;
@@ -55,7 +54,7 @@ public class Usuario {
         this.dni = dni;
         this.mail = mail;
         ValidadorDeContrasenia.validarContrasenia(contrasenia);
-        this.contrasenia = new FuncionHash().funcionHash(contrasenia);
+        this.contrasenia = contrasenia;
         this.bandejaDeMensajes = new BandejaMensajes();
     }
 

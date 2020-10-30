@@ -1,24 +1,9 @@
 package TestsEntrega4;
 
-import Dominio.Egreso.Core.DocumentoComercial;
-import Dominio.Egreso.Core.Presupuesto;
-import Dominio.Egreso.Core.Proveedor;
-import Dominio.Egreso.Core.TipoDocumentoComercial;
-import Dominio.Entidad.Direccion;
-import Dominio.Entidad.DireccionPostal;
-import Dominio.Moneda.Valor;
-import Lugares.Ciudad;
-import Lugares.Pais;
-import Lugares.Provincia;
-import Persistencia.EntityManagerHelper;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 public class Test{
     //ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
 
-    @org.junit.Test
+    /*@org.junit.Test
     public void persistirProveedor(){
         Pais pais = new Pais("AR", "Argentina");
 
@@ -85,5 +70,5 @@ public class Test{
         EntityManagerHelper.beginTransaction();
         EntityManagerHelper.getEntityManager().persist(presupuesto);
         EntityManagerHelper.commit();
-    }
+    }*/
 }

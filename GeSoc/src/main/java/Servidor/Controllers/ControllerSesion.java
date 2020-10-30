@@ -41,14 +41,18 @@ public class ControllerSesion{
 
 
         if(usuarioVerificado && !sesiones.containsValue(nombreUsuario)){
-            response.redirect("pantalla_principal_usuario");
             Session usuario=request.session(true);
             usuario.attribute("idUsuarioActual",encriptador.funcionHash((new Date()).toInstant().toString()));
+            usuario.attribute("nombreUsuario",nombreUsuario);
             sesiones.put(nombreUsuario,usuario);
+
+
+
+            response.redirect("pantalla_principal_usuario");
         }else{
             System.out.println("la sesion existia:"+sesiones.get(nombreUsuario));
 
-            response.redirect("/autenticacion_usuario");
+            response.redirect("autenticacion_usuario");
         }
         return null;
     }

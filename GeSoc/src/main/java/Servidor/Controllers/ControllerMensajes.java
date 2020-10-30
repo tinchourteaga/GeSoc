@@ -1,5 +1,6 @@
 package Servidor.Controllers;
 
+import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
@@ -12,8 +13,11 @@ import spark.Request;
 import spark.Response;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ControllerMensajes {
 
@@ -58,7 +62,27 @@ public class ControllerMensajes {
     public static ModelAndView visualizarPantallaMensajesRevisor(Request request, Response response,Usuario usuario){
 
         //con el usuario vas sacando datos
+        String fecha=request.queryParams("fechaFiltrado");
+        String egreso=request.queryParams("egreso");
+        List<Mensaje> todosLosMsj;
+        if(egreso!=null){
+
+        //    todosLosMsj=usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj->msj.);
+
+        }
+
+        if(fecha!=null){
+            todosLosMsj=usuario.getBandejaDeMensajes().filtrarPorFecha(LocalDate.parse(fecha));
+        }else {
+            todosLosMsj = usuario.getBandejaDeMensajes().getMensajes();
+        }
+        if(request.queryParams("filtrarPorLeidos").equals("true")){
+
+            todosLosMsj=todosLosMsj.stream().filter(msj->msj.getLeido()).collect(Collectors.toList());
+        }
+
         Map<String,Object> datos = new HashMap<>();
+        datos.put("mensajes",todosLosMsj);
         ModelAndView vista = new ModelAndView(datos, "mensajes_revisor.html");
 
         return vista;

@@ -51,11 +51,11 @@
       <!-- Egresos (Droplist) -->
       <div id="u1798" class="ax_default droplist" data-label="Egresos">
         <div id="u1798_div" class=""></div>
-        <select id="u1798_input" class="u1798_input">
-          <option class="u1798_input_option" selected value="Seleccione un Egreso">Seleccione un Egreso</option>
-          <option class="u1798_input_option" value="Egreso 1">Egreso 1</option>
-          <option class="u1798_input_option" value="Egreso 2">Egreso 2</option>
-          <option class="u1798_input_option" value="Egreso 3">Egreso 3</option>
+        <select id="u1798_input" class="u1798_input" onchange="location.href='ver_ingresos_y_egresos?egreso='+this.value;">
+          <option class="u1798_input_option" selected value="Seleccione un Egreso" >Seleccione un Egreso</option>
+         {{#each egresos}}
+          <option class="u1798_input_option" value="{{egreso}}">{{fecha}}:{{valor.importe}}</option>
+          {{/each}}
         </select>
       </div>
 

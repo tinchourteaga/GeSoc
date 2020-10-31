@@ -32,9 +32,11 @@
             <div class="logo-usuario">
                 <img src="images/sidebar/botonPerfil.svg" class="img-fluid" onmouseover="usuariohover(this);" onmouseout="usuariounhover(this);">
             </div>
-            <div class="logo-cerrar-sesion">
+            <form action="/cerrarSesion" method="post">
+            <div class="logo-cerrar-sesion" type="submit">
                 <img src="images/sidebar/botonCerrarSesion.svg" class="img-fluid" onmouseover="cerrarsesionhover(this);" onmouseout="cerrarsesionunhover(this);">
             </div>
+            </form>
         </a>
     </nav>
 

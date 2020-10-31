@@ -46,7 +46,6 @@ public class Servidor {
 
     public static void levantarRutaGET(){
         Spark.get("/", ControllerSesion::mostrarLogin, engine);
-        Spark.get("/cerrarSesion", ControllerSesion::cerrarSesion, engine);
         Spark.get("/autenticacion_usuario", ControllerAutenticacion::visualizarPantalla, engine);
         Spark.get("/cargar_egreso", ControllerEgresos::visualizarPantalla, engine);
         Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
@@ -77,7 +76,7 @@ public class Servidor {
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
         Spark.post("/cambiarContrasenia", ControllerUsuario::cambiarContrasenia);
-
+        Spark.post("/cerrarSesion", ControllerSesion::cerrarSesion);
         //to be done
         Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
         Spark.post("/cargarEgreso", ControllerEgresos::cargarEgreso);

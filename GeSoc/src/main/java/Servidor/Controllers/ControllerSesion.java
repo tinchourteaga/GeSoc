@@ -23,12 +23,12 @@ public class ControllerSesion{
         return vista;
     }
 
-    public static ModelAndView cerrarSesion(Request request, Response response){
-
-        Map<String,Object> datos = new HashMap<>();
-        ModelAndView vista = new ModelAndView(datos, "logoutHTML");
-
-        return vista;
+    public static Object cerrarSesion(Request request, Response response){
+        Session sesionUsuario=sesiones.remove(request.session().attribute("nombreUsuario"));
+        sesionUsuario.removeAttribute("idUsuarioActual");
+        sesionUsuario.invalidate();
+        response.redirect("/");
+        return null;
     }
 
     public static Object validarLogin(Request request, Response response){

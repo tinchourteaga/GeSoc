@@ -61,11 +61,11 @@
 }
 
 nav ul{
+    position: relative;
     background: #363839;
     height: 100%;
     width: 100%;
     list-style: none;
-
 }
 
 nav ul li{
@@ -152,4 +152,21 @@ nav ul li a span{
 
 nav ul li a span.rotate{
     transform: translateY(-50%) rotate(-180deg);
+}
+
+.nav__overlay{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 90%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(3px);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.sidebar.show .nav__overlay{
+    visibility: visible;
+    opacity: 1;
 }

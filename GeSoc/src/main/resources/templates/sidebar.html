@@ -19,23 +19,31 @@
 <body>
 
     <nav class="horizontalbar">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand">
             <div class="logo-image">
                 <img src="images/sidebar/GeSocLogo.png" class="img-fluid">
             </div>
             <div class="logo-configuracion">
-                <img src="images/sidebar/botonConfiguracion.svg" class="img-fluid" onmouseover="configuracionhover(this);" onmouseout="configuracionunhover(this);">
+                <a href="/configuracion_general">
+                    <img src="images/sidebar/botonConfiguracion.svg" class="img-fluid" onmouseover="configuracionhover(this);" onmouseout="configuracionunhover(this);">
+                </a>
             </div>
             <div class="logo-sobre">
-                <img src="images/sidebar/botonBandejaMensajes.svg" class="img-fluid" onmouseover="mensajehover(this);" onmouseout="mensajeunhover(this);">
+                <a href="/mensajes">
+                    <img src="images/sidebar/botonBandejaMensajes.svg" class="img-fluid" onmouseover="mensajehover(this);" onmouseout="mensajeunhover(this);">
+                </a>
             </div>
             <div class="logo-usuario">
-                <img src="images/sidebar/botonPerfil.svg" class="img-fluid" onmouseover="usuariohover(this);" onmouseout="usuariounhover(this);">
+                <a href="/usuario">
+                    <img src="images/sidebar/botonPerfil.svg" class="img-fluid" onmouseover="usuariohover(this);" onmouseout="usuariounhover(this);">
+                </a>
             </div>
             <form action="/cerrarSesion" method="post">
-            <div class="logo-cerrar-sesion" type="submit">
-                <img src="images/sidebar/botonCerrarSesion.svg" class="img-fluid" onmouseover="cerrarsesionhover(this);" onmouseout="cerrarsesionunhover(this);">
-            </div>
+                <button name="botonSesion" type="submit">
+                    <div class="logo-cerrar-sesion">
+                        <img src="images/sidebar/botonCerrarSesion.svg" class="img-fluid" onmouseover="cerrarsesionhover(this);" onmouseout="cerrarsesionunhover(this);">
+                    </div>
+                </button>
             </form>
         </a>
     </nav>
@@ -248,6 +256,10 @@
         function cerrarsesionunhover(element){
             element.setAttribute('src', 'images/sidebar/botonCerrarSesion.svg');
         }
+
+        $.post('.logo-cerrar-sesion',function(){
+             $("div").html('/cerrarSesion');
+        });
     </script>
 
 </body>

@@ -228,3 +228,11 @@ nav ul li a span.rotate{
     height: 5%;
     overflow: hidden;
 }
+
+.botonSesion{
+    position: fixed;
+    top: 5.3%;
+    right: 4%;
+    height: 5%;
+    overflow: hidden;
+}

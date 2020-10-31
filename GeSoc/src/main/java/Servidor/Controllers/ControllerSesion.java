@@ -24,9 +24,11 @@ public class ControllerSesion{
     }
 
     public static Object cerrarSesion(Request request, Response response){
-        Session sesionUsuario=sesiones.remove(request.session().attribute("nombreUsuario"));
+
+        Session sesionUsuario=sesiones.remove(request.session().attribute("idUsuarioActual"));
         sesionUsuario.removeAttribute("idUsuarioActual");
-        sesionUsuario.invalidate();
+        request.session().removeAttribute("idUsuarioActual");
+        request.session().invalidate();
         response.redirect("/");
         return null;
     }
@@ -42,9 +44,10 @@ public class ControllerSesion{
 
         if(usuarioVerificado && !sesiones.containsValue(nombreUsuario)){
             Session usuario=request.session(true);
-            usuario.attribute("idUsuarioActual",encriptador.funcionHash((new Date()).toInstant().toString()));
+            String id=encriptador.funcionHash((new Date()).toInstant().toString());
+            usuario.attribute("idUsuarioActual",id);
             usuario.attribute("nombreUsuario",nombreUsuario);
-            sesiones.put(nombreUsuario,usuario);
+            sesiones.put(id,usuario);
 
 
 

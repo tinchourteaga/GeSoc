@@ -44,6 +44,15 @@
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
   </head>
   <body>
     <div id="base" class="">
@@ -600,25 +609,25 @@
         <div id="u2205_state0" class="panel_state" data-label="State1" style="">
           <div id="u2205_state0_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u2206" class="ax_default icon">
               <img id="u2206_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u2206_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="u2205_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
           <div id="u2205_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u2207" class="ax_default icon">
               <img id="u2207_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u2207_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -699,6 +708,7 @@
           </div>
         </div>
       </div>
+        <div id="includedContent"></div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
   </body>

@@ -44,6 +44,15 @@
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
   </head>
   <body>
     <div id="base" class="">
@@ -1279,6 +1288,7 @@
           </div>
         </div>
       </div>
+        <div id="includedContent"></div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
   </body>

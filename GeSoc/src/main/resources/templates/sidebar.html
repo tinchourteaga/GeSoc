@@ -6,16 +6,40 @@
     <link rel="stylesheet" href="files/sidebar/style.css">
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+    <style>
+        .img-fluid {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+        }
+    </style>
+
 </head>
 <body>
-    <div class="botoncito">
-        <span class="fas fa-bars"></span>
-    </div>
+
+    <nav class="horizontalbar">
+        <a class="navbar-brand" href="/">
+            <div class="logo-image">
+                <img src="images/sidebar/GeSocLogo.png" class="img-fluid">
+            </div>
+            <div class="logo-configuracion">
+                <img src="images/sidebar/botonConfiguracion.svg" class="img-fluid" onmouseover="configuracionhover(this);" onmouseout="configuracionunhover(this);">
+            </div>
+            <div class="logo-sobre">
+                <img src="images/sidebar/botonBandejaMensajes.svg" class="img-fluid" onmouseover="mensajehover(this);" onmouseout="mensajeunhover(this);">
+            </div>
+            <div class="logo-usuario">
+                <img src="images/sidebar/botonPerfil.svg" class="img-fluid" onmouseover="usuariohover(this);" onmouseout="usuariounhover(this);">
+            </div>
+            <div class="logo-cerrar-sesion">
+                <img src="images/sidebar/botonCerrarSesion.svg" class="img-fluid" onmouseover="cerrarsesionhover(this);" onmouseout="cerrarsesionunhover(this);">
+            </div>
+        </a>
+    </nav>
+
 
     <nav class="sidebar">
-        <div class="text" style="color:transparent;">
-            HOLA
-        </div>
 
         <div class="nav__overlay"></div>
 
@@ -90,6 +114,10 @@
             </li>
         </ul>
     </nav>
+
+    <div class="botoncito">
+        <span class="fas fa-bars"></span>
+    </div>
 
     <script>
 
@@ -186,6 +214,38 @@
             $('nav ul .mostrar-opciones-auditoria').toggleClass("show7");
             $('nav ul .eighth').toggleClass("rotate");
         });
+
+        function configuracionhover(element){
+            element.setAttribute('src', 'images/sidebar/botonConfiguracionMouseOver.svg');
+        }
+
+        function configuracionunhover(element){
+            element.setAttribute('src', 'images/sidebar/botonConfiguracion.svg');
+        }
+
+        function mensajehover(element){
+            element.setAttribute('src', 'images/sidebar/botonBandejaMensajesMouseOver.svg');
+        }
+
+        function mensajeunhover(element){
+            element.setAttribute('src', 'images/sidebar/botonBandejaMensajes.svg');
+        }
+
+        function usuariohover(element){
+            element.setAttribute('src', 'images/sidebar/botonPerfilMouseOver.svg');
+        }
+
+        function usuariounhover(element){
+            element.setAttribute('src', 'images/sidebar/botonPerfil.svg');
+        }
+
+        function cerrarsesionhover(element){
+            element.setAttribute('src', 'images/sidebar/botonCerrarSesionMouseOver.svg');
+        }
+
+        function cerrarsesionunhover(element){
+            element.setAttribute('src', 'images/sidebar/botonCerrarSesion.svg');
+        }
     </script>
 
 </body>

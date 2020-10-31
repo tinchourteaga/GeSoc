@@ -11,9 +11,9 @@
     font-family: 'Poppins', sans-serif;*/
 }
 .botoncito{
-    position: relative;
-    top: 10px;
-    left: 10px;
+    position: fixed;
+    top: 11%;
+    left: 1%;
     height: 30px;
     width: 30px;
     text-align: center;
@@ -24,7 +24,7 @@
 }
 
 .botoncito.click{
-    /*left: 0px;*/
+    left: 260px;
 }
 
 .botoncito span{
@@ -35,6 +35,13 @@
 
 .botoncito.click span:before{
     content: '\f00d'
+}
+
+.horizontalbar{
+    position: fixed;
+    width: 100%;
+    height: 10%;
+    background: #363839;
 }
 
 .sidebar{
@@ -49,7 +56,7 @@
 .sidebar.show{
     left: 0px;
 }
-
+/*
 .sidebar .text{
     color: white;
     font-size: 30px;
@@ -58,13 +65,24 @@
     text-align: center;
     background: transparent;
     letter-spacing: 1px;
-}
-
+}*/
+/*
+position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 90%;
+*/
 nav ul{
+    /*position: fixed;
+    bottom: 0;
+    width: 30%;
+    height: 90%;*/
     position: relative;
-    background: #363839;
+    top: 10%;
     height: 100%;
     width: 100%;
+    background: #434647;
     list-style: none;
 }
 
@@ -169,4 +187,43 @@ nav ul li a span.rotate{
 .sidebar.show .nav__overlay{
     visibility: visible;
     opacity: 1;
+}
+
+.logo-image{
+    position: fixed;
+    /*width: 20%;*/
+    height: 10%;
+    overflow: hidden;
+}
+
+.logo-configuracion{
+    position: fixed;
+    top: 5%;
+    right: 10%;
+    height: 5%;
+    overflow: hidden;
+}
+
+.logo-sobre{
+    position: fixed;
+    top: 5.5%;
+    right: 8%;
+    height: 5%;
+    overflow: hidden;
+}
+
+.logo-usuario{
+    position: fixed;
+    top: 5%;
+    right: 6%;
+    height: 5%;
+    overflow: hidden;
+}
+
+.logo-cerrar-sesion{
+    position: fixed;
+    top: 5.3%;
+    right: 4%;
+    height: 5%;
+    overflow: hidden;
 }

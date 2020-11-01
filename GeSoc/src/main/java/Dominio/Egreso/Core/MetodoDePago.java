@@ -1,18 +1,27 @@
 package Dominio.Egreso.Core;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@Embeddable
+@Entity
+@Table(name = "dom_metodo_pago")
 public class MetodoDePago {
-    @Column(name = "metodo_pago")
+    @Id
+    @GeneratedValue
+    private int metodo_pago;
+
+    @Column(name = "tipo_metodo_pago")
     @Enumerated(value = EnumType.STRING)
     private TipoDeMedioDePago tipo;
 
     @Column(name = "descripcion_metodo_pago")
     private String descripcion;
+
+    @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    List<Egreso> egresos = new ArrayList<>();;
+
+    public MetodoDePago() { }
 
     public MetodoDePago(TipoDeMedioDePago tipo, String descripcion) {
         this.tipo = tipo;

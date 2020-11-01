@@ -39,7 +39,8 @@ public class Egreso {
     @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL)
     private List<Item> listaItems;
 
-    @Embedded
+    @ManyToOne
+    @JoinColumn(name = "metodo_pago", referencedColumnName = "metodo_pago")
     private MetodoDePago metodoDePago;
 
     @OneToOne

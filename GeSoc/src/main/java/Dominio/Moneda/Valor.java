@@ -26,6 +26,8 @@ public class Valor {
     @Column(name = "importe")
     private double importe;
 
+    public Valor() { }
+
     public Valor(String moneda, double importe) {
 
         //ControllerMercadoLibre controller;

@@ -24,6 +24,9 @@ public class Provincia {
     @OneToMany(mappedBy = "ciudad", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     List<Ciudad> ciudades = new ArrayList<>();;
 
+
+    public Provincia() { }
+
     public Provincia(String id, String name){
         this.id = id;
         this.name = name;

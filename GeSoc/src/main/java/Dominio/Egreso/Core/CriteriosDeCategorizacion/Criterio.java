@@ -41,6 +41,8 @@ public class Criterio {
     @JoinColumn(name = "presupuesto", referencedColumnName = "presupuesto")
     private Presupuesto presupuesto;
 
+    public Criterio() { }
+
     public Criterio(List<CategoriaCriterio> categoriaCriterios, String nombreCriterio, String descripcion) {
         this.categoriaCriterios = categoriaCriterios;
         this.nombreCriterio = nombreCriterio;

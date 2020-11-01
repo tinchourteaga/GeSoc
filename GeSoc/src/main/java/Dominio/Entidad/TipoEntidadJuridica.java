@@ -38,6 +38,8 @@ public abstract class TipoEntidadJuridica {
     @Column(name = "prom_ventas_anuales")
     protected Float promedioVentasAnuales;
 
+    public TipoEntidadJuridica() { }
+
     //GETTERS Y SETTERS
     public String getRazonSocial() {
         return razonSocial;

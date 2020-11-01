@@ -31,6 +31,8 @@ public class Categoria{
     @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL)
     private List<TipoEntidadJuridica> entidades_juridicas;
 
+    public Categoria() { }
+
     public Categoria(Sector sector, TipoCategoria nombre, Integer personalMaximo,Float ventasAnuales){
         this.sector=sector;
         this.nombre=nombre;

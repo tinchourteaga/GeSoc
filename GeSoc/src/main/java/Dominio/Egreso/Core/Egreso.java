@@ -60,7 +60,10 @@ public class Egreso {
     @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     private Entidad entidad;
 
+    @Transient
     private Presupuesto presupuestoPactado;
+
+    public Egreso() { }
 
     public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();

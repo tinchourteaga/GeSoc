@@ -25,6 +25,8 @@ public class Pais {
     @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<Provincia> provincias = new ArrayList<>();
 
+    public Pais() { }
+
     public Pais(String id, String name, String locale, String currency_id) {
         this.id = id;
         this.name = name;

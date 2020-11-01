@@ -36,6 +36,8 @@ public class Presupuesto {
     @JoinColumn(name = "proveedor", referencedColumnName = "proveedor")
     private Proveedor proveedor;
 
+    public Presupuesto() { }
+
     public Presupuesto(List<Criterio> criterios, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
         this.criterios = criterios;
         this.valor = valor;

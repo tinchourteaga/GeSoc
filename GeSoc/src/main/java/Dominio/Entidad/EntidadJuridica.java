@@ -9,6 +9,8 @@ public class EntidadJuridica extends Entidad{
     @Transient
     private TipoEntidadJuridica tipoEntidadJuridica;
 
+    public EntidadJuridica() { }
+
     public EntidadJuridica(String nombreEntidad, String descripcionEntidad, TipoEntidadJuridica tipo) {
         super(nombreEntidad, descripcionEntidad);
         this.tipoEntidadJuridica = tipo;

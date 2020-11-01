@@ -8,6 +8,8 @@ public class EntidadBase extends Entidad{
     @Embedded
     EntidadJuridica entidadJuridicaAsociada;
 
+    public EntidadBase() { }
+
     public EntidadBase(String nombreEntidad, String descripcionEntidad,EntidadJuridica entidadAsociada) {
         super(nombreEntidad, descripcionEntidad);
         this.entidadJuridicaAsociada=entidadAsociada;

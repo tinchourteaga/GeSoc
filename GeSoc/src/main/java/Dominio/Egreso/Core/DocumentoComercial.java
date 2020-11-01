@@ -19,10 +19,12 @@ public class DocumentoComercial {
     @Column(name = "ruta_archivo")
     private String rutaDeArchivo;
 
+    public DocumentoComercial() {}
+
     //No hago setters porque si le cambio al documento el tipo rompo muchas cosas :(
-    public DocumentoComercial(TipoDocumentoComercial documento,String dato){
-        this.tipo=documento;
-        this.detalle=dato;
+    public DocumentoComercial(TipoDocumentoComercial documento,String dato) {
+        this.tipo = documento;
+        this.detalle = dato;
     }
 
     public String getDetalle() {

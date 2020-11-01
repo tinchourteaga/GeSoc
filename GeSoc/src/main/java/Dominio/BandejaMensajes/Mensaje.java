@@ -31,6 +31,8 @@ public class Mensaje {
     @Column(name = "leido")
     private Boolean leido;
 
+    public Mensaje() { }
+
     public Mensaje(LocalDate fechaCreado, LocalDate fechaLeido, String mensajeResultado) {
         this.fechaCreado = fechaCreado;
         this.fechaLeido = fechaLeido;

@@ -21,6 +21,8 @@ public class CategoriaCriterio {
     @JoinColumn(name = "criterio", referencedColumnName = "criterio")
     private Criterio criterio;
 
+    public CategoriaCriterio() { }
+
     public CategoriaCriterio(String desc, String nombreDeCategoria) {
         this.descripicion=desc;
         this.nombreDeCategoria=nombreDeCategoria;

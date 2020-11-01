@@ -21,6 +21,8 @@ public class Sector {
     @Column(name = "descripcion")
     private String descripcion;
 
+    public Sector() { }
+
     public Sector(List<Categoria> categorias, String nombre, String descripcion) {
         this.categorias = categorias;
         this.nombre = nombre;

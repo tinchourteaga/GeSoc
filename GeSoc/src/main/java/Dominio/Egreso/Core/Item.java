@@ -22,6 +22,8 @@ public class Item {
     @Column(name = "descripcion")
     private String descripcion;
 
+    public Item() { }
+
     public Item(Float importe,String desc){
         this.valor=importe;
         this.descripcion=desc;

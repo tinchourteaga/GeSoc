@@ -37,6 +37,8 @@ public abstract class Entidad {
     @JoinColumn(name = "entidad_juridica_asociada", referencedColumnName = "entidad")
     protected EntidadJuridica entidad_juridica_asociada;
 
+    public Entidad() { }
+
     public Entidad(String nombreEntidad, String descripcionEntidad){
         this.descripcion=descripcionEntidad;
         this.nombre=nombreEntidad;

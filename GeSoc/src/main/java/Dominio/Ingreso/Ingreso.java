@@ -37,9 +37,12 @@ public class Ingreso {
     @OneToMany(mappedBy = "ingreso", cascade = CascadeType.ALL)
     private List<Egreso> gastadoEn;
 
+    @Transient
     private List<CategoriaCriterio> categoriasAsociadas = new ArrayList<>();
 
-   public Ingreso(String moneda, double importe, LocalDate fecha,String descripcion,List<Egreso>egresos){
+    public Ingreso() { }
+
+    public Ingreso(String moneda, double importe, LocalDate fecha,String descripcion,List<Egreso>egresos){
        this.valor= new Valor(moneda,importe);
        this.fecha=fecha;
        this.descripcion=descripcion;

@@ -19,6 +19,8 @@ public class Detalle {
     @JoinColumn(name = "presupuesto", referencedColumnName = "presupuesto")
     private Presupuesto presupuesto;
 
+    public Detalle() { }
+
     public Detalle(float valor, String descripcion) {
         this.valor = valor;
         this.descripcion = descripcion;

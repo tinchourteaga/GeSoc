@@ -47,6 +47,8 @@ public class Usuario {
     @Column(name = "nro_celular")
     private String celular;
 
+    public Usuario() { }
+
     public Usuario(Rol rol, String nombre, String apellido, String contrasenia, String dni, String mail) throws ExcepcionCaracterEspecial, ExcepcionContraseniaComun, ExcepcionNumero, ExcepcionLongitud, IOException {
         this.rol = rol;
         this.nombre = nombre;

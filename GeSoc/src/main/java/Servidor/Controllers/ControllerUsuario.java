@@ -117,7 +117,7 @@ public class ControllerUsuario {
         Estandar rol = new Estandar();
         String contrasenia = PasswordGenerator.generateRandomPassword(10);
         Usuario usuario = new Usuario(rol, nombre, apellido, contrasenia, dni, email);
-        usuario.setPersona(nombre, apellido);
+        usuario.setPersona();
 
         //chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
         if(RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario) == null) {
@@ -132,7 +132,7 @@ public class ControllerUsuario {
         Administrador rol = new Administrador();
         String contrasenia = PasswordGenerator.generateRandomPassword(10);
         Usuario usuario = new Usuario(rol, nombre, apellido, contrasenia, dni, email);
-        usuario.setPersona(nombre, apellido);
+        usuario.setPersona();
 
         //chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
         if(RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario) == null) {

@@ -1,5 +1,7 @@
 package Servidor.Controllers;
 
+import Dominio.Usuario.Usuario;
+import Persistencia.Repos.RepositorioUsuario;
 import Servidor.Controllers.Hash.FuncionHash;
 import Servidor.Controllers.Hash.Hash;
 import spark.ModelAndView;
@@ -42,7 +44,7 @@ public class ControllerSesion{
         Boolean usuarioVerificado =verificarDatos(nombreUsuario, contraseniaUsuario);
 
 
-        if(usuarioVerificado && !sesiones.containsValue(nombreUsuario)){
+        if(usuarioVerificado && sesiones.containsValue(request.session())){
             Session usuario=request.session(true);
             String id=encriptador.funcionHash((new Date()).toInstant().toString());
             usuario.attribute("idUsuarioActual",id);
@@ -62,9 +64,8 @@ public class ControllerSesion{
 
     private static Boolean verificarDatos(String nombreUsuario, String contraseniaUsuario) {
 
-        String contraHasheada= encriptador.funcionHash(contraseniaUsuario);
-        //consultas al dao y devolves si existe un usuario con dicha contraseña
-        //buscas en la base de datos si existe esa contraseña hasheada con el nombre de usuario TODO
-        return true;
+        Usuario unUsuario = RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario);
+
+        return unUsuario.getContrasenia().equals(contraseniaUsuario);
     }
 }

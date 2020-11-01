@@ -60,7 +60,7 @@ public class Usuario {
         this.bandejaDeMensajes = new BandejaMensajes();
     }
 
-    public void setPersona(String nombre, String apellido) { this.persona = nombre.charAt(0) + apellido; }
+    public void setPersona() { this.persona = this.nombre.charAt(0) + this.apellido; }
     public String getNombre() {
         return nombre;
     }

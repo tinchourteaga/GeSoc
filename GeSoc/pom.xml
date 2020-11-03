@@ -144,7 +144,7 @@
                     <archive>
                    <manifest>
                      <addClasspath>true</addClasspath>
-                     <mainClass>fully.qualified.Main</mainClass>
+                     <mainClass>Dominio.Main</mainClass>
                    </manifest>
                  </archive>
                 </configuration>

@@ -186,7 +186,8 @@
                             <transformers>
                                 <!-- add Main-Class to manifest file -->
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>Main</mainClass>
+                                     <addClasspath>true</addClasspath>
+                                    <mainClass>Dominio.Main</mainClass>
                                 </transformer>
                             </transformers>
                         </configuration>

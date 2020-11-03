@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Test {
     //ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
 
-    @org.junit.Test
+    /*@org.junit.Test
     public void persistirUsuarioEstandar() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Estandar rolPrueba = new Estandar();
         String nombre = "pruebita";
@@ -32,5 +32,5 @@ public class Test {
         Usuario usuario= new Usuario(rolPrueba,nombre, apellido, "holaslfmaf", "41658239", "mail@mail.com");
         usuario.setPersona();
         RepositorioUsuario.getInstance().agregar(usuario);
-    }
+    }*/
 }

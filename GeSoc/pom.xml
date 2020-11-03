@@ -144,7 +144,7 @@
                     <archive>
                    <manifest>
                      <addClasspath>true</addClasspath>
-                     <classpathPrefix>lib/</classpathPrefix>
+                     <classpathPrefix>src/main/java/</classpathPrefix>
                      <mainClass>com.Dominio.Main</mainClass>
                    </manifest>
                  </archive>

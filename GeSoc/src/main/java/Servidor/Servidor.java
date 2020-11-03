@@ -20,7 +20,7 @@ public class Servidor {
 
         boolean localhost = true;
         if (localhost) {
-            String projectDir = System.getProperty("user.dir");
+            String projectDir = "/2020-ma-ma-group-05/GeSoc";
             String staticDir = "/src/main/resources/templates/";
             staticFiles.externalLocation(projectDir + staticDir);
         } else {

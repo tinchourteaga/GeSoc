@@ -21,7 +21,7 @@ public class Servidor {
         boolean localhost = true;
         if (localhost) {
             String projectDir = System.getProperty("user.dir");
-            String staticDir = "../../src/main/resources/templates/";
+            String staticDir = "/../src/main/resources/templates/";
             System.out.println(projectDir + staticDir);
             staticFiles.externalLocation(projectDir + staticDir);
         } else {

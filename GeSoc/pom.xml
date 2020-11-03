@@ -144,8 +144,8 @@
                     <archive>
                    <manifest>
                      <addClasspath>true</addClasspath>
-                     <classpathPrefix>2020-ma-ma-group-05/GeSoc/src/main/java/</classpathPrefix>
-                     <mainClass>com.Dominio.Main.java</mainClass>
+                     <classpathPrefix>2020-ma-ma-group-05/GeSoc/src/main/java/Dominio/</classpathPrefix>
+                     <mainClass>fully.qualified.Main</mainClass>
                    </manifest>
                  </archive>
                 </configuration>

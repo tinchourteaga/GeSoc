@@ -40,7 +40,7 @@ public class Servidor {
         levantarRutaDELETE();
         levantarRutaPUT();
         levantarRutaPATCH();
-        before("/*", authenticate);
+        //before("/*", authenticate);
         //esto ultimo es para que realice siempre la autenticación
     }
 

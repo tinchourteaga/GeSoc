@@ -22,7 +22,7 @@ public class Servidor {
         if (localhost) {
             String projectDir = System.getProperty("user.dir");
             String staticDir = "/src/main/resources/templates/";
-            staticFiles.externalLocation("2020-ma-ma-group-05\GeSoc\src\main\resources\templates");//projectDir + staticDir
+            staticFiles.externalLocation("2020-ma-ma-group-05/GeSoc/src/main/resources/templates");//projectDir + staticDir
         } else {
             staticFiles.location("/public");
         }

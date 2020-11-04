@@ -9,11 +9,11 @@ import static org.junit.Assert.assertNotNull;
 public class ContextTest extends AbstractPersistenceTest implements WithGlobalEntityManager {
     @Test
     public void contextUp() {
-        //assertNotNull(entityManager());
+        assertNotNull(entityManager());
     }
 
     @Test
     public void contextUpWithTransaction() throws Exception {
-        //withTransaction(() -> {});
+        withTransaction(() -> {});
     }
 }

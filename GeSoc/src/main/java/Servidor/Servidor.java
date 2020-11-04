@@ -16,7 +16,7 @@ public class Servidor {
     public static void levantarServidor(){
 
         enableDebugScreen();
-        port(9500);
+        port(9001);
 
         boolean localhost = true;
         if (localhost) {

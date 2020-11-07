@@ -16,7 +16,7 @@ public class Servidor {
     public static void levantarServidor(){
 
         enableDebugScreen();
-        port(15001);
+        port(15002);
 
         boolean localhost = false;
         String projectDir = System.getProperty("user.dir");

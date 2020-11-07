@@ -1,6 +1,9 @@
 package Servidor.Controllers;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -24,19 +27,23 @@ public class ControllerCriterio {
         String nombreCriterio = request.queryParams("nombreCriterio");
         String descripcion = request.queryParams("descripcion");
 
-        //persistirCriterio(nombreCriterio, String descripcion);
+        List categoriasAsociadas = new ArrayList();
+
+        Criterio criterio = new Criterio(categoriasAsociadas, nombreCriterio, descripcion);
+
+        persistirCriterio(criterio);
 
         response.redirect("crear_criterio");
-
 
         return null;
     }
 
-    public static void persistirCriterio(String nombre, String descripcion){
-        List categoriasAsociadas = new ArrayList();
+    public static void persistirCriterio(Criterio criterio){
 
-        Criterio criterio = new Criterio(categoriasAsociadas, nombre, descripcion);
+        DAO DAOCriterio = new DAOBBDD<Criterio>(); //dao generico de BBDD
+        Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
 
-        //PERSISTIRLO
+        if(!repoCriterio.existe(criterio))
+            repoCriterio.agregar(criterio);
     }
 }

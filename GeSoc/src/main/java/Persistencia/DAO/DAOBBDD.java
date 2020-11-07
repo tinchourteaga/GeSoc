@@ -4,10 +4,10 @@ import Persistencia.EntityManagerHelper;
 
 import java.util.List;
 
-public class DAOBBDD implements DAO {
+public class DAOBBDD <T> implements DAO {
     private String nombredb;
     private String conexionDB;
-    private List<Object> listaElementos;
+    private List<T> listaElementos;
 
     public void DAOBBDDUsuario(String nombredb, String usuario, String passwod){
         //conexion a la DB
@@ -50,7 +50,7 @@ public class DAOBBDD implements DAO {
     public Object buscarPorUsuario(String usuario) { return null; }
 
     @Override
-    public List<Object> getAllElementos() {
+    public List<T> getAllElementos() {
         return listaElementos;
     }
 

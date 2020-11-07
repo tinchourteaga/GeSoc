@@ -16,6 +16,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.IOException;
 
+
+//Aca metemos las cosas que queremos persistir desde un comienzo; algo con lo que poder trabajar apenas se levanta el sistema.
 public class AddData {
 
     public static void main(String[] args) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
@@ -35,8 +37,7 @@ public class AddData {
             DAO DAOUsuario = new DAOUsuario();
             Repositorio repoUsuario = new Repositorio(DAOUsuario);
             repoUsuario.agregar(usuarioAdmin);
-
-            //entityManager.persist(usuarioAdmin);
+            
         //}
     }
 }

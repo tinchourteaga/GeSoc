@@ -1,6 +1,10 @@
 package Servidor.Controllers;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -23,18 +27,26 @@ public class ControllerCategoria {
         String descripcion = request.queryParams("descripcion");
         String criterioAsociado = request.queryParams("criterioAsociado");
 
-        //persistirCategoria(nombreCategoria, descripcion, criterioAsociado);
+        CategoriaCriterio categoriaCriterio = new CategoriaCriterio(descripcion,nombreCategoria);
+
+        persistirCategoria(categoriaCriterio, criterioAsociado);
 
         response.redirect("crear_categoria");
 
         return null;
     }
 
-    public static void persistirCategoria(String nombre, String descripcion, String criterioAsociado){
+    public static void persistirCategoria(CategoriaCriterio categoriaCriterio, String criterioAsociado){
 
-        CategoriaCriterio categoria = new CategoriaCriterio(descripcion, nombre);
+        DAO DAOCriterio = new DAOBBDD<Criterio>(); //dao generico de BBDD
+        Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
 
-        //PERSISTIRLO
-        //Tengo que buscar el criterioAsociado y meterle esta nueva categoria
+        Criterio criterio = (Criterio)repoCriterio.buscarPorNombre(criterioAsociado);
+        Criterio criterioModificado = (Criterio)repoCriterio.buscarPorNombre(criterioAsociado);
+
+        criterioModificado.agregarCategoria(categoriaCriterio);
+
+        //Verificar que esto este bien
+        repoCriterio.modificar(criterio, criterioModificado);
     }
 }

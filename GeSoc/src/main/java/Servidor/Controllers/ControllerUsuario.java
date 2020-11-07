@@ -7,7 +7,9 @@ import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
 import Dominio.Usuario.Usuario;
-import Persistencia.Repos.RepositorioUsuario;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import Servidor.Controllers.Hash.FuncionHash;
 import Servidor.Controllers.Hash.Hash;
 import Servidor.Controllers.MailSender.SendEmail;
@@ -119,9 +121,13 @@ public class ControllerUsuario {
         Usuario usuario = new Usuario(rol, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona();
 
-        //chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
-        if(RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario) == null) {
-            RepositorioUsuario.getInstance().agregar(usuario);
+        DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+
+
+        //Chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
+        if(!repoUsuario.existe(usuario)){
+            repoUsuario.agregar(usuario);
         }
 
         //Enviamos el mail a la persona con su usuario y contrasenia
@@ -134,9 +140,13 @@ public class ControllerUsuario {
         Usuario usuario = new Usuario(rol, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona();
 
-        //chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
-        if(RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario) == null) {
-            RepositorioUsuario.getInstance().agregar(usuario);
+        DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+
+
+        //Chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
+        if(!repoUsuario.existe(usuario)){
+            repoUsuario.agregar(usuario);
         }
 
         //Enviamos el mail a la persona con su usuario y contrasenia

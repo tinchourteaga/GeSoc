@@ -4,7 +4,7 @@ import Persistencia.DAO.DAO;
 
 import java.util.List;
 
-public class Repositorio {
+public class Repositorio <T>{
 
     protected DAO dao;
 

@@ -1,13 +1,6 @@
 package Dominio;
 
-import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
-import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
-import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
-import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
-import Persistencia.AddData;
 import Servidor.Servidor;
-
-import java.io.IOException;
 
 public class Main {
 
@@ -87,11 +80,11 @@ public class Main {
 
 
         //corro la base
-        try {
+        /*try {
             AddData.main(args);
         } catch (IOException | ExcepcionNumero | ExcepcionContraseniaComun | ExcepcionCaracterEspecial | ExcepcionLongitud e) {
             e.printStackTrace();//no deberias pasar por aca, pero tincho no se banca tener un try and catch donde corresponde
-        }
+        }*/
 
         //corro el server
         Servidor.levantarServidor();

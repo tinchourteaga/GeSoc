@@ -19,13 +19,14 @@ public class Servidor {
         port(15001);
 
         boolean localhost = false;
+        String projectDir = System.getProperty("user.dir");
         if (localhost) {
-            String projectDir = System.getProperty("user.dir");
+
             String staticDir = "/../src/main/resources/templates/";
             System.out.println(projectDir + staticDir);
             staticFiles.externalLocation(projectDir + staticDir);
         } else {
-            staticFiles.location("/../../../../usr/shared/GeSoc/templates/");
+            staticFiles.location(projectDir + "/../../../../usr/shared/GeSoc/templates/");
         }
 
         //repositorio.inicializarRepo();

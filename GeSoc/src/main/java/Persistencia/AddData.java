@@ -16,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -34,6 +35,7 @@ public class AddData {
         if (results.size() == 0) {
          //no hay nada cargado
 
+
             //creo roles
             Rol admin = new Administrador();
 
@@ -41,9 +43,13 @@ public class AddData {
             Usuario usuarioAdmin = new Usuario(admin, "martin", "urteaga", "M@rtin.98", "41589363","martin@hotmail.com");
             usuarioAdmin.setPersona();
 
+            List<Usuario> usuariosAPersistir=new ArrayList<>();
+            usuariosAPersistir.add(usuarioAdmin);
+
+            //persistoUsuarios
             DAO DAOUsuario = new DAOUsuario();
             Repositorio repoUsuario = new Repositorio(DAOUsuario);
-            repoUsuario.agregar(usuarioAdmin);
+            usuariosAPersistir.forEach(us->repoUsuario.agregar(us));
             
         }
     }

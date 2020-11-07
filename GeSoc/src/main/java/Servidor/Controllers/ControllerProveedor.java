@@ -3,7 +3,6 @@ package Servidor.Controllers;
 import API.ML.ControllerMercadoLibre;
 import Dominio.Egreso.Core.Proveedor;
 import Dominio.Entidad.DireccionPostal;
-import Dominio.Entidad.EntidadJuridica;
 import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
@@ -33,8 +32,8 @@ public class ControllerProveedor {
 
         ControllerMercadoLibre controller = ControllerMercadoLibre.getControllerMercadoLibre();
 
-        paises.addAll(controller.paisesRepo.getTodosLosElementos().stream().map(pais -> (Pais)pais).map(unPais->unPais.getName()).collect(Collectors.toList()));
-        paisesObjeto.addAll(controller.paisesRepo.getTodosLosElementos().stream().map(pais -> (Pais)pais).collect(Collectors.toList()));
+        paises.addAll((List<String>)(controller.paisesRepo.getTodosLosElementos().stream().map(pais -> (Pais)pais).map(unPais->((Pais) unPais).getName()).collect(Collectors.toList())));
+        paisesObjeto.addAll((List<Pais>)(controller.paisesRepo.getTodosLosElementos().stream().map(pais -> (Pais)pais).collect(Collectors.toList())));
 
         paisesObjeto.forEach(unPais -> {
             datos.put(unPais.getName(),unPais.getProvincias());

@@ -44,7 +44,8 @@ public class ControllerMercadoLibre {
                 e.printStackTrace();
             }
         });
-        List<List<Provincia>> listaDeProvincias = paisesRepo.getTodosLosElementos().stream().map(pais->{Pais unPais = (Pais)pais;
+
+        List<List<Provincia>> listaDeProvincias = (List<List<Provincia>>) paisesRepo.getTodosLosElementos().stream().map(pais->{Pais unPais = (Pais)pais;
         return unPais.getProvincias();}).collect(Collectors.toList());
 
         List<Provincia> provincias = listaDeProvincias.stream().flatMap(List::stream).collect(Collectors.toList());

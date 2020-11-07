@@ -22,6 +22,7 @@ public class ControllerProyectoFinanciamiento {
         String entidad = request.queryParams("entidad");
         String fecha = request.queryParams("fecha");
         String moneda = request.queryParams("moneda");
+        String total = request.queryParams("total");
         String directorResponsable = request.queryParams("directorResponsable");
         String ingreso = request.queryParams("ingreso"); //necesito tener una lista de ingresos
 
@@ -30,6 +31,10 @@ public class ControllerProyectoFinanciamiento {
         response.redirect("crear_proyecto_de_financiamiento");
 
         return null;
+    }
+
+    public static void persistirProyectoFinanciamiento(){
+        //WTF NO TENEMOS ESTO EN NUESTRO SISTEMA
     }
 
 

@@ -1,7 +1,9 @@
 package Servidor.Controllers;
 
 import Dominio.Usuario.Usuario;
-import Persistencia.Repos.RepositorioUsuario;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import Servidor.Controllers.Hash.FuncionHash;
 import Servidor.Controllers.Hash.Hash;
 import spark.ModelAndView;
@@ -64,7 +66,10 @@ public class ControllerSesion{
 
     private static Boolean verificarDatos(String nombreUsuario, String contraseniaUsuario) {
 
-        Usuario unUsuario = RepositorioUsuario.getInstance().buscarPorUsuario(nombreUsuario);
+        DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+
+        Usuario unUsuario = (Usuario)repoUsuario.buscarPorNombre(nombreUsuario);
 
         return unUsuario.getContrasenia().equals(contraseniaUsuario);
     }

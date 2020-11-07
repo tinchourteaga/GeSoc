@@ -3,9 +3,13 @@ package Servidor.Controllers;
 import API.ML.ControllerMercadoLibre;
 import Dominio.Egreso.Core.Proveedor;
 import Dominio.Entidad.DireccionPostal;
+import Dominio.Entidad.EntidadJuridica;
 import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -72,6 +76,8 @@ public class ControllerProveedor {
 
                Proveedor persona = new Proveedor(nombre, apellido, dni, nuevaDir);
 
+               persistirPersona(persona);
+
                 break;
             case "Empresa":
                 String razonSocial = request.queryParams("razonSocial");
@@ -88,6 +94,8 @@ public class ControllerProveedor {
 
                 Proveedor empresa = new Proveedor(razonSocial, cuilCuit, nuevaDir);
 
+                persistirEmpresa(empresa);
+
                 break;
             default:
                 //Error: el usuario seleccionó cualquier cosa
@@ -102,10 +110,21 @@ public class ControllerProveedor {
     }
 
     public static void persistirEmpresa(Proveedor empresa){
-        //PERSISTIRLO
+
+        DAO DAOProvEmpresa = new DAOBBDD<Proveedor>(); //dao generico de BBDD
+        Repositorio repoProvEmpresa = new Repositorio<Proveedor>(DAOProvEmpresa); //repositorio que tambien usa generics
+
+        if(!repoProvEmpresa.existe(empresa))
+            repoProvEmpresa.agregar(empresa);
     }
 
     public static void persistirPersona(Proveedor persona){
-        //PERSISTIRLO
+
+        DAO DAOProvPersona = new DAOBBDD<Proveedor>(); //dao generico de BBDD
+        Repositorio repoProvPersona = new Repositorio<Proveedor>(DAOProvPersona); //repositorio que tambien usa generics
+
+        if(!repoProvPersona.existe(persona))
+            repoProvPersona.agregar(persona);
+
     }
 }

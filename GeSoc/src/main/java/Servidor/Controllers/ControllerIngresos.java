@@ -1,6 +1,9 @@
 package Servidor.Controllers;
 
 import Dominio.Ingreso.Ingreso;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -22,24 +25,30 @@ public class ControllerIngresos {
 
     public static Object cargarIngreso(Request request, Response response) {
 
-        String entidad = request.queryParams("entidad");
+        String entidad = request.queryParams("entidad"); //No lo tengo en mi constructor -> es necesario?
         String fecha = request.queryParams("fecha");
         String moneda = request.queryParams("moneda");
         String importe = request.queryParams("importe");
         String descripcion = request.queryParams("descripcion");
 
-        //persistirIngreso(entidad, fecha, moneda, importe, descripcion);
+        List egresosAsociados = new ArrayList();
+
+        Ingreso ingreso = new Ingreso(moneda, Double.parseDouble(importe), LocalDate.parse(fecha), descripcion, egresosAsociados);
+
+        persistirIngreso(ingreso);
 
         response.redirect("cargar_ingreso");
 
         return null;
     }
 
-    public static void persistirIngreso(String entidad, String fecha, String moneda, String importe, String descripcion){
-        List egresosAsociados = new ArrayList();
+    public static void persistirIngreso(Ingreso ingreso){
 
-        Ingreso ingreso = new Ingreso(moneda, Double.parseDouble(importe), LocalDate.parse(fecha), descripcion, egresosAsociados);
+        DAO DAOIngreso = new DAOBBDD<Ingreso>(); //dao generico de BBDD
+        Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso); //repositorio que tambien usa generics
 
-        //PERSISTIRLO
+        if(!repoIngreso.existe(ingreso))
+            repoIngreso.agregar(ingreso);
+
     }
 }

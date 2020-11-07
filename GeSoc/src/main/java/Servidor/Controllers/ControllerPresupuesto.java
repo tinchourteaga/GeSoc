@@ -1,5 +1,9 @@
 package Servidor.Controllers;
 
+import Dominio.Egreso.Core.Presupuesto;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -37,9 +41,22 @@ public class ControllerPresupuesto {
         System.out.println(documentoComercial);
         System.out.println(linkComprobante);
 
+        Presupuesto presupuesto = new Presupuesto();
+
+        persistirPresupuesto(presupuesto);
+
         response.redirect("cargar_presupuesto");
 
 
         return null;
+    }
+
+    public static void persistirPresupuesto(Presupuesto presupuesto){
+
+        DAO DAOPresupuesto = new DAOBBDD<Presupuesto>(); //dao generico de BBDD
+        Repositorio repoPresupuesto = new Repositorio<Presupuesto>(DAOPresupuesto); //repositorio que tambien usa generics
+
+        if(!repoPresupuesto.existe(presupuesto))
+            repoPresupuesto.agregar(presupuesto);
     }
 }

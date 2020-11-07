@@ -41,6 +41,7 @@ public class ControllerCategoria {
         DAO DAOCriterio = new DAOBBDD<Criterio>(); //dao generico de BBDD
         Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
 
+        //Me hace ruido
         Criterio criterio = (Criterio)repoCriterio.buscarPorNombre(criterioAsociado);
         Criterio criterioModificado = (Criterio)repoCriterio.buscarPorNombre(criterioAsociado);
 

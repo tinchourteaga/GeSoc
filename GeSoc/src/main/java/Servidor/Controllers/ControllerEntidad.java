@@ -1,6 +1,9 @@
 package Servidor.Controllers;
 
 import Dominio.Entidad.*;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -42,24 +45,22 @@ public class ControllerEntidad {
 
         switch(tipoEntidad){
             case "Entidad Base":
-            EntidadBase nuevaEntidadBase=new EntidadBase(nombreFicticio,descripcion,null);
-            guardarEntidadBase(nuevaEntidadBase);
+                EntidadBase nuevaEntidadBase=new EntidadBase(nombreFicticio,descripcion,null);
+                persistirEntidadBase(nuevaEntidadBase);
             break;
             case "Empresa":
                 Empresa tipoEmpresa=new Empresa();
                 tipoEmpresa.setDireccionPostal(nuevaDir);
                 EntidadJuridica nuevaEmpresa = new EntidadJuridica(nombreFicticio, descripcion, tipoEmpresa);
-                guardarEntidadJuridica(nuevaEmpresa);
+                persistirEntidadJuridica(nuevaEmpresa);
             break;
             case "Organizacion Social":
                 OrganizacionSocial nuevaorg=new OrganizacionSocial();
                 nuevaorg.setDireccionPostal(nuevaDir);
                 EntidadJuridica nuevaOrganizacionSocial = new EntidadJuridica(nombreFicticio, descripcion, nuevaorg);
-                guardarEntidadJuridica(nuevaOrganizacionSocial);
+                persistirEntidadJuridica(nuevaOrganizacionSocial);
             break;
         }
-
-
 
         response.redirect("cargar_entidad");
 
@@ -67,9 +68,21 @@ public class ControllerEntidad {
         return null;
     }
 
-    private static void guardarEntidadJuridica(EntidadJuridica nuevaEntidadJuridica) {//TODO
+    private static void persistirEntidadJuridica(EntidadJuridica nuevaEntidadJuridica) {
+
+        DAO DAOEntidadJuridica = new DAOBBDD<EntidadJuridica>(); //dao generico de BBDD
+        Repositorio repoEntidadJuridica = new Repositorio<EntidadJuridica>(DAOEntidadJuridica); //repositorio que tambien usa generics
+
+        if(!repoEntidadJuridica.existe(nuevaEntidadJuridica))
+            repoEntidadJuridica.agregar(nuevaEntidadJuridica);
     }
 
-    private static void guardarEntidadBase(EntidadBase nuevaEntidadBase) {//TODO
+    private static void persistirEntidadBase(EntidadBase nuevaEntidadBase) {
+
+        DAO DAOEntidadBase = new DAOBBDD<EntidadBase>(); //dao generico de BBDD
+        Repositorio repoEntidadBase = new Repositorio<EntidadBase>(DAOEntidadBase); //repositorio que tambien usa generics
+
+        if(!repoEntidadBase.existe(nuevaEntidadBase))
+            repoEntidadBase.agregar(nuevaEntidadBase);
     }
 }

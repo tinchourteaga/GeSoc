@@ -26,7 +26,7 @@ public class Servidor {
             System.out.println(projectDir + staticDir);
             staticFiles.externalLocation(projectDir + staticDir);
         } else {
-            staticFiles.location(projectDir + "/../../../../usr/shared/GeSoc/templates/");
+            staticFiles.location("/public");
         }
 
         //repositorio.inicializarRepo();

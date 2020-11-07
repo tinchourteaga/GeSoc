@@ -18,6 +18,8 @@ import java.util.Map;
 public class ControllerSesion{
 
     static Map<String, Session> sesiones= new HashMap<String,Session>();
+    static Map<String, Boolean> usuariosActivos= new HashMap<String,Boolean>();
+
     static Hash encriptador=new FuncionHash();
     public static ModelAndView mostrarLogin(Request request, Response response){
 
@@ -31,7 +33,9 @@ public class ControllerSesion{
 
         Session sesionUsuario=sesiones.remove(request.session().attribute("idUsuarioActual"));
         sesionUsuario.removeAttribute("idUsuarioActual");
-        request.session().removeAttribute("idUsuarioActual");
+        String nombreUsuario= request.session().attribute("nombreUsuario"); //si no funca usa sesionUsuario en vez de request
+        Boolean estaActivo=usuariosActivos.get(nombreUsuario);
+        estaActivo=Boolean.FALSE;
         request.session().invalidate();
         response.redirect("/");
         return null;
@@ -43,12 +47,13 @@ public class ControllerSesion{
         String contraseniaUsuario = request.queryParams("contraseniaUsuario");
 
 
-        Boolean usuarioVerificado =verificarDatos(nombreUsuario, contraseniaUsuario);
+        boolean usuarioVerificado =verificarDatos(nombreUsuario, contraseniaUsuario);
+        boolean estaActivo= usuariosActivos.get(nombreUsuario).equals(Boolean.TRUE);//quizas es medio choto esto y vas a tener que usar un getBooleanValue
 
-
-        if(usuarioVerificado && sesiones.containsValue(request.session())){
+        if(usuarioVerificado && !estaActivo){
             Session usuario=request.session(true);
             String id=encriptador.funcionHash((new Date()).toInstant().toString());
+            usuariosActivos.put(nombreUsuario,Boolean.TRUE);
             usuario.attribute("idUsuarioActual",id);
             usuario.attribute("nombreUsuario",nombreUsuario);
             sesiones.put(id,usuario);
@@ -64,7 +69,7 @@ public class ControllerSesion{
         return null;
     }
 
-    private static Boolean verificarDatos(String nombreUsuario, String contraseniaUsuario) {
+    private static boolean verificarDatos(String nombreUsuario, String contraseniaUsuario) {
 
         DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics

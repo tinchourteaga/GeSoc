@@ -26,7 +26,7 @@ public class Servidor {
             System.out.println(projectDir + staticDir);
             staticFiles.externalLocation(projectDir + staticDir);
         } else {
-            staticFiles.externalLocation(projectDir+"/../../../../usr/shared/templates/");
+            staticFiles.location("/public");
         }
 
         //repositorio.inicializarRepo();

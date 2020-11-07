@@ -1,6 +1,14 @@
 package Dominio;
 
+import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
+import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Persistencia.AddData;
 import Servidor.Servidor;
+
+import java.io.IOException;
+
 public class Main {
 
     public static void main(String[] args){
@@ -77,7 +85,17 @@ public class Main {
         System.out.println("Los egresos vinculados al ingreso "+otroIngreso.getIngreso()+" es: "+otroIngreso.getGastadoEn());
     */
 
+
+        //corro la base
+        try {
+            AddData.main(args);
+        } catch (IOException | ExcepcionNumero | ExcepcionContraseniaComun | ExcepcionCaracterEspecial | ExcepcionLongitud e) {
+            e.printStackTrace();//no deberias pasar por aca, pero tincho no se banca tener un try and catch donde corresponde
+        }
+
+        //corro el server
         Servidor.levantarServidor();
+
 
         /*String mailUsuario, usuario, contrasenia;
 

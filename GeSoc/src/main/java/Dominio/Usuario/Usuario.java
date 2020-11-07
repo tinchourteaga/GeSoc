@@ -9,6 +9,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
 import Dominio.Rol.Rol;
+import Servidor.Controllers.ControllerNombreUsuario;
 
 import javax.persistence.*;
 import java.io.IOException;
@@ -60,7 +61,8 @@ public class Usuario {
         this.bandejaDeMensajes = new BandejaMensajes();
     }
 
-    public void setPersona() { this.persona = this.nombre.charAt(0) + this.apellido; }
+    public void setPersona() { this.persona = ControllerNombreUsuario.otorgarNombreUsuario(this);
+    }
     public String getNombre() {
         return nombre;
     }
@@ -93,6 +95,10 @@ public class Usuario {
         if(ValidadorDeContrasenia.validarContrasenia(contraseniaNueva)){
             this.contrasenia = contraseniaNueva;
         }
+    }
+
+    public String getNickName() {
+        return persona;
     }
 
     public void cambiarContrasenia(String contraseniaAnterior, String contraseniaNueva) throws ContraseniasDistintasException, IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {

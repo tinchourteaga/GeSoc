@@ -1,6 +1,7 @@
 package Servidor.Controllers;
 
 import Dominio.Egreso.Core.*;
+import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
@@ -38,6 +39,10 @@ public class ControllerEgresos {
 
 
         if(request.queryParams("esRevisor")!=null){
+
+            Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
+            usuario.set
+
             //Es revisor TODO
             //Tengo que asignarle el rol al usuario y meterle al rol revisor este egreso
             //Luego persistir el usuario modificado en la db

@@ -1,18 +1,14 @@
 package Servidor.Controllers;
 
-import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
-import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
+import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Dominio.Entidad.Entidad;
 import Dominio.Entidad.EntidadJuridica;
 import Dominio.Entidad.OrganizacionSocial;
 import Dominio.Ingreso.Ingreso;
-import Persistencia.DAO.DAO;
-import Persistencia.DAO.DAOBBDD;
-import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -22,7 +18,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 public class ControllerAsociacion {
 
@@ -224,6 +219,7 @@ public class ControllerAsociacion {
         return null;
     }
 
+    /*
     public static void persistirAsociacionPyE(){
 
         DAO DAOEgreso = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
@@ -267,4 +263,5 @@ public class ControllerAsociacion {
         //Verificar que esto este bien
         repoCriterio.modificar(criterio, criterioModificado);
     }
+    */
 }

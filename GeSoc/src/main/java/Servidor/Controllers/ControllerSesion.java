@@ -84,7 +84,7 @@ public class ControllerSesion{
         return valor;
     }
 
-    public Usuario obtenerUsuariodeSesion(Request request){
+    public static Usuario obtenerUsuariodeSesion(Request request){
         String username= request.session().attribute("nombreUsuario");
         DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class); //dao generico de BBDD
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics

@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class DAOBBDD <T> implements DAO {
     private String nombredb;
@@ -38,8 +39,8 @@ public class DAOBBDD <T> implements DAO {
     public <T> boolean existe(T elemento) {
         return getAllElementos().contains(elemento);
     }
-    public <T> int buscar(T elemento) {
-        return getAllElementos().indexOf(elemento);
+    public <T> Object buscar(T elemento) {
+        return getAllElementos().stream().filter(e -> e.equals(elemento)).collect(Collectors.toList());
     }
 
     @Override

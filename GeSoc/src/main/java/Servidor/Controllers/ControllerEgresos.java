@@ -74,6 +74,9 @@ public class ControllerEgresos {
 
         egreso.agregarItem(item);
       */
+
+        response.redirect("cargar_egreso"); //Reloadeo
+
         return null;
     }
 }

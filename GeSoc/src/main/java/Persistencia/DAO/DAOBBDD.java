@@ -36,10 +36,10 @@ public class DAOBBDD <T> implements DAO {
         EntityManagerHelper.getEntityManager().getTransaction().commit();
     }
     public <T> boolean existe(T elemento) {
-        return listaElementos.contains(elemento);
+        return getAllElementos().contains(elemento);
     }
     public <T> int buscar(T elemento) {
-        return listaElementos.indexOf(elemento);
+        return getAllElementos().indexOf(elemento);
     }
 
     @Override

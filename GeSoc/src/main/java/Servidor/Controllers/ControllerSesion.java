@@ -64,7 +64,7 @@ public class ControllerSesion{
 
             response.redirect("pantalla_principal_usuario");
         }else{
-            System.out.println("la sesion existia:"+sesiones.get(nombreUsuario));
+            System.out.println("la sesion existia");
 
             response.redirect("autenticacion_usuario");
         }
@@ -73,16 +73,27 @@ public class ControllerSesion{
 
     private static boolean verificarDatos(String nombreUsuario, String contraseniaUsuario) {
 
+
         DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class); //dao generico de BBDD
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
         List<Usuario> todosLosUsuarios = repoUsuario.getTodosLosElementos();
-
         List<Usuario> usuariosPosibles=todosLosUsuarios.stream().filter(us-> us.getNickName().equals(nombreUsuario)).collect(Collectors.toList());
-        if(usuariosPosibles.isEmpty()){
-            return false;
-        }
+        if(usuariosPosibles.isEmpty()){return false;}//no puedo usar el otro metodo porque no le autorice la sesion
         Usuario unUsuario= usuariosPosibles.get(0);
         boolean valor=unUsuario.getContrasenia().equals(contraseniaUsuario);
         return valor;
+    }
+
+    public Usuario obtenerUsuariodeSesion(Request request){
+        String username= request.session().attribute("nombreUsuario");
+        DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class); //dao generico de BBDD
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+        List<Usuario> todosLosUsuarios = repoUsuario.getTodosLosElementos();
+        List<Usuario> usuariosPosibles=todosLosUsuarios.stream().filter(us-> us.getNickName().equals(username)).collect(Collectors.toList());
+        if(usuariosPosibles.isEmpty()){
+            return null;
+        }
+        return usuariosPosibles.get(0);
+
     }
 }

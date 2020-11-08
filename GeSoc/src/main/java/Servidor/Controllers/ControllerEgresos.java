@@ -28,13 +28,11 @@ public class ControllerEgresos {
         String entidad = request.queryParams("seleccionarEntidad");
         String fecha = request.queryParams("fecha");
         String metodoPago = request.queryParams("seleccionarMetodoPago");
-        String item = request.queryParams("item");
-        String valorItem = request.queryParams("valor");
         String proveedor = request.queryParams("proveedor");
         String documentoComercial = request.queryParams("documentoComercial");
         String descripcionDocComercial = request.queryParams("descripcionDocComercial");
 
-        Egreso egreso = new Egreso(LocalDate.parse(fecha), "Uruguay", 8888, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, descripcionDocComercial), null);
+        Egreso egreso = new Egreso(LocalDate.parse(fecha), "Uruguay", 0, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, descripcionDocComercial), null);
 
         //PROBLEMAS!
 
@@ -49,7 +47,8 @@ public class ControllerEgresos {
 
         persistirEgreso(egreso);
 
-        response.redirect("cargar_egreso");
+
+        response.redirect("cargar_egreso"); //Voy a tener que redireccionar a la pagina de cargar items
 
         return null;
     }
@@ -62,5 +61,19 @@ public class ControllerEgresos {
         if(!repoEgreso.existe(egreso))
             repoEgreso.agregar(egreso);
 
+    }
+
+    public static Object cargarItem(Request request, Response response){
+      /*
+        String item = request.queryParams("item");
+        String valorItem = request.queryParams("valor");
+
+        Item item = new Item(bla bla);
+
+        Egreso egreso = meTraigoElEgreso();
+
+        egreso.agregarItem(item);
+      */
+        return null;
     }
 }

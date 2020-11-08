@@ -1,6 +1,8 @@
 package Dominio;
 
-import Servidor.Servidor;
+import API.ML.ControllerMercadoLibre;
+
+import java.io.IOException;
 
 public class Main {
 
@@ -86,8 +88,15 @@ public class Main {
             e.printStackTrace();//no deberias pasar por aca, pero tincho no se banca tener un try and catch donde corresponde
         }*/
 
+        //cargo cosas de ML
+        try {
+            ControllerMercadoLibre.getControllerMercadoLibre().inicializarBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         //corro el server
-        Servidor.levantarServidor();
+        //Servidor.levantarServidor();
 
 
         /*String mailUsuario, usuario, contrasenia;

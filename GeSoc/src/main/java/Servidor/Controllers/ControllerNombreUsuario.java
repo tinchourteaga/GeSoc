@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 public class ControllerNombreUsuario {
 
     public static String otorgarNombreUsuario(Usuario unUsuario){
-        DAO daoBBDD= new DAOBBDD<Usuario>();
+        DAO daoBBDD= new DAOBBDD<Usuario>(Usuario.class);
         Repositorio repoUsuario=new Repositorio<Usuario>(daoBBDD);
         List<Usuario> todosLosUsers=repoUsuario.getTodosLosElementos();
         List<String> todosLosUserNames= todosLosUsers.stream().map(user->user.getNickName()).collect(Collectors.toList());

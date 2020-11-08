@@ -46,12 +46,12 @@ public class DAOBBDD <T> implements DAO {
     public Object buscarPorId(String id) { return null; }
 
     @Override
-    public Object buscarPorPK(int id) { return null; }
-
-    @Override
-    public Object buscarPorNombre(String nombre) {
+    public Object buscarPorPK(int id) {
         return null;
     }
+
+    @Override
+    public Object buscarPorNombre(String nombre) { return null; }
 
     @Override
     public Object buscarPorUsuario(String usuario) { return null; }

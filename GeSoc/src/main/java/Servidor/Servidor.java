@@ -22,11 +22,11 @@ public class Servidor {
         String projectDir = System.getProperty("user.dir");
         if (localhost) {
 
-            String staticDir = "/../src/main/resources/templates/";
+            String staticDir = "/src/main/resources/templates/";
             System.out.println(projectDir + staticDir);
             staticFiles.externalLocation(projectDir + staticDir);
         } else {
-            Spark.staticFiles.location("/public");
+            Spark.staticFiles.location("/templates");
         }
 
         //repositorio.inicializarRepo();

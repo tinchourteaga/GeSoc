@@ -1,7 +1,6 @@
 package API.ML;
 
 import API.ML.DTOs.*;
-import API.ML.Excepciones.ExcepcionCiudadNoEncontrada;
 import API.ML.Excepciones.ExcepcionNoSePudoConvertir;
 import API.ML.Excepciones.ExcepcionProvinciaNoEncontrada;
 import API.ML.Excepciones.NoExisteMonedaException;
@@ -9,8 +8,8 @@ import API.RequestMaker.RequestMaker;
 import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
-import Persistencia.DAO.DAOMemoria;
-import Persistencia.Repos.*;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -30,36 +29,49 @@ public class ControllerMercadoLibre {
     private static ControllerMercadoLibre instancia=null;
 
 
-    public Repositorio paisesRepo = new Repositorio(new DAOMemoria<Pais>());
-    public Repositorio provinciasRepo = new Repositorio(new DAOMemoria<Provincia>());
-    public Repositorio ciudadesRepo = new Repositorio(new DAOMemoria<Ciudad>());
-    public Repositorio monedasRepo = new Repositorio(new DAOMemoria<MonedaDTO>());
+    public Repositorio paisesRepo;
+    public Repositorio provinciasRepo;
+    public Repositorio ciudadesRepo;
+    public Repositorio monedasRepo;
 
-    private ControllerMercadoLibre() throws IOException {
+    private ControllerMercadoLibre(){
+     paisesRepo=new Repositorio(new DAOBBDD<Pais>(Pais.class));
+     provinciasRepo= new Repositorio(new DAOBBDD<Provincia>(Provincia.class));
+     ciudadesRepo=new Repositorio(new DAOBBDD<Ciudad>(Ciudad.class));
+     monedasRepo=new Repositorio(new DAOBBDD<MonedaDTO>(MonedaDTO.class));
+    }
+
+    public void inicializarBase() throws IOException {
         pedirPaises();
         paisesRepo.getTodosLosElementos().forEach(pais->{Pais unPais = (Pais)pais;
             try {
+                if(unPais.getProvincias().isEmpty())
                 unPais.getProvincias().addAll(this.obtenerLasProviciasDeUnPais(unPais.getId()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
 
+
         List<List<Provincia>> listaDeProvincias = (List<List<Provincia>>) paisesRepo.getTodosLosElementos().stream().map(pais->{Pais unPais = (Pais)pais;
-        return unPais.getProvincias();}).collect(Collectors.toList());
+            return unPais.getProvincias();}).collect(Collectors.toList());
 
         List<Provincia> provincias = listaDeProvincias.stream().flatMap(List::stream).collect(Collectors.toList());
 
         provincias.forEach(provincia-> {
             try {
-                provincia.getCiudades().addAll(this.obtenerLasCiudadesDeUnaProvincia(provincia.getId()));
+                if (provincia.getCiudades().isEmpty())
+                provincia.getCiudades().addAll(this.obtenerLasCiudadesDeUnaProvincia(provincia));
+
+                provinciasRepo.agregar(provincia);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
-        pedirMonedas();
-    }
 
+        pedirMonedas();
+
+    }
     public ConversionDTO convertirMoneda(String nombreMonedaActual, String nombreMonedaAConvertir) throws IOException, ExcepcionNoSePudoConvertir, NoExisteMonedaException {
 
         MonedaDTO monedaActual=getMoneda(nombreMonedaActual);
@@ -115,21 +127,25 @@ public class ControllerMercadoLibre {
     }
 
     private void pedirPaises() throws IOException {
-        HttpEntity entidad = crearRequest("/classified_locations/countries");
 
-        String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
+        if(paisesRepo.getTodosLosElementos().isEmpty()) {
 
-        if (responseStr != null && !responseStr.isEmpty()) {
-            JsonParser parser = new JsonParser();
-            JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
-            responseObj.forEach(jsonElemnt -> {
-                paisesRepo.agregar(new Pais(
-                        jsonElemnt.getAsJsonObject().get("id").getAsString(),
-                        jsonElemnt.getAsJsonObject().get("name").getAsString(),
-                        jsonElemnt.getAsJsonObject().get("locale").getAsString(),
-                        jsonElemnt.getAsJsonObject().get("currency_id").getAsString()));
-            });
-            
+            HttpEntity entidad = crearRequest("/classified_locations/countries");
+
+            String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
+
+            if (responseStr != null && !responseStr.isEmpty()) {
+                JsonParser parser = new JsonParser();
+                JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
+                responseObj.forEach(jsonElemnt -> {
+                    paisesRepo.agregar(new Pais(
+                            jsonElemnt.getAsJsonObject().get("id").getAsString(),
+                            jsonElemnt.getAsJsonObject().get("name").getAsString(),
+                            jsonElemnt.getAsJsonObject().get("locale").getAsString(),
+                            jsonElemnt.getAsJsonObject().get("currency_id").getAsString()));
+                });
+
+            }
         }
     }
 
@@ -155,13 +171,9 @@ public class ControllerMercadoLibre {
         return lista;
     }
     public static ControllerMercadoLibre getControllerMercadoLibre(){
-        if(instancia==null){
-            try {
+        if(instancia==null)
                 instancia=new ControllerMercadoLibre();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+
         return instancia;
     }
 
@@ -225,19 +237,9 @@ public class ControllerMercadoLibre {
         return nuevaProvincia;
     }
 
-    public Provincia generarDatosDeProvincia(String idProvincia) throws IOException, ExcepcionProvinciaNoEncontrada {
-
-        ProvinciaDTO busqueda = (ProvinciaDTO) provinciasRepo.buscarPorId(idProvincia);
-        Provincia retorno=null;
-        if(busqueda==null) {
-            busqueda= obtenerDatosProvincia(idProvincia);
-            provinciasRepo.agregar(busqueda);
-        }
-        retorno=new Provincia(busqueda.getId(),busqueda.getName());
-        return retorno;
-    }
 
     public List<Provincia> obtenerLasProviciasDeUnPais(String idPais) throws IOException {
+
 
         List<Provincia> retorno = new ArrayList<Provincia>();
 
@@ -267,41 +269,16 @@ public class ControllerMercadoLibre {
         return nuevaCiudad;
     }
 
-    private CiudadDTO obtenerDatosCiudad(String id) throws IOException, ExcepcionCiudadNoEncontrada {
 
-        String request="/classified_locations/cities/"+id;
-        HttpEntity entidad = crearRequest(request);
-        String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
-        CiudadDTO nuevaCiudad = null;
-        if (responseStr != null && !responseStr.isEmpty()) {
-            JsonParser parser = new JsonParser();
-            JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
-            nuevaCiudad=crearDTOCiudad(responseObj);
-        }else{
 
-            throw new ExcepcionCiudadNoEncontrada(id);
-        }
 
-        return nuevaCiudad;
-    }
 
-    public Ciudad generarDatosDeCiudad(String idCiudad) throws IOException, ExcepcionCiudadNoEncontrada {
+    public List<Ciudad> obtenerLasCiudadesDeUnaProvincia(Provincia provincia) throws IOException {
 
-        CiudadDTO busqueda = (CiudadDTO) ciudadesRepo.buscarPorId(idCiudad);
-        Ciudad retorno=null;
-        if(busqueda==null) {
-            busqueda= obtenerDatosCiudad(idCiudad);
-            ciudadesRepo.agregar(busqueda);
-        }
-        retorno=new Ciudad(busqueda.getId(),busqueda.getName());
-        return retorno;
-    }
-
-    public List<Ciudad> obtenerLasCiudadesDeUnaProvincia(String idProvincia) throws IOException {
 
         List<Ciudad> retorno = new ArrayList<Ciudad>();
 
-        HttpEntity entidad = crearRequest("/classified_locations/states/" + idProvincia);
+        HttpEntity entidad = crearRequest("/classified_locations/states/" + provincia.getId());
 
         String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
 
@@ -310,7 +287,8 @@ public class ControllerMercadoLibre {
             JsonObject responseObj = parser.parse(responseStr).getAsJsonObject();
 
             responseObj.getAsJsonArray("cities").forEach
-                    (x->retorno.add(new Ciudad(x.getAsJsonObject().get("id").getAsString(),
+                    (
+                            x->retorno.add(new Ciudad(x.getAsJsonObject().get("id").getAsString(),
                             x.getAsJsonObject().get("name").getAsString())));
         }
 

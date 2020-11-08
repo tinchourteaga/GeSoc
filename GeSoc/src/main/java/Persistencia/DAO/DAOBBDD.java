@@ -2,17 +2,24 @@ package Persistencia.DAO;
 
 import Persistencia.EntityManagerHelper;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public class DAOBBDD <T> implements DAO {
     private String nombredb;
     private String conexionDB;
     private List<T> listaElementos;
+    private Class<T> clazz;
 
-    public void DAOBBDDUsuario(String nombredb, String usuario, String passwod){
-        //conexion a la DB
-        //aca setearia la lista de usuarios
+    public DAOBBDD(Class<T> classEspecifica){
+       clazz= classEspecifica;
     }
+    public DAOBBDD(){   }
+
     public <T> void agregar(T elemento){
         EntityManagerHelper.getEntityManager().getTransaction().begin();
         EntityManagerHelper.persist(elemento);
@@ -51,7 +58,16 @@ public class DAOBBDD <T> implements DAO {
 
     @Override
     public List<T> getAllElementos() {
-        return listaElementos;
+        EntityManagerHelper.getEntityManager().getTransaction().begin();
+        EntityManager em=EntityManagerHelper.getEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<T> q = cb.createQuery(clazz);
+        Root<T> c = q.from(clazz);
+        q.select(c);
+        TypedQuery<T> query = em.createQuery(q);
+        List<T> resultados=query.getResultList();
+        EntityManagerHelper.getEntityManager().getTransaction().commit();
+        return resultados;
     }
 
     @Override

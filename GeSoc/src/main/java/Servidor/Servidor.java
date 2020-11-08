@@ -18,11 +18,11 @@ public class Servidor {
         enableDebugScreen();
         port(15002);
 
-        boolean localhost = false;
+        boolean localhost = true;
         String projectDir = System.getProperty("user.dir");
         if (localhost) {
 
-            String staticDir = "/src/main/resources/templates/";
+            String staticDir = "/src/main/resources/templates";
             System.out.println(projectDir + staticDir);
             staticFiles.externalLocation(projectDir + staticDir);
         } else {

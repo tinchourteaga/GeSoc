@@ -79,9 +79,9 @@ public class Servidor {
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
         Spark.post("/cambiarContrasenia", ControllerUsuario::cambiarContrasenia);
         Spark.post("/cerrarSesion", ControllerSesion::cerrarSesion);
-        //to be done
         Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
         Spark.post("/cargarEgreso", ControllerEgresos::cargarEgreso);
+        Spark.post("/cargarItem", ControllerEgresos::cargarItem);
         Spark.post("/cargarProveedor", ControllerProveedor::cargarProveedor);
         Spark.post("/crearProyectoFinanciamiento", ControllerProyectoFinanciamiento::crearProyectoFinanciamiento);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);

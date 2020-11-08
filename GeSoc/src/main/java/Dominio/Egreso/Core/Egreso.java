@@ -151,4 +151,8 @@ public class Egreso {
     public Ingreso getIngreso(){
         return this.ingreso;
     }
+
+    public void agregarItem(Item item){
+        listaItems.add(item);
+    }
 }

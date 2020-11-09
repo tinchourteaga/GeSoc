@@ -66,6 +66,6 @@ public class Mensaje {
     }
 
     public Egreso getEgreso() {
-        return null;
+        return egreso;
     }
 }

@@ -46,6 +46,7 @@ public class Presupuesto {
         this.proveedor = proveedor;
     }
 
+    public Proveedor getProveedor(){return this.proveedor;}
     public List<Criterio> getCriterios() { return criterios; }
     public float getValor() { return valor;}
     public List<Detalle> getDetalles() {return detalles;}

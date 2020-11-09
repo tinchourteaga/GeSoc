@@ -67,7 +67,7 @@ public class Test {
         ValidacionCantidadPresupuestos validacion3 = new ValidacionCantidadPresupuestos(proveedores);
         ValidacionCriterioProveedor validacion4 = new ValidacionCriterioProveedor();
 
-        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
+        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
         Assert.assertEquals( new NoCumpleValidacionDeCriterioException().toString(),fallo.getMensajeResultado());
     }
@@ -93,7 +93,7 @@ public class Test {
         ValidacionCantidadPresupuestos validacion3 = new ValidacionCantidadPresupuestos(proveedores);
         ValidacionCriterioProveedor validacion4 = new ValidacionCriterioProveedor();
 
-        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
         Assert.assertEquals(new NoCumpleValidacionException().toString(),fallo.getMensajeResultado());
     }
@@ -133,7 +133,7 @@ public class Test {
             proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
         }
 
-        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         roladmin.realizarAccion(agregarJerarquia);
         Assert.assertEquals(criterioDummyHijo, criterioDummy.getHijos().get(0));
     }
@@ -160,7 +160,7 @@ public class Test {
             proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
         }
 
-        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),proveedores,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje cumplio=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals("Paso exitosamente todas las Validaciones",cumplio.getMensajeResultado());
         //no entiendo porque no da este tests

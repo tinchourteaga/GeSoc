@@ -21,12 +21,6 @@ public class Egreso {
     @GeneratedValue
     private int egreso;
 
-    // ESTO NO DEBERIA IR, PERO SI LO SACO ROMPE HASTA TU HERMANA TROLA Y ME DA PAJA
-    @ManyToOne
-    @JoinColumn(name = "proveedor", referencedColumnName = "proveedor")
-    private Proveedor proveedorSeleccionado;
-    //
-
     @Column(name = "validado")
     private boolean estaVerificada;
 
@@ -71,15 +65,16 @@ public class Egreso {
 
     public Egreso() { }
 
-    public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
+    public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Presupuesto> presupuestos, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
        this.fecha=unaFecha;
        this.valor= new Valor(pais,importe);
        this.listaItems=items;
        this.metodoDePago=metodo;
        this.documentoComercial=unDocumento;
+       this.presupuestosAConsiderar=presupuestos;
        this.setCriterio(criterio);
-       this.proveedorSeleccionado = criterio.seleccionarProveedor(proveedores);
+       presupuestoPactado=criterio.seleccionarPresupuesto(presupuestos);
        this.estaVerificada=false;
     }
 
@@ -92,8 +87,9 @@ public class Egreso {
     }
 
     public Proveedor getProveedorSeleccionado() {
-        return proveedorSeleccionado;
+        return this.presupuestoPactado.getProveedor();
     }
+    public List<Presupuesto> getPresupuestosAConsiderar(){return this.presupuestosAConsiderar;}
 
     public List<Criterio> getCriterioDeCategorizacion() {
         return criterios;

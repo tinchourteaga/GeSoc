@@ -46,8 +46,8 @@ public class AddData {
             //creo roles
             Rol admin = new Administrador();
             Rol estandar=new Estandar();
-            Rol revisor1= new Revisor();//hay que agregarle todas las operaciones de la org para que las revise
-            Rol revisor2= new Revisor();//hay que agregarle todas las operaciones de la org para que las revise
+            Rol revisor1= new Estandar();//hay que agregarle todas las operaciones de la org para que las revise
+            Rol revisor2= new Estandar();//hay que agregarle todas las operaciones de la org para que las revise
 
             //creo usuarios
             Usuario usuarioAdmin = new Usuario(admin, "martin", "urteaga", "M@rtin.98", "41589363","martin@hotmail.com");

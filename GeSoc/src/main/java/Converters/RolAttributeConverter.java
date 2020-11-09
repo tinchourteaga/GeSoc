@@ -30,16 +30,16 @@ public class RolAttributeConverter implements AttributeConverter<Rol, String> {
                 return new Estandar();
             case "administrador":
                 return new Administrador();
-            case "revisor":
+            /*case "revisor":
                 Revisor unRevisor=new Revisor();
                 agregarEgresosAsociados(unRevisor);
-                return unRevisor;
+                return unRevisor;*/
             default:
                 return null;
         }
     }
 
-    private void agregarEgresosAsociados(Revisor unRevisor) {
+    //private void agregarEgresosAsociados(Revisor unRevisor) {
 
         //no puedo usar criteria porque no se como trabajar con la tabla autogenerada RevisorXEgreso
    /*     EntityManager entityManager = EntityManagerSingleton.get();
@@ -54,5 +54,5 @@ public class RolAttributeConverter implements AttributeConverter<Rol, String> {
 
     private String obtenerIDUsuario() {
         return "";*/
-    }
+  //  }
 }

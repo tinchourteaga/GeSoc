@@ -14,8 +14,6 @@ public class DarDeAltaRevisor implements Accion {
 
     @Override
     public void realizar() {
-        Revisor rolRevisor = new Revisor();
-        revisor.setRol(rolRevisor);
-        rolRevisor.agregarEgreso(egreso);
+        //esto esta deprecado
     }
 }

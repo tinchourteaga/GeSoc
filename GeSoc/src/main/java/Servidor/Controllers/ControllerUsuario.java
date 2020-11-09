@@ -1,5 +1,6 @@
 package Servidor.Controllers;
 
+import Dominio.Contrasenia.Core.ValidadorDeContrasenia;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
@@ -79,20 +80,22 @@ public class ControllerUsuario {
         return request.queryParams("usuario");
     }
 
-    public static Object cambiarContrasenia(Request request, Response response){
+    public static Object cambiarContrasenia(Request request, Response response) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
         String contraActual = request.queryParams("contraActual");
         String contraNueva = request.queryParams("contraNueva");
         String verifContraNueva = request.queryParams("verifContraNueva");
 
-        /*
-        if(contraActual es correcta -after chequear en la bd- && contraActual.equals(verifContraNueva) && contraActual cumple con las restricciones){
-            persisti el cambio en la base luego de hashearla
-        }
-        */
+        DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class);
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
 
-        System.out.println(request.queryParams("contraActual"));
-        System.out.println(request.queryParams("contraNueva"));
-        System.out.println(request.queryParams("verifContraNueva"));
+        Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
+        Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
+
+        if(usuario.getContrasenia().equals(contraActual) && contraActual.equals(verifContraNueva) && ValidadorDeContrasenia.validarContrasenia(contraNueva)){
+            //Si pasa todas las validaciones persisto en la db (tengo que hashearla antes?)
+            usuarioModificado.setContrasenia(contraNueva);
+            repoUsuario.modificar(usuario,usuarioModificado);
+        }
 
         response.redirect("usuario");
 

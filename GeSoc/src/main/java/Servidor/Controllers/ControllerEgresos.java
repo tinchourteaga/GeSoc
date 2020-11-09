@@ -50,7 +50,7 @@ public class ControllerEgresos {
             repoUsuario.modificar(usuario, usuarioModificado);
         }
 
-        //persistirEgreso(egreso); Lo tengo que hacer una vez que cargo todos los items
+        persistirEgreso(egreso);
 
         response.redirect("cargar_items?egreso="+egreso.getEgreso());
 
@@ -85,11 +85,13 @@ public class ControllerEgresos {
 
         Egreso objEgreso = egresos.get(i);
 
-        Item objItem = new Item(valor,item);
+        Item objItem = new Item(valor,item); //quiero persistir todos de un saque
 
         objEgreso.agregarItem(objItem);
 
-        response.redirect("cargar_egreso"); //Reloadeo
+        persistirEgreso(objEgreso);
+
+        response.redirect("cargar_egreso");
 
         return null;
     }

@@ -8,7 +8,11 @@ import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Dominio.Entidad.Entidad;
 import Dominio.Entidad.EntidadJuridica;
 import Dominio.Entidad.OrganizacionSocial;
+import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 import Dominio.Ingreso.Ingreso;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -200,19 +204,35 @@ public class ControllerAsociacion {
         return null;
     }
 
-    public static Object asociarIngresosYEgresos(Request request, Response response) {
+    public static Object asociarIngresosYEgresos(Request request, Response response) throws NoPuedoAsignarMasDineroDelQueTengoException {
 
-        String entidad = request.queryParams("entidad");
+        String entidad = request.queryParams("entidad"); //no me interesa
         String fecha = request.queryParams("fecha");
-        String metodoPago = request.queryParams("metodoPago");
+        String metodoPago = request.queryParams("metodoPago");//no me interesa
         String egreso = request.queryParams("egreso");
         String ingreso = request.queryParams("ingreso");
 
-        //Integer egresoId = Integer.valueOf(egreso);
-        //Integer ingresoId = Integer.valueOf(ingreso);
-        //Le pasamos los ids a la base así me devuelve los dos objetitos
-        //egresoPosta.setPresupuestoPactado(presupuestoPosta);
+        Integer egresoId = Integer.valueOf(egreso);
+        Integer ingresoId = Integer.valueOf(ingreso);
 
+        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class);
+        Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso);
+
+        DAO DAOIngreso = new DAOBBDD<Ingreso>(Ingreso.class);
+        Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso);
+
+        List<Egreso> egresos = repoEgreso.getTodosLosElementos();
+        int i = egresos.indexOf(egresoId);
+        Egreso objEgreso = egresos.get(i);
+
+        List<Ingreso> ingresos = repoIngreso.getTodosLosElementos();
+        int j = egresos.indexOf(ingresoId);
+        Ingreso objIngreso = ingresos.get(j);
+        Ingreso objIngresoModificado = ingresos.get(j);
+
+        objIngresoModificado.agregarEgreso(objEgreso);
+
+        repoIngreso.modificar(objIngreso,objIngresoModificado);
 
         response.redirect("asociar_ingresos_y_egresos");
 
@@ -223,28 +243,6 @@ public class ControllerAsociacion {
     public static void persistirAsociacionPyE(){
 
         DAO DAOEgreso = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
-        Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
-
-        List<Criterio> criterios = repoCriterio.getTodosLosElementos();
-
-        List<Criterio> criteriosPosibles=criterios.stream().filter(c-> c.getNombreCriterio().equals(criterioAsociado)).collect(Collectors.toList());
-
-        if(criteriosPosibles.isEmpty()){
-            return;
-        }
-
-        Criterio criterio = criteriosPosibles.get(0);
-        Criterio criterioModificado = criteriosPosibles.get(0);
-
-        criterioModificado.agregarCategoria(categoriaCriterio);
-
-        //Verificar que esto este bien
-        repoCriterio.modificar(criterio, criterioModificado);
-    }
-
-    public static void persistirAsociacionIyE(){
-
-        DAO DAOCriterio = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
         Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
 
         List<Criterio> criterios = repoCriterio.getTodosLosElementos();

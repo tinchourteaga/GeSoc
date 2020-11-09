@@ -1,13 +1,13 @@
 package Servidor.Controllers;
 
 import Dominio.BandejaMensajes.Mensaje;
-import Dominio.Rol.Estandar;
 import Dominio.Usuario.Usuario;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ public class ControllerMensajes {
 
         if(usuario!=null) {
 
-            if (Estandar.class.equals(usuario.getRol().getClass())) {
+            if (usuario.getRol().getEgresosAREvisar().isEmpty()) {
                 return visualizarPantallaMensajesNoRevisor(request, response);
             } else {
                 return visualizarPantallaMensajesRevisor(request, response, usuario);
@@ -45,17 +45,20 @@ public class ControllerMensajes {
         //con el usuario vas sacando datos
         String fecha=request.queryParams("fechaFiltrado");
         String egreso=request.queryParams("egreso");
-        List<Mensaje> todosLosMsj;
-        if(egreso!=null){
-
-        //    todosLosMsj=usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj->msj.);
-
-        }
+        List<Mensaje> todosLosMsj=new ArrayList();
+        if(egreso!=null && fecha!=null){
+            todosLosMsj=usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj->msj.getFechaCreado().isBefore(LocalDate.parse(fecha))/*&& msj.getEgreso().getEgreso().equals(Integer.valueOf(egreso))*/).collect(Collectors.toList());
+        }else{
 
         if(fecha!=null){
             todosLosMsj=usuario.getBandejaDeMensajes().filtrarPorFecha(LocalDate.parse(fecha));
         }else {
-            todosLosMsj = usuario.getBandejaDeMensajes().getMensajes();
+            if(egreso!=null){
+                todosLosMsj=usuario.getBandejaDeMensajes().filtrarPorFecha(LocalDate.parse(fecha));
+        }else{
+
+            todosLosMsj = usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj-> msj.getEgreso().getEgreso().equals(Int.valueOf(egreso))).collect(Collectors.toList());
+            }
         }
         if(request.queryParams("filtrarPorLeidos").equals("true")){
 

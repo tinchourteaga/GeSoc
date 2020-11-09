@@ -1,6 +1,7 @@
 package Dominio.BandejaMensajes;
 
 import Converters.LocalDateAttributeConverter;
+import Dominio.Egreso.Core.Egreso;
 import Dominio.Usuario.Usuario;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -57,5 +58,9 @@ public class Mensaje {
 
     public Boolean getLeido() {
         return leido;
+    }
+
+    public Egreso getEgreso() {
+        return null;
     }
 }

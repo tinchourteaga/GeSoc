@@ -28,7 +28,12 @@ public class ControllerUsuario {
 
     public static ModelAndView visualizarPantallaUsuario(Request request, Response response){
 
+        Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
+        datos.put("nombre",miUsuario.getNombre());
+        datos.put("apellido",miUsuario.getApellido());
+        datos.put("rol",miUsuario.getRol());
+        datos.put("nickname",miUsuario.getNickName());
         ModelAndView vista = new ModelAndView(datos, "usuario.html");
 
         return vista;
@@ -44,16 +49,8 @@ public class ControllerUsuario {
 
     public static ModelAndView visualizarPantallaDatosUsuario(Request request, Response response){
 
-        Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
-        datos.put("nombre",miUsuario.getNombre());
-        datos.put("apellido",miUsuario.getApellido());
-        //datos.put("DNI",miUsuario.getDNI());
-        //datos.put("telefono",miUsuario.getTelefono());
-        //datos.put("mail",miUsuario.getMail());
-        datos.put("rol",miUsuario.getRol());
-        //datos.put("empresa",miUsuario.getOrg());
-        datos.put("nickname",miUsuario.getNickName());
+
         ModelAndView vista = new ModelAndView(datos, "datos_usuario.html");
 
         return vista;

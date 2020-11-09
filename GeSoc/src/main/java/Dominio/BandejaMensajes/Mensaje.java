@@ -32,13 +32,18 @@ public class Mensaje {
     @Column(name = "leido")
     private Boolean leido;
 
+    @OneToOne
+    @Column(name = "egreso_asociado")
+    private Egreso egreso;
+
     public Mensaje() { }
 
-    public Mensaje(LocalDate fechaCreado, LocalDate fechaLeido, String mensajeResultado) {
+    public Mensaje(LocalDate fechaCreado, LocalDate fechaLeido, String mensajeResultado, Egreso egreso) {
         this.fechaCreado = fechaCreado;
         this.fechaLeido = fechaLeido;
         this.mensajeResultado = mensajeResultado;
         this.leido = false;
+        this.egreso = egreso;
     }
 
     public void leer(){

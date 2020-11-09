@@ -44,7 +44,7 @@ public class ValidadorDeOperacion {
     }
 
     public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
-        AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(LocalDate.now(), null, "Paso exitosamente todas las Validaciones"));
+        AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(LocalDate.now(), null, "Paso exitosamente todas las Validaciones", unaOperacion));
 
         AtomicBoolean flag = new AtomicBoolean(true);
 
@@ -52,7 +52,7 @@ public class ValidadorDeOperacion {
             try {
                 validacion.validar(unaOperacion);
             } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
-                mensaje.set(new Mensaje(LocalDate.now(), null, e.toString()));
+                mensaje.set(new Mensaje(LocalDate.now(), null, e.toString(),unaOperacion));
                 unaOperacion.setEstaVerificada(false);
                 flag.set(false);
             }

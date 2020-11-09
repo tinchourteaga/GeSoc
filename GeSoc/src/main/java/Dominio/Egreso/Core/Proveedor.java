@@ -32,9 +32,6 @@ public class Proveedor {
     @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL)
     private List<Presupuesto> presupuestos;
 
-    @OneToMany(mappedBy = "proveedorSeleccionado", cascade = CascadeType.ALL)
-    private List<Egreso> egreso;
-
     public Proveedor() { }
 
     public Proveedor(String nombre, String apellido, String dni, DireccionPostal unaDireccion) {

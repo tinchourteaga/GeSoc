@@ -21,9 +21,11 @@ public class Egreso {
     @GeneratedValue
     private int egreso;
 
+    // ESTO NO DEBERIA IR, PERO SI LO SACO ROMPE HASTA TU HERMANA TROLA Y ME DA PAJA
     @ManyToOne
     @JoinColumn(name = "proveedor", referencedColumnName = "proveedor")
     private Proveedor proveedorSeleccionado;
+    //
 
     @Column(name = "validado")
     private boolean estaVerificada;
@@ -63,6 +65,9 @@ public class Egreso {
 
     @Transient
     private Presupuesto presupuestoPactado;
+
+    @Transient
+    private List<Presupuesto> presupuestosAConsiderar;
 
     public Egreso() { }
 

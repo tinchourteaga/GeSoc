@@ -1,8 +1,8 @@
 package Servidor.Controllers;
 
-import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
+import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Dominio.Entidad.Entidad;
@@ -218,4 +218,50 @@ public class ControllerAsociacion {
 
         return null;
     }
+
+    /*
+    public static void persistirAsociacionPyE(){
+
+        DAO DAOEgreso = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
+        Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
+
+        List<Criterio> criterios = repoCriterio.getTodosLosElementos();
+
+        List<Criterio> criteriosPosibles=criterios.stream().filter(c-> c.getNombreCriterio().equals(criterioAsociado)).collect(Collectors.toList());
+
+        if(criteriosPosibles.isEmpty()){
+            return;
+        }
+
+        Criterio criterio = criteriosPosibles.get(0);
+        Criterio criterioModificado = criteriosPosibles.get(0);
+
+        criterioModificado.agregarCategoria(categoriaCriterio);
+
+        //Verificar que esto este bien
+        repoCriterio.modificar(criterio, criterioModificado);
+    }
+
+    public static void persistirAsociacionIyE(){
+
+        DAO DAOCriterio = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
+        Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
+
+        List<Criterio> criterios = repoCriterio.getTodosLosElementos();
+
+        List<Criterio> criteriosPosibles=criterios.stream().filter(c-> c.getNombreCriterio().equals(criterioAsociado)).collect(Collectors.toList());
+
+        if(criteriosPosibles.isEmpty()){
+            return;
+        }
+
+        Criterio criterio = criteriosPosibles.get(0);
+        Criterio criterioModificado = criteriosPosibles.get(0);
+
+        criterioModificado.agregarCategoria(categoriaCriterio);
+
+        //Verificar que esto este bien
+        repoCriterio.modificar(criterio, criterioModificado);
+    }
+    */
 }

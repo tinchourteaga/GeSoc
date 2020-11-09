@@ -13,7 +13,9 @@ import spark.Session;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ControllerSesion{
 
@@ -48,7 +50,7 @@ public class ControllerSesion{
 
 
         boolean usuarioVerificado =verificarDatos(nombreUsuario, contraseniaUsuario);
-        boolean estaActivo= usuariosActivos.get(nombreUsuario).equals(Boolean.TRUE);//quizas es medio choto esto y vas a tener que usar un getBooleanValue
+        boolean estaActivo= usuariosActivos.getOrDefault(nombreUsuario,Boolean.FALSE).equals(Boolean.TRUE);//quizas es medio choto esto y vas a tener que usar un getBooleanValue
 
         if(usuarioVerificado && !estaActivo){
             Session usuario=request.session(true);
@@ -62,7 +64,7 @@ public class ControllerSesion{
 
             response.redirect("pantalla_principal_usuario");
         }else{
-            System.out.println("la sesion existia:"+sesiones.get(nombreUsuario));
+            System.out.println("la sesion existia");
 
             response.redirect("autenticacion_usuario");
         }
@@ -71,11 +73,27 @@ public class ControllerSesion{
 
     private static boolean verificarDatos(String nombreUsuario, String contraseniaUsuario) {
 
-        DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
+
+        DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class); //dao generico de BBDD
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+        List<Usuario> todosLosUsuarios = repoUsuario.getTodosLosElementos();
+        List<Usuario> usuariosPosibles=todosLosUsuarios.stream().filter(us-> us.getNickName().equals(nombreUsuario)).collect(Collectors.toList());
+        if(usuariosPosibles.isEmpty()){return false;}//no puedo usar el otro metodo porque no le autorice la sesion
+        Usuario unUsuario= usuariosPosibles.get(0);
+        boolean valor=unUsuario.getContrasenia().equals(contraseniaUsuario);
+        return valor;
+    }
 
-        Usuario unUsuario = (Usuario)repoUsuario.buscarPorNombre(nombreUsuario);
+    public static Usuario obtenerUsuariodeSesion(Request request){
+        String username= request.session().attribute("nombreUsuario");
+        DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class); //dao generico de BBDD
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+        List<Usuario> todosLosUsuarios = repoUsuario.getTodosLosElementos();
+        List<Usuario> usuariosPosibles=todosLosUsuarios.stream().filter(us-> us.getNickName().equals(username)).collect(Collectors.toList());
+        if(usuariosPosibles.isEmpty()){
+            return null;
+        }
+        return usuariosPosibles.get(0);
 
-        return unUsuario.getContrasenia().equals(contraseniaUsuario);
     }
 }

@@ -86,6 +86,61 @@ public class Main {
             e.printStackTrace();//no deberias pasar por aca, pero tincho no se banca tener un try and catch donde corresponde
         }*/
 
+        //cargo cosas de ML
+      /*  try {
+            ControllerMercadoLibre.getControllerMercadoLibre().inicializarBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+
+     /*   Rol admin = new Administrador();
+        Rol estandar=new Estandar();
+        Rol revisor1= new Revisor();//hay que agregarle todas las operaciones de la org para que las revise
+        Rol revisor2= new Revisor();//hay que agregarle todas las operaciones de la org para que las revise
+
+        List<Usuario> usuariosAPersistir=new ArrayList<>();
+        //creo usuarios
+        try {
+            Usuario usuarioAdmin = new Usuario(admin, "martin", "urteaga", "M@rtin.98", "41589363","martin@hotmail.com");
+            Usuario alejandro = new Usuario(revisor1, "Alejandro", "Roco", "*_aroco20!-?", "41589363","aroco@hotmail.com");
+            alejandro.setPersona();
+
+            Usuario rocio = new Usuario(estandar, "Rocio", "Rojas", "*-_rrojas!?", "41589363","rrojas@hotmail.com");
+            rocio.setPersona();
+
+            Usuario julieta = new Usuario(revisor2, "Julieta", "Azul", "!-*jazul_!?", "41589363","jazul@hotmail.com");
+            julieta.setPersona();
+
+            usuarioAdmin.setPersona();
+            usuariosAPersistir.add(usuarioAdmin);
+            usuariosAPersistir.add(alejandro);
+            usuariosAPersistir.add(rocio);
+            usuariosAPersistir.add(julieta);
+        } catch (ExcepcionCaracterEspecial excepcionCaracterEspecial) {
+            excepcionCaracterEspecial.printStackTrace();
+        } catch (ExcepcionContraseniaComun excepcionContraseniaComun) {
+            excepcionContraseniaComun.printStackTrace();
+        } catch (ExcepcionNumero excepcionNumero) {
+            excepcionNumero.printStackTrace();
+        } catch (ExcepcionLongitud excepcionLongitud) {
+            excepcionLongitud.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
+
+
+
+
+
+
+        //persistoUsuarios
+        DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class);
+        Repositorio repoUsuario = new Repositorio(DAOUsuario);
+        usuariosAPersistir.forEach(us->repoUsuario.agregar(us));
+*/
         //corro el server
         Servidor.levantarServidor();
 

@@ -10,7 +10,9 @@ import spark.Request;
 import spark.Response;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ControllerCategoria {
     public static ModelAndView visualizarPantalla(Request request, Response response){
@@ -38,12 +40,19 @@ public class ControllerCategoria {
 
     public static void persistirCategoria(CategoriaCriterio categoriaCriterio, String criterioAsociado){
 
-        DAO DAOCriterio = new DAOBBDD<Criterio>(); //dao generico de BBDD
+        DAO DAOCriterio = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
         Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
 
-        //Me hace ruido
-        Criterio criterio = (Criterio)repoCriterio.buscarPorNombre(criterioAsociado);
-        Criterio criterioModificado = (Criterio)repoCriterio.buscarPorNombre(criterioAsociado);
+        List<Criterio> criterios = repoCriterio.getTodosLosElementos();
+
+        List<Criterio> criteriosPosibles=criterios.stream().filter(c-> c.getNombreCriterio().equals(criterioAsociado)).collect(Collectors.toList());
+
+        if(criteriosPosibles.isEmpty()){
+            return;
+        }
+
+        Criterio criterio = criteriosPosibles.get(0);
+        Criterio criterioModificado = criteriosPosibles.get(0);
 
         criterioModificado.agregarCategoria(categoriaCriterio);
 

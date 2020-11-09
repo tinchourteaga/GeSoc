@@ -40,7 +40,7 @@ public class Usuario {
     private String contrasenia;
 
     @Convert(converter = RolAttributeConverter.class)
-    private Rol rol;
+    private Rol rol; //Estandar o Administrador
 
     @Embedded
     private BandejaMensajes bandejaDeMensajes;

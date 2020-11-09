@@ -9,7 +9,6 @@ import Dominio.Entidad.Direccion;
 import Dominio.Entidad.DireccionPostal;
 import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
-import Dominio.Rol.Revisor;
 import Dominio.Rol.Rol;
 import Dominio.Usuario.Usuario;
 import Lugares.Ciudad;

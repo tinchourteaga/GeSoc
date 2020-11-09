@@ -3,7 +3,6 @@ package Converters;
 import Dominio.Rol.Rol;
 import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
-import Dominio.Rol.Revisor;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

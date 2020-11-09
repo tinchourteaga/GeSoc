@@ -12,6 +12,7 @@ import spark.Response;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ControllerEgresos {
@@ -33,27 +34,25 @@ public class ControllerEgresos {
         String documentoComercial = request.queryParams("documentoComercial");
         String descripcionDocComercial = request.queryParams("descripcionDocComercial");
 
+        //TODO
         Egreso egreso = new Egreso(LocalDate.parse(fecha), "Uruguay", 0, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, descripcionDocComercial), null);
-
-        //PROBLEMAS!
-
 
         if(request.queryParams("esRevisor")!=null){
 
             Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
-            usuario.set
+            Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
 
-            //Es revisor TODO
-            //Tengo que asignarle el rol al usuario y meterle al rol revisor este egreso
-            //Luego persistir el usuario modificado en la db
-            //Estaria copado hacer que todos los usuarios arranquen con la lista del rol revisor vacia y cuando
-            //van revisando egresos, esta lista se va llenando. Creo que nos va a ahorrar mucho laburo.
+            usuarioModificado.getRol().agregarEgresoARevisar(egreso);
+
+            DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
+            Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+
+            repoUsuario.modificar(usuario, usuarioModificado);
         }
 
-        persistirEgreso(egreso);
+        //persistirEgreso(egreso); Lo tengo que hacer una vez que cargo todos los items
 
-
-        response.redirect("cargar_egreso"); //Voy a tener que redireccionar a la pagina de cargar items
+        response.redirect("cargar_items?egreso="+egreso.getEgreso());
 
         return null;
     }
@@ -69,16 +68,26 @@ public class ControllerEgresos {
     }
 
     public static Object cargarItem(Request request, Response response){
-      /*
+
+        String egreso = request.queryParams("egreso");
         String item = request.queryParams("item");
         String valorItem = request.queryParams("valor");
 
-        Item item = new Item(bla bla);
+        Integer egresoId = Integer.valueOf(egreso);
+        Float valor = Float.valueOf(valorItem);
 
-        Egreso egreso = meTraigoElEgreso();
+        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class); //dao generico de BBDD
+        Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso); //repositorio que tambien usa generics
 
-        egreso.agregarItem(item);
-      */
+        List<Egreso> egresos = repoEgreso.getTodosLosElementos();
+
+        int i = egresos.indexOf(egresoId);
+
+        Egreso objEgreso = egresos.get(i);
+
+        Item objItem = new Item(valor,item);
+
+        objEgreso.agregarItem(objItem);
 
         response.redirect("cargar_egreso"); //Reloadeo
 

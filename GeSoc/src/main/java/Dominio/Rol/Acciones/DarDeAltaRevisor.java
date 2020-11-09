@@ -1,7 +1,6 @@
 package Dominio.Rol.Acciones;
 
 import Dominio.Egreso.Core.Egreso;
-import Dominio.Rol.Revisor;
 import Dominio.Usuario.Usuario;
 
 public class DarDeAltaRevisor implements Accion {

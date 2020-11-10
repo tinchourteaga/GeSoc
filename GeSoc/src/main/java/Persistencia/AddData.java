@@ -25,6 +25,7 @@ import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 //Aca metemos las cosas que queremos persistir desde un comienzo; algo con lo que poder trabajar apenas se levanta el sistema.
@@ -217,22 +218,30 @@ public class AddData {
 
 
 
-            Pais argentina=null;
-            Pais eeuu=null;
-            Pais mexico=null;
+            Repositorio repoPaises= new Repositorio(new DAOBBDD<Pais>(Pais.class));
+            List<Pais> todosLosPaises=repoPaises.getTodosLosElementos();
+            Pais argentina=todosLosPaises.stream().filter(p->p.getName().equals("Argentina")).collect(Collectors.toList()).get(0);
+            Pais eeuu=todosLosPaises.stream().filter(p->p.getName().equals("Estados Unidos")).collect(Collectors.toList()).get(0);
+            Pais mexico=todosLosPaises.stream().filter(p->p.getName().equals("Mexico")).collect(Collectors.toList()).get(0);
 
-            Provincia caba=null;
-            Provincia provCiudadMexico=null;
-            Provincia nuevaYork=null;
 
-            Ciudad cabac=null;
-            Ciudad brooklyn=null;
-            Ciudad ciudadAUMexico=null;
+            Repositorio repoProvincias= new Repositorio(new DAOBBDD<Provincia>(Provincia.class));
+            List<Provincia> todosLasProvincias=repoProvincias.getTodosLosElementos();
+            Provincia caba=todosLasProvincias.stream().filter(prov-> prov.getName().equals("CABA")).collect(Collectors.toList()).get(0);
+            Provincia provCiudadMexico=todosLasProvincias.stream().filter(prov-> prov.getName().equals("Ciudad de Mexico")).collect(Collectors.toList()).get(0);
+            Provincia nuevaYork=todosLasProvincias.stream().filter(prov-> prov.getName().equals("Nueva York")).collect(Collectors.toList()).get(0);
 
-            Direccion direccionEntidad1=new Direccion("","","","");
-            Direccion direccionEntidad2=new Direccion("","","","");
-            Direccion direccionEntidad3=new Direccion("","","","");
-            Direccion direccionEntidad4=new Direccion("","","","");
+
+            Repositorio repoCiudades= new Repositorio(new DAOBBDD<Ciudad>(Ciudad.class));
+            List<Ciudad> todasLasCiudades=repoCiudades.getTodosLosElementos();
+            Ciudad cabac=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("CABA")).collect(Collectors.toList()).get(0);
+            Ciudad brooklyn=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("Brooklyn")).collect(Collectors.toList()).get(0);
+            Ciudad ciudadAUMexico=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("CiudadDeMexico")).collect(Collectors.toList()).get(0);
+
+            Direccion direccionEntidad1=new Direccion("Av. Medrano","971","","");
+            Direccion direccionEntidad2=new Direccion("Liberty Ave"," 720","","");
+            Direccion direccionEntidad3=new Direccion("Roberto Gayol","55","","");
+            Direccion direccionEntidad4=new Direccion("Jerónimo Salguero","2800","","");
 
             DireccionPostal direccionPostalEntidad1=new DireccionPostal(direccionEntidad1,1111,argentina,caba,cabac);
             DireccionPostal direccionPostalEntidad2=new DireccionPostal(direccionEntidad2,2222,eeuu,nuevaYork,brooklyn);
@@ -246,8 +255,8 @@ public class AddData {
             //tipoEntidad1.setActividad(); setearle contructora
             tipoEntidad1.setCantidadPersonal(150);
             tipoEntidad1.setPromedioVentasAnuales((float) 600000000.00);
-            tipoEntidad1.setCuit("");
-            tipoEntidad1.setRazonSocial("");
+            tipoEntidad1.setCuit("30-15269857-2");
+            tipoEntidad1.setRazonSocial("EAAF BA");
             tipoEntidad1.setCodigoDeInscripcion("");
             tipoEntidad1.setDireccionPostal(direccionPostalEntidad1);
 
@@ -258,8 +267,8 @@ public class AddData {
             tipoEntidad2.setCantidadPersonal(580);
             tipoEntidad2.setPromedioVentasAnuales((float) 960000000.00);
             //tipoEntidad2.determinarCategoria();
-            tipoEntidad2.setCuit("");
-            tipoEntidad2.setRazonSocial("");
+            tipoEntidad2.setCuit("30-15789655-7");
+            tipoEntidad2.setRazonSocial("EAAF NY");
             tipoEntidad2.setCodigoDeInscripcion("");
             tipoEntidad2.setDireccionPostal(direccionPostalEntidad2);
 
@@ -268,8 +277,8 @@ public class AddData {
             tipoEntidad3.setCantidadPersonal(240);
             tipoEntidad3.setPromedioVentasAnuales((float) 643710000.00);
             //tipoEntidad3.determinarCategoria();
-            tipoEntidad3.setCuit("");
-            tipoEntidad3.setRazonSocial("");
+            tipoEntidad3.setCuit("30-77896583-9");
+            tipoEntidad3.setRazonSocial("EAAF M");
             tipoEntidad3.setCodigoDeInscripcion("");
             tipoEntidad3.setDireccionPostal(direccionPostalEntidad3);
 
@@ -278,8 +287,8 @@ public class AddData {
             tipoEntidad4.setCantidadPersonal(8);
             tipoEntidad4.setPromedioVentasAnuales((float) 8000000.00);
             tipoEntidad4.determinarCategoria();
-            tipoEntidad4.setCuit("");
-            tipoEntidad4.setRazonSocial("");
+            tipoEntidad4.setCuit("30-25888897-8");
+            tipoEntidad4.setRazonSocial("Surcos CS");
             tipoEntidad4.setCodigoDeInscripcion("");
             tipoEntidad4.setDireccionPostal(direccionPostalEntidad4);
 

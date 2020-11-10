@@ -5,8 +5,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Egreso.Core.Proveedor;
-import Dominio.Entidad.Direccion;
-import Dominio.Entidad.DireccionPostal;
+import Dominio.Entidad.*;
 import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
 import Dominio.Rol.Rol;
@@ -215,6 +214,89 @@ public class AddData {
             proveedoresAPersistir.forEach(prov->repoProveedor.agregar(prov));
 
 
+
+
+
+            Pais argentina=null;
+            Pais eeuu=null;
+            Pais mexico=null;
+
+            Provincia caba=null;
+            Provincia provCiudadMexico=null;
+            Provincia nuevaYork=null;
+
+            Ciudad cabac=null;
+            Ciudad brooklyn=null;
+            Ciudad ciudadAUMexico=null;
+
+            Direccion direccionEntidad1=new Direccion("","","","");
+            Direccion direccionEntidad2=new Direccion("","","","");
+            Direccion direccionEntidad3=new Direccion("","","","");
+            Direccion direccionEntidad4=new Direccion("","","","");
+
+            DireccionPostal direccionPostalEntidad1=new DireccionPostal(direccionEntidad1,1111,argentina,caba,cabac);
+            DireccionPostal direccionPostalEntidad2=new DireccionPostal(direccionEntidad2,2222,eeuu,nuevaYork,brooklyn);
+            DireccionPostal direccionPostalEntidad3=new DireccionPostal(direccionEntidad3,3333,mexico,provCiudadMexico,ciudadAUMexico);
+            DireccionPostal direccionPostalEntidad4=new DireccionPostal(direccionEntidad4,4444,argentina,caba,cabac);
+
+
+
+            //genero empresas
+            Empresa tipoEntidad1= new Empresa();
+            //tipoEntidad1.setActividad(); setearle contructora
+            tipoEntidad1.setCantidadPersonal(150);
+            tipoEntidad1.setPromedioVentasAnuales((float) 600000000.00);
+            tipoEntidad1.setCuit("");
+            tipoEntidad1.setRazonSocial("");
+            tipoEntidad1.setCodigoDeInscripcion("");
+            tipoEntidad1.setDireccionPostal(direccionPostalEntidad1);
+
+            //tipoEntidad1.determinarCategoria();
+
+            Empresa tipoEntidad2= new Empresa();
+            //tipoEntidad2.setActividad(); setearle contructora
+            tipoEntidad2.setCantidadPersonal(580);
+            tipoEntidad2.setPromedioVentasAnuales((float) 960000000.00);
+            //tipoEntidad2.determinarCategoria();
+            tipoEntidad2.setCuit("");
+            tipoEntidad2.setRazonSocial("");
+            tipoEntidad2.setCodigoDeInscripcion("");
+            tipoEntidad2.setDireccionPostal(direccionPostalEntidad2);
+
+            Empresa tipoEntidad3= new Empresa();
+            //tipoEntidad3.setActividad(); setearle contructora
+            tipoEntidad3.setCantidadPersonal(240);
+            tipoEntidad3.setPromedioVentasAnuales((float) 643710000.00);
+            //tipoEntidad3.determinarCategoria();
+            tipoEntidad3.setCuit("");
+            tipoEntidad3.setRazonSocial("");
+            tipoEntidad3.setCodigoDeInscripcion("");
+            tipoEntidad3.setDireccionPostal(direccionPostalEntidad3);
+
+            Empresa tipoEntidad4= new Empresa();
+            //tipoEntidad4.setActividad(); setearle contructora
+            tipoEntidad4.setCantidadPersonal(8);
+            tipoEntidad4.setPromedioVentasAnuales((float) 8000000.00);
+            tipoEntidad4.determinarCategoria();
+            tipoEntidad4.setCuit("");
+            tipoEntidad4.setRazonSocial("");
+            tipoEntidad4.setCodigoDeInscripcion("");
+            tipoEntidad4.setDireccionPostal(direccionPostalEntidad4);
+
+
+            //Genero las entidades
+            Entidad entidad1= new EntidadJuridica("Oficina central de Argentina","",tipoEntidad1);
+            Entidad entidad2= new EntidadJuridica("Oficina central de Nueva York","",tipoEntidad2);
+            Entidad entidad3= new EntidadJuridica("Oficina central de Mexico","",tipoEntidad3);
+            Entidad entidad4= new EntidadJuridica("Surcos","",tipoEntidad4);
+            Entidad entidad5= new EntidadBase("Andhes","",(EntidadJuridica) entidad4);
+
+            Repositorio repoEntidad= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
+            repoEntidad.agregar(entidad1);
+            repoEntidad.agregar(entidad2);
+            repoEntidad.agregar(entidad3);
+            repoEntidad.agregar(entidad4);
+            repoEntidad.agregar(entidad5);
 
 
 

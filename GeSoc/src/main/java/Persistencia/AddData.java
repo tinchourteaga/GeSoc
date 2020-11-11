@@ -4,7 +4,8 @@ import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
-import Dominio.Egreso.Core.Proveedor;
+import Dominio.Entidad.Categorias.Categoria;
+import Dominio.Entidad.Categorias.TipoCategoria;
 import Dominio.Entidad.*;
 import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
@@ -21,7 +22,6 @@ import Persistencia.Repos.Repositorio;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,11 +36,8 @@ public class AddData {
 
         EntityManager entityManager = entityManagerFactory.createEntityManager();
 
-        TypedQuery<Usuario> query = entityManager.createQuery("SELECT u FROM pers_usuarios u", Usuario.class);
 
-        List<Usuario> results = query.getResultList();
-
-        if (results.size() == 0) {
+       // if (results.size() == 0) {
          //no hay nada cargado
 
             //creo roles
@@ -80,7 +77,7 @@ public class AddData {
 
             //creo paises
             //String id, String name, String locale, String currency_id
-            Pais pais1=new Pais();
+           /* Pais pais1=new Pais();
             Pais pais2=new Pais();
             Pais pais3=new Pais();
             Pais pais4=new Pais();
@@ -209,10 +206,67 @@ public class AddData {
             proveedoresAPersistir.add(proveedor15);
 
 
+
+
             //persistoProvedores
             DAO DAOProveedor = new DAOBBDD<Proveedor>();
             Repositorio repoProveedor = new Repositorio(DAOProveedor);
             proveedoresAPersistir.forEach(prov->repoProveedor.agregar(prov));
+
+*/
+
+            //genero y persisto actividades
+            Sector agropecuario = new Sector(new ArrayList<>(),"AGROPECUARIO","Sector agropecuario");
+            Categoria microArgo = new Categoria(agropecuario, TipoCategoria.MICRO,5,17260000f);
+            Categoria pequeniaAgro = new Categoria(agropecuario, TipoCategoria.PEQUENIA,10,	71960000f);
+            Categoria mediana1Agro = new Categoria(agropecuario, TipoCategoria.MEDIANA_TRAMO_1,50,426720000f);
+            Categoria mediana2Agro = new Categoria(agropecuario, TipoCategoria.MEDIANA_TRAMO_2,215,676810000f);
+            agropecuario.agregarCategoria(microArgo);
+            agropecuario.agregarCategoria(pequeniaAgro);
+            agropecuario.agregarCategoria(mediana1Agro);
+            agropecuario.agregarCategoria(mediana2Agro);
+
+            Sector iYm = new Sector(new ArrayList<>(),"INDUSTRIA Y MINERIA","Sector de industria y mineria");
+            Categoria microiYm = new Categoria(iYm, TipoCategoria.MICRO,15,33920000f);
+            Categoria pequeniaiYm = new Categoria(iYm, TipoCategoria.PEQUENIA,60,243290000f);
+            Categoria mediana1iYm = new Categoria(iYm, TipoCategoria.MEDIANA_TRAMO_1,235,1651750000f);
+            Categoria mediana2iYm = new Categoria(iYm, TipoCategoria.MEDIANA_TRAMO_2,655,2540380000f);
+            iYm.agregarCategoria(microiYm);
+            iYm.agregarCategoria(pequeniaiYm);
+            iYm.agregarCategoria(mediana1iYm);
+            iYm.agregarCategoria(mediana2iYm);
+
+
+            Sector comercio = new Sector(new ArrayList<>(),"COMERCIO","Sector comercio");
+            Categoria microcomercio = new Categoria(comercio, TipoCategoria.MICRO,7,36320000f);
+            Categoria pequeniacomercio = new Categoria(comercio, TipoCategoria.PEQUENIA,35,	247200000f);
+            Categoria mediana1comercio = new Categoria(comercio, TipoCategoria.MEDIANA_TRAMO_1,125,	1821760000f);
+            Categoria mediana2comercio = new Categoria(comercio, TipoCategoria.MEDIANA_TRAMO_2,345,2602540000f);
+            comercio.agregarCategoria(microcomercio);
+            comercio.agregarCategoria(pequeniacomercio);
+            comercio.agregarCategoria(mediana1comercio);
+            comercio.agregarCategoria(mediana2comercio);
+
+            Sector servicios = new Sector(new ArrayList<>(),"SERVICIOS","Sector de servicios");
+            Categoria microservicios = new Categoria(servicios, TipoCategoria.MICRO,7,9900000f);
+            Categoria pequeniaservicios = new Categoria(servicios, TipoCategoria.PEQUENIA,30,59710000f);
+            Categoria mediana1servicios = new Categoria(servicios, TipoCategoria.MEDIANA_TRAMO_1,165,494200000f);
+            Categoria mediana2servicios = new Categoria(servicios, TipoCategoria.MEDIANA_TRAMO_2,535,	705790000f);
+            servicios.agregarCategoria(microservicios);
+            servicios.agregarCategoria(pequeniaservicios);
+            servicios.agregarCategoria(mediana1servicios);
+            servicios.agregarCategoria(mediana2servicios);
+
+            Sector construccion = new Sector(new ArrayList<>(),"CONSTRUCCION","Sector de construcciones");
+            Categoria microconstruccion = new Categoria(construccion, TipoCategoria.MICRO,12,19450000f);
+            Categoria pequeniaconstruccion = new Categoria(construccion, TipoCategoria.PEQUENIA,45,115370000f);
+            Categoria mediana1construccion = new Categoria(construccion, TipoCategoria.MEDIANA_TRAMO_1,200,643710000f);
+            Categoria mediana2construccion = new Categoria(construccion, TipoCategoria.MEDIANA_TRAMO_2,590,965460000f);
+            construccion.agregarCategoria(microconstruccion);
+            construccion.agregarCategoria(pequeniaconstruccion);
+            construccion.agregarCategoria(mediana1construccion);
+            construccion.agregarCategoria(mediana2construccion);
+
 
 
 
@@ -221,22 +275,22 @@ public class AddData {
             Repositorio repoPaises= new Repositorio(new DAOBBDD<Pais>(Pais.class));
             List<Pais> todosLosPaises=repoPaises.getTodosLosElementos();
             Pais argentina=todosLosPaises.stream().filter(p->p.getName().equals("Argentina")).collect(Collectors.toList()).get(0);
-            Pais eeuu=todosLosPaises.stream().filter(p->p.getName().equals("Estados Unidos")).collect(Collectors.toList()).get(0);
+            Pais eeuu=todosLosPaises.stream().filter(p->p.getName().equals("Venezuela")).collect(Collectors.toList()).get(0);
             Pais mexico=todosLosPaises.stream().filter(p->p.getName().equals("Mexico")).collect(Collectors.toList()).get(0);
 
 
             Repositorio repoProvincias= new Repositorio(new DAOBBDD<Provincia>(Provincia.class));
             List<Provincia> todosLasProvincias=repoProvincias.getTodosLosElementos();
-            Provincia caba=todosLasProvincias.stream().filter(prov-> prov.getName().equals("CABA")).collect(Collectors.toList()).get(0);
-            Provincia provCiudadMexico=todosLasProvincias.stream().filter(prov-> prov.getName().equals("Ciudad de Mexico")).collect(Collectors.toList()).get(0);
-            Provincia nuevaYork=todosLasProvincias.stream().filter(prov-> prov.getName().equals("Nueva York")).collect(Collectors.toList()).get(0);
+            Provincia caba=todosLasProvincias.stream().filter(prov-> prov.getName().equals("Capital Federal")).collect(Collectors.toList()).get(0);
+            Provincia provCiudadMexico=todosLasProvincias.stream().filter(prov-> prov.getName().equals("Distrito Federal")).collect(Collectors.toList()).get(0);
+            Provincia nuevaYork=todosLasProvincias.stream().filter(prov-> prov.getName().equals("Nueva Esparta")).collect(Collectors.toList()).get(0);
 
 
             Repositorio repoCiudades= new Repositorio(new DAOBBDD<Ciudad>(Ciudad.class));
             List<Ciudad> todasLasCiudades=repoCiudades.getTodosLosElementos();
-            Ciudad cabac=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("CABA")).collect(Collectors.toList()).get(0);
-            Ciudad brooklyn=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("Brooklyn")).collect(Collectors.toList()).get(0);
-            Ciudad ciudadAUMexico=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("CiudadDeMexico")).collect(Collectors.toList()).get(0);
+            Ciudad cabac=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("Capital Federal")).collect(Collectors.toList()).get(0);
+            Ciudad brooklyn=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("Marcano")).collect(Collectors.toList()).get(0);
+            Ciudad ciudadAUMexico=todasLasCiudades.stream().filter(ciu->ciu.getName().equals("Tláhuac")).collect(Collectors.toList()).get(0);
 
             Direccion direccionEntidad1=new Direccion("Av. Medrano","971","","");
             Direccion direccionEntidad2=new Direccion("Liberty Ave"," 720","","");
@@ -252,38 +306,37 @@ public class AddData {
 
             //genero empresas
             Empresa tipoEntidad1= new Empresa();
-            //tipoEntidad1.setActividad(); setearle contructora
+            tipoEntidad1.setActividad(construccion);
             tipoEntidad1.setCantidadPersonal(150);
             tipoEntidad1.setPromedioVentasAnuales((float) 600000000.00);
             tipoEntidad1.setCuit("30-15269857-2");
             tipoEntidad1.setRazonSocial("EAAF BA");
             tipoEntidad1.setCodigoDeInscripcion("");
             tipoEntidad1.setDireccionPostal(direccionPostalEntidad1);
-
-            //tipoEntidad1.determinarCategoria();
+            tipoEntidad1.determinarCategoria();
 
             Empresa tipoEntidad2= new Empresa();
-            //tipoEntidad2.setActividad(); setearle contructora
+            tipoEntidad2.setActividad(construccion);
             tipoEntidad2.setCantidadPersonal(580);
             tipoEntidad2.setPromedioVentasAnuales((float) 960000000.00);
-            //tipoEntidad2.determinarCategoria();
+            tipoEntidad2.determinarCategoria();
             tipoEntidad2.setCuit("30-15789655-7");
             tipoEntidad2.setRazonSocial("EAAF NY");
             tipoEntidad2.setCodigoDeInscripcion("");
             tipoEntidad2.setDireccionPostal(direccionPostalEntidad2);
 
             Empresa tipoEntidad3= new Empresa();
-            //tipoEntidad3.setActividad(); setearle contructora
+            tipoEntidad3.setActividad(construccion);
             tipoEntidad3.setCantidadPersonal(240);
             tipoEntidad3.setPromedioVentasAnuales((float) 643710000.00);
-            //tipoEntidad3.determinarCategoria();
+            tipoEntidad3.determinarCategoria();
             tipoEntidad3.setCuit("30-77896583-9");
             tipoEntidad3.setRazonSocial("EAAF M");
             tipoEntidad3.setCodigoDeInscripcion("");
             tipoEntidad3.setDireccionPostal(direccionPostalEntidad3);
 
             Empresa tipoEntidad4= new Empresa();
-            //tipoEntidad4.setActividad(); setearle contructora
+            tipoEntidad4.setActividad(servicios);
             tipoEntidad4.setCantidadPersonal(8);
             tipoEntidad4.setPromedioVentasAnuales((float) 8000000.00);
             tipoEntidad4.determinarCategoria();
@@ -297,8 +350,8 @@ public class AddData {
             Entidad entidad1= new EntidadJuridica("Oficina central de Argentina","",tipoEntidad1);
             Entidad entidad2= new EntidadJuridica("Oficina central de Nueva York","",tipoEntidad2);
             Entidad entidad3= new EntidadJuridica("Oficina central de Mexico","",tipoEntidad3);
-            Entidad entidad4= new EntidadJuridica("Surcos","",tipoEntidad4);
-            Entidad entidad5= new EntidadBase("Andhes","",(EntidadJuridica) entidad4);
+            EntidadJuridica entidad4= new EntidadJuridica("Surcos","",tipoEntidad4);
+            Entidad entidad5= new EntidadBase("Andhes","", entidad4);
 
             Repositorio repoEntidad= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
             repoEntidad.agregar(entidad1);
@@ -342,7 +395,7 @@ public class AddData {
 
 
 
-        }
+        //}
     }
 }
 

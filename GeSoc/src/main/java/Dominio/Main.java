@@ -1,6 +1,9 @@
 package Dominio;
 
+import API.ML.ControllerMercadoLibre;
 import Servidor.Servidor;
+
+import java.io.IOException;
 
 public class Main {
 
@@ -78,20 +81,21 @@ public class Main {
         System.out.println("Los egresos vinculados al ingreso "+otroIngreso.getIngreso()+" es: "+otroIngreso.getGastadoEn());
     */
 
+//cargo cosas de ML
+        try {
+        ControllerMercadoLibre.getControllerMercadoLibre().inicializarBase();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
 
         //corro la base
-        /*try {
+      /*  try {
             AddData.main(args);
         } catch (IOException | ExcepcionNumero | ExcepcionContraseniaComun | ExcepcionCaracterEspecial | ExcepcionLongitud e) {
             e.printStackTrace();//no deberias pasar por aca, pero tincho no se banca tener un try and catch donde corresponde
         }*/
 
-        //cargo cosas de ML
-      /*  try {
-            ControllerMercadoLibre.getControllerMercadoLibre().inicializarBase();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
+
 
      /*   Rol admin = new Administrador();
         Rol estandar=new Estandar();

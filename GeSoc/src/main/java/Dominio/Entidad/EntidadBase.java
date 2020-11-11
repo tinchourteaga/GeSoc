@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue(value = "B")
 public class EntidadBase extends Entidad{
-    @Embedded
+    @ManyToOne
+    @JoinColumn(name="entidad_juridica_asociada",insertable = false, updatable = false)
     EntidadJuridica entidadJuridicaAsociada;
 
     public EntidadBase() { }
@@ -13,5 +14,6 @@ public class EntidadBase extends Entidad{
     public EntidadBase(String nombreEntidad, String descripcionEntidad,EntidadJuridica entidadAsociada) {
         super(nombreEntidad, descripcionEntidad);
         this.entidadJuridicaAsociada=entidadAsociada;
+        entidadAsociada.entidades.add(this);
     }
 }

@@ -32,9 +32,9 @@ public class Mensaje {
     @Column(name = "leido")
     private Boolean leido;
 
-    @OneToOne
-    @Column(name = "egreso_asociado")
-    private Egreso egreso;
+    @ManyToOne
+    @JoinColumn(name = "egreso_asociado")
+    Egreso egreso;
 
     public Mensaje() { }
 

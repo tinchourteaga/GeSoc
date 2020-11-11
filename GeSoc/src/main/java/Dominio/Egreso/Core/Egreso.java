@@ -1,6 +1,7 @@
 package Dominio.Egreso.Core;
 
 import Converters.LocalDateAttributeConverter;
+import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
@@ -56,6 +57,11 @@ public class Egreso {
     @ManyToOne
     @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     private Entidad entidad;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "egreso_asociado")
+    List<Mensaje> mensajes = new ArrayList<>();
+
 
     @Transient
     private Presupuesto presupuestoPactado;

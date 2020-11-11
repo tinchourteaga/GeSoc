@@ -101,7 +101,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u848" class="ax_default droplist">
         <div id="u848_div" class=""></div>
-        <select name="egreso" id="u848_input" class="u848_input">
+        <select name="egreso" id="u848_input" disabled class="u848_input">
           <option class="u848_input_option" value="Seleccionar Egreso">Seleccionar Egreso</option>
           <option class="u848_input_option" value="Egreso 1">Egreso 1</option>
           <option class="u848_input_option" value="Egreso 2">Egreso 2</option>
@@ -163,13 +163,13 @@
       <!-- Unnamed (Text Field) -->
       <div id="u854" class="ax_default text_field">
         <div id="u854_div" class=""></div>
-        <input name="fecha" id="u854_input" type="date" value="Fecha" class="u854_input"/>
+        <input name="fecha" id="u854_input" disabled type="date" value="Fecha" class="u854_input"/>
       </div>
 
       <!-- Unnamed (Droplist) -->
       <div id="u855" class="ax_default droplist">
         <div id="u855_div" class=""></div>
-        <select name="ingreso" id="u855_input" class="u855_input">
+        <select name="ingreso" id="u855_input" disabled class="u855_input">
           <option class="u855_input_option" value="Seleccionar Ingreso">Seleccionar Ingreso</option>
           <option class="u855_input_option" value="Ingreso 1">Ingreso 1</option>
           <option class="u855_input_option" value="Ingreso 2">Ingreso 2</option>
@@ -282,7 +282,7 @@
       <div id="u879" class="ax_default droplist" data-label="Entidades">
         <div id="u879_div" class=""></div>
         <select name="entidad" id="u879_input" class="u879_input" onchange="disableCheckBox(this)">
-          <option class="u879_input_option" value="Seleccione una estrategia">Seleccione una estrategia</option>
+          <option class="u879_input_option" value="Seleccione">Seleccione una estrategia</option>
           <option class="u879_input_option" value="Manual">Manual</option>
           <option class="u879_input_option" value="Automática">Automática</option>
         </select>
@@ -712,16 +712,29 @@
     <script src="resources/scripts/axure/ios.js"></script>
     <script>
     function disableCheckBox(v) {
+
         if (v.value == 'Automática'){
             chk_unos.disabled = false;
             chk_doss.disabled = false;
             chk_tress.disabled = false;
-        }
-        else{
-
+            u854_input.disabled = true;
+            u848_input.disabled = true;
+            u855_input.disabled = true;
+        }else if (v.value == 'Manual'){
             chk_unos.disabled = true;
             chk_doss.disabled = true;
             chk_tress.disabled = true;
+            u854_input.disabled = false;
+            u848_input.disabled = false;
+            u855_input.disabled = false;
+        }
+        else{
+            chk_unos.disabled = true;
+            chk_doss.disabled = true;
+            chk_tress.disabled = true;
+            u854_input.disabled = true;
+            u848_input.disabled = true;
+            u855_input.disabled = true;
 		}
     }
 </script>

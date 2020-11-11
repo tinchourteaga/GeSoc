@@ -372,7 +372,7 @@ public class AddData {
         entidad1.agregarIngreso(ingreso1);
         entidad1.agregarIngreso(ingreso2);
         entidad1.agregarIngreso(ingreso3);
-        entidad3.agregarIngreso(ingreso4);
+        entidad4.agregarIngreso(ingreso4);
 
 
 

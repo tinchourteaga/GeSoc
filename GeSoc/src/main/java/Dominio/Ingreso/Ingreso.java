@@ -30,7 +30,7 @@ public class Ingreso {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     private Entidad entidad;
 

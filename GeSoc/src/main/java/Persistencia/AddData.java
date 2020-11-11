@@ -7,6 +7,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Entidad.Categorias.Categoria;
 import Dominio.Entidad.Categorias.TipoCategoria;
 import Dominio.Entidad.*;
+import Dominio.Ingreso.Ingreso;
 import Dominio.Rol.Administrador;
 import Dominio.Rol.Estandar;
 import Dominio.Rol.Rol;
@@ -23,6 +24,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -353,15 +355,39 @@ public class AddData {
             EntidadJuridica entidad4= new EntidadJuridica("Surcos","",tipoEntidad4);
             Entidad entidad5= new EntidadBase("Andhes","", entidad4);
 
-            Repositorio repoEntidad= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
-            repoEntidad.agregar(entidad1);
-            repoEntidad.agregar(entidad2);
-            repoEntidad.agregar(entidad3);
-            repoEntidad.agregar(entidad4);
-            repoEntidad.agregar(entidad5);
+
+
+            //armo los ingresos de cada empresa
+        Ingreso ingreso1=new Ingreso("Peso Argentino", 20000,LocalDate.parse("2020-02-25"), "Donación de terceros" ,new ArrayList());
+        Ingreso ingreso2=new Ingreso("Peso Argentino", 10000, LocalDate.parse("2020-05-02"), "Donación de Rimoli SA" ,new ArrayList());
+        Ingreso ingreso3=new Ingreso("Peso Argentino", 980000,LocalDate.parse("2020-08-03"), "Donación de Gran Imperio" ,new ArrayList());
+        Ingreso ingreso4=new Ingreso("Peso Argentino", 10000, LocalDate.parse("2020-05-01"), "Donación Gabino SRL" ,new ArrayList());
+
+        ingreso1.setEntidad(entidad1);
+        ingreso2.setEntidad(entidad1);
+        ingreso3.setEntidad(entidad1);
+        ingreso4.setEntidad(entidad4);
+
+
+        entidad1.agregarIngreso(ingreso1);
+        entidad1.agregarIngreso(ingreso2);
+        entidad1.agregarIngreso(ingreso3);
+        entidad3.agregarIngreso(ingreso4);
 
 
 
+        Repositorio repoEntidad= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
+        repoEntidad.agregar(entidad1);
+        repoEntidad.agregar(entidad2);
+        repoEntidad.agregar(entidad3);
+        repoEntidad.agregar(entidad4);
+        repoEntidad.agregar(entidad5);
+
+        Repositorio repoIngresos= new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+        repoIngresos.agregar(ingreso1);
+        repoIngresos.agregar(ingreso2);
+        repoIngresos.agregar(ingreso3);
+        repoIngresos.agregar(ingreso4);
 
 
 

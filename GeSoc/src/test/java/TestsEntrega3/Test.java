@@ -19,8 +19,8 @@ import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Direccion;
 import Dominio.Entidad.DireccionPostal;
 import Dominio.Rol.Acciones.AgregarJerarquia;
-import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import Dominio.Rol.Administrador;
+import Dominio.Rol.Exepciones.NoTengoPermisosException;
 import Dominio.Usuario.Usuario;
 import Lugares.Ciudad;
 import Lugares.Pais;
@@ -42,12 +42,13 @@ public class Test {
     @org.junit.Test
     public void testValidadorNoPasaCriterio(){
         List<Presupuesto> presupuestos=new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),504000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),56000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(51000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(52000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(53000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(504000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(55000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(56000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
         List<Proveedor> proveedores=new ArrayList();
         proveedores.add(new Proveedor("agdasd","aaaa b4bb","28493672816",direc));
         proveedores.add(new Proveedor("aydasd","aaaa bbtb","28473672816",direc));
@@ -67,16 +68,16 @@ public class Test {
         ValidacionCantidadPresupuestos validacion3 = new ValidacionCantidadPresupuestos(proveedores);
         ValidacionCriterioProveedor validacion4 = new ValidacionCriterioProveedor();
 
-        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",100000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
+        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina", Arrays.asList(new Item(100000f,"",1)),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioFalla());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
         Assert.assertEquals( new NoCumpleValidacionDeCriterioException().toString(),fallo.getMensajeResultado());
     }
     @org.junit.Test
     public void testValidadorNoPasaOperacion() {
         List<Presupuesto> presupuestos = new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(), 51000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(), 52000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(), 53000, new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(), Arrays.asList(new Detalle(51000,"",1)), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(), Arrays.asList(new Detalle(52000,"",1)), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(), Arrays.asList(new Detalle(53000,"",1)), new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO, "no hay doc"), prov));
         List<Proveedor> proveedores = new ArrayList();
         proveedores.add(new Proveedor("asdasd", "aaaa bbbb", "28483672816", direc));
         proveedores.add(new Proveedor("agdasd", "aaaa b4bb", "28493672816", direc));
@@ -93,7 +94,7 @@ public class Test {
         ValidacionCantidadPresupuestos validacion3 = new ValidacionCantidadPresupuestos(proveedores);
         ValidacionCriterioProveedor validacion4 = new ValidacionCriterioProveedor();
 
-        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",51000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",Arrays.asList(new Item(51000f,"",1)),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje fallo=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,(new ArrayList(){{add(validacion1); add(validacion2); add(validacion3); add(validacion4);}}));
         Assert.assertEquals(new NoCumpleValidacionException().toString(),fallo.getMensajeResultado());
     }
@@ -114,11 +115,11 @@ public class Test {
         Administrador rolPrueba = new Administrador();
         Usuario unUsuario=new Usuario(rolPrueba,"pepito", "fachero","SiestaContr4senia no funca me m@deo", "41658239", "mail@mail.com");
         List<Presupuesto> presupuestos=new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),54000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(51000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(52000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(53000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(54000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(55000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
 
         List<Proveedor> proveedores=new ArrayList<>();
         proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));
@@ -133,7 +134,7 @@ public class Test {
             proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
         }
 
-        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",Arrays.asList(new Item(53000f,"",1)),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         roladmin.realizarAccion(agregarJerarquia);
         Assert.assertEquals(criterioDummyHijo, criterioDummy.getHijos().get(0));
     }
@@ -141,11 +142,11 @@ public class Test {
     @org.junit.Test
     public void testValidadorPasaOperacion(){
         List<Presupuesto> presupuestos=new ArrayList<>();
-        presupuestos.add(new Presupuesto(new ArrayList<>(),51000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),52000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),53000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),54000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
-        presupuestos.add(new Presupuesto(new ArrayList<>(),55000,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(51000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(52000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(53000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(54000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
+        presupuestos.add(new Presupuesto(new ArrayList<>(),Arrays.asList(new Detalle(55000,"",1)),new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hay doc"), prov));
 
         List<Proveedor> proveedores=new ArrayList();
         proveedores.add(new Proveedor("asdasd","aaaa bbbb","28483672816",direc));
@@ -160,7 +161,7 @@ public class Test {
             proveedores.get(i).getPresupuestos().add(presupuestos.get(numeros.get(i)));
         }
 
-        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",53000, new ArrayList<>(),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
+        Egreso unEgreso=new Egreso(LocalDate.now(),"Argentina",Arrays.asList(new Item(53000f,"",1)),new MetodoDePago(TipoDeMedioDePago.CHEQUE,"as"),presupuestos,new DocumentoComercial(TipoDocumentoComercial.SIN_DOCUMENTO,"no hubo documento"),new CriterioMenorPrecio());
         Mensaje cumplio=ValidadorDeOperacion.validarCustomSinBasicas(unEgreso,ValidadorDeOperacion.getValidaciones());
         Assert.assertEquals("Paso exitosamente todas las Validaciones",cumplio.getMensajeResultado());
         //no entiendo porque no da este tests

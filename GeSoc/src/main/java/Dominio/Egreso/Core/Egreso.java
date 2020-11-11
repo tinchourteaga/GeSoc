@@ -29,18 +29,18 @@ public class Egreso {
     @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
-    @OneToOne
+    @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "valor")
     private Valor valor;
 
     @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL)
     private List<Item> listaItems;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "metodo_pago", referencedColumnName = "metodo_pago")
     private MetodoDePago metodoDePago;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "documento_comercial")
     private DocumentoComercial documentoComercial;
 
@@ -63,18 +63,20 @@ public class Egreso {
     List<Mensaje> mensajes = new ArrayList<>();
 
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "presupuesto_pactado")
     private Presupuesto presupuestoPactado;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "egreso_presupuestado")
     private List<Presupuesto> presupuestosAConsiderar;
 
     public Egreso() { }
 
-    public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Presupuesto> presupuestos, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
+    public Egreso(LocalDate unaFecha, String pais, List<Item> items, MetodoDePago metodo, List<Presupuesto> presupuestos, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
        this.fecha=unaFecha;
-       this.valor= new Valor(pais,importe);
+       this.valor= new Valor(pais,items.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
        this.listaItems=items;
        this.metodoDePago=metodo;
        this.documentoComercial=unDocumento;

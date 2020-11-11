@@ -28,7 +28,7 @@ public class Presupuesto {
     @OneToMany(mappedBy = "detalle", cascade = CascadeType.ALL)
     private List<Detalle> detalles;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "documento_comercial")
     private DocumentoComercial documentoComercial;
 
@@ -38,9 +38,9 @@ public class Presupuesto {
 
     public Presupuesto() { }
 
-    public Presupuesto(List<Criterio> criterios, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
+    public Presupuesto(List<Criterio> criterios, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
         this.criterios = criterios;
-        this.valor = valor;
+        this.valor = detalles.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element);
         this.detalles = detalles;
         this.documentoComercial = documentoComercial;
         this.proveedor = proveedor;

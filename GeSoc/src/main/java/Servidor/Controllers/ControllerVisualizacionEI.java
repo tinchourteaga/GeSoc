@@ -15,10 +15,7 @@ import spark.Request;
 import spark.Response;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ControllerVisualizacionEI {
@@ -55,7 +52,7 @@ public class ControllerVisualizacionEI {
         Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),"descrip2",new ArrayList<>());
         Ingreso ingresoPrueba3 = new Ingreso("$",3,LocalDate.of(2020,10,14),"descrip3",new ArrayList<>());
 
-        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", 8888, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
+        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", Arrays.asList(new Item(8888f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
             @Override
             public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
                 return null;
@@ -72,7 +69,7 @@ public class ControllerVisualizacionEI {
             }
         });
 
-        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay", 2222, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
+        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay",  Arrays.asList(new Item(2222f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
             @Override
             public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
                 return null;

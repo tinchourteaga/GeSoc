@@ -15,17 +15,24 @@ public class Detalle {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name = "cantidad")
+    private Integer cantidad;
+
     @ManyToOne
     @JoinColumn(name = "presupuesto", referencedColumnName = "presupuesto")
     private Presupuesto presupuesto;
 
     public Detalle() { }
 
-    public Detalle(float valor, String descripcion) {
+    public Detalle(float valor, String descripcion,Integer cantidad) {
         this.valor = valor;
         this.descripcion = descripcion;
+        this.cantidad=cantidad;
     }
 
+    public Integer getCantidad() {
+        return cantidad;
+    }
     public float getValor() {
         return valor;
     }

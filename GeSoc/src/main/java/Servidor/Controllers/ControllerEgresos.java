@@ -35,7 +35,7 @@ public class ControllerEgresos {
         String descripcionDocComercial = request.queryParams("descripcionDocComercial");
 
         //TODO
-        Egreso egreso = new Egreso(LocalDate.parse(fecha), "Uruguay", 0, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, descripcionDocComercial), null);
+        Egreso egreso = new Egreso(LocalDate.parse(fecha), "Uruguay", new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, descripcionDocComercial), null);
 
         if(request.queryParams("esRevisor")!=null){
 
@@ -85,7 +85,7 @@ public class ControllerEgresos {
 
         Egreso objEgreso = egresos.get(i);
 
-        Item objItem = new Item(valor,item); //quiero persistir todos de un saque
+        Item objItem = new Item(valor,item,1); //quiero persistir todos de un saque
 
         objEgreso.agregarItem(objItem);
 

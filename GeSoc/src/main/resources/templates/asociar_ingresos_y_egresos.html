@@ -121,15 +121,15 @@
       <div id="u850">
 
         <div id="chk_uno">
-          <input type="checkbox" style="text-align:center; vertical-align:middle;"/> Orden valor primero egreso
+          <input type="checkbox" id="chk_unos" disabled style="text-align:center; vertical-align:middle;"/> Orden valor primero egreso
         </div>
 
         <div id="chk_dos">
-          <input type="checkbox" style="text-align:center; vertical-align:middle;"/> Orden valor primero ingreso
+          <input type="checkbox" id="chk_doss" disabled style="text-align:center; vertical-align:middle;"/> Orden valor primero ingreso
         </div>
 
         <div id="chk_tres">
-          <input type="checkbox" style="text-align:center; vertical-align:middle;"/> Por fecha
+          <input type="checkbox" id="chk_tress" disabled style="text-align:center; vertical-align:middle;"/> Por fecha
         </div>
 
       </div>
@@ -281,11 +281,10 @@
       <!-- Entidades (Droplist) -->
       <div id="u879" class="ax_default droplist" data-label="Entidades">
         <div id="u879_div" class=""></div>
-        <select name="entidad" id="u879_input" class="u879_input">
+        <select name="entidad" id="u879_input" class="u879_input" onchange="disableCheckBox(this)">
           <option class="u879_input_option" value="Seleccione una estrategia">Seleccione una estrategia</option>
-          <option class="u879_input_option" value="Entidad 1">Entidad 1</option>
-          <option class="u879_input_option" value="Entidad 2">Entidad 2</option>
-          <option class="u879_input_option" value="Entidad 3">Entidad 3</option>
+          <option class="u879_input_option" value="Manual">Manual</option>
+          <option class="u879_input_option" value="Automática">Automática</option>
         </select>
       </div>
 
@@ -711,6 +710,20 @@
         <div id="includedContent"></div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
+    <script>
+    function disableCheckBox(v) {
+        if (v.value == 'Automática'){
+            chk_unos.disabled = false;
+            chk_doss.disabled = false;
+            chk_tress.disabled = false;
+        }
+        else{
 
+            chk_unos.disabled = true;
+            chk_doss.disabled = true;
+            chk_tress.disabled = true;
+		}
+    }
+</script>
   </body>
 </html>

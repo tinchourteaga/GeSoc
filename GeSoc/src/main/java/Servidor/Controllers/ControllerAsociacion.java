@@ -142,8 +142,8 @@ public class ControllerAsociacion {
             }
         });
 
-        Presupuesto presupuesto1 = new Presupuesto(new ArrayList<>(),233f,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.REMITO,"remito"),new Proveedor("","","",null));
-        Presupuesto presupuesto2 = new Presupuesto(new ArrayList<>(),500f,new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.REMITO,"remito"),new Proveedor("","","",null));
+        Presupuesto presupuesto1 = new Presupuesto(new ArrayList<>(),new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.REMITO,"remito"),new Proveedor("","","",null));
+        Presupuesto presupuesto2 = new Presupuesto(new ArrayList<>(),new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.REMITO,"remito"),new Proveedor("","","",null));
 
         presupuesto1.setPresupuesto(23);
         presupuesto2.setPresupuesto(3);

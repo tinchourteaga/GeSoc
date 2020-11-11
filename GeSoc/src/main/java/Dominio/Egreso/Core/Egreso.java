@@ -29,18 +29,18 @@ public class Egreso {
     @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
-    @OneToOne
+    @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "valor")
     private Valor valor;
 
     @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL)
     private List<Item> listaItems;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "metodo_pago", referencedColumnName = "metodo_pago")
     private MetodoDePago metodoDePago;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "documento_comercial")
     private DocumentoComercial documentoComercial;
 
@@ -63,10 +63,12 @@ public class Egreso {
     List<Mensaje> mensajes = new ArrayList<>();
 
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "presupuesto_pactado")
     private Presupuesto presupuestoPactado;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "egreso_presupuestado")
     private List<Presupuesto> presupuestosAConsiderar;
 
     public Egreso() { }

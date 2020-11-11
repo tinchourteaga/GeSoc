@@ -85,7 +85,7 @@ public class ControllerEgresos {
 
         Egreso objEgreso = egresos.get(i);
 
-        Item objItem = new Item(valor,item); //quiero persistir todos de un saque
+        Item objItem = new Item(valor,item,1); //quiero persistir todos de un saque
 
         objEgreso.agregarItem(objItem);
 

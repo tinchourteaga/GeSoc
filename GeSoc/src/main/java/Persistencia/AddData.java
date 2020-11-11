@@ -418,39 +418,103 @@ public class AddData {
 
         //cargo presupuestos son 8
 
+        Detalle detalle1= new Detalle(9900.8f,"PINTURA Z10 LATEX SUPERCUBRITIVO 20L",1);
+        Detalle detalle2=new Detalle(7200f,"PINTURA LOXON FTES IMPERMEABILIZANTE 10L",1);
+        Detalle detalle3=new Detalle(4350.8f,"PINTURA BRIKOL PISOS NEGRO 4L",1);
+        Detalle detalle4=new Detalle(9610.5f,"PINTURA Z10 LATEX SUPERCUBRITIVO 20L",1);
+        Detalle detalle5=new Detalle(6590.3f,"PINTURA LOXON FTES IMPERMEABILIZANTE 10L",1);
+        Detalle detalle6=new Detalle(4100f,"PINTURA BRIKOL PISOS NEGRO 4L",1);
+        Detalle detalle7=new Detalle(9625f,"PINTURA Z10 LATEX SUPERCUBRITIVO 20L",1);
+        Detalle detalle8=new Detalle(6589.4f,"PINTURA LOXON FTES IMPERMEABILIZANTE 10L",1);
+        Detalle detalle9=new Detalle(3738.29f,"PINTURA BRIKOL PISOS NEGRO 4L",1);
+        Detalle detalle10=new Detalle(8950f,"TELEFONOS INALAMBRICOS MOTOROLA DUO BLANCO",2);
+        Detalle detalle11=new Detalle(8830f,"TELEFONOS INALAMBRICOS MOTOROLA DUO BLANCO",2);
+        Detalle detalle12=new Detalle(8500f,"TELEFONOS INALAMBRICOS MOTOROLA DUO BLANCO",2);
+        Detalle detalle13=new Detalle(715f,"CEMENTO LOMA NEGRA",10);
+        Detalle detalle14=new Detalle(3150f,"ARENA FINA EN BOLSÓN X M30",5);
+        Detalle detalle15=new Detalle(880f,"HIERRO ACINDAR",4);
+        Detalle detalle16=new Detalle(235f,"BLOQUE LADRILLO CEMENTO",800);
+        Detalle detalle17=new Detalle(704.4f,"CEMENTO LOMA NEGRA",10);
+        Detalle detalle18=new Detalle(3100f,"ARENA FINA EN BOLSÓN X M30",5);
+        Detalle detalle19=new Detalle(891f,"HIERRO ACINDAR",4);
+        Detalle detalle20=new Detalle(227f,"BLOQUE LADRILLO CEMENTO",800);
+
+
+
+
         List<Criterio> criterios1= new ArrayList();
         List<Detalle> detalles1= new ArrayList<>();
+        detalles1.add(detalle1);
+        detalles1.add(detalle2);
+        detalles1.add(detalle3);
+
 
         List<Criterio> criterios2= new ArrayList();
         List<Detalle> detalles2= new ArrayList<>();
+        detalles2.add(detalle4);
+        detalles2.add(detalle5);
+        detalles2.add(detalle6);
+
+
 
         List<Criterio> criterios3= new ArrayList();
         List<Detalle> detalles3= new ArrayList<>();
+        detalles3.add(detalle7);
+        detalles3.add(detalle8);
+        detalles3.add(detalle9);
+
 
         List<Criterio> criterios4= new ArrayList();
         List<Detalle> detalles4= new ArrayList<>();
+        detalles4.add(detalle10);
+
+
 
         List<Criterio> criterios5= new ArrayList();
         List<Detalle> detalles5= new ArrayList<>();
+        detalles5.add(detalle11);
 
         List<Criterio> criterios6= new ArrayList();
         List<Detalle> detalles6= new ArrayList<>();
+        detalles6.add(detalle12);
+
 
         List<Criterio> criterios7= new ArrayList();
         List<Detalle> detalles7= new ArrayList<>();
+        detalles7.add(detalle13);
+        detalles7.add(detalle14);
+        detalles7.add(detalle15);
+        detalles7.add(detalle16);
+
 
         List<Criterio> criterios8= new ArrayList();
         List<Detalle> detalles8= new ArrayList<>();
+        detalles8.add(detalle17);
+        detalles8.add(detalle18);
+        detalles8.add(detalle19);
+        detalles8.add(detalle20);
 
-        Presupuesto presupuesto1= new Presupuesto(criterios1, 9900.8f+7200f+4350.8f, detalles1, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor8);
-        Presupuesto presupuesto2= new Presupuesto(criterios2, 9900.8f+7200f+4350.8f, detalles2, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor9);
-        Presupuesto presupuesto3= new Presupuesto(criterios3, 9900.8f+7200f+4350.8f, detalles3, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor1);
-        Presupuesto presupuesto4= new Presupuesto(criterios4, 9900.8f+7200f+4350.8f, detalles4, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor10);
-        Presupuesto presupuesto5= new Presupuesto(criterios5, 9900.8f+7200f+4350.8f, detalles5, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor11);
-        Presupuesto presupuesto6= new Presupuesto(criterios6, 9900.8f+7200f+4350.8f, detalles6, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor5);
-        Presupuesto presupuesto7= new Presupuesto(criterios7, 9900.8f+7200f+4350.8f, detalles7, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor12);
-        Presupuesto presupuesto8= new Presupuesto(criterios8, 9900.8f+7200f+4350.8f, detalles8, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor6);
 
+        Presupuesto presupuesto1= new Presupuesto(criterios1, detalles1, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor8);
+        Presupuesto presupuesto2= new Presupuesto(criterios2, detalles2, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor9);
+        Presupuesto presupuesto3= new Presupuesto(criterios3, detalles3, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor1);
+        Presupuesto presupuesto4= new Presupuesto(criterios4, detalles4, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor10);
+        Presupuesto presupuesto5= new Presupuesto(criterios5, detalles5, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor11);
+        Presupuesto presupuesto6= new Presupuesto(criterios6, detalles6, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor5);
+        Presupuesto presupuesto7= new Presupuesto(criterios7, detalles7, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor12);
+        Presupuesto presupuesto8= new Presupuesto(criterios8, detalles8, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor6);
+
+
+        presupuestos1.add(presupuesto1);
+        presupuestos1.add(presupuesto2);
+        presupuestos1.add(presupuesto3);
+
+        presupuestos4.add(presupuesto4);
+        presupuestos4.add(presupuesto5);
+        presupuestos4.add(presupuesto6);
+
+        presupuestos5.add(presupuesto7);
+        presupuestos5.add(presupuesto8);
 
         //cargo egresos son 10
 
@@ -466,6 +530,28 @@ public class AddData {
         Egreso egreso9= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", 9625+6589.4+3738.29, items9, metodo9, presupuestos9,  unDocumento9, criterio1);
         Egreso egreso10= new Egreso(LocalDate.parse("2020-09-25"), "Argentina", 9625+6589.4+3738.29, items10, metodo10, presupuestos10,  unDocumento10, criterio1);
 
+        entidad1.agregarEgreso(egreso1);
+        entidad1.agregarEgreso(egreso2);
+        entidad1.agregarEgreso(egreso3);
+        entidad1.agregarEgreso(egreso4);
+        entidad1.agregarEgreso(egreso5);
+        entidad1.agregarEgreso(egreso6);
+        entidad1.agregarEgreso(egreso7);
+        egreso1.setEntidad(entidad1);
+        egreso2.setEntidad(entidad1);
+        egreso3.setEntidad(entidad1);
+        egreso4.setEntidad(entidad1);
+        egreso5.setEntidad(entidad1);
+        egreso6.setEntidad(entidad1);
+        egreso7.setEntidad(entidad1);
+
+        entidad4.agregarEgreso(egreso8);
+        entidad4.agregarEgreso(egreso9);
+        entidad4.agregarEgreso(egreso10);
+
+        egreso8.setEntidad(entidad4);
+        egreso9.setEntidad(entidad4);
+        egreso10.setEntidad(entidad4);
 
 
 

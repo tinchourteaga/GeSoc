@@ -14,6 +14,7 @@
     <!--Magia JavaScript-->
     <script src="resources/scripts/jquery-3.2.1.min.js"></script>
     <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!--Import para la sidebar-->
     <script>
@@ -32,22 +33,22 @@
 
         <div id="proveedor_seleccionado">
             <p><span>Proveedor: </span></p>
-            <input type="text" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+            <input type="datosTraidos" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
         </div>
 
         <div id="fecha">
             <p><span>Fecha: </span></p>
-            <input type="text" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+            <input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
         </div>
 
         <div id="metodo_de_pago">
             <p><span>Método de pago: </span></p>
-            <input type="text" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+            <input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
         </div>
 
         <div id="documento_comercial">
             <p><span>Documento comercial: </span></p>
-            <input type="text" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+            <input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
         </div>
 
         <div id="botoncitos">
@@ -58,30 +59,31 @@
         <div id="tabla_dinamica">
 
             <div id="tabla_dinamica_fila">
-                <table width="100%" border="1">
+                <table width="100%" class="tablaCSS">
                     <thead>
-                    <tr>
-                        <th style=" border: 1px solid #515559; background-color:#e5e5e5; width:2.6%" ></th>
-                        <th style=" border: 1px solid #515559; background-color:#e5e5e5; width:24.6%">Nombre item</th>
-                        <th style=" border: 1px solid #515559; background-color:#e5e5e5; width:24.6%">Cantidad</th>
-                        <th style=" border: 1px solid #515559; background-color:#e5e5e5; width:24.6%">Precio de unitario</th>
-                    </tr>
+                        <tr>
+                            <th></th> <!--style="width:2.6%" -->
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre item</th> <!--style="width:24.6%"-->
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Cantidad</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Precio de unitario</th>
+                        </tr>
+                    </thead>
                 </table>
             </div>
 
-            <table id="dataTable" width="100%" border="1" position="absolute">
-                <tr>
+            <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
+                <tr id="trTable">
                     <td><input type="checkbox" name="chk" style="align: center;"/></td>
-                    <td><input type="text" name="txt" style="width: 100%; text-align: center;"/></td>
-                    <td><input type="text" name="txt" style="width: 100%; text-align: center;"/></td>
-                    <td><input type="text" name="txt" style="width: 100%; text-align: center;"/></td>
+                    <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
+                    <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
+                    <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
                 </tr>
             </table>
         </div>
 
         <div id="total">
-            <p><span>Total: </span></p>
-            <input type="text" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+            <p><span class="total">Total:  </span></p>
+            <input id="total_input" type="text2" name="txt" class="variables_fijas" disabled/>
         </div>
 
         <div id="cargar_items">
@@ -120,6 +122,9 @@
 							break;
 				}
 			}
+
+			//document.getElementById("total_input").value = String(sumatoria(tableID));
+
 		}
 
 		function deleteRow(tableID) {
@@ -140,11 +145,41 @@
 					i--;
 				}
 
-
 			}
 			}catch(e) {
 				alert(e);
 			}
+
+			document.getElementById("total_input").value = String(sumatoria(tableID));
+		}
+
+		function sumatoria(tableID) {
+		    var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            var sumatoria = 0;
+
+            //document.getElementById("total_input").value = "Puto";
+
+            for(var i=0; i<rowCount; i++) {
+                //sumatoria += document.getElementById(tableID).rows[i].celdaCantidad * document.getElementById(tableID).rows[i].celdaPrecioUnitario;
+
+                cantidadIngresada = table.rows[i].cells[2].childNodes[0];
+                precioIngresado = table.rows[i].cells[3].childNodes[0];
+
+                sumatoria += cantidadIngresada.value * precioIngresado.value;
+
+                //document.write(String(cantidadIngresada.value)+"//");
+
+                //document.write(String(celdaEspecifica);
+                //document.getElementById(celdaCantidadInput).value = "Puto";
+            }
+
+            //document.write(String(sumatoria));
+
+            sumatoria = " " + sumatoria;
+
+            document.getElementById("total_input").value = String(sumatoria);
+            return sumatoria;
 		}
     </script>
 </body>

@@ -393,34 +393,24 @@
       <div id="u1189" class="ax_default">
         <div id="u1189_state0" class="panel_state" data-label="State1" style="">
           <div id="u1189_state0_content" class="panel_state_content">
-            <table id="u5959" class="centerTable" cellpadding="0" cellspacing="0" style="margin: 0px auto; font-family:verdana; font-size:110%; color:#515559" >
+            <table id="u5959" class="tablaCSS">
               <thead>
               <tr>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Proveedor</th>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Fecha</th>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Moneda</th>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Documento comercial</th>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Total</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Proveedor</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Moneda</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width: 25%">Documento comercial</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Total</th>
               </tr>
               </thead>
               <tbody>
               {{#each egreso}}
-              <tr style=" border: 1px solid #515559;">
-                <td style=" border: 1px solid #515559;">
-                  {{entidad.nombre}}
-                </td>
-                <td style=" border: 1px solid #515559;">
-                  {{fecha}}
-                </td>
-                <td style=" border: 1px solid #515559;">
-                  {{ingreso.fecha}}:{{ingreso.valor.importe}}
-                </td>
-                <td style=" border: 1px solid #515559;">
-                  {{fecha}}:{{valor.importe}}
-                </td>
-                <td style=" border: 1px solid #515559;">
-                  {{fecha}}:{{valor.importe}}
-                </td>
+              <tr>
+                <td>{{entidad.nombre}}</td>
+                <td>{{fecha}}</td>
+                <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
+                <td>{{fecha}}:{{valor.importe}}</td>
+                <td>{{fecha}}:{{valor.importe}}</td>
               </tr>
               {{/each}}
               </tbody>

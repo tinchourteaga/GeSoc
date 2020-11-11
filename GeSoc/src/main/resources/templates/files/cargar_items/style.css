@@ -134,11 +134,30 @@
   color:white;
 }
 
+.datosTraidos{
+  font-size:20px;
+  color:black;
+}
+
 .variables_fijas{
   width: 15%;
   text-align:left;
   background-color:white;
   border: 0px;
+}
+.total{
+    font-size:20px;
+    color:black;
+}
+input[type="datosTraidos"]{
+    font-size:18px;
+    color:black;
+}
+
+input[type="text2"]
+{
+    font-size:20px;
+    color:black;
 }
 
 .boton_fachero:hover{
@@ -171,4 +190,63 @@
 
 .boton_cargar_items:hover{
   background-color:rgba(179, 49, 41, 1);
+}
+
+.primera_fila{
+    border-collapse: collapse;
+    margin 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+}
+
+.primera_fila thead tr{
+    background-color: rgba(217, 70, 59, 1);
+    color: white;
+    text-align: left;
+    /*border: 1px solid #515559;*/
+    font-weight: bold;
+}
+
+.tablaCSS{
+    border-collapse: collapse;
+    margin 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-size:14px;
+}
+
+.tablaCSS thead tr{
+    background-color: rgba(217, 70, 59, 1);
+    color: white;
+    text-align: center;
+    /*border: 1px solid #515559;*/
+}
+.tablaCSS th,
+.tablaCSS td{
+    padding: 6px 9px;
+}
+
+.tablaCSS tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablaCSS tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.tablaCSS tbody tr:last-of-type{
+    border-bottom: 2px solid rgba(217, 70, 59, 1);
+}
+
+.variables{
+  width: 15%;
+  text-align:left;
+  background-color:transparent;
+  border: 0px;
 }

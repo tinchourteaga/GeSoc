@@ -22,11 +22,23 @@ public class Item {
     @Column(name = "descripcion")
     private String descripcion;
 
+    @Column(name = "cantidad")
+    private Integer cantidad;
+
     public Item() { }
 
-    public Item(Float importe,String desc){
+    public Item(Float importe,String desc,Integer cantidad){
         this.valor=importe;
         this.descripcion=desc;
+        this.cantidad=cantidad;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Float getValor() {

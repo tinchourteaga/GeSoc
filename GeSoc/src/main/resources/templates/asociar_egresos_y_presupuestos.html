@@ -176,7 +176,7 @@
               <table id="u5858" class="tablaCSS">
                 <thead>
                 <tr>
-                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Entidad</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Proveedor</th>
                   <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
                   <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Egreso</th>
                   <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Presupuesto</th>
@@ -303,18 +303,19 @@
       <div id="u667" class="ax_default droplist" data-label="Entidades">
         <div id="u667_div" class=""></div>
         <select name="entidad" id="u667_input" class="u667_input">
-          <option class="u667_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
+          <option class="u667_input_option" value="Seleccione una Entidad">Seleccione un Proveedor</option>
           {{#each egreso}}
           <option class="u638_input_option" value="{{entidad.entidad}}">{{entidad.nombre}}</option>
           {{/each}}
         </select>
       </div>
 
+
       <!-- Unnamed (Rectangle) -->
       <div id="u668" class="ax_default heading_1">
         <div id="u668_div" class=""></div>
         <div id="u668_text" class="text ">
-          <p><span>Entidad:</span></p>
+          <p><span>Proveedor:</span></p>
         </div>
       </div>
 

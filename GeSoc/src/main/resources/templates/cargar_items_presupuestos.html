@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cargar items de presupuestos</title>
+
+    <!--Import para el css de cargar_items-->
+    <link rel="stylesheet" href="files/cargar_items/style.css">
+
+    <!--Import para el boton-->
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+
+    <!--Magia JavaScript-->
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Import para la sidebar-->
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+</head>
+
+<body>
+<div id="base" class="">
+
+    <div id="titulo_cargar_items">
+        <p><span>Cargar Items</span></p>
+    </div>
+
+    <div id="proveedor_seleccionado">
+        <p><span>Proveedor: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+    </div>
+
+    <div id="fecha">
+        <p><span>Fecha: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+    </div>
+
+    <div id="metodo_de_pago">
+        <p><span>Documento comercial: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+    </div>
+
+    <div id="botoncitos">
+        <input type="button" class="boton_fachero" value="Agregar item" onclick="addRow('dataTable')" />
+        <input type="button" class="boton_fachero" value="Eliminar item" onclick="deleteRow('dataTable')" />
+    </div>
+
+    <div id="tabla_dinamica">
+
+        <div id="tabla_dinamica_fila">
+            <table width="100%" class="tablaCSS">
+                <thead>
+                <tr>
+                    <th></th> <!--style="width:2.6%" -->
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre item</th> <!--style="width:24.6%"-->
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Tipo</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Cantidad</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Precio de unitario</th>
+                </tr>
+                </thead>
+            </table>
+        </div>
+
+        <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
+            <tr id="trTable">
+                <td><input type="checkbox" name="chk" style="align: center;"/></td>
+                <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
+                <td>
+                    <select class="variables" type="text" name="txt" style="width: 100%; text-align: center;">
+                        <option value="seleccione">Seleccionar...</option>
+                        <option value="bien">Bien</option>
+                        <option value="servicio">Servicio</option>
+                    </select>
+                </td>
+                <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
+                <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="total">
+        <p><span class="total">Total:  </span></p>
+        <input id="total_input" type="text2" name="txt" class="variables_fijas" disabled/>
+    </div>
+
+    <div id="cargar_items">
+        <input type="button" class="boton_cargar_items" value="Cargar items"/>
+    </div>
+
+    <div id="includedContent"></div>
+
+</div>
+
+<script language="javascript">
+		function addRow(tableID) {
+
+			var table = document.getElementById(tableID);
+
+			var rowCount = table.rows.length;
+			var row = table.insertRow(rowCount);
+
+			var colCount = table.rows[0].cells.length;
+
+			for(var i=0; i<colCount; i++) {
+
+				var newcell	= row.insertCell(i);
+
+				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
+				//alert(newcell.childNodes);
+				switch(newcell.childNodes[0].type) {
+					case "text":
+							newcell.childNodes[0].value = "";
+							break;
+					case "checkbox":
+							newcell.childNodes[0].checked = false;
+							break;
+					case "select-one":
+							newcell.childNodes[0].selectedIndex = 0;
+							break;
+				}
+			}
+
+			//document.getElementById("total_input").value = String(sumatoria(tableID));
+
+		}
+
+		function deleteRow(tableID) {
+			try {
+			var table = document.getElementById(tableID);
+			var rowCount = table.rows.length;
+
+			for(var i=0; i<rowCount; i++) {
+				var row = table.rows[i];
+				var chkbox = row.cells[0].childNodes[0];
+				if(null != chkbox && true == chkbox.checked) {
+					if(rowCount <= 1) {
+						alert("Cannot delete all the rows.");
+						break;
+					}
+					table.deleteRow(i);
+					rowCount--;
+					i--;
+				}
+
+			}
+			}catch(e) {
+				alert(e);
+			}
+
+			document.getElementById("total_input").value = String(sumatoria(tableID));
+		}
+
+		function sumatoria(tableID) {
+		    var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            var sumatoria = 0;
+
+            //document.getElementById("total_input").value = "Puto";
+
+            for(var i=0; i<rowCount; i++) {
+                //sumatoria += document.getElementById(tableID).rows[i].celdaCantidad * document.getElementById(tableID).rows[i].celdaPrecioUnitario;
+
+                cantidadIngresada = table.rows[i].cells[3].childNodes[0];
+                precioIngresado = table.rows[i].cells[4].childNodes[0];
+
+                sumatoria += cantidadIngresada.value * precioIngresado.value;
+
+                //document.write(String(cantidadIngresada.value)+"//");
+
+                //document.write(String(celdaEspecifica);
+                //document.getElementById(celdaCantidadInput).value = "Puto";
+            }
+
+            //document.write(String(sumatoria));
+
+            sumatoria = " " + sumatoria;
+
+            document.getElementById("total_input").value = String(sumatoria);
+            return sumatoria;
+		}
+    </script>
+</body>
+</html>

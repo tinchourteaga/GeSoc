@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Cargar items</title>
+    <title>Cargar items de egresos</title>
 
     <!--Import para el css de cargar_items-->
     <link rel="stylesheet" href="files/cargar_items/style.css">
@@ -64,8 +64,9 @@
                         <tr>
                             <th></th> <!--style="width:2.6%" -->
                             <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre item</th> <!--style="width:24.6%"-->
-                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Cantidad</th>
-                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Precio de unitario</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Tipo</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Cantidad</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Precio de unitario</th>
                         </tr>
                     </thead>
                 </table>
@@ -75,6 +76,13 @@
                 <tr id="trTable">
                     <td><input type="checkbox" name="chk" style="align: center;"/></td>
                     <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
+                    <td>
+                        <select class="variables" type="text" name="txt" style="width: 100%; text-align: center;">
+                            <option value="seleccione">Seleccionar...</option>
+                            <option value="bien">Bien</option>
+                            <option value="servicio">Servicio</option>
+                        </select>
+                    </td>
                     <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
                     <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
                 </tr>
@@ -163,8 +171,8 @@
             for(var i=0; i<rowCount; i++) {
                 //sumatoria += document.getElementById(tableID).rows[i].celdaCantidad * document.getElementById(tableID).rows[i].celdaPrecioUnitario;
 
-                cantidadIngresada = table.rows[i].cells[2].childNodes[0];
-                precioIngresado = table.rows[i].cells[3].childNodes[0];
+                cantidadIngresada = table.rows[i].cells[3].childNodes[0];
+                precioIngresado = table.rows[i].cells[4].childNodes[0];
 
                 sumatoria += cantidadIngresada.value * precioIngresado.value;
 

@@ -27,7 +27,8 @@ public abstract class Entidad {
     @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     protected List<Egreso> egresos;
 
-    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     protected List<Ingreso> ingresos;
 
     @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)

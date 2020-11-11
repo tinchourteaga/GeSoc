@@ -35,7 +35,7 @@ public class ControllerEgresos {
         String descripcionDocComercial = request.queryParams("descripcionDocComercial");
 
         //TODO
-        Egreso egreso = new Egreso(LocalDate.parse(fecha), "Uruguay", 0, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, descripcionDocComercial), null);
+        Egreso egreso = new Egreso(LocalDate.parse(fecha), "Uruguay", new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, descripcionDocComercial), null);
 
         if(request.queryParams("esRevisor")!=null){
 

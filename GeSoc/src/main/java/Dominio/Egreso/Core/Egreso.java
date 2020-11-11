@@ -73,10 +73,10 @@ public class Egreso {
 
     public Egreso() { }
 
-    public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Presupuesto> presupuestos, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
+    public Egreso(LocalDate unaFecha, String pais, List<Item> items, MetodoDePago metodo, List<Presupuesto> presupuestos, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.criterios=new ArrayList<>();
        this.fecha=unaFecha;
-       this.valor= new Valor(pais,importe);
+       this.valor= new Valor(pais,items.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
        this.listaItems=items;
        this.metodoDePago=metodo;
        this.documentoComercial=unDocumento;

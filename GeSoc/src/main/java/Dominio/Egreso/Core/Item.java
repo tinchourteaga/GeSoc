@@ -41,6 +41,10 @@ public class Item {
         this.descripcion = descripcion;
     }
 
+    public Integer getCantidad() {
+        return cantidad;
+    }
+
     public Float getValor() {
         return valor;
     }

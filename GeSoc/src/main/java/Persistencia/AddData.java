@@ -519,16 +519,16 @@ public class AddData {
         //cargo egresos son 10
 
         List<Egreso>egresosAPersistir=new ArrayList();
-        Egreso egreso1= new Egreso(LocalDate.parse("2020-03-10"), "Argentina", 9625+6589.4+3738.29, items1, metodo1, presupuestos1,  unDocumento1, criterio1);
-        Egreso egreso2= new Egreso(LocalDate.parse("2020-07-08"), "Argentina", 9625+6589.4+3738.29, items2, metodo2, presupuestos2,  unDocumento2, criterio1);
-        Egreso egreso3= new Egreso(LocalDate.parse("2020-07-09"), "Argentina", 9625+6589.4+3738.29, items3, metodo3, presupuestos3,  unDocumento3, criterio1);
-        Egreso egreso4= new Egreso(LocalDate.parse("2020-08-03"), "Argentina", 9625+6589.4+3738.29, items4, metodo4, presupuestos4,  unDocumento4, criterio1);
-        Egreso egreso5= new Egreso(LocalDate.parse("2020-09-27"), "Argentina", 9625+6589.4+3738.29, items5, metodo5, presupuestos5,  unDocumento5, criterio1);
-        Egreso egreso6= new Egreso(LocalDate.parse("2020-10-01"), "Argentina", 9625+6589.4+3738.29, items6, metodo6, presupuestos6,  unDocumento6, criterio1);
-        Egreso egreso7= new Egreso(LocalDate.parse("2020-10-05"), "Argentina", 9625+6589.4+3738.29, items7, metodo7, presupuestos7,  unDocumento7, criterio1);
-        Egreso egreso8= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", 9625+6589.4+3738.29, items8, metodo8, presupuestos8,  unDocumento8, criterio1);
-        Egreso egreso9= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", 9625+6589.4+3738.29, items9, metodo9, presupuestos9,  unDocumento9, criterio1);
-        Egreso egreso10= new Egreso(LocalDate.parse("2020-09-25"), "Argentina", 9625+6589.4+3738.29, items10, metodo10, presupuestos10,  unDocumento10, criterio1);
+        Egreso egreso1= new Egreso(LocalDate.parse("2020-03-10"), "Argentina", items1, metodo1, presupuestos1,  unDocumento1, criterio1);
+        Egreso egreso2= new Egreso(LocalDate.parse("2020-07-08"), "Argentina", items2, metodo2, presupuestos2,  unDocumento2, criterio1);
+        Egreso egreso3= new Egreso(LocalDate.parse("2020-07-09"), "Argentina", items3, metodo3, presupuestos3,  unDocumento3, criterio1);
+        Egreso egreso4= new Egreso(LocalDate.parse("2020-08-03"), "Argentina", items4, metodo4, presupuestos4,  unDocumento4, criterio1);
+        Egreso egreso5= new Egreso(LocalDate.parse("2020-09-27"), "Argentina", items5, metodo5, presupuestos5,  unDocumento5, criterio1);
+        Egreso egreso6= new Egreso(LocalDate.parse("2020-10-01"), "Argentina", items6, metodo6, presupuestos6,  unDocumento6, criterio1);
+        Egreso egreso7= new Egreso(LocalDate.parse("2020-10-05"), "Argentina", items7, metodo7, presupuestos7,  unDocumento7, criterio1);
+        Egreso egreso8= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", items8, metodo8, presupuestos8,  unDocumento8, criterio1);
+        Egreso egreso9= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", items9, metodo9, presupuestos9,  unDocumento9, criterio1);
+        Egreso egreso10= new Egreso(LocalDate.parse("2020-09-25"), "Argentina", items10, metodo10, presupuestos10,  unDocumento10, criterio1);
 
         entidad1.agregarEgreso(egreso1);
         entidad1.agregarEgreso(egreso2);

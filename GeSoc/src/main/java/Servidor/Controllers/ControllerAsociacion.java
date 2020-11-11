@@ -18,10 +18,7 @@ import spark.Request;
 import spark.Response;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ControllerAsociacion {
 
@@ -34,7 +31,7 @@ public class ControllerAsociacion {
         List<Ingreso> ingresos = new ArrayList<>();
         List<Entidad> entidades = new ArrayList<>();
 
-        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", 8888, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
+        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay",  Arrays.asList(new Item(8888f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
             @Override
             public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
                 return null;
@@ -51,7 +48,7 @@ public class ControllerAsociacion {
             }
         });
 
-        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay", 2222, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
+        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay", Arrays.asList(new Item(2222f,"",1)),  new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
             @Override
             public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
                 return null;
@@ -108,7 +105,7 @@ public class ControllerAsociacion {
         List<Presupuesto> presupuestos = new ArrayList<>();
         List<CategoriaCriterio> categorias = new ArrayList<>();
 
-        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", 8888, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
+        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
             @Override
             public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
                 return null;
@@ -125,7 +122,7 @@ public class ControllerAsociacion {
             }
         });
 
-        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay", 2222, new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
+        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay",  Arrays.asList(new Item(2222f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
             @Override
             public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
                 return null;

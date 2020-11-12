@@ -844,8 +844,8 @@
   border-width:0px;
   position:absolute;
   left:440px;
-  top:185px;
-  width:700px;
+  top:175px;
+  width:650px;
   height:335px;
 }
 #u857_state0 {
@@ -853,7 +853,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:700px;
+  width:650px;
   height:335px;
   overflow:auto;
   -webkit-overflow-scrolling:touch;
@@ -871,8 +871,6 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:1px;
-  height:1px;
 }
 .u859_div {
   border-width:0px;

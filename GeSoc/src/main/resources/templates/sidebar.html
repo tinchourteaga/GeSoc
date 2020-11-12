@@ -17,11 +17,15 @@
 
 </head>
 <body>
-
     <nav class="horizontalbar">
         <a class="navbar-brand">
             <div class="logo-image">
                 <img src="images/sidebar/GeSocLogo.png" class="img-fluid">
+            </div>
+            <div class="indice">
+                <span id="mi-span">
+                    >>
+                </span>
             </div>
             <div class="logo-configuracion">
                 <a href="/configuracion_general">
@@ -260,6 +264,8 @@
         $.post('.logo-cerrar-sesion',function(){
              $("div").html('/cerrarSesion');
         });
+
+        $('#mi-span').text('>> someText');
     </script>
 
 </body>

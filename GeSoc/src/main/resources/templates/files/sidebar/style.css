@@ -196,6 +196,16 @@ nav ul li a span.rotate{
     height: 10%;
     overflow: hidden;
 }
+.indice{
+    position: fixed;
+    top: 6.5%;
+    left: 25%;
+    color: #bebdbd;
+    font-weight : bold;
+    font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+    font-weight:300;
+    font-size:1vw;
+}
 
 .logo-configuracion{
     position: fixed;

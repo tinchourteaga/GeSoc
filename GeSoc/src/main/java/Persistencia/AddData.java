@@ -4,6 +4,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
@@ -30,6 +31,7 @@ import javax.persistence.Persistence;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -279,10 +281,10 @@ public class AddData {
 
 
         //armo los ingresos de cada empresa
-        Ingreso ingreso1 = new Ingreso("Peso Argentino", 20000, LocalDate.parse("2020-02-25"), "Donación de terceros", new ArrayList());
-        Ingreso ingreso2 = new Ingreso("Peso Argentino", 10000, LocalDate.parse("2020-05-02"), "Donación de Rimoli SA", new ArrayList());
-        Ingreso ingreso3 = new Ingreso("Peso Argentino", 980000, LocalDate.parse("2020-08-03"), "Donación de Gran Imperio", new ArrayList());
-        Ingreso ingreso4 = new Ingreso("Peso Argentino", 10000, LocalDate.parse("2020-05-01"), "Donación Gabino SRL", new ArrayList());
+        Ingreso ingreso1 = new Ingreso("Peso Argentino", 20000, LocalDate.parse("2020-02-25"),LocalDate.parse("2020-03-20"), "Donación de terceros", new ArrayList());
+        Ingreso ingreso2 = new Ingreso("Peso Argentino", 10000, LocalDate.parse("2020-05-02"),LocalDate.parse("2020-08-03"), "Donación de Rimoli SA", new ArrayList());
+        Ingreso ingreso3 = new Ingreso("Peso Argentino", 980000, LocalDate.parse("2020-08-03"),LocalDate.parse("2020-10-01"), "Donación de Gran Imperio", new ArrayList());
+        Ingreso ingreso4 = new Ingreso("Peso Argentino", 10000, LocalDate.parse("2020-05-01"),LocalDate.parse("2020-10-01"), "Donación Gabino SRL", new ArrayList());
 
         ingreso1.setEntidad(entidad1);
         ingreso2.setEntidad(entidad1);
@@ -441,7 +443,6 @@ public class AddData {
 
 
 
-
         List<Criterio> criterios1= new ArrayList();
         List<Detalle> detalles1= new ArrayList<>();
         detalles1.add(detalle1);
@@ -529,6 +530,137 @@ public class AddData {
         Egreso egreso8= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", items8, metodo8, presupuestos8,  unDocumento8, criterio1);
         Egreso egreso9= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", items9, metodo9, presupuestos9,  unDocumento9, criterio1);
         Egreso egreso10= new Egreso(LocalDate.parse("2020-09-25"), "Argentina", items10, metodo10, presupuestos10,  unDocumento10, criterio1);
+
+        CategoriaCriterio categoria1= new CategoriaCriterio("Para gastos de Agua, Luz y otros", "Servicios Generales");
+
+        Criterio criterioDeCategorias1= new Criterio(Arrays.asList(categoria1), "Gastos Generales", "Diferentes gastos de la organizacion no catalogados");
+        categoria1.setCriterio(criterioDeCategorias1);
+        egreso2.getCategorias().add(categoria1);
+        egreso3.getCategorias().add(categoria1);
+
+        categoria1.getEgresos().add(egreso2);
+        categoria1.getEgresos().add(egreso3);
+
+
+        CategoriaCriterio categoria2= new CategoriaCriterio("gastos de luz", "Servicios de Luz");
+        CategoriaCriterio categoria3= new CategoriaCriterio("gastos de gas", "Servicio de gas");
+        CategoriaCriterio categoria4= new CategoriaCriterio("Elementos indeispensables", "Necesarios");
+
+        Criterio criterioDeCategorias2= new Criterio(Arrays.asList(categoria2,categoria2), "Servicios", "Para agua luz y gas");
+        Criterio criterioDeCategorias3= new Criterio(Arrays.asList(categoria4), "Elementos de uso interno", "Para uso de la Org");
+
+
+        categoria2.setCriterio(criterioDeCategorias2);
+        categoria3.setCriterio(criterioDeCategorias2);
+        categoria4.setCriterio(criterioDeCategorias3);
+        egreso8.getCategorias().add(categoria2);
+        egreso9.getCategorias().add(categoria3);
+        egreso10.getCategorias().add(categoria4);
+
+
+        categoria2.getEgresos().add(egreso8);
+        categoria3.getEgresos().add(egreso9);
+        categoria4.getEgresos().add(egreso10);
+
+        CategoriaCriterio categoria5= new CategoriaCriterio("Elementos y accesorios de la oficina", "Muebles y utiles");
+        CategoriaCriterio categoria6= new CategoriaCriterio("Para descansos de cada jornada", "Coffe Break");
+
+        Criterio criterioDeCategorias4= new Criterio(Arrays.asList(categoria5), "Elementos de oficina", "Para uso en la jornada laboral");
+        Criterio criterioDeCategorias5= new Criterio(Arrays.asList(categoria6), "Momento de utilizacion", "Para usos variados");
+
+        categoria5.setCriterio(criterioDeCategorias4);
+        categoria6.setCriterio(criterioDeCategorias5);
+        egreso4.getCategorias().add(categoria5);
+        egreso4.getCategorias().add(categoria6);
+
+        categoria5.getEgresos().add(egreso4);
+        categoria6.getEgresos().add(egreso4);
+
+        CategoriaCriterio categoria7= new CategoriaCriterio("Equipos que necesiten acceso a un tomacorriente", "Electronicos");
+
+        Criterio criterioDeCategorias6= new Criterio(Arrays.asList(categoria7), "Tipo producto", "diferentes elementos de la organizacion");
+
+        categoria7.setCriterio(criterioDeCategorias6);
+        egreso5.getCategorias().add(categoria7);
+        egreso5.getCategorias().add(categoria5);
+
+        categoria5.getEgresos().add(egreso5);
+        categoria7.getEgresos().add(egreso5);
+
+        CategoriaCriterio categoria8= new CategoriaCriterio("Vista del estudio u oficina", "Fachada");
+        CategoriaCriterio categoria9= new CategoriaCriterio("Gastos propios de la org", "Interior");
+        CategoriaCriterio categoria10= new CategoriaCriterio("Gastos de la org fuera de las instalaciones", "Exterior");
+        CategoriaCriterio categoria11= new CategoriaCriterio("Para gastos mayores o iguales a 4000", "Grande");
+        CategoriaCriterio categoria12= new CategoriaCriterio("Gastos por humedad", "Humedad");
+
+
+        Criterio criterioDeCategorias7= new Criterio(Arrays.asList(categoria8), "Gastos de mantenimiento", "Para que la organizacion siga funcionando");
+        Criterio criterioDeCategorias8= new Criterio(Arrays.asList(categoria10,categoria9), "Lugar de aplicacion", "Segun los lugares donde se gaste el dinero");
+        Criterio criterioDeCategorias9= new Criterio(Arrays.asList(categoria12), "Causante", "Gastos por causa");
+        Criterio criterioDeCategorias10= new Criterio(Arrays.asList(categoria11), "Tamanio de gasto", "Orden por valor monetario");
+
+
+        categoria8.setCriterio(criterioDeCategorias7);
+        categoria9.setCriterio(criterioDeCategorias8);
+        categoria10.setCriterio(criterioDeCategorias8);
+        categoria11.setCriterio(criterioDeCategorias10);
+        categoria12.setCriterio(criterioDeCategorias9);
+
+        criterioDeCategorias7.getHijos().add(criterioDeCategorias8);
+
+        criterioDeCategorias8.setCriterio_padre(criterioDeCategorias7);
+
+
+        egreso1.getCategorias().add(categoria8);
+        egreso1.getCategorias().add(categoria9);
+        egreso1.getCategorias().add(categoria12);
+        categoria8.getEgresos().add(egreso1);
+        categoria9.getEgresos().add(egreso1);
+        categoria12.getEgresos().add(egreso1);
+
+
+        egreso6.getCategorias().add(categoria8);
+        egreso6.getCategorias().add(categoria10);
+        egreso6.getCategorias().add(categoria11);
+        categoria8.getEgresos().add(egreso6);
+        categoria10.getEgresos().add(egreso6);
+        categoria11.getEgresos().add(egreso6);
+
+        egreso7.getCategorias().add(categoria8);
+        egreso7.getCategorias().add(categoria10);
+        egreso7.getCategorias().add(categoria11);
+        categoria8.getEgresos().add(egreso7);
+        categoria10.getEgresos().add(egreso7);
+        categoria11.getEgresos().add(egreso7);
+
+
+        Repositorio repoCriteriosDeCategorizacion= new Repositorio(new DAOBBDD<Criterio>(Criterio.class));
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias1);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias2);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias3);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias4);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias5);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias6);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias7);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias8);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias9);
+        repoCriteriosDeCategorizacion.agregar(criterioDeCategorias10);
+
+
+        Repositorio repoCategorias= new Repositorio(new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class));
+        repoCategorias.agregar(categoria1);
+        repoCategorias.agregar(categoria2);
+        repoCategorias.agregar(categoria3);
+        repoCategorias.agregar(categoria4);
+        repoCategorias.agregar(categoria5);
+        repoCategorias.agregar(categoria6);
+        repoCategorias.agregar(categoria7);
+        repoCategorias.agregar(categoria8);
+        repoCategorias.agregar(categoria9);
+        repoCategorias.agregar(categoria10);
+        repoCategorias.agregar(categoria11);
+        repoCategorias.agregar(categoria12);
+
 
         entidad1.agregarEgreso(egreso1);
         entidad1.agregarEgreso(egreso2);

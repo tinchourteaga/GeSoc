@@ -14,12 +14,13 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "dom_egresos")
 public class Egreso {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int egreso;
 
     @Column(name = "validado")
@@ -48,7 +49,12 @@ public class Egreso {
     private CriterioSeleccionProveedor criterioSeleccionProveedor;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Criterio> criterios;
+    @JoinTable(
+            name = "dom_egresos_dom_criterios",
+            joinColumns = { @JoinColumn(name = "egreso") },
+            inverseJoinColumns = { @JoinColumn(name = "categoria") }
+    )
+    private List<CategoriaCriterio> categorias=new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "ingreso", referencedColumnName = "ingreso")
@@ -74,7 +80,7 @@ public class Egreso {
     public Egreso() { }
 
     public Egreso(LocalDate unaFecha, String pais, List<Item> items, MetodoDePago metodo, List<Presupuesto> presupuestos, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
-       this.criterios=new ArrayList<>();
+       this.categorias=new ArrayList<>();
        this.fecha=unaFecha;
        this.valor= new Valor(pais,items.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
        this.listaItems=items;
@@ -100,7 +106,7 @@ public class Egreso {
     public List<Presupuesto> getPresupuestosAConsiderar(){return this.presupuestosAConsiderar;}
 
     public List<Criterio> getCriterioDeCategorizacion() {
-        return criterios;
+        return categorias.stream().map(cat-> cat.getCriterio()).collect(Collectors.toList());
     }
 
     public LocalDate getFecha() { return fecha; }
@@ -113,17 +119,12 @@ public class Egreso {
 
     public DocumentoComercial getDocumentoComercial() { return documentoComercial; }
 
-    public void asignarCriterioDeCategorizacion(Criterio criterioDeCategorizacion) {this.criterios.add(criterioDeCategorizacion); }
-
     public void validar(){
         ValidadorDeOperacion.validarDefault(this);
     }
 
     public List<CategoriaCriterio> getCategorias() {
-
-        List<CategoriaCriterio> todasLasCategoriaCriterios =new ArrayList();
-        criterios.forEach(criterio->criterio.getCategoriaCriterios().forEach(categoriaCriterio -> todasLasCategoriaCriterios.add(categoriaCriterio)));
-        return todasLasCategoriaCriterios;
+        return this.categorias;
     }
 
     public boolean isEstaVerificada() {

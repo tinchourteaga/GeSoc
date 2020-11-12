@@ -33,7 +33,7 @@ public class ControllerIngresos {
 
         List egresosAsociados = new ArrayList();
 
-        Ingreso ingreso = new Ingreso(moneda, Double.parseDouble(importe), LocalDate.parse(fecha), descripcion, egresosAsociados);
+        Ingreso ingreso = new Ingreso(moneda, Double.parseDouble(importe), LocalDate.parse(fecha),LocalDate.now(), descripcion, egresosAsociados);
 
         persistirIngreso(ingreso);
 

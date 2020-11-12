@@ -80,8 +80,8 @@ public class ControllerAsociacion {
         egresos.add(egresoPrueba);
         egresos.add(egresoPrueba2);
 
-        Ingreso ingresoPrueba = new Ingreso("$",230,LocalDate.of(2020,10,14),"descrip",new ArrayList<>());
-        Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),"descrip2",new ArrayList<>());
+        Ingreso ingresoPrueba = new Ingreso("$",230,LocalDate.of(2020,10,14),LocalDate.now(),"descrip",new ArrayList<>());
+        Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),LocalDate.now(),"descrip2",new ArrayList<>());
 
         egresoPrueba.setIngreso(ingresoPrueba);
         egresoPrueba2.setIngreso(ingresoPrueba2);

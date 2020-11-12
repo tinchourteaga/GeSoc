@@ -48,9 +48,9 @@ public class ControllerVisualizacionEI {
         categoriaPrueba.setCategoria(9);
         categorias.add(categoriaPrueba);
 
-        Ingreso ingresoPrueba = new Ingreso("$",230,LocalDate.of(2020,10,14),"descrip",new ArrayList<>());
-        Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),"descrip2",new ArrayList<>());
-        Ingreso ingresoPrueba3 = new Ingreso("$",3,LocalDate.of(2020,10,14),"descrip3",new ArrayList<>());
+        Ingreso ingresoPrueba = new Ingreso("$",230,LocalDate.of(2020,10,14),LocalDate.now(),"descrip",new ArrayList<>());
+        Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),LocalDate.now(),"descrip2",new ArrayList<>());
+        Ingreso ingresoPrueba3 = new Ingreso("$",3,LocalDate.of(2020,10,14),LocalDate.now(),"descrip3",new ArrayList<>());
 
         Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", Arrays.asList(new Item(8888f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
             @Override

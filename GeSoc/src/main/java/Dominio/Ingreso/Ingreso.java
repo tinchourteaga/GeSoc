@@ -27,6 +27,10 @@ public class Ingreso {
     @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
+    @Column(name = "fecha_limimte_aceptabilidad")
+    @Convert(converter = LocalDateAttributeConverter.class)
+    private LocalDate fechaLimite;
+
     @Column(name = "descripcion")
     private String descripcion;
 
@@ -42,9 +46,10 @@ public class Ingreso {
 
     public Ingreso() { }
 
-    public Ingreso(String moneda, double importe, LocalDate fecha,String descripcion,List<Egreso>egresos){
+    public Ingreso(String moneda, double importe, LocalDate fecha,LocalDate fechaLimite,String descripcion,List<Egreso>egresos){
        this.valor= new Valor(moneda,importe);
        this.fecha=fecha;
+       this.fechaLimite=fechaLimite;
        this.descripcion=descripcion;
        this.gastadoEn=egresos;
    }
@@ -53,6 +58,11 @@ public class Ingreso {
     public Valor getValor() {
         return valor;
     }
+
+    public LocalDate getFechaLimite() {
+        return fechaLimite;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }

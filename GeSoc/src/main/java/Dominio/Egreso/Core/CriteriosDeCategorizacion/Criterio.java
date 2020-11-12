@@ -20,9 +20,17 @@ public class Criterio {
     @OneToMany(mappedBy = "criterio", cascade = CascadeType.ALL)
     private List<CategoriaCriterio> categoriaCriterios;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "criterio_padre", referencedColumnName = "criterio")
     private Criterio criterio_padre;
+
+    public Criterio getCriterio_padre() {
+        return criterio_padre;
+    }
+
+    public void setCriterio_padre(Criterio criterio_padre) {
+        this.criterio_padre = criterio_padre;
+    }
 
     @OneToMany(mappedBy = "hijos", cascade = CascadeType.ALL)
     private List<Criterio> hijos;
@@ -33,11 +41,11 @@ public class Criterio {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     private Entidad entidad;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "presupuesto", referencedColumnName = "presupuesto")
     private Presupuesto presupuesto;
 

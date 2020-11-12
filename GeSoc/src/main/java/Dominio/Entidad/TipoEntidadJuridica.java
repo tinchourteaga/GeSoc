@@ -1,7 +1,5 @@
 package Dominio.Entidad;
 
-import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
-
 import javax.persistence.*;
 
 @Entity
@@ -30,9 +28,9 @@ public abstract class TipoEntidadJuridica {
     @JoinColumn(name = "actividad", referencedColumnName = "sector")
     protected Sector actividad;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "categoria", referencedColumnName = "categoria")
-    protected CategoriaCriterio categoria;
+    protected CategoriaCriterio categoria;*/
 
     @Column(name = "cant_personal")
     protected Integer cantidadPersonal;

@@ -443,14 +443,14 @@ public class AddData {
 
 
 
-        List<Criterio> criterios1= new ArrayList();
+        List<CategoriaCriterio> criterios1= new ArrayList();
         List<Detalle> detalles1= new ArrayList<>();
         detalles1.add(detalle1);
         detalles1.add(detalle2);
         detalles1.add(detalle3);
 
 
-        List<Criterio> criterios2= new ArrayList();
+        List<CategoriaCriterio> criterios2= new ArrayList();
         List<Detalle> detalles2= new ArrayList<>();
         detalles2.add(detalle4);
         detalles2.add(detalle5);
@@ -458,29 +458,29 @@ public class AddData {
 
 
 
-        List<Criterio> criterios3= new ArrayList();
+        List<CategoriaCriterio> criterios3= new ArrayList();
         List<Detalle> detalles3= new ArrayList<>();
         detalles3.add(detalle7);
         detalles3.add(detalle8);
         detalles3.add(detalle9);
 
 
-        List<Criterio> criterios4= new ArrayList();
+        List<CategoriaCriterio> criterios4= new ArrayList();
         List<Detalle> detalles4= new ArrayList<>();
         detalles4.add(detalle10);
 
 
 
-        List<Criterio> criterios5= new ArrayList();
+        List<CategoriaCriterio> criterios5= new ArrayList();
         List<Detalle> detalles5= new ArrayList<>();
         detalles5.add(detalle11);
 
-        List<Criterio> criterios6= new ArrayList();
+        List<CategoriaCriterio> criterios6= new ArrayList();
         List<Detalle> detalles6= new ArrayList<>();
         detalles6.add(detalle12);
 
 
-        List<Criterio> criterios7= new ArrayList();
+        List<CategoriaCriterio> criterios7= new ArrayList();
         List<Detalle> detalles7= new ArrayList<>();
         detalles7.add(detalle13);
         detalles7.add(detalle14);
@@ -488,7 +488,7 @@ public class AddData {
         detalles7.add(detalle16);
 
 
-        List<Criterio> criterios8= new ArrayList();
+        List<CategoriaCriterio> criterios8= new ArrayList();
         List<Detalle> detalles8= new ArrayList<>();
         detalles8.add(detalle17);
         detalles8.add(detalle18);

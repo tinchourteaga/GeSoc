@@ -1,11 +1,13 @@
 package Dominio.Egreso.Core;
 
 import Converters.LocalDateAttributeConverter;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "dom_presupuestos")
@@ -15,8 +17,13 @@ public class Presupuesto {
     @GeneratedValue
     private int presupuesto;
 
-    @OneToMany(mappedBy = "criterio", cascade = CascadeType.ALL)
-    private List<Criterio> criterios;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "dom_presupuestos_dom_criterios",
+            joinColumns = { @JoinColumn(name = "presupuesto") },
+            inverseJoinColumns = { @JoinColumn(name = "categoria") }
+    )
+    private List<CategoriaCriterio> categorias;
 
     @Column(name = "valor")
     private float valor;
@@ -38,8 +45,8 @@ public class Presupuesto {
 
     public Presupuesto() { }
 
-    public Presupuesto(List<Criterio> criterios, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
-        this.criterios = criterios;
+    public Presupuesto(List<CategoriaCriterio> categorias, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
+        this.categorias = categorias;
         this.valor = detalles.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element);
         this.detalles = detalles;
         this.documentoComercial = documentoComercial;
@@ -47,7 +54,8 @@ public class Presupuesto {
     }
 
     public Proveedor getProveedor(){return this.proveedor;}
-    public List<Criterio> getCriterios() { return criterios; }
+    public List<Criterio> getCriterios() { return categorias.stream().map(cat->cat.getCriterio()).collect(Collectors.toList()); }
+    public List<CategoriaCriterio> getCategoria() { return categorias; }
     public float getValor() { return valor;}
     public List<Detalle> getDetalles() {return detalles;}
     public DocumentoComercial getDocumentoComercial() { return documentoComercial;}

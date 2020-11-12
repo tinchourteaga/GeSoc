@@ -590,6 +590,36 @@
   white-space:nowrap;
   text-transform:none;
 }
+
+#fecha_filtrado_div_div {
+  border-width:0px;
+  position:absolute;
+  top:0px;
+  width:37px;
+  height:28px;
+  display:flex;
+  font-family:'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:14px;
+}
+#fecha_filtrado_div .text {
+  position:absolute;
+  align-self:flex-start;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+}
+#fecha_filtrado {
+  border-width:0px;
+  white-space:nowrap;
+  text-transform:none;
+}
+#fecha_posta {
+  position:absolute;
+  top:6%;
+}
+
 #u854_input {
   position:absolute;
   left:0px;
@@ -4499,6 +4529,8 @@
 }
 
 .tablaCSS{
+    top:15%;
+    position:absolute;
     border-collapse: collapse;
     margin 25px 0;
     font-size: 0.9em;

@@ -1,6 +1,7 @@
 package Dominio.Egreso.Core.CriteriosDeCategorizacion;
 
 import Dominio.Egreso.Core.Egreso;
+import Dominio.Egreso.Core.Presupuesto;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class CategoriaCriterio {
 
     @ManyToMany(mappedBy = "categorias")
     private List<Egreso> egresos=new ArrayList();
+
+    @ManyToMany(mappedBy = "categorias")
+    private List<Presupuesto> presupuestos=new ArrayList();
 
     public List<Egreso> getEgresos() {
         return egresos;

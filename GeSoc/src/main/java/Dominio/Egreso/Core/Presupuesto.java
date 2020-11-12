@@ -19,7 +19,7 @@ public class Presupuesto {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "dom_presupuestos_dom_criterios",
+            name = "dom_presupuestos_dom_categoria",
             joinColumns = { @JoinColumn(name = "presupuesto") },
             inverseJoinColumns = { @JoinColumn(name = "categoria") }
     )

@@ -702,6 +702,7 @@ public class AddData {
         Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
         egresosAPersistir.forEach(e->repoEgresos.agregar(e));
 
+        System.out.println("Corrio joyita");
 
 
 

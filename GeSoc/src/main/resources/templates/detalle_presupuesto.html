@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detalle Presupuesto</title>
+    <!--Import para el css de cargar_items-->
+    <link rel="stylesheet" href="files/detalle/style.css">
+
+    <!--Import para el boton-->
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+
+    <!--Magia JavaScript-->
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Import para la sidebar-->
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+</head>
+<body>
+<div id="titulo_cargar_items">
+    <p><span>Detalle de presupuesto</span></p>
+</div>
+
+<div id="proveedor_seleccionado">
+    <p><span>Filtre por proveedor: </span></p>
+</div>
+
+<select id="select_proveedor" class="selects_bonitos" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
+    <option value="seleccione">Seleccionar...</option>
+    <option value="proveedor">Proveedor 1</option>
+    <option value="servicio">Provedor 2</option>
+</select>
+
+<div id="fecha_seleccionada">
+    <p><span>Filtre por fecha: </span></p>
+</div>
+
+<div id="fecha_posta_div_div" class="ax_default text_field">
+    <div id="fecha_posta_div" class=""></div>
+    <input name="fecha" id="fecha_posta" type="date" value="Fecha" class="u854_input"/>
+</div>
+
+<div id="criterio_seleccionado">
+    <p><span>Filtre por categoría/criterio: </span></p>
+</div>
+
+<select id="select_criterio" class="selects_bonitos" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
+    <option value="seleccione">Seleccionar...</option>
+    <option value="proveedor">Categoría 1</option>
+    <option value="servicio">Categoría 2</option>
+</select>
+
+<div id="egreso_seleccionado">
+    <p><span>Ingreso: </span></p>
+</div>
+
+<select id="select_egreso" class="selects_bonitos" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
+    <option value="seleccione">Seleccionar...</option>
+    <option value="proveedor">Ingreso 1</option>
+    <option value="servicio">Ingreso 2</option>
+</select>
+
+<div id="detalle_posta">
+    <div>
+        <p><span>Proveedor: </span></p>
+        <input id="proveedor" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+    </div>
+
+    <div>
+        <input id="fecha_detalle" name="txt" class="variables_fecha" value="10/10/2020" disabled/>
+    </div>
+
+    <div>
+        <p><span>Método de pago: </span></p>
+        <input id="pago" name="txt" class="variables_fijas" value="  PagoX" disabled/>
+    </div>
+
+    <div id="tabla_dinamica_fila">
+        <table width="100%" class="tablaCSS">
+            <thead>
+            <tr>
+                <th></th> <!--style="width:2.6%" -->
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre item</th> <!--style="width:24.6%"-->
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Tipo</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Cantidad</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Precio de unitario</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+    <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
+        <tr id="trTable">
+            <td><input type="checkbox" name="chk" style="align: center;"/></td>
+            <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
+            <td>
+                <select class="variables" type="text" name="txt" style="width: 100%; text-align: center;">
+                    <option value="seleccione">Seleccionar...</option>
+                    <option value="bien">Bien</option>
+                    <option value="servicio">Servicio</option>
+                </select>
+            </td>
+            <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
+            <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
+        </tr>
+    </table>
+
+    <div>
+        <p><span>Egresos asociados: </span></p>
+        <input id="ingresos" name="txt" class="variables_fijas" value="  Egresos asociados" disabled/>
+    </div>
+
+    <div>
+        <p><span>Criterios/catg asociados: </span></p>
+        <input id="cricat" name="txt" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
+    </div>
+
+    <div>
+        <p><span>Presupuesto elegido: </span></p>
+        <input id="prep" name="txt" class="variables_fijas" value="  Presupesto elegido" disabled/>
+    </div>
+
+    <div>
+        <p><span>Presupuestos asociados: </span></p>
+        <input id="prepasoc" name="txt" class="variables_fijas" value="  Presupuestos asociados" disabled/>
+    </div>
+
+</div>
+
+<div id="includedContent"></div>
+</body>
+</html>

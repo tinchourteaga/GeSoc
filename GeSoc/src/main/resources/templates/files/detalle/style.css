@@ -3,7 +3,7 @@
   position:absolute;
   left:5%;
   top:15%;
-  width:100%;
+  width:30%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:700;
@@ -17,7 +17,7 @@
   position:absolute;
   left:7%;
   top:23%;
-  width:100%;
+  width:10%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:400;
@@ -56,7 +56,7 @@
 }
 
 .variables_fijas{
-  width: 15%;
+  width: 35%;
   text-align:left;
   background-color:white;
   border: 0px;
@@ -124,10 +124,17 @@
   top: 1%;
 }
 
+.variables_fecha{
+  text-align:right;
+  background-color:white;
+  border: 0px;
+}
+
+
 #pago{
   position: absolute;
   left: 15%;
-  top: 9%;
+  top: 8%;
 }
 .tablaCSS{
     border-collapse: collapse;

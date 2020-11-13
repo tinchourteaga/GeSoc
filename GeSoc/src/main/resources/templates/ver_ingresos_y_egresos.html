@@ -53,6 +53,14 @@
     });
     </script>
 
+    <style>
+        .img-fluid {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+        }
+    </style>
+
   </head>
   <body>
     <div id="base" class="">
@@ -133,7 +141,12 @@
               <tr> <!-- style=" border: 1px solid #515559;" -->
                 <td>{{entidad.nombre}}</td>
                 <td>{{fecha}}</td><!-- style=" border: 1px solid #515559;" -->
-                <td>ingreso</td>
+                <td>ingreso
+                  <img class="lupita" src="images/ver_ingresos_y_egresos/lupa_u330.svg"
+                       onmouseover="lupitahover(this);"
+                       onmouseout="lupitaunhover(this);"
+                       onclick="openForm();">
+                </td>
                 <td>{{valor.importe}}</td>
               </tr>
               {{/each}}
@@ -141,7 +154,12 @@
               <tr>
                 <td>{{entidad.nombre}}</td>
                 <td>{{fecha}}</td>
-                <td>egreso</td>
+                <td>egreso
+                  <img class="lupita" src="images/ver_ingresos_y_egresos/lupa_u330.svg"
+                       onmouseover="lupitahover(this);"
+                       onmouseout="lupitaunhover(this);"
+                       onclick="openForm();">
+                </td>
                 <td>{{valor.importe}}</td>
               </tr>
               {{/each}}
@@ -1095,8 +1113,117 @@
           </div>
         </div>
       </div>
+
+      <div class="div-padre">
+
+        <div class="nav__overlay"></div>
+
+        <div class="form-popup" id="myPopUp">
+
+          <div id="detalle_posta">
+            <div>
+              <p><span class="span_piola">Proveedor: </span></p>
+              <input id="proveedor" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+            </div>
+
+            <div>
+              <input id="fecha_detalle" name="txt" class="variables_fecha" value="  10/10/2020" disabled/>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Método de pago: </span></p>
+              <input id="pago" name="txt" class="variables_fijas" value="  PagoX" disabled/>
+            </div>
+
+            <div id="tabla_dinamica_fila">
+              <table width="100%" class="tablaCSS">
+                <thead>
+                <tr>
+                  <th></th> <!--style="width:2.6%" -->
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre item</th> <!--style="width:24.6%"-->
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Tipo</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Cantidad</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Precio de unitario</th>
+                </tr>
+                </thead>
+              </table>
+            </div>
+
+            <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
+              <tr id="trTable">
+                <td><input type="checkbox" name="chk" style="align: center;"/></td>
+                <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
+                <td>
+                  <select class="variables" type="text" name="txt" style="width: 100%; text-align: center;">
+                    <option value="seleccione">Seleccionar...</option>
+                    <option value="bien">Bien</option>
+                    <option value="servicio">Servicio</option>
+                  </select>
+                </td>
+                <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
+                <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
+              </tr>
+            </table>
+
+            <div>
+              <p><span class="span_piola">Ingresos asociados: </span></p>
+              <input id="ingresos" name="txt" class="variables_fijas" value="  Ingresos asociados" disabled/>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Criterios/catg asociados: </span></p>
+              <input id="cricat" name="txt" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Presupuesto elegido: </span></p>
+              <input id="prep" name="txt" class="variables_fijas" value="  Presupesto elegido" disabled/>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Presupuestos asociados: </span></p>
+              <input id="prepasoc" name="txt" class="variables_fijas" value="  Presupuestos asociados" disabled/>
+            </div>
+
+          </div>
+
+          <img class="lupita" style="position:fixed; right:0%; width:20px;"
+               src="images/ver_ingresos_y_egresos/closeButton.png"
+               onclick="closeForm();">
+        </div>
+
+      </div>
+
+
         <div id="includedContent"></div>
     </div>
+
+    <!--<div class="botoncitoo" style="left:50%;">
+      <span class="fas fa-bars"></span>
+    </div>-->
+
     <script src="resources/scripts/axure/ios.js"></script>
+
+    <script>
+      function openForm() {
+        document.getElementById("myPopUp").style.display = "block";
+      }
+
+      function closeForm() {
+        document.getElementById("myPopUp").style.display = "none";
+      }
+
+      function lupitahover(element){
+        element.setAttribute('src', 'images/ver_ingresos_y_egresos/lupa_u330_mouseOver.svg');
+      }
+
+      function lupitaunhover(element){
+        element.setAttribute('src', 'images/ver_ingresos_y_egresos/lupa_u330.svg');
+      }
+
+      $('.lupita').click(function(){
+        $('.div-padre').toggleClass("show");
+      });
+    </script>
   </body>
 </html>

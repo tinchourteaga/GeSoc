@@ -1,9 +1,6 @@
 package Dominio;
 
-import API.ML.ControllerMercadoLibre;
 import Servidor.Servidor;
-
-import java.io.IOException;
 
 public class Main {
 
@@ -82,12 +79,12 @@ public class Main {
     */
 
 //cargo cosas de ML
-        try {
+  /*      try {
         ControllerMercadoLibre.getControllerMercadoLibre().inicializarBase();
     } catch (IOException e) {
         e.printStackTrace();
     }
-
+*/
         //corro la base
       /*  try {
             AddData.main(args);

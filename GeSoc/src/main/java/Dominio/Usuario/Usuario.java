@@ -101,6 +101,14 @@ public class Usuario {
         return persona;
     }
 
+    public String getMail() {
+        return mail;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
     public void cambiarContrasenia(String contraseniaAnterior, String contraseniaNueva) throws ContraseniasDistintasException, IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         if (this.contrasenia.equals(contraseniaAnterior)){
             this.setContrasenia(contraseniaNueva);

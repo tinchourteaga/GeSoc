@@ -33,6 +33,7 @@ public class ControllerUsuario {
         Map<String,Object> datos = new HashMap<>();
         datos.put("nombre",miUsuario.getNombre());
         datos.put("apellido",miUsuario.getApellido());
+        datos.put("email",miUsuario.getMail());
         datos.put("rol",miUsuario.getRol());
         datos.put("nickname",miUsuario.getNickName());
         ModelAndView vista = new ModelAndView(datos, "usuario.html");

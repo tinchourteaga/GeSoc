@@ -50,6 +50,8 @@ public class Servidor {
         Spark.get("/", ControllerSesion::mostrarLogin, engine);
         Spark.get("/autenticacion_usuario", ControllerAutenticacion::visualizarPantalla, engine);
         Spark.get("/cargar_egreso", ControllerEgresos::visualizarPantalla, engine);
+        Spark.get("/cargar_items_egreso", ControllerEgresos::visualizarPantallaItems, engine);
+        Spark.get("/cargar_items_presupuestos", ControllerPresupuesto::visualizarPantallaItems, engine);
         Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
         Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
         Spark.get("/cargar_presupuesto", ControllerPresupuesto::visualizarPantalla, engine);

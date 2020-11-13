@@ -1,6 +1,7 @@
 package Dominio.Egreso.Core;
 
 import Converters.LocalDateAttributeConverter;
+import Converters.SeleccionProveedorAttributeConverter;
 import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
@@ -45,7 +46,8 @@ public class Egreso {
     @JoinColumn(name = "documento_comercial")
     private DocumentoComercial documentoComercial;
 
-    @Transient
+    @Column(name = "criterio_seleccion_proveedor")
+    @Convert(converter = SeleccionProveedorAttributeConverter.class)
     private CriterioSeleccionProveedor criterioSeleccionProveedor;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -88,12 +90,15 @@ public class Egreso {
        this.documentoComercial=unDocumento;
        this.presupuestosAConsiderar=presupuestos;
        this.setCriterio(criterio);
-       presupuestoPactado=criterio.seleccionarPresupuesto(presupuestos);
        this.estaVerificada=false;
     }
 
     public void setCriterio(CriterioSeleccionProveedor criterio){
         this.criterioSeleccionProveedor = criterio;
+    }
+
+    public void elegirPresupuesto(){
+        presupuestoPactado=this.criterioSeleccionProveedor.seleccionarPresupuesto(this.presupuestosAConsiderar);
     }
 
     public CriterioSeleccionProveedor getCriterio(){

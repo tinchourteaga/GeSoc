@@ -289,9 +289,9 @@
         <div id="u1176_div" class=""></div>
         <select name="proveedor" id="u1176_input" class="u1176_input">
           <option class="u1176_input_option" value="Seleccionar Proveedor">Seleccionar Proveedor</option>
-          <option class="u1176_input_option" value="Proveedor 1">Proveedor 1</option>
-          <option class="u1176_input_option" value="Proveedor 2">Proveedor 2</option>
-          <option class="u1176_input_option" value="Proveedor 3">Proveedor 3</option>
+          {{#each proveedor}}
+          <option class="u1176_input_option" value={{nombre}}>{{nombre}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -300,11 +300,9 @@
         <div id="u1177_div" class=""></div>
         <select name="documentoComercial" id="u1177_input" class="u1177_input">
           <option class="u1177_input_option" value="Seleccionar Documento Comercial">Seleccionar Documento Comercial</option>
-          <option class="u1177_input_option" value="Cheque">Cheque</option>
-          <option class="u1177_input_option" value="Pagaré">Pagaré</option>
-          <option class="u1177_input_option" value="Factura A">Factura A</option>
-          <option class="u1177_input_option" value="Factura B">Factura B</option>
-          <option class="u1177_input_option" value="Factura C">Factura C</option>
+         {{#each documentos}}
+          <option class="u1177_input_option" value={{.}} >{{.}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -342,15 +340,15 @@
         <input name="fecha" id="u1182_input" type="date" value="Fecha" class="u1182_input"/>
       </div>
 
-      <!-- Unnamed (Rectangle) -->
+      <!--
       <div id="u1183" class="ax_default heading_1">
         <div id="u1183_div" class=""></div>
         <div id="u1183_text" class="text ">
           <p><span>Moneda:</span></p>
         </div>
       </div>
-
-      <!-- Unnamed (Droplist) -->
+ comento por tiempos -->
+      <!--
       <div id="u1184" class="ax_default droplist">
         <div id="u1184_div" class=""></div>
         <select name="moneda" id="u1184_input" class="u1184_input">
@@ -360,7 +358,7 @@
           <option class="u1184_input_option" value="Euro">Euro</option>
         </select>
       </div>
-
+Lo comento por tiempos -->
       <!-- Unnamed (Rectangle) -->
       <div id="u1185" class="ax_default heading_1">
         <div id="u1185_div" class=""></div>
@@ -398,7 +396,6 @@
               <tr>
                 <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Proveedor</th>
                 <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Moneda</th>
                 <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width: 25%">Documento comercial</th>
                 <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Total</th>
               </tr>
@@ -406,11 +403,10 @@
               <tbody>
               {{#each egreso}}
               <tr>
-                <td>{{entidad.nombre}}</td>
+                <td>{{proveedor.nombre}}</td>
                 <td>{{fecha}}</td>
-                <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
-                <td>{{fecha}}:{{valor.importe}}</td>
-                <td>{{fecha}}:{{valor.importe}}</td>
+                <td>{{documentoComercial.tipo}}</td>
+                <td>{{valor}}</td>
               </tr>
               {{/each}}
               </tbody>

@@ -3,7 +3,7 @@
   background-image:none;
   position:relative;
   left:0px;
-  width:1350px;
+  width:100%;
   margin-left:auto;
   margin-right:auto;
   text-align:left;
@@ -170,7 +170,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:1350px;
+  width:100%;
   height:70px;
 }
 .centerTable { margin: 0px auto; }
@@ -183,7 +183,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:1350px;
+  width:100%;
   height:70px;
   display:flex;
 }
@@ -330,7 +330,7 @@
   position:absolute;
   left:45px;
   top:292px;
-  width:1260px;
+  width:1000px;
   height:276px;
 }
 #u1457_state0 {
@@ -338,7 +338,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:1260px;
+  width:1000px;
   height:276px;
   -ms-overflow-x:hidden;
   overflow-x:hidden;
@@ -4320,4 +4320,149 @@
 
 .tablaCSS tbody tr:last-of-type{
     border-bottom: 2px solid rgba(217, 70, 59, 1);
+}
+.variables_fijas{
+  width: 35%;
+  text-align:left;
+  background-color:white;
+  border: 0px;
+}
+
+.form-popup{
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid rgba(217, 70, 59, 1);
+}
+
+#myPopUp{
+    position: fixed;
+    width:50%;
+    height: 50%;
+    top:20%;
+    left:20%;
+    display:none;
+}
+
+.lupita{
+   position: absolute;
+   left: 64%;
+}
+
+#detalle_posta{
+  position: fixed;
+  width:48%;
+  height: 50%;
+  top:22%;
+  left:21%;
+}
+
+#proveedor{
+  position: absolute;
+  left: 14%;
+  top: 3.5%;
+}
+
+#fecha_detalle{
+  position: absolute;
+  text-align: right;
+  right: 2%;
+  top: 5.5%;
+}
+
+.variables_fecha{
+  text-align:right;
+  background-color:white;
+  border: 0px;
+}
+
+
+#pago{
+  position: absolute;
+  left: 19%;
+  top: 14%;
+  background-color:transparent;
+}
+.tablaCSS{
+    border-collapse: collapse;
+    margin 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-size:14px;
+}
+
+.nav__overlay{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 90%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(3px);
+    visibility: hidden;
+    opacity: 0;
+}
+
+.span_piola{
+   margin-top: 10px;
+   display: block;
+   margin-bottom: 10px;
+}
+
+.div-padre.show .nav__overlay{
+    visibility: visible;
+    opacity: 1;
+}
+
+.tablaCSS thead tr{
+    background-color: rgba(217, 70, 59, 1);
+    color: white;
+    text-align: center;
+    /*border: 1px solid #515559;*/
+}
+.tablaCSS th,
+.tablaCSS td{
+    padding: 6px 9px;
+}
+
+.tablaCSS tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablaCSS tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.tablaCSS tbody tr:last-of-type{
+    border-bottom: 2px solid rgba(217, 70, 59, 1);
+}
+
+#ingresos{
+  position: absolute;
+  left: 22%;
+  top: 50%;
+}
+
+#cricat{
+  position: absolute;
+  left: 27%;
+  top: 60%;
+}
+
+#prep{
+  position: absolute;
+  left: 24%;
+  top: 70.5%;
+}
+
+#prepasoc{
+  position: absolute;
+  left: 27%;
+  top: 81%;
 }

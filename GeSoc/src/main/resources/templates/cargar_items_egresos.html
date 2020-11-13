@@ -75,23 +75,23 @@
             <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
                 <tr id="trTable">
                     <td><input type="checkbox" name="chk" style="align: center;"/></td>
-                    <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
+                    <td><input name="nombreItem" class="variables" type="text" style="width: 100%; text-align: center;"/></td>
                     <td>
-                        <select class="variables" type="text" name="txt" style="width: 100%; text-align: center;">
+                        <select name="tipoItem" class="variables" type="text" style="width: 100%; text-align: center;">
                             <option value="seleccione">Seleccionar...</option>
                             <option value="bien">Bien</option>
                             <option value="servicio">Servicio</option>
                         </select>
                     </td>
-                    <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
-                    <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
+                    <td id="celdaCantidad"><input name="cantidad" id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
+                    <td id="celdaPrecioUnitario"><input name="precioU" type="text" class="variables" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
                 </tr>
             </table>
         </div>
 
         <div id="total">
             <p><span class="total">Total:  </span></p>
-            <input id="total_input" type="text2" name="txt" class="variables_fijas" disabled/>
+            <input name="importeTotal" id="total_input" type="text2" class="variables_fijas" disabled/>
         </div>
 
         <div id="cargar_items">
@@ -115,6 +115,8 @@
 			for(var i=0; i<colCount; i++) {
 
 				var newcell	= row.insertCell(i);
+
+				newcell.name = 'celdaNumero'+i;
 
 				newcell.innerHTML = table.rows[0].cells[i].innerHTML;
 				//alert(newcell.childNodes);
@@ -189,6 +191,31 @@
             document.getElementById("total_input").value = String(sumatoria);
             return sumatoria;
 		}
+
+        //Llamar a esta funcion cuando apretas el boton de cargar items
+        //Loopea por toda la tabla trayendose los valores por fila y arma el json y lo envia
+        function getElementsFromTable(tableID) {
+		    var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+
+            for(var i = 1; i < rowCount; i++){
+                var objCells = table.rows.item(i).cells;
+                var j = 1;
+
+                var nombreItem = objCells.item(j).innerHTML;
+                var tipoItem = objCells.item(j+1).innerHTML;
+                var cantidad = objCells.item(j+2).innerHTML;
+                var precio = objCells.item(j+3).innerHTML;
+
+                //tengo que armarme el json
+
+            }
+
+
+
+
+        }
+
     </script>
 </body>
 </html>

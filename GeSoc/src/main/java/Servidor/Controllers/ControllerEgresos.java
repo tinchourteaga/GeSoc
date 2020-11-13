@@ -27,7 +27,7 @@ public class ControllerEgresos {
 
     public static Object cargarEgreso(Request request, Response response) {
 
-        String entidad = request.queryParams("seleccionarEntidad");
+
         String fecha = request.queryParams("fecha");
         String metodoPago = request.queryParams("seleccionarMetodoPago");
         String proveedor = request.queryParams("proveedor");

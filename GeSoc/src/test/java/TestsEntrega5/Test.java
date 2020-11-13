@@ -1,16 +1,5 @@
 package TestsEntrega5;
 
-import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
-import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
-import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
-import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
-import Dominio.Rol.Administrador;
-import Dominio.Rol.Estandar;
-import Dominio.Usuario.Usuario;
-import Persistencia.Repos.RepositorioUsuario;
-
-import java.io.IOException;
-
 public class Test {
     //ControllerMercadoLibre varController = ControllerMercadoLibre.getControllerMercadoLibre();
 

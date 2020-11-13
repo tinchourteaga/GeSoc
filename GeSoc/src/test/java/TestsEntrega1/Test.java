@@ -6,7 +6,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
-import Dominio.Rol.Administrador;
+import Dominio.Usuario.Rol;
 import Dominio.Usuario.Usuario;
 import org.junit.Assert;
 
@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class Test {
 
-    Administrador rolPrueba = new Administrador();
+    Rol rolPrueba = Rol.ADMINISTRADOR;
 
     @org.junit.Test(expected = ExcepcionNumero.class)
     public void testContraseniaSinNumeros() throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException, ExcepcionCaracterEspecial, ExcepcionLongitud, ExcepcionContraseniaComun {

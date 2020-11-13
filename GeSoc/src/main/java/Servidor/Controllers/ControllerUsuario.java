@@ -5,8 +5,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
-import Dominio.Rol.Administrador;
-import Dominio.Rol.Estandar;
+import Dominio.Usuario.Rol;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
@@ -126,9 +125,9 @@ public class ControllerUsuario {
     }
 
     public static void persistirUsuarioEstandar(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
-        Estandar rol = new Estandar();
+
         String contrasenia = PasswordGenerator.generateRandomPassword(10);
-        Usuario usuario = new Usuario(rol, nombre, apellido, contrasenia, dni, email);
+        Usuario usuario = new Usuario(Rol.ESTANDAR, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona();
 
         DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
@@ -145,9 +144,9 @@ public class ControllerUsuario {
     }
 
     public static void persistirUsuarioAdmin(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
-        Administrador rol = new Administrador();
+
         String contrasenia = PasswordGenerator.generateRandomPassword(10);
-        Usuario usuario = new Usuario(rol, nombre, apellido, contrasenia, dni, email);
+        Usuario usuario = new Usuario(Rol.ADMINISTRADOR, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona();
 
         DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD

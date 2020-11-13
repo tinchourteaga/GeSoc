@@ -42,7 +42,7 @@ public class ControllerEgresos {
             Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
             Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
 
-            usuarioModificado.getRol().agregarEgresoARevisar(egreso);
+            usuarioModificado.agregarEgresoARevisar(egreso);
 
             DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
             Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics

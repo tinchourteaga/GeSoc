@@ -2,19 +2,14 @@ package Servidor.Controllers;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
-import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-import Dominio.Egreso.Core.*;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
+import Dominio.Egreso.Core.Egreso;
 import Dominio.Entidad.Entidad;
-import Dominio.Entidad.EntidadJuridica;
-import Dominio.Entidad.OrganizacionSocial;
 import Dominio.Ingreso.Ingreso;
+import Dominio.Usuario.Usuario;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -24,87 +19,36 @@ public class ControllerVisualizacionEI {
 
         Map<String,Object> datos = new HashMap<>();
 
+        Usuario usuarioActual= ControllerSesion.obtenerUsuariodeSesion(request);
         //Estas cinco listas las tenemos que traer de la BD
-        List<Entidad> entidades = new ArrayList<>();
-        List<Criterio> criterios = new ArrayList<>();
-        List<CategoriaCriterio> categorias = new ArrayList<>();
+        List<Entidad> entidades = usuarioActual.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
         List<Ingreso> ingreso = new ArrayList<>();
-        List<Egreso> egreso = new ArrayList<>();
+        entidades.forEach(ent->ingreso.addAll(ent.getIngresos()));
+        List<Egreso> egreso = usuarioActual.getEgresosAREvisar();
 
-        //Tests
-        Entidad entidadPrueba1 = new EntidadJuridica("entidadPrueba1", "JorgeCampeon",new OrganizacionSocial());
-        entidadPrueba1.setEntidad(57);
-        entidades.add(entidadPrueba1);
+        List<CategoriaCriterio> categorias = egreso.stream().map(eg->eg.getCategorias()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
-        Entidad entidadPrueba2 = new EntidadJuridica("entidadPrueba2", "JuanCampeon",new OrganizacionSocial());
-        entidadPrueba2.setEntidad(37);
-        entidades.add(entidadPrueba2);
+        List<Criterio> criterios = egreso.stream().map(eg->eg.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
-        Criterio criterioPrueba = new Criterio(new ArrayList<>(),"criterioPrueba", "TinchoCampeon");
-        criterioPrueba.setCriterio(13);
-        criterios.add(criterioPrueba);
+        //remuevo repetidos
+        Set<Entidad> setEntidades = new HashSet<Entidad>(entidades);
+        entidades.clear();
+        entidades.addAll(setEntidades);
+        Set<Egreso> setEgreso = new HashSet<Egreso>(egreso);
+        egreso.clear();
+        egreso.addAll(setEgreso);
+        Set<Ingreso> setIngreso = new HashSet<Ingreso>(ingreso);
+        ingreso.clear();
+        ingreso.addAll(setIngreso);
+        Set<CategoriaCriterio> setCategorias = new HashSet<CategoriaCriterio>(categorias);
+        categorias.clear();
+        categorias.addAll(setCategorias);
+        Set<Criterio> setCriterios = new HashSet<Criterio>(criterios);
+        criterios.clear();
+        criterios.addAll(setCriterios);
 
-        CategoriaCriterio categoriaPrueba = new CategoriaCriterio("descripCat","catgoriaPrueba");
-        categoriaPrueba.setCategoria(9);
-        categorias.add(categoriaPrueba);
 
-        Ingreso ingresoPrueba = new Ingreso("$",230,LocalDate.of(2020,10,14),LocalDate.now(),"descrip",new ArrayList<>());
-        Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),LocalDate.now(),"descrip2",new ArrayList<>());
-        Ingreso ingresoPrueba3 = new Ingreso("$",3,LocalDate.of(2020,10,14),LocalDate.now(),"descrip3",new ArrayList<>());
 
-        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", Arrays.asList(new Item(8888f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
-            @Override
-            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
-                return null;
-            }
-
-            @Override
-            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-
-            }
-
-            @Override
-            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
-                return null;
-            }
-        });
-
-        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay",  Arrays.asList(new Item(2222f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
-            @Override
-            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
-                return null;
-            }
-
-            @Override
-            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-
-            }
-
-            @Override
-            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
-                return null;
-            }
-        });
-
-        //Seteamos las entidades
-        ingresoPrueba.setEntidad(entidadPrueba1);
-        ingresoPrueba2.setEntidad(entidadPrueba2);
-        ingresoPrueba3.setEntidad(entidadPrueba1);
-
-        ingresoPrueba.agregarCategoria(categoriaPrueba);
-
-        egresoPrueba.setEntidad(entidadPrueba1);
-        egresoPrueba2.setEntidad(entidadPrueba2);
-
-        egresoPrueba2.getCriterioDeCategorizacion().add(criterioPrueba);
-
-        //Agregamos los objetitos a las listas
-        egreso.add(egresoPrueba);
-        egreso.add(egresoPrueba2);
-
-        ingreso.add(ingresoPrueba);
-        ingreso.add(ingresoPrueba2);
-        ingreso.add(ingresoPrueba3);
 
         //Logica de filtrado
         List<Entidad> entidadesFiltradas = new ArrayList<>();
@@ -126,20 +70,20 @@ public class ControllerVisualizacionEI {
 
         if(idEntidad != null){
             //Filtramos entidades
-            egresoFiltradas = egreso.stream().filter(unEgreso->String.valueOf(unEgreso.getEntidad().getEntidad()).equals(idEntidad)).collect(Collectors.toList());
-            ingresoFiltradas = ingreso.stream().filter(unIngreso->String.valueOf(unIngreso.getEntidad().getEntidad()).equals(idEntidad)).collect(Collectors.toList());
+            egresoFiltradas = egresoFiltradas.stream().filter(unEgreso->String.valueOf(unEgreso.getEntidad().getEntidad()).equals(idEntidad)).collect(Collectors.toList());
+            ingresoFiltradas = ingresoFiltradas.stream().filter(unIngreso->String.valueOf(unIngreso.getEntidad().getEntidad()).equals(idEntidad)).collect(Collectors.toList());
         }
 
         if(idCriterio != null){
             //Filtramos criterios
-            egresoFiltradas = egreso.stream().filter(unEgreso->criterios.stream().anyMatch(x->unEgreso.getCriterioDeCategorizacion().contains(x))).collect(Collectors.toList());
-            ingresoFiltradas = ingreso.stream().filter(unIngreso->criterios.stream().anyMatch(x->x.getCategoriaCriterios().stream().anyMatch(unCriterio-> unIngreso.getCategoriasAsociadas().contains(unCriterio)))).collect(Collectors.toList());
+            egresoFiltradas = egresoFiltradas.stream().filter(unEgreso->criterios.stream().anyMatch(x->unEgreso.getCriterioDeCategorizacion().contains(x))).collect(Collectors.toList());
+            ingresoFiltradas = ingresoFiltradas.stream().filter(unIngreso->criterios.stream().anyMatch(x->x.getCategoriaCriterios().stream().anyMatch(unCriterio-> unIngreso.getCategoriasAsociadas().contains(unCriterio)))).collect(Collectors.toList());
         }
 
         if(idCategoria != null){
             //Filtramos categorias
-            egresoFiltradas = egreso.stream().filter(unEgreso->unEgreso.getCategorias().stream().anyMatch(unaCategoria -> String.valueOf(unaCategoria.getCategoria()).equals(idCategoria))).collect(Collectors.toList());
-            ingresoFiltradas = ingreso.stream().filter(unIngreso->unIngreso.getCategoriasAsociadas().stream().anyMatch(unaCategoria -> String.valueOf(unaCategoria.getCategoria()).equals(idCategoria))).collect(Collectors.toList());
+            egresoFiltradas = egresoFiltradas.stream().filter(unEgreso->unEgreso.getCategorias().stream().anyMatch(unaCategoria -> String.valueOf(unaCategoria.getCategoria()).equals(idCategoria))).collect(Collectors.toList());
+            ingresoFiltradas = ingresoFiltradas.stream().filter(unIngreso->unIngreso.getCategoriasAsociadas().stream().anyMatch(unaCategoria -> String.valueOf(unaCategoria.getCategoria()).equals(idCategoria))).collect(Collectors.toList());
         }
 
         //Hacemos los PUTs

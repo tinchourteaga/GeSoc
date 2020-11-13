@@ -1,18 +1,19 @@
 package Dominio.Usuario;
 
-import Converters.RolAttributeConverter;
 import Dominio.BandejaMensajes.BandejaMensajes;
 import Dominio.Contrasenia.Core.ValidadorDeContrasenia;
 import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Egreso.Core.Egreso;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
-import Dominio.Rol.Rol;
 import Servidor.Controllers.ControllerNombreUsuario;
 
 import javax.persistence.*;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pers_usuarios")
@@ -39,8 +40,26 @@ public class Usuario {
     @Column(name = "clave")
     private String contrasenia;
 
-    @Convert(converter = RolAttributeConverter.class)
+    @Column(name = "rol")
+    @Enumerated(value = EnumType.STRING)
     private Rol rol; //Estandar o Administrador
+
+    @ManyToMany
+    @JoinTable(
+            name = "dom_rol_dom_egreso",
+            joinColumns = { @JoinColumn(name = "rol") },
+            inverseJoinColumns = { @JoinColumn(name = "egreso") }
+    )
+    protected List<Egreso> egresosARevisar=new ArrayList();
+
+    public List<Egreso> getEgresosAREvisar() {
+        return this.egresosARevisar;
+    }
+
+    public void agregarEgresoARevisar(Egreso egreso) {
+        this.egresosARevisar.add(egreso);
+    }
+
 
     @Embedded
     private BandejaMensajes bandejaDeMensajes;

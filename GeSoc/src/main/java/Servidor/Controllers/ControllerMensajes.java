@@ -23,7 +23,7 @@ public class ControllerMensajes {
 
         if (usuario != null) {
 
-            if (usuario.getRol().getEgresosAREvisar().isEmpty()) {
+            if (usuario.getEgresosAREvisar().isEmpty()) {
                 return visualizarPantallaMensajesNoRevisor(request, response);
             } else {
                 return visualizarPantallaMensajesRevisor(request, response, usuario);

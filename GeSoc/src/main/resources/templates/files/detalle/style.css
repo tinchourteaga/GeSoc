@@ -1,0 +1,131 @@
+#titulo_cargar_items {
+  border-width:0px;
+  position:absolute;
+  left:5%;
+  top:15%;
+  width:100%;
+  display:flex;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:700;
+  font-style:normal;
+  font-size:2vw;
+  color:#D9463B;
+}
+
+#proveedor_seleccionado{
+  border-width:0px;
+  position:absolute;
+  left:7%;
+  top:23%;
+  width:100%;
+  display:flex;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:1.3vw;
+  color:black;
+}
+
+#select_proveedor{
+  position:absolute;
+  left:7%;
+  top:27%;
+  width:308px;
+  height:23px;
+}
+
+.selects_bonitos{
+  padding:2px 2px 2px 2px;
+  font-family:'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:13px;
+  letter-spacing:normal;
+  color:#000000;
+  vertical-align:none;
+  text-align:left;
+  text-transform:none;
+  background-color:transparent;
+  border-color:transparent;
+  background-color:rgba(255, 255, 255, 1);
+  box-sizing:border-box;
+  border-width:1px;
+  border-style:solid;
+  border-color:rgba(121, 121, 121, 1);
+  border-radius:5px;
+}
+
+.variables_fijas{
+  width: 15%;
+  text-align:left;
+  background-color:white;
+  border: 0px;
+}
+
+#fecha_seleccionada{
+  position:absolute;
+  left:7%;
+  top:33%;
+  display:flex;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:1.3vw;
+  color:black;
+}
+
+#fecha_posta {
+  position:absolute;
+  left:7%;
+  top:37%;
+}
+
+#criterio_seleccionado{
+  position:absolute;
+  left:7%;
+  top:43%;
+}
+
+#select_criterio{
+  position:absolute;
+  left:7%;
+  top:47%;
+}
+
+#egreso_seleccionado{
+  position:absolute;
+  left:7%;
+  top:53%;
+}
+
+#select_egreso{
+  position:absolute;
+  left:7%;
+  top:57%;
+}
+
+#detalle_posta{
+  position: absolute;
+  left: 30%;
+  top: 23%;
+  width: 60%;
+  height: 45%;
+}
+
+#proveedor{
+  position: absolute;
+  left: 10%;
+  top: 1%;
+}
+
+#fecha_detalle{
+  position: absolute;
+  right: 0%;
+  top: 1%;
+}
+
+#pago{
+  position: absolute;
+  left: 15%;
+  top: 9%;
+}

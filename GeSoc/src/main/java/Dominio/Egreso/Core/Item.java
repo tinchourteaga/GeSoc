@@ -25,6 +25,7 @@ public class Item {
     @Column(name = "cantidad")
     private Integer cantidad;
 
+
     public Item() { }
 
     public Item(Float importe,String desc,Integer cantidad){

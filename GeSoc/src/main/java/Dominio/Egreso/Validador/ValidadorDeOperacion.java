@@ -6,7 +6,6 @@ import Dominio.Egreso.Validador.EstrategiasRevision.EstrategiaRevision;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Dominio.Egreso.Validador.Validaciones.ValidacionOperacion;
-import Dominio.Rol.Acciones.LeerMensaje;
 import Dominio.Rol.Mensajero;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
@@ -73,7 +72,6 @@ public class ValidadorDeOperacion {
     }
 
     private static void enviarMensaje(Usuario usuario, Mensaje mensaje) {
-       usuario.getRol().getAcciones().add(new LeerMensaje(mensaje));
        usuario.getBandejaDeMensajes().agregarMensaje(mensaje);
     }
 

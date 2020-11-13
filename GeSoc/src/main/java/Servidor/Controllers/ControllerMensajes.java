@@ -23,7 +23,7 @@ public class ControllerMensajes {
 
         if (usuario != null) {
 
-            if (usuario.getRol().getEgresosAREvisar().isEmpty()) {
+            if (usuario.getEgresosAREvisar().isEmpty()) {
                 return visualizarPantallaMensajesNoRevisor(request, response);
             } else {
                 return visualizarPantallaMensajesRevisor(request, response, usuario);
@@ -47,7 +47,7 @@ public class ControllerMensajes {
         String egreso = request.queryParams("egreso");
         List<Mensaje> todosLosMsj = new ArrayList();
         if (egreso != null && fecha != null) {
-            todosLosMsj = usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj -> msj.getFechaCreado().isBefore(LocalDate.parse(fecha))/*&& msj.getEgreso().getEgreso().equals(Integer.valueOf(egreso))*/).collect(Collectors.toList());
+            todosLosMsj = usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj -> msj.getFechaCreado().isBefore(LocalDate.parse(fecha))&& msj.getEgreso().getEgreso()==Integer.valueOf(egreso).intValue()).collect(Collectors.toList());
         } else {
 
             if (fecha != null) {

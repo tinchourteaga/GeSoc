@@ -13,9 +13,7 @@ import Dominio.Entidad.Categorias.Categoria;
 import Dominio.Entidad.Categorias.TipoCategoria;
 import Dominio.Entidad.*;
 import Dominio.Ingreso.Ingreso;
-import Dominio.Rol.Administrador;
-import Dominio.Rol.Estandar;
-import Dominio.Rol.Rol;
+import Dominio.Usuario.Rol;
 import Dominio.Usuario.Usuario;
 import Lugares.Ciudad;
 import Lugares.Pais;
@@ -48,37 +46,12 @@ public class AddData {
         // if (results.size() == 0) {
         //no hay nada cargado
 
-        //creo roles
-        Rol admin = new Administrador();
-        Rol estandar = new Estandar();
-        Rol revisor1 = new Estandar();//hay que agregarle todas las operaciones de la org para que las revise
-        Rol revisor2 = new Estandar();//hay que agregarle todas las operaciones de la org para que las revise
-
-        //creo usuarios
-        Usuario usuarioAdmin = new Usuario(admin, "martin", "urteaga", "M@rtin.98", "41589363", "martin@hotmail.com");
-        usuarioAdmin.setPersona();
-
-        Usuario alejandro = new Usuario(revisor1, "Alejandro", "Roco", "*_aroco20!-?", "41589363", "aroco@hotmail.com");
-        alejandro.setPersona();
-
-        Usuario rocio = new Usuario(estandar, "Rocio", "Rojas", "*-_rrojas!?", "41589363", "rrojas@hotmail.com");
-        rocio.setPersona();
-
-        Usuario julieta = new Usuario(revisor2, "Julieta", "Azul", "!-*jazul_!?", "41589363", "jazul@hotmail.com");
-        julieta.setPersona();
-
-
-        List<Usuario> usuariosAPersistir = new ArrayList<>();
-        usuariosAPersistir.add(usuarioAdmin);
-        usuariosAPersistir.add(alejandro);
-        usuariosAPersistir.add(rocio);
-        usuariosAPersistir.add(julieta);
-
-
-        //persistoUsuarios
-        DAO DAOUsuario = new DAOUsuario();
-        Repositorio repoUsuario = new Repositorio(DAOUsuario);
-        usuariosAPersistir.forEach(us -> repoUsuario.agregar(us));
+        //cargo cosas de ML
+        /*try {
+            ControllerMercadoLibre.getControllerMercadoLibre().inicializarBase();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 
         Repositorio repoPaises = new Repositorio(new DAOBBDD<Pais>(Pais.class));
         List<Pais> todosLosPaises = repoPaises.getTodosLosElementos();
@@ -702,6 +675,44 @@ public class AddData {
 
         Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
         egresosAPersistir.forEach(e->repoEgresos.agregar(e));
+
+
+
+        //creo usuarios
+        Usuario usuarioAdmin = new Usuario(Rol.ADMINISTRADOR, "martin", "urteaga", "M@rtin.98", "41589363", "martin@hotmail.com");
+        usuarioAdmin.setPersona();
+
+        Usuario alejandro = new Usuario(Rol.ESTANDAR, "Alejandro", "Roco", "*_aroco20!-?", "41589363", "aroco@hotmail.com");
+        alejandro.setPersona();
+
+        Usuario rocio = new Usuario(Rol.ESTANDAR, "Rocio", "Rojas", "*-_rrojas!?", "41589363", "rrojas@hotmail.com");
+        rocio.setPersona();
+
+        Usuario julieta = new Usuario(Rol.ESTANDAR, "Julieta", "Azul", "!-*jazul_!?", "41589363", "jazul@hotmail.com");
+        julieta.setPersona();
+
+        alejandro.getEgresosAREvisar().add(egreso1);
+        alejandro.getEgresosAREvisar().add(egreso2);
+        alejandro.getEgresosAREvisar().add(egreso3);
+        alejandro.getEgresosAREvisar().add(egreso4);
+        alejandro.getEgresosAREvisar().add(egreso5);
+        alejandro.getEgresosAREvisar().add(egreso6);
+        alejandro.getEgresosAREvisar().add(egreso7);
+
+        julieta.getEgresosAREvisar().add(egreso8);
+        julieta.getEgresosAREvisar().add(egreso9);
+        julieta.getEgresosAREvisar().add(egreso10);
+
+        List<Usuario> usuariosAPersistir = new ArrayList<>();
+        usuariosAPersistir.add(usuarioAdmin);
+        usuariosAPersistir.add(alejandro);
+        usuariosAPersistir.add(rocio);
+        usuariosAPersistir.add(julieta);
+
+        //persistoUsuarios
+        DAO DAOUsuario = new DAOUsuario();
+        Repositorio repoUsuario = new Repositorio(DAOUsuario);
+        usuariosAPersistir.forEach(us -> repoUsuario.agregar(us));
 
         System.out.println("Corrio joyita");
 

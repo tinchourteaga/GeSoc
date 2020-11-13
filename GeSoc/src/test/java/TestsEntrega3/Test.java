@@ -1,45 +1,22 @@
 package TestsEntrega3;
 
-import Dominio.BandejaMensajes.Mensaje;
-import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
-import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
-import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
-import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
-import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
-import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
-import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
-import Dominio.Egreso.Core.*;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCantidadPresupuestos;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCompraPertenecePresupuesto;
-import Dominio.Egreso.Validador.Validaciones.ValidacionCriterioProveedor;
-import Dominio.Egreso.Validador.Validaciones.ValidacionPresupuestoMenor;
-import Dominio.Egreso.Validador.ValidadorDeOperacion;
+import Dominio.Egreso.Core.Proveedor;
 import Dominio.Entidad.Direccion;
 import Dominio.Entidad.DireccionPostal;
-import Dominio.Rol.Acciones.AgregarJerarquia;
-import Dominio.Rol.Administrador;
-import Dominio.Rol.Exepciones.NoTengoPermisosException;
-import Dominio.Usuario.Usuario;
 import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
-import TestsEntrega3.CriterioDummy.CriterioFalla;
-import org.junit.Assert;
 
-import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Test {
     DireccionPostal direc = new DireccionPostal(new Direccion("Larralde", "2454", "3", "A"), 1850, new Pais("AR","Argentina"), new Provincia("BSAS","Buenos Aires"), new Ciudad("A", "Adrogué"));
     Proveedor prov = new Proveedor("Razon Social", "28-49367281-6", direc);
     LocalDate fecha = LocalDate.of(2019, 8, 25);
 
-    @org.junit.Test
+    //quedo deprecado todo
+
+    /*@org.junit.Test
     public void testValidadorNoPasaCriterio(){
         List<Presupuesto> presupuestos=new ArrayList<>();
 
@@ -102,7 +79,7 @@ public class Test {
     @org.junit.Test
     public void testJerarquias() throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun, NoTengoPermisosException, NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
 
-        Administrador roladmin=new Administrador();
+        Rol roladmin= Rol.ADMINISTRADOR;
         List<CategoriaCriterio> categoriaCriterios =new ArrayList<>();
         categoriaCriterios.add(new CategoriaCriterio("descripcion1","nombre1"));
         categoriaCriterios.add(new CategoriaCriterio("descripcion2","nombre2"));
@@ -166,4 +143,6 @@ public class Test {
         Assert.assertEquals("Paso exitosamente todas las Validaciones",cumplio.getMensajeResultado());
         //no entiendo porque no da este tests
     }
+
+     */
 }

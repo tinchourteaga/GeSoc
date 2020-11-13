@@ -303,7 +303,7 @@
       <div id="u525" class="ax_default heading_1">
         <div id="u525_div" class=""></div>
         <div id="u525_text" class="text ">
-          <p><span>Proveedor:</span></p>
+          <p><span>Criterio:</span></p>
         </div>
       </div>
 
@@ -348,20 +348,20 @@
         <div id="u531_div" class=""></div>
         <select name="seleccionarMetodoPago" id="u531_input" class="u531_input">
           <option class="u531_input_option" selected value="Seleccionar Método de Pago">Seleccionar Método de Pago</option>
-          <option class="u531_input_option" value="Crédito">Crédito</option>
-          <option class="u531_input_option" value="Débito">Débito</option>
-          <option class="u531_input_option" value="Transferencia Bancaria">Transferencia Bancaria</option>
+          {{#each metodos}}
+          <option class="u531_input_option" value={{.}} >{{.}}</option>
+          {{/each}}
         </select>
       </div>
 
       <!-- Unnamed (Droplist) -->
       <div id="u532" class="ax_default droplist">
         <div id="u532_div" class=""></div>
-        <select name="proveedor" id="u532_input" class="u532_input">
-          <option class="u532_input_option" value="Seleccionar Proveedor">Seleccionar Proveedor</option>
-          <option class="u532_input_option" value="Proveedor 1">Proveedor 1</option>
-          <option class="u532_input_option" value="Proveedor 2">Proveedor 2</option>
-          <option class="u532_input_option" value="Proveedor 3">Proveedor 3</option>
+        <select name="criterio" id="u532_input" class="u532_input">
+          <option class="u532_input_option" value="">Seleccionar Criterio</option>
+         {{#each criterios}}
+          <option class="u532_input_option" value={{.}} >{{.}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -370,11 +370,9 @@
         <div id="u533_div" class=""></div>
         <select name="documentoComercial" id="u533_input" class="u533_input">
           <option class="u533_input_option" value="Seleccionar Documento Comercial">Seleccionar Documento Comercial</option>
-          <option class="u533_input_option" value="Cheque">Cheque</option>
-          <option class="u533_input_option" value="Pagaré">Pagaré</option>
-          <option class="u533_input_option" value="Factura A">Factura A</option>
-          <option class="u533_input_option" value="Factura B">Factura B</option>
-          <option class="u533_input_option" value="Factura C">Factura C</option>
+         {{#each documentos}}
+          <option class="u533_input_option" value={{.}} >{{.}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -422,7 +420,7 @@
             <table class="tablaCSS" style="width:100%;">
               <thead>
               <tr>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Proveedor</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Organizacion</th>
                 <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
                 <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Método de pago</th>
                 <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Documento comercial</th>
@@ -434,9 +432,9 @@
               <tr>
                 <td>{{entidad.nombre}}</td>
                 <td>{{fecha}}</td>
-                <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
-                <td>{{fecha}}:{{valor.importe}}</td>
-                <td>{{fecha}}:{{valor.importe}}</td>
+                <td>{{metodoDePago.tipo}}</td>
+                <td>{{documentoComercial.tipo}}</td>
+                <td>{{valor.importe}}</td>
               </tr>
               {{/each}}
               </tbody>

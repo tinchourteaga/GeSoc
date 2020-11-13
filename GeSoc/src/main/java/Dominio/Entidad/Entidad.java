@@ -71,4 +71,8 @@ public abstract class Entidad {
     public void setCriterios(List<Criterio> criterios) { this.criterios = criterios; }
     public void setEntidad(int entidad) {this.entidad = entidad;}
     public int getEntidad() {return entidad;}
+
+    public List<Ingreso> getIngresos() {
+        return ingresos;
+    }
 }

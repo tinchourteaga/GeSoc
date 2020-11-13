@@ -73,19 +73,26 @@ public class ControllerAsociacion {
 
     public static Object asociarEgresosYPresupuestos(Request request, Response response) {
 
-        String entidad = request.queryParams("entidad");
-        String fecha = request.queryParams("fecha");
-        String metodoPago = request.queryParams("metodoPago");
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         String egreso = request.queryParams("egreso");
         String presupuesto = request.queryParams("presupuesto");
 
-        //Integer egresoId = Integer.valueOf(egreso);
-        //Integer presupuestoId = Integer.valueOf(presupuesto);
-        //Le pasamos los ids a la base así me devuelve los dos objetitos
-        //egresoPosta.setPresupuestoPactado(presupuestoPosta);
+        int statusCode=0;
+        Integer egresoId = Integer.valueOf(egreso);
+        Integer presupuestoId = Integer.valueOf(presupuesto);
+        List<Egreso> egresosPosibles=miUsuario.getEgresosAREvisar().stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
+        List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
-        response.redirect("asociar_egresos_y_presupuestos");
+        if(!egresosPosibles.isEmpty()&& !presupuestosPosibles.isEmpty()) {
+            Egreso egresoPosta = egresosPosibles.get(0);
+            Presupuesto presupuestoPosta=presupuestosPosibles.get(0);
+            egresoPosta.setPresupuestoPactado(presupuestoPosta);
 
+            Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+            repoEgresos.modificar(null,egresoPosta);
+            statusCode=1;
+        }
+        response.redirect("asociar_egresos_y_presupuestos?Exito="+statusCode);
         return null;
     }
 

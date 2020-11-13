@@ -52,9 +52,10 @@ public class Servidor {
         Spark.get("/cargar_egreso", ControllerEgresos::visualizarPantalla, engine);
         Spark.get("/cargar_presupuesto", ControllerPresupuesto::visualizarPantalla, engine);
         Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
+        Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
 
         //haciendo
-        Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
+
 
         //para tincho
         Spark.get("/cargar_items_egreso", ControllerEgresos::visualizarPantallaItems, engine);
@@ -84,6 +85,11 @@ public class Servidor {
     public static void levantarRutaPOST(){
         //done
         Spark.post("/validarLogin", ControllerSesion::validarLogin);
+
+
+        //haciendo
+
+        //checkeados
         Spark.post("/cargarIngreso", ControllerIngresos::cargarIngreso);
         Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);

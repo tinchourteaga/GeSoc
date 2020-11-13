@@ -109,7 +109,7 @@
         <div id="u638_div" class=""></div>
         <select name="egreso" id="u638_input" class="u638_input">
           <option class="u638_input_option" value="Seleccionar Egreso">Seleccionar Egreso</option>
-          {{#each egreso}}
+          {{#each egresosNoPactados}}
           <option class="u638_input_option" value="{{egreso}}">{{fecha}}:{{valor.importe}}</option>
           {{/each}}
         </select>
@@ -176,19 +176,19 @@
               <table id="u5858" class="tablaCSS">
                 <thead>
                 <tr>
-                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Proveedor</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Organizacion</th>
                   <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
                   <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Egreso</th>
-                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Presupuesto</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Proveedor</th>
                 </tr>
                 </thead>
                 <tbody>
-                {{#each egreso}}
+                {{#each egresosPactados}}
                 <tr>
                   <td>{{entidad.nombre}}</td>
                   <td>{{fecha}}</td>
                   <td>{{valor.importe}}</td>
-                  <td>{{presupuestoPactado.valor}}</td>
+                  <td>{{presupuestoPactado.proveedor.nombre}}</td>
                 </tr>
                 {{/each}}
                 </tbody>
@@ -299,7 +299,7 @@
         </div>
       </div>
 
-      <!-- Entidades (Droplist) -->
+      <!--
       <div id="u667" class="ax_default droplist" data-label="Entidades">
         <div id="u667_div" class=""></div>
         <select name="entidad" id="u667_input" class="u667_input">
@@ -309,16 +309,16 @@
           {{/each}}
         </select>
       </div>
+      esto es al pedo casi-->
 
-
-      <!-- Unnamed (Rectangle) -->
+      <!--
       <div id="u668" class="ax_default heading_1">
         <div id="u668_div" class=""></div>
         <div id="u668_text" class="text ">
           <p><span>Proveedor:</span></p>
         </div>
       </div>
-
+esto tambien esta al pedo -->
       <!-- Input-Text (Rectangle) -->
         <!-- <div id="u669" class="ax_default" data-label="Input-Text">
           <div id="u669_div" class=""></div>

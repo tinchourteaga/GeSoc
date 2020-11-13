@@ -39,6 +39,9 @@
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
     <script src="files/usuario/data.js"></script>
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
@@ -96,9 +99,7 @@
           <div id="u184" class="ax_default" data-left="46" data-top="200" data-width="338" data-height="249">
 
             <!-- Unnamed (Rectangle) -->
-            <div id="u185" class="ax_default heading_1">
-              <div id="u185_div" class=""></div>
-              <div id="u185_text" class="text">
+            <div id="nombre_usuario">
                 <p><span>{{nickname}}</span></p>
               </div>
             </div>
@@ -172,7 +173,14 @@
           <div id="u194" class="ax_default primary_button">
             <div id="u194_div" class=""></div>
             <div id="u194_text" class="text ">
-              <p><span>Cambiar Contraseña</span></p>
+              <p><span>Cambiar contraseña</span></p>
+            </div>
+          </div>
+
+          <div id="u1944" class="ax_default primary_button">
+            <div id="u1944_div" class=""></div>
+            <div id="u1944_text" class="text ">
+              <p><span>Cambiar datos</span></p>
             </div>
           </div>
         </div>
@@ -216,6 +224,17 @@
               <img id="u201_img" class="img " src="images/usuario/u201.svg"/>
               <div id="u201_text" class="text ">
                 <p><span>Confirmar</span></p>
+              </div>
+            </div>
+
+            <div id="u2011" class="ax_default primary_button">
+              <div id="u2011_div" class=""></div>
+              <div id="u2011_text" class="text ">
+                <p>
+                  <button id="u20112_div" onclick="hide()">
+                    <span>Cancelar</span>
+                  </button>
+                </p>
               </div>
             </div>
 
@@ -808,6 +827,16 @@
       </div>
         <div id="includedContent"></div>
     </div>
-    <script src="resources/scripts/axure/ios.js"></script>
+    <script>
+      function hide() {
+        document.getElementById('u200_div').style.display = 'none';
+        /*
+        document.getElementById('otroID').style.display = 'none';
+        document.getElementById('otroID').style.display = 'none';
+        document.getElementById('otroID').style.display = 'none';
+        document.getElementById('otroID').style.display = 'none';
+        */
+      }
+    </script>
   </body>
 </html>

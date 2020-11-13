@@ -18,7 +18,8 @@ public class MetodoDePago {
     @Column(name = "descripcion_metodo_pago")
     private String descripcion;
 
-    @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "metodo_pago")
     List<Egreso> egresos = new ArrayList<>();;
 
     public MetodoDePago() { }

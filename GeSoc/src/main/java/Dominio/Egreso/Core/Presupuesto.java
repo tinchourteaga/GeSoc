@@ -32,7 +32,8 @@ public class Presupuesto {
     @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
-    @OneToMany(mappedBy = "detalle", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "presupuesto")
     private List<Detalle> detalles;
 
     @OneToOne(cascade = CascadeType.ALL)

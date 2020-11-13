@@ -38,7 +38,7 @@ public class Egreso {
     private List<Item> listaItems;
 
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "metodo_pago", referencedColumnName = "metodo_pago")
+    @JoinColumn(name = "metodo_pago")
     private MetodoDePago metodoDePago;
 
     @OneToOne(cascade = CascadeType.ALL)

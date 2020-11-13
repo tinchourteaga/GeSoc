@@ -696,6 +696,7 @@ public class AddData {
         egresosAPersistir.add(egreso6);
         egresosAPersistir.add(egreso7);
         egresosAPersistir.add(egreso8);
+
         egresosAPersistir.add(egreso9);
         egresosAPersistir.add(egreso10);
 

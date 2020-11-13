@@ -3,7 +3,7 @@ package Dominio.Egreso.Core;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "dom_detalle_presupuestos", uniqueConstraints = @UniqueConstraint(columnNames = {"detalle", "presupuesto"}))
+@Table(name = "dom_detalle_presupuestos")
 public class Detalle {
     @Id
     @GeneratedValue
@@ -18,8 +18,8 @@ public class Detalle {
     @Column(name = "cantidad")
     private Integer cantidad;
 
-    @ManyToOne
-    @JoinColumn(name = "presupuesto", referencedColumnName = "presupuesto")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "presupuesto", insertable = true, updatable = false)
     private Presupuesto presupuesto;
 
     public Detalle() { }

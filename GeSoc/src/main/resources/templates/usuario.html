@@ -98,8 +98,8 @@
             <!-- Unnamed (Rectangle) -->
             <div id="u185" class="ax_default heading_1">
               <div id="u185_div" class=""></div>
-              <div id="u185_text" class="text ">
-                <p><span>Usuario Prueba</span></p>
+              <div id="u185_text" class="text">
+                <p><span>{{nickname}}</span></p>
               </div>
             </div>
 
@@ -154,7 +154,7 @@
             <!-- Unnamed (Rectangle) -->
             <div id="u192" class="ax_default heading_1">
               <div id="u192_div" class=""></div>
-              <div id="u192_text" class="text ">
+              <div id="u192_text" class="text " placeholder={{nombre}}>
                 <p><span>Nombre:</span></p>
               </div>
             </div>
@@ -178,30 +178,23 @@
         </div>
 
         <!-- TipoUsuario (Droplist) -->
-        <div id="u195" class="ax_default droplist" data-label="TipoUsuario">
-          <div id="u195_div" class=""></div>
-          <select id="u195_input" class="u195_input">
-            <option class="u195_input_option" value="Usuario">Usuario</option>
-            <option class="u195_input_option" value="Administrador">Administrador</option>
-          </select>
-        </div>
 
         <!-- Username Input (Text Field) -->
         <div id="u196" class="ax_default text_field" data-label="Username Input">
           <div id="u196_div" class=""></div>
-          <input id="u196_input" type="text" value="" class="u196_input"/>
+          <input id="u196_input" type="text" value="" class="u196_input" placeholder={{nombre}} />
         </div>
 
         <!-- Username Input (Text Field) -->
         <div id="u197" class="ax_default text_field" data-label="Username Input">
           <div id="u197_div" class=""></div>
-          <input id="u197_input" type="text" value="" class="u197_input"/>
+          <input id="u197_input" type="text" value="" class="u197_input" placeholder={{apellido}} />
         </div>
 
         <!-- Username Input (Text Field) -->
         <div id="u198" class="ax_default text_field" data-label="Username Input">
           <div id="u198_div" class=""></div>
-          <input id="u198_input" type="text" value="" class="u198_input"/>
+          <input id="u198_input" type="text" value="" class="u198_input" placeholder={{email}} />
         </div>
       </div>
 

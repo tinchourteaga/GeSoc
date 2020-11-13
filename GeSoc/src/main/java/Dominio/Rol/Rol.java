@@ -27,6 +27,10 @@ public abstract class Rol {
         return acciones;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
     public List<Egreso> getEgresosAREvisar() {
         return this.egresosARevisar;
     }

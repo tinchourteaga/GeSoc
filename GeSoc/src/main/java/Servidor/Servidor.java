@@ -51,10 +51,10 @@ public class Servidor {
         Spark.get("/autenticacion_usuario", ControllerAutenticacion::visualizarPantalla, engine);
         Spark.get("/cargar_egreso", ControllerEgresos::visualizarPantalla, engine);
         Spark.get("/cargar_presupuesto", ControllerPresupuesto::visualizarPantalla, engine);
+        Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
 
         //haciendo
         Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
-        Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
 
         //para tincho
         Spark.get("/cargar_items_egreso", ControllerEgresos::visualizarPantallaItems, engine);

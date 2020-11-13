@@ -2,13 +2,9 @@ package Servidor.Controllers;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
-import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-import Dominio.Egreso.Core.*;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
+import Dominio.Egreso.Core.Egreso;
+import Dominio.Egreso.Core.Presupuesto;
 import Dominio.Entidad.Entidad;
-import Dominio.Entidad.EntidadJuridica;
-import Dominio.Entidad.OrganizacionSocial;
 import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
@@ -19,7 +15,6 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,69 +22,17 @@ public class ControllerAsociacion {
 
     public static ModelAndView visualizarPantallaIngresosYEgresos(Request request, Response response){
 
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
+        if(miUsuario==null){
+            response.redirect("/");
+            return null;
+        }
+        List<Egreso> egresos = miUsuario.getEgresosAREvisar();
+        List<Ingreso> ingresos = egresos.stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
-        //Tests
-        List<Egreso> egresos = new ArrayList<>();
-        List<Ingreso> ingresos = new ArrayList<>();
-        List<Entidad> entidades = new ArrayList<>();
-
-        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay",  Arrays.asList(new Item(8888f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
-            @Override
-            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
-                return null;
-            }
-
-            @Override
-            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-
-            }
-
-            @Override
-            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
-                return null;
-            }
-        });
-
-        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay", Arrays.asList(new Item(2222f,"",1)),  new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
-            @Override
-            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
-                return null;
-            }
-
-            @Override
-            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-
-            }
-
-            @Override
-            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
-                return null;
-            }
-        });
-
-        Entidad entidadPrueba1 = new EntidadJuridica("entidadPrueba1", "JorgeCampeon",new OrganizacionSocial());
-        entidadPrueba1.setEntidad(57);
-
-        Entidad entidadPrueba2 = new EntidadJuridica("entidadPrueba2", "JuanCampeon",new OrganizacionSocial());
-        entidadPrueba2.setEntidad(37);
-
-        entidades.add(entidadPrueba1);
-        entidades.add(entidadPrueba2);
-
-        egresoPrueba.setEntidad(entidadPrueba1);
-        egresoPrueba2.setEntidad(entidadPrueba1);
-
-        egresos.add(egresoPrueba);
-        egresos.add(egresoPrueba2);
-
-        Ingreso ingresoPrueba = new Ingreso("$",230,LocalDate.of(2020,10,14),LocalDate.now(),"descrip",new ArrayList<>());
-        Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),LocalDate.now(),"descrip2",new ArrayList<>());
-
-        egresoPrueba.setIngreso(ingresoPrueba);
-        egresoPrueba2.setIngreso(ingresoPrueba2);
-
-        datos.put("egreso",egresos);
+        datos.put("egresos",egresos);
+        datos.put("ingresos",ingresos);
 
         ModelAndView vista = new ModelAndView(datos, "asociar_ingresos_y_egresos.html");
 
@@ -108,8 +51,8 @@ public class ControllerAsociacion {
 
 
         //Tests
-        List<Egreso> egresos = entidades.stream().map(ent->ent.getOperaciones()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
-        List<Presupuesto> presupuestos = new ArrayList<>();
+        List<Egreso> egresos = miUsuario.getEgresosAREvisar();//no le pongo todos porque sino es una guazada
+
        List<Criterio> criterios = egresos.stream().map(e->e.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
         List<CategoriaCriterio> categorias=criterios.stream().map(c->c.getCategoriaCriterios()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
         Set<CategoriaCriterio> categoriasSet= new HashSet<>();
@@ -117,6 +60,7 @@ public class ControllerAsociacion {
         categorias.clear();
         categorias.addAll(categoriasSet);
 
+        List<Presupuesto> presupuestos = egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()).stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
         datos.put("egresosPactados",egresos.stream().filter(e->e.getPresupuestoPactado()!=null).collect(Collectors.toList()));
         datos.put("egresosNoPactados",egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()));
         datos.put("presupuesto",presupuestos);

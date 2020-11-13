@@ -98,35 +98,52 @@ public class ControllerAsociacion {
 
     public static Object asociarIngresosYEgresos(Request request, Response response) throws NoPuedoAsignarMasDineroDelQueTengoException {
 
-        String entidad = request.queryParams("entidad"); //no me interesa
+
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        String estrategia = request.queryParams("estrategia");
         String fecha = request.queryParams("fecha");
-        String metodoPago = request.queryParams("metodoPago");//no me interesa
         String egreso = request.queryParams("egreso");
         String ingreso = request.queryParams("ingreso");
 
-        Integer egresoId = Integer.valueOf(egreso);
-        Integer ingresoId = Integer.valueOf(ingreso);
 
-        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class);
-        Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso);
+        int statusCode=0;
+        if(estrategia.equals("Manual")){
+            //no delego nada y lo hago aca
 
-        DAO DAOIngreso = new DAOBBDD<Ingreso>(Ingreso.class);
-        Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso);
+            Integer egresoId = Integer.valueOf(egreso);
+            Integer ingresoId = Integer.valueOf(ingreso);
 
-        List<Egreso> egresos = repoEgreso.getTodosLosElementos();
-        int i = egresos.indexOf(egresoId);
-        Egreso objEgreso = egresos.get(i);
 
-        List<Ingreso> ingresos = repoIngreso.getTodosLosElementos();
-        int j = egresos.indexOf(ingresoId);
-        Ingreso objIngreso = ingresos.get(j);
-        Ingreso objIngresoModificado = ingresos.get(j);
+            DAO DAOIngreso = new DAOBBDD<Ingreso>(Ingreso.class);
+            Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso);
 
-        objIngresoModificado.agregarEgreso(objEgreso);
+            int idEgreso= egresoId.intValue();
+            List<Egreso> egresos =miUsuario.getEgresosAREvisar();
+            List<Egreso> egresosPosibles=egresos.stream().filter(e->e.getEgreso()==idEgreso).collect(Collectors.toList());
 
-        repoIngreso.modificar(objIngreso,objIngresoModificado);
+            int idIngreso= ingresoId.intValue();
+            List<Ingreso> ingresos =miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+            List<Ingreso> ingresosPosibles=ingresos.stream().filter(e->e.getIngreso()==idIngreso).collect(Collectors.toList());
 
-        response.redirect("asociar_ingresos_y_egresos");
+
+            if(!ingresosPosibles.isEmpty()&& !egresosPosibles.isEmpty()){
+
+             Egreso egresoPosta=egresosPosibles.get(0);
+             Ingreso ingresoPosta=ingresosPosibles.get(0);
+             egresoPosta.setIngreso(ingresoPosta);
+             ingresoPosta.agregarEgreso(egresoPosta);
+
+             Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+             Repositorio repoIngresos= new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+             repoEgresos.modificar(null,egresoPosta);
+             repoIngreso.modificar(null,ingresoPosta);
+            }
+        }else{
+            //se lo mando a la API
+            //todo
+        }
+
+        response.redirect("asociar_ingresos_y_egresos?Exito="+statusCode);
 
         return null;
     }

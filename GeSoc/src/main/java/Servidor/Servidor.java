@@ -85,13 +85,13 @@ public class Servidor {
     public static void levantarRutaPOST(){
         //done
         Spark.post("/validarLogin", ControllerSesion::validarLogin);
-
+        Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
 
         //haciendo
 
-        //checkeados
+
         Spark.post("/cargarIngreso", ControllerIngresos::cargarIngreso);
-        Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
+
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
@@ -104,6 +104,7 @@ public class Servidor {
         Spark.post("/crearProyectoFinanciamiento", ControllerProyectoFinanciamiento::crearProyectoFinanciamiento);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);
         Spark.post("/cargarPresupuesto", ControllerPresupuesto::cargarPresupuesto);
+        //checkeados
     }
 
     public static void levantarRutaDELETE(){

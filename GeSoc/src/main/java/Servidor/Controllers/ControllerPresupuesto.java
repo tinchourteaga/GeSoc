@@ -98,7 +98,7 @@ public class ControllerPresupuesto {
             Presupuesto presupuesto = new Presupuesto(new ArrayList(), new ArrayList(), documentoAsociado, proveedoresDisponibles.get(0));
             presupuesto.setFecha(LocalDate.parse(fecha));
             persistirPresupuesto(presupuesto);
-            response.redirect("cargar_items_presupuesto?Presupuesto="+presupuesto.getPresupuesto()+"?us="+request.session().attribute("idUsuarioActual"));
+            response.redirect("cargar_items_presupuesto?Presupuesto="+presupuesto.getPresupuesto()+"&us="+request.session().attribute("idUsuarioActual"));
         }else{
             response.redirect("cargar_presupuesto?Exito=1");
         }

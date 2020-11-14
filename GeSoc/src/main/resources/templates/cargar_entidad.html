@@ -111,10 +111,14 @@
       <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
         <div id="u295_div" class=""></div>
         <select id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
+          {{#if tipoEntidad includeZero=true}}
+          <option value={{tipoEntidad}} selected>{{tipoEntidad}}</option>
+          {{else}}
           <option value="Seleccionar una opción">Seleccionar una opción</option>
-          <option value="Entidad Jurídica">Empresa</option>
-          <option value="Entidad Jurídica">Organizacion Social</option>
-          <option value="Entidad Base">Entidad Base</option>
+          {{/if}}
+          <option value="Empresa">Empresa</option>
+          <option value="OrganizacionSocial">Organizacion Social</option>
+          <option value="EntidadBase">Entidad Base</option>
         </select>
       </div>
 
@@ -157,8 +161,8 @@
             <div id="u293_div" class=""></div>
             <textarea id="u293_input" class="u293_input"></textarea>
           </div>
-
         </div>
+
 
         <div id="formulario_entidad_juridica">
 
@@ -296,13 +300,13 @@
           <div id="u300" class="ax_default droplist">
             <div id="u300_div" class=""></div>
             <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)">
-              {{#if paisElegido}}
-                <option class="u300_input_option" value={{this.name}}>{{name}}</option>
+              {{#if paisElegido includeZero=true}}
+                <option class="u300_input_option" value={{paisElegido.pais}}>{{paisElegido.name}}</option>
                 {{else}}
                   <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
               {{/if}}
               {{#each paises}}
-              <option class="u300_input_option" value={{this.name}}>{{name}}</option>
+              <option class="u300_input_option" value={{pais}}>{{name}}</option>
               {{/each}}
             </select>
           </div>
@@ -317,8 +321,15 @@
           <div id="u305" class="ax_default droplist">
             <div id="u305_div" class=""></div>
             <select name="provincia" id="u305_input" class="u305_input" disabled onchange="buscar_ciudades(this)">
+
+              {{#if provinciaElegida includeZero=true}}
+              <option class="u305_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}</option>
+              {{else}}
               <option class="u305_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
-              <option class="u305_input_option" value="La Pampa">La Pampa</option>
+              {{/if}}
+              {{#each provincias}}
+              <option class="u305_input_option" value={{provincia}}>{{name}}</option>
+              {{/each}}
             </select>
           </div>
 
@@ -333,11 +344,13 @@
             <div id="u307_div" class=""></div>
             <select name="ciudad" id="u307_input" class="u307_input" disabled>
               <option class="u307_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
+              {{#each ciudades}}
+              <option class="u307_input_option" value={{ciudad}}>{{name}}</option>
+              {{/each}}
             </select>
           </div>
-
-
         </div>
+
 
       <!-- EntidadJurídica (Group) -->
       <div id="u296" class="ax_default ax_default_hidden" data-label="EntidadJurídica" style="display:none; visibility: hidden" data-left="45" data-top="228" data-width="401" data-height="405">
@@ -1442,38 +1455,57 @@
     <script src="resources/scripts/axure/ios.js"></script>
     <script>
       function mostrarFormularioCorrespondiente(v) {
-        if(v.value == 'Entidad Base'){
+        if(v.value == 'EntidadBase'){
             document.getElementById("formulario_entidad_base").style.display = "block";
             document.getElementById("formulario_entidad_juridica").style.display = "none";
 
-        }else if(v.value == 'Entidad Jurídica'){
+        }else if(v.value == 'Empresa' ||v.value == 'OrganizacionSocial'){
             document.getElementById("formulario_entidad_juridica").style.display = "block";
             document.getElementById("formulario_entidad_base").style.display = "none";
+
         }else{
             document.getElementById("formulario_entidad_juridica").style.display = "none";
             document.getElementById("formulario_entidad_base").style.display = "none";
         }
       }
 
+      function habilitar_provincias(v) {
+        if (v.value == 'Seleccionar un País') {
+          u305_input.disabled = true;
+          u307_input.disabled = true;
+        } else {
+          u305_input.disabled = false;
+        }
+      }
       function buscar_provincias(v){
-
-          if(v.value == 'Seleccionar un País'){
-            u305_input.disabled = true;
-            u307_input.disabled = true;
-          }else{
-            u305_input.disabled = false;
-            location.href='/cargar_entidad?pais='+v.value;
-          }
+          habilitar_provincias(v);
+        if (v.value != 'Seleccionar un País') {
+        location.href='/cargar_entidad?pais='+v.value+'&entidad='+select_entidades.value;
+        }
       }
 
-      function buscar_ciudades(v){
+      $(document).ready(
+              (mostrarFormularioCorrespondiente(select_entidades))
+      );
+      $(document).ready(
+              (habilitar_provincias(u300_input))
+      );
+      $(document).ready(
+              (habilitar_ciudades(u305_input))
+      );
 
-          if(v.value=='Seleccionar una Provincia'){
-            u307_input.disabled = true;
-          }else{
-            u307_input.disabled = false;
-          }
-
+      function habilitar_ciudades(v){
+        if(v.value=='Seleccionar una Provincia'){
+          u307_input.disabled = true;
+        }else{
+          u307_input.disabled = false;
+        }
+      }
+      function buscar_ciudades(v) {
+        habilitar_ciudades(v);
+        if (v.value != 'Seleccionar una Provincia') {
+          location.href = '/cargar_entidad?pais=' + u300_input.value + '&entidad=' + select_entidades.value + '&provincia=' + u305_input.value;
+        }
       }
     </script>
   </body>

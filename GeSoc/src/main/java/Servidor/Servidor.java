@@ -50,11 +50,24 @@ public class Servidor {
         Spark.get("/", ControllerSesion::mostrarLogin, engine);
         Spark.get("/autenticacion_usuario", ControllerAutenticacion::visualizarPantalla, engine);
         Spark.get("/cargar_egreso", ControllerEgresos::visualizarPantalla, engine);
+        Spark.get("/cargar_presupuesto", ControllerPresupuesto::visualizarPantalla, engine);
+        Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
+        Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
+
+        //haciendo
+
+
+        //para tincho
         Spark.get("/cargar_items_egreso", ControllerEgresos::visualizarPantallaItems, engine);
         Spark.get("/cargar_items_presupuestos", ControllerPresupuesto::visualizarPantallaItems, engine);
+
+        //TODO
+
+
+
+        //bloqueados
         Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
         Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
-        Spark.get("/cargar_presupuesto", ControllerPresupuesto::visualizarPantalla, engine);
         Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);
         Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);
         Spark.get("/crear_categoria", ControllerCategoria::visualizarPantalla, engine);
@@ -65,8 +78,6 @@ public class Servidor {
         Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);
         Spark.get("/configuracion_general", ControllerUsuario::visualizarPantallaConfiguracionGeneral, engine);
         Spark.get("/bitacora_operaciones", ControllerBitacora::visualizarPantalla, engine);
-        Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
-        Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
         Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
         Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
     }
@@ -74,8 +85,13 @@ public class Servidor {
     public static void levantarRutaPOST(){
         //done
         Spark.post("/validarLogin", ControllerSesion::validarLogin);
-        Spark.post("/cargarIngreso", ControllerIngresos::cargarIngreso);
         Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
+
+        //haciendo
+
+
+        Spark.post("/cargarIngreso", ControllerIngresos::cargarIngreso);
+
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
@@ -88,6 +104,7 @@ public class Servidor {
         Spark.post("/crearProyectoFinanciamiento", ControllerProyectoFinanciamiento::crearProyectoFinanciamiento);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);
         Spark.post("/cargarPresupuesto", ControllerPresupuesto::cargarPresupuesto);
+        //checkeados
     }
 
     public static void levantarRutaDELETE(){

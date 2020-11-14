@@ -1,15 +1,13 @@
 package Servidor.Controllers;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
-import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
-import Dominio.Egreso.Core.*;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
-import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
+import Dominio.Egreso.Core.Egreso;
+import Dominio.Egreso.Core.Presupuesto;
 import Dominio.Entidad.Entidad;
-import Dominio.Entidad.EntidadJuridica;
-import Dominio.Entidad.OrganizacionSocial;
 import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 import Dominio.Ingreso.Ingreso;
+import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
@@ -17,76 +15,24 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ControllerAsociacion {
 
     public static ModelAndView visualizarPantallaIngresosYEgresos(Request request, Response response){
 
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
+        if(miUsuario==null){
+            response.redirect("/");
+            return null;
+        }
+        List<Egreso> egresos = miUsuario.getEgresosAREvisar();
+        List<Ingreso> ingresos = egresos.stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
-        //Tests
-        List<Egreso> egresos = new ArrayList<>();
-        List<Ingreso> ingresos = new ArrayList<>();
-        List<Entidad> entidades = new ArrayList<>();
-
-        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay",  Arrays.asList(new Item(8888f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
-            @Override
-            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
-                return null;
-            }
-
-            @Override
-            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-
-            }
-
-            @Override
-            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
-                return null;
-            }
-        });
-
-        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay", Arrays.asList(new Item(2222f,"",1)),  new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
-            @Override
-            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
-                return null;
-            }
-
-            @Override
-            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-
-            }
-
-            @Override
-            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
-                return null;
-            }
-        });
-
-        Entidad entidadPrueba1 = new EntidadJuridica("entidadPrueba1", "JorgeCampeon",new OrganizacionSocial());
-        entidadPrueba1.setEntidad(57);
-
-        Entidad entidadPrueba2 = new EntidadJuridica("entidadPrueba2", "JuanCampeon",new OrganizacionSocial());
-        entidadPrueba2.setEntidad(37);
-
-        entidades.add(entidadPrueba1);
-        entidades.add(entidadPrueba2);
-
-        egresoPrueba.setEntidad(entidadPrueba1);
-        egresoPrueba2.setEntidad(entidadPrueba1);
-
-        egresos.add(egresoPrueba);
-        egresos.add(egresoPrueba2);
-
-        Ingreso ingresoPrueba = new Ingreso("$",230,LocalDate.of(2020,10,14),LocalDate.now(),"descrip",new ArrayList<>());
-        Ingreso ingresoPrueba2 = new Ingreso("$",10,LocalDate.of(2020,10,14),LocalDate.now(),"descrip2",new ArrayList<>());
-
-        egresoPrueba.setIngreso(ingresoPrueba);
-        egresoPrueba2.setIngreso(ingresoPrueba2);
-
-        datos.put("egreso",egresos);
+        datos.put("egresos",egresos);
+        datos.put("ingresos",ingresos);
 
         ModelAndView vista = new ModelAndView(datos, "asociar_ingresos_y_egresos.html");
 
@@ -97,84 +43,26 @@ public class ControllerAsociacion {
 
         Map<String,Object> datos = new HashMap<>();
 
-        //Estas cinco listas las tenemos que traer de la BD
-        List<Entidad> entidades = new ArrayList<>();
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+
+        //miUsuario.getEntidadesAlaQuePertenece(); en vez de buscar todas las entidades habria que hacerlo con este metodo y gg
+        Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
+        List<Entidad> entidades = repoEntidades.getTodosLosElementos();
+
 
         //Tests
-        List<Egreso> egresos = new ArrayList<>();
-        List<Presupuesto> presupuestos = new ArrayList<>();
-        List<CategoriaCriterio> categorias = new ArrayList<>();
+        List<Egreso> egresos = miUsuario.getEgresosAREvisar();//no le pongo todos porque sino es una guazada
 
-        Egreso egresoPrueba = new Egreso(LocalDate.parse("2014-02-14"), "Uruguay", new ArrayList<>(), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datojajaj"), new CriterioSeleccionProveedor() {
-            @Override
-            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
-                return null;
-            }
+       List<Criterio> criterios = egresos.stream().map(e->e.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<CategoriaCriterio> categorias=criterios.stream().map(c->c.getCategoriaCriterios()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        Set<CategoriaCriterio> categoriasSet= new HashSet<>();
+        categoriasSet.addAll(categorias);
+        categorias.clear();
+        categorias.addAll(categoriasSet);
 
-            @Override
-            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-
-            }
-
-            @Override
-            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
-                return null;
-            }
-        });
-
-        Egreso egresoPrueba2 = new Egreso(LocalDate.parse("2013-02-14"), "Paraguay",  Arrays.asList(new Item(2222f,"",1)), new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO, "TD"), new ArrayList<>(), new DocumentoComercial(TipoDocumentoComercial.REMITO, "datos.jajaj"), new CriterioSeleccionProveedor() {
-            @Override
-            public Proveedor seleccionarProveedor(List<Proveedor> proveedores) {
-                return null;
-            }
-
-            @Override
-            public void validar(Egreso operacion) throws NoCumpleValidacionDeCriterioException, NoCumpleValidacionException {
-
-            }
-
-            @Override
-            public Presupuesto seleccionarPresupuesto(List<Presupuesto> presupuestos) {
-                return null;
-            }
-        });
-
-        Presupuesto presupuesto1 = new Presupuesto(new ArrayList<>(),new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.REMITO,"remito"),new Proveedor("","","",null));
-        Presupuesto presupuesto2 = new Presupuesto(new ArrayList<>(),new ArrayList<>(),new DocumentoComercial(TipoDocumentoComercial.REMITO,"remito"),new Proveedor("","","",null));
-
-        presupuesto1.setPresupuesto(23);
-        presupuesto2.setPresupuesto(3);
-
-        presupuesto1.setFecha(LocalDate.of(2020,7,27));
-        presupuesto2.setFecha(LocalDate.of(2020,7,21));
-
-        CategoriaCriterio categoriaPrueba = new CategoriaCriterio("descripCat","catgoriaPrueba");
-        categoriaPrueba.setCategoria(9);
-        categorias.add(categoriaPrueba);
-
-        Entidad entidadPrueba1 = new EntidadJuridica("entidadPrueba1", "JorgeCampeon",new OrganizacionSocial());
-        entidadPrueba1.setEntidad(57);
-
-        Entidad entidadPrueba2 = new EntidadJuridica("entidadPrueba2", "JuanCampeon",new OrganizacionSocial());
-        entidadPrueba2.setEntidad(37);
-
-        entidades.add(entidadPrueba1);
-        entidades.add(entidadPrueba2);
-
-        presupuestos.add(presupuesto1);
-        presupuestos.add(presupuesto2);
-
-        egresoPrueba.setEntidad(entidadPrueba1);
-        egresoPrueba2.setEntidad(entidadPrueba1);
-
-        egresoPrueba.setPresupuestoPactado(presupuesto1);
-        egresoPrueba2.setPresupuestoPactado(presupuesto2);
-
-        egresos.add(egresoPrueba);
-        egresos.add(egresoPrueba2);
-
-        datos.put("egreso",egresos);
-        datos.put("entidad",entidades);
+        List<Presupuesto> presupuestos = egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()).stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        datos.put("egresosPactados",egresos.stream().filter(e->e.getPresupuestoPactado()!=null).collect(Collectors.toList()));
+        datos.put("egresosNoPactados",egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()));
         datos.put("presupuesto",presupuestos);
         datos.put("categorias",categorias);
 
@@ -185,53 +73,77 @@ public class ControllerAsociacion {
 
     public static Object asociarEgresosYPresupuestos(Request request, Response response) {
 
-        String entidad = request.queryParams("entidad");
-        String fecha = request.queryParams("fecha");
-        String metodoPago = request.queryParams("metodoPago");
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         String egreso = request.queryParams("egreso");
         String presupuesto = request.queryParams("presupuesto");
 
-        //Integer egresoId = Integer.valueOf(egreso);
-        //Integer presupuestoId = Integer.valueOf(presupuesto);
-        //Le pasamos los ids a la base así me devuelve los dos objetitos
-        //egresoPosta.setPresupuestoPactado(presupuestoPosta);
+        int statusCode=0;
+        Integer egresoId = Integer.valueOf(egreso);
+        Integer presupuestoId = Integer.valueOf(presupuesto);
+        List<Egreso> egresosPosibles=miUsuario.getEgresosAREvisar().stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
+        List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
-        response.redirect("asociar_egresos_y_presupuestos");
+        if(!egresosPosibles.isEmpty()&& !presupuestosPosibles.isEmpty()) {
+            Egreso egresoPosta = egresosPosibles.get(0);
+            Presupuesto presupuestoPosta=presupuestosPosibles.get(0);
+            egresoPosta.setPresupuestoPactado(presupuestoPosta);
 
+            Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+            repoEgresos.modificar(null,egresoPosta);
+            statusCode=1;
+        }
+        response.redirect("asociar_egresos_y_presupuestos?Exito="+statusCode);
         return null;
     }
 
     public static Object asociarIngresosYEgresos(Request request, Response response) throws NoPuedoAsignarMasDineroDelQueTengoException {
 
-        String entidad = request.queryParams("entidad"); //no me interesa
+
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        String estrategia = request.queryParams("estrategia");
         String fecha = request.queryParams("fecha");
-        String metodoPago = request.queryParams("metodoPago");//no me interesa
         String egreso = request.queryParams("egreso");
         String ingreso = request.queryParams("ingreso");
 
-        Integer egresoId = Integer.valueOf(egreso);
-        Integer ingresoId = Integer.valueOf(ingreso);
 
-        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class);
-        Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso);
+        int statusCode=0;
+        if(estrategia.equals("Manual")){
+            //no delego nada y lo hago aca
 
-        DAO DAOIngreso = new DAOBBDD<Ingreso>(Ingreso.class);
-        Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso);
+            Integer egresoId = Integer.valueOf(egreso);
+            Integer ingresoId = Integer.valueOf(ingreso);
 
-        List<Egreso> egresos = repoEgreso.getTodosLosElementos();
-        int i = egresos.indexOf(egresoId);
-        Egreso objEgreso = egresos.get(i);
 
-        List<Ingreso> ingresos = repoIngreso.getTodosLosElementos();
-        int j = egresos.indexOf(ingresoId);
-        Ingreso objIngreso = ingresos.get(j);
-        Ingreso objIngresoModificado = ingresos.get(j);
+            DAO DAOIngreso = new DAOBBDD<Ingreso>(Ingreso.class);
+            Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso);
 
-        objIngresoModificado.agregarEgreso(objEgreso);
+            int idEgreso= egresoId.intValue();
+            List<Egreso> egresos =miUsuario.getEgresosAREvisar();
+            List<Egreso> egresosPosibles=egresos.stream().filter(e->e.getEgreso()==idEgreso).collect(Collectors.toList());
 
-        repoIngreso.modificar(objIngreso,objIngresoModificado);
+            int idIngreso= ingresoId.intValue();
+            List<Ingreso> ingresos =miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+            List<Ingreso> ingresosPosibles=ingresos.stream().filter(e->e.getIngreso()==idIngreso).collect(Collectors.toList());
 
-        response.redirect("asociar_ingresos_y_egresos");
+
+            if(!ingresosPosibles.isEmpty()&& !egresosPosibles.isEmpty()){
+
+             Egreso egresoPosta=egresosPosibles.get(0);
+             Ingreso ingresoPosta=ingresosPosibles.get(0);
+             egresoPosta.setIngreso(ingresoPosta);
+             ingresoPosta.agregarEgreso(egresoPosta);
+
+             Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+             Repositorio repoIngresos= new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+             repoEgresos.modificar(null,egresoPosta);
+             repoIngreso.modificar(null,ingresoPosta);
+            }
+        }else{
+            //se lo mando a la API
+            //todo
+        }
+
+        response.redirect("asociar_ingresos_y_egresos?Exito="+statusCode);
 
         return null;
     }

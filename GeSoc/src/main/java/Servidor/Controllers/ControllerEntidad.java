@@ -29,12 +29,12 @@ public class ControllerEntidad {
        String paisElegido= request.queryParams("pais");
        Pais paisElegidoObj=null;
        if(paisElegido!=null) {
-           paisElegidoObj = paises.stream().filter(p -> p.getName().equals(paisElegido)).collect(Collectors.toList()).get(0);
+           paisElegidoObj = paises.stream().filter(p -> p.getPais()==Integer.valueOf(paisElegido).intValue()).collect(Collectors.toList()).get(0);
            datos.put("paisElegido",paisElegidoObj);
            datos.put("provincias",paisElegidoObj.getProvincias());
 
        }
-        String provinciaElegida= request.queryParams("");
+        String provinciaElegida= request.queryParams("provincia");
         if(provinciaElegida!=null && paisElegidoObj!=null){
 
             List<Provincia> provinciasPosibles = paisElegidoObj.getProvincias().stream().filter(p->p.getProvincia()==Integer.valueOf(provinciaElegida).intValue()).collect(Collectors.toList());

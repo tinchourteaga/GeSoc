@@ -58,29 +58,34 @@ public class Servidor {
         Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
 
         //haciendo
-
+        Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
 
         //para tincho
         Spark.get("/cargar_items_egreso", ControllerEgresos::visualizarPantallaItems, engine);
         Spark.get("/cargar_items_presupuestos", ControllerPresupuesto::visualizarPantallaItems, engine);
 
         //TODO
-
-        //bloqueados
-        Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
         Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
-        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);
         Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);
         Spark.get("/crear_categoria", ControllerCategoria::visualizarPantalla, engine);
-        Spark.get("/crear_proyecto_de_financiamiento", ControllerProyectoFinanciamiento::visualizarPantalla, engine);
+        Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
+        Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
+
+
+        //bloqueados
+        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);
         Spark.get("/datos_usuario", ControllerUsuario::visualizarPantallaDatosUsuario, engine);
         Spark.get("/usuario", ControllerUsuario::visualizarPantallaUsuario, engine);
-        Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
         Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);
+        Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
+
+
+        //No son de la entrega 6
+        Spark.get("/crear_proyecto_de_financiamiento", ControllerProyectoFinanciamiento::visualizarPantalla, engine);
         Spark.get("/configuracion_general", ControllerUsuario::visualizarPantallaConfiguracionGeneral, engine);
         Spark.get("/bitacora_operaciones", ControllerBitacora::visualizarPantalla, engine);
-        Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
-        Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
+
+
     }
 
     public static void levantarRutaPOST(){

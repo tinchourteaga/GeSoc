@@ -16,7 +16,8 @@ public class Servidor {
     public static void levantarServidor(){
 
         enableDebugScreen();
-        port(15002);
+        Integer puerto = 15002;
+        port(puerto);
 
         boolean localhost = true;
         String projectDir = System.getProperty("user.dir");
@@ -32,6 +33,8 @@ public class Servidor {
         //repositorio.inicializarRepo();
 
         // acceso: http://localhost:15002/
+        System.out.println("Para correrlo local --> http://localhost:"+puerto+"/");
+        System.out.println("Para correrlo en AWS --> http://18.218.220.180:"+puerto+"/");
         levantarRutas();
     }
 

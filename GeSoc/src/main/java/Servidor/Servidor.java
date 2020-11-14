@@ -66,8 +66,6 @@ public class Servidor {
 
         //TODO
 
-
-
         //bloqueados
         Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
         Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);

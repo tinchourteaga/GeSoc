@@ -1,6 +1,7 @@
 package Servidor.Controllers;
 
 import Dominio.Entidad.*;
+import Lugares.Pais;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
@@ -8,7 +9,9 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ControllerEntidad {
@@ -16,6 +19,18 @@ public class ControllerEntidad {
 
         Map<String,Object> datos = new HashMap<>();
         ModelAndView vista = new ModelAndView(datos, "cargar_entidad.html");
+
+        List<Pais> paises = new ArrayList<>();
+
+        Pais alemania = new Pais("", "Alemania", "", "");
+        Pais argentina = new Pais("", "Argentina", "", "");
+        Pais brasil = new Pais("", "Brasil", "", "");
+
+        paises.add(alemania);
+        paises.add(argentina);
+        paises.add(brasil);
+
+        datos.put("paises",paises);
 
         return vista;
     }

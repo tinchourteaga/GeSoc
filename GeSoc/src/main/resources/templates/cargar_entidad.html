@@ -39,6 +39,11 @@
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
     <script src="files/cargar_entidad/data.js"></script>
+    <!--Magia JavaScript-->
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
@@ -290,11 +295,15 @@
 
           <div id="u300" class="ax_default droplist">
             <div id="u300_div" class=""></div>
-            <select name="pais" id="u300_input" class="u300_input">
-              <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
-              <option class="u300_input_option" value="Alemania">Alemania</option>
-              <option class="u300_input_option" value="Bélgica">Bélgica</option>
-              <option class="u300_input_option" value="Suiza">Suiza</option>
+            <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)">
+              {{#if paisElegido}}
+                <option class="u300_input_option" value={{this.name}}>{{name}}</option>
+                {{else}}
+                  <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
+              {{/if}}
+              {{#each paises}}
+              <option class="u300_input_option" value={{this.name}}>{{name}}</option>
+              {{/each}}
             </select>
           </div>
 
@@ -307,13 +316,9 @@
 
           <div id="u305" class="ax_default droplist">
             <div id="u305_div" class=""></div>
-            <select name="provincia" id="u305_input" class="u305_input">
+            <select name="provincia" id="u305_input" class="u305_input" disabled onchange="buscar_ciudades(this)">
               <option class="u305_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
-              <option class="u305_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
-              <option class="u305_input_option" value="Buenos Aires">Buenos Aires</option>
               <option class="u305_input_option" value="La Pampa">La Pampa</option>
-              <option class="u305_input_option" value="Santa Cruz">Santa Cruz</option>
-              <option class="u305_input_option" value="Tierra del Fuego, Antártida e Islas del Atlántico Sur">Tierra del Fuego, Antártida e Islas del Atlántico Sur</option>
             </select>
           </div>
 
@@ -326,14 +331,8 @@
 
           <div id="u307" class="ax_default droplist">
             <div id="u307_div" class=""></div>
-            <select name="ciudad" id="u307_input" class="u307_input">
+            <select name="ciudad" id="u307_input" class="u307_input" disabled>
               <option class="u307_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
-              <option class="u307_input_option" value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
-              <option class="u307_input_option" value="Buenos Aires">Buenos Aires</option>
-              <option class="u307_input_option" value="Indeterminada">Indeterminada</option>
-              <option class="u307_input_option" value="La Pampa">La Pampa</option>
-              <option class="u307_input_option" value="Santa Cruz">Santa Cruz</option>
-              <option class="u307_input_option" value="Tierra del Fuego, Antártida e Islas del Atlántico Sur">Tierra del Fuego, Antártida e Islas del Atlántico Sur</option>
             </select>
           </div>
 
@@ -1454,7 +1453,28 @@
             document.getElementById("formulario_entidad_juridica").style.display = "none";
             document.getElementById("formulario_entidad_base").style.display = "none";
         }
-    }
+      }
+
+      function buscar_provincias(v){
+
+          if(v.value == 'Seleccionar un País'){
+            u305_input.disabled = true;
+            u307_input.disabled = true;
+          }else{
+            u305_input.disabled = false;
+            location.href='/cargar_entidad?pais='+v.value;
+          }
+      }
+
+      function buscar_ciudades(v){
+
+          if(v.value=='Seleccionar una Provincia'){
+            u307_input.disabled = true;
+          }else{
+            u307_input.disabled = false;
+          }
+
+      }
     </script>
   </body>
 </html>

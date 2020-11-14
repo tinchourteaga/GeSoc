@@ -138,7 +138,7 @@ public class ControllerEgresos {
         persistirEgreso(egreso);
 
         //para que no se pase de vivo y no modifique cosas que no deberia el weon
-        response.redirect("cargar_items?egreso="+egreso.getEgreso()+"?us="+request.session().attribute("idUsuarioActual"));
+        response.redirect("cargar_items?egreso="+egreso.getEgreso()+"&us="+request.session().attribute("idUsuarioActual"));
 
         return null;
     }

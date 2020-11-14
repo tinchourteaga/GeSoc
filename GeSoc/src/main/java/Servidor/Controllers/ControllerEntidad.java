@@ -1,7 +1,9 @@
 package Servidor.Controllers;
 
 import Dominio.Entidad.*;
+import Lugares.Ciudad;
 import Lugares.Pais;
+import Lugares.Provincia;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
@@ -9,10 +11,10 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class ControllerEntidad {
     public static ModelAndView visualizarPantalla(Request request, Response response){
@@ -20,17 +22,32 @@ public class ControllerEntidad {
         Map<String,Object> datos = new HashMap<>();
         ModelAndView vista = new ModelAndView(datos, "cargar_entidad.html");
 
-        List<Pais> paises = new ArrayList<>();
+        Repositorio repoPaises=new Repositorio(new DAOBBDD<Pais>(Pais.class));
+        List<Pais> paises = repoPaises.getTodosLosElementos();
 
-        Pais alemania = new Pais("", "Alemania", "", "");
-        Pais argentina = new Pais("", "Argentina", "", "");
-        Pais brasil = new Pais("", "Brasil", "", "");
+        List<Ciudad> ciudades;
+       String paisElegido= request.queryParams("pais");
+       Pais paisElegidoObj=null;
+       if(paisElegido!=null) {
+           paisElegidoObj = paises.stream().filter(p -> p.getName().equals(paisElegido)).collect(Collectors.toList()).get(0);
+           datos.put("paisElegido",paisElegidoObj);
+           datos.put("provincias",paisElegidoObj.getProvincias());
 
-        paises.add(alemania);
-        paises.add(argentina);
-        paises.add(brasil);
+       }
+        String provinciaElegida= request.queryParams("");
+        if(provinciaElegida!=null && paisElegidoObj!=null){
+
+            List<Provincia> provinciasPosibles = paisElegidoObj.getProvincias().stream().filter(p->p.getProvincia()==Integer.valueOf(provinciaElegida).intValue()).collect(Collectors.toList());
+            if(!provinciasPosibles.isEmpty()){
+                Provincia provinciaElegidaobj=provinciasPosibles.get(0);
+                datos.put("provinciaElegida",provinciaElegidaobj);
+                datos.put("ciudades", provinciaElegidaobj.getCiudades());
+        }
+        }
+       String tipoEntidad= request.queryParams("entidad");
 
         datos.put("paises",paises);
+        datos.put("tipoEntidad",tipoEntidad);
 
         return vista;
     }

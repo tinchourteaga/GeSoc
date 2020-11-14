@@ -44,6 +44,10 @@ public class Provincia {
         this.id = id;
     }
 
+    public int getProvincia() {
+        return provincia;
+    }
+
     public String getName() {
         return name;
     }

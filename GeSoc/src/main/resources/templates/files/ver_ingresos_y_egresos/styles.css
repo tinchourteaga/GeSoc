@@ -4344,9 +4344,22 @@
     display:none;
 }
 
+#myPopUpIngreso{
+    position: fixed;
+    width:50%;
+    height: 30%;
+    top:20%;
+    left:20%;
+    display:none;
+}
+
 .lupita{
    position: absolute;
    left: 64%;
+}
+
+.botoncito_lupita{
+  position: absolute;
 }
 
 #detalle_posta{
@@ -4357,17 +4370,24 @@
   left:21%;
 }
 
-#proveedor{
-  position: absolute;
-  left: 14%;
-  top: 3.5%;
+#detalle_posta_ingreso{
+    position: fixed;
+    width:48%;
+    height: auto;
+    top:22%;
+    left:21%;
 }
 
 #fecha_detalle{
   position: absolute;
   text-align: right;
-  right: 2%;
-  top: 5.5%;
+  right: 5%;
+}
+
+#fecha_detalle_ingreso{
+  position: absolute;
+  text-align: right;
+  right: 5%;
 }
 
 .variables_fecha{
@@ -4376,13 +4396,6 @@
   border: 0px;
 }
 
-
-#pago{
-  position: absolute;
-  left: 19%;
-  top: 14%;
-  background-color:transparent;
-}
 .tablaCSS{
     border-collapse: collapse;
     margin 25px 0;
@@ -4407,6 +4420,20 @@
     backdrop-filter: blur(3px);
     visibility: hidden;
     opacity: 0;
+}
+
+#botoncito_cerrar{
+    position:absolute;
+    top: 0%;
+    right: 0%;
+    width:20px;
+}
+
+#botoncito_cerrar_ingresos{
+    position:absolute;
+    top: 0%;
+    right: 0%;
+    width:20px;
 }
 
 .span_piola{
@@ -4441,28 +4468,4 @@
 
 .tablaCSS tbody tr:last-of-type{
     border-bottom: 2px solid rgba(217, 70, 59, 1);
-}
-
-#ingresos{
-  position: absolute;
-  left: 22%;
-  top: 50%;
-}
-
-#cricat{
-  position: absolute;
-  left: 27%;
-  top: 60%;
-}
-
-#prep{
-  position: absolute;
-  left: 24%;
-  top: 70.5%;
-}
-
-#prepasoc{
-  position: absolute;
-  left: 27%;
-  top: 81%;
 }

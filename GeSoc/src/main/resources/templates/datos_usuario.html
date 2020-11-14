@@ -7,6 +7,7 @@
     <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
     <link href="data/styles.css" type="text/css" rel="stylesheet"/>
     <link href="files/datos_usuario/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/cargar_entidad/styles.css" type="text/css" rel="stylesheet"/>
     <script src="resources/scripts/jquery-3.2.1.min.js"></script>
     <script src="resources/scripts/axure/axQuery.js"></script>
     <script src="resources/scripts/axure/globals.js"></script>
@@ -237,13 +238,17 @@
             <!-- Unnamed (Text Field) -->
             <div id="u2153" class="ax_default text_field">
               <div id="u2153_div" class=""></div>
-              <input id="u2153_input" type="text" value="PROEM" class="u2153_input"/>
+              <input id="u2153_input" type="text" value="PROEM" class="u2153_input" style="color:#919090;" disabled/>
             </div>
 
             <!-- Unnamed (Text Field) -->
             <div id="u2154" class="ax_default text_field">
               <div id="u2154_div" class=""></div>
-              <input id="u2154_input" type="text" value="Coordinadora de Proyectos" class="u2154_input"/>
+              <select id="u305_input" class="u305_input" style="width: 200px;">
+                <option class="u305_input_option" value="Seleccionar rol">Seleccionar rol</option>
+                <option class="u305_input_option" value="Administrador">Administrador</option>
+                <option class="u305_input_option" value="Estandar">Estándar</option>
+              </select>
             </div>
 
             <!-- Unnamed (Text Field) -->
@@ -258,25 +263,6 @@
               <div id="u2156_text" class="text ">
                 <p><span>Usuario:</span></p>
               </div>
-            </div>
-
-            <!-- Unnamed (Rectangle) -->
-            <div id="u2157" class="ax_default box_1">
-              <img id="u2157_img" class="img " src="images/datos_usuario/u2157.svg"/>
-              <div id="u2157_text" class="text ">
-                <p><span>Administrador del Sistema: </span></p>
-              </div>
-            </div>
-
-            <!-- Unnamed (Checkbox) -->
-            <div id="u2158" class="ax_default checkbox">
-              <label id="u2158_input_label" for="u2158_input" style="position: absolute; left: 0px;">
-                <img id="u2158_img" class="img " src="images/datos_usuario/u2158.svg"/>
-                <div id="u2158_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </label>
-              <input id="u2158_input" type="checkbox" value="checkbox"/>
             </div>
           </div>
         </div>

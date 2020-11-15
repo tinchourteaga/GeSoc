@@ -170,7 +170,7 @@
               <div id="u741" class="ax_default" data-label="Input-Text">
                 <div id="u741_div" class=""></div>
                 <div id="u741_text" class="text ">
-                  <p><span>Descripción</span></p>
+                  <p><span>Ingreso Asociado</span></p>
                 </div>
               </div>
             </div>
@@ -264,7 +264,7 @@
             <td>{{entidad.nombre}}</td>
             <td>{{fecha}}</td>
             <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
-            <td>{{fecha}}:{{valor.importe}}</td>
+            <td>{{valor.importe}}</td>
           </tr>
           {{/each}}
           </tbody>
@@ -356,9 +356,9 @@
         <div id="u781_div" class=""></div>
         <select name="entidad" id="u781_input" class="u781_input">
           <option class="u781_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
-          <option class="u781_input_option" value="Entidad 1">Entidad 1</option>
-          <option class="u781_input_option" value="Entidad 2">Entidad 2</option>
-          <option class="u781_input_option" value="Entidad 3">Entidad 3</option>
+          {{#each entidades}}
+          <option class="u781_input_option" value={{entidad}}>{{nombre}}</option>
+          {{/each}}
         </select>
       </div>
 

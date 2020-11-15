@@ -46,8 +46,29 @@ public class ControllerEntidad {
         }
        String tipoEntidad= request.queryParams("entidad");
 
+        //saco los campos que pudieron completar antes
+
+
+        String rs=request.queryParamOrDefault("razonSocial","Ingrese razon social");
+        String rf=request.queryParamOrDefault("nombreFicticio","Ingrese nombre ficticio");
+        String cuit=request.queryParamOrDefault("cuilOCuit","Ingrese  CUIL o CUIT");
+        String codIGJ=request.queryParamOrDefault("codInscripcion","Ingrese codigo de IGJ");
+        String calle=request.queryParamOrDefault("calle","Ingrese calle");
+        String piso=request.queryParamOrDefault("piso","piso");
+        String numero=request.queryParamOrDefault("numeroCalle","nro");
+        String depto=request.queryParamOrDefault("dpto","depto");
+
+
         datos.put("paises",paises);
         datos.put("tipoEntidad",tipoEntidad);
+        datos.put("razonSocialDefault",rs);
+        datos.put("nombreFicticioDefault",rf);
+        datos.put("cuitDefault",cuit);
+        datos.put("codigoIGJDefault",codIGJ);
+        datos.put("calleDefault",calle);
+        datos.put("pisoDefault",piso);
+        datos.put("deptoDefault",depto);
+        datos.put("numeroDefault",numero);
 
         return vista;
     }

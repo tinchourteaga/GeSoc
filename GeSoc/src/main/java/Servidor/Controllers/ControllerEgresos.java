@@ -1,8 +1,8 @@
 package Servidor.Controllers;
 
-import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
+import Dominio.Egreso.Core.*;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
@@ -11,6 +11,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -153,14 +154,23 @@ public class ControllerEgresos {
 
     }
 
-    public static Object cargarItem(Request request, Response response){
+    public static Object cargarItem(Request request, Response response) throws IOException {
+
+        /*
+        RequestMaker rm = RequestMaker.getInstance();
+
+        rm.crearGET("http://localhost:63342/cargar_items_egresos.html");
+        */
 
         String egreso = request.queryParams("egreso");
-        String item = request.queryParams("item");
-        String valorItem = request.queryParams("valor");
+        String nombre = request.queryParams("nombreItem");
+        String tipo = request.queryParams("tipo");
+        String cantidad = request.queryParams("cant");
+        String precio = request.queryParams("precio");
 
         Integer egresoId = Integer.valueOf(egreso);
-        Float valor = Float.valueOf(valorItem);
+        Integer cant = Integer.valueOf(cantidad);
+        Float valor = Float.valueOf(precio);
 
         DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class); //dao generico de BBDD
         Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso); //repositorio que tambien usa generics
@@ -171,7 +181,8 @@ public class ControllerEgresos {
 
         Egreso objEgreso = egresos.get(i);
 
-        Item objItem = new Item(valor,item,1); //quiero persistir todos de un saque
+        Item objItem = new Item(valor,nombre,cant);
+        objItem.setTipo(tipo);
 
         objEgreso.agregarItem(objItem);
 

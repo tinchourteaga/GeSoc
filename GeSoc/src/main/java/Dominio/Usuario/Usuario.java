@@ -105,6 +105,10 @@ public class Usuario {
         return bandejaDeMensajes;
     }
 
+    public int getUsuario() {
+        return usuario;
+    }
+
     public String getContrasenia() {
         return contrasenia;
     }

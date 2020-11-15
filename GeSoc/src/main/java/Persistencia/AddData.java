@@ -24,12 +24,9 @@ import Persistencia.DAO.DAOBBDD;
 import Persistencia.DAO.DAOUsuario;
 import Persistencia.Repos.Repositorio;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,46 +37,27 @@ import java.util.stream.Collectors;
 //Aca metemos las cosas que queremos persistir desde un comienzo; algo con lo que poder trabajar apenas se levanta el sistema.
 public class AddData {
 
-    public static void main(String[] args) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+    public static void notAMain(String[] args) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
 
-        int rta=1;
-        while(rta!=0) {
-            System.out.println("¿Desea Inicializar la base de datos con los paises de ML? \nPresione Y o N ");
-            InputStreamReader isr = new InputStreamReader(System.in);
-            BufferedReader br = new BufferedReader(isr);
-            String resultado = null;
-            try {
-                resultado = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ;
-            switch (resultado) {
-
+            switch (args[1]) {
                 case "Y":
                     try {
                         ControllerMercadoLibre.getControllerMercadoLibre().inicializarBase();
-                    } catch (IOException e) {
+                    } catch (IOException e ) {
                         e.printStackTrace();
                     }
-                    rta=0;
                     break;
                 case "N":
                     System.out.println("No se inicializara la base de datos con los paises");
-                    rta=0;
                     break;
                 default:
                     System.out.println("No se reconocio la respuesta. Por favor ingrese correctamente.");
                     break;
             }
-        }
 
 
 
-
-        EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("db");
-
-        EntityManager entityManager = entityManagerFactory.createEntityManager();
 
         Repositorio repoPaises = new Repositorio(new DAOBBDD<Pais>(Pais.class));
         List<Pais> todosLosPaises = repoPaises.getTodosLosElementos();
@@ -744,36 +722,6 @@ public class AddData {
 
         System.out.println("Corrio joyita");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //}
     }
 }
 

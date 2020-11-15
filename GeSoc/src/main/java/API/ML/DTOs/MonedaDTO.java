@@ -1,28 +1,15 @@
 package API.ML.DTOs;
 
-import Persistencia.InterfacesPersistencia.IdPersistedClass;
-import Persistencia.InterfacesPersistencia.NamePersistedClass;
+public class MonedaDTO {
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "dom_moneda")
-public class MonedaDTO implements IdPersistedClass, NamePersistedClass {
-
-    @Id
-    @GeneratedValue
     private int moneda;
 
-    @Column(name="simbolo")
     private String symbol;
 
-    @Column(name="decimales")
     private int decimal_places;
 
-    @Column(name="desc")
     private String description;
 
-    @Column(name="id_mercado_libre")
     private String id;
 
     public MonedaDTO(String symbol, int decimal_places, String description, String id) {
@@ -36,22 +23,43 @@ public class MonedaDTO implements IdPersistedClass, NamePersistedClass {
 
     }
 
+    public int getMoneda() {
+        return moneda;
+    }
+
+    public void setMoneda(int moneda) {
+        this.moneda = moneda;
+    }
+
     public String getSymbol() {
         return symbol;
     }
+
+    public void setSymbol(String symbol) {
+        this.symbol = symbol;
+    }
+
     public int getDecimal_places() {
         return decimal_places;
     }
+
+    public void setDecimal_places(int decimal_places) {
+        this.decimal_places = decimal_places;
+    }
+
     public String getDescription() {
         return description;
     }
-   @Override
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public String getId() {
         return id;
     }
 
-    @Override
-    public String getNombre() {
-        return description;
+    public void setId(String id) {
+        this.id = id;
     }
 }

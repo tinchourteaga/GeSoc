@@ -1,9 +1,7 @@
 package API.ML;
 
 import API.ML.DTOs.*;
-import API.ML.Excepciones.ExcepcionNoSePudoConvertir;
 import API.ML.Excepciones.ExcepcionProvinciaNoEncontrada;
-import API.ML.Excepciones.NoExisteMonedaException;
 import API.RequestMaker.RequestMaker;
 import Lugares.Ciudad;
 import Lugares.Pais;
@@ -72,7 +70,7 @@ public class ControllerMercadoLibre {
         pedirMonedas();
 
     }
-    public ConversionDTO convertirMoneda(String nombreMonedaActual, String nombreMonedaAConvertir) throws IOException, ExcepcionNoSePudoConvertir, NoExisteMonedaException {
+  /*  public ConversionDTO convertirMoneda(String nombreMonedaActual, String nombreMonedaAConvertir) throws IOException, ExcepcionNoSePudoConvertir, NoExisteMonedaException {
 
         MonedaDTO monedaActual=getMoneda(nombreMonedaActual);
         MonedaDTO monedaAConvertir=getMoneda(nombreMonedaAConvertir);
@@ -99,7 +97,7 @@ public class ControllerMercadoLibre {
         return conversion;
 
 
-    }
+    }*/
 
 
 
@@ -107,7 +105,7 @@ public class ControllerMercadoLibre {
 
 
     private void pedirMonedas() throws IOException {
-        HttpEntity entidad= crearRequest("/currencies");
+       /* HttpEntity entidad= crearRequest("/currencies");
         String responseStr = IOUtils.toString(entidad.getContent(), "UTF-8");
         if (responseStr != null && !responseStr.isEmpty()) {
             JsonParser parser = new JsonParser();
@@ -117,7 +115,7 @@ public class ControllerMercadoLibre {
                     jsonElemnt.getAsJsonObject().get("decimal_places").getAsInt(),
                     jsonElemnt.getAsJsonObject().get("description").getAsString(),
                     jsonElemnt.getAsJsonObject().get("id").getAsString())));
-        }
+        }*/
 
     }
 
@@ -181,13 +179,13 @@ public class ControllerMercadoLibre {
         return (Pais) paisesRepo.buscarPorNombre(nombrePais);
     }
 
-    public MonedaDTO getMoneda(String nombreMoneda) {
+   /* public MonedaDTO getMoneda(String nombreMoneda) {
         return (MonedaDTO) monedasRepo.buscarPorNombre(nombreMoneda);
     }
 
     public MonedaDTO getMonedaByID(String idMoneda) {
         return (MonedaDTO) monedasRepo.buscarPorId(idMoneda);
-    }
+    }*/
 
     private ZipCodeDTO crearDTOZipCode(JsonObject responseObj) {
 

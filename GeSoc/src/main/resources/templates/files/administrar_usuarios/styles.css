@@ -1471,7 +1471,7 @@
   border-width:0px;
   position:absolute;
   left:226px;
-  top:246px;
+  top:285px;
   width:210px;
   height:23px;
   display:flex;
@@ -1556,7 +1556,7 @@
   border-width:0px;
   position:absolute;
   left:137px;
-  top:247px;
+  top:287px;
   width:81px;
   height:17px;
   display:flex;
@@ -1849,7 +1849,7 @@
   border-width:0px;
   position:absolute;
   left:201px;
-  top:215px;
+  top:232px;
   width:235px;
   height:23px;
   display:flex;
@@ -1934,7 +1934,7 @@
   border-width:0px;
   position:absolute;
   left:137px;
-  top:216px;
+  top:235px;
   width:56px;
   height:17px;
   display:flex;
@@ -2536,8 +2536,8 @@
 #u2042 {
   border-width:0px;
   position:absolute;
-  left:137px;
-  top:291px;
+  left:500px;
+  top:183px;
   width:15px;
   height:15px;
   display:flex;
@@ -6915,4 +6915,63 @@
 #u57577{
     position:absolute;
     width:100%;
+}
+
+#filtrado{
+  position:fixed;
+  left:40%;
+  top:27.5%;
+  width: 35%;
+  height: 25%;
+}
+
+#select_empresas{
+  position:fixed;
+  left:40%;
+  top:32%;
+}
+
+#checkbox_revisor{
+  position:fixed;
+  left:40%;
+  top:36%;
+  font-size:1.25vw;
+}
+
+#checkbox_admin{
+  position:fixed;
+  left:40%;
+  top:39%;
+  font-size:1.25vw;
+}
+
+#cargar_items{
+  border-width:0px;
+  position:absolute;
+  left:7%;
+  bottom:5%;
+  display:flex;
+}
+
+.boton_cargar_items{
+  width:85px;
+  height:25px;
+  position:fixed;
+  left:40%;
+  top:43%;
+  background-color:rgba(217, 70, 59, 1);
+  border:none;
+  border-radius:50px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:300;
+  font-style:normal;
+  font-size:14px;
+  color:white;
+}
+
+.boton_cargar_items:hover{
+  background-color:rgba(179, 49, 41, 1);
 }

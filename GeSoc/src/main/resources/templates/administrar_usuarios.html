@@ -401,23 +401,39 @@
         </div>
 
         <!-- Unnamed (Shape) -->
-        <div id="u2042" class="ax_default icon">
-          <img id="u2042_img" class="img " src="images/administrar_usuarios/u2042.svg"/>
-          <div id="u2042_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
 
-        <!-- Unnamed (Droplist) -->
-        <div id="u2043" class="ax_default droplist">
-          <div id="u2043_div" class=""></div>
-          <select id="u2043_input" class="u2043_input">
-            <option class="u2043_input_option" value="Añadir Filtro">Añadir Filtro</option>
-            <option class="u2043_input_option" value="Empresa / Organización">Empresa / Organización</option>
-            <option class="u2043_input_option" value="Revisor">Revisor</option>
-            <option class="u2043_input_option" value="Administrador">Administrador</option>
-          </select>
-        </div>
+          <div id="filtrado">
+            <img id="u2042_img" class="img " src="images/administrar_usuarios/u2042.svg" style="height:20px; width:20px;"/>
+            <p style="color: rgba(217, 70, 59, 1); font-size:1.5vw; left:5%; top:0%; position:absolute;">Filtar por: </p>
+
+            <div id="select_empresas">
+              <select>
+                <option>Seleccione una empresa</option>
+              </select>
+            </div>
+
+            <div id="checkbox_revisor">
+              <input type="checkbox" name="chk" style="align: center;"/>
+              <span>Revisor</span>
+            </div>
+
+            <div id="checkbox_admin">
+              <input type="checkbox" name="chk" style="align: center;"/>
+              <span>Administrador</span>
+            </div>
+
+            <div id="cargar_items">
+              <input type="button" class="boton_cargar_items" value="Filtrar"/>
+            </div>
+
+
+
+          </div>
+
+
+
+
+
       </div>
 
       <!-- Popup (Dynamic Panel) -->

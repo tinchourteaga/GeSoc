@@ -1,6 +1,8 @@
 package Servidor.Controllers;
 
+import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Ingreso;
+import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
@@ -9,15 +11,26 @@ import spark.Request;
 import spark.Response;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ControllerIngresos {
     public static ModelAndView visualizarPantalla(Request request, Response response){
 
         Map<String,Object> datos = new HashMap<>();
+
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+
+        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+
+        Set<Entidad> setEntidades= new HashSet<Entidad>();
+        setEntidades.addAll(entidades);
+        entidades.clear();
+        entidades.addAll(setEntidades);
+
+        datos.put("entidades",entidades);
+        datos.put("egreso",miUsuario.getEgresosAREvisar());
+
         ModelAndView vista = new ModelAndView(datos, "cargar_ingreso.html");
 
         return vista;

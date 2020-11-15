@@ -59,21 +59,21 @@ public class Servidor {
         Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
 
         //haciendo
+        Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
 
         //para tincho
         Spark.get("/cargar_items_egreso", ControllerEgresos::visualizarPantallaItems, engine);
         Spark.get("/cargar_items_presupuestos", ControllerPresupuesto::visualizarPantallaItems, engine);
 
         //TODO
-        Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
+        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);
         Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);
         Spark.get("/crear_categoria", ControllerCategoria::visualizarPantalla, engine);
         Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
         Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
 
 
-        //bloqueados
-        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);
+        //bloqueado
         Spark.get("/datos_usuario", ControllerUsuario::visualizarPantallaDatosUsuario, engine);
         Spark.get("/usuario", ControllerUsuario::visualizarPantallaUsuario, engine);
         Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);

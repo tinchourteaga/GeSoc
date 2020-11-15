@@ -46,7 +46,22 @@ public class ControllerUsuario {
 
     public static ModelAndView visualizarPantallaAdministrarUsuario(Request request, Response response){
 
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
+
+        List<Entidad> entidadesQueManejo= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad> entidadesSinRepetidos= new HashSet<>();
+        entidadesSinRepetidos.addAll(entidadesQueManejo);
+        entidadesQueManejo.clear();
+        entidadesQueManejo.addAll(entidadesSinRepetidos);
+
+        Repositorio repoUsuario= new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
+        List<Usuario> usuariosPosibles=repoUsuario.getTodosLosElementos();
+        List<Usuario> usuarioAVer= usuariosPosibles.stream().filter(us-> us.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList()).stream().anyMatch(e->entidadesQueManejo.contains(e))).collect(Collectors.toList());
+
+        datos.put("usuarios",usuarioAVer);
+        datos.put("entidades",entidadesQueManejo);
+
         ModelAndView vista = new ModelAndView(datos, "administrar_usuarios.html");
 
         return vista;

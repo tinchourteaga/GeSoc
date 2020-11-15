@@ -73,13 +73,14 @@ public class Servidor {
         Spark.get("/cargar_items_presupuestos", ControllerPresupuesto::visualizarPantallaItems, engine);
 
         //TODO
-        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);
+        Spark.get("/usuario", ControllerUsuario::visualizarPantallaUsuario, engine);
 
 
         //bloqueado
-        Spark.get("/usuario", ControllerUsuario::visualizarPantallaUsuario, engine);
-        Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);
-        Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);
+        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);//Falta que se bloqueen bien los campos
+        Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);//falta boton "Filtrar"
+        Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//Falta seleccionar Empresa
+
 
 
         //No son de la entrega 6

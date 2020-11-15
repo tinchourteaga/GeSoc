@@ -73,20 +73,16 @@
                   <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre</th>
                   <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Apellido</th>
                   <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Identificación</th>
-                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Empresa/Organización</th>
-                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Revisor</th>
-                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Administrador</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Rol</th>
                 </tr>
                 </thead>
                 <tbody>
-                {{#each ingreso}}
+                {{#each usuarios}}
                 <tr> <!-- style=" border: 1px solid #515559;" -->
-                  <td>{{entidad.nombre}}</td>
-                  <td>{{fecha}}</td><!-- style=" border: 1px solid #515559;" -->
-                  <td>ingreso</td>
-                  <td>{{valor.importe}}</td>
-                  <td>{{valor.importe}}</td>
-                  <td>{{valor.importe}}</td>
+                  <td>{{nombre}}</td>
+                  <td>{{apellido}}</td><!-- style=" border: 1px solid #515559;" -->
+                  <td>{{persona}}</td>
+                  <td>{{rol}}</td>
                 </tr>
                 {{/each}}
 

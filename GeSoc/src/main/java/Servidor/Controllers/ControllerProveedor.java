@@ -1,6 +1,5 @@
 package Servidor.Controllers;
 
-import API.ML.ControllerMercadoLibre;
 import Dominio.Egreso.Core.Proveedor;
 import Dominio.Entidad.DireccionPostal;
 import Lugares.Ciudad;
@@ -13,7 +12,6 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,26 +22,86 @@ public class ControllerProveedor {
     public static ModelAndView visualizarPantalla(Request request, Response response){
 
         Map<String,Object> datos = new HashMap<>();
-        List<String> paises = new ArrayList<>();
-        List<Pais> paisesObjeto= new ArrayList<>();
 
-        List<Provincia> provincias = new ArrayList<>();
-        List<Ciudad> ciudades = new ArrayList<>();
+        Repositorio repoPaises= new Repositorio(new DAOBBDD<Pais>(Pais.class));
+        List<Pais> paises = repoPaises.getTodosLosElementos();
 
-        ControllerMercadoLibre controller = ControllerMercadoLibre.getControllerMercadoLibre();
+        //me fijo si cargo cosas
 
-        paises.addAll((List<String>)(controller.paisesRepo.getTodosLosElementos().stream().map(pais -> (Pais)pais).map(unPais->((Pais) unPais).getName()).collect(Collectors.toList())));
-        paisesObjeto.addAll((List<Pais>)(controller.paisesRepo.getTodosLosElementos().stream().map(pais -> (Pais)pais).collect(Collectors.toList())));
 
-        paisesObjeto.forEach(unPais -> {
-            datos.put(unPais.getName(),unPais.getProvincias());
-            provincias.addAll(unPais.getProvincias());
-        });
+        List<Ciudad> ciudades;
+        String paisElegido= request.queryParams("pais");
+        Pais paisElegidoObj=null;
+        if(paisElegido!=null) {
+            paisElegidoObj = paises.stream().filter(p -> p.getPais()==Integer.valueOf(paisElegido).intValue()).collect(Collectors.toList()).get(0);
+            datos.put("paisElegido",paisElegidoObj);
+            datos.put("provincias",paisElegidoObj.getProvincias());
 
-        provincias.forEach(unaProvincia -> {
-            datos.put(unaProvincia.getName(),unaProvincia.getCiudades());
-            ciudades.addAll(unaProvincia.getCiudades());
-        });
+        }
+        String provinciaElegida= request.queryParams("provincia");
+        if(provinciaElegida!=null && paisElegidoObj!=null){
+
+            List<Provincia> provinciasPosibles = paisElegidoObj.getProvincias().stream().filter(p->p.getProvincia()==Integer.valueOf(provinciaElegida).intValue()).collect(Collectors.toList());
+            if(!provinciasPosibles.isEmpty()){
+                Provincia provinciaElegidaobj=provinciasPosibles.get(0);
+                datos.put("provinciaElegida",provinciaElegidaobj);
+                datos.put("ciudades", provinciaElegidaobj.getCiudades());
+            }
+        }
+        String tipoEntidad= request.queryParamOrDefault("tipo","");
+
+
+        String esPersona="";
+        String esEmpresa="";
+
+        if(tipoEntidad.equals("Persona")){
+            esPersona=tipoEntidad;
+        }
+        if(tipoEntidad.equals("Empresa")){
+            esEmpresa=tipoEntidad;
+        }
+        //saco los campos que pudieron completar antes
+
+
+        String rs=request.queryParamOrDefault("razonSocial","Ingrese razon social");
+        String rf=request.queryParamOrDefault("nombreFicticio","Ingrese nombre ficticio");
+        String cuit=request.queryParamOrDefault("cuilOCuit","Ingrese  CUIL o CUIT");
+        String calle=request.queryParamOrDefault("calle","Ingrese calle");
+        String piso=request.queryParamOrDefault("piso","piso");
+        String numero=request.queryParamOrDefault("numeroCalle","nro");
+        String depto=request.queryParamOrDefault("dpto","depto");
+
+        String apellido=request.queryParamOrDefault("Apellido","Ingrese apellido");
+        String nombre=request.queryParamOrDefault("nombreFicticio","Ingrese nombre");
+        String dni=request.queryParamOrDefault("DNI","Ingrese  DNI");
+        String callePers=request.queryParamOrDefault("callePers","Ingrese calle");
+        String pisoPers=request.queryParamOrDefault("pisoPers","piso");
+        String numeroPers=request.queryParamOrDefault("numeroPers","nro");
+        String deptoPers=request.queryParamOrDefault("deptoPers","depto");
+
+
+        datos.put("paises",paises);
+        datos.put("esEmpresa",esEmpresa);
+        datos.put("razonSocialDefault",rs);
+        datos.put("nombreFicticioDefault",rf);
+        datos.put("cuitDefault",cuit);
+        datos.put("calleDefault",calle);
+        datos.put("pisoDefault",piso);
+        datos.put("deptoDefault",depto);
+        datos.put("numeroDefault",numero);
+
+        datos.put("esPersona",esPersona);
+        datos.put("apellido",apellido);
+        datos.put("nombre",nombre);
+        datos.put("dni",dni);
+        datos.put("callePers",callePers);
+        datos.put("pisoPers",pisoPers);
+        datos.put("deptoPers",deptoPers);
+        datos.put("numeroPers",numeroPers);
+
+
+
+
 
         datos.put("paises",paises);
         ModelAndView vista = new ModelAndView(datos, "cargar_proveedor.html");

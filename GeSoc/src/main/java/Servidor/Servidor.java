@@ -4,8 +4,8 @@ import Servidor.Controllers.*;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
-import static spark.Spark.port;
-import static spark.Spark.staticFiles;
+import static Servidor.Controllers.Autenticador.authenticate;
+import static spark.Spark.*;
 import static spark.debug.DebugScreen.enableDebugScreen;
 
 public class Servidor {
@@ -45,7 +45,7 @@ public class Servidor {
         levantarRutaDELETE();
         levantarRutaPUT();
         levantarRutaPATCH();
-        //before("/*", authenticate);
+        before("/*", authenticate);
         //esto ultimo es para que realice siempre la autenticación
     }
 
@@ -61,6 +61,7 @@ public class Servidor {
         Spark.get("/crear_categoria", ControllerCategoria::visualizarPantalla, engine);
         Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
         Spark.get("/datos_usuario", ControllerUsuario::visualizarPantallaDatosUsuario, engine);//falta testear peor no hay boton para entrar jeje
+        Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
 
 
         //haciendo
@@ -79,7 +80,6 @@ public class Servidor {
         Spark.get("/usuario", ControllerUsuario::visualizarPantallaUsuario, engine);
         Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);
         Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);
-        Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
 
 
         //No son de la entrega 6

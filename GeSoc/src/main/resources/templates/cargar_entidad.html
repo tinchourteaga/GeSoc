@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
-  <head>
+<head>
     <title>Cargar Entidad</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
@@ -45,1468 +45,1541 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
     <script type="text/javascript">
-      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
-      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
-      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+        $axure.utils.getTransparentGifPath = function () {
+            return 'resources/images/transparent.gif';
+        };
+        $axure.utils.getOtherPath = function () {
+            return 'resources/Other.html';
+        };
+        $axure.utils.getReloadPath = function () {
+            return 'resources/reload.html';
+        };
     </script>
 
     <script src="jquery.js"></script>
 
     <script>
-    $(function(){
-      $("#includedContent").load("sidebar.html");
-    });
+        $(function () {
+            $("#includedContent").load("sidebar.html");
+        });
     </script>
 
-  </head>
-  <body>
-    <div id="base" class="">
-      <form action="/cargarEntidad" method="post">
-
-      <!-- Unnamed (Rectangle) -->
-      <div id="u285" class="ax_default heading_1">
-        <div id="u285_div" class=""></div>
-        <div id="u285_text" class="text ">
-          <p><span>&nbsp;Cargar Entidad</span></p>
-        </div>
-      </div>
-
-      <!-- Unnamed (Rectangle) -->
-      <div id="u286" class="ax_default heading_1">
-        <div id="u286_div" class=""></div>
-        <div id="u286_text" class="text ">
-          <p><span>¿Desea cargar un Entidad Jurídica o una Entidad Base?: </span></p>
-        </div>
-      </div>
-
-      <!-- EntidadBase (Group) -->
-      <div id="u287" class="ax_default ax_default_hidden" data-label="EntidadBase" style="display:none; visibility: hidden" data-left="45" data-top="228" data-width="401" data-height="246">
+</head>
+<body>
+<div id="base" class="">
+    <form action="/cargarEntidad" method="post">
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u288" class="ax_default primary_button">
-          <div id="u288_div" class=""></div>
-          <div id="u288_text" class="text ">
-            <p><span>Cargar</span></p>
-          </div>
-        </div>
-
-        <!-- Unnamed (Line) -->
-        <div id="u291" class="ax_default line">
-          <img id="u291_img" class="img " src="images/cargar_entidad/u291.svg"/>
-          <div id="u291_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
+        <div id="u285" class="ax_default heading_1">
+            <div id="u285_div" class=""></div>
+            <div id="u285_text" class="text ">
+                <p><span>&nbsp;Cargar Entidad</span></p>
+            </div>
         </div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u292" class="ax_default heading_1">
-          <div id="u292_div" class=""></div>
-          <div id="u292_text" class="text ">
-            <p><span>Datos Principales</span></p>
-          </div>
+        <div id="u286" class="ax_default heading_1">
+            <div id="u286_div" class=""></div>
+            <div id="u286_text" class="text ">
+                <p><span>¿Desea cargar un Entidad Jurídica o una Entidad Base?: </span></p>
+            </div>
         </div>
-      </div>
 
-      <!-- JurídicaBase (Droplist) -->
-      <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
-        <div id="u295_div" class=""></div>
-        <select id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
-          {{#if tipoEntidad includeZero=true}}
-          <option value={{tipoEntidad}} selected>{{tipoEntidad}}</option>
-          {{else}}
-          <option value="Seleccionar una opción">Seleccionar una opción</option>
-          {{/if}}
-          <option value="Empresa">Empresa</option>
-          <option value="OrganizacionSocial">Organizacion Social</option>
-          <option value="EntidadBase">Entidad Base</option>
-        </select>
-      </div>
+        <!-- EntidadBase (Group) -->
+        <div id="u287" class="ax_default ax_default_hidden" data-label="EntidadBase"
+             style="display:none; visibility: hidden" data-left="45" data-top="228" data-width="401" data-height="246">
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u288" class="ax_default primary_button">
+                <div id="u288_div" class=""></div>
+                <div id="u288_text" class="text ">
+                    <p><span>Cargar</span></p>
+                </div>
+            </div>
+
+
+            <!-- Unnamed (Line) -->
+            <div id="u291" class="ax_default line">
+                <img id="u291_img" class="img " src="images/cargar_entidad/u291.svg"/>
+                <div id="u291_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u292" class="ax_default heading_1">
+                <div id="u292_div" class=""></div>
+                <div id="u292_text" class="text ">
+                    <p><span>Datos Principales</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- JurídicaBase (Droplist) -->
+        <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
+            <div id="u295_div" class=""></div>
+            <select id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
+                {{#if tipoEntidad includeZero=true}}
+                <option value={{tipoEntidad}} selected>{{tipoEntidad}}</option>
+                {{else}}
+                <option value="Seleccionar una opción">Seleccionar una opción</option>
+                {{/if}}
+                <option value="Empresa">Empresa</option>
+                <option value="OrganizacionSocial">Organizacion Social</option>
+                <option value="EntidadBase">Entidad Base</option>
+            </select>
+        </div>
+
 
         <div id="formulario_entidad_base">
 
-          <div class="u318" class="ax_default line">
-            <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
-            <div class="u318_text" class="text " style="display:none; visibility: hidden">
-              <p></p>
+            <div class="u318" class="ax_default line">
+                <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
+                <div class="u318_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
             </div>
-          </div>
 
-          <div class="u319" class="ax_default heading_1">
-            <div class="u319_div" class=""></div>
-            <div class="u319_text" class="text ">
-              <p><span>Datos Principales</span></p>
+            <div class="u319" class="ax_default heading_1">
+                <div class="u319_div" class=""></div>
+                <div class="u319_text" class="text ">
+                    <p><span>Datos Principales</span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u290" class="ax_default heading_1">
-            <div id="u290_div" class=""></div>
-            <div id="u290_text" class="text ">
-              <p><span>Nombre Ficticio:</span></p>
+            <div id="u290" class="ax_default heading_1">
+                <div id="u290_div" class=""></div>
+                <div id="u290_text" class="text ">
+                    <p><span>Nombre Ficticio:</span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u289" class="ax_default text_field" data-label="EntradaNombreFicticio1">
-            <div id="u289_div" class=""></div>
-            <input name="nombreFicticio1" id="u289_input" type="text" value="" class="u289_input"/>
-          </div>
-
-          <div id="u294" class="ax_default heading_1">
-            <div id="u294_div" class=""></div>
-            <div id="u294_text" class="text ">
-              <p><span>Descripción:</span></p>
+            <div id="u289" class="ax_default text_field" data-label="EntradaNombreFicticio1">
+                <div id="u289_div" class=""></div>
+                <input name="nombreFicticio1" id="u289_input" type="text" value="" class="u289_input"/>
             </div>
-          </div>
 
-          <div id="u293" class="ax_default text_area">
-            <div id="u293_div" class=""></div>
-            <textarea id="u293_input" class="u293_input"></textarea>
-          </div>
+            <div id="u294" class="ax_default heading_1">
+                <div id="u294_div" class=""></div>
+                <div id="u294_text" class="text ">
+                    <p><span>Descripción:</span></p>
+                </div>
+            </div>
+
+            <div id="u293" class="ax_default text_area">
+                <div id="u293_div" class=""></div>
+                <textarea id="u293_input" class="u293_input"></textarea>
+            </div>
         </div>
 
 
         <div id="formulario_entidad_juridica">
 
-          <div class="u318" class="ax_default line">
-            <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
-            <div class="u318_text" class="text " style="display:none; visibility: hidden">
-              <p></p>
+            <div class="u318" class="ax_default line">
+                <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
+                <div class="u318_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
             </div>
-          </div>
 
-          <div class="u319" class="ax_default heading_1">
-            <div class="u319_div" class=""></div>
-            <div class="u319_text" class="text ">
-              <p><span>Datos Principales</span></p>
+            <div class="u319" class="ax_default heading_1">
+                <div class="u319_div" class=""></div>
+                <div class="u319_text" class="text ">
+                    <p><span>Datos Principales</span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u302" class="ax_default text_field" data-label="EntradaRazonSocial">
-            <div id="u302_div" class=""></div>
-            <input name="razonSocial" id="u302_input" type="text" value="" class="u302_input"/>
-          </div>
-
-          <div id="u303" class="ax_default heading_1">
-            <div id="u303_div" class=""></div>
-            <div id="u303_text" class="text ">
-              <p><span>Razón Social: </span></p>
+            <div id="u302" class="ax_default text_field" data-label="EntradaRazonSocial">
+                <div id="u302_div" class=""></div>
+                <input name="razonSocial" id="u302_input" type="text" value={{razonSocialDefault}} class="u302_input"/>
             </div>
-          </div>
 
-          <div id="u320" class="ax_default text_field" data-label="EntradaNombreFicticio">
-            <div id="u320_div" class=""></div>
-            <input name="nombreFicticio" id="u320_input" type="text" value="" class="u320_input"/>
-          </div>
-
-          <div id="u321" class="ax_default heading_1">
-            <div id="u321_div" class=""></div>
-            <div id="u321_text" class="text ">
-              <p><span>Nombre Ficticio: </span></p>
+            <div id="u303" class="ax_default heading_1">
+                <div id="u303_div" class=""></div>
+                <div id="u303_text" class="text ">
+                    <p><span>Razón Social: </span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u298" class="ax_default heading_1">
-            <div id="u298_div" class=""></div>
-            <div id="u298_text" class="text ">
-              <p><span>CUIL/CUIT:</span></p>
+            <div id="u320" class="ax_default text_field" data-label="EntradaNombreFicticio">
+                <div id="u320_div" class=""></div>
+                <input name="nombreFicticio" id="u320_input" type="text" value={{nombreFicticioDefault}}
+                       class="u320_input"/>
             </div>
-          </div>
 
-          <div id="u299" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
-            <div id="u299_div" class=""></div>
-            <input name="cuilOCuit" id="u299_input" type="text" value="" class="u299_input"/>
-          </div>
-
-          <div id="u322" class="ax_default heading_1">
-            <div id="u322_div" class=""></div>
-            <div id="u322_text" class="text ">
-              <p><span>Código de Inscripción a IGJ:</span></p>
+            <div id="u321" class="ax_default heading_1">
+                <div id="u321_div" class=""></div>
+                <div id="u321_text" class="text ">
+                    <p><span>Nombre Ficticio: </span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u323" class="ax_default text_field" data-label="EntradaCódigoIGJ">
-            <div id="u323_div" class=""></div>
-            <input name="codInscripcion" id="u323_input" type="text" value="" class="u323_input"/>
-          </div>
-
-          <div id="u316" class="ax_default line">
-            <img id="u316_img" class="img " src="images/cargar_entidad/u316.svg"/>
-            <div id="u316_text" class="text " style="display:none; visibility: hidden">
-              <p></p>
+            <div id="u298" class="ax_default heading_1">
+                <div id="u298_div" class=""></div>
+                <div id="u298_text" class="text ">
+                    <p><span>CUIL/CUIT:</span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u317" class="ax_default heading_1">
-            <div id="u317_div" class=""></div>
-            <div id="u317_text" class="text ">
-              <p><span>Domicilio</span></p>
+            <div id="u299" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
+                <div id="u299_div" class=""></div>
+                <input name="cuilOCuit" id="u299_input" type="text" value={{cuitDefault}} class="u299_input"/>
             </div>
-          </div>
 
-          <div id="u308" class="ax_default heading_1">
-            <div id="u308_div" class=""></div>
-            <div id="u308_text" class="text ">
-              <p><span>Calle:</span></p>
+            <div id="u322" class="ax_default heading_1">
+                <div id="u322_div" class=""></div>
+                <div id="u322_text" class="text ">
+                    <p><span>Código de Inscripción a IGJ:</span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u309" class="ax_default text_field" data-label="EntradaCalle">
-            <div id="u309_div" class=""></div>
-            <input name="calle" id="u309_input" type="text" value="" class="u309_input"/>
-          </div>
-
-          <div id="u310" class="ax_default heading_1">
-            <div id="u310_div" class=""></div>
-            <div id="u310_text" class="text ">
-              <p><span>Número:</span></p>
+            <div id="u323" class="ax_default text_field" data-label="EntradaCódigoIGJ">
+                <div id="u323_div" class=""></div>
+                <input name="codInscripcion" id="u323_input" type="text" value={{codigoIGJDefault}} class="u323_input"/>
             </div>
-          </div>
 
-          <div id="u311" class="ax_default text_field" data-label="EntradaNumero">
-            <div id="u311_div" class=""></div>
-            <input name="numeroCalle" id="u311_input" type="text" value="" class="u311_input"/>
-          </div>
-
-          <div id="u312" class="ax_default heading_1">
-            <div id="u312_div" class=""></div>
-            <div id="u312_text" class="text ">
-              <p><span>Piso:</span></p>
+            <div id="u316" class="ax_default line">
+                <img id="u316_img" class="img " src="images/cargar_entidad/u316.svg"/>
+                <div id="u316_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u313" class="ax_default text_field" data-label="EntradaPiso">
-            <div id="u313_div" class=""></div>
-            <input name="piso" id="u313_input" type="text" value="" class="u313_input"/>
-          </div>
-
-          <div id="u314" class="ax_default heading_1">
-            <div id="u314_div" class=""></div>
-            <div id="u314_text" class="text ">
-              <p><span>Departamento:</span></p>
+            <div id="u317" class="ax_default heading_1">
+                <div id="u317_div" class=""></div>
+                <div id="u317_text" class="text ">
+                    <p><span>Domicilio</span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u315" class="ax_default text_field" data-label="EntradaDepto">
-            <div id="u315_div" class=""></div>
-            <input name="dpto" id="u315_input" type="text" value="" class="u315_input"/>
-          </div>
-
-          <div id="u297" class="ax_default heading_1">
-            <div id="u297_div" class=""></div>
-            <div id="u297_text" class="text ">
-              <p><span>País: </span></p>
+            <div id="u308" class="ax_default heading_1">
+                <div id="u308_div" class=""></div>
+                <div id="u308_text" class="text ">
+                    <p><span>Calle:</span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u300" class="ax_default droplist">
-            <div id="u300_div" class=""></div>
-            <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)">
-              {{#if paisElegido includeZero=true}}
-                <option class="u300_input_option" value={{paisElegido.pais}}>{{paisElegido.name}}</option>
-                {{else}}
-                  <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
-              {{/if}}
-              {{#each paises}}
-              <option class="u300_input_option" value={{pais}}>{{name}}</option>
-              {{/each}}
-            </select>
-          </div>
-
-          <div id="u304" class="ax_default heading_1">
-            <div id="u304_div" class=""></div>
-            <div id="u304_text" class="text ">
-              <p><span>Provincia:</span></p>
+            <div id="u309" class="ax_default text_field" data-label="EntradaCalle">
+                <div id="u309_div" class=""></div>
+                <input name="calle" id="u309_input" type="text" value={{calleDefault}} class="u309_input"/>
             </div>
-          </div>
 
-          <div id="u305" class="ax_default droplist">
-            <div id="u305_div" class=""></div>
-            <select name="provincia" id="u305_input" class="u305_input" disabled onchange="buscar_ciudades(this)">
-
-              {{#if provinciaElegida includeZero=true}}
-              <option class="u305_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}</option>
-              {{else}}
-              <option class="u305_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
-              {{/if}}
-              {{#each provincias}}
-              <option class="u305_input_option" value={{provincia}}>{{name}}</option>
-              {{/each}}
-            </select>
-          </div>
-
-          <div id="u306" class="ax_default heading_1">
-            <div id="u306_div" class=""></div>
-            <div id="u306_text" class="text ">
-              <p><span>Ciudad:</span></p>
+            <div id="u310" class="ax_default heading_1">
+                <div id="u310_div" class=""></div>
+                <div id="u310_text" class="text ">
+                    <p><span>Número:</span></p>
+                </div>
             </div>
-          </div>
 
-          <div id="u307" class="ax_default droplist">
-            <div id="u307_div" class=""></div>
-            <select name="ciudad" id="u307_input" class="u307_input" disabled>
-              <option class="u307_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
-              {{#each ciudades}}
-              <option class="u307_input_option" value={{ciudad}}>{{name}}</option>
-              {{/each}}
-            </select>
-          </div>
+            <div id="u311" class="ax_default text_field" data-label="EntradaNumero">
+                <div id="u311_div" class=""></div>
+                <input name="numeroCalle" id="u311_input" type="text" value={{numeroDefault}} class="u311_input"/>
+            </div>
+
+            <div id="u312" class="ax_default heading_1">
+                <div id="u312_div" class=""></div>
+                <div id="u312_text" class="text ">
+                    <p><span>Piso:</span></p>
+                </div>
+            </div>
+
+            <div id="u313" class="ax_default text_field" data-label="EntradaPiso">
+                <div id="u313_div" class=""></div>
+                <input name="piso" id="u313_input" type="text" value={{pisoDefault}} class="u313_input"/>
+            </div>
+
+            <div id="u314" class="ax_default heading_1">
+                <div id="u314_div" class=""></div>
+                <div id="u314_text" class="text ">
+                    <p><span>Departamento:</span></p>
+                </div>
+            </div>
+
+            <div id="u315" class="ax_default text_field" data-label="EntradaDepto">
+                <div id="u315_div" class=""></div>
+                <input name="dpto" id="u315_input" type="text" value={{deptoDefault}} class="u315_input"/>
+            </div>
+
+            <div id="u297" class="ax_default heading_1">
+                <div id="u297_div" class=""></div>
+                <div id="u297_text" class="text ">
+                    <p><span>País: </span></p>
+                </div>
+            </div>
+
+            <div id="u300" class="ax_default droplist">
+                <div id="u300_div" class=""></div>
+                <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)">
+                    {{#if paisElegido includeZero=true}}
+                    <option class="u300_input_option" value={{paisElegido.pais}}>{{paisElegido.name}}</option>
+                    {{else}}
+                    <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
+                    {{/if}}
+                    {{#each paises}}
+                    <option class="u300_input_option" value={{pais}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div id="u304" class="ax_default heading_1">
+                <div id="u304_div" class=""></div>
+                <div id="u304_text" class="text ">
+                    <p><span>Provincia:</span></p>
+                </div>
+            </div>
+
+            <div id="u305" class="ax_default droplist">
+                <div id="u305_div" class=""></div>
+                <select name="provincia" id="u305_input" class="u305_input" disabled onchange="buscar_ciudades(this)">
+
+                    {{#if provinciaElegida includeZero=true}}
+                    <option class="u305_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}
+                    </option>
+                    {{else}}
+                    <option class="u305_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia
+                    </option>
+                    {{/if}}
+                    {{#each provincias}}
+                    <option class="u305_input_option" value={{provincia}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div id="u306" class="ax_default heading_1">
+                <div id="u306_div" class=""></div>
+                <div id="u306_text" class="text ">
+                    <p><span>Ciudad:</span></p>
+                </div>
+            </div>
+
+            <div id="u307" class="ax_default droplist">
+                <div id="u307_div" class=""></div>
+                <select name="ciudad" id="u307_input" class="u307_input" disabled>
+                    <option class="u307_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
+                    {{#each ciudades}}
+                    <option class="u307_input_option" value={{ciudad}}>{{name}}</option>
+                    {{/each}}
+                </select>
+            </div>
         </div>
 
 
-      <!-- EntidadJurídica (Group) -->
-      <div id="u296" class="ax_default ax_default_hidden" data-label="EntidadJurídica" style="display:none; visibility: hidden" data-left="45" data-top="228" data-width="401" data-height="405">
+        <!-- EntidadJurídica (Group) -->
+        <div id="u296" class="ax_default ax_default_hidden" data-label="EntidadJurídica"
+             style="display:none; visibility: hidden" data-left="45" data-top="228" data-width="401" data-height="405">
+        </div>
+            <!-- Unnamed (Rectangle) -->
+            <button id="u301" class="ax_default primary_button">
+                <div id="u301_div" class=""></div>
+                <div id="u301_text" class="text ">
+                    <p><span>Cargar</span></p>
+                </div>
+            </button>
 
-        <!-- Unnamed (Rectangle) -->
-        <button id="u301" class="ax_default primary_button">
-          <div id="u301_div" class=""></div>
-          <div id="u301_text" class="text ">
-            <p><span>Cargar</span></p>
-          </div>
-        </button>
-      </div>
 
-      <!-- Barra (Group) -->
-      <div id="u334" class="ax_default" data-label="Barra" data-left="510" data-top="237" data-width="752" data-height="30">
+        <!-- Barra (Group) -->
+        <div id="u334" class="ax_default" data-label="Barra" data-left="510" data-top="237" data-width="752"
+             data-height="30">
 
-        <!-- Unnamed (Rectangle) -->
-        <div id="u3355">
-          <table class="tablaCSS"  style="width:100%;">
-            <thead>
-            <tr>
-              <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre</th>
-              <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Apellido</th>
-              <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Dirección</th>
-              <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Identificación</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each egreso}}
-            <tr>
-              <td>{{entidad.nombre}}</td>
-              <td>{{fecha}}</td>
-              <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
-              <td>{{fecha}}:{{valor.importe}}</td>
-            </tr>
-            {{/each}}
-            </tbody>
-          </table>
+            <!-- Unnamed (Rectangle) -->
+            <div id="u3355">
+                <table class="tablaCSS" style="width:100%;">
+                    <thead>
+                    <tr>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                            Nombre
+                        </th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                            Apellido
+                        </th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                            Dirección
+                        </th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                            Identificación
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each egreso}}
+                    <tr>
+                        <td>{{entidad.nombre}}</td>
+                        <td>{{fecha}}</td>
+                        <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
+                        <td>{{fecha}}:{{valor.importe}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
-      </div>
-
-      <!-- Unnamed (Line) -->
-      <div id="u340" class="ax_default line">
-        <img id="u340_img" class="img " src="images/cargar_entidad/u340.svg"/>
-        <div id="u340_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div>
-
-      <!-- Unnamed (Rectangle) -->
-      <div id="u341" class="ax_default heading_1">
-        <div id="u341_div" class=""></div>
-        <div id="u341_text" class="text ">
-          <p><span>Entidades Base</span></p>
-        </div>
-      </div>
-
-      <!-- FiltrosBásicos (Group) -->
-      <div id="u342" class="ax_default" data-label="FiltrosBásicos" data-left="509" data-top="204" data-width="262" data-height="23">
-
-        <!-- Filter Input (Text Field) -->
-        <div id="u343" class="ax_default text_field" data-label="Filter Input">
-          <div id="u343_div" class=""></div>
-          <input id="u343_input" type="text" value="" class="u343_input"/>
+        <!-- Unnamed (Line) -->
+        <div id="u340" class="ax_default line">
+            <img id="u340_img" class="img " src="images/cargar_entidad/u340.svg"/>
+            <div id="u340_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
         </div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u344" class="ax_default heading_1">
-          <div id="u344_div" class=""></div>
-          <div id="u344_text" class="text ">
-            <p><span>Nombre Ficticio:</span></p>
-          </div>
+        <div id="u341" class="ax_default heading_1">
+            <div id="u341_div" class=""></div>
+            <div id="u341_text" class="text ">
+                <p><span>Entidades Base</span></p>
+            </div>
         </div>
 
-        <!-- Clear (Shape) -->
-        <div id="u345" class="ax_default icon ax_default_hidden" data-label="Clear" style="display:none; visibility: hidden">
-          <img id="u345_img" class="img " src="images/cargar_entidad/clear_u345.svg"/>
-          <div id="u345_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
-      </div>
+        <!-- FiltrosBásicos (Group) -->
+        <div id="u342" class="ax_default" data-label="FiltrosBásicos" data-left="509" data-top="204" data-width="262"
+             data-height="23">
 
-      <!-- Unnamed (Line) -->
-      <div id="u346" class="ax_default line">
-        <img id="u346_img" class="img " src="images/cargar_entidad/u340.svg"/>
-        <div id="u346_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div>
+            <!-- Filter Input (Text Field) -->
+            <div id="u343" class="ax_default text_field" data-label="Filter Input">
+                <div id="u343_div" class=""></div>
+                <input id="u343_input" type="text" value="" class="u343_input"/>
+            </div>
 
-      <!-- Unnamed (Rectangle) -->
-      <div id="u347" class="ax_default heading_1">
-        <div id="u347_div" class=""></div>
-        <div id="u347_text" class="text ">
-          <p><span>Entidades Jurídicas</span></p>
-        </div>
-      </div>
+            <!-- Unnamed (Rectangle) -->
+            <div id="u344" class="ax_default heading_1">
+                <div id="u344_div" class=""></div>
+                <div id="u344_text" class="text ">
+                    <p><span>Nombre Ficticio:</span></p>
+                </div>
+            </div>
 
-      <!-- FiltrosBásicos (Group) -->
-      <div id="u348" class="ax_default" data-label="FiltrosBásicos" data-left="510" data-top="418" data-width="507" data-height="23">
-
-        <!-- Filter Input (Text Field) -->
-        <div id="u349" class="ax_default text_field" data-label="Filter Input">
-          <div id="u349_div" class=""></div>
-          <input id="u349_input" type="text" value="" class="u349_input"/>
+            <!-- Clear (Shape) -->
+            <div id="u345" class="ax_default icon ax_default_hidden" data-label="Clear"
+                 style="display:none; visibility: hidden">
+                <img id="u345_img" class="img " src="images/cargar_entidad/clear_u345.svg"/>
+                <div id="u345_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
         </div>
 
-        <!-- Unnamed (Rectangle) -->
-        <div id="u350" class="ax_default heading_1">
-          <div id="u350_div" class=""></div>
-          <div id="u350_text" class="text ">
-            <p><span>Razón Social:</span></p>
-          </div>
-        </div>
-
-        <!-- Filter Input (Text Field) -->
-        <div id="u351" class="ax_default text_field" data-label="Filter Input">
-          <div id="u351_div" class=""></div>
-          <input id="u351_input" type="text" value="" class="u351_input"/>
+        <!-- Unnamed (Line) -->
+        <div id="u346" class="ax_default line">
+            <img id="u346_img" class="img " src="images/cargar_entidad/u340.svg"/>
+            <div id="u346_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
         </div>
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u352" class="ax_default heading_1">
-          <div id="u352_div" class=""></div>
-          <div id="u352_text" class="text ">
-            <p><span>CUIL/CUIT:</span></p>
-          </div>
+        <div id="u347" class="ax_default heading_1">
+            <div id="u347_div" class=""></div>
+            <div id="u347_text" class="text ">
+                <p><span>Entidades Jurídicas</span></p>
+            </div>
         </div>
 
-        <!-- Clear (Shape) -->
-        <div id="u353" class="ax_default icon ax_default_hidden" data-label="Clear" style="display:none; visibility: hidden">
-          <img id="u353_img" class="img " src="images/cargar_entidad/clear_u345.svg"/>
-          <div id="u353_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
+        <!-- FiltrosBásicos (Group) -->
+        <div id="u348" class="ax_default" data-label="FiltrosBásicos" data-left="510" data-top="418" data-width="507"
+             data-height="23">
+
+            <!-- Filter Input (Text Field) -->
+            <div id="u349" class="ax_default text_field" data-label="Filter Input">
+                <div id="u349_div" class=""></div>
+                <input id="u349_input" type="text" value="" class="u349_input"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u350" class="ax_default heading_1">
+                <div id="u350_div" class=""></div>
+                <div id="u350_text" class="text ">
+                    <p><span>Razón Social:</span></p>
+                </div>
+            </div>
+
+            <!-- Filter Input (Text Field) -->
+            <div id="u351" class="ax_default text_field" data-label="Filter Input">
+                <div id="u351_div" class=""></div>
+                <input id="u351_input" type="text" value="" class="u351_input"/>
+            </div>
+
+            <!-- Unnamed (Rectangle) -->
+            <div id="u352" class="ax_default heading_1">
+                <div id="u352_div" class=""></div>
+                <div id="u352_text" class="text ">
+                    <p><span>CUIL/CUIT:</span></p>
+                </div>
+            </div>
+
+            <!-- Clear (Shape) -->
+            <div id="u353" class="ax_default icon ax_default_hidden" data-label="Clear"
+                 style="display:none; visibility: hidden">
+                <img id="u353_img" class="img " src="images/cargar_entidad/clear_u345.svg"/>
+                <div id="u353_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
+
+            <!-- Clear 2 (Shape) -->
+            <div id="u354" class="ax_default icon ax_default_hidden" data-label="Clear 2"
+                 style="display:none; visibility: hidden">
+                <img id="u354_img" class="img " src="images/cargar_entidad/clear_u345.svg"/>
+                <div id="u354_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                </div>
+            </div>
         </div>
 
-        <!-- Clear 2 (Shape) -->
-        <div id="u354" class="ax_default icon ax_default_hidden" data-label="Clear 2" style="display:none; visibility: hidden">
-          <img id="u354_img" class="img " src="images/cargar_entidad/clear_u345.svg"/>
-          <div id="u354_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </div>
-      </div>
+        <!-- Unnamed (Dynamic Panel) -->
+        <div id="u355" class="ax_default">
+            <div id="u355_state0" class="panel_state" data-label="State1" style="">
+                <div id="u355_state0_content" class="panel_state_content">
 
-      <!-- Unnamed (Dynamic Panel) -->
-      <div id="u355" class="ax_default">
-        <div id="u355_state0" class="panel_state" data-label="State1" style="">
-          <div id="u355_state0_content" class="panel_state_content">
-
-            <!-- RazonSocial (Repeater) -->
-            <div id="u361" class="ax_default" data-label="RazonSocial">
-              <script id="u361_script" type="axure-repeater-template" data-label="RazonSocial">
+                    <!-- RazonSocial (Repeater) -->
+                    <div id="u361" class="ax_default" data-label="RazonSocial">
+                        <script id="u361_script" type="axure-repeater-template" data-label="RazonSocial">
               </script>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Barra (Group) -->
-      <div id="u363" class="ax_default" data-label="Barra" data-left="510" data-top="451" data-width="746" data-height="30">
-
-        <!-- Unnamed (Rectangle) -->
-        <div id="u364" class="ax_default box_11">
-          <table class="tablaCSS"  style="width:100%;">
-            <thead>
-            <tr>
-              <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Razón Social</th>
-              <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Dirección</th>
-              <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">CUIT/CUIL</th>
-            </tr>
-            </thead>
-            <tbody>
-            {{#each egreso}}
-            <tr>
-              <td>{{entidad.nombre}}</td>
-              <td>{{fecha}}</td>
-              <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
-            </tr>
-            {{/each}}
-            </tbody>
-          </table>
         </div>
 
-      </div>
+        <!-- Barra (Group) -->
+        <div id="u363" class="ax_default" data-label="Barra" data-left="510" data-top="451" data-width="746"
+             data-height="30">
 
-      <!-- Popup & Launcher Entidad Base (Group) -->
-      <div id="u368" class="ax_default" data-label="Popup &amp; Launcher Entidad Base" data-left="0" data-top="0" data-width="0" data-height="0">
-
-        <!-- Popup (Dynamic Panel) -->
-        <div id="u369" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
-          <div id="u369_state0" class="panel_state" data-label="State1" style="">
-            <div id="u369_state0_content" class="panel_state_content">
-
-              <!-- Popup Background (Rectangle) -->
-              <div id="u370" class="ax_default box_1" data-label="Popup Background">
-                <div id="u370_div" class=""></div>
-                <div id="u370_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Rectangle) -->
-              <div id="u371" class="ax_default primary_button">
-                <div id="u371_div" class=""></div>
-                <div id="u371_text" class="text ">
-                  <p><span>Cerrar</span></p>
-                </div>
-              </div>
-
-              <!-- Bottom Divider Line (Line) -->
-              <div id="u372" class="ax_default line" data-label="Bottom Divider Line">
-                <img id="u372_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
-                <div id="u372_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Top Divider Line (Line) -->
-              <div id="u373" class="ax_default line" data-label="Top Divider Line">
-                <img id="u373_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
-                <div id="u373_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Popup Title (Rectangle) -->
-              <div id="u374" class="ax_default heading_2" data-label="Popup Title">
-                <div id="u374_div" class=""></div>
-                <div id="u374_text" class="text ">
-                  <p><span>Detalle del Presupuesto</span></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Dynamic Panel) -->
-              <div id="u375" class="ax_default">
-                <div id="u375_state0" class="panel_state" data-label="State1" style="">
-                  <div id="u375_state0_content" class="panel_state_content">
-
-                    <!-- NroItem (Repeater) -->
-                    <div id="u376" class="ax_default" data-label="NroItem">
-                      <script id="u376_script" type="axure-repeater-template" data-label="NroItem">
-
-                        <!-- NroItem (Rectangle) -->
-                        <div id="u377" class="ax_default box_1 u377" data-label="NroItem">
-                          <div id="u377_div" class="u377_div"></div>
-                          <div id="u377_text" class="text u377_text" style="display:none; visibility: hidden">
-                            <p></p>
-                          </div>
-                        </div>
-                      </script>
-                    </div>
-
-                    <!-- Precio (Repeater) -->
-                    <div id="u378" class="ax_default" data-label="Precio">
-                      <script id="u378_script" type="axure-repeater-template" data-label="Precio">
-
-                        <!-- Valor (Rectangle) -->
-                        <div id="u379" class="ax_default box_1 u379" data-label="Valor">
-                          <div id="u379_div" class="u379_div"></div>
-                          <div id="u379_text" class="text u379_text" style="display:none; visibility: hidden">
-                            <p></p>
-                          </div>
-                        </div>
-                      </script>
-                    </div>
-
-                    <!-- NombreItem (Repeater) -->
-                    <div id="u380" class="ax_default" data-label="NombreItem">
-                      <script id="u380_script" type="axure-repeater-template" data-label="NombreItem">
-
-                        <!-- NombreItem (Shape) -->
-                        <div id="u381" class="ax_default box_1 u381" data-label="NombreItem">
-                          <img id="u381_img" class="img u381_img" src="images/cargar_entidad/nombreitem_u381.svg"/>
-                          <div id="u381_text" class="text u381_text" style="display:none; visibility: hidden">
-                            <p></p>
-                          </div>
-                        </div>
-                      </script>
-                    </div>
-
-                    <!-- Cantidad (Repeater) -->
-                    <div id="u382" class="ax_default" data-label="Cantidad">
-                      <script id="u382_script" type="axure-repeater-template" data-label="Cantidad">
-
-                        <!-- Cantidad (Rectangle) -->
-                        <div id="u383" class="ax_default box_1 u383" data-label="Cantidad">
-                          <div id="u383_div" class="u383_div"></div>
-                          <div id="u383_text" class="text u383_text" style="display:none; visibility: hidden">
-                            <p></p>
-                          </div>
-                        </div>
-                      </script>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Unnamed (Rectangle) -->
-              <div id="u384" class="ax_default box_11">
-                <div id="u384_div" class=""></div>
-                <div id="u384_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Input-Text (Rectangle) -->
-              <div id="u385" class="ax_default" data-label="Input-Text">
-                <div id="u385_div" class=""></div>
-                <div id="u385_text" class="text ">
-                  <p><span>N°</span></p>
-                </div>
-              </div>
-
-              <!-- Input-Text (Rectangle) -->
-              <div id="u386" class="ax_default" data-label="Input-Text">
-                <div id="u386_div" class=""></div>
-                <div id="u386_text" class="text ">
-                  <p><span>Nombre</span></p>
-                </div>
-              </div>
-
-              <!-- Input-Text (Rectangle) -->
-              <div id="u387" class="ax_default" data-label="Input-Text">
-                <div id="u387_div" class=""></div>
-                <div id="u387_text" class="text ">
-                  <p><span>Valor</span></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Image) -->
-              <div id="u388" class="ax_default image">
-                <img id="u388_img" class="img " src="images/cargar_entidad/u388.png"/>
-                <div id="u388_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Rectangle) -->
-              <div id="u389" class="ax_default heading_1">
-                <div id="u389_div" class=""></div>
-                <div id="u389_text" class="text ">
-                  <p><span>Total:</span></p>
-                </div>
-              </div>
-
-              <!-- Total (Text Field) -->
-              <div id="u390" class="ax_default text_field disabled" data-label="Total">
-                <div id="u390_div" class="disabled"></div>
-                <input id="u390_input" type="text" value="" class="u390_input" disabled/>
-              </div>
-
-              <!-- Input-Text (Rectangle) -->
-              <div id="u391" class="ax_default" data-label="Input-Text">
-                <div id="u391_div" class=""></div>
-                <div id="u391_text" class="text ">
-                  <p><span>Cantidad</span></p>
-                </div>
-              </div>
+            <!-- Unnamed (Rectangle) -->
+            <div id="u364" class="ax_default box_11">
+                <table class="tablaCSS" style="width:100%;">
+                    <thead>
+                    <tr>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                            Razón Social
+                        </th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                            Dirección
+                        </th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                            CUIT/CUIL
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each egreso}}
+                    <tr>
+                        <td>{{entidad.nombre}}</td>
+                        <td>{{fecha}}</td>
+                        <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
             </div>
-          </div>
+
         </div>
-      </div>
 
-      <!-- Popup & Launcher Entidad Jurídica (Group) -->
-      <div id="u392" class="ax_default" data-label="Popup &amp; Launcher Entidad Jurídica" data-left="0" data-top="0" data-width="0" data-height="0">
+        <!-- Popup & Launcher Entidad Base (Group) -->
+        <div id="u368" class="ax_default" data-label="Popup &amp; Launcher Entidad Base" data-left="0" data-top="0"
+             data-width="0" data-height="0">
 
-        <!-- Popup (Dynamic Panel) -->
-        <div id="u393" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
-          <div id="u393_state0" class="panel_state" data-label="State1" style="">
-            <div id="u393_state0_content" class="panel_state_content">
+            <!-- Popup (Dynamic Panel) -->
+            <div id="u369" class="ax_default ax_default_hidden" data-label="Popup"
+                 style="display:none; visibility: hidden">
+                <div id="u369_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u369_state0_content" class="panel_state_content">
 
-              <!-- Popup Background (Rectangle) -->
-              <div id="u394" class="ax_default box_1" data-label="Popup Background">
-                <div id="u394_div" class=""></div>
-                <div id="u394_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Rectangle) -->
-              <div id="u395" class="ax_default primary_button">
-                <div id="u395_div" class=""></div>
-                <div id="u395_text" class="text ">
-                  <p><span>Cerrar</span></p>
-                </div>
-              </div>
-
-              <!-- Bottom Divider Line (Line) -->
-              <div id="u396" class="ax_default line" data-label="Bottom Divider Line">
-                <img id="u396_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
-                <div id="u396_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Top Divider Line (Line) -->
-              <div id="u397" class="ax_default line" data-label="Top Divider Line">
-                <img id="u397_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
-                <div id="u397_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Popup Title (Rectangle) -->
-              <div id="u398" class="ax_default heading_2" data-label="Popup Title">
-                <div id="u398_div" class=""></div>
-                <div id="u398_text" class="text ">
-                  <p><span>Detalle del Presupuesto</span></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Dynamic Panel) -->
-              <div id="u399" class="ax_default">
-                <div id="u399_state0" class="panel_state" data-label="State1" style="">
-                  <div id="u399_state0_content" class="panel_state_content">
-
-                    <!-- NroItem (Repeater) -->
-                    <div id="u400" class="ax_default" data-label="NroItem">
-                      <script id="u400_script" type="axure-repeater-template" data-label="NroItem">
-
-                        <!-- NroItem (Rectangle) -->
-                        <div id="u401" class="ax_default box_1 u401" data-label="NroItem">
-                          <div id="u401_div" class="u401_div"></div>
-                          <div id="u401_text" class="text u401_text" style="display:none; visibility: hidden">
-                            <p></p>
-                          </div>
+                        <!-- Popup Background (Rectangle) -->
+                        <div id="u370" class="ax_default box_1" data-label="Popup Background">
+                            <div id="u370_div" class=""></div>
+                            <div id="u370_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
                         </div>
-                      </script>
-                    </div>
 
-                    <!-- Precio (Repeater) -->
-                    <div id="u402" class="ax_default" data-label="Precio">
-                      <script id="u402_script" type="axure-repeater-template" data-label="Precio">
-
-                        <!-- Valor (Rectangle) -->
-                        <div id="u403" class="ax_default box_1 u403" data-label="Valor">
-                          <div id="u403_div" class="u403_div"></div>
-                          <div id="u403_text" class="text u403_text" style="display:none; visibility: hidden">
-                            <p></p>
-                          </div>
+                        <!-- Unnamed (Rectangle) -->
+                        <div id="u371" class="ax_default primary_button">
+                            <div id="u371_div" class=""></div>
+                            <div id="u371_text" class="text ">
+                                <p><span>Cerrar</span></p>
+                            </div>
                         </div>
-                      </script>
-                    </div>
 
-                    <!-- NombreItem (Repeater) -->
-                    <div id="u404" class="ax_default" data-label="NombreItem">
-                      <script id="u404_script" type="axure-repeater-template" data-label="NombreItem">
-
-                        <!-- NombreItem (Shape) -->
-                        <div id="u405" class="ax_default box_1 u405" data-label="NombreItem">
-                          <img id="u405_img" class="img u405_img" src="images/cargar_entidad/nombreitem_u381.svg"/>
-                          <div id="u405_text" class="text u405_text" style="display:none; visibility: hidden">
-                            <p></p>
-                          </div>
+                        <!-- Bottom Divider Line (Line) -->
+                        <div id="u372" class="ax_default line" data-label="Bottom Divider Line">
+                            <img id="u372_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
+                            <div id="u372_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
                         </div>
-                      </script>
-                    </div>
 
-                    <!-- Cantidad (Repeater) -->
-                    <div id="u406" class="ax_default" data-label="Cantidad">
-                      <script id="u406_script" type="axure-repeater-template" data-label="Cantidad">
-
-                        <!-- Cantidad (Rectangle) -->
-                        <div id="u407" class="ax_default box_1 u407" data-label="Cantidad">
-                          <div id="u407_div" class="u407_div"></div>
-                          <div id="u407_text" class="text u407_text" style="display:none; visibility: hidden">
-                            <p></p>
-                          </div>
+                        <!-- Top Divider Line (Line) -->
+                        <div id="u373" class="ax_default line" data-label="Top Divider Line">
+                            <img id="u373_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
+                            <div id="u373_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
                         </div>
-                      </script>
+
+                        <!-- Popup Title (Rectangle) -->
+                        <div id="u374" class="ax_default heading_2" data-label="Popup Title">
+                            <div id="u374_div" class=""></div>
+                            <div id="u374_text" class="text ">
+                                <p><span>Detalle del Presupuesto</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Dynamic Panel) -->
+                        <div id="u375" class="ax_default">
+                            <div id="u375_state0" class="panel_state" data-label="State1" style="">
+                                <div id="u375_state0_content" class="panel_state_content">
+
+                                    <!-- NroItem (Repeater) -->
+                                    <div id="u376" class="ax_default" data-label="NroItem">
+                                        <script id="u376_script" type="axure-repeater-template" data-label="NroItem">
+
+                                            <!-- NroItem (Rectangle) -->
+                                            <div id="u377" class="ax_default box_1 u377" data-label="NroItem">
+                                                <div id="u377_div" class="u377_div"></div>
+                                                <div id="u377_text" class="text u377_text"
+                                                     style="display:none; visibility: hidden">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+
+                                    <!-- Precio (Repeater) -->
+                                    <div id="u378" class="ax_default" data-label="Precio">
+                                        <script id="u378_script" type="axure-repeater-template" data-label="Precio">
+
+                                            <!-- Valor (Rectangle) -->
+                                            <div id="u379" class="ax_default box_1 u379" data-label="Valor">
+                                                <div id="u379_div" class="u379_div"></div>
+                                                <div id="u379_text" class="text u379_text"
+                                                     style="display:none; visibility: hidden">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+
+                                    <!-- NombreItem (Repeater) -->
+                                    <div id="u380" class="ax_default" data-label="NombreItem">
+                                        <script id="u380_script" type="axure-repeater-template" data-label="NombreItem">
+
+                                            <!-- NombreItem (Shape) -->
+                                            <div id="u381" class="ax_default box_1 u381" data-label="NombreItem">
+                                                <img id="u381_img" class="img u381_img"
+                                                     src="images/cargar_entidad/nombreitem_u381.svg"/>
+                                                <div id="u381_text" class="text u381_text"
+                                                     style="display:none; visibility: hidden">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+
+                                    <!-- Cantidad (Repeater) -->
+                                    <div id="u382" class="ax_default" data-label="Cantidad">
+                                        <script id="u382_script" type="axure-repeater-template" data-label="Cantidad">
+
+                                            <!-- Cantidad (Rectangle) -->
+                                            <div id="u383" class="ax_default box_1 u383" data-label="Cantidad">
+                                                <div id="u383_div" class="u383_div"></div>
+                                                <div id="u383_text" class="text u383_text"
+                                                     style="display:none; visibility: hidden">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Rectangle) -->
+                        <div id="u384" class="ax_default box_11">
+                            <div id="u384_div" class=""></div>
+                            <div id="u384_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Input-Text (Rectangle) -->
+                        <div id="u385" class="ax_default" data-label="Input-Text">
+                            <div id="u385_div" class=""></div>
+                            <div id="u385_text" class="text ">
+                                <p><span>N°</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Input-Text (Rectangle) -->
+                        <div id="u386" class="ax_default" data-label="Input-Text">
+                            <div id="u386_div" class=""></div>
+                            <div id="u386_text" class="text ">
+                                <p><span>Nombre</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Input-Text (Rectangle) -->
+                        <div id="u387" class="ax_default" data-label="Input-Text">
+                            <div id="u387_div" class=""></div>
+                            <div id="u387_text" class="text ">
+                                <p><span>Valor</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Image) -->
+                        <div id="u388" class="ax_default image">
+                            <img id="u388_img" class="img " src="images/cargar_entidad/u388.png"/>
+                            <div id="u388_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Rectangle) -->
+                        <div id="u389" class="ax_default heading_1">
+                            <div id="u389_div" class=""></div>
+                            <div id="u389_text" class="text ">
+                                <p><span>Total:</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Total (Text Field) -->
+                        <div id="u390" class="ax_default text_field disabled" data-label="Total">
+                            <div id="u390_div" class="disabled"></div>
+                            <input id="u390_input" type="text" value="" class="u390_input" disabled/>
+                        </div>
+
+                        <!-- Input-Text (Rectangle) -->
+                        <div id="u391" class="ax_default" data-label="Input-Text">
+                            <div id="u391_div" class=""></div>
+                            <div id="u391_text" class="text ">
+                                <p><span>Cantidad</span></p>
+                            </div>
+                        </div>
                     </div>
-                  </div>
                 </div>
-              </div>
-
-              <!-- Unnamed (Rectangle) -->
-              <div id="u408" class="ax_default box_11">
-                <div id="u408_div" class=""></div>
-                <div id="u408_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Input-Text (Rectangle) -->
-              <div id="u409" class="ax_default" data-label="Input-Text">
-                <div id="u409_div" class=""></div>
-                <div id="u409_text" class="text ">
-                  <p><span>N°</span></p>
-                </div>
-              </div>
-
-              <!-- Input-Text (Rectangle) -->
-              <div id="u410" class="ax_default" data-label="Input-Text">
-                <div id="u410_div" class=""></div>
-                <div id="u410_text" class="text ">
-                  <p><span>Nombre</span></p>
-                </div>
-              </div>
-
-              <!-- Input-Text (Rectangle) -->
-              <div id="u411" class="ax_default" data-label="Input-Text">
-                <div id="u411_div" class=""></div>
-                <div id="u411_text" class="text ">
-                  <p><span>Valor</span></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Image) -->
-              <div id="u412" class="ax_default image">
-                <img id="u412_img" class="img " src="images/cargar_entidad/u388.png"/>
-                <div id="u412_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Rectangle) -->
-              <div id="u413" class="ax_default heading_1">
-                <div id="u413_div" class=""></div>
-                <div id="u413_text" class="text ">
-                  <p><span>Total:</span></p>
-                </div>
-              </div>
-
-              <!-- Total (Text Field) -->
-              <div id="u414" class="ax_default text_field disabled" data-label="Total">
-                <div id="u414_div" class="disabled"></div>
-                <input id="u414_input" type="text" value="" class="u414_input" disabled/>
-              </div>
-
-              <!-- Input-Text (Rectangle) -->
-              <div id="u415" class="ax_default" data-label="Input-Text">
-                <div id="u415_div" class=""></div>
-                <div id="u415_text" class="text ">
-                  <p><span>Cantidad</span></p>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
 
-      <!-- Unnamed (Group) -->
-      <div id="u416" class="ax_default" data-left="0" data-top="0" data-width="0" data-height="0">
-      </div>
+        <!-- Popup & Launcher Entidad Jurídica (Group) -->
+        <div id="u392" class="ax_default" data-label="Popup &amp; Launcher Entidad Jurídica" data-left="0" data-top="0"
+             data-width="0" data-height="0">
 
-      <!-- Table Title Bar (Group) -->
-      <div id="u417" class="ax_default" data-label="Table Title Bar" data-left="0" data-top="0" data-width="0" data-height="0">
-      </div>
+            <!-- Popup (Dynamic Panel) -->
+            <div id="u393" class="ax_default ax_default_hidden" data-label="Popup"
+                 style="display:none; visibility: hidden">
+                <div id="u393_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u393_state0_content" class="panel_state_content">
 
-      <!-- Popup (Dynamic Panel) -->
-      <div id="u418" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
-        <div id="u418_state0" class="panel_state" data-label="State1" style="">
-          <div id="u418_state0_content" class="panel_state_content">
+                        <!-- Popup Background (Rectangle) -->
+                        <div id="u394" class="ax_default box_1" data-label="Popup Background">
+                            <div id="u394_div" class=""></div>
+                            <div id="u394_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
 
-            <!-- Unnamed (Group) -->
-            <div id="u419" class="ax_default" data-left="0" data-top="0" data-width="599.000000924387" data-height="260.00055308916">
+                        <!-- Unnamed (Rectangle) -->
+                        <div id="u395" class="ax_default primary_button">
+                            <div id="u395_div" class=""></div>
+                            <div id="u395_text" class="text ">
+                                <p><span>Cerrar</span></p>
+                            </div>
+                        </div>
 
-              <!-- Popup Background (Rectangle) -->
-              <div id="u420" class="ax_default box_1" data-label="Popup Background">
-                <div id="u420_div" class=""></div>
-                <div id="u420_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
+                        <!-- Bottom Divider Line (Line) -->
+                        <div id="u396" class="ax_default line" data-label="Bottom Divider Line">
+                            <img id="u396_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
+                            <div id="u396_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Top Divider Line (Line) -->
+                        <div id="u397" class="ax_default line" data-label="Top Divider Line">
+                            <img id="u397_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
+                            <div id="u397_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Popup Title (Rectangle) -->
+                        <div id="u398" class="ax_default heading_2" data-label="Popup Title">
+                            <div id="u398_div" class=""></div>
+                            <div id="u398_text" class="text ">
+                                <p><span>Detalle del Presupuesto</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Dynamic Panel) -->
+                        <div id="u399" class="ax_default">
+                            <div id="u399_state0" class="panel_state" data-label="State1" style="">
+                                <div id="u399_state0_content" class="panel_state_content">
+
+                                    <!-- NroItem (Repeater) -->
+                                    <div id="u400" class="ax_default" data-label="NroItem">
+                                        <script id="u400_script" type="axure-repeater-template" data-label="NroItem">
+
+                                            <!-- NroItem (Rectangle) -->
+                                            <div id="u401" class="ax_default box_1 u401" data-label="NroItem">
+                                                <div id="u401_div" class="u401_div"></div>
+                                                <div id="u401_text" class="text u401_text"
+                                                     style="display:none; visibility: hidden">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+
+                                    <!-- Precio (Repeater) -->
+                                    <div id="u402" class="ax_default" data-label="Precio">
+                                        <script id="u402_script" type="axure-repeater-template" data-label="Precio">
+
+                                            <!-- Valor (Rectangle) -->
+                                            <div id="u403" class="ax_default box_1 u403" data-label="Valor">
+                                                <div id="u403_div" class="u403_div"></div>
+                                                <div id="u403_text" class="text u403_text"
+                                                     style="display:none; visibility: hidden">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+
+                                    <!-- NombreItem (Repeater) -->
+                                    <div id="u404" class="ax_default" data-label="NombreItem">
+                                        <script id="u404_script" type="axure-repeater-template" data-label="NombreItem">
+
+                                            <!-- NombreItem (Shape) -->
+                                            <div id="u405" class="ax_default box_1 u405" data-label="NombreItem">
+                                                <img id="u405_img" class="img u405_img"
+                                                     src="images/cargar_entidad/nombreitem_u381.svg"/>
+                                                <div id="u405_text" class="text u405_text"
+                                                     style="display:none; visibility: hidden">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+
+                                    <!-- Cantidad (Repeater) -->
+                                    <div id="u406" class="ax_default" data-label="Cantidad">
+                                        <script id="u406_script" type="axure-repeater-template" data-label="Cantidad">
+
+                                            <!-- Cantidad (Rectangle) -->
+                                            <div id="u407" class="ax_default box_1 u407" data-label="Cantidad">
+                                                <div id="u407_div" class="u407_div"></div>
+                                                <div id="u407_text" class="text u407_text"
+                                                     style="display:none; visibility: hidden">
+                                                    <p></p>
+                                                </div>
+                                            </div>
+                                        </script>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Rectangle) -->
+                        <div id="u408" class="ax_default box_11">
+                            <div id="u408_div" class=""></div>
+                            <div id="u408_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Input-Text (Rectangle) -->
+                        <div id="u409" class="ax_default" data-label="Input-Text">
+                            <div id="u409_div" class=""></div>
+                            <div id="u409_text" class="text ">
+                                <p><span>N°</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Input-Text (Rectangle) -->
+                        <div id="u410" class="ax_default" data-label="Input-Text">
+                            <div id="u410_div" class=""></div>
+                            <div id="u410_text" class="text ">
+                                <p><span>Nombre</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Input-Text (Rectangle) -->
+                        <div id="u411" class="ax_default" data-label="Input-Text">
+                            <div id="u411_div" class=""></div>
+                            <div id="u411_text" class="text ">
+                                <p><span>Valor</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Image) -->
+                        <div id="u412" class="ax_default image">
+                            <img id="u412_img" class="img " src="images/cargar_entidad/u388.png"/>
+                            <div id="u412_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Rectangle) -->
+                        <div id="u413" class="ax_default heading_1">
+                            <div id="u413_div" class=""></div>
+                            <div id="u413_text" class="text ">
+                                <p><span>Total:</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Total (Text Field) -->
+                        <div id="u414" class="ax_default text_field disabled" data-label="Total">
+                            <div id="u414_div" class="disabled"></div>
+                            <input id="u414_input" type="text" value="" class="u414_input" disabled/>
+                        </div>
+
+                        <!-- Input-Text (Rectangle) -->
+                        <div id="u415" class="ax_default" data-label="Input-Text">
+                            <div id="u415_div" class=""></div>
+                            <div id="u415_text" class="text ">
+                                <p><span>Cantidad</span></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
-
-              <!-- Unnamed (Shape) -->
-              <div id="u421" class="ax_default primary_button">
-                <img id="u421_img" class="img " src="images/usuario/u201.svg"/>
-                <div id="u421_text" class="text ">
-                  <p><span>Aceptar</span></p>
-                </div>
-              </div>
-
-              <!-- Bottom Divider Line (Line) -->
-              <div id="u422" class="ax_default line" data-label="Bottom Divider Line">
-                <img id="u422_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
-                <div id="u422_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Top Divider Line (Line) -->
-              <div id="u423" class="ax_default line" data-label="Top Divider Line">
-                <img id="u423_img" class="img " src="images/usuario/top_divider_line_u223.svg"/>
-                <div id="u423_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Summary Text (Rectangle) -->
-              <div id="u424" class="ax_default heading_3" data-label="Summary Text">
-                <div id="u424_div" class=""></div>
-                <div id="u424_text" class="text ">
-                  <p><span>La carga del Presupuesto se registró correctamente en el sistema.</span></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Image) -->
-              <div id="u425" class="ax_default image">
-                <img id="u425_img" class="img " src="images/usuario/u225.png"/>
-                <div id="u425_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Popup Title (Rectangle) -->
-              <div id="u426" class="ax_default heading_2" data-label="Popup Title">
-                <div id="u426_div" class=""></div>
-                <div id="u426_text" class="text ">
-                  <p><span>Carga exitosa</span></p>
-                </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-
-      <!-- Unnamed (NavBar) -->
-
-      <!-- Unnamed (Rectangle)
-      <div id="u428" class="ax_default box_1">
-        <div id="u428_div" class=""></div>
-        <div id="u428_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div>-->
-
-      <!-- Tabs (Group) -->
-      <div id="u429" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247" data-height="65">
 
         <!-- Unnamed (Group) -->
-        <div id="u430" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
+        <div id="u416" class="ax_default" data-left="0" data-top="0" data-width="0" data-height="0">
+        </div>
 
-          <!-- Unnamed (Rectangle)
-          <div id="u431" class="ax_default heading_1">
-            <div id="u431_div" class=""></div>
-            <div id="u431_text" class="text ">
-              <p><span>GeSoc</span></p>
+        <!-- Table Title Bar (Group) -->
+        <div id="u417" class="ax_default" data-label="Table Title Bar" data-left="0" data-top="0" data-width="0"
+             data-height="0">
+        </div>
+
+        <!-- Popup (Dynamic Panel) -->
+        <div id="u418" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
+            <div id="u418_state0" class="panel_state" data-label="State1" style="">
+                <div id="u418_state0_content" class="panel_state_content">
+
+                    <!-- Unnamed (Group) -->
+                    <div id="u419" class="ax_default" data-left="0" data-top="0" data-width="599.000000924387"
+                         data-height="260.00055308916">
+
+                        <!-- Popup Background (Rectangle) -->
+                        <div id="u420" class="ax_default box_1" data-label="Popup Background">
+                            <div id="u420_div" class=""></div>
+                            <div id="u420_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Shape) -->
+                        <div id="u421" class="ax_default primary_button">
+                            <img id="u421_img" class="img " src="images/usuario/u201.svg"/>
+                            <div id="u421_text" class="text ">
+                                <p><span>Aceptar</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Divider Line (Line) -->
+                        <div id="u422" class="ax_default line" data-label="Bottom Divider Line">
+                            <img id="u422_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
+                            <div id="u422_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Top Divider Line (Line) -->
+                        <div id="u423" class="ax_default line" data-label="Top Divider Line">
+                            <img id="u423_img" class="img " src="images/usuario/top_divider_line_u223.svg"/>
+                            <div id="u423_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Summary Text (Rectangle) -->
+                        <div id="u424" class="ax_default heading_3" data-label="Summary Text">
+                            <div id="u424_div" class=""></div>
+                            <div id="u424_text" class="text ">
+                                <p><span>La carga del Presupuesto se registró correctamente en el sistema.</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Image) -->
+                        <div id="u425" class="ax_default image">
+                            <img id="u425_img" class="img " src="images/usuario/u225.png"/>
+                            <div id="u425_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Popup Title (Rectangle) -->
+                        <div id="u426" class="ax_default heading_2" data-label="Popup Title">
+                            <div id="u426_div" class=""></div>
+                            <div id="u426_text" class="text ">
+                                <p><span>Carga exitosa</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div> -->
-
-          <!-- Unnamed (Rectangle)
-          <div id="u432" class="ax_default box_1">
-            <img id="u432_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
-            <div id="u432_text" class="text ">
-              <p><span>Gestión de Proyectos Sociales</span></p>
-            </div>
-          </div>-->
-
-          <!-- Unnamed (Image)
-          <div id="u433" class="ax_default image">
-            <img id="u433_img" class="img " src="images/pantalla_principal/u7.png"/>
-            <div id="u433_text" class="text " style="display:none; visibility: hidden">
-              <p></p>
-            </div>
-          </div> -->
         </div>
-      </div>
 
-      <!-- Unnamed (Rectangle) -->
-      <div id="u434" class="ax_default box_1 ax_default_hidden" style="display:none; visibility: hidden">
-        <img id="u434_img" class="img " src="images/pantalla_principal_usuario/u129.svg"/>
-        <div id="u434_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div>
+        <!-- Unnamed (NavBar) -->
 
-      <!-- Unnamed (Shape) -->
-      <div id="u435" class="ax_default ellipse ax_default_hidden" style="display:none; visibility: hidden">
-        <img id="u435_img" class="img " src="images/pantalla_principal_usuario/u130.svg"/>
-        <div id="u435_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div>
-
-      <!-- Inicio (Group) -->
-      <div id="u436" class="ax_default" data-label="Inicio" data-left="322" data-top="30" data-width="55" data-height="40">
-
-        <!-- Inicio (Rectangle) -->
-        <div id="u437" class="ax_default box_3" data-label="Inicio" selectiongroup="u427Tabs">
-          <div id="u437_div" class=""></div>
-          <div id="u437_text" class="text ">
-            <p><span>INICIO</span></p>
+        <!-- Unnamed (Rectangle)
+        <div id="u428" class="ax_default box_1">
+          <div id="u428_div" class=""></div>
+          <div id="u428_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
           </div>
-        </div>
-      </div>
+        </div>-->
 
-      <!-- Unnamed (Shape)
-      <div id="u438" class="ax_default icon">
-        <img id="u438_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
-        <div id="u438_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div> -->
-
-      <!-- Unnamed (Shape)
-      <div id="u439" class="ax_default icon">
-        <img id="u439_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
-        <div id="u439_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div> -->
-
-      <!-- Unnamed (Shape)
-      <div id="u440" class="ax_default icon">
-        <img id="u440_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
-        <div id="u440_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div> -->
-
-      <!-- Criterios de Categorización (Group) -->
-      <div id="u441" class="ax_default ax_default_hidden" data-label="Criterios de Categorización" style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
-
-        <!-- Unnamed (Dynamic Panel) -->
-        <div id="u442" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u442_state0" class="panel_state" data-label="State1" style="">
-            <div id="u442_state0_content" class="panel_state_content">
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u443" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u443_div" class=""></div>
-                <div id="u443_text" class="text ">
-                  <p><span>CREAR CRITERIO</span></p>
-                </div>
-              </div>
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u444" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u444_div" class=""></div>
-                <div id="u444_text" class="text ">
-                  <p><span>CREAR CATEGORIA</span></p>
-                </div>
-              </div>
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u445" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u445_div" class=""></div>
-                <div id="u445_text" class="text ">
-                  <p><span>VER INGRESOS Y EGRESOS</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u446" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u446_div" class=""></div>
-          <div id="u446_text" class="text ">
-            <p><span>CRITERIOS DE CATEGORIZACIÓN</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Ingresos (Group) -->
-      <div id="u447" class="ax_default ax_default_hidden" data-label="Ingresos" style="display:none; visibility: hidden" data-left="300" data-top="130" data-width="200" data-height="30">
-
-        <!-- Unnamed (Dynamic Panel) -->
-        <div id="u448" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u448_state0" class="panel_state" data-label="State1" style="">
-            <div id="u448_state0_content" class="panel_state_content">
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u449" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u449_div" class=""></div>
-                <div id="u449_text" class="text ">
-                  <p><span>CARGAR INGRESO</span></p>
-                </div>
-              </div>
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u450" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u450_div" class=""></div>
-                <div id="u450_text" class="text ">
-                  <p><span>ASOCIAR INGRESOS A EGRESOS</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u451" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u451_div" class=""></div>
-          <div id="u451_text" class="text ">
-            <p><span>INGRESOS</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Egresos (Group) -->
-      <div id="u452" class="ax_default ax_default_hidden" data-label="Egresos" style="display:none; visibility: hidden" data-left="300" data-top="100" data-width="200" data-height="30">
-
-        <!-- Unnamed (Dynamic Panel) -->
-        <div id="u453" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u453_state0" class="panel_state" data-label="State1" style="">
-            <div id="u453_state0_content" class="panel_state_content">
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u454" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u454_div" class=""></div>
-                <div id="u454_text" class="text ">
-                  <p><span>CARGAR EGRESO</span></p>
-                </div>
-              </div>
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u455" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u455_div" class=""></div>
-                <div id="u455_text" class="text ">
-                  <p><span>ASOCIAR EGRESOS Y PRESUPUESTOS</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u456" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u456_div" class=""></div>
-          <div id="u456_text" class="text ">
-            <p><span>EGRESOS</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Presupuestos (Group) -->
-      <div id="u457" class="ax_default ax_default_hidden" data-label="Presupuestos" style="display:none; visibility: hidden" data-left="300" data-top="190" data-width="200" data-height="30">
-
-        <!-- Unnamed (Dynamic Panel) -->
-        <div id="u458" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u458_state0" class="panel_state" data-label="State1" style="">
-            <div id="u458_state0_content" class="panel_state_content">
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u459" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u459_div" class=""></div>
-                <div id="u459_text" class="text ">
-                  <p><span>CARGAR PRESUPUESTO</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u460" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u460_div" class=""></div>
-          <div id="u460_text" class="text ">
-            <p><span>PRESUPUESTOS</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Proyectos (Group) -->
-      <div id="u461" class="ax_default ax_default_hidden" data-label="Proyectos" style="display:none; visibility: hidden" data-left="300" data-top="250" data-width="200" data-height="30">
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u462" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u462_div" class=""></div>
-          <div id="u462_text" class="text ">
-            <p><span>PROYECTOS</span></p>
-          </div>
-        </div>
-
-        <!-- Unnamed (Dynamic Panel) -->
-        <div id="u463" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u463_state0" class="panel_state" data-label="State1" style="">
-            <div id="u463_state0_content" class="panel_state_content">
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u464" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u464_div" class=""></div>
-                <div id="u464_text" class="text ">
-                  <p><span>CREAR PROYECTO DE FINANCIAMIENTO</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Usuarios (Group) -->
-      <div id="u465" class="ax_default ax_default_hidden" data-label="Usuarios" style="display:none; visibility: hidden" data-left="300" data-top="310" data-width="200" data-height="30">
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u466" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u466_div" class=""></div>
-          <div id="u466_text" class="text ">
-            <p><span>ADMINISTRAR USUARIOS</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Proveedores (Group) -->
-      <div id="u467" class="ax_default ax_default_hidden" data-label="Proveedores" style="display:none; visibility: hidden" data-left="300" data-top="160" data-width="200" data-height="30">
-
-        <!-- Unnamed (Dynamic Panel) -->
-        <div id="u468" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u468_state0" class="panel_state" data-label="State1" style="">
-            <div id="u468_state0_content" class="panel_state_content">
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u469" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u469_div" class=""></div>
-                <div id="u469_text" class="text ">
-                  <p><span>CARGAR PROVEEDOR</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u470" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u470_div" class=""></div>
-          <div id="u470_text" class="text ">
-            <p><span>PROVEEDORES</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Menu (Dynamic Panel) -->
-      <div id="u471" class="ax_default" data-label="Menu">
-        <div id="u471_state0" class="panel_state" data-label="State1" style="">
-          <div id="u471_state0_content" class="panel_state_content">
-
-            <!-- Unnamed (Shape)
-            <div id="u472" class="ax_default icon">
-              <img id="u472_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
-              <div id="u472_text" class="text " style="display:none; visibility: hidden">
-                <p></p>
-              </div>
-            </div>-->
-          </div>
-        </div>
-        <div id="u471_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
-          <div id="u471_state1_content" class="panel_state_content">
-
-            <!-- Unnamed (Shape)
-            <div id="u473" class="ax_default icon">
-              <img id="u473_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
-              <div id="u473_text" class="text " style="display:none; visibility: hidden">
-                <p></p>
-              </div>
-            </div>-->
-          </div>
-        </div>
-      </div>
-
-      <!-- Auditoría (Group) -->
-      <div id="u474" class="ax_default ax_default_hidden" data-label="Auditoría" style="display:none; visibility: hidden" data-left="300" data-top="280" data-width="200" data-height="30">
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u475" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u475_div" class=""></div>
-          <div id="u475_text" class="text ">
-            <p><span>AUDITORÍA</span></p>
-          </div>
-        </div>
-
-        <!-- Unnamed (Dynamic Panel) -->
-        <div id="u476" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u476_state0" class="panel_state" data-label="State1" style="">
-            <div id="u476_state0_content" class="panel_state_content">
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u477" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u477_div" class=""></div>
-                <div id="u477_text" class="text ">
-                  <p><span>BITÁCORA DE OPERACIONES</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Entidades (Group) -->
-      <div id="u478" class="ax_default ax_default_hidden" data-label="Entidades" style="display:none; visibility: hidden" data-left="300" data-top="70" data-width="200" data-height="30">
-
-        <!-- Unnamed (Dynamic Panel) -->
-        <div id="u479" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
-          <div id="u479_state0" class="panel_state" data-label="State1" style="">
-            <div id="u479_state0_content" class="panel_state_content">
-
-              <!-- Tab Label 3 (Rectangle) -->
-              <div id="u480" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-                <div id="u480_div" class=""></div>
-                <div id="u480_text" class="text ">
-                  <p><span>CARGAR ENTIDAD</span></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u481" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
-          <div id="u481_div" class=""></div>
-          <div id="u481_text" class="text ">
-            <p><span>ENTIDADES</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Unnamed (Shape)
-      <div id="u482" class="ax_default icon">
-        <img id="u482_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
-        <div id="u482_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
-        </div>
-      </div> -->
-      <div id="u427" style="display:none; visibility:hidden;"></div>
-
-      <!-- RUTA CARGAR ENTIDAD (Group) -->
-      <div id="u483" class="ax_default ax_default_hidden" data-label="RUTA CARGAR ENTIDAD" style="display:none; visibility: hidden" data-left="322" data-top="30" data-width="346" data-height="40">
-
-        <!-- Tab Label 3 (Rectangle) -->
-        <div id="u484" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="Tabs">
-          <div id="u484_div" class=""></div>
-          <div id="u484_text" class="text ">
-            <p><span>&gt;&gt; ENTIDADES &gt;&gt; CARGAR ENTIDAD</span></p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Popup (Dynamic Panel) -->
-      <div id="u485" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
-        <div id="u485_state0" class="panel_state" data-label="State1" style="">
-          <div id="u485_state0_content" class="panel_state_content">
+        <!-- Tabs (Group) -->
+        <div id="u429" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247"
+             data-height="65">
 
             <!-- Unnamed (Group) -->
-            <div id="u486" class="ax_default" data-left="0" data-top="0" data-width="599.000000924387" data-height="260.00055308916">
+            <div id="u430" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
 
-              <!-- Popup Background (Rectangle) -->
-              <div id="u487" class="ax_default box_1" data-label="Popup Background">
-                <div id="u487_div" class=""></div>
-                <div id="u487_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
+                <!-- Unnamed (Rectangle)
+                <div id="u431" class="ax_default heading_1">
+                  <div id="u431_div" class=""></div>
+                  <div id="u431_text" class="text ">
+                    <p><span>GeSoc</span></p>
+                  </div>
+                </div> -->
 
-              <!-- Unnamed (Shape) -->
-              <div id="u488" class="ax_default primary_button">
-                <img id="u488_img" class="img " src="images/usuario/u201.svg"/>
-                <div id="u488_text" class="text ">
-                  <p><span>Aceptar</span></p>
-                </div>
-              </div>
+                <!-- Unnamed (Rectangle)
+                <div id="u432" class="ax_default box_1">
+                  <img id="u432_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
+                  <div id="u432_text" class="text ">
+                    <p><span>Gestión de Proyectos Sociales</span></p>
+                  </div>
+                </div>-->
 
-              <!-- Bottom Divider Line (Line) -->
-              <div id="u489" class="ax_default line" data-label="Bottom Divider Line">
-                <img id="u489_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
-                <div id="u489_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Top Divider Line (Line) -->
-              <div id="u490" class="ax_default line" data-label="Top Divider Line">
-                <img id="u490_img" class="img " src="images/usuario/top_divider_line_u223.svg"/>
-                <div id="u490_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Summary Text (Rectangle) -->
-              <div id="u491" class="ax_default heading_3" data-label="Summary Text">
-                <div id="u491_div" class=""></div>
-                <div id="u491_text" class="text ">
-                  <p><span>La carga de la Entidad se registró correctamente en el sistema.</span></p>
-                </div>
-              </div>
-
-              <!-- Unnamed (Image) -->
-              <div id="u492" class="ax_default image">
-                <img id="u492_img" class="img " src="images/usuario/u225.png"/>
-                <div id="u492_text" class="text " style="display:none; visibility: hidden">
-                  <p></p>
-                </div>
-              </div>
-
-              <!-- Popup Title (Rectangle) -->
-              <div id="u493" class="ax_default heading_2" data-label="Popup Title">
-                <div id="u493_div" class=""></div>
-                <div id="u493_text" class="text ">
-                  <p><span>Carga exitosa</span></p>
-                </div>
-              </div>
+                <!-- Unnamed (Image)
+                <div id="u433" class="ax_default image">
+                  <img id="u433_img" class="img " src="images/pantalla_principal/u7.png"/>
+                  <div id="u433_text" class="text " style="display:none; visibility: hidden">
+                    <p></p>
+                  </div>
+                </div> -->
             </div>
-          </div>
         </div>
-      </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u434" class="ax_default box_1 ax_default_hidden" style="display:none; visibility: hidden">
+            <img id="u434_img" class="img " src="images/pantalla_principal_usuario/u129.svg"/>
+            <div id="u434_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Unnamed (Shape) -->
+        <div id="u435" class="ax_default ellipse ax_default_hidden" style="display:none; visibility: hidden">
+            <img id="u435_img" class="img " src="images/pantalla_principal_usuario/u130.svg"/>
+            <div id="u435_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+            </div>
+        </div>
+
+        <!-- Inicio (Group) -->
+        <div id="u436" class="ax_default" data-label="Inicio" data-left="322" data-top="30" data-width="55"
+             data-height="40">
+
+            <!-- Inicio (Rectangle) -->
+            <div id="u437" class="ax_default box_3" data-label="Inicio" selectiongroup="u427Tabs">
+                <div id="u437_div" class=""></div>
+                <div id="u437_text" class="text ">
+                    <p><span>INICIO</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unnamed (Shape)
+        <div id="u438" class="ax_default icon">
+          <img id="u438_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
+          <div id="u438_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div> -->
+
+        <!-- Unnamed (Shape)
+        <div id="u439" class="ax_default icon">
+          <img id="u439_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
+          <div id="u439_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div> -->
+
+        <!-- Unnamed (Shape)
+        <div id="u440" class="ax_default icon">
+          <img id="u440_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
+          <div id="u440_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div> -->
+
+        <!-- Criterios de Categorización (Group) -->
+        <div id="u441" class="ax_default ax_default_hidden" data-label="Criterios de Categorización"
+             style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u442" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+                <div id="u442_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u442_state0_content" class="panel_state_content">
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u443" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u443_div" class=""></div>
+                            <div id="u443_text" class="text ">
+                                <p><span>CREAR CRITERIO</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u444" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u444_div" class=""></div>
+                            <div id="u444_text" class="text ">
+                                <p><span>CREAR CATEGORIA</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u445" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u445_div" class=""></div>
+                            <div id="u445_text" class="text ">
+                                <p><span>VER INGRESOS Y EGRESOS</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u446" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u446_div" class=""></div>
+                <div id="u446_text" class="text ">
+                    <p><span>CRITERIOS DE CATEGORIZACIÓN</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ingresos (Group) -->
+        <div id="u447" class="ax_default ax_default_hidden" data-label="Ingresos"
+             style="display:none; visibility: hidden" data-left="300" data-top="130" data-width="200" data-height="30">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u448" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+                <div id="u448_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u448_state0_content" class="panel_state_content">
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u449" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u449_div" class=""></div>
+                            <div id="u449_text" class="text ">
+                                <p><span>CARGAR INGRESO</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u450" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u450_div" class=""></div>
+                            <div id="u450_text" class="text ">
+                                <p><span>ASOCIAR INGRESOS A EGRESOS</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u451" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u451_div" class=""></div>
+                <div id="u451_text" class="text ">
+                    <p><span>INGRESOS</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Egresos (Group) -->
+        <div id="u452" class="ax_default ax_default_hidden" data-label="Egresos"
+             style="display:none; visibility: hidden" data-left="300" data-top="100" data-width="200" data-height="30">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u453" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+                <div id="u453_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u453_state0_content" class="panel_state_content">
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u454" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u454_div" class=""></div>
+                            <div id="u454_text" class="text ">
+                                <p><span>CARGAR EGRESO</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u455" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u455_div" class=""></div>
+                            <div id="u455_text" class="text ">
+                                <p><span>ASOCIAR EGRESOS Y PRESUPUESTOS</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u456" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u456_div" class=""></div>
+                <div id="u456_text" class="text ">
+                    <p><span>EGRESOS</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Presupuestos (Group) -->
+        <div id="u457" class="ax_default ax_default_hidden" data-label="Presupuestos"
+             style="display:none; visibility: hidden" data-left="300" data-top="190" data-width="200" data-height="30">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u458" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+                <div id="u458_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u458_state0_content" class="panel_state_content">
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u459" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u459_div" class=""></div>
+                            <div id="u459_text" class="text ">
+                                <p><span>CARGAR PRESUPUESTO</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u460" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u460_div" class=""></div>
+                <div id="u460_text" class="text ">
+                    <p><span>PRESUPUESTOS</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proyectos (Group) -->
+        <div id="u461" class="ax_default ax_default_hidden" data-label="Proyectos"
+             style="display:none; visibility: hidden" data-left="300" data-top="250" data-width="200" data-height="30">
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u462" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u462_div" class=""></div>
+                <div id="u462_text" class="text ">
+                    <p><span>PROYECTOS</span></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u463" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+                <div id="u463_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u463_state0_content" class="panel_state_content">
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u464" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u464_div" class=""></div>
+                            <div id="u464_text" class="text ">
+                                <p><span>CREAR PROYECTO DE FINANCIAMIENTO</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Usuarios (Group) -->
+        <div id="u465" class="ax_default ax_default_hidden" data-label="Usuarios"
+             style="display:none; visibility: hidden" data-left="300" data-top="310" data-width="200" data-height="30">
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u466" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u466_div" class=""></div>
+                <div id="u466_text" class="text ">
+                    <p><span>ADMINISTRAR USUARIOS</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Proveedores (Group) -->
+        <div id="u467" class="ax_default ax_default_hidden" data-label="Proveedores"
+             style="display:none; visibility: hidden" data-left="300" data-top="160" data-width="200" data-height="30">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u468" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+                <div id="u468_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u468_state0_content" class="panel_state_content">
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u469" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u469_div" class=""></div>
+                            <div id="u469_text" class="text ">
+                                <p><span>CARGAR PROVEEDOR</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u470" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u470_div" class=""></div>
+                <div id="u470_text" class="text ">
+                    <p><span>PROVEEDORES</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu (Dynamic Panel) -->
+        <div id="u471" class="ax_default" data-label="Menu">
+            <div id="u471_state0" class="panel_state" data-label="State1" style="">
+                <div id="u471_state0_content" class="panel_state_content">
+
+                    <!-- Unnamed (Shape)
+                    <div id="u472" class="ax_default icon">
+                      <img id="u472_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
+                      <div id="u472_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </div>-->
+                </div>
+            </div>
+            <div id="u471_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
+                <div id="u471_state1_content" class="panel_state_content">
+
+                    <!-- Unnamed (Shape)
+                    <div id="u473" class="ax_default icon">
+                      <img id="u473_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
+                      <div id="u473_text" class="text " style="display:none; visibility: hidden">
+                        <p></p>
+                      </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+
+        <!-- Auditoría (Group) -->
+        <div id="u474" class="ax_default ax_default_hidden" data-label="Auditoría"
+             style="display:none; visibility: hidden" data-left="300" data-top="280" data-width="200" data-height="30">
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u475" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u475_div" class=""></div>
+                <div id="u475_text" class="text ">
+                    <p><span>AUDITORÍA</span></p>
+                </div>
+            </div>
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u476" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+                <div id="u476_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u476_state0_content" class="panel_state_content">
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u477" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u477_div" class=""></div>
+                            <div id="u477_text" class="text ">
+                                <p><span>BITÁCORA DE OPERACIONES</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Entidades (Group) -->
+        <div id="u478" class="ax_default ax_default_hidden" data-label="Entidades"
+             style="display:none; visibility: hidden" data-left="300" data-top="70" data-width="200" data-height="30">
+
+            <!-- Unnamed (Dynamic Panel) -->
+            <div id="u479" class="ax_default ax_default_hidden" style="display:none; visibility: hidden">
+                <div id="u479_state0" class="panel_state" data-label="State1" style="">
+                    <div id="u479_state0_content" class="panel_state_content">
+
+                        <!-- Tab Label 3 (Rectangle) -->
+                        <div id="u480" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                            <div id="u480_div" class=""></div>
+                            <div id="u480_text" class="text ">
+                                <p><span>CARGAR ENTIDAD</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u481" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u427Tabs">
+                <div id="u481_div" class=""></div>
+                <div id="u481_text" class="text ">
+                    <p><span>ENTIDADES</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Unnamed (Shape)
+        <div id="u482" class="ax_default icon">
+          <img id="u482_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
+          <div id="u482_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div> -->
+        <div id="u427" style="display:none; visibility:hidden;"></div>
+
+        <!-- RUTA CARGAR ENTIDAD (Group) -->
+        <div id="u483" class="ax_default ax_default_hidden" data-label="RUTA CARGAR ENTIDAD"
+             style="display:none; visibility: hidden" data-left="322" data-top="30" data-width="346" data-height="40">
+
+            <!-- Tab Label 3 (Rectangle) -->
+            <div id="u484" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="Tabs">
+                <div id="u484_div" class=""></div>
+                <div id="u484_text" class="text ">
+                    <p><span>&gt;&gt; ENTIDADES &gt;&gt; CARGAR ENTIDAD</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popup (Dynamic Panel) -->
+        <div id="u485" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
+            <div id="u485_state0" class="panel_state" data-label="State1" style="">
+                <div id="u485_state0_content" class="panel_state_content">
+
+                    <!-- Unnamed (Group) -->
+                    <div id="u486" class="ax_default" data-left="0" data-top="0" data-width="599.000000924387"
+                         data-height="260.00055308916">
+
+                        <!-- Popup Background (Rectangle) -->
+                        <div id="u487" class="ax_default box_1" data-label="Popup Background">
+                            <div id="u487_div" class=""></div>
+                            <div id="u487_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Shape) -->
+                        <div id="u488" class="ax_default primary_button">
+                            <img id="u488_img" class="img " src="images/usuario/u201.svg"/>
+                            <div id="u488_text" class="text ">
+                                <p><span>Aceptar</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Bottom Divider Line (Line) -->
+                        <div id="u489" class="ax_default line" data-label="Bottom Divider Line">
+                            <img id="u489_img" class="img " src="images/cargar_entidad/bottom_divider_line_u372.svg"/>
+                            <div id="u489_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Top Divider Line (Line) -->
+                        <div id="u490" class="ax_default line" data-label="Top Divider Line">
+                            <img id="u490_img" class="img " src="images/usuario/top_divider_line_u223.svg"/>
+                            <div id="u490_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Summary Text (Rectangle) -->
+                        <div id="u491" class="ax_default heading_3" data-label="Summary Text">
+                            <div id="u491_div" class=""></div>
+                            <div id="u491_text" class="text ">
+                                <p><span>La carga de la Entidad se registró correctamente en el sistema.</span></p>
+                            </div>
+                        </div>
+
+                        <!-- Unnamed (Image) -->
+                        <div id="u492" class="ax_default image">
+                            <img id="u492_img" class="img " src="images/usuario/u225.png"/>
+                            <div id="u492_text" class="text " style="display:none; visibility: hidden">
+                                <p></p>
+                            </div>
+                        </div>
+
+                        <!-- Popup Title (Rectangle) -->
+                        <div id="u493" class="ax_default heading_2" data-label="Popup Title">
+                            <div id="u493_div" class=""></div>
+                            <div id="u493_text" class="text ">
+                                <p><span>Carga exitosa</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div id="includedContent"></div>
-    </div>
-    <script src="resources/scripts/axure/ios.js"></script>
-    <script>
-      function mostrarFormularioCorrespondiente(v) {
-        if(v.value == 'EntidadBase'){
-            document.getElementById("formulario_entidad_base").style.display = "block";
-            document.getElementById("formulario_entidad_juridica").style.display = "none";
+        <script src="resources/scripts/axure/ios.js"></script>
+        <script>
+            function mostrarFormularioCorrespondiente(v) {
+                if (v.value == 'EntidadBase') {
+                    document.getElementById("formulario_entidad_base").style.display = "block";
+                    document.getElementById("formulario_entidad_juridica").style.display = "none";
 
-        }else if(v.value == 'Empresa' ||v.value == 'OrganizacionSocial'){
-            document.getElementById("formulario_entidad_juridica").style.display = "block";
-            document.getElementById("formulario_entidad_base").style.display = "none";
+                } else if (v.value == 'Empresa' || v.value == 'OrganizacionSocial') {
+                    document.getElementById("formulario_entidad_juridica").style.display = "block";
+                    document.getElementById("formulario_entidad_base").style.display = "none";
 
-        }else{
-            document.getElementById("formulario_entidad_juridica").style.display = "none";
-            document.getElementById("formulario_entidad_base").style.display = "none";
-        }
-      }
+                } else {
+                    document.getElementById("formulario_entidad_juridica").style.display = "none";
+                    document.getElementById("formulario_entidad_base").style.display = "none";
+                }
+            }
 
-      function habilitar_provincias(v) {
-        if (v.value == 'Seleccionar un País') {
-          u305_input.disabled = true;
-          u307_input.disabled = true;
-        } else {
-          u305_input.disabled = false;
-        }
-      }
-      function buscar_provincias(v){
-          habilitar_provincias(v);
-        if (v.value != 'Seleccionar un País') {
-        location.href='/cargar_entidad?pais='+v.value+'&entidad='+select_entidades.value;
-        }
-      }
+            function habilitar_provincias(v) {
+                if (v.value == 'Seleccionar un País') {
+                    u305_input.disabled = true;
+                    u307_input.disabled = true;
+                } else {
+                    u305_input.disabled = false;
+                }
+            }
 
-      $(document).ready(
-              (mostrarFormularioCorrespondiente(select_entidades))
-      );
-      $(document).ready(
-              (habilitar_provincias(u300_input))
-      );
-      $(document).ready(
-              (habilitar_ciudades(u305_input))
-      );
+            function buscar_provincias(v) {
+                habilitar_provincias(v);
+                if (v.value != 'Seleccionar un País') {
+                    location.href = '/cargar_entidad?pais=' + v.value + '&entidad=' + select_entidades.value + '&' + u320_input.name + '=' + u320_input.value
+                        + '&' + u302_input.name + '=' + u302_input.value + '&' + u299_input.name + '=' + u299_input.value + '&' + u323_input.name + '=' + u323_input.value + '&'
+                        + u309_input.name + '=' + u309_input.value + '&' + u311_input.name + '=' + u311_input.value + '&' + u313_input.name + '=' + u313_input.value +
+                        '&' + u315_input.name + '=' + u315_input.value;
+                }
+            }
 
-      function habilitar_ciudades(v){
-        if(v.value=='Seleccionar una Provincia'){
-          u307_input.disabled = true;
-        }else{
-          u307_input.disabled = false;
-        }
-      }
-      function buscar_ciudades(v) {
-        habilitar_ciudades(v);
-        if (v.value != 'Seleccionar una Provincia') {
-          location.href = '/cargar_entidad?pais=' + u300_input.value + '&entidad=' + select_entidades.value + '&provincia=' + u305_input.value;
-        }
-      }
-    </script>
-  </body>
+            $(document).ready(
+                (mostrarFormularioCorrespondiente(select_entidades))
+            );
+            $(document).ready(
+                (habilitar_provincias(u300_input))
+            );
+            $(document).ready(
+                (habilitar_ciudades(u305_input))
+            );
+
+
+            function habilitar_ciudades(v) {
+                if (v.value == 'Seleccionar una Provincia') {
+                    u307_input.disabled = true;
+                } else {
+                    u307_input.disabled = false;
+                }
+            }
+
+            function buscar_ciudades(v) {
+                habilitar_ciudades(v);
+                if (v.value != 'Seleccionar una Provincia') {
+                    location.href = '/cargar_entidad?pais=' + u300_input.value + '&entidad=' + select_entidades.value + '&provincia=' + u305_input.value
+                        + '&' + u320_input.name + '=' + u320_input.value
+                        + '&' + u302_input.name + '=' + u302_input.value + '&' + u299_input.name + '=' + u299_input.value + '&' + u323_input.name + '=' + u323_input.value + '&'
+                        + u309_input.name + '=' + u309_input.value + '&' + u311_input.name + '=' + u311_input.value + '&' + u313_input.name + '=' + u313_input.value +
+                        '&' + u315_input.name + '=' + u315_input.value;
+                }
+            }
+        </script>
+</body>
 </html>

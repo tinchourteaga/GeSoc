@@ -1,6 +1,7 @@
 package Servidor.Controllers;
 
 import Dominio.BandejaMensajes.Mensaje;
+import Dominio.Egreso.Core.Egreso;
 import Dominio.Usuario.Usuario;
 import spark.ModelAndView;
 import spark.Request;
@@ -46,6 +47,7 @@ public class ControllerMensajes {
         String fecha = request.queryParams("fechaFiltrado");
         String egreso = request.queryParams("egreso");
         List<Mensaje> todosLosMsj = new ArrayList();
+
         if (egreso != null && fecha != null) {
             todosLosMsj = usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj -> msj.getFechaCreado().isBefore(LocalDate.parse(fecha))&& msj.getEgreso().getEgreso()==Integer.valueOf(egreso).intValue()).collect(Collectors.toList());
         } else {
@@ -65,9 +67,13 @@ public class ControllerMensajes {
                 todosLosMsj = todosLosMsj.stream().filter(msj -> msj.getLeido()).collect(Collectors.toList());
             }
         }
-
+        List<Egreso> egresos=new ArrayList();
+        if(todosLosMsj!=null && todosLosMsj.isEmpty()){
+            egresos= todosLosMsj.stream().map(ms->ms.getEgreso()).collect(Collectors.toList());
+        }
             Map<String, Object> datos = new HashMap<>();
             datos.put("mensajes", todosLosMsj);
+            datos.put("egreso", egresos);
             ModelAndView vista = new ModelAndView(datos, "mensajes_revisor.html");
 
             return vista;

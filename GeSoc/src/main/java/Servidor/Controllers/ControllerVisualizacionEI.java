@@ -6,6 +6,9 @@ import Dominio.Egreso.Core.Egreso;
 import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
+import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -16,19 +19,36 @@ import java.util.stream.Collectors;
 public class ControllerVisualizacionEI {
 
     public static ModelAndView visualizarPantalla(Request request, Response response){
-
+        ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
+
+        DAO daoEntidad = new DAOBBDD<Entidad>(Entidad.class);
+        Repositorio repoEntidades = new Repositorio<Entidad>(daoEntidad);
+
+        DAO daoEgreso = new DAOBBDD<Egreso>(Egreso.class);
+        Repositorio repoEgresos = new Repositorio<Egreso>(daoEgreso);
+
+        DAO daoIngreso = new DAOBBDD<Ingreso>(Ingreso.class);
+        Repositorio repoIngresos = new Repositorio<Ingreso>(daoIngreso);
+
+        DAO daoCriterio = new DAOBBDD<Criterio>(Criterio.class);
+        Repositorio repoCriterios = new Repositorio<Criterio>(daoCriterio);
+
+        DAO daoCategoria = new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class);
+        Repositorio repoCategorias = new Repositorio<Criterio>(daoCategoria);
 
         Usuario usuarioActual= ControllerSesion.obtenerUsuariodeSesion(request);
         //Estas cinco listas las tenemos que traer de la BD
-        List<Entidad> entidades = usuarioActual.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
-        List<Ingreso> ingreso = new ArrayList<>();
+        List<Entidad> entidades = repoEntidades.getTodosLosElementos();
+        List<Ingreso> ingreso = repoIngresos.getTodosLosElementos();
         entidades.forEach(ent->ingreso.addAll(ent.getIngresos()));
-        List<Egreso> egreso = usuarioActual.getEgresosAREvisar();
+        List<Egreso> egreso = repoEgresos.getTodosLosElementos();
 
-        List<CategoriaCriterio> categorias = egreso.stream().map(eg->eg.getCategorias()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<CategoriaCriterio> categorias = repoCategorias.getTodosLosElementos();
+        //List<CategoriaCriterio> categorias = egreso.stream().map(eg->eg.getCategorias()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
-        List<Criterio> criterios = egreso.stream().map(eg->eg.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Criterio> criterios = repoCriterios.getTodosLosElementos();
+        //List<Criterio> criterios = egreso.stream().map(eg->eg.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
         //remuevo repetidos
         Set<Entidad> setEntidades = new HashSet<Entidad>(entidades);

@@ -153,6 +153,16 @@
   font-style:normal;
   font-size:16px;
 }
+#tabla_dinamica_fila{
+    border-width:0px;
+    position:absolute;
+    left:7%;
+    top:52%;
+    width:80.1%;
+    overflow-y: auto;
+    height: 5%;
+    display:flex;
+}
 #u1451 .text {
   position:absolute;
   align-self:flex-start;
@@ -332,6 +342,7 @@
   top:292px;
   width:1000px;
   height:276px;
+  overflow-y:auto;
 }
 #u1457_state0 {
   border-width:0px;
@@ -350,12 +361,14 @@
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
   box-shadow:none;
+  overflow-y:auto;
 }
 #u1457_state0_content {
   border-width:0px;
   position:absolute;
   left:10%;
   top:0px;
+  overflow-y:auto;
 }
 .u1459_div {
   border-width:0px;
@@ -638,6 +651,7 @@
   -webkit-box-shadow:none;
   box-shadow:none;
   visibility:hidden;
+  overflow-y:auto;
 }
 #u1457_state1_content {
   border-width:0px;
@@ -646,6 +660,7 @@
   top:0px;
   width:1px;
   height:1px;
+  overflow-y:auto;
 }
 .u1465_div {
   border-width:0px;
@@ -931,6 +946,7 @@
   -webkit-box-shadow:none;
   box-shadow:none;
   visibility:hidden;
+  overflow-y:auto;
 }
 #u1457_state2_content {
   border-width:0px;
@@ -939,6 +955,7 @@
   top:0px;
   width:1px;
   height:1px;
+  overflow-y:auto;
 }
 .u1471_div {
   border-width:0px;
@@ -4291,7 +4308,7 @@
     font-size: 0.9em;
     min-width: 400px;
     border-radius: 5px 5px 0 0;
-    overflow: hidden;
+    overflow: auto;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
     font-weight:300;
@@ -4355,7 +4372,7 @@
 
 .lupita{
    position: absolute;
-   left: 64%;
+   left: 70%;
 }
 
 .botoncito_lupita{

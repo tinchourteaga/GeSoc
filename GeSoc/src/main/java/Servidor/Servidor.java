@@ -57,9 +57,14 @@ public class Servidor {
         Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
         Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
         Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
+        Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
+        Spark.get("/crear_categoria", ControllerCategoria::visualizarPantalla, engine);
+        Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
 
         //haciendo
-        Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
+        Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//faltaria aclarar la empresa quizas
+
+
 
         //para tincho
         Spark.get("/cargar_items_egreso", ControllerEgresos::visualizarPantallaItems, engine);
@@ -67,9 +72,6 @@ public class Servidor {
 
         //TODO
         Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);
-        Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);
-        Spark.get("/crear_categoria", ControllerCategoria::visualizarPantalla, engine);
-        Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
         Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
 
 

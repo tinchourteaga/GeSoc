@@ -95,7 +95,7 @@
         </div>
 
         <div id="cargar_items">
-            <input type="button" class="boton_cargar_items" value="Cargar items"/>
+            <input type="button" class="boton_cargar_items" value="Cargar items" onclick="getElementsFromTable('dataTable')"/>
         </div>
 
         <div id="includedContent"></div>
@@ -208,6 +208,18 @@
                 var precio = objCells.item(j+3).innerHTML;
 
                 //tengo que armarme el json
+                var item = { "nombre": nombreItem, "tipo": tipoItem, "cant": cantidad, "precio": precio };
+                var itemJSON = JSON.stringify(item);
+
+                //mandar el json de alguna forma
+                let xhr = new XMLHttpRequest();
+                let url = "http://localhost:63342/cargar_items_egresos.html";
+
+                xhr.open("POST", url, true);
+
+                xhr.setRequestHeader("Content-Type", "application/json");
+
+                xhr.send(itemJSON);
 
             }
 

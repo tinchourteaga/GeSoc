@@ -210,9 +210,9 @@
           <div id="u1386_div" class=""></div>
           <select name="criterioAsociado" id="u1386_input" class="u1386_input">
             <option class="u1386_input_option" value="Seleccionar un Criterio">Seleccionar un Criterio</option>
-            <option class="u1386_input_option" value="Criterio 1">Criterio 1</option>
-            <option class="u1386_input_option" value="Criterio 2">Criterio 2</option>
-            <option class="u1386_input_option" value="Criterio 3">Criterio 3</option>
+            {{#each criterios}}
+            <option class="u1386_input_option" value={{criterio}}>{{nombreCriterio}}</option>
+            {{/each}}
           </select>
         </div>
 

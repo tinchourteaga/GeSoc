@@ -5,6 +5,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Entidad.Entidad;
 import Dominio.Usuario.Rol;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
@@ -14,13 +15,16 @@ import Servidor.Controllers.Hash.FuncionHash;
 import Servidor.Controllers.Hash.Hash;
 import Servidor.Controllers.MailSender.SendEmail;
 import Servidor.Controllers.PasswordGenerator.PasswordGenerator;
+import org.eclipse.jetty.http.HttpStatus;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static spark.Spark.halt;
 
 public class ControllerUsuario {
 
@@ -48,9 +52,34 @@ public class ControllerUsuario {
         return vista;
     }
 
-    public static ModelAndView visualizarPantallaDatosUsuario(Request request, Response response){
+    public static ModelAndView visualizarPantallaDatosUsuario(Request request, Response response) {
+
+
+        String idUsuario = request.queryParams("us");
+        if (!idUsuario.equals(request.session().attribute("idUsuarioActual"))) {
+            halt(HttpStatus.NOT_FOUND_404);//estas accediendo con un id que no te corresponde
+            return null;
+        }
+        Usuario miUsuario = ControllerSesion.obtenerUsuariodeSesion(request);
+
+        String idUsuarioAModificar = request.queryParams("usm");
+
+        List<Entidad> entidadesALasQuePertenezco = miUsuario.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad> setEntidades = new HashSet<Entidad>();
+        setEntidades.addAll(entidadesALasQuePertenezco);
+        entidadesALasQuePertenezco.clear();
+        entidadesALasQuePertenezco.addAll(setEntidades);
 
         Map<String,Object> datos = new HashMap<>();
+        Repositorio repoUsuario = new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
+        List<Usuario> todosLosUsuarios = repoUsuario.getTodosLosElementos();
+        List<Usuario> usuariosQuePuedoModificar = todosLosUsuarios.stream().filter(usuario -> usuario.getEgresosAREvisar().stream().map(egreso -> egreso.getEntidad()).collect(Collectors.toList()).stream().anyMatch(ent -> entidadesALasQuePertenezco.contains(ent))).collect(Collectors.toList());
+        List<Usuario> usuarioAModificarONull = usuariosQuePuedoModificar.stream().filter(usuarioPosible -> usuarioPosible.getUsuario() == Integer.valueOf(idUsuarioAModificar).intValue()).collect(Collectors.toList());
+        if (!usuarioAModificarONull.isEmpty()){
+            Usuario usuarioPosta = usuarioAModificarONull.get(0);
+            datos.put("usuario",usuarioPosta);
+    }
+
 
         ModelAndView vista = new ModelAndView(datos, "datos_usuario.html");
 

@@ -29,12 +29,12 @@ public class ControllerEntidad {
        String paisElegido= request.queryParams("pais");
        Pais paisElegidoObj=null;
        if(paisElegido!=null) {
-           paisElegidoObj = paises.stream().filter(p -> p.getName().equals(paisElegido)).collect(Collectors.toList()).get(0);
+           paisElegidoObj = paises.stream().filter(p -> p.getPais()==Integer.valueOf(paisElegido).intValue()).collect(Collectors.toList()).get(0);
            datos.put("paisElegido",paisElegidoObj);
            datos.put("provincias",paisElegidoObj.getProvincias());
 
        }
-        String provinciaElegida= request.queryParams("");
+        String provinciaElegida= request.queryParams("provincia");
         if(provinciaElegida!=null && paisElegidoObj!=null){
 
             List<Provincia> provinciasPosibles = paisElegidoObj.getProvincias().stream().filter(p->p.getProvincia()==Integer.valueOf(provinciaElegida).intValue()).collect(Collectors.toList());
@@ -46,8 +46,29 @@ public class ControllerEntidad {
         }
        String tipoEntidad= request.queryParams("entidad");
 
+        //saco los campos que pudieron completar antes
+
+
+        String rs=request.queryParamOrDefault("razonSocial","Ingrese razon social");
+        String rf=request.queryParamOrDefault("nombreFicticio","Ingrese nombre ficticio");
+        String cuit=request.queryParamOrDefault("cuilOCuit","Ingrese  CUIL o CUIT");
+        String codIGJ=request.queryParamOrDefault("codInscripcion","Ingrese codigo de IGJ");
+        String calle=request.queryParamOrDefault("calle","Ingrese calle");
+        String piso=request.queryParamOrDefault("piso","piso");
+        String numero=request.queryParamOrDefault("numeroCalle","nro");
+        String depto=request.queryParamOrDefault("dpto","depto");
+
+
         datos.put("paises",paises);
         datos.put("tipoEntidad",tipoEntidad);
+        datos.put("razonSocialDefault",rs);
+        datos.put("nombreFicticioDefault",rf);
+        datos.put("cuitDefault",cuit);
+        datos.put("codigoIGJDefault",codIGJ);
+        datos.put("calleDefault",calle);
+        datos.put("pisoDefault",piso);
+        datos.put("deptoDefault",depto);
+        datos.put("numeroDefault",numero);
 
         return vista;
     }

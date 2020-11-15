@@ -40,6 +40,10 @@ public class Pais {
         this.name = name;
     }
 
+    public int getPais() {
+        return pais;
+    }
+
     public String getId() {
         return id;
     }

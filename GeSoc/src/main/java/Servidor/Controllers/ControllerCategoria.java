@@ -2,6 +2,7 @@ package Servidor.Controllers;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
+import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
@@ -9,15 +10,21 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class ControllerCategoria {
     public static ModelAndView visualizarPantalla(Request request, Response response){
 
         Map<String,Object> datos = new HashMap<>();
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+
+        List<Criterio> criteriosLista= miUsuario.getEgresosAREvisar().stream().map(e->e.getCategorias()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList()).stream().map(c->c.getCriterio()).collect(Collectors.toList());
+        Set<Criterio> criteriosSet=new HashSet<>();
+        criteriosSet.addAll(criteriosLista);
+        criteriosLista.clear();
+        criteriosLista.addAll(criteriosSet);
+        datos.put("criterios",criteriosLista);
         ModelAndView vista = new ModelAndView(datos, "crear_categoria.html");
 
         return vista;

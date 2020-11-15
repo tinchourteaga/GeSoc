@@ -112,8 +112,16 @@
       <div id="u295_div" class=""></div>
       <select id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
         <option value="Seleccionar una opción">Seleccionar una opción</option>
-        <option value="Entidad Jurídica">Empresa</option>
-        <option value="Entidad Base">Persona</option>
+        {{#if esPersona includeZero=true}}
+        <option value="Persona" selected>Persona</option>
+        {{else}}
+        <option value="Persona" >Persona</option>
+        {{/if}}
+        {{#if esEmpresa includeZero=true}}
+        <option value="Empresa" selected>Empresa</option>
+        {{else}}
+        <option value="Empresa">Empresa</option>
+        {{/if}}
       </select>
     </div>
 
@@ -136,7 +144,7 @@
 
       <div id="u3022" class="ax_default text_field" data-label="EntradaRazonSocial">
         <div id="u3022_div" class=""></div>
-        <input name="razonSocial" id="u3022_input" type="text" value="" class="u302_input"/>
+        <input name="Apellido" id="u3022_input" type="text" value={{apellido}} class="u302_input"/>
       </div>
 
       <div id="u3033" class="ax_default heading_1">
@@ -148,7 +156,7 @@
 
       <div id="u3200" class="ax_default text_field" data-label="EntradaNombreFicticio">
         <div id="u3200_div" class=""></div>
-        <input name="nombreFicticio" id="u3200_input" type="text" value="" class="u320_input"/>
+        <input name="nombre" id="u3200_input" type="text" value={{nombre}} class="u320_input"/>
       </div>
 
       <div id="u3211" class="ax_default heading_1">
@@ -167,7 +175,7 @@
 
       <div id="u2999" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
         <div id="u2999_div" class=""></div>
-        <input name="cuilOCuit" id="u2999_input" type="text" value="" class="u299_input"/>
+        <input name="DNI" id="u2999_input" type="text" value={{dni}} class="u299_input"/>
       </div>
 
       <div id="u3166" class="ax_default line">
@@ -193,7 +201,7 @@
 
       <div id="u3099" class="ax_default text_field" data-label="EntradaCalle">
         <div id="u3099_div" class=""></div>
-        <input name="calle" id="u3099_input" type="text" value="" class="u309_input"/>
+        <input name="callePers" id="u3099_input" type="text" value={{callePers}} class="u309_input"/>
       </div>
 
       <div id="u3100" class="ax_default heading_1">
@@ -205,7 +213,7 @@
 
       <div id="u3111" class="ax_default text_field" data-label="EntradaNumero">
         <div id="u3111_div" class=""></div>
-        <input name="numeroCalle" id="u311_input" type="text" value="" class="u311_input"/>
+        <input name="numeroPers" id="u311_input" type="text" value={{numeroPers}} class="u311_input"/>
       </div>
 
       <div id="u3122" class="ax_default heading_1">
@@ -217,7 +225,7 @@
 
       <div id="u3133" class="ax_default text_field" data-label="EntradaPiso">
         <div id="u3133_div" class=""></div>
-        <input name="piso" id="u3133_input" type="text" value="" class="u313_input"/>
+        <input name="pisoPers" id="u3133_input" type="text" value={{pisoPers}} class="u313_input"/>
       </div>
 
       <div id="u3144" class="ax_default heading_1">
@@ -229,7 +237,7 @@
 
       <div id="u3155" class="ax_default text_field" data-label="EntradaDepto">
         <div id="u3155_div" class=""></div>
-        <input name="dpto" id="u3155_input" type="text" value="" class="u315_input"/>
+        <input name="deptoPers" id="u3155_input" type="text" value={{deptoPers}} class="u315_input"/>
       </div>
 
       <div id="u2977" class="ax_default heading_1">
@@ -243,12 +251,12 @@
         <div id="u3000_div" class=""></div>
         <select name="pais" id="u3000_input" class="u300_input" onchange="buscar_provincias(this)">
           {{#if paisElegido}}
-          <option class="u300_input_option" value={{this.name}}>{{name}}</option>
+          <option class="u300_input_option" value={{pais}} selected>{{name}}</option>
           {{else}}
           <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
           {{/if}}
           {{#each paises}}
-          <option class="u300_input_option" value={{this.name}}>{{name}}</option>
+          <option class="u300_input_option" value={{pais}}>{{name}}</option>
           {{/each}}
         </select>
       </div>
@@ -263,8 +271,16 @@
       <div id="u3055" class="ax_default droplist">
         <div id="u3055_div" class=""></div>
         <select name="provincia" id="u3055_input" class="u305_input" disabled onchange="buscar_ciudades(this)">
-          <option class="u305_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
-          <option class="u305_input_option" value="La Pampa">La Pampa</option>
+          {{#if provinciaElegida includeZero=true}}
+          <option class="u3055_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}
+          </option>
+          {{else}}
+          <option class="u3055_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia
+          </option>
+          {{/if}}
+          {{#each provincias}}
+          <option class="u3055_input_option" value={{provincia}}>{{name}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -278,7 +294,10 @@
       <div id="u3077" class="ax_default droplist">
         <div id="u3077_div" class=""></div>
         <select name="ciudad" id="u3077_input" class="u307_input" disabled>
-          <option class="u307_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
+            <option class="u3077_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
+            {{#each ciudades}}
+            <option class="u3077_input_option" value={{ciudad}}>{{name}}</option>
+            {{/each}}
         </select>
       </div>
 
@@ -302,7 +321,7 @@
 
       <div id="u302" class="ax_default text_field" data-label="EntradaRazonSocial">
         <div id="u302_div" class=""></div>
-        <input name="razonSocial" id="u302_input" type="text" value="" class="u302_input"/>
+        <input name="razonSocial" id="u302_input" type="text" value={{razonSocialDefault}} class="u302_input"/>
       </div>
 
       <div id="u303" class="ax_default heading_1">
@@ -314,7 +333,7 @@
 
       <div id="u320" class="ax_default text_field" data-label="EntradaNombreFicticio">
         <div id="u320_div" class=""></div>
-        <input name="nombreFicticio" id="u320_input" type="text" value="" class="u320_input"/>
+        <input name="nombreFicticio" id="u320_input" type="text" value={{nombreFicticioDefault}} class="u320_input"/>
       </div>
 
       <div id="u321" class="ax_default heading_1">
@@ -333,7 +352,7 @@
 
       <div id="u299" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
         <div id="u299_div" class=""></div>
-        <input name="cuilOCuit" id="u299_input" type="text" value="" class="u299_input"/>
+        <input name="cuilOCuit" id="u299_input" type="text" value={{cuitDefault}} class="u299_input"/>
       </div>
 
       <div id="u316" class="ax_default line">
@@ -359,7 +378,7 @@
 
       <div id="u309" class="ax_default text_field" data-label="EntradaCalle">
         <div id="u309_div" class=""></div>
-        <input name="calle" id="u309_input" type="text" value="" class="u309_input"/>
+        <input name="calle" id="u309_input" type="text" value={{calleDefault}} class="u309_input"/>
       </div>
 
       <div id="u310" class="ax_default heading_1">
@@ -371,7 +390,7 @@
 
       <div id="u311" class="ax_default text_field" data-label="EntradaNumero">
         <div id="u311_div" class=""></div>
-        <input name="numeroCalle" id="u3111_input" type="text" value="" class="u311_input"/>
+        <input name="numeroCalle" id="u3111_input" type="text" value={{numeroDefault}} class="u311_input"/>
       </div>
 
       <div id="u312" class="ax_default heading_1">
@@ -383,7 +402,7 @@
 
       <div id="u313" class="ax_default text_field" data-label="EntradaPiso">
         <div id="u313_div" class=""></div>
-        <input name="piso" id="u313_input" type="text" value="" class="u313_input"/>
+        <input name="piso" id="u313_input" type="text" value={{pisoDefault}} class="u313_input"/>
       </div>
 
       <div id="u314" class="ax_default heading_1">
@@ -395,7 +414,7 @@
 
       <div id="u315" class="ax_default text_field" data-label="EntradaDepto">
         <div id="u315_div" class=""></div>
-        <input name="dpto" id="u315_input" type="text" value="" class="u315_input"/>
+        <input name="dpto" id="u315_input" type="text" value={{deptoDefault}} class="u315_input"/>
       </div>
 
       <div id="u297" class="ax_default heading_1">
@@ -409,12 +428,12 @@
         <div id="u300_div" class=""></div>
         <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)">
           {{#if paisElegido}}
-          <option class="u300_input_option" value={{this.name}}>{{name}}</option>
+          <option class="u300_input_option" value={{pais}}>{{name}}</option>
           {{else}}
           <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
           {{/if}}
           {{#each paises}}
-          <option class="u300_input_option" value={{this.name}}>{{name}}</option>
+          <option class="u300_input_option" value={{pais}}>{{name}}</option>
           {{/each}}
         </select>
       </div>
@@ -429,8 +448,16 @@
       <div id="u305" class="ax_default droplist">
         <div id="u305_div" class=""></div>
         <select name="provincia" id="u305_input" class="u305_input" disabled onchange="buscar_ciudades(this)">
-          <option class="u305_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia</option>
-          <option class="u305_input_option" value="La Pampa">La Pampa</option>
+          {{#if provinciaElegida includeZero=true}}
+          <option class="u305_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}
+          </option>
+          {{else}}
+          <option class="u305_input_option" value="Seleccionar una Provincia">Seleccionar una Provincia
+          </option>
+          {{/if}}
+          {{#each provincias}}
+          <option class="u305_input_option" value={{provincia}}>{{name}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -444,7 +471,10 @@
       <div id="u307" class="ax_default droplist">
         <div id="u307_div" class=""></div>
         <select name="ciudad" id="u307_input" class="u307_input" disabled>
-          <option class="u307_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
+            <option class="u307_input_option" value="Seleccionar una Ciudad">Seleccionar una Ciudad</option>
+            {{#each ciudades}}
+            <option class="u307_input_option" value={{ciudad}}>{{name}}</option>
+            {{/each}}
         </select>
       </div>
 
@@ -1554,11 +1584,11 @@
 <script src="resources/scripts/axure/ios.js"></script>
 <script>
       function mostrarFormularioCorrespondiente(v) {
-        if(v.value == 'Entidad Base'){
+        if(v.value == 'Persona'){
             document.getElementById("formulario_entidad_base").style.display = "block";
             document.getElementById("formulario_entidad_juridica").style.display = "none";
 
-        }else if(v.value == 'Entidad Jurídica'){
+        }else if(v.value == 'Empresa'){
             document.getElementById("formulario_entidad_juridica").style.display = "block";
             document.getElementById("formulario_entidad_base").style.display = "none";
         }else{
@@ -1567,26 +1597,67 @@
         }
       }
 
-      function buscar_provincias(v){
 
-          if(v.value == 'Seleccionar un País'){
-            u305_input.disabled = true;
-            u307_input.disabled = true;
-          }else{
-            u305_input.disabled = false;
-            location.href='/cargar_entidad?pais='+v.value;
-          }
+
+      function habilitar_provincias(v) {
+        if (v.value == 'Seleccionar un País') {
+          u305_input.disabled = true;
+          u307_input.disabled = true;
+          u3055_input.disabled = true;
+          u3077_input.disabled = true;
+        } else {
+          u305_input.disabled = false;
+          u3055_input.disabled = false;
+        }
       }
 
+      function buscar_provincias(v) {
+        habilitar_provincias(v);
+        if (v.value != 'Seleccionar un País') {
+          location.href = '/cargar_proveedor?pais=' + v.value + '&tipo=' + select_entidades.value + '&' + u320_input.name + '=' + u320_input.value
+                  + '&' + u302_input.name + '=' + u302_input.value + '&' + u299_input.name + '=' + u299_input.value + '&' + u323_input.name + '=' + u323_input.value + '&'
+                  + u309_input.name + '=' + u309_input.value + '&' + u311_input.name + '=' + u311_input.value + '&' + u313_input.name + '=' + u313_input.value +
+                  '&' + u315_input.name + '=' + u315_input.value;
+        }
+      }
+
+
+      function habilitar_ciudades(v) {
+        if (v.value == 'Seleccionar una Provincia') {
+          u307_input.disabled = true;
+          u3077_input.disabled = true;
+        } else {
+          u307_input.disabled = false;
+          u3077_input.disabled = false;
+        }
+      }
       function buscar_ciudades(v){
-
-          if(v.value=='Seleccionar una Provincia'){
-            u307_input.disabled = true;
-          }else{
-            u307_input.disabled = false;
-          }
+        habilitar_ciudades(v);
+        if (v.value != 'Seleccionar una Provincia') {
+          location.href = '/cargar_proveedor?pais=' + u300_input.value + '&tipo=' + select_entidades.value + '&provincia=' + u305_input.value
+                  + '&' + u320_input.name + '=' + u320_input.value
+                  + '&' + u302_input.name + '=' + u302_input.value + '&' + u299_input.name + '=' + u299_input.value + '&'
+                  + u309_input.name + '=' + u309_input.value + '&' + u311_input.name + '=' + u311_input.value + '&' + u313_input.name + '=' + u313_input.value +
+                  '&' + u315_input.name + '=' + u315_input.value+ '&paisPers='+ u3000_input.value + '&provinciaPers=' + u3055_input.value
+                  + '&' + u3200_input.name + '=' + u3200_input.value
+                  + '&' + u3022_input.name + '=' + u3022_input.value + '&' + u2999_input.name + '=' + u2999_input.value + '&'
+                  + u3099_input.name + '=' + u3099_input.value + '&' + u3111_input.name + '=' + u3111_input.value + '&' + u3133_input.name + '=' + u3133_input.value +
+                  '&' + u3155_input.name + '=' + u3155_input.value
+          ;
+        }
 
       }
+
+      $(document).ready(
+              (mostrarFormularioCorrespondiente(select_entidades))
+      );
+      $(document).ready(
+              (habilitar_provincias(u300_input))
+      );
+      $(document).ready(
+              (habilitar_ciudades(u305_input))
+      );
+
     </script>
 </body>
 </html>

@@ -126,6 +126,17 @@
                     <li><a href="/bitacora_operaciones">BITACORA DE OPERACIONES</a></li>
                 </ul>
             </li>
+            {{#if esAdmin includeZero=true}}
+            <li>
+                <a href="#" class="boton-usuarios">USUARIOS
+                    <span class="fas fa-caret-down nineth"></span>
+                </a>
+                <ul class="mostrar-opciones-usuarios">
+                    <li><a href="/administrar_usuarios">ADMINISTRAR USUARIOS</a></li>
+                </ul>
+            </li>
+            {{else}}
+            {{/if}}
         </ul>
     </nav>
 
@@ -143,6 +154,7 @@
     var boolCriteriosCat = 0;
     var boolProyectos = 0;
     var boolAuditoria= 0;
+    var boolUsuarios= 0;
 
     $('.botoncito').click(function(){
        if(boolEntidades==2){
@@ -177,6 +189,10 @@
            $('nav ul .mostrar-opciones-auditoria').toggleClass("show7");
            $('nav ul .eighth').toggleClass("rotate");
        }
+       if(boolUsuarios==2){
+           $('nav ul .mostrar-opciones-usuarios').toggleClass("show8");
+           $('nav ul .nineth').toggleClass("rotate");
+       }
        $(this).toggleClass("click");
        $('.sidebar').toggleClass("show");
        boolEntidades=2;
@@ -187,6 +203,7 @@
        boolCriteriosCat = 2;
        boolProyectos = 2;
        boolAuditoria= 2;
+       boolUsuarios= 2;
     });
         $('.boton-entidades').click(function(){
             boolEntidades = 1;
@@ -227,6 +244,11 @@
             boolAuditoria = 1;
             $('nav ul .mostrar-opciones-auditoria').toggleClass("show7");
             $('nav ul .eighth').toggleClass("rotate");
+        });
+        $('.boton-usuarios').click(function(){
+            boolUsuarios = 1;
+            $('nav ul .mostrar-opciones-usuarios').toggleClass("show8");
+            $('nav ul .nineth').toggleClass("rotate");
         });
 
         function configuracionhover(element){

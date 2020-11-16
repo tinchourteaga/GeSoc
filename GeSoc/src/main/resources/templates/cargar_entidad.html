@@ -118,7 +118,7 @@
         <!-- JurídicaBase (Droplist) -->
         <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
             <div id="u295_div" class=""></div>
-            <select id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
+            <select name="entidad" id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
                 {{#if tipoEntidad includeZero=true}}
                 <option value={{tipoEntidad}} selected>{{tipoEntidad}}</option>
                 {{else}}

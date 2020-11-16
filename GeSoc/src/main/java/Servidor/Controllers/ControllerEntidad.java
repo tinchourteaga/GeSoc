@@ -76,7 +76,7 @@ public class ControllerEntidad {
     public static Object cargarEntidad(Request request, Response response) {
 
         //Datos principales
-        String tipoEntidad = request.queryParams("tipoEntidad");
+        String tipoEntidad = request.queryParams("entidad");
         String razonSocial = request.queryParams("razonSocial");
         String descripcion = request.queryParams("descripcion");
         String nombreFicticio = request.queryParams("nombreFicticio");
@@ -96,6 +96,7 @@ public class ControllerEntidad {
         DireccionPostal nuevaDir=ControllerDirecciones.generarDireccion(calle,numeroCalle,piso,dpto,pais,provincia,ciudad);
 
 
+
         switch(tipoEntidad){
             case "Entidad Base":
                 EntidadBase nuevaEntidadBase=new EntidadBase(nombreFicticio,descripcion,null);
@@ -104,12 +105,18 @@ public class ControllerEntidad {
             case "Empresa":
                 Empresa tipoEmpresa=new Empresa();
                 tipoEmpresa.setDireccionPostal(nuevaDir);
+                tipoEmpresa.setCodigoDeInscripcion(codInscripcion);
+                tipoEmpresa.setCuit(cuilOCuit);
+                tipoEmpresa.setRazonSocial(razonSocial);
                 EntidadJuridica nuevaEmpresa = new EntidadJuridica(nombreFicticio, descripcion, tipoEmpresa);
                 persistirEntidadJuridica(nuevaEmpresa);
             break;
             case "Organizacion Social":
                 OrganizacionSocial nuevaorg=new OrganizacionSocial();
                 nuevaorg.setDireccionPostal(nuevaDir);
+                nuevaorg.setCodigoDeInscripcion(codInscripcion);
+                nuevaorg.setCuit(cuilOCuit);
+                nuevaorg.setRazonSocial(razonSocial);
                 EntidadJuridica nuevaOrganizacionSocial = new EntidadJuridica(nombreFicticio, descripcion, nuevaorg);
                 persistirEntidadJuridica(nuevaOrganizacionSocial);
             break;

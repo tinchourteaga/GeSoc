@@ -56,14 +56,13 @@ public class ControllerMensajes {
                 todosLosMsj = usuario.getBandejaDeMensajes().filtrarPorFecha(LocalDate.parse(fecha));
             } else {
                 if (egreso != null) {
-                    todosLosMsj = usuario.getBandejaDeMensajes().filtrarPorFecha(LocalDate.parse(fecha));
-                } else {
-
                     todosLosMsj = usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj -> msj.getEgreso().getEgreso() == (Integer.valueOf(egreso))).collect(Collectors.toList());
+
+                } else {
+                    todosLosMsj = usuario.getBandejaDeMensajes().getMensajes();
                 }
             }
-            if (request.queryParams("filtrarPorLeidos").equals("true")) {
-
+            if (request.queryParams("filtrarPorLeidos")!=null && request.queryParams("filtrarPorLeidos").equals("true")) {
                 todosLosMsj = todosLosMsj.stream().filter(msj -> msj.getLeido()).collect(Collectors.toList());
             }
         }

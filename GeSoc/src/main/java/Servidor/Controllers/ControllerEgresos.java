@@ -1,8 +1,11 @@
 package Servidor.Controllers;
 
+import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Core.*;
+import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
+import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
@@ -213,6 +216,7 @@ public class ControllerEgresos {
         egresos= egresos.stream().filter(e->e.getEgreso()== Integer.valueOf(egresoId).intValue()).collect(Collectors.toList());
         if(egresos.isEmpty()){
             response.redirect("/pantalla_principal_usuario");
+            return null;
         }
         egreso=egresos.get(0);
         datos.put("egreso",egreso);
@@ -232,8 +236,139 @@ public class ControllerEgresos {
         Map<String, Object> datos= new HashMap<>();
 
 
+        String idUS= request.queryParams("us");
+        String egresoId=request.queryParams("eg");
+        if(!idUS.equals(request.session().attribute("idUsuarioActual"))){
+            //a tu casa crack, no podes cargar items de cosas que no te corresponde
+            response.redirect("/pantalla_principal_usuario");
+            return null;
+        }
+        Egreso egreso=null;
+        Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+        List<Egreso>egresos= repoEgresos.getTodosLosElementos();
+        egresos= egresos.stream().filter(e->e.getEgreso()== Integer.valueOf(egresoId).intValue()).collect(Collectors.toList());
+        if(egresos.isEmpty()){
+            response.redirect("/pantalla_principal_usuario");
+            return null;
+        }
+        egreso=egresos.get(0);
+        datos.put("egreso",egreso);
+        datos.put("presupuestos",egreso.getPresupuestosAConsiderar());
+
+        if(egreso.getPresupuestoPactado()!=null){
+            datos.put("tienePresupuesto","true");
+            datos.put("presupuesto",egreso.getPresupuestoPactado());
+
+        }
+        /*
+        Repositorio repoItems=new Repositorio(new DAODDBB<Item>(Item.class));
+        List<Item> items= repoItems.getTodosLosElementos();
+        List<Item> itemsAMostrar= items.stream().filter(i->i.getEgreso().getEgreso()==Integer.valueOf(egresoId).intValue()).Collect(Collectors.toList());
+        datos.put("listaItems",itemsAMostrar);
+        * */
+
+        datos.put("listaItems",egreso.getListaItems());
+        datos.put("categorias",egreso.getCategorias());
+
+        return new ModelAndView(datos, "validacion_manual.html");
+    }
+
+    public static Object redireccionarValidacion(Request request, Response response) {
+
+        String estrategia=request.queryParams("estrategia");
+        String egreso=request.queryParams("egreso");
+        if(estrategia.equals("Selecciona")){
+            response.redirect("/validar_egresos");
+            return null;
+        }
+        if(estrategia.equals("Manual")){
+            response.redirect("/validar_egreso_manualmente?eg="+egreso+"&us="+request.session().attribute("idUsuarioActual"));
+            return null;
+        }
+        if(estrategia.equals("Automática")){
+            String hora=request.queryParams("hora");
+            String minuto= request.queryParams("minutos");
+            int horaEjecucion=Integer.valueOf(hora).intValue();
+            int minutoEjecucion=Integer.valueOf(minuto).intValue();
 
 
-        return new ModelAndView(datos, "validacion_egresos.html");
+            ValidadorDeOperacion.setEstrategia(new EjecucionAutomatica(horaEjecucion,minutoEjecucion));
+            Repositorio repoEgreso= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+            List<Egreso> egresosPosibles= repoEgreso.getTodosLosElementos();
+            egresosPosibles=egresosPosibles.stream().filter(e->e.getEgreso()==Integer.valueOf(egreso).intValue()).collect(Collectors.toList());
+            if(egresosPosibles.isEmpty()){
+                response.redirect("/validar_egresos");
+                return null;
+            }else{
+                Egreso egresoObj=egresosPosibles.get(0);
+                ValidadorDeOperacion.validarPorEstrategia(egresoObj);
+                response.redirect("/pantalla_principal_usuario");
+                return null;
+            }
+        }
+
+
+        response.redirect("/pantalla_principal_usuario");
+        return null;
+    }
+
+    public static Object rechazarEgreso(Request request, Response response) {
+
+        String egresoId= request.queryParams("egreso");
+        System.out.println("egresoId");
+
+        Repositorio repositorio= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+        List<Egreso> todosLosEgresos= repositorio.getTodosLosElementos();
+        List<Egreso> egresosPosibles= todosLosEgresos.stream().filter(e->e.getEgreso()==Integer.valueOf(egresoId).intValue()).collect(Collectors.toList());
+        if(egresosPosibles.isEmpty()){
+            response.redirect("/pantalla_principal_usuario");
+            return null;
+        }
+        Repositorio repositorioUs= new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
+        List<Usuario> todosLosUs= repositorioUs.getTodosLosElementos();
+        List<Usuario> revisores= todosLosUs.stream().filter(us->us.getEgresosAREvisar().containsAll(egresosPosibles)).collect(Collectors.toList());
+        revisores.forEach(rev-> {
+            Repositorio repoMsj=new Repositorio(new DAOBBDD<Mensaje>(Mensaje.class));
+            Mensaje msj=new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + egresosPosibles.get(0).getFecha() + "y con valor: "+egresosPosibles.get(0).getValor().getImporte() +" no se valido correctamente. Debe validarse nuevamente", egresosPosibles.get(0));
+            rev.getBandejaDeMensajes().getMensajes().add(msj);
+            msj.setEgreso(egresosPosibles.get(0));
+            msj.setUsuario(rev);
+            repoMsj.agregar(msj);
+        });
+        egresosPosibles.get(0).setEstaVerificada(true);
+        repositorio.modificar(null,egresosPosibles.get(0));
+        revisores.forEach(rev-> repositorioUs.modificar(null,rev));
+        response.redirect("/validar_egresos");
+        return null;
+    }
+
+    public static Object aceptarEgreso(Request request, Response response) {
+
+        String egresoId= request.queryParams("egreso");
+        System.out.println(egresoId);
+
+        Repositorio repositorio= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+        List<Egreso> todosLosEgresos= repositorio.getTodosLosElementos();
+        List<Egreso> egresosPosibles= todosLosEgresos.stream().filter(e->e.getEgreso()==Integer.valueOf(egresoId).intValue()).collect(Collectors.toList());
+        if(egresosPosibles.isEmpty()){
+            response.redirect("/pantalla_principal_usuario");
+            return null;
+        }
+        Repositorio repositorioUs= new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
+        List<Usuario> todosLosUs= repositorioUs.getTodosLosElementos();
+        List<Usuario> revisores= todosLosUs.stream().filter(us->us.getEgresosAREvisar().containsAll(egresosPosibles)).collect(Collectors.toList());
+        revisores.forEach(rev-> {
+            Repositorio repoMsj=new Repositorio(new DAOBBDD<Mensaje>(Mensaje.class));
+            Mensaje msj=new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + egresosPosibles.get(0).getFecha() + "y con valor: "+egresosPosibles.get(0).getValor().getImporte() +" se valido satifactoriamente", egresosPosibles.get(0));
+            rev.getBandejaDeMensajes().getMensajes().add(msj);
+            msj.setEgreso(egresosPosibles.get(0));
+            msj.setUsuario(rev);
+            repoMsj.agregar(msj);
+        });
+        egresosPosibles.get(0).setEstaVerificada(true);
+        repositorio.modificar(null,egresosPosibles.get(0));
+        revisores.forEach(rev-> repositorioUs.modificar(null,rev));// asi guarda el msj
+        response.redirect("/validar_egresos");
+        return null;
     }
 }

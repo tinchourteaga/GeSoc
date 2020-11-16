@@ -31,4 +31,6 @@ public class Empresa extends TipoEntidadJuridica {
         this.setCategoria(categorias.stream().max(Comparator.comparingInt(unaCategoria ->
                 unaCategoria.getPersonalMaximo())).get());
     }
+
+
 }

@@ -32,7 +32,7 @@ public class ControllerProveedor {
         List<Ciudad> ciudades;
         String paisElegido= request.queryParams("pais");
         Pais paisElegidoObj=null;
-        if(paisElegido!=null) {
+        if(paisElegido!=null && !paisElegido.equals("")) {
             paisElegidoObj = paises.stream().filter(p -> p.getPais()==Integer.valueOf(paisElegido).intValue()).collect(Collectors.toList()).get(0);
             datos.put("paisElegido",paisElegidoObj);
             datos.put("provincias",paisElegidoObj.getProvincias());

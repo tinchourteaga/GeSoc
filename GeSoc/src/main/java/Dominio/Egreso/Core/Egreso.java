@@ -105,9 +105,6 @@ public class Egreso {
         return this.criterioSeleccionProveedor;
     }
 
-    public Proveedor getProveedorSeleccionado() {
-        return this.presupuestoPactado.getProveedor();
-    }
     public List<Presupuesto> getPresupuestosAConsiderar(){return this.presupuestosAConsiderar;}
 
     public List<Criterio> getCriterioDeCategorizacion() {

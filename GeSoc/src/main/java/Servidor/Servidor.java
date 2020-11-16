@@ -97,7 +97,10 @@ public class Servidor {
         //done
         Spark.post("/validarLogin", ControllerSesion::validarLogin);
         Spark.post("/cerrarSesion", ControllerSesion::cerrarSesion);
+        Spark.post("/validarEgresoManual", ControllerEgresos::aceptarEgreso);
+        Spark.post("/rechazarValidacion", ControllerEgresos::rechazarEgreso);
 
+        Spark.post("/validarEgreso", ControllerEgresos::redireccionarValidacion);
 
         //haciendo
 

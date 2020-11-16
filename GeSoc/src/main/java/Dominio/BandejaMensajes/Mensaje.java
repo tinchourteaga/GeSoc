@@ -68,4 +68,16 @@ public class Mensaje {
     public Egreso getEgreso() {
         return egreso;
     }
+
+    public void setEgreso(Egreso egreso) {
+        this.egreso = egreso;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }

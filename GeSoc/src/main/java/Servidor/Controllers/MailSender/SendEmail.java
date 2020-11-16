@@ -21,7 +21,7 @@ public class SendEmail
         // email ID of  Sender.
         String sender = "orggesoc";
 
-        String clave = "PONER LA CLAVE DEL MAIL orggesoc";
+        String clave = "PONER LA CLAVE DE ";
 
         // Getting system properties
         Properties properties = new Properties();
@@ -49,20 +49,21 @@ public class SendEmail
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(recipient));
 
             // Set Subject: subject of the email
-            message.setSubject("Usuario y contrasenia");
+            message.setSubject("Usuario y Contraseña - GeSoc");
 
             // set body of the email.
-            message.setText("Su usario es: " + usuario);
-            message.setText("Su password es: " + contrasenia);
+            message.setContent("Este email fue enviado para comunicarle su usuario y contraseña:<br><br>" +
+                    "<b>USUARIO:</b> " + usuario + "<br>" +
+                    "<b>CONTRASEÑA:</b> " + contrasenia + "<br><br>" +
+                    "Si no solicitó este email, simplemente ignorelo.", "text/html");
 
+            // Send email.
             Transport transport = session.getTransport("smtp");
 
             transport.connect("smtp.gmail.com", sender, clave);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
 
-            // Send email.
-            // Transport.send(message);
             System.out.println("Mail enviado...");
         }
         catch (MessagingException mex)

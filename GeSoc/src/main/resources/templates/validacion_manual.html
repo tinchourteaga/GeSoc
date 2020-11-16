@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validación Manual de Egresos</title>
+
+    <!--Import para el css de cargar_items-->
+    <link rel="stylesheet" href="files/validacion_manual_egresos/style.css">
+
+    <!--Import para el boton-->
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+
+    <!--Magia JavaScript-->
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Import para la sidebar-->
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+</head>
+<body>
+<div id="base" class="">
+
+    <div id="titulo_cargar_items">
+        <p><span>Validación Manual de Egresos</span></p>
+    </div>
+
+    <div id="proveedor_seleccionado">
+        <p><span>Fecha: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  10/10/2020" disabled/>
+    </div>
+
+    <div id="entidad">
+        <p><span>Entidad: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unaEntidad" disabled/>
+    </div>
+
+    <div id="presupuesto_pactado">
+        <p><span>Presupuesto pactado: </span></p>
+        <input type="checkbox" name="chk" style="align: center; margin-top: 6px; margin-left: 6px; "/>
+        <!--<input type="datosTraidos" name="txt" class="variables_fijas" value="  unaEntidad" disabled/>-->
+    </div>
+
+    <div id="valor_presupuesto_numero">
+        <p><span>Valor presupuesto pactado: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unValor" disabled/>
+    </div>
+
+    <!--<div id="select_estrategias">
+        <select id="estrategia" class="select_bonito" onchange="disableCheckBox(this)">
+            <option value="Seleccione">Seleccione una estrategia</option>
+            <option value="Manual">Manual</option>
+            <option value="Automática">Automática</option>
+        </select>
+    </div>
+
+    <div id="fecha">
+        <p><span>Hora: </span></p>
+    </div>
+
+    <div id="select_horas">
+        <select id="horas" disabled class="select_bonito">
+            <option>Seleccione una hora</option>
+            <option>00:00hs</option>
+            <option>01:00hs</option>
+            <option>02:00hs</option>
+            <option>03:00hs</option>
+            <option>04:00hs</option>
+            <option>05:00hs</option>
+            <option>06:00hs</option>
+            <option>07:00hs</option>
+            <option>08:00hs</option>
+            <option>09:00hs</option>
+            <option>10:00hs</option>
+            <option>11:00hs</option>
+            <option>12:00hs</option>
+            <option>13:00hs</option>
+            <option>14:00hs</option>
+            <option>15:00hs</option>
+            <option>16:00hs</option>
+            <option>17:00hs</option>
+            <option>18:00hs</option>
+            <option>19:00hs</option>
+            <option>20:00hs</option>
+            <option>21:00hs</option>
+            <option>22:00hs</option>
+            <option>23:00hs</option>
+        </select>
+    </div>-->
+
+    <div id="metodo_de_pago">
+        <p><span>Presupuesto ofrecidos: </span></p>
+        <!--<input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>-->
+    </div>
+
+    <div id="select_minutos">
+        <div id="u539" class="ax_default">
+            <div id="u539_state0" class="panel_state" data-label="State1" style="">
+                <div id="u539_state0_content" class="panel_state_content">
+                    <table class="tablaCSSS">
+                        <thead>
+                        <tr>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:12px;">Proveedor</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:12px;">Fecha</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:12px;">Documento comercial</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:12px;">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each egreso}}
+                        <tr>
+                            <td>{{entidad.nombre}}</td>
+                            <td>{{fecha}}</td>
+                            <td>{{documentoComercial.tipo}}</td>
+                            <td>{{valor.importe}}</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="documento_comercial">
+        <p><span>Documento comercial: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unDoc" disabled/>
+    </div>
+
+    <div id="descripcion">
+        <p><span>Descripción: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unaDescripcion" disabled/>
+    </div>
+
+    <div id="valor_total">
+        <p><span>Valor: </span></p>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unValor" disabled/>
+    </div>
+
+    <div id="cargar_items">
+        <input type="button" class="boton_cargar_items" value="Validar"/>
+    </div>
+
+    <div id="rechazar">
+        <input type="button" class="boton_cargar_items" value="Rechazar"/>
+    </div>
+
+    <div id="u5399" class="ax_default">
+        <div id="u5399_state0" class="panel_state" data-label="State1" style="">
+            <div id="u5399_state0_content" class="panel_state_content" style="width:100%;">
+                <table class="tablaCSS" style="width:100%;">
+                    <thead>
+                    <tr>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Tipo</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Cantidad</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Precio unitario</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each egreso}}
+                    <tr>
+                        <td>{{entidad.nombre}}</td>
+                        <td>{{fecha}}</td>
+                        <td>{{metodoDePago.tipo}}</td>
+                        <td>{{valor.importe}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="u53999" class="ax_default">
+        <div id="u53999_state0" class="panel_state" data-label="State1" style="">
+            <div id="u53999_state0_content" class="panel_state_content" style="width:100%;">
+                <table class="tablaCSS" style="width:100%;">
+                    <thead>
+                    <tr>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Categoría</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Descripción</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Criterio</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Descripción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each egreso}}
+                    <tr>
+                        <td>{{entidad.nombre}}</td>
+                        <td>{{fecha}}</td>
+                        <td>{{metodoDePago.tipo}}</td>
+                        <td>{{valor.importe}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--<div id="u539" class="ax_default">
+        <div id="u539_state0" class="panel_state" data-label="State1" style="">
+            <div id="u539_state0_content" class="panel_state_content" style="width:100%;">
+                <table class="tablaCSS" style="width:100%;">
+                    <thead>
+                    <tr>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Organizacion</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Método de pago</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Documento comercial</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each egreso}}
+                    <tr>
+                        <td>{{entidad.nombre}}</td>
+                        <td>{{fecha}}</td>
+                        <td>{{metodoDePago.tipo}}</td>
+                        <td>{{documentoComercial.tipo}}</td>
+                        <td>{{valor.importe}}</td>
+                    </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>-->
+
+    <div id="includedContent"></div>
+
+</div>
+<script>
+        function disableCheckBox(v) {
+            if (v.value == 'Automática'){
+                horas.disabled = false;
+                minutos.disabled = false;
+            }else{
+                horas.disabled = true;
+                minutos.disabled = true;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -67,7 +67,7 @@
                             <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre item</th> <!--style="width:24.6%"-->
                             <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Tipo</th>
                             <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Cantidad</th>
-                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Precio de unitario</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Precio unitario</th>
                         </tr>
                     </thead>
                 </table>
@@ -78,7 +78,7 @@
                     <td><input type="checkbox" name="chk" style="align: center;"/></td>
                     <td><input name="nombreItem" class="variables" type="text" style="width: 100%; text-align: center;"/></td>
                     <td>
-                        <select name="tipoItem" class="variables" type="text" style="width: 100%; text-align: center;">
+                        <select id="select_b_s" name="tipoItem" class="variables" type="text" style="width: 100%; text-align: center;">
                             <option value="seleccione">Seleccionar...</option>
                             <option value="bien">Bien</option>
                             <option value="servicio">Servicio</option>
@@ -98,6 +98,8 @@
         <div id="cargar_items">
             <input type="button" class="boton_cargar_items" value="Cargar items" onclick="getElementsFromTable('dataTable')"/>
         </div>
+
+        <input id="form_json" name="json" type="txt" style="display:none; visibility:hidden;">
 
         <div id="includedContent"></div>
 
@@ -198,33 +200,45 @@
         function getElementsFromTable(tableID) {
 		    var table = document.getElementById(tableID);
             var rowCount = table.rows.length;
+            var jsonLindo = '[';
 
-            for(var i = 1; i < rowCount; i++){
-                var objCells = table.rows.item(i).cells;
-                var j = 1;
+            nombreIngresado = table.rows[1].cells[1].childNodes[0];
+            tipoItemIngresado = table.rows[1].cells[2].childNodes[0];
+            cantidadIngresada = table.rows[1].cells[3].childNodes[0];
+            precioIngresado = table.rows[1].cells[4].childNodes[0];
 
-                var nombreItem = objCells.item(j).innerHTML;
-                var tipoItem = objCells.item(j+1).innerHTML;
-                var cantidad = objCells.item(j+2).innerHTML;
-                var precio = objCells.item(j+3).innerHTML;
+            jsonLindo = jsonLindo + '{'
+                            +'"nombre" : "' + nombreIngresado.value +'",'
+                            +'"tipo"  : "' + tipoItemIngresado.value +'",'
+                            +'"cantidad" : '+ cantidadIngresada.value +','
+                            +'"precio" : ' + precioIngresado.value
+                            +'}';
 
-                //tengo que armarme el json
-                var item = { "nombre": nombreItem, "tipo": tipoItem, "cant": cantidad, "precio": precio };
-                var itemJSON = JSON.stringify(item);
+            for(var i = 2; i < rowCount; i++){
 
-                var element = document.createElement();
+                jsonLindo = jsonLindo + ',';
 
-                element.name = "itemJSON";
+                nombreIngresado = table.rows[i].cells[1].childNodes[0];
+                tipoItemIngresado = table.rows[i].cells[2].childNodes[0];
+                cantidadIngresada = table.rows[i].cells[3].childNodes[0];
+                precioIngresado = table.rows[i].cells[4].childNodes[0];
 
-                element.value = itemJSON;
+                //Armo el json
 
-                document.getElementById("cargar_items").submit();
-
+                jsonLindo = jsonLindo + '{'
+                            +'"nombre" : "' + nombreIngresado.value +'",'
+                            +'"tipo"  : "' + tipoItemIngresado.value +'",'
+                            +'"cantidad" : '+ cantidadIngresada.value +','
+                            +'"precio" : ' + precioIngresado.value
+                            +'}';
             }
 
+            jsonLindo = jsonLindo + ']';
+            //document.write(String(jsonLindo));
 
+            document.getElementById("form_json").value = String(jsonLindo);
 
-
+            //document.write(String(form_json.value));
         }
 
     </script>

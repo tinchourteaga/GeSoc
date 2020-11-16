@@ -21,7 +21,7 @@
   position:absolute;
   left:5%;
   top:15%;
-  width:100%;
+  width:75%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:700;
@@ -35,7 +35,7 @@
   position:absolute;
   left:7%;
   top:24%;
-  width:100%;
+  width:50%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:400;
@@ -48,15 +48,15 @@
   position:absolute;
   left:7%;
   top:29%;
-  width:100%;
+  width:50%;
 }
 
 #fecha{
   border-width:0px;
   position:absolute;
   left:7%;
-  top:34%;
-  width:100%;
+  top:45%;
+  width:50%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:400;
@@ -68,16 +68,16 @@
 #select_horas{
   position:absolute;
   left:7%;
-  top:39%;
-  width:100%;
+  top:49%;
+  width:50%;
 }
 
 #metodo_de_pago{
   border-width:0px;
   position:absolute;
   left:7%;
-  top:44%;
-  width:100%;
+  top:56%;
+  width:50%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:400;
@@ -89,15 +89,36 @@
 #select_minutos{
   position:absolute;
   left:7%;
-  top:49%;
-  width:100%;
+  top:60%;
+  width:50%;
+}
+
+#egresos{
+  border-width:0px;
+  position:absolute;
+  left:7%;
+  top:35%;
+  width:50%;
+  display:flex;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:1.3vw;
+  color:black;
+}
+
+#select_egresos{
+  position:absolute;
+  left:7%;
+  top:39%;
+  width:50%;
 }
 
 #cargar_items{
   border-width:0px;
   position:absolute;
   left:11%;
-  top:59%;
+  top:67%;
   display:flex;
 }
 

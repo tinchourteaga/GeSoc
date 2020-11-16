@@ -218,4 +218,22 @@ public class ControllerEgresos {
         datos.put("egreso",egreso);
         return new ModelAndView(datos, "cargar_items_egresos.html");
     }
+
+    public static ModelAndView visualizarPantallaValidacion(Request request, Response response) {
+
+        Map<String, Object> datos= new HashMap<>();
+        Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
+        List<Egreso> egresosARevisar=miUsuario.getEgresosAREvisar().stream().filter(e->!e.isEstaVerificada()).collect(Collectors.toList());
+        datos.put("egreso",egresosARevisar);
+        return new ModelAndView(datos, "validacion_egresos.html");
+    }
+
+    public static ModelAndView visualizarPantallaValidacionManual(Request request, Response response) {
+        Map<String, Object> datos= new HashMap<>();
+
+
+
+
+        return new ModelAndView(datos, "validacion_egresos.html");
+    }
 }

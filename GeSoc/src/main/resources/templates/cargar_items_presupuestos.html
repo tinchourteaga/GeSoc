@@ -90,8 +90,10 @@
     </div>
 
     <div id="cargar_items">
-        <input type="button" class="boton_cargar_items" value="Cargar items"/>
+        <input type="button" class="boton_cargar_items" value="Cargar items" onclick="getElementsFromTable('dataTable')"/>
     </div>
+
+    <input id="form_json" name="json" type="txt" style="display:none; visibility:hidden;">
 
     <div id="includedContent"></div>
 
@@ -184,6 +186,50 @@
             document.getElementById("total_input").value = String(sumatoria);
             return sumatoria;
 		}
+
+		function getElementsFromTable(tableID) {
+		    var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            var jsonLindo = '[';
+
+            nombreIngresado = table.rows[1].cells[1].childNodes[0];
+            tipoItemIngresado = table.rows[1].cells[2].childNodes[0];
+            cantidadIngresada = table.rows[1].cells[3].childNodes[0];
+            precioIngresado = table.rows[1].cells[4].childNodes[0];
+
+            jsonLindo = jsonLindo + '{'
+                            +'"nombre" : "' + nombreIngresado.value +'",'
+                            +'"tipo"  : "' + tipoItemIngresado.value +'",'
+                            +'"cantidad" : '+ cantidadIngresada.value +','
+                            +'"precio" : ' + precioIngresado.value
+                            +'}';
+
+            for(var i = 2; i < rowCount; i++){
+
+                jsonLindo = jsonLindo + ',';
+
+                nombreIngresado = table.rows[i].cells[1].childNodes[0];
+                tipoItemIngresado = table.rows[i].cells[2].childNodes[0];
+                cantidadIngresada = table.rows[i].cells[3].childNodes[0];
+                precioIngresado = table.rows[i].cells[4].childNodes[0];
+
+                //Armo el json
+
+                jsonLindo = jsonLindo + '{'
+                            +'"nombre" : "' + nombreIngresado.value +'",'
+                            +'"tipo"  : "' + tipoItemIngresado.value +'",'
+                            +'"cantidad" : '+ cantidadIngresada.value +','
+                            +'"precio" : ' + precioIngresado.value
+                            +'}';
+            }
+
+            jsonLindo = jsonLindo + ']';
+            //document.write(String(jsonLindo));
+
+            document.getElementById("form_json").value = String(jsonLindo);
+
+            //document.write(String(form_json.value));
+        }
     </script>
 </body>
 </html>

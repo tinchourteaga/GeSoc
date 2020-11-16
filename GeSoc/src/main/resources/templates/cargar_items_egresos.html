@@ -26,6 +26,7 @@
 
 <body>
     <div id="base" class="">
+        <form action="/cargarItemsEgreso" method="post">
 
         <div id="titulo_cargar_items">
             <p><span>Cargar Items</span></p>
@@ -211,15 +212,13 @@
                 var item = { "nombre": nombreItem, "tipo": tipoItem, "cant": cantidad, "precio": precio };
                 var itemJSON = JSON.stringify(item);
 
-                //mandar el json de alguna forma
-                let xhr = new XMLHttpRequest();
-                let url = "http://localhost:63342/cargar_items_egresos.html";
+                var element = document.createElement();
 
-                xhr.open("POST", url, true);
+                element.name = "itemJSON";
 
-                xhr.setRequestHeader("Content-Type", "application/json");
+                element.value = itemJSON;
 
-                xhr.send(itemJSON);
+                document.getElementById("cargar_items").submit();
 
             }
 

@@ -14,8 +14,9 @@ public class Main {
     public static void main(String[] args){
 
 
-       /*String[] arg= {"Y", "Y"};
-        args=arg;*/
+       String[] arg= {"Y", "Y"};
+        args=arg;
+
             switch (args[0]) {
 
                 case "Y":

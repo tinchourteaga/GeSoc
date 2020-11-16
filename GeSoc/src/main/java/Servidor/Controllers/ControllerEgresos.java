@@ -11,16 +11,36 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static Persistencia.EntityManagerHelper.getEntityManager;
+
 public class ControllerEgresos {
 
     public static ModelAndView visualizarPantalla(Request request, Response response){
 
-        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        String username = request.session().attribute("nombreUsuario");
+
+        //Hacer un query con el nombre de usuario de sesion y la pk
+        String queryString = "SELECT usuario FROM Usuario p WHERE p.persona = :username";
+
+        TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
+
+        query.setParameter("username", username);
+
+        List<Integer> usuariosLista = query.getResultList();
+
+        int usuarioPK = usuariosLista.get(0);
+
+        EntityManager em = getEntityManager();
+        Usuario user = em.find(Usuario.class, usuarioPK);
+
+        //Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
         String funciono = request.queryParams("Exito");
         int valor=0;
@@ -32,7 +52,7 @@ public class ControllerEgresos {
         List<String> criterios= Arrays.asList("Menor Precio");
         List<String> documentos=Arrays.asList("Remito","Nota debito","Nota credito","Factura A","Factura B","Factura C","Ticket");
         List<String> metodos= Arrays.asList("Tarjeta de credito","Tarjeta de debito","Efectivo","Cheque");
-        List<Egreso> egresos= miUsuario.getEgresosAREvisar();
+        List<Egreso> egresos= user.getEgresosAREvisar();
 
         datos.put("criterios",criterios);
         datos.put("documentos",documentos);
@@ -126,8 +146,26 @@ public class ControllerEgresos {
 
         if(request.queryParams("esRevisor")!=null){
 
-            Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
-            Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
+            String username = request.session().attribute("nombreUsuario");
+
+            //Hacer un query con el nombre de usuario de sesion y la pk
+            String queryString = "SELECT usuario FROM pers_usuario p" +
+                    "WHERE p.nickname == 'username'";
+
+            TypedQuery<Usuario> query = getEntityManager().createQuery(queryString, Usuario.class);
+
+            query.setParameter("username", username);
+
+            List<Usuario> usuariosLista = query.getResultList();
+
+            int usuarioPK = usuariosLista.get(0).getUsuario();
+
+            EntityManager em = getEntityManager();
+            Usuario usuario = em.find(Usuario.class, usuarioPK);
+            Usuario usuarioModificado = em.find(Usuario.class, usuarioPK);
+
+            //Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
+            //Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
 
             usuarioModificado.agregarEgresoARevisar(egreso);
 
@@ -172,14 +210,18 @@ public class ControllerEgresos {
         Integer cant = Integer.valueOf(cantidad);
         Float valor = Float.valueOf(precio);
 
-        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class); //dao generico de BBDD
-        Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso); //repositorio que tambien usa generics
+        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class);
+        Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso);
 
         List<Egreso> egresos = repoEgreso.getTodosLosElementos();
 
-        int i = egresos.indexOf(egresoId);
+        List<Egreso> egresosList = egresos.stream().filter(e -> e.getEgreso() == egresoId.intValue()).collect(Collectors.toList());
 
-        Egreso objEgreso = egresos.get(i);
+        if(egresosList.isEmpty()){
+            return null;
+        }
+
+        Egreso objEgreso = egresosList.get(0);
 
         Item objItem = new Item(valor,nombre,cant);
         objItem.setTipo(tipo);

@@ -44,7 +44,7 @@ public class Usuario {
     @Enumerated(value = EnumType.STRING)
     private Rol rol; //Estandar o Administrador
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "dom_rol_dom_egreso",
             joinColumns = { @JoinColumn(name = "rol") },

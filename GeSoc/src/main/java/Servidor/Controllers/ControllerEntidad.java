@@ -123,7 +123,7 @@ public class ControllerEntidad {
 
     private static void persistirEntidadJuridica(EntidadJuridica nuevaEntidadJuridica) {
 
-        DAO DAOEntidadJuridica = new DAOBBDD<EntidadJuridica>(); //dao generico de BBDD
+        DAO DAOEntidadJuridica = new DAOBBDD<EntidadJuridica>(EntidadJuridica.class); //dao generico de BBDD
         Repositorio repoEntidadJuridica = new Repositorio<EntidadJuridica>(DAOEntidadJuridica); //repositorio que tambien usa generics
 
         if(!repoEntidadJuridica.existe(nuevaEntidadJuridica))
@@ -132,7 +132,7 @@ public class ControllerEntidad {
 
     private static void persistirEntidadBase(EntidadBase nuevaEntidadBase) {
 
-        DAO DAOEntidadBase = new DAOBBDD<EntidadBase>(); //dao generico de BBDD
+        DAO DAOEntidadBase = new DAOBBDD<EntidadBase>(EntidadBase.class); //dao generico de BBDD
         Repositorio repoEntidadBase = new Repositorio<EntidadBase>(DAOEntidadBase); //repositorio que tambien usa generics
 
         if(!repoEntidadBase.existe(nuevaEntidadBase))

@@ -168,7 +168,7 @@ public class ControllerProveedor {
 
     public static void persistirEmpresa(Proveedor empresa){
 
-        DAO DAOProvEmpresa = new DAOBBDD<Proveedor>(); //dao generico de BBDD
+        DAO DAOProvEmpresa = new DAOBBDD<Proveedor>(Proveedor.class); //dao generico de BBDD
         Repositorio repoProvEmpresa = new Repositorio<Proveedor>(DAOProvEmpresa); //repositorio que tambien usa generics
 
         if(!repoProvEmpresa.existe(empresa))
@@ -177,7 +177,7 @@ public class ControllerProveedor {
 
     public static void persistirPersona(Proveedor persona){
 
-        DAO DAOProvPersona = new DAOBBDD<Proveedor>(); //dao generico de BBDD
+        DAO DAOProvPersona = new DAOBBDD<Proveedor>(Proveedor.class); //dao generico de BBDD
         Repositorio repoProvPersona = new Repositorio<Proveedor>(DAOProvPersona); //repositorio que tambien usa generics
 
         if(!repoProvPersona.existe(persona))

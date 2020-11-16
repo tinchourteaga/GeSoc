@@ -138,9 +138,9 @@ public class ControllerEgresos {
                 break;
         }
 
-        if(medioDePago==null || documentoAsociado==null /*|| criterio==null*/){
-            response.redirect("cargar_egreso?Exito=1");
-        }
+       //if(medioDePago==null || documentoAsociado==null /*|| criterio==null*/){
+        //    response.redirect("cargar_egreso?Exito=1");
+       // }
 
         Egreso egreso = new Egreso(LocalDate.parse(fecha), pais, new ArrayList<>(), medioDePago, new ArrayList<>(), documentoAsociado, criterio);
 
@@ -168,22 +168,22 @@ public class ControllerEgresos {
 
             usuarioModificado.agregarEgresoARevisar(egreso);
 
-            DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
-            Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+            DAO DAOUsuario = new DAOBBDD<Usuario>();
+            Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
             repoUsuario.modificar(usuario, usuarioModificado);
         }
 
         persistirEgreso(egreso);
 
         //para que no se pase de vivo y no modifique cosas que no deberia el weon
-        response.redirect("cargar_items?egreso="+egreso.getEgreso()+"&us="+request.session().attribute("idUsuarioActual"));
+        response.redirect("cargar_items_egreso?egreso="+egreso.getEgreso()+"&us="+request.session().attribute("idUsuarioActual"));
 
         return null;
     }
 
     public static void persistirEgreso(Egreso egreso){
 
-        DAO DAOEgreso = new DAOBBDD<Egreso>(); //dao generico de BBDD
+        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class); //dao generico de BBDD
         Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso); //repositorio que tambien usa generics
 
         if(!repoEgreso.existe(egreso))
@@ -196,7 +196,7 @@ public class ControllerEgresos {
         /*
         RequestMaker rm = RequestMaker.getInstance();
 
-        rm.crearGET("http://localhost:63342/cargar_items_egresos.html");
+        rm.crearGET("http://localhost:63342/cargar_items_egresos");
         */
 
         String egreso = request.queryParams("egreso");

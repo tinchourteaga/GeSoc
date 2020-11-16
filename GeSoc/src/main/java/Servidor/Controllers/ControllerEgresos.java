@@ -26,7 +26,7 @@ public class ControllerEgresos {
 
         String username = request.session().attribute("nombreUsuario");
 
-        //Hacer un query con el nombre de usuario de sesion y la pk
+        //Hacer un query con el nombre de usuario de sesion para sacar su PK
         String queryString = "SELECT usuario FROM Usuario p WHERE p.persona = :username";
 
         TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
@@ -148,17 +148,16 @@ public class ControllerEgresos {
 
             String username = request.session().attribute("nombreUsuario");
 
-            //Hacer un query con el nombre de usuario de sesion y la pk
-            String queryString = "SELECT usuario FROM pers_usuario p" +
-                    "WHERE p.nickname == 'username'";
+            //Hacer un query con el nombre de usuario de sesion para sacar su PK
+            String queryString = "SELECT usuario FROM Usuario p WHERE p.persona = :username";
 
-            TypedQuery<Usuario> query = getEntityManager().createQuery(queryString, Usuario.class);
+            TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
 
             query.setParameter("username", username);
 
-            List<Usuario> usuariosLista = query.getResultList();
+            List<Integer> usuariosLista = query.getResultList();
 
-            int usuarioPK = usuariosLista.get(0).getUsuario();
+            int usuarioPK = usuariosLista.get(0);
 
             EntityManager em = getEntityManager();
             Usuario usuario = em.find(Usuario.class, usuarioPK);

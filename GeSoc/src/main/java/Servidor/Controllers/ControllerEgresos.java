@@ -11,36 +11,16 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static Persistencia.EntityManagerHelper.getEntityManager;
-
 public class ControllerEgresos {
 
     public static ModelAndView visualizarPantalla(Request request, Response response){
 
-        String username = request.session().attribute("nombreUsuario");
-
-        //Hacer un query con el nombre de usuario de sesion para sacar su PK
-        String queryString = "SELECT usuario FROM Usuario p WHERE p.persona = :username";
-
-        TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
-
-        query.setParameter("username", username);
-
-        List<Integer> usuariosLista = query.getResultList();
-
-        int usuarioPK = usuariosLista.get(0);
-
-        EntityManager em = getEntityManager();
-        Usuario user = em.find(Usuario.class, usuarioPK);
-
-        //Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
         String funciono = request.queryParams("Exito");
         int valor=0;
@@ -52,7 +32,7 @@ public class ControllerEgresos {
         List<String> criterios= Arrays.asList("Menor Precio");
         List<String> documentos=Arrays.asList("Remito","Nota debito","Nota credito","Factura A","Factura B","Factura C","Ticket");
         List<String> metodos= Arrays.asList("Tarjeta de credito","Tarjeta de debito","Efectivo","Cheque");
-        List<Egreso> egresos= user.getEgresosAREvisar();
+        List<Egreso> egresos= miUsuario.getEgresosAREvisar();
 
         datos.put("criterios",criterios);
         datos.put("documentos",documentos);
@@ -146,25 +126,8 @@ public class ControllerEgresos {
 
         if(request.queryParams("esRevisor")!=null){
 
-            String username = request.session().attribute("nombreUsuario");
-
-            //Hacer un query con el nombre de usuario de sesion para sacar su PK
-            String queryString = "SELECT usuario FROM Usuario p WHERE p.persona = :username";
-
-            TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
-
-            query.setParameter("username", username);
-
-            List<Integer> usuariosLista = query.getResultList();
-
-            int usuarioPK = usuariosLista.get(0);
-
-            EntityManager em = getEntityManager();
-            Usuario usuario = em.find(Usuario.class, usuarioPK);
-            Usuario usuarioModificado = em.find(Usuario.class, usuarioPK);
-
-            //Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
-            //Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
+            Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
+            Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
 
             usuarioModificado.agregarEgresoARevisar(egreso);
 

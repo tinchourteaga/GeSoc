@@ -11,11 +11,15 @@ import spark.Request;
 import spark.Response;
 import spark.Session;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import static Persistencia.EntityManagerHelper.getEntityManager;
 
 public class ControllerSesion{
 
@@ -85,15 +89,23 @@ public class ControllerSesion{
     }
 
     public static Usuario obtenerUsuariodeSesion(Request request){
-        String username= request.session().attribute("nombreUsuario");
-        DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class); //dao generico de BBDD
-        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
-        List<Usuario> todosLosUsuarios = repoUsuario.getTodosLosElementos();
-        List<Usuario> usuariosPosibles=todosLosUsuarios.stream().filter(us-> us.getNickName().equals(username)).collect(Collectors.toList());
-        if(usuariosPosibles.isEmpty()){
-            return null;
-        }
-        return usuariosPosibles.get(0);
+        String username = request.session().attribute("nombreUsuario");
+
+        //Hacer un query con el nombre de usuario de sesion para sacar su PK
+        String queryString = "SELECT usuario FROM Usuario p WHERE p.persona = :username";
+
+        TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
+
+        query.setParameter("username", username);
+
+        List<Integer> usuariosLista = query.getResultList();
+
+        int usuarioPK = usuariosLista.get(0);
+
+        EntityManager em = getEntityManager();
+        Usuario user = em.find(Usuario.class, usuarioPK);
+
+        return user;
 
     }
 }

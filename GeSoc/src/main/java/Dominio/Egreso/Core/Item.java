@@ -46,6 +46,14 @@ public class Item {
         return cantidad;
     }
 
+    public Egreso getEgreso() {
+        return egreso;
+    }
+
+    public void setEgreso(Egreso egreso) {
+        this.egreso = egreso;
+    }
+
     public Float getValor() {
         return valor;
     }

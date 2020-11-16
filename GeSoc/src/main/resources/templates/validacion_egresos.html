@@ -48,8 +48,11 @@
         </div>
 
         <div id="select_egresos">
-            <select id="egreso" name="estrategia" class="select_bonito">
+            <select id="egreso" name="egreso" class="select_bonito">
                 <option value="Seleccione">Seleccione un egreso:</option>
+                {{#each egreso}}
+                <option value={{egreso}}>{{fecha}}:{{valor.importe}}</option>
+                {{/each}}
             </select>
         </div>
 
@@ -61,30 +64,30 @@
         <div id="select_horas">
             <select id="horas" name="hora" disabled class="select_bonito">
                 <option>Seleccione una hora</option>
-                <option>00:00hs</option>
-                <option>01:00hs</option>
-                <option>02:00hs</option>
-                <option>03:00hs</option>
-                <option>04:00hs</option>
-                <option>05:00hs</option>
-                <option>06:00hs</option>
-                <option>07:00hs</option>
-                <option>08:00hs</option>
-                <option>09:00hs</option>
-                <option>10:00hs</option>
-                <option>11:00hs</option>
-                <option>12:00hs</option>
-                <option>13:00hs</option>
-                <option>14:00hs</option>
-                <option>15:00hs</option>
-                <option>16:00hs</option>
-                <option>17:00hs</option>
-                <option>18:00hs</option>
-                <option>19:00hs</option>
-                <option>20:00hs</option>
-                <option>21:00hs</option>
-                <option>22:00hs</option>
-                <option>23:00hs</option>
+                <option value="0">00:00hs</option>
+                <option value="1">01:00hs</option>
+                <option value="2">02:00hs</option>
+                <option value="3">03:00hs</option>
+                <option value="4">04:00hs</option>
+                <option value="5">05:00hs</option>
+                <option value="6">06:00hs</option>
+                <option value="7">07:00hs</option>
+                <option value="8">08:00hs</option>
+                <option value="9">09:00hs</option>
+                <option value="10">10:00hs</option>
+                <option value="11">11:00hs</option>
+                <option value="12">12:00hs</option>
+                <option value="13">13:00hs</option>
+                <option value="14">14:00hs</option>
+                <option value="15">15:00hs</option>
+                <option value="16">16:00hs</option>
+                <option value="17">17:00hs</option>
+                <option value="18">18:00hs</option>
+                <option value="19">19:00hs</option>
+                <option value="20">20:00hs</option>
+                <option value="21">21:00hs</option>
+                <option value="22">22:00hs</option>
+                <option value="23">23:00hs</option>
             </select>
         </div>
 
@@ -96,18 +99,18 @@
         <div id="select_minutos">
             <select id="minutos" name="minutos" disabled class="select_bonito">
                 <option>Seleccione un minuto</option>
-                <option>5min</option>
-                <option>10min</option>
-                <option>15min</option>
-                <option>20min</option>
-                <option>25min</option>
-                <option>30min</option>
-                <option>35min</option>
-                <option>40min</option>
-                <option>45min</option>
-                <option>50min</option>
-                <option>55min</option>
-                <option>60min</option>
+                <option value="5">5min</option>
+                <option value="10">10min</option>
+                <option value="15">15min</option>
+                <option value="20">20min</option>
+                <option value="25">25min</option>
+                <option value="30">30min</option>
+                <option value="35">35min</option>
+                <option value="40">40min</option>
+                <option value="45">45min</option>
+                <option value="50">50min</option>
+                <option value="55">55min</option>
+                <option value="60">60min</option>
             </select>
         </div>
 

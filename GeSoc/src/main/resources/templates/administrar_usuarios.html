@@ -261,7 +261,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2022" class="ax_default text_field" data-label="Filter Input">
           <div id="u2022_div" class=""></div>
-          <input id="u2022_input" type="text" value="" class="u2022_input"/>
+          <input id="u2022_input" type="text" name="identificacion" value={{identificacionDefault}} class="u2022_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -275,7 +275,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2024" class="ax_default text_field" data-label="Filter Input">
           <div id="u2024_div" class=""></div>
-          <input id="u2024_input" type="text" value="" class="u2024_input"/>
+          <input id="u2024_input" name="apellido" type="text" value={{apellidoDefault}} class="u2024_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -289,7 +289,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2026" class="ax_default text_field" data-label="Filter Input">
           <div id="u2026_div" class=""></div>
-          <input id="u2026_input" type="text" value="" class="u2026_input"/>
+          <input id="u2026_input" name="nombre" type="text" value={{nombreDefault}} class="u2026_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -407,23 +407,39 @@
             <p style="color: rgba(217, 70, 59, 1); font-size:1.5vw; left:5%; top:0%; position:absolute;">Filtar por: </p>
 
             <div id="select_empresas">
-              <select>
-                <option>Seleccione una empresa</option>
+              <select id="entidadFiltro">
+                {{#if empresaElegida includeZero=false}}
+                <option value="Seleccione una empresa" selected>Seleccione una empresa</option>
+                {{else}}
+                <option value={{entidad}} selected>{{nombre}}</option>
+                {{/if}}
+                {{#each entidades}}
+                <option value={{entidad}} >{{nombre}}</option>
+                {{/each}}
               </select>
             </div>
 
             <div id="checkbox_revisor">
-              <input type="checkbox" name="chk" style="align: center;"/>
+              {{#if esRevisor includeZero=true}}
+              <input id="checkedRevisor" type="checkbox" name="esRevisor" style="align: center;" checked />
+              {{else}}
+              <input id="uncheckedRevisor" type="checkbox" name="esRevisor" style="align: center;" />
+              {{/if}}
               <span>Revisor</span>
             </div>
 
             <div id="checkbox_admin">
-              <input type="checkbox" name="chk" style="align: center;"/>
+              {{#if esAdmin includeZero=true}}
+              <input id="checkedAdmin" type="checkbox" name="esAdmin" selected style="align: center;" checked />
+              {{else}}
+              <input id="uncheckedAdmin" type="checkbox" name="esAdmin" selected style="align: center;"/>
+              {{/if}}
+
               <span>Administrador</span>
             </div>
 
             <div id="cargar_items">
-              <input type="button" class="boton_cargar_items" value="Filtrar"/>
+              <input type="button" class="boton_cargar_items" value="Filtrar" onclick="relodearConFiltros()"/>
             </div>
 
 
@@ -500,7 +516,7 @@
             <!-- Apellidos (Text Field) -->
             <div id="u2052" class="ax_default text_field" data-label="Apellidos">
               <div id="u2052_div" class=""></div>
-              <input name="apellido" id="u2052_input" type="text" value="" class="u2052_input"/>
+              <input name="apellido" id="u2052_input" type="text" value={{apellidoDefault}} class="u2052_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -514,7 +530,7 @@
             <!-- Nombres (Text Field) -->
             <div id="u2054" class="ax_default text_field" data-label="Nombres">
               <div id="u2054_div" class=""></div>
-              <input name="nombre" id="u2054_input" type="text" value="" class="u2054_input"/>
+              <input name="nombre" id="u2054_input" type="text" value={{nombreDefault}} class="u2054_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -1054,11 +1070,23 @@
         document.getElementById("u2044_lightbox").style.display = "block";
         document.getElementById("u2044").style.display = "block";
       }
+      function relodearConFiltros(){
+        var valorRevisor='false';
+        var valorAdmin='false';
 
+        if(document.querySelector('#uncheckedRevisor:checked') !== null || document.querySelector('#checkedRevisor:checked') !== null)
+        valorRevisor='true';
+
+        if(document.querySelector('#checkedAdmin:checked') !== null || document.querySelector('#uncheckedAdmin:checked') !== null )
+          valorAdmin='true';
+
+
+        location.href="/administrar_usuarios?filtroRevisor="+valorRevisor+'&filtroAdministrador='+valorAdmin+'&entidadFiltro='+entidadFiltro.value+'&'+u2024_input.name+'='+u2024_input.value
+        +'&'+u2026_input.name+'='+u2026_input.value+'&'+u2022_input.name+'='+u2022_input.value;
+      }
       function cerrarPopUp(){
         document.getElementById("u2044").style.display = "none";
         document.getElementById("u2044_lightbox").style.display = "none";
-        location.href="/administrar_usuarios";
       }
     </script>
   </body>

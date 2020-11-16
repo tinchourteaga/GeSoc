@@ -183,7 +183,10 @@
         <div id="u305" class="ax_default droplist">
           <div id="u305_div" class=""></div>
           <select id="u305_input" class="u305_input">
-            <option>Seleccionar empresa</option>
+            <option value="">Seleccionar empresa</option>
+            {{#each entidades}}
+            <option class="u305_input_option" value={{entidad}}>{{nombre}}</option>
+            {{/each}}
           </select>
         </div>
       </div>

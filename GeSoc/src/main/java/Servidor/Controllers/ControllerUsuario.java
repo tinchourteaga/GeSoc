@@ -49,60 +49,63 @@ public class ControllerUsuario {
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
 
-        List<Entidad> entidadesQueManejo= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
-        Set<Entidad> entidadesSinRepetidos= new HashSet<>();
-        entidadesSinRepetidos.addAll(entidadesQueManejo);
-        entidadesQueManejo.clear();
-        entidadesQueManejo.addAll(entidadesSinRepetidos);
+        if(miUsuario.getRol().equals(Rol.ADMINISTRADOR)) {
+            List<Entidad> entidadesQueManejo = miUsuario.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList());
+            Set<Entidad> entidadesSinRepetidos = new HashSet<>();
+            entidadesSinRepetidos.addAll(entidadesQueManejo);
+            entidadesQueManejo.clear();
+            entidadesQueManejo.addAll(entidadesSinRepetidos);
 
-        Repositorio repoUsuario= new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
-        List<Usuario> usuariosPosibles=repoUsuario.getTodosLosElementos();
-        List<Usuario> usuarioAVer= usuariosPosibles.stream().filter(us-> us.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList()).stream().anyMatch(e->entidadesQueManejo.contains(e))).collect(Collectors.toList());
+            Repositorio repoUsuario = new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
+            List<Usuario> usuariosPosibles = repoUsuario.getTodosLosElementos();
+            List<Usuario> usuarioAVer = usuariosPosibles.stream().filter(us -> us.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList()).stream().anyMatch(e -> entidadesQueManejo.contains(e))).collect(Collectors.toList());
 
-        String entidadFiltro=request.queryParams("entidadFiltro");
-        String apellidoFiltro=request.queryParamOrDefault("apellido","Ingrese apellido");
-        String nombreFiltro=request.queryParamOrDefault("nombre","Ingrese nombre");
-        String identificacion=request.queryParamOrDefault("identificacion","Ingrese Nombre de Usuario");
-        String admin=request.queryParams("filtroAdministrador");
-        String revisor=request.queryParams("filtroRevisor");
+            String entidadFiltro = request.queryParams("entidadFiltro");
+            String apellidoFiltro = request.queryParamOrDefault("apellido", "Ingrese apellido");
+            String nombreFiltro = request.queryParamOrDefault("nombre", "Ingrese nombre");
+            String identificacion = request.queryParamOrDefault("identificacion", "Ingrese Nombre de Usuario");
+            String admin = request.queryParams("filtroAdministrador");
+            String revisor = request.queryParams("filtroRevisor");
 
-        if(admin!=null && admin.equals("true")){
-            usuarioAVer=usuarioAVer.stream().filter(us->us.getRol().equals(Rol.ADMINISTRADOR)).collect(Collectors.toList());
-            datos.put("esAdmin",admin);
-        }
-        if(revisor!=null && revisor.equals("true")){
-            usuarioAVer=usuarioAVer.stream().filter(us->!us.getEgresosAREvisar().isEmpty()).collect(Collectors.toList());
-            datos.put("esRevisor",revisor);
-        }
-
-        if(entidadFiltro!=null && !entidadFiltro.equals("Seleccione una empresa")&& !entidadFiltro.equals("selected")){
-            List<Entidad> posiblesEntidadesAfiltrar=entidadesQueManejo.stream().filter(e->e.getEntidad()==Integer.valueOf(entidadFiltro).intValue()).collect(Collectors.toList());
-            if(!posiblesEntidadesAfiltrar.isEmpty()) {
-                Entidad entidadAfiltrar=posiblesEntidadesAfiltrar.get(0);
-                usuarioAVer=usuarioAVer.stream().filter(unUs->unUs.getEgresosAREvisar().stream().map(eg->eg.getEntidad()).collect(Collectors.toList()).contains(entidadAfiltrar)).collect(Collectors.toList());
-                datos.put("empresaElegida", entidadAfiltrar);
+            if (admin != null && admin.equals("true")) {
+                usuarioAVer = usuarioAVer.stream().filter(us -> us.getRol().equals(Rol.ADMINISTRADOR)).collect(Collectors.toList());
+                datos.put("esAdmin", admin);
             }
+            if (revisor != null && revisor.equals("true")) {
+                usuarioAVer = usuarioAVer.stream().filter(us -> !us.getEgresosAREvisar().isEmpty()).collect(Collectors.toList());
+                datos.put("esRevisor", revisor);
+            }
+
+            if (entidadFiltro != null && !entidadFiltro.equals("Seleccione una empresa") && !entidadFiltro.equals("selected")) {
+                List<Entidad> posiblesEntidadesAfiltrar = entidadesQueManejo.stream().filter(e -> e.getEntidad() == Integer.valueOf(entidadFiltro).intValue()).collect(Collectors.toList());
+                if (!posiblesEntidadesAfiltrar.isEmpty()) {
+                    Entidad entidadAfiltrar = posiblesEntidadesAfiltrar.get(0);
+                    usuarioAVer = usuarioAVer.stream().filter(unUs -> unUs.getEgresosAREvisar().stream().map(eg -> eg.getEntidad()).collect(Collectors.toList()).contains(entidadAfiltrar)).collect(Collectors.toList());
+                    datos.put("empresaElegida", entidadAfiltrar);
+                }
+            }
+
+            if (!apellidoFiltro.equals("Ingrese apellido") && !apellidoFiltro.equals("Ingrese")) {
+                usuarioAVer = usuarioAVer.stream().filter(us -> us.getApellido().equals(apellidoFiltro)).collect(Collectors.toList());
+            }
+            datos.put("apellidoDefault", apellidoFiltro);
+
+            if (!identificacion.equals("Ingrese Nombre de Usuario") && !identificacion.equals("Ingrese")) {
+                usuarioAVer = usuarioAVer.stream().filter(us -> us.getNickName().equals(identificacion)).collect(Collectors.toList());
+            }
+            datos.put("identificacionDefault", identificacion);
+
+            if (!nombreFiltro.equals("Ingrese nombre") && !nombreFiltro.equals("Ingrese")) {
+
+                usuarioAVer = usuarioAVer.stream().filter(us -> us.getNombre().equals(nombreFiltro)).collect(Collectors.toList());
+            }
+            datos.put("nombreDefault", nombreFiltro);
+
+            datos.put("usuarios", usuarioAVer);
+            datos.put("entidades", entidadesQueManejo);
+        }else{
+            response.redirect("/pantalla_principal_usuario");
         }
-
-        if(!apellidoFiltro.equals("Ingrese apellido")&& !apellidoFiltro.equals("Ingrese")){
-            usuarioAVer=usuarioAVer.stream().filter(us->us.getApellido().equals(apellidoFiltro)).collect(Collectors.toList());
-        }
-        datos.put("apellidoDefault", apellidoFiltro);
-
-        if(!identificacion.equals("Ingrese Nombre de Usuario") && !identificacion.equals("Ingrese")){
-            usuarioAVer=usuarioAVer.stream().filter(us->us.getNickName().equals(identificacion)).collect(Collectors.toList());
-        }
-        datos.put("identificacionDefault", identificacion);
-
-        if(!nombreFiltro.equals("Ingrese nombre") && !nombreFiltro.equals("Ingrese")){
-
-            usuarioAVer=usuarioAVer.stream().filter(us->us.getNombre().equals(nombreFiltro)).collect(Collectors.toList());
-        }
-        datos.put("nombreDefault", nombreFiltro);
-
-        datos.put("usuarios",usuarioAVer);
-        datos.put("entidades",entidadesQueManejo);
-
         ModelAndView vista = new ModelAndView(datos, "administrar_usuarios.html");
 
         return vista;

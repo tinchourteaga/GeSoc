@@ -23,6 +23,7 @@
     </script>
 </head>
 <body>
+<form action="/validarEgreso" method="post">
     <div id="base" class="">
 
         <div id="titulo_cargar_items">
@@ -36,7 +37,7 @@
         </div>
 
         <div id="select_estrategias">
-            <select id="estrategia" class="select_bonito" onchange="disableCheckBox(this)">
+            <select id="estrategia" name="estrategia" class="select_bonito" onchange="disableCheckBox(this)">
                 <option value="Seleccione">Seleccione una estrategia</option>
                 <option value="Manual">Manual</option>
                 <option value="Automática">Automática</option>
@@ -49,7 +50,7 @@
         </div>
 
         <div id="select_horas">
-            <select id="horas" disabled class="select_bonito">
+            <select id="horas" name="hora" disabled class="select_bonito">
                 <option>Seleccione una hora</option>
                 <option>00:00hs</option>
                 <option>01:00hs</option>
@@ -84,7 +85,7 @@
         </div>
 
         <div id="select_minutos">
-            <select id="minutos" disabled class="select_bonito">
+            <select id="minutos" name="minutos" disabled class="select_bonito">
                 <option>Seleccione un minuto</option>
                 <option>5min</option>
                 <option>10min</option>
@@ -102,7 +103,9 @@
         </div>
 
         <div id="cargar_items">
-            <input type="button" class="boton_cargar_items" value="Iniciar Validación" onclick="getElementsFromTable('dataTable')"/>
+            <button type="submit" class="boton_cargar_items" value="" >
+                <p><span>Iniciar Validación</span></p>
+            </button>
         </div>
 
         <div id="u539" class="ax_default">
@@ -148,5 +151,6 @@
             }
         }
     </script>
+</form>
 </body>
 </html>

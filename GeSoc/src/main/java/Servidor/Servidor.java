@@ -65,6 +65,8 @@ public class Servidor {
         Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);//falta boton "Filtrar"
         Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);//Falta que se bloqueen bien los campos
         Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
+        Spark.get("/validar_egresos", ControllerEgresos::visualizarPantallaValidacion, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
+        Spark.get("/validar_egreso_manualmente", ControllerEgresos::visualizarPantallaValidacionManual, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
 
 
         //haciendo

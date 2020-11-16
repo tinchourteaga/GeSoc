@@ -41,4 +41,6 @@ public class Ciudad {
         return name;
     }
     public void setName(String name) { this.name = name; }
+
+    public int getCiudad(){ return ciudad; }
 }

@@ -21,7 +21,7 @@
   position:absolute;
   left:5%;
   top:15%;
-  width:100%;
+  width:75%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:700;
@@ -35,7 +35,7 @@
   position:absolute;
   left:7%;
   top:24%;
-  width:100%;
+  width:50%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:400;
@@ -48,7 +48,7 @@
   position:absolute;
   left:7%;
   top:29%;
-  width:100%;
+  width:50%;
   border-width:0px;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
@@ -62,7 +62,7 @@
   position:absolute;
   left:7%;
   top:34%;
-  width:100%;
+  width:50%;
   border-width:0px;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
@@ -76,7 +76,7 @@
   position:absolute;
   left:7%;
   top:39%;
-  width:100%;
+  width:50%;
   border-width:0px;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
@@ -91,7 +91,7 @@
   position:absolute;
   left:7%;
   top:34%;
-  width:100%;
+  width:50%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:400;
@@ -104,7 +104,7 @@
   position:absolute;
   left:7%;
   top:39%;
-  width:100%;
+  width:50%;
 }
 
 #metodo_de_pago{
@@ -112,7 +112,7 @@
   position:absolute;
   left:7%;
   top:44%;
-  width:100%;
+  width:50%;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
   font-weight:400;
@@ -247,7 +247,7 @@
   position:absolute;
   left:7%;
   top:60%;
-  width:100%;
+  width:50%;
   border-width:0px;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
@@ -261,7 +261,7 @@
   position:absolute;
   left:7%;
   top:65%;
-  width:100%;
+  width:50%;
   border-width:0px;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
@@ -275,7 +275,7 @@
   position:absolute;
   left:7%;
   top:70%;
-  width:100%;
+  width:50%;
   border-width:0px;
   display:flex;
   font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
@@ -363,7 +363,7 @@
   left:600px;
   top:350px;
   width:550px;
-  height:330px;
+  height:130px;
 }
 #u53999_state0 {
   border-width:0px;
@@ -371,7 +371,7 @@
   left:0px;
   top:0px;
   width:550px;
-  height:330px;
+  height:130px;
   overflow:auto;
   -webkit-overflow-scrolling:touch;
   -ms-overflow-x:hidden;

@@ -19,25 +19,29 @@ public class SendEmail
         String recipient = mailUsuario;
 
         // email ID of  Sender.
-        String sender = "orggesoc@gmail.com";
+        String sender = "orggesoc";
 
-        // using host as localhost
-        String host = "127.0.0.1";
+        String clave = "PONER LA CLAVE DEL MAIL orggesoc";
 
         // Getting system properties
-        Properties properties = System.getProperties();
+        Properties properties = new Properties();
 
         // Setting up mail server
-        properties.setProperty("mail.smtp.host", host);
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.user", sender);
+        properties.put("mail.smtp.clave", clave);
 
         // creating session object to get properties
         Session session = Session.getDefaultInstance(properties);
 
+        // MimeMessage object.
+        MimeMessage message = new MimeMessage(session);
+
         try
         {
-            // MimeMessage object.
-            MimeMessage message = new MimeMessage(session);
-
             // Set From Field: adding senders email to from field.
             message.setFrom(new InternetAddress(sender));
 
@@ -51,8 +55,14 @@ public class SendEmail
             message.setText("Su usario es: " + usuario);
             message.setText("Su password es: " + contrasenia);
 
+            Transport transport = session.getTransport("smtp");
+
+            transport.connect("smtp.gmail.com", sender, clave);
+            transport.sendMessage(message, message.getAllRecipients());
+            transport.close();
+
             // Send email.
-            Transport.send(message);
+            // Transport.send(message);
             System.out.println("Mail enviado...");
         }
         catch (MessagingException mex)

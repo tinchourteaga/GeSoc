@@ -70,13 +70,13 @@ public class AddData {
         List<Provincia> todosLasProvincias = repoProvincias.getTodosLosElementos();
         Provincia caba = todosLasProvincias.stream().filter(prov -> prov.getName().equals("Capital Federal")).collect(Collectors.toList()).get(0);
         Provincia provCiudadMexico = todosLasProvincias.stream().filter(prov -> prov.getName().equals("Distrito Federal")).collect(Collectors.toList()).get(0);
-        Provincia nuevaYork = todosLasProvincias.stream().filter(prov -> prov.getName().equals("Nueva Esparta")).collect(Collectors.toList()).get(0);
+        Provincia nuevaYork = todosLasProvincias.stream().filter(prov -> prov.getName().equals("La Unión")).collect(Collectors.toList()).get(0);
 
 
         Repositorio repoCiudades = new Repositorio(new DAOBBDD<Ciudad>(Ciudad.class));
         List<Ciudad> todasLasCiudades = repoCiudades.getTodosLosElementos();
         Ciudad cabac = todasLasCiudades.stream().filter(ciu -> ciu.getName().equals("Capital Federal")).collect(Collectors.toList()).get(0);
-        Ciudad brooklyn = todasLasCiudades.stream().filter(ciu -> ciu.getName().equals("Marcano")).collect(Collectors.toList()).get(0);
+        Ciudad brooklyn = todasLasCiudades.stream().filter(ciu -> ciu.getName().equals("La Unión")).collect(Collectors.toList()).get(0);
         Ciudad ciudadAUMexico = todasLasCiudades.stream().filter(ciu -> ciu.getName().equals("Tláhuac")).collect(Collectors.toList()).get(0);
 
 

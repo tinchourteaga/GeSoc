@@ -1,6 +1,8 @@
 package Servidor.Controllers;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
+import Dominio.Entidad.Entidad;
+import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
@@ -8,15 +10,22 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ControllerCriterio {
     public static ModelAndView visualizarPantalla(Request request, Response response){
 
         Map<String,Object> datos = new HashMap<>();
+        Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
+
+        List<Entidad>entidades=miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad>entidadesSet=new HashSet<>();
+        entidadesSet.addAll(entidades);
+        entidades.clear();
+        entidades.addAll(entidadesSet);
+        datos.put("entidades",entidades);
+
         ModelAndView vista = new ModelAndView(datos, "crear_criterio.html");
 
         return vista;

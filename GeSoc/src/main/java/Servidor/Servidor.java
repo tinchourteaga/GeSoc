@@ -62,6 +62,9 @@ public class Servidor {
         Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
         Spark.get("/datos_usuario", ControllerUsuario::visualizarPantallaDatosUsuario, engine);//falta testear peor no hay boton para entrar jeje
         Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
+        Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);//falta boton "Filtrar"
+        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);//Falta que se bloqueen bien los campos
+        Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
 
 
         //haciendo
@@ -73,14 +76,11 @@ public class Servidor {
         Spark.get("/cargar_items_presupuestos", ControllerPresupuesto::visualizarPantallaItems, engine);
 
         //TODO
-        Spark.get("/usuario", ControllerUsuario::visualizarPantallaUsuario, engine);
+
 
 
         //bloqueado
-        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);//Falta que se bloqueen bien los campos
-        Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);//falta boton "Filtrar"
-        Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//Falta seleccionar Empresa
-
+       Spark.get("/usuario", ControllerUsuario::visualizarPantallaUsuario, engine);
 
 
         //No son de la entrega 6
@@ -94,18 +94,19 @@ public class Servidor {
     public static void levantarRutaPOST(){
         //done
         Spark.post("/validarLogin", ControllerSesion::validarLogin);
-        Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
+        Spark.post("/cerrarSesion", ControllerSesion::cerrarSesion);
+
 
         //haciendo
 
 
         Spark.post("/cargarIngreso", ControllerIngresos::cargarIngreso);
+        Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
 
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);
         Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
         Spark.post("/cambiarContrasenia", ControllerUsuario::cambiarContrasenia);
-        Spark.post("/cerrarSesion", ControllerSesion::cerrarSesion);
         Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
         Spark.post("/cargarEgreso", ControllerEgresos::cargarEgreso);
         Spark.post("/cargarItem", ControllerEgresos::cargarItem);

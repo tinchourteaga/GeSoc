@@ -250,7 +250,7 @@
       <div id="u3000" class="ax_default droplist">
         <div id="u3000_div" class=""></div>
         <select name="pais" id="u3000_input" class="u300_input" onchange="buscar_provincias(this)">
-          {{#if paisElegido}}
+          {{#if paisElegido includeZero=true}}
           <option class="u300_input_option" value={{pais}} selected>{{name}}</option>
           {{else}}
           <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
@@ -427,7 +427,7 @@
       <div id="u300" class="ax_default droplist">
         <div id="u300_div" class=""></div>
         <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)">
-          {{#if paisElegido}}
+          {{#if paisElegido includeZero=true}}
           <option class="u300_input_option" value={{pais}}>{{name}}</option>
           {{else}}
           <option class="u300_input_option" value="Seleccionar un País">Seleccionar un País</option>
@@ -1611,14 +1611,24 @@
         }
       }
 
-      function buscar_provincias(v) {
+      /*function buscar_provincias(v) {
         habilitar_provincias(v);
         if (v.value != 'Seleccionar un País') {
-          location.href = '/cargar_proveedor?pais=' + v.value + '&tipo=' + select_entidades.value + '&' + u320_input.name + '=' + u320_input.value
+          location.href = '/cargar_proveedor?pais=' + v.value + '&tipo=' + select_entidades.value
                   + '&' + u302_input.name + '=' + u302_input.value + '&' + u299_input.name + '=' + u299_input.value + '&' + u323_input.name + '=' + u323_input.value + '&'
                   + u309_input.name + '=' + u309_input.value + '&' + u311_input.name + '=' + u311_input.value + '&' + u313_input.name + '=' + u313_input.value +
                   '&' + u315_input.name + '=' + u315_input.value;
         }
+      }*/
+
+      function buscar_provincias(v) {
+          habilitar_provincias(v);
+          if (v.value != 'Seleccionar un País') {
+              location.href = '/cargar_entidad?pais=' + v.value + '&entidad=' + select_entidades.value + '&' + u320_input.name + '=' + u320_input.value
+                  + '&' + u302_input.name + '=' + u302_input.value + '&' + u299_input.name + '=' + u299_input.value + '&'
+                  + u309_input.name + '=' + u309_input.value + '&' + u311_input.name + '=' + u311_input.value + '&' + u313_input.name + '=' + u313_input.value +
+                  '&' + u315_input.name + '=' + u315_input.value;
+          }
       }
 
 
@@ -1655,7 +1665,13 @@
               (habilitar_provincias(u300_input))
       );
       $(document).ready(
+              (habilitar_provincias(u3000_input))
+      );
+      $(document).ready(
               (habilitar_ciudades(u305_input))
+      );
+      $(document).ready(
+              (habilitar_ciudades(u3055_input))
       );
 
     </script>

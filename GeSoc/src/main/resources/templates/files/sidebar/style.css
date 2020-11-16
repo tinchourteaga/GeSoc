@@ -149,6 +149,10 @@ nav ul .mostrar-opciones-auditoria.show7{
     display:block;
 }
 
+nav ul .mostrar-opciones-usuarios.show8{
+    display:block;
+}
+
 nav ul ul li{
     line_height: 42px;
     border-bottom: none;

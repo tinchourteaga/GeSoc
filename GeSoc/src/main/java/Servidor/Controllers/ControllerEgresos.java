@@ -11,36 +11,16 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static Persistencia.EntityManagerHelper.getEntityManager;
-
 public class ControllerEgresos {
 
     public static ModelAndView visualizarPantalla(Request request, Response response){
 
-        String username = request.session().attribute("nombreUsuario");
-
-        //Hacer un query con el nombre de usuario de sesion para sacar su PK
-        String queryString = "SELECT usuario FROM Usuario p WHERE p.persona = :username";
-
-        TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
-
-        query.setParameter("username", username);
-
-        List<Integer> usuariosLista = query.getResultList();
-
-        int usuarioPK = usuariosLista.get(0);
-
-        EntityManager em = getEntityManager();
-        Usuario user = em.find(Usuario.class, usuarioPK);
-
-        //Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
         String funciono = request.queryParams("Exito");
         int valor=0;
@@ -52,7 +32,7 @@ public class ControllerEgresos {
         List<String> criterios= Arrays.asList("Menor Precio");
         List<String> documentos=Arrays.asList("Remito","Nota debito","Nota credito","Factura A","Factura B","Factura C","Ticket");
         List<String> metodos= Arrays.asList("Tarjeta de credito","Tarjeta de debito","Efectivo","Cheque");
-        List<Egreso> egresos= user.getEgresosAREvisar();
+        List<Egreso> egresos= miUsuario.getEgresosAREvisar();
 
         datos.put("criterios",criterios);
         datos.put("documentos",documentos);
@@ -138,52 +118,35 @@ public class ControllerEgresos {
                 break;
         }
 
-        if(medioDePago==null || documentoAsociado==null /*|| criterio==null*/){
-            response.redirect("cargar_egreso?Exito=1");
-        }
+       //if(medioDePago==null || documentoAsociado==null /*|| criterio==null*/){
+        //    response.redirect("cargar_egreso?Exito=1");
+       // }
 
         Egreso egreso = new Egreso(LocalDate.parse(fecha), pais, new ArrayList<>(), medioDePago, new ArrayList<>(), documentoAsociado, criterio);
 
         if(request.queryParams("esRevisor")!=null){
 
-            String username = request.session().attribute("nombreUsuario");
-
-            //Hacer un query con el nombre de usuario de sesion para sacar su PK
-            String queryString = "SELECT usuario FROM Usuario p WHERE p.persona = :username";
-
-            TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
-
-            query.setParameter("username", username);
-
-            List<Integer> usuariosLista = query.getResultList();
-
-            int usuarioPK = usuariosLista.get(0);
-
-            EntityManager em = getEntityManager();
-            Usuario usuario = em.find(Usuario.class, usuarioPK);
-            Usuario usuarioModificado = em.find(Usuario.class, usuarioPK);
-
-            //Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
-            //Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
+            Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
+            Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
 
             usuarioModificado.agregarEgresoARevisar(egreso);
 
-            DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
-            Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+            DAO DAOUsuario = new DAOBBDD<Usuario>();
+            Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
             repoUsuario.modificar(usuario, usuarioModificado);
         }
 
         persistirEgreso(egreso);
 
         //para que no se pase de vivo y no modifique cosas que no deberia el weon
-        response.redirect("cargar_items?egreso="+egreso.getEgreso()+"&us="+request.session().attribute("idUsuarioActual"));
+        response.redirect("cargar_items_egreso?egreso="+egreso.getEgreso()+"&us="+request.session().attribute("idUsuarioActual"));
 
         return null;
     }
 
     public static void persistirEgreso(Egreso egreso){
 
-        DAO DAOEgreso = new DAOBBDD<Egreso>(); //dao generico de BBDD
+        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class); //dao generico de BBDD
         Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso); //repositorio que tambien usa generics
 
         if(!repoEgreso.existe(egreso))
@@ -196,7 +159,7 @@ public class ControllerEgresos {
         /*
         RequestMaker rm = RequestMaker.getInstance();
 
-        rm.crearGET("http://localhost:63342/cargar_items_egresos.html");
+        rm.crearGET("http://localhost:63342/cargar_items_egresos");
         */
 
         String egreso = request.queryParams("egreso");

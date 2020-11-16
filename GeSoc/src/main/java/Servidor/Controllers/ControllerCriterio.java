@@ -49,7 +49,7 @@ public class ControllerCriterio {
 
     public static void persistirCriterio(Criterio criterio){
 
-        DAO DAOCriterio = new DAOBBDD<Criterio>(); //dao generico de BBDD
+        DAO DAOCriterio = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
         Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
 
         if(!repoCriterio.existe(criterio))

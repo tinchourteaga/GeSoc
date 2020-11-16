@@ -108,7 +108,7 @@ public class ControllerPresupuesto {
 
     public static void persistirPresupuesto(Presupuesto presupuesto){
 
-        DAO DAOPresupuesto = new DAOBBDD<Presupuesto>(); //dao generico de BBDD
+        DAO DAOPresupuesto = new DAOBBDD<Presupuesto>(Presupuesto.class); //dao generico de BBDD
         Repositorio repoPresupuesto = new Repositorio<Presupuesto>(DAOPresupuesto); //repositorio que tambien usa generics
 
         if(!repoPresupuesto.existe(presupuesto))

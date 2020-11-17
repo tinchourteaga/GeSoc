@@ -35,8 +35,8 @@ public class ControllerEgresos {
 
         Map<String,Object> datos = new HashMap<>();
         List<String> criterios= Arrays.asList("Menor Precio");
-        List<String> documentos=Arrays.asList("Remito","Nota debito","Nota credito","Factura A","Factura B","Factura C","Ticket");
-        List<String> metodos= Arrays.asList("Tarjeta de credito","Tarjeta de debito","Efectivo","Cheque");
+        List<String> documentos=Arrays.asList("Remito","debito","credito","FacturaA","FacturaB","FacturaC","Ticket");
+        List<String> metodos= Arrays.asList("TarjetaCredito","TarjetaDebito","Efectivo","Cheque");
         List<Egreso> egresos= miUsuario.getEgresosAREvisar();
 
         datos.put("criterios",criterios);
@@ -84,11 +84,11 @@ public class ControllerEgresos {
                 break;
 
 
-            case"Tarjeta de credito":
+            case"TarjetaCredito":
                 medioDePago=new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO,"Pago registrado el "+LocalDate.now().toString());
                 break;
 
-            case"Tarjeta de debito":
+            case"TarjetaDebito":
                 medioDePago=new MetodoDePago(TipoDeMedioDePago.TARJETA_DEBITO,"Pago registrado el "+LocalDate.now().toString());
                 break;
 
@@ -102,19 +102,19 @@ public class ControllerEgresos {
             case "Ticket":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.TICKET,descripcionDocComercial);
                 break;
-            case "Nota credito":
+            case "credito":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.NOTA_CREDITO,descripcionDocComercial);
                 break;
-            case "Nota debito":
+            case "debito":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.NOTA_DEBITO,descripcionDocComercial);
                 break;
-            case "Factura A":
+            case "FacturaA":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.FACTURA_A,descripcionDocComercial);
                 break;
-            case "Factura B":
+            case "FacturaB":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.FACTURA_B,descripcionDocComercial);
                 break;
-            case "Factura C":
+            case "FacturaC":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.FACTURA_C,descripcionDocComercial);
                 break;
 
@@ -195,11 +195,13 @@ public class ControllerEgresos {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(request.queryParams("form_json")).getAsJsonArray();
 
-            responseObj.forEach(jsonElement ->{
-                Item objItem = new Item(jsonElement.getAsJsonObject().get("precio").getAsFloat(), jsonElement.getAsJsonObject().get("nombre").getAsString(), jsonElement.getAsJsonObject().get("cantidad").getAsInt());
-                objItem.setTipo(jsonElement.getAsJsonObject().get("tipo").getAsString());
-                objEgreso.agregarItem(objItem);
-
+            List<Item> items=new ArrayList();
+            responseObj.forEach(jsonElement -> {
+                        Item objItem = new Item(jsonElement.getAsJsonObject().get("precio").getAsFloat(), jsonElement.getAsJsonObject().get("nombre").getAsString(), jsonElement.getAsJsonObject().get("cantidad").getAsInt());
+                        objItem.setTipo(jsonElement.getAsJsonObject().get("tipo").getAsString());
+                        objEgreso.agregarItem(objItem);
+                        objItem.setEgreso(objEgreso);
+                items.add(objItem);
             });
 
         }

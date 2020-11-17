@@ -26,30 +26,30 @@
 
 <body>
     <div id="base" class="">
-        <form action="/cargarItemsEgreso" method="post">
+        <form action="/cargarItemsEgreso" id="formItemsEgreso" method="post">
 
         <div id="titulo_cargar_items">
             <p><span>Cargar Items</span></p>
         </div>
 
         <div id="proveedor_seleccionado">
-            <p><span>Proveedor: </span></p>
-            <input type="datosTraidos" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+            <p><span>Entidad </span></p>
+            <input type="datosTraidos" name="txt" class="variables_fijas" value={{entidad.nombre}} disabled/>
         </div>
 
         <div id="fecha">
             <p><span>Fecha: </span></p>
-            <input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+            <input type="datosTraidos" name="txt" class="variables_fijas" value={{fecha}} disabled/>
         </div>
 
         <div id="metodo_de_pago">
             <p><span>Método de pago: </span></p>
-            <input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+            <input type="datosTraidos" name="txt" class="variables_fijas" value={{metodoDePago.tipo}} disabled/>
         </div>
 
         <div id="documento_comercial">
             <p><span>Documento comercial: </span></p>
-            <input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>
+            <input type="datosTraidos" name="txt" class="variables_fijas" value={{documentoComercial.tipo}} disabled/>
         </div>
 
         <div id="botoncitos">
@@ -96,7 +96,10 @@
         </div>
 
         <div id="cargar_items">
-            <input type="button" class="boton_cargar_items" value="Cargar items" onclick="getElementsFromTable('dataTable')"/>
+            <button type="submit" name="boton_carga_items" class="boton_cargar_items" value={{egreso.egreso}} onclick="getElementsFromTable('dataTable')" >
+                <p><span>Cargar items</span></p>
+            </button>
+
         </div>
 
         <input id="form_json" name="json" type="txt" style="display:none; visibility:hidden;">
@@ -203,7 +206,7 @@
             var jsonLindo = '[';
 
             nombreIngresado = table.rows[1].cells[1].childNodes[0];
-            tipoItemIngresado = table.rows[1].cells[2].childNodes[0];
+            tipoItemIngresado = table.rows[1].cells[2].childNodes[1];
             cantidadIngresada = table.rows[1].cells[3].childNodes[0];
             precioIngresado = table.rows[1].cells[4].childNodes[0];
 
@@ -219,7 +222,7 @@
                 jsonLindo = jsonLindo + ',';
 
                 nombreIngresado = table.rows[i].cells[1].childNodes[0];
-                tipoItemIngresado = table.rows[i].cells[2].childNodes[0];
+                tipoItemIngresado = table.rows[i].cells[2].childNodes[1];
                 cantidadIngresada = table.rows[i].cells[3].childNodes[0];
                 precioIngresado = table.rows[i].cells[4].childNodes[0];
 
@@ -237,7 +240,9 @@
             //document.write(String(jsonLindo));
 
             document.getElementById("form_json").value = String(jsonLindo);
-
+            document.getElementById("form_json").name="form_json";
+            var form=document.getElementById("formItemsEgreso");
+            form.submit();
             //document.write(String(form_json.value));
         }
 

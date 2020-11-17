@@ -115,6 +115,7 @@ public class Servidor {
         Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
         Spark.post("/cargarEgreso", ControllerEgresos::cargarEgreso);
         Spark.post("/cargarItemsEgreso", ControllerEgresos::cargarItem);
+        Spark.post("/cargarItemsPresupuesto", ControllerPresupuesto::cargarItem);
         Spark.post("/cargarProveedor", ControllerProveedor::cargarProveedor);
         Spark.post("/crearProyectoFinanciamiento", ControllerProyectoFinanciamiento::crearProyectoFinanciamiento);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);

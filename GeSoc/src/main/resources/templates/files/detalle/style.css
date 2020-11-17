@@ -118,6 +118,12 @@
   top: 1%;
 }
 
+#proveedorr{
+  position: absolute;
+  left: 19%;
+  top: 0.5%;
+}
+
 #fecha_detalle{
   position: absolute;
   right: 0%;

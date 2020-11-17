@@ -7,6 +7,7 @@ import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
+import Dominio.Entidad.Entidad;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
@@ -36,10 +37,16 @@ public class ControllerEgresos {
 
         Map<String,Object> datos = new HashMap<>();
         List<String> criterios= Arrays.asList("Menor Precio");
-        List<String> documentos=Arrays.asList("Remito","Nota debito","Nota credito","Factura A","Factura B","Factura C","Ticket");
-        List<String> metodos= Arrays.asList("Tarjeta de credito","Tarjeta de debito","Efectivo","Cheque");
+        List<String> documentos=Arrays.asList("Remito","debito","credito","FacturaA","FacturaB","FacturaC","Ticket");
+        List<String> metodos= Arrays.asList("TarjetaCredito","TarjetaDebito","Efectivo","Cheque");
         List<Egreso> egresos= miUsuario.getEgresosAREvisar();
+        List<Entidad> entidades= egresos.stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad> entidadSet=new HashSet<>();
+        entidadSet.addAll(entidades);
+        entidades.clear();
+        entidades.addAll(entidadSet);
 
+        datos.put("entidad",entidades);
         datos.put("criterios",criterios);
         datos.put("documentos",documentos);
         datos.put("metodos",metodos);
@@ -85,11 +92,11 @@ public class ControllerEgresos {
                 break;
 
 
-            case"Tarjeta de credito":
+            case"TarjetaCredito":
                 medioDePago=new MetodoDePago(TipoDeMedioDePago.TARJETA_CREDITO,"Pago registrado el "+LocalDate.now().toString());
                 break;
 
-            case"Tarjeta de debito":
+            case"TarjetaDebito":
                 medioDePago=new MetodoDePago(TipoDeMedioDePago.TARJETA_DEBITO,"Pago registrado el "+LocalDate.now().toString());
                 break;
 
@@ -103,19 +110,19 @@ public class ControllerEgresos {
             case "Ticket":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.TICKET,descripcionDocComercial);
                 break;
-            case "Nota credito":
+            case "credito":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.NOTA_CREDITO,descripcionDocComercial);
                 break;
-            case "Nota debito":
+            case "debito":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.NOTA_DEBITO,descripcionDocComercial);
                 break;
-            case "Factura A":
+            case "FacturaA":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.FACTURA_A,descripcionDocComercial);
                 break;
-            case "Factura B":
+            case "FacturaB":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.FACTURA_B,descripcionDocComercial);
                 break;
-            case "Factura C":
+            case "FacturaC":
                 documentoAsociado=new DocumentoComercial(TipoDocumentoComercial.FACTURA_C,descripcionDocComercial);
                 break;
 
@@ -130,7 +137,13 @@ public class ControllerEgresos {
 
         Egreso egreso = new Egreso(LocalDate.parse(fecha), pais, new ArrayList<>(), medioDePago, new ArrayList<>(), documentoAsociado,  new CriterioMenorPrecio());
 
+        String entidadId=request.queryParams("entidad");
 
+        Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
+        List<Entidad> entidades= repoEntidades.getTodosLosElementos();
+        List<Entidad> entidadesPosibles= entidades.stream().filter(e->e.getEntidad()==Integer.valueOf(entidadId).intValue()).collect(Collectors.toList());
+        if(!entidadesPosibles.isEmpty())
+        egreso.setEntidad(entidadesPosibles.get(0));
         if(request.queryParams("esRevisor")!=null){
 
             Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
@@ -196,11 +209,13 @@ public class ControllerEgresos {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(request.queryParams("form_json")).getAsJsonArray();
 
-            responseObj.forEach(jsonElement ->{
-                Item objItem = new Item(jsonElement.getAsJsonObject().get("precio").getAsFloat(), jsonElement.getAsJsonObject().get("nombre").getAsString(), jsonElement.getAsJsonObject().get("cantidad").getAsInt());
-                objItem.setTipo(jsonElement.getAsJsonObject().get("tipo").getAsString());
-                objEgreso.agregarItem(objItem);
-
+            List<Item> items=new ArrayList();
+            responseObj.forEach(jsonElement -> {
+                        Item objItem = new Item(jsonElement.getAsJsonObject().get("precio").getAsFloat(), jsonElement.getAsJsonObject().get("nombre").getAsString(), jsonElement.getAsJsonObject().get("cantidad").getAsInt());
+                        objItem.setTipo(jsonElement.getAsJsonObject().get("tipo").getAsString());
+                        objEgreso.agregarItem(objItem);
+                        objItem.setEgreso(objEgreso);
+                items.add(objItem);
             });
 
         }

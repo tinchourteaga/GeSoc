@@ -67,67 +67,19 @@
 
 <div id="detalle_posta">
     <div>
-        <p><span>Proveedor: </span></p>
-        <input id="proveedor" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+        <span style="color:rgba(217, 70, 59, 1); font-size:1.5vw;">Egresos asociados:
+        <input id="proveedorr" name="txt" class="variables_fijas" style="font-size:1.5vw;" value="  egresosAsoc" disabled/>
+        </span>
     </div>
 
     <div>
-        <input id="fecha_detalle" name="txt" class="variables_fecha" value="10/10/2020" disabled/>
+        <input id="fecha_detalle" name="txt" class="variables_fecha" style="font-size:1vw;" value="10/10/2020" disabled/>
     </div>
 
     <div>
-        <p><span>Método de pago: </span></p>
-        <input id="pago" name="txt" class="variables_fijas" value="  PagoX" disabled/>
-    </div>
-
-    <div id="tabla_dinamica_fila">
-        <table width="100%" class="tablaCSS">
-            <thead>
-            <tr>
-                <th></th> <!--style="width:2.6%" -->
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre item</th> <!--style="width:24.6%"-->
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Tipo</th>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Cantidad</th>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px; width:24.6%;">Precio de unitario</th>
-            </tr>
-            </thead>
-        </table>
-    </div>
-
-    <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
-        <tr id="trTable">
-            <td><input type="checkbox" name="chk" style="align: center;"/></td>
-            <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
-            <td>
-                <select class="variables" type="text" name="txt" style="width: 100%; text-align: center;">
-                    <option value="seleccione">Seleccionar...</option>
-                    <option value="bien">Bien</option>
-                    <option value="servicio">Servicio</option>
-                </select>
-            </td>
-            <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
-            <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
-        </tr>
-    </table>
-
-    <div>
-        <p><span>Egresos asociados: </span></p>
-        <input id="ingresos" name="txt" class="variables_fijas" value="  Egresos asociados" disabled/>
-    </div>
-
-    <div>
-        <p><span>Criterios/catg asociados: </span></p>
-        <input id="cricat" name="txt" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
-    </div>
-
-    <div>
-        <p><span>Presupuesto elegido: </span></p>
-        <input id="prep" name="txt" class="variables_fijas" value="  Presupesto elegido" disabled/>
-    </div>
-
-    <div>
-        <p><span>Presupuestos asociados: </span></p>
-        <input id="prepasoc" name="txt" class="variables_fijas" value="  Presupuestos asociados" disabled/>
+        <span style="color:rgba(217, 70, 59, 1); font-size:1.5vw;">Total:
+        <input id="total_ingreso" name="txt" class="variables_fijas" style="font-size:1.5vw;" value="  unTotal" disabled/>
+        </span>
     </div>
 
 </div>

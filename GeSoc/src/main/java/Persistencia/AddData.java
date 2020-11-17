@@ -252,7 +252,7 @@ public class AddData {
 
 
         //Genero las entidades
-        Entidad entidad1 = new EntidadJuridica("Oficina central de Argentina", "", tipoEntidad1);
+        Entidad entidad1 = new EntidadJuridica("Oficina central de Buenos Aires", "", tipoEntidad1);
         Entidad entidad2 = new EntidadJuridica("Oficina central de Nueva York", "", tipoEntidad2);
         Entidad entidad3 = new EntidadJuridica("Oficina central de Mexico", "", tipoEntidad3);
         EntidadJuridica entidad4 = new EntidadJuridica("Surcos", "", tipoEntidad4);
@@ -717,6 +717,10 @@ public class AddData {
         julieta.getEgresosAREvisar().add(egreso8);
         julieta.getEgresosAREvisar().add(egreso9);
         julieta.getEgresosAREvisar().add(egreso10);
+
+        alejandro.getEntidades().add(entidad1);
+        rocio.getEntidades().add(entidad1);
+        julieta.getEntidades().add(entidad4);
 
         List<Usuario> usuariosAPersistir = new ArrayList<>();
         usuariosAPersistir.add(usuarioAdmin);

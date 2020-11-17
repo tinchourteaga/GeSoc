@@ -1,13 +1,12 @@
 package Servidor.Controllers;
 
-import Dominio.Egreso.Core.DocumentoComercial;
-import Dominio.Egreso.Core.Presupuesto;
-import Dominio.Egreso.Core.Proveedor;
-import Dominio.Egreso.Core.TipoDocumentoComercial;
+import Dominio.Egreso.Core.*;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -111,11 +110,67 @@ public class ControllerPresupuesto {
         DAO DAOPresupuesto = new DAOBBDD<Presupuesto>(Presupuesto.class); //dao generico de BBDD
         Repositorio repoPresupuesto = new Repositorio<Presupuesto>(DAOPresupuesto); //repositorio que tambien usa generics
 
-        if(!repoPresupuesto.existe(presupuesto))
+        if(!repoPresupuesto.existe(presupuesto)) {
             repoPresupuesto.agregar(presupuesto);
+        }else{
+            repoPresupuesto.modificar(null,presupuesto);
+        }
     }
 
     public static ModelAndView visualizarPantallaItems(Request request, Response response) {
+
+        String idUS= request.queryParams("us");
+        if(!idUS.equals(request.session().attribute("idUsuarioActual"))){
+            //a tu casa crack, no podes cargar items de cosas que no te corresponde
+            response.redirect("/pantalla_principal_usuario");
+        }
+        Map<String, Object> datos= new HashMap<>();
+        String presupeustoId=  request.queryParams("Presupuesto");
+
+        Repositorio repoPresu=new Repositorio(new DAOBBDD<Presupuesto>(Presupuesto.class));
+        List<Presupuesto> presupeustos= repoPresu.getTodosLosElementos();
+        List<Presupuesto> presupuestosPosibles= presupeustos.stream().filter(p->p.getPresupuesto()==Integer.valueOf(presupeustoId).intValue()).collect(Collectors.toList());
+
+        if(presupuestosPosibles.isEmpty()){
+            response.redirect("pantalla_principal_usuario");
+            return null;
+        }else {
+            Presupuesto presupuestofinal=presupuestosPosibles.get(0);
+            datos.put("presupuesto", presupuestofinal);
+            return new ModelAndView(datos, "cargar_items_presupeustos.html");
+        }
+    }
+
+    public static Object cargarItem(Request request, Response response) {
+
+
+        String egreso = request.queryParams("boton_carga_items");
+        Integer egresoId = Integer.valueOf(egreso);
+
+        DAO DAOEgreso = new DAOBBDD<Presupuesto>(Presupuesto.class);
+        Repositorio repoEgreso = new Repositorio<Presupuesto>(DAOEgreso);
+
+        List<Presupuesto> presupuestos = repoEgreso.getTodosLosElementos();
+
+        List<Presupuesto> presupuestoList = presupuestos.stream().filter(e -> e.getPresupuesto() == egresoId.intValue()).collect(Collectors.toList());
+
+        if(presupuestoList.isEmpty()){
+            return null;
+        }
+
+        Presupuesto presupuestoObj = presupuestoList.get(0);
+
+        if (request.queryParams("form_json") != null && !request.queryParams("form_json").isEmpty()) {
+            JsonParser parser = new JsonParser();
+            JsonArray responseObj = parser.parse(request.queryParams("form_json")).getAsJsonArray();
+
+            responseObj.forEach(jsonElement ->{
+                Detalle objItem = new Detalle(jsonElement.getAsJsonObject().get("precio").getAsFloat(), jsonElement.getAsJsonObject().get("nombre").getAsString(), jsonElement.getAsJsonObject().get("cantidad").getAsInt());
+                presupuestoObj.getDetalles().add(objItem);
+            });
+        }
+        persistirPresupuesto(presupuestoObj);
+        response.redirect("cargar_presupuesto");
 
         return null;
     }

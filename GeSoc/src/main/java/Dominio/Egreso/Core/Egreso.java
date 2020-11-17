@@ -38,7 +38,7 @@ public class Egreso {
     @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL)
     private List<Item> listaItems;
 
-    @ManyToOne(cascade=CascadeType.ALL)
+    @OneToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "metodo_pago")
     private MetodoDePago metodoDePago;
 

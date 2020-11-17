@@ -1,5 +1,7 @@
 package Servidor.Controllers;
 
+import API.Vinculacion.Condicion;
+import API.Vinculacion.ControllerVinculacion;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Egreso;
@@ -15,6 +17,7 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -138,9 +141,33 @@ public class ControllerAsociacion {
              repoEgresos.modificar(null,egresoPosta);
              repoIngreso.modificar(null,ingresoPosta);
             }
-        }else{
+        }else if(estrategia.equals("Automática")){
             //se lo mando a la API
             //todo
+            List<Ingreso> ingresos = miUsuario.getEgresosAREvisar().stream().map(x->x.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+            List<Egreso> egresos = miUsuario.getEgresosAREvisar();
+            List<String> criterios =new ArrayList<>(); //Son los checkboxes
+            List<Condicion> condiciones = new ArrayList<>();
+
+            if(request.queryParams("OVPE")!=null){
+                criterios.add("OrdenValorPrimeroEgreso");
+            }
+
+            if(request.queryParams("OVPI")!=null){
+                criterios.add("OrdenValorPrimeroIngreso");
+            }
+
+            LocalDate fechaHasta = LocalDate.parse(fecha);
+            LocalDate fechaDesde = LocalDate.now();
+
+            Integer diferenciaDia = fechaDesde.getDayOfYear() - fechaHasta.getDayOfYear();
+
+            List<Object> parametros = new ArrayList<>();
+            parametros.add(diferenciaDia);
+            Condicion condicion = new Condicion("PeriodoAceptacion",parametros);
+            condiciones.add(condicion);
+
+            ControllerVinculacion.obtenerInstacia().vincular(egresos, ingresos, criterios,condiciones);
         }
 
         response.redirect("asociar_ingresos_y_egresos?Exito="+statusCode);

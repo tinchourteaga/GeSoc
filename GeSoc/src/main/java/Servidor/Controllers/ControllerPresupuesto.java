@@ -171,17 +171,22 @@ public class ControllerPresupuesto {
 
         Presupuesto presupuestoObj = presupuestoList.get(0);
 
-        if (request.queryParams("form_json") != null && !request.queryParams("form_json").isEmpty()) {
+        if (request.queryParams("json") != null && !request.queryParams("json").isEmpty()) {
             JsonParser parser = new JsonParser();
-            JsonArray responseObj = parser.parse(request.queryParams("form_json")).getAsJsonArray();
+            JsonArray responseObj = parser.parse(request.queryParams("json")).getAsJsonArray();
 
+            Repositorio repoDetalle= new Repositorio(new DAOBBDD<Detalle>(Detalle.class));
             responseObj.forEach(jsonElement ->{
                 Detalle objItem = new Detalle(jsonElement.getAsJsonObject().get("precio").getAsFloat(), jsonElement.getAsJsonObject().get("nombre").getAsString(), jsonElement.getAsJsonObject().get("cantidad").getAsInt());
                 presupuestoObj.getDetalles().add(objItem);
+                objItem.setPresupuesto(presupuestoObj);
+                repoDetalle.agregar(objItem);
             });
         }
         persistirPresupuesto(presupuestoObj);
+        System.out.println(request.queryParams("form_json"));
         response.redirect("cargar_presupuesto");
+
 
         return null;
     }

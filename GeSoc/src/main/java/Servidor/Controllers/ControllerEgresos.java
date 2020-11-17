@@ -8,6 +8,7 @@ import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Entidad;
+import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
@@ -269,8 +270,33 @@ public class ControllerEgresos {
         datos.put("proveedor",proveedores);
         datos.put("categoria",categorias);
 
+        String egresoId = request.queryParams("eg");
+
+        if(egresoId != null){
+            Egreso egreso = egresos.stream().filter(e -> e.getEgreso() == Integer.valueOf(egresoId).intValue()).collect(Collectors.toList()).get(0);
+
+            LocalDate fecha = egreso.getFecha();
+            List<Presupuesto> presupuestosConsiderados = egreso.getPresupuestosAConsiderar();
+            Presupuesto presupuesto = egreso.getPresupuestoPactado();
+            Ingreso ingresoVinculado = egreso.getIngreso();
+            MetodoDePago mp = egreso.getMetodoDePago();
+            List<CategoriaCriterio> cat = egreso.getCategorias();
+            //Proveedor proveedor = egreso.getPresupuestoPactado().getProveedor(); Explota porque creo que algunos tienen null
+            List<Item> items = egreso.getListaItems();
+
+            datos.put("ing",ingresoVinculado);
+            datos.put("presele",presupuesto);
+            datos.put("cat",cat);
+            datos.put("presasc",presupuestosConsiderados);
+            datos.put("mp",mp);
+            //datos.put("prov",proveedor);
+            datos.put("fecha",fecha);
+            //datos.put("",items); Ni trola idea de como mostrarlo en la tabla dinamica esa
+        }
+
         return vista;
     }
+
 
     public static ModelAndView visualizarPantallaValidacion(Request request, Response response) {
 

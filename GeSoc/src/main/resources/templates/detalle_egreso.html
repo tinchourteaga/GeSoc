@@ -60,25 +60,30 @@
     </div>
 
     <select name="egreso" id="select_egreso" class="selects_bonitos" type="text" onchange="reloadearPagina(this)" style="top 5%; width: 20%; text-align: center; position:absolute">
-        <option value="seleccionEgreso">Seleccionar...</option>
-        <option value="egreso1">Egreso 1</option>
-        <option value="egreso2">Egreso 2</option>
+        {{#each egreso includeZero=true}}
+        <option class="u300_input_option" value={{egreso}}>{{egreso.name}}</option>
+        {{else}}
+        <option class="u300_input_option" value="seleccionEgreso">Seleccionar...</option>
+        {{/each}}
+        {{#each egreso}}
+        <option class="u300_input_option" value={{egreso}}>{{name}}</option>
+        {{/each}}
     </select>
 
     <div id="detalle_posta">
         <div>
             <p><span>Proveedor:
-            <input name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+            <input name="prov" class="variables_fijas" value="  ProveedorX" disabled/>
             </span></p>
         </div>
 
         <div>
-            <input id="fecha_detalle" name="txt" class="variables_fecha" value="  10/10/2020" disabled/>
+            <input id="fecha_detalle" name="fecha" class="variables_fecha" value="  10/10/2020" disabled/>
         </div>
 
         <div>
             <p><span>Método de pago:
-            <input name="txt" class="variables_fijas" value="  PagoX" disabled/>
+            <input name="mp" class="variables_fijas" value="  PagoX" disabled/>
             </span></p>
         </div>
 
@@ -114,25 +119,25 @@
 
         <div>
             <p><span>Ingresos asociados:
-            <input name="txt" class="variables_fijas" value="  Ingresos asociados" disabled/>
+            <input name="ing" class="variables_fijas" value="  Ingresos asociados" disabled/>
             </span></p>
         </div>
 
         <div>
             <p><span>Criterios/catg asociados:
-            <input name="txt" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
+            <input name="cat" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
             </span></p>
         </div>
 
         <div>
             <p><span>Presupuesto elegido:
-            <input name="txt" class="variables_fijas" value="  Presupesto elegido" disabled/>
+            <input name="presele" class="variables_fijas" value="  Presupesto elegido" disabled/>
             </span></p>
         </div>
 
         <div>
             <p><span>Presupuestos asociados:
-            <input name="txt" class="variables_fijas" value="  Presupuestos asociados" disabled/>
+            <input name="presasc" class="variables_fijas" value="  Presupuestos asociados" disabled/>
             </span></p>
             <a id="archivito" href={{egreso.imagen}} target="_blank" download>Descargar el documento comercial</a>
         </div>
@@ -144,7 +149,7 @@
 <script>
                 function reloadearPagina(v) {
                 if (v.value != 'seleccionEgreso') {
-                    location.href = '/detalle_egreso?egreso=' + v.value;
+                    location.href = '/detalle_egreso?eg=' + v.value;
                 }
             }
 </script>

@@ -11,6 +11,8 @@ import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -126,7 +128,8 @@ public class ControllerEgresos {
         //    response.redirect("cargar_egreso?Exito=1");
        // }
 
-        Egreso egreso = new Egreso(LocalDate.parse(fecha), pais, new ArrayList<>(), medioDePago, new ArrayList<>(), documentoAsociado, criterio);
+        Egreso egreso = new Egreso(LocalDate.parse(fecha), pais, new ArrayList<>(), medioDePago, new ArrayList<>(), documentoAsociado,  new CriterioMenorPrecio());
+
 
         if(request.queryParams("esRevisor")!=null){
 
@@ -153,8 +156,11 @@ public class ControllerEgresos {
         DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class); //dao generico de BBDD
         Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso); //repositorio que tambien usa generics
 
-        if(!repoEgreso.existe(egreso))
+        if(!repoEgreso.existe(egreso)) {
             repoEgreso.agregar(egreso);
+        }else{
+            repoEgreso.modificar(null,egreso);
+        }
 
     }
 
@@ -166,15 +172,12 @@ public class ControllerEgresos {
         rm.crearGET("http://localhost:63342/cargar_items_egresos");
         */
 
-        String egreso = request.queryParams("egreso");
-        String nombre = request.queryParams("nombreItem");
-        String tipo = request.queryParams("tipo");
-        String cantidad = request.queryParams("cant");
-        String precio = request.queryParams("precio");
+        System.out.println(request.queryParams());
+        System.out.println(request.queryParams("form_json"));
+        String egreso = request.queryParams("boton_carga_items");
+
 
         Integer egresoId = Integer.valueOf(egreso);
-        Integer cant = Integer.valueOf(cantidad);
-        Float valor = Float.valueOf(precio);
 
         DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class);
         Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso);
@@ -189,10 +192,19 @@ public class ControllerEgresos {
 
         Egreso objEgreso = egresosList.get(0);
 
-        Item objItem = new Item(valor,nombre,cant);
-        objItem.setTipo(tipo);
+        if (request.queryParams("form_json") != null && !request.queryParams("form_json").isEmpty()) {
+            JsonParser parser = new JsonParser();
+            JsonArray responseObj = parser.parse(request.queryParams("form_json")).getAsJsonArray();
 
-        objEgreso.agregarItem(objItem);
+            responseObj.forEach(jsonElement ->{
+                Item objItem = new Item(jsonElement.getAsJsonObject().get("precio").getAsFloat(), jsonElement.getAsJsonObject().get("nombre").getAsString(), jsonElement.getAsJsonObject().get("cantidad").getAsInt());
+                objItem.setTipo(jsonElement.getAsJsonObject().get("tipo").getAsString());
+                objEgreso.agregarItem(objItem);
+
+            });
+
+        }
+
 
         persistirEgreso(objEgreso);
 

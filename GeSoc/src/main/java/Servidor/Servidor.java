@@ -67,7 +67,9 @@ public class Servidor {
         Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
         Spark.get("/validar_egresos", ControllerEgresos::visualizarPantallaValidacion, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
         Spark.get("/validar_egreso_manualmente", ControllerEgresos::visualizarPantallaValidacionManual, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
-
+        Spark.get("/detalle_egreso",ControllerEgresos::visualizarPantallaDetalleEgreso,engine);
+        Spark.get("/detalle_ingreso",ControllerIngresos::visualizarPantallaDetalleIngreso,engine);
+        Spark.get("/detalle_presupuesto",ControllerPresupuesto::visualizarPantallaDetallePresupuesto,engine);
 
         //haciendo
         Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);

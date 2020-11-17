@@ -223,6 +223,17 @@ public class ControllerEgresos {
         return new ModelAndView(datos, "cargar_items_egresos.html");
     }
 
+    public static ModelAndView visualizarPantallaDetalleEgreso(Request request, Response response) {
+
+        Map<String, Object> datos= new HashMap<>();
+
+        String egreso = request.queryParams("egreso");
+
+
+        //datos.put("egreso",egresosARevisar);
+        return new ModelAndView(datos, "detalle_egreso.html");
+    }
+
     public static ModelAndView visualizarPantallaValidacion(Request request, Response response) {
 
         Map<String, Object> datos= new HashMap<>();

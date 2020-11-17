@@ -44,6 +44,17 @@ public class ControllerPresupuesto {
         return vista;
     }
 
+    public static ModelAndView visualizarPantallaDetallePresupuesto(Request request, Response response) {
+
+        Map<String, Object> datos= new HashMap<>();
+
+        String egreso = request.queryParams("egreso");
+
+
+        //datos.put("egreso",egresosARevisar);
+        return new ModelAndView(datos, "detalle_presupuesto.html");
+    }
+
     public static Object cargarPresupuesto(Request request, Response response) {
 
         String entidad = request.queryParams("entidad");

@@ -36,6 +36,17 @@ public class ControllerIngresos {
         return vista;
     }
 
+    public static ModelAndView visualizarPantallaDetalleIngreso(Request request, Response response) {
+
+        Map<String, Object> datos= new HashMap<>();
+
+        String egreso = request.queryParams("egreso");
+
+
+        //datos.put("egreso",egresosARevisar);
+        return new ModelAndView(datos, "detalle_ingreso.html");
+    }
+
     public static Object cargarIngreso(Request request, Response response) {
 
         String entidad = request.queryParams("entidad"); //No lo tengo en mi constructor -> es necesario?

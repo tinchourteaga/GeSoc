@@ -26,6 +26,7 @@
 
 <body>
 <div id="base" class="">
+    <form action="/cargarItemsPresupuesto" id="formItemsEgreso" method="post">
 
     <div id="titulo_cargar_items">
         <p><span>Cargar Items</span></p>
@@ -89,17 +90,16 @@
         <input id="total_input" type="text2" name="txt" class="variables_fijas" disabled/>
     </div>
 
-    <div id="cargar_items">
+    <div id="cargar_itemss">
         <button type="submit" name="boton_carga_items" class="boton_cargar_items" value={{presupuesto.presupuesto}} onclick="getElementsFromTable('dataTable')" >
             <p><span>Cargar items</span></p>
         </button>
-
     </div>
 
     <input id="form_json" name="json" type="txt" style="display:none; visibility:hidden;">
 
     <div id="includedContent"></div>
-
+    </form>
 </div>
 
 <script language="javascript">

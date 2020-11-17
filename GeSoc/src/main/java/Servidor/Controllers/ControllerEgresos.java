@@ -6,6 +6,7 @@ import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
+import Dominio.Entidad.Entidad;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
@@ -38,7 +39,13 @@ public class ControllerEgresos {
         List<String> documentos=Arrays.asList("Remito","debito","credito","FacturaA","FacturaB","FacturaC","Ticket");
         List<String> metodos= Arrays.asList("TarjetaCredito","TarjetaDebito","Efectivo","Cheque");
         List<Egreso> egresos= miUsuario.getEgresosAREvisar();
+        List<Entidad> entidades= egresos.stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad> entidadSet=new HashSet<>();
+        entidadSet.addAll(entidades);
+        entidades.clear();
+        entidades.addAll(entidadSet);
 
+        datos.put("entidad",entidades);
         datos.put("criterios",criterios);
         datos.put("documentos",documentos);
         datos.put("metodos",metodos);
@@ -129,7 +136,13 @@ public class ControllerEgresos {
 
         Egreso egreso = new Egreso(LocalDate.parse(fecha), pais, new ArrayList<>(), medioDePago, new ArrayList<>(), documentoAsociado,  new CriterioMenorPrecio());
 
+        String entidadId=request.queryParams("entidad");
 
+        Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
+        List<Entidad> entidades= repoEntidades.getTodosLosElementos();
+        List<Entidad> entidadesPosibles= entidades.stream().filter(e->e.getEntidad()==Integer.valueOf(entidadId).intValue()).collect(Collectors.toList());
+        if(!entidadesPosibles.isEmpty())
+        egreso.setEntidad(entidadesPosibles.get(0));
         if(request.queryParams("esRevisor")!=null){
 
             Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);

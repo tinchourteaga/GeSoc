@@ -27,8 +27,8 @@ public class ControllerPresupuesto {
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
-        //List<String> monedas= Arrays.asList("Dolar", "Peso argentino", "Euro");
-        List<String> documentos=Arrays.asList("Remito","Nota debito","Nota credito","Factura A","Factura B","Factura C","Ticket");
+
+        List<String> documentos=Arrays.asList("Remito","Cebito","Credito","FacturaA","FacturaB","FacturaC","Ticket");
         Repositorio repoProveedores= new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
         List<Proveedor> proveedores=repoProveedores.getTodosLosElementos();
         List<Presupuesto> egresos= miUsuario.getEgresosAREvisar().stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
@@ -56,15 +56,13 @@ public class ControllerPresupuesto {
 
     public static Object cargarPresupuesto(Request request, Response response) {
 
-        String entidad = request.queryParams("entidad");
+
         String fecha = request.queryParams("fecha");
-        String moneda = request.queryParams("moneda");
-        String item = request.queryParams("item");
-        String valorItem = request.queryParams("valor");
         String proveedor = request.queryParams("proveedor");
         String documentoComercial = request.queryParams("documentoComercial");
         String linkComprobante = request.queryParams("linkComprobante");
 
+        System.out.println(request.queryParams());
         String archivo=  request.queryParams("file");
 
 
@@ -79,19 +77,19 @@ public class ControllerPresupuesto {
             case "Remito":
                 tipoDoc=TipoDocumentoComercial.REMITO;
                 break;
-            case "Nota Credito":
+            case "Credito":
                 tipoDoc=TipoDocumentoComercial.NOTA_CREDITO;
                 break;
-            case "Nota Debito":
+            case "Debito":
                 tipoDoc=TipoDocumentoComercial.NOTA_DEBITO;
                 break;
-            case "Factura A":
+            case "FacturaA":
                 tipoDoc=TipoDocumentoComercial.FACTURA_A;
                 break;
-            case "Factura B":
+            case "FacturaB":
                 tipoDoc=TipoDocumentoComercial.FACTURA_B;
                 break;
-            case "Factura C":
+            case "FacturaC":
                 tipoDoc=TipoDocumentoComercial.FACTURA_C;
                 break;
             default:
@@ -101,14 +99,16 @@ public class ControllerPresupuesto {
 
         Repositorio repoProveedores= new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
         List<Proveedor> proveedoresDisponibles=repoProveedores.getTodosLosElementos();
-        proveedoresDisponibles=proveedoresDisponibles.stream().filter(p->p.getNombre().equals(proveedor)).collect(Collectors.toList());
         DocumentoComercial documentoAsociado= new DocumentoComercial(tipoDoc,"");
+        proveedoresDisponibles=proveedoresDisponibles.stream().filter(p->p.getProveedor()== Integer.valueOf(proveedor).intValue()).collect(Collectors.toList());
+        System.out.println(proveedor);
+        System.out.println(proveedoresDisponibles);
 
         if(!proveedoresDisponibles.isEmpty()) {
             Presupuesto presupuesto = new Presupuesto(new ArrayList(), new ArrayList(), documentoAsociado, proveedoresDisponibles.get(0));
             presupuesto.setFecha(LocalDate.parse(fecha));
             persistirPresupuesto(presupuesto);
-            response.redirect("cargar_items_presupuesto?Presupuesto="+presupuesto.getPresupuesto()+"&us="+request.session().attribute("idUsuarioActual"));
+            response.redirect("cargar_items_presupuestos?Presupuesto="+presupuesto.getPresupuesto()+"&us="+request.session().attribute("idUsuarioActual"));
         }else{
             response.redirect("cargar_presupuesto?Exito=1");
         }
@@ -148,7 +148,7 @@ public class ControllerPresupuesto {
         }else {
             Presupuesto presupuestofinal=presupuestosPosibles.get(0);
             datos.put("presupuesto", presupuestofinal);
-            return new ModelAndView(datos, "cargar_items_presupeustos.html");
+            return new ModelAndView(datos, "cargar_items_presupuestos.html");
         }
     }
 
@@ -171,17 +171,22 @@ public class ControllerPresupuesto {
 
         Presupuesto presupuestoObj = presupuestoList.get(0);
 
-        if (request.queryParams("form_json") != null && !request.queryParams("form_json").isEmpty()) {
+        if (request.queryParams("json") != null && !request.queryParams("json").isEmpty()) {
             JsonParser parser = new JsonParser();
-            JsonArray responseObj = parser.parse(request.queryParams("form_json")).getAsJsonArray();
+            JsonArray responseObj = parser.parse(request.queryParams("json")).getAsJsonArray();
 
+            Repositorio repoDetalle= new Repositorio(new DAOBBDD<Detalle>(Detalle.class));
             responseObj.forEach(jsonElement ->{
                 Detalle objItem = new Detalle(jsonElement.getAsJsonObject().get("precio").getAsFloat(), jsonElement.getAsJsonObject().get("nombre").getAsString(), jsonElement.getAsJsonObject().get("cantidad").getAsInt());
                 presupuestoObj.getDetalles().add(objItem);
+                objItem.setPresupuesto(presupuestoObj);
+                repoDetalle.agregar(objItem);
             });
         }
         persistirPresupuesto(presupuestoObj);
+        System.out.println(request.queryParams("form_json"));
         response.redirect("cargar_presupuesto");
+
 
         return null;
     }

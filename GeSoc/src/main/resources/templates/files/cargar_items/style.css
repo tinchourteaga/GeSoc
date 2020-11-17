@@ -190,6 +190,34 @@ input[type="text2"]
   background-color:rgba(179, 49, 41, 1);
 }
 
+#cargar_itemss{
+  border-width:0px;
+  position:absolute;
+  left:7%;
+  bottom:5%;
+  display:flex;
+}
+
+.boton_cargar_itemss{
+  width:140px;
+  height:40px;
+  background-color:rgba(217, 70, 59, 1);
+  border:none;
+  border-radius:50px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:300;
+  font-style:normal;
+  font-size:14px;
+  color:white;
+}
+
+.boton_cargar_itemss:hover{
+  background-color:rgba(179, 49, 41, 1);
+}
+
 .primera_fila{
     border-collapse: collapse;
     margin 25px 0;

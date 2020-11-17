@@ -26,6 +26,7 @@
 
 <body>
 <div id="base" class="">
+    <form action="/cargarItemsPresupuesto" id="formItemsEgreso" method="post">
 
     <div id="titulo_cargar_items">
         <p><span>Cargar Items</span></p>
@@ -33,17 +34,17 @@
 
     <div id="proveedor_seleccionado">
         <p><span>Proveedor: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value={{proveedor.nombre}} disabled/>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{presupuesto.proveedor.nombre}} disabled/>
     </div>
 
     <div id="fecha">
         <p><span>Fecha: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value={{fecha}} disabled/>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{presupuesto.fecha}} disabled/>
     </div>
 
     <div id="metodo_de_pago">
         <p><span>Documento comercial: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value={{documentoComercial.tipo}} disabled/>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{presupuesto.documentoComercial.tipo}} disabled/>
     </div>
 
     <div id="botoncitos">
@@ -89,7 +90,7 @@
         <input id="total_input" type="text2" name="txt" class="variables_fijas" disabled/>
     </div>
 
-    <div id="cargar_items">
+    <div id="cargar_itemss">
         <button type="submit" name="boton_carga_items" class="boton_cargar_items" value={{presupuesto.presupuesto}} onclick="getElementsFromTable('dataTable')" >
             <p><span>Cargar items</span></p>
         </button>
@@ -98,7 +99,7 @@
     <input id="form_json" name="json" type="txt" style="display:none; visibility:hidden;">
 
     <div id="includedContent"></div>
-
+    </form>
 </div>
 
 <script language="javascript">

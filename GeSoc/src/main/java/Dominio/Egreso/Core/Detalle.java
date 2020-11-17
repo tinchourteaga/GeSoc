@@ -19,7 +19,7 @@ public class Detalle {
     private Integer cantidad;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "presupuesto", insertable = true, updatable = false)
+    @JoinColumn(name = "presupuesto")
     private Presupuesto presupuesto;
 
     public Detalle() { }

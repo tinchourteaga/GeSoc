@@ -1513,7 +1513,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:500px;
+  top:530px;
   width:173px;
   height:22px;
   display:flex;
@@ -1803,7 +1803,7 @@
   border-width:0px;
   position:absolute;
   left:130px;
-  top:570px;
+  top:590px;
   width:140px;
   height:40px;
   display:flex;
@@ -2224,7 +2224,7 @@
   border-width:0px;
   position:absolute;
   left:58px;
-  top:525px;
+  top:550px;
   width:305px;
   height:23px;
   display:flex;
@@ -3429,7 +3429,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:470px;
+  top:500px;
   width:108px;
   height:22px;
   display:flex;
@@ -3466,7 +3466,7 @@
   border-width:0px;
   position:absolute;
   left:163px;
-  top:475px;
+  top:503px;
   width:100px;
   height:16px;
   display:flex;
@@ -6600,3 +6600,8 @@
     border-bottom: 2px solid rgba(217, 70, 59, 1);
 }
 
+#imagen_a_subir{
+    position:fixed;
+    top:71.5%;
+    left:3%;
+}

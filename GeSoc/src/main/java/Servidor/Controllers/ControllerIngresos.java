@@ -57,7 +57,7 @@ public class ControllerIngresos {
 
     public static void persistirIngreso(Ingreso ingreso){
 
-        DAO DAOIngreso = new DAOBBDD<Ingreso>(); //dao generico de BBDD
+        DAO DAOIngreso = new DAOBBDD<Ingreso>(Ingreso.class); //dao generico de BBDD
         Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso); //repositorio que tambien usa generics
 
         if(!repoIngreso.existe(ingreso))

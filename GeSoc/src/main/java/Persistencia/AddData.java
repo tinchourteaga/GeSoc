@@ -252,7 +252,7 @@ public class AddData {
 
 
         //Genero las entidades
-        Entidad entidad1 = new EntidadJuridica("Oficina central de Argentina", "", tipoEntidad1);
+        Entidad entidad1 = new EntidadJuridica("Oficina central de Buenos Aires", "", tipoEntidad1);
         Entidad entidad2 = new EntidadJuridica("Oficina central de Nueva York", "", tipoEntidad2);
         Entidad entidad3 = new EntidadJuridica("Oficina central de Mexico", "", tipoEntidad3);
         EntidadJuridica entidad4 = new EntidadJuridica("Surcos", "", tipoEntidad4);
@@ -500,16 +500,25 @@ public class AddData {
 
         List<Egreso>egresosAPersistir=new ArrayList();
         Egreso egreso1= new Egreso(LocalDate.parse("2020-03-10"), "Argentina", items1, metodo1, presupuestos1,  unDocumento1, criterio1);
+        items1.forEach(item->item.setEgreso(egreso1));
         Egreso egreso2= new Egreso(LocalDate.parse("2020-07-08"), "Argentina", items2, metodo2, presupuestos2,  unDocumento2, criterio1);
+        items2.forEach(item->item.setEgreso(egreso2));
         Egreso egreso3= new Egreso(LocalDate.parse("2020-07-09"), "Argentina", items3, metodo3, presupuestos3,  unDocumento3, criterio1);
+        items3.forEach(item->item.setEgreso(egreso3));
         Egreso egreso4= new Egreso(LocalDate.parse("2020-08-03"), "Argentina", items4, metodo4, presupuestos4,  unDocumento4, criterio1);
+        items4.forEach(item->item.setEgreso(egreso4));
         Egreso egreso5= new Egreso(LocalDate.parse("2020-09-27"), "Argentina", items5, metodo5, presupuestos5,  unDocumento5, criterio1);
+        items5.forEach(item->item.setEgreso(egreso5));
         Egreso egreso6= new Egreso(LocalDate.parse("2020-10-01"), "Argentina", items6, metodo6, presupuestos6,  unDocumento6, criterio1);
+        items6.forEach(item->item.setEgreso(egreso6));
         Egreso egreso7= new Egreso(LocalDate.parse("2020-10-05"), "Argentina", items7, metodo7, presupuestos7,  unDocumento7, criterio1);
+        items7.forEach(item->item.setEgreso(egreso7));
         Egreso egreso8= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", items8, metodo8, presupuestos8,  unDocumento8, criterio1);
+        items8.forEach(item->item.setEgreso(egreso8));
         Egreso egreso9= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", items9, metodo9, presupuestos9,  unDocumento9, criterio1);
+        items9.forEach(item->item.setEgreso(egreso9));
         Egreso egreso10= new Egreso(LocalDate.parse("2020-09-25"), "Argentina", items10, metodo10, presupuestos10,  unDocumento10, criterio1);
-
+        items10.forEach(item->item.setEgreso(egreso10));
         CategoriaCriterio categoria1= new CategoriaCriterio("Para gastos de Agua, Luz y otros", "Servicios Generales");
 
         Criterio criterioDeCategorias1= new Criterio(Arrays.asList(categoria1), "Gastos Generales", "Diferentes gastos de la organizacion no catalogados");
@@ -708,6 +717,10 @@ public class AddData {
         julieta.getEgresosAREvisar().add(egreso8);
         julieta.getEgresosAREvisar().add(egreso9);
         julieta.getEgresosAREvisar().add(egreso10);
+
+        alejandro.getEntidades().add(entidad1);
+        rocio.getEntidades().add(entidad1);
+        julieta.getEntidades().add(entidad4);
 
         List<Usuario> usuariosAPersistir = new ArrayList<>();
         usuariosAPersistir.add(usuarioAdmin);

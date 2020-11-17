@@ -31,23 +31,31 @@
 
     <div id="proveedor_seleccionado">
         <p><span>Fecha: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value="  10/10/2020" disabled/>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{egreso.fecha}} disabled/>
     </div>
 
     <div id="entidad">
         <p><span>Entidad: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unaEntidad" disabled/>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{egreso.entidad.nombre}} disabled/>
     </div>
 
     <div id="presupuesto_pactado">
         <p><span>Presupuesto pactado: </span></p>
+        {{#if tienePresupuesto includeZero=true}}
+        <input type="checkbox" name="chk" style="align: center; margin-top: 6px; margin-left: 6px; " checked />
+        {{else}}
         <input type="checkbox" name="chk" style="align: center; margin-top: 6px; margin-left: 6px; "/>
+        {{/if}}
         <!--<input type="datosTraidos" name="txt" class="variables_fijas" value="  unaEntidad" disabled/>-->
     </div>
 
     <div id="valor_presupuesto_numero">
         <p><span>Valor presupuesto pactado: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unValor" disabled/>
+        {{#if tienePresupuesto includeZero=true}}
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{presupuesto.valor}} disabled/>
+        {{else}}
+        <input type="datosTraidos" name="txt" class="variables_fijas" value="-" disabled/>
+        {{/if}}
     </div>
 
     <!--<div id="select_estrategias">
@@ -111,9 +119,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {{#each egreso}}
+                        {{#each presupuestos}}
                         <tr>
-                            <td>{{entidad.nombre}}</td>
+                            <td>{{proveedor.nombre}}</td>
                             <td>{{fecha}}</td>
                             <td>{{documentoComercial.tipo}}</td>
                             <td>{{valor.importe}}</td>
@@ -128,26 +136,34 @@
 
     <div id="documento_comercial">
         <p><span>Documento comercial: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unDoc" disabled/>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{egreso.documentoComercial.tipo}} disabled/>
     </div>
 
     <div id="descripcion">
         <p><span>Descripción: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unaDescripcion" disabled/>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{egreso.documentoComercial.detalle}} disabled/>
     </div>
 
     <div id="valor_total">
         <p><span>Valor: </span></p>
-        <input type="datosTraidos" name="txt" class="variables_fijas" value="  unValor" disabled/>
+        <input type="datosTraidos" name="txt" class="variables_fijas" value={{egreso.valor.importe}} disabled/>
     </div>
 
+    <form action="/validarEgresoManual" method="post">
     <div id="cargar_items">
-        <input type="button" class="boton_cargar_items" value="Validar"/>
+        <button type="submit" name="egreso" class="boton_cargar_items" value={{egreso.egreso}} >
+            <p><span>Validar</span></p>
+        </button>
     </div>
+    </form>
 
+    <form action="/rechazarValidacion" method="post">
     <div id="rechazar">
-        <input type="button" class="boton_cargar_items" value="Rechazar"/>
+        <button type="submit" name="egreso" class="boton_cargar_items" value={{egreso.egreso}} >
+            <p><span>Rechazar</span></p>
+        </button>
     </div>
+    </form>
 
     <div id="u5399" class="ax_default">
         <div id="u5399_state0" class="panel_state" data-label="State1" style="">
@@ -155,19 +171,19 @@
                 <table class="tablaCSS" style="width:100%;">
                     <thead>
                     <tr>
-                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre</th>
+                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Descricpion</th>
                         <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Tipo</th>
                         <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Cantidad</th>
                         <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Precio unitario</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each egreso}}
+                    {{#each listaItems}}
                     <tr>
-                        <td>{{entidad.nombre}}</td>
-                        <td>{{fecha}}</td>
-                        <td>{{metodoDePago.tipo}}</td>
-                        <td>{{valor.importe}}</td>
+                        <td>{{descripcion}}</td>
+                        <td>{{tipo}}</td>
+                        <td>{{cantidad}}</td>
+                        <td>{{valor}}</td>
                     </tr>
                     {{/each}}
                     </tbody>
@@ -189,12 +205,12 @@
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each egreso}}
+                    {{#each categorias}}
                     <tr>
-                        <td>{{entidad.nombre}}</td>
-                        <td>{{fecha}}</td>
-                        <td>{{metodoDePago.tipo}}</td>
-                        <td>{{valor.importe}}</td>
+                        <td>{{nombreDeCategoria}}</td>
+                        <td>{{descripicion}}</td>
+                        <td>{{criterio.nombreCriterio}}</td>
+                        <td>{{criterio.descripcion}}</td>
                     </tr>
                     {{/each}}
                     </tbody>
@@ -238,6 +254,7 @@
 
 </div>
 <script>
+
         function disableCheckBox(v) {
             if (v.value == 'Automática'){
                 horas.disabled = false;

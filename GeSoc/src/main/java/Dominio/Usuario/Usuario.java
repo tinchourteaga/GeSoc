@@ -7,6 +7,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Dominio.Egreso.Core.Egreso;
+import Dominio.Entidad.Entidad;
 import Dominio.Rol.Exepciones.ContraseniasDistintasException;
 import Servidor.Controllers.ControllerNombreUsuario;
 
@@ -46,7 +47,7 @@ public class Usuario {
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
-            name = "dom_rol_dom_egreso",
+            name = "dom_rol_dom_egresos",
             joinColumns = { @JoinColumn(name = "rol") },
             inverseJoinColumns = { @JoinColumn(name = "egreso") }
     )
@@ -60,6 +61,15 @@ public class Usuario {
         this.egresosARevisar.add(egreso);
     }
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "pers_usuarios_dom_entidades",
+            joinColumns = { @JoinColumn(name = "usuario") },
+            inverseJoinColumns = { @JoinColumn(name = "entidad") }
+    )
+    protected List<Entidad> entidades = new ArrayList<>();
+
+    public List<Entidad> getEntidades() { return this.entidades; }
 
     @Embedded
     private BandejaMensajes bandejaDeMensajes;

@@ -257,6 +257,13 @@ public class ControllerEgresos {
         Map<String, Object> datos= new HashMap<>();
         ModelAndView vista = new ModelAndView(datos, "detalle_egreso.html");
 
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad> entidadSet= new HashSet<>();
+        entidadSet.addAll(entidades);
+        entidades.clear();
+        entidadSet.addAll(entidadSet);
+
         Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
         List<Egreso> egresos = repoEgresos.getTodosLosElementos();
 
@@ -281,7 +288,6 @@ public class ControllerEgresos {
             Ingreso ingresoVinculado = egreso.getIngreso();
             MetodoDePago mp = egreso.getMetodoDePago();
             List<CategoriaCriterio> cat = egreso.getCategorias();
-            //Proveedor proveedor = egreso.getPresupuestoPactado().getProveedor(); Explota porque creo que algunos tienen null
             List<Item> items = egreso.getListaItems();
 
             datos.put("ing",ingresoVinculado);
@@ -289,9 +295,9 @@ public class ControllerEgresos {
             datos.put("cat",cat);
             datos.put("presasc",presupuestosConsiderados);
             datos.put("mp",mp);
-            //datos.put("prov",proveedor);
+            datos.put("entidad",entidades);
             datos.put("fecha",fecha);
-            //datos.put("",items); Ni trola idea de como mostrarlo en la tabla dinamica esa
+            datos.put("items",items);
         }
 
         return vista;

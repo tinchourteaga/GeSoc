@@ -27,13 +27,14 @@
     </div>
 
     <div id="proveedor_seleccionado">
-        <p><span>Filtre por proveedor: </span></p>
+        <p><span>Filtre por entidad: </span></p>
     </div>
 
     <select name="proveedor" id="select_proveedor" class="selects_bonitos" type="text" style="top 5%; width: 20%; text-align: center; position:absolute">
         <option value="seleccione">Seleccionar...</option>
-        <option value="proveedor">Proveedor 1</option>
-        <option value="servicio">Provedor 2</option>
+        {{#each entidades}}
+        <option value={{entidad}} >{{nombre}}</option>
+        {{/each}}
     </select>
 
     <div id="fecha_seleccionada">
@@ -51,8 +52,9 @@
 
     <select name="categoria" id="select_criterio" class="selects_bonitos" type="text" style="top 5%; width: 20%; text-align: center; position:absolute">
         <option value="seleccione">Seleccionar...</option>
-        <option value="proveedor">Categoría 1</option>
-        <option value="servicio">Categoría 2</option>
+       {{#each categorias}}
+        <option value={{categoria}}>{{nombreCategoria}}</option>
+        {{/each}}
     </select>
 
     <div id="egreso_seleccionado">
@@ -71,20 +73,26 @@
     </select>
 
     <div id="detalle_posta">
-        <div>
-            <p><span>Proveedor:
-            <input name="prov" class="variables_fijas" value="  ProveedorX" disabled/>
-            </span></p>
-        </div>
+
 
         <div>
+            {{#if fecha includeZero=true}}
             <input id="fecha_detalle" name="fecha" class="variables_fecha" value="  10/10/2020" disabled/>
+            {{else}}
+            <input id="fecha_detalle_posta" name="fecha" class="variables_fecha" value={{.}} disabled/>
+            {{/if}}
         </div>
 
         <div>
+            {{if mp includeZero=true}}
             <p><span>Método de pago:
-            <input name="mp" class="variables_fijas" value="  PagoX" disabled/>
+            <input name="mp" class="variables_fijas" value="-" disabled/>
             </span></p>
+            {{else}}
+            <p><span>Método de pago:
+            <input name="mp" class="variables_fijas" value={{tipo}} disabled/>
+            </span></p>
+            {{/if}}
         </div>
 
         <div id="tabla_dinamica_fila">
@@ -103,6 +111,7 @@
 
         <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
             <tr id="trTable">
+                {{#each items}}
                 <td><input type="checkbox" name="chk" style="align: center;"/></td>
                 <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
                 <td>
@@ -114,6 +123,7 @@
                 </td>
                 <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
                 <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
+            {{/each}}
             </tr>
         </table>
 

@@ -51,24 +51,30 @@
 
 <select id="select_criterio" class="selects_bonitos" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
     <option value="seleccione">Seleccionar...</option>
-    <option value="proveedor">Categoría 1</option>
-    <option value="servicio">Categoría 2</option>
+    {{#each categorias}}
+    <option value={{categoria}}>{{nombreCategoria}}</option>
+    {{/each}}
 </select>
 
 <div id="egreso_seleccionado">
-    <p><span>Ingreso: </span></p>
+    <p><span>Presupuestos: </span></p>
 </div>
 
-<select id="select_egreso" class="selects_bonitos" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
+<select id="select_egreso" class="selects_bonitos" onchange="redireccionar(this)" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
     <option value="seleccione">Seleccionar...</option>
-    <option value="proveedor">Ingreso 1</option>
-    <option value="servicio">Ingreso 2</option>
+    {{#each presupuestos}}
+    <option value={{presupuesto}} >{{fecha}}</option>
+    {{/each}}
 </select>
 
 <div id="detalle_posta">
     <div>
         <p><span>Proveedor:
-        <input name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+            {{#if presupuesto includedZero= true}}
+        <input name="txt" class="variables_fijas" value={{presupuesto.proveedor.nombre}} disabled/>
+            {{else}}
+            <input name="txt" class="variables_fijas" value="-" disabled/>
+            {{/if}}
         </span></p>
     </div>
 
@@ -78,7 +84,11 @@
 
     <div>
         <p><span>Método de pago:
-        <input name="txt" class="variables_fijas" value="  PagoX" disabled/>
+            {{#if presupuesto includedZero= true}}
+            <input name="txt" class="variables_fijas" value={{metodoDePago.tipo}} disabled/>
+            {{else}}
+                    <input name="txt" class="variables_fijas" value="-" disabled/>
+            {{/if}}
         </span></p>
     </div>
 
@@ -98,6 +108,7 @@
 
     <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
         <tr id="trTable">
+            {{#each presupuesto.detalle}}
             <td><input type="checkbox" name="chk" style="align: center;"/></td>
             <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
             <td>
@@ -109,35 +120,28 @@
             </td>
             <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
             <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
+            {{/each}}
         </tr>
     </table>
 
     <div>
         <p><span>Egresos asociados:
-            <input name="txt" class="variables_fijas" value="  Egresos asociados" disabled/>
+            <input name="txt" class="variables_fijas" value={{egresoPactado.fecha}} disabled/>
         </span></p>
     </div>
 
     <div>
         <p><span>Criterios/catg asociados:
-        <input name="txt" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
+        <input name="txt" class="variables_fijas" value="-" disabled/>
         </span></p>
     </div>
 
-    <div>
-        <p><span>Presupuesto elegido:
-        <input name="txt" class="variables_fijas" value="  Presupesto elegido" disabled/>
-        </span></p>
+<script>
 
-    </div>
-
-    <div>
-        <p><span>Presupuestos asociados:
-        <input name="txt" class="variables_fijas" value="  Presupuestos asociados" disabled/>
-        </span></p>
-
-    </div>
-
+    function redireccionar(v){
+        location.href="/detalle_presupuesto?presupuesto="+v.value;
+    }
+</script>
 </div>
 
 <div id="includedContent"></div>

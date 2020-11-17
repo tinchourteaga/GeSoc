@@ -84,7 +84,7 @@ public class ControllerAsociacion {
         Integer egresoId = Integer.valueOf(egreso);
         Integer presupuestoId = Integer.valueOf(presupuesto);
         List<Egreso> egresosPosibles=miUsuario.getEgresosAREvisar().stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
-        List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()).stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
         if(!egresosPosibles.isEmpty()&& !presupuestosPosibles.isEmpty()) {
             Egreso egresoPosta = egresosPosibles.get(0);

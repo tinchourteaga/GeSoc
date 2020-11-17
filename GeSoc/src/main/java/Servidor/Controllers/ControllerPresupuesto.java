@@ -1,6 +1,7 @@
 package Servidor.Controllers;
 
 import Dominio.Egreso.Core.*;
+import Dominio.Entidad.Entidad;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
@@ -47,10 +48,48 @@ public class ControllerPresupuesto {
 
         Map<String, Object> datos= new HashMap<>();
 
-        String egreso = request.queryParams("egreso");
+        String presupuesto = request.queryParams("presupuesto");
+        String categoriaOCriterio= request.queryParams("categoria");
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad> entidadSet= new HashSet<>();
+        entidadSet.addAll(entidades);
+        entidades.clear();
+        entidadSet.addAll(entidadSet);
+
+        List<Presupuesto> misPresupuestos=new ArrayList();
+        entidades.forEach(e-> misPresupuestos.addAll(e.getOperaciones().stream().map(ee->ee.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList())));
+        if(presupuesto!=null) {
+            int presuId = Integer.valueOf(presupuesto).intValue();
+
+            List<Presupuesto> presupuestosPosibles = misPresupuestos.stream().filter(pre -> pre.getPresupuesto() == presuId).collect(Collectors.toList());
+            if (!presupuestosPosibles.isEmpty()) {
+                Presupuesto presuAMostrar = presupuestosPosibles.get(0);
+                datos.put("presupuesto", presuAMostrar);
+            }
+            Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+            List<Egreso> egresos = repoEgresos.getTodosLosElementos();
+            egresos = egresos.stream().filter(e -> e.getPresupuestosAConsiderar().stream().anyMatch(p -> p.getPresupuesto() == presuId)).collect(Collectors.toList());
+            if (!egresos.isEmpty()) {
+                datos.put("egresos", egresos);
+            }
+            List<Egreso> egresoPactado = egresos.stream().filter(eg -> eg.getPresupuestoPactado() != null && eg.getPresupuestoPactado().getPresupuesto() == presuId).collect(Collectors.toList());
+        if(!egresoPactado.isEmpty()){
+            datos.put("egresoPactado",egresoPactado.get(0));
+        }
+        }else{
+            datos.put("presupuestos", misPresupuestos);
+        }
+
+        if(categoriaOCriterio!=null){
+
+            datos.put("presupuestos",misPresupuestos.stream().filter(pre->pre.getCategoria().stream().anyMatch(cat->cat.getNombreDeCategoria().equals(categoriaOCriterio))|| pre.getCriterios().stream().anyMatch(cri->cri.getNombreCriterio().equals(categoriaOCriterio)) ).collect(Collectors.toList()));
+        }
+
+        datos.put("categorias",misPresupuestos.stream().map(p->p.getCategoria()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList()));
 
 
-        //datos.put("egreso",egresosARevisar);
+
         return new ModelAndView(datos, "detalle_presupuesto.html");
     }
 

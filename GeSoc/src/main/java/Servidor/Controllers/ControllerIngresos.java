@@ -40,9 +40,26 @@ public class ControllerIngresos {
 
         Map<String, Object> datos= new HashMap<>();
 
-        String egreso = request.queryParams("egreso");
+        String ingreso = request.queryParams("ingreso");
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad> entidadSet= new HashSet<>();
+        entidadSet.addAll(entidades);
+        entidades.clear();
+        entidadSet.addAll(entidadSet);
 
+        datos.put("entidades", entidades);
 
+        List<Ingreso> ingresosQueManejo= entidades.stream().map(e->e.getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+
+        datos.put("ingresos",ingresosQueManejo);
+        List<Ingreso> posiblesIngresos= ingresosQueManejo.stream().filter(in->in.getIngreso()==Integer.valueOf(ingreso)).collect(Collectors.toList());
+
+        if(!posiblesIngresos.isEmpty()){
+            datos.put("ingreso", posiblesIngresos.get(0));
+        }
+
+        datos.put("categorias", entidades.stream().map(e->e.getCriterios()).flatMap(List::stream).collect(Collectors.toList()).stream().map(cri-> cri.getCategoriaCriterios()).flatMap(List::stream).collect(Collectors.toList()));
         //datos.put("egreso",egresosARevisar);
         return new ModelAndView(datos, "detalle_ingreso.html");
     }

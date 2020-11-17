@@ -145,10 +145,10 @@
                 <td>{{entidad.nombre}}</td>
                 <td>{{fecha}}</td><!-- style=" border: 1px solid #515559;" -->
                 <td>ingreso
-                  <img class="lupita" src="images/ver_ingresos_y_egresos/lupa_u330.svg"
+                  <img class="lupita" value={{.}} src="images/ver_ingresos_y_egresos/lupa_u330.svg"
                        onmouseover="lupitahover(this);"
                        onmouseout="lupitaunhover(this);"
-                       onclick="openFormIngreso();">
+                       onclick="openFormIngreso(this);">
                 </td>
                 <td>{{valor.importe}}</td>
               </tr>
@@ -158,10 +158,10 @@
                 <td>{{entidad.nombre}}</td>
                 <td>{{fecha}}</td>
                 <td>egreso
-                  <img class="lupita" src="images/ver_ingresos_y_egresos/lupa_u330.svg"
+                  <img class="lupita" value={{.}} src="images/ver_ingresos_y_egresos/lupa_u330.svg"
                        onmouseover="lupitahover(this);"
                        onmouseout="lupitaunhover(this);"
-                       onclick="openForm();">
+                       onclick="openForm(this);">
                 </td>
                 <td>{{valor.importe}}</td>
               </tr>
@@ -1125,15 +1125,15 @@
 
           <div id="detalle_posta">
             <div>
-              <p><span class="span_piola">Proveedor:
-              <input name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+              <p><span class="span_piola">Empresa:
+              <input id="proveedor" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
               <input id="fecha_detalle" name="txt" class="variables_fecha" value="  10/10/2020" disabled/>
               </span></p>
             </div>
 
             <div>
               <p><span class="span_piola">Método de pago:
-              <input name="txt" class="variables_fijas" value="  PagoX" disabled/>
+              <input id="metodo_pago" name="txt" class="variables_fijas" value="  PagoX" disabled/>
               </span></p>
             </div>
 
@@ -1157,7 +1157,7 @@
 
             <div>
               <p><span class="span_piola">Presupuestos asociados:
-              <input name="txt" class="variables_fijas" value="  Presupuestos asociados" disabled/>
+              <input id="preps_asoc" name="txt" class="variables_fijas" value="  Presupuestos asociados" disabled/>
               </span></p>
             </div>
 
@@ -1208,16 +1208,26 @@
     <script src="resources/scripts/axure/ios.js"></script>
 
     <script>
-      function openForm() {
+      function openForm(v) {
         document.getElementById("myPopUp").style.display = "block";
+        proveedor = v.value.entidad.nombre;
+        fecha_detalle = v.value.fecha;
+        metodo_pago = v.value.metodoDePago.tipo;
+        ingresos = v.value.ingresos.valor;
+        prep = "-";
+        preps_asoc = "-";
       }
 
       function closeForm() {
-        document.getElementById("myPopUp").style.display = "none";
+        document.getElementById("myPopUpIngreso").style.display = "none";
       }
 
-      function openFormIngreso() {
+      function openFormIngreso(v) {
         document.getElementById("myPopUpIngreso").style.display = "block";
+        empresa = v.value.entidad.nombre;
+        fecha_detalle_ingreso = v.value.fecha;
+        egresos = "-";
+        cricatingresos = "-";
       }
 
       function closeFormIngreso() {

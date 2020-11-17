@@ -527,6 +527,12 @@
         <input name="esRevisor" id="u560_input" type="checkbox" value="checkbox"/>
       </div>
 
+        <div id="imagen_a_subir">
+          <input type="file" id="myFileInput">
+        </div>
+
+
+
       <!-- Popup (Dynamic Panel) -->
       <div id="u561" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
         <div id="u561_state0" class="panel_state" data-label="State1" style="">
@@ -1032,8 +1038,32 @@
           </div>
         </div>
       </div>
+        <div id="id_imagen">
+          <a id="archivito" href="lala" target="_blank"></a>
+          <input id="input_imagen" name="imagen" type="txt" style="display:none; visibility:hidden;">
+        </div>
+
         <div id="includedContent"></div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
+    <script>
+
+        document.querySelector("#myFileInput").addEventListener("change",function () {
+
+            const reader = new FileReader();
+
+            reader.addEventListener("load",() => {
+
+                localStorage.setItem("recent-image",reader.result);
+                imagenString = reader.result;
+                $("#archivito").attr("href", imagenString);
+                $("#input_imagen").attr("value", imagenString);
+            });
+
+            reader.readAsDataURL(this.files[0]);
+            //document.write(String(input_imagen.value));
+        });
+
+    </script>
   </body>
 </html>

@@ -1,6 +1,7 @@
 package Servidor.Controllers;
 
 import Dominio.BandejaMensajes.Mensaje;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioMenorPrecio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
 import Dominio.Egreso.Core.*;
@@ -226,12 +227,22 @@ public class ControllerEgresos {
     public static ModelAndView visualizarPantallaDetalleEgreso(Request request, Response response) {
 
         Map<String, Object> datos= new HashMap<>();
+        ModelAndView vista = new ModelAndView(datos, "detalle_egreso.html");
 
-        String egreso = request.queryParams("egreso");
+        Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+        List<Egreso> egresos = repoEgresos.getTodosLosElementos();
 
+        Repositorio repoProveedores = new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
+        List<Egreso> proveedores = repoProveedores.getTodosLosElementos();
 
-        //datos.put("egreso",egresosARevisar);
-        return new ModelAndView(datos, "detalle_egreso.html");
+        Repositorio repoCategorias = new Repositorio(new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class));
+        List<Egreso> categorias = repoCategorias.getTodosLosElementos();
+
+        datos.put("egreso",egresos);
+        datos.put("proveedor",proveedores);
+        datos.put("categoria",categorias);
+
+        return vista;
     }
 
     public static ModelAndView visualizarPantallaValidacion(Request request, Response response) {

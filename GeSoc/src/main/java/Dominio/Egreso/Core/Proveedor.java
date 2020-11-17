@@ -49,6 +49,10 @@ public class Proveedor {
         this.presupuestos= new ArrayList<Presupuesto>();
     }
 
+    public int getProveedor() {
+        return proveedor;
+    }
+
     public String getRazonSocial() {
         return razonSocial;
     }

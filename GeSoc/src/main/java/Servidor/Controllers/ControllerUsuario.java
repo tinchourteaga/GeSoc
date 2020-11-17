@@ -218,8 +218,8 @@ public class ControllerUsuario {
         Usuario usuario = new Usuario(Rol.ESTANDAR, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona();
 
-        DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
-        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+        DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class);
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
 
 
         //Chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
@@ -237,8 +237,8 @@ public class ControllerUsuario {
         Usuario usuario = new Usuario(Rol.ADMINISTRADOR, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona();
 
-        DAO DAOUsuario = new DAOBBDD<Usuario>(); //dao generico de BBDD
-        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);//repositorio que tambien usa generics
+        DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class);
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
 
 
         //Chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto

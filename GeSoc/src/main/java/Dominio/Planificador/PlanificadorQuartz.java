@@ -1,12 +1,9 @@
 package Dominio.Planificador;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.concurrent.CountDownLatch;
-
 import Dominio.Egreso.Core.Egreso;
-import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import org.quartz.*;
+
+import java.util.concurrent.CountDownLatch;
 
 import static org.quartz.SimpleScheduleBuilder.simpleSchedule;
 

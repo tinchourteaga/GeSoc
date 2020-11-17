@@ -55,9 +55,8 @@
 
   </head>
   <body>
+  <form action="/crearCategoria" method="post">
     <div id="base" class="">
-      <form action="/crearCategoria" method="post">
-
       <!-- Popup (Dynamic Panel) -->
       <div id="u1366" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
         <div id="u1366_state0" class="panel_state" data-label="State1" style="">
@@ -219,7 +218,7 @@
         <!-- Unnamed (Text Field) -->
         <div id="u1387" class="ax_default text_field">
           <div id="u1387_div" class=""></div>
-          <input name="nombreCategoria" id="u1387_input" type="text" value="" class="u1387_input"/>
+          <input type="text" id="u1387_input"  name="nombreCategoria"  required>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -664,7 +663,9 @@
         </div>
       </div>
         <div id="includedContent"></div>
+
     </div>
+  </form>
     <script src="resources/scripts/axure/ios.js"></script>
   </body>
 </html>

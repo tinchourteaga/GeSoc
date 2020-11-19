@@ -3,7 +3,7 @@ package Dominio.Entidad;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue(value = "B")
+@DiscriminatorValue(value = "Base")
 public class EntidadBase extends Entidad{
     @ManyToOne
     @JoinColumn(name="entidad_juridica_asociada",insertable = false, updatable = false)

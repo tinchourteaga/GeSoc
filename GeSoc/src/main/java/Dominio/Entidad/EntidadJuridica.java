@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@DiscriminatorValue(value = "J")
+@DiscriminatorValue(value = "Jurídica")
 @Embeddable
 public class EntidadJuridica extends Entidad{
     @OneToOne(cascade = CascadeType.ALL)

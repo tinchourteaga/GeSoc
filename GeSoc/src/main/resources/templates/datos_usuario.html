@@ -142,7 +142,7 @@
                   <!-- Unnamed (Text Field) -->
                   <div id="u2149" class="ax_default text_field">
                       <div id="u2149_div" class=""></div>
-                      <input id="u2149_input" type="text" value="BELÉN" class="u2141_input"/>
+                      <input id="u2149_input" type="text" value="REPETTO" class="u2141_input"/>
                   </div>
 
                   <!-- Unnamed (Text Field) -->
@@ -231,17 +231,28 @@
                     </div>
                   </div>
 
-                  <!-- Unnamed (Text Field) -->
+                  <!-- Entidades (Droplist) -->
+                  <div id="u1481" class="ax_default droplist" data-label="Egresos">
+                    <div id="u1481_div" class=""></div>
+                    <select id="u1481_input" class="u1481_input" onchange="location.href='datos_usuario?entidad='+this.value;">
+                      <option name="entidadNom" class="u1481_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
+                      {{#each entidades}}
+                      <option class="u1481_input_option" value="{{entidad}}">{{nombre}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+
+                  <!-- Unnamed (Text Field)
                   <div id="u2153" class="ax_default text_field">
                     <div id="u2153_div" class=""></div>
-                    <input id="u2153_input" type="text" value="PROEM" class="u2153_input" style="color:#919090;" disabled/>
-                  </div>
+                    <input id="u2153_input" type="text" value={{entidad.nombre}} class="u2153_input"/>
+                  </div> -->
 
                   <!-- Unnamed (Text Field) -->
                   <div id="u2154" class="ax_default text_field">
                     <div id="u2154_div" class=""></div>
                     <select id="u305_input" class="u305_input" style="width: 200px;">
-                      <option class="u305_input_option" value="Seleccionar rol">Seleccionar rol</option>
+                      <option class="u305_input_option" value="Seleccionar rol">Seleccionar un Rol</option>
                       <option class="u305_input_option" value="Administrador">Administrador</option>
                       <option class="u305_input_option" value="Estandar">Estándar</option>
                     </select>

@@ -42,6 +42,7 @@ public class ControllerSesion{
         String nombreUsuario= request.session().attribute("nombreUsuario"); //si no funca usa sesionUsuario en vez de request
         Boolean estaActivo=usuariosActivos.get(nombreUsuario);
         estaActivo=Boolean.FALSE;
+        usuariosActivos.put(nombreUsuario,Boolean.FALSE);
         request.session().invalidate();
         response.redirect("/");
         return null;

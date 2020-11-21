@@ -22,6 +22,7 @@ import spark.Response;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
 public class ControllerEgresos {
@@ -264,20 +265,43 @@ public class ControllerEgresos {
         entidades.clear();
         entidades.addAll(entidadSet);
 
-        Repositorio repoProveedores = new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
-        List<Proveedor> proveedores = repoProveedores.getTodosLosElementos();
 
-        Repositorio repoCategorias = new Repositorio(new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class));
-        List<CategoriaCriterio> categorias = repoCategorias.getTodosLosElementos();
 
-        datos.put("egreso",miUsuario.getEgresosAREvisar());
-        datos.put("proveedor",proveedores);
-        datos.put("entidades",entidades);
-        datos.put("categoria",categorias);
+        Repositorio repoCats =new Repositorio(new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class));
+        List<CategoriaCriterio> categorias = repoCats.getTodosLosElementos();
+        categorias= categorias.stream().filter(cat-> entidades.contains(cat.getCriterio().getEntidad())).collect(Collectors.toList());
 
         Optional<String> egresoId =Optional.ofNullable( request.queryParams("eg"));
+        Optional<String> entidadId =Optional.ofNullable( request.queryParams("entElegida"));
+        Optional<String> fechaFiltro =Optional.ofNullable( request.queryParams("fechaElegida"));
+        Optional<String> catId =Optional.ofNullable( request.queryParams("catElegido"));
 
-        egresoId.ifPresent(egresoIdString->{
+        entidadId.filter(id->!id.equals("seleccionEgreso")).ifPresent(idString-> {
+                    datos.put("entElegida", entidades.stream().filter(ent -> ent.getEntidad() ==Integer.valueOf(idString).intValue()).collect(Collectors.toList()).get(0));
+                });
+
+        List<CategoriaCriterio> finalCategorias = categorias;
+        catId.filter(id->!id.equals("-")).ifPresent(idCat->{
+            datos.put("catElegido", finalCategorias.stream().filter(cat-> cat.getCategoria()==Integer.valueOf(idCat)).collect(Collectors.toList()).get(0));
+        });
+        datos.put("egreso",miUsuario.getEgresosAREvisar().stream().filter(eg->{
+
+            String idAFiltrar=entidadId.filter(id->!id.equals("-")).orElse(String.valueOf(eg.getEntidad().getEntidad()));
+
+            final AtomicBoolean[] flag = {new AtomicBoolean(eg.getEntidad().getEntidad() == Integer.valueOf(idAFiltrar).intValue())};
+            fechaFiltro.filter(val->!val.equals("")).ifPresent(fecha->{
+                flag[0].set(flag[0].get() &&  eg.getFecha().toString().equals(fechaFiltro));
+            });
+
+            flag[0].set(flag[0].get() && eg.getCategorias().stream().anyMatch(cat -> cat.getCategoria()==Integer.valueOf(catId.filter(id->!id.equals("-")).orElse(String.valueOf(cat.getCategoria())))));
+
+            return flag[0].get();
+        }).collect(Collectors.toList()));
+        datos.put("entidades",entidades);
+
+        datos.put("categoria",categorias);
+
+        egresoId.filter(id->!id.equals("seleccionEgreso")).ifPresent(egresoIdString->{
             Egreso egreso = miUsuario.getEgresosAREvisar().stream().filter(e -> e.getEgreso() == Integer.valueOf(egresoIdString).intValue()).collect(Collectors.toList()).get(0);
 
             datos.put("egresoPactado",egreso);
@@ -294,7 +318,7 @@ public class ControllerEgresos {
             datos.put("presasc",presupuestosConsiderados);
             datos.put("mp",mp);
             datos.put("entidad",egreso.getEntidad());
-            datos.put("fecha",fecha);
+            datos.put("fechaSelect",fecha);
             datos.put("items",items);
         });
 

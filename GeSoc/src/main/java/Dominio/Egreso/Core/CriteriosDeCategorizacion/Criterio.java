@@ -66,6 +66,14 @@ public class Criterio {
         this.categoriaCriterios = categoriaCriterios;
     }
 
+    public Entidad getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(Entidad entidad) {
+        this.entidad = entidad;
+    }
+
     public List<Criterio> getHijos() {
         return hijos;
     }

@@ -26,7 +26,7 @@
 
 <body>
 <div id="base" class="">
-    <form action="/cargarItemsPresupuesto" id="formItemsEgreso" method="post">
+    <form action="/cargarItemsPresupuesto" id="formItemsEgreso" method="post" onsubmit="return chequearLosDatosIngresados('dataTable')">
 
     <div id="titulo_cargar_items">
         <p><span>Cargar Items</span></p>
@@ -91,7 +91,7 @@
     </div>
 
     <div id="cargar_itemss">
-        <button type="submit" name="boton_carga_items" class="boton_cargar_items" value={{presupuesto.presupuesto}} onclick="getElementsFromTable('dataTable')" >
+        <button type="submit" name="boton_carga_items" class="boton_cargar_items" value={{presupuesto.presupuesto}} > <!--onclick="getElementsFromTable('dataTable')"-->
             <p><span>Cargar items</span></p>
         </button>
     </div>
@@ -232,6 +232,33 @@
             document.getElementById("form_json").value = String(jsonLindo);
 
             //document.write(String(form_json.value));
+        }
+
+        function chequearLosDatosIngresados(tableID){
+            var table = document.getElementById(tableID);
+            var rowCount = table.rows.length;
+            var boolRetorno = false;
+
+            for(var i = 1; i < rowCount; i++){
+                nombreIngresado = table.rows[i].cells[1].childNodes[0];
+                tipoItemIngresado = table.rows[i].cells[2].childNodes[1];
+                cantidadIngresada = table.rows[i].cells[3].childNodes[0];
+                precioIngresado = table.rows[i].cells[4].childNodes[0];
+
+                if(nombreIngresado.value=='' || tipoItemIngresado.value=='' || cantidadIngresada.value=='' || precioIngresado.value==''){
+                    boolRetorno = false;
+                }else{
+                    boolRetorno = true;
+                }
+            }
+
+            if(!boolRetorno){
+                alert("Por favor complete toda la tabla");
+                return false;
+            }else{
+                getElementsFromTable(tableID);
+                return true;
+            }
         }
     </script>
 </body>

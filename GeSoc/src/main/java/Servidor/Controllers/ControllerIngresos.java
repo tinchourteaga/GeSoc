@@ -46,7 +46,7 @@ public class ControllerIngresos {
         Set<Entidad> entidadSet= new HashSet<>();
         entidadSet.addAll(entidades);
         entidades.clear();
-        entidadSet.addAll(entidadSet);
+        entidades.addAll(entidadSet);
 
         datos.put("entidades", entidades);
 

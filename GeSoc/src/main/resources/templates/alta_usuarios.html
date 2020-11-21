@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Alta de Usuarios</title>
+    <!--Import para el css de cargar_items-->
+    <link rel="stylesheet" href="files/alta_usuarios/style.css">
+
+    <!--Import para el boton-->
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+
+    <!--Magia JavaScript-->
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Import para la sidebar-->
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+</head>
+<body>
+<div id="base" class="">
+    <form action="/altaUsuarios" method="post">
+    <div id="titulo_cargar_items">
+        <p><span>Alta de Usuario</span></p>
+    </div>
+                <!-- Apellidos (Text Field) -->
+                <div id="u2052" class="ax_default text_field" data-label="Apellidos">
+                    <div id="u2052_div" class=""></div>
+                    <input name="apellido" id="u2052_input" type="text" value={{apellidoDefault}} class="u2052_input"/>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2053" class="ax_default box_1">
+                    <img id="u2053_img" class="img " src="images/administrar_usuarios/u2053.svg"/>
+                    <div id="u2053_text" class="text ">
+                        <p><span>Apellidos (*): </span></p>
+                    </div>
+                </div>
+
+                <!-- Nombres (Text Field) -->
+                <div id="u2054" class="ax_default text_field" data-label="Nombres">
+                    <div id="u2054_div" class=""></div>
+                    <input name="nombre" id="u2054_input" type="text" value={{nombreDefault}} class="u2054_input"/>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2055" class="ax_default box_1">
+                    <img id="u2055_img" class="img " src="images/administrar_usuarios/u2053.svg"/>
+                    <div id="u2055_text" class="text ">
+                        <p><span>Nombres (*): </span></p>
+                    </div>
+                </div>
+
+                <!-- DNI (Text Field) -->
+                <div id="u2056" class="ax_default text_field" data-label="DNI">
+                    <div id="u2056_div" class=""></div>
+                    <input name="dni" id="u2056_input" type="text" value={{DNIDefault}} class="u2056_input"/>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2057" class="ax_default box_1">
+                    <img id="u2057_img" class="img " src="images/administrar_usuarios/u2053.svg"/>
+                    <div id="u2057_text" class="text ">
+                        <p><span>DNI (*): </span></p>
+                    </div>
+                </div>
+
+                <!-- EmailPrincipal (Text Field) -->
+                <div id="u2058" class="ax_default text_field" data-label="EmailPrincipal">
+                    <div id="u2058_div" class=""></div>
+                    <input name="email" id="u2058_input" type="text" value={{emailDefault}} class="u2058_input"/>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2059" class="ax_default box_1">
+                    <img id="u2059_img" class="img " src="images/administrar_usuarios/u2059.svg"/>
+                    <div id="u2059_text" class="text ">
+                        <p><span>Email Principal (*):</span></p>
+                    </div>
+                </div>
+
+                <!-- Celular (Text Field)
+                <div id="u2060" class="ax_default text_field" data-label="Celular">
+                  <div id="u2060_div" class=""></div>
+                  <input name="telefono" id="u2060_input" type="text" value="" class="u2060_input"/>
+                </div> -->
+
+                <!-- Unnamed (Rectangle)
+                <div id="u2061" class="ax_default box_1">
+                  <img id="u2061_img" class="img " src="images/administrar_usuarios/u2061.svg"/>
+                  <div id="u2061_text" class="text ">
+                    <p><span>Teléfono Celular:</span></p>
+                  </div>
+                </div> -->
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2062" class="ax_default box_1">
+                    <img id="u2062_img" class="img " src="images/administrar_usuarios/u2062.svg"/>
+                    <div id="u2062_text" class="text ">
+                        <p><span>Empresa / Organización (*): </span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Rectangle)
+                <div id="u2063" class="ax_default box_1">
+                  <img id="u2063_img" class="img " src="images/administrar_usuarios/u2063.svg"/>
+                  <div id="u2063_text" class="text ">
+                    <p><span>Rol en la Empresa / Organización: </span></p>
+                  </div>
+                </div> -->
+
+                <!-- EmpresaOrganizacion (Text Field)
+                <div id="u2064" class="ax_default text_field" data-label="EmpresaOrganizacion">
+                  <div id="u2064_div" class=""></div>
+                  <input name="empresa" id="u2064_input" type="text" value="" class="u2064_input"/>
+                </div> -->
+
+                <!-- Empresa/Organizacion (Droplist) -->
+                <div id="u1481" class="ax_default droplist" data-label="Entidades">
+                    <div id="u1481_div" class=""></div>
+                    <select id="u1481_input" class="u1481_input" onchange="location.href='alta_usuarios?entidad='+this.value;">
+                        <option name="entidadNom" class="u1481_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
+                        {{#each entidades}}
+                        <option class="u1481_input_option" value="{{entidad}}">{{nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <!-- Rol (Text Field)
+                <div id="u2065" class="ax_default text_field" data-label="Rol">
+                  <div id="u2065_div" class=""></div>
+                  <input name="rolEnEmpresa" id="u2065_input" type="text" value="" class="u2065_input"/>
+                </div> -->
+
+                <!-- Usuario (Text Field) -->
+                <div id="u2066" class="ax_default text_field" data-label="Usuario">
+                    <div id="u2066_div" class=""></div>
+                    <input name="usuario" id="u2066_input" type="text" value={{usuarioDefault}} class="u2066_input"/>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2067" class="ax_default box_1">
+                    <img id="u2067_img" class="img " src="images/administrar_usuarios/u2067.svg"/>
+                    <div id="u2067_text" class="text ">
+                        <p><span>Usuario:</span></p>
+                    </div>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2068" class="ax_default box_1">
+                    <img id="u2068_img" class="img " src="images/administrar_usuarios/u2068.svg"/>
+                    <div id="u2068_text" class="text ">
+                        <p><span>Administrador del Sistema: </span></p>
+                    </div>
+                </div>
+
+                <!-- Administrador (Checkbox) -->
+                <div id="u2069" class="ax_default checkbox" data-label="Administrador">
+                    <label id="u2069_input_label" for="u2069_input" style="position: absolute; left: 0px;">
+                        <img id="u2069_img" class="img " src="images/administrar_usuarios/administrador_u2069.svg"/>
+                        <div id="u2069_text" class="text " style="display:none; visibility: hidden">
+                            <p></p>
+                        </div>
+                    </label>
+                    <input name="checkAdmin" id="u2069_input" type="checkbox" value="true"/>
+                </div>
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2017" class="ax_default" data-label="Aceptar" data-left="1050" data-top="555" data-width="140" data-height="40">
+
+                <!-- Unnamed (Rectangle) -->
+                <div id="u2018" class="ax_default primary_button" onclick="reloadearPagina(this)">
+                    <div id="u2018_div" class=""></div>
+                    <div id="u2018_text" class="text ">
+                        <p><span>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Aceptar</span></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="includedContent"></div>
+<script>
+                function reloadearPagina(v) {
+                if (v.value != 'seleccionEgreso') {
+                    location.href = '/detalle_egreso?eg=' + v.value;
+                }
+            }
+</script>
+</body>
+</html>

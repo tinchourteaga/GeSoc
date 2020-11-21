@@ -5,6 +5,7 @@ import Dominio.Contrasenia.Excepciones.ExcepcionCaracterEspecial;
 import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
+import Dominio.Egreso.Core.Egreso;
 import Dominio.Entidad.Entidad;
 import Dominio.Usuario.Rol;
 import Dominio.Usuario.Usuario;
@@ -50,15 +51,16 @@ public class ControllerUsuario {
         Map<String,Object> datos = new HashMap<>();
 
         if(miUsuario.getRol().equals(Rol.ADMINISTRADOR)) {
-            List<Entidad> entidadesQueManejo = miUsuario.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList());
+            List<Egreso> egreso = miUsuario.getEgresosAREvisar();
+            List<Entidad> entidades = egreso.stream().map(eg->eg.getEntidad()).collect(Collectors.toList());
             Set<Entidad> entidadesSinRepetidos = new HashSet<>();
-            entidadesSinRepetidos.addAll(entidadesQueManejo);
-            entidadesQueManejo.clear();
-            entidadesQueManejo.addAll(entidadesSinRepetidos);
+            entidadesSinRepetidos.addAll(entidades);
+            entidades.clear();
+            entidades.addAll(entidadesSinRepetidos);
 
             Repositorio repoUsuario = new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
             List<Usuario> usuariosPosibles = repoUsuario.getTodosLosElementos();
-            List<Usuario> usuarioAVer = usuariosPosibles.stream().filter(us -> us.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList()).stream().anyMatch(e -> entidadesQueManejo.contains(e))).collect(Collectors.toList());
+            List<Usuario> usuarioAVer = usuariosPosibles.stream().filter(us -> us.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList()).stream().anyMatch(e -> entidades.contains(e))).collect(Collectors.toList());
 
             String entidadFiltro = request.queryParams("entidadFiltro");
             String apellidoFiltro = request.queryParamOrDefault("apellido", "Ingrese apellido");
@@ -77,7 +79,7 @@ public class ControllerUsuario {
             }
 
             if (entidadFiltro != null && !entidadFiltro.equals("Seleccione una empresa") && !entidadFiltro.equals("selected")) {
-                List<Entidad> posiblesEntidadesAfiltrar = entidadesQueManejo.stream().filter(e -> e.getEntidad() == Integer.valueOf(entidadFiltro).intValue()).collect(Collectors.toList());
+                List<Entidad> posiblesEntidadesAfiltrar = entidades.stream().filter(e -> e.getEntidad() == Integer.valueOf(entidadFiltro).intValue()).collect(Collectors.toList());
                 if (!posiblesEntidadesAfiltrar.isEmpty()) {
                     Entidad entidadAfiltrar = posiblesEntidadesAfiltrar.get(0);
                     usuarioAVer = usuarioAVer.stream().filter(unUs -> unUs.getEgresosAREvisar().stream().map(eg -> eg.getEntidad()).collect(Collectors.toList()).contains(entidadAfiltrar)).collect(Collectors.toList());
@@ -102,7 +104,7 @@ public class ControllerUsuario {
             datos.put("nombreDefault", nombreFiltro);
 
             datos.put("usuarios", usuarioAVer);
-            datos.put("entidades", entidadesQueManejo);
+            datos.put("entidades", entidades);
         }else{
             response.redirect("/pantalla_principal_usuario");
         }
@@ -164,6 +166,17 @@ public class ControllerUsuario {
         return vista;
     }
 
+    public static ModelAndView visualizarPantallaAltaUsuario(Request request, Response response){
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        Map<String,Object> datos = new HashMap<>();
+
+        String nombre=obtenerNombreUsuario(request);
+        datos.put("nombreUsuario",nombre);
+        ModelAndView vista = new ModelAndView(datos, "alta_usuarios.html");
+
+        return vista;
+    }
+
     private static String obtenerNombreUsuario(Request request) {
         return request.queryParams("usuario");
     }
@@ -196,15 +209,13 @@ public class ControllerUsuario {
         String nombre = request.queryParams("nombre");
         String dni = request.queryParams("dni");
         String email = request.queryParams("email");
-        String telefono = request.queryParams("telefono");
         String empresa = request.queryParams("empresa");
-        String rolEnEmpresa = request.queryParams("rolEnEmpresa");
         String nombreUsuario = request.queryParams("usuario");
 
         if(request.queryParams("checkAdmin") != null){
-            persistirUsuarioAdmin(nombre, apellido, nombreUsuario, dni, email);
+            persistirUsuarioAdmin(nombre, apellido, nombreUsuario, dni, email, empresa);
         }else{
-            persistirUsuarioEstandar(nombre, apellido, nombreUsuario, dni, email);
+            persistirUsuarioEstandar(nombre, apellido, nombreUsuario, dni, email, empresa);
         }
 
         response.redirect("administrar_usuarios");
@@ -212,11 +223,18 @@ public class ControllerUsuario {
         return null;
     }
 
-    public static void persistirUsuarioEstandar(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+    public static void persistirUsuarioEstandar(String nombre, String apellido, String nombreUsuario, String dni, String email, String empresa) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
 
         String contrasenia = PasswordGenerator.generateRandomPassword(10);
         Usuario usuario = new Usuario(Rol.ESTANDAR, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona();
+
+        Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
+        List<Entidad> entidad = repoEntidades.getTodosLosElementos();
+
+        if(repoEntidades.existe(empresa)){
+            usuario.getEntidades().add((Entidad) repoEntidades.buscarPorNombre(empresa));
+        }
 
         DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class);
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
@@ -231,11 +249,18 @@ public class ControllerUsuario {
         SendEmail.main(email, nombreUsuario, contrasenia);
     }
 
-    public static void persistirUsuarioAdmin(String nombre, String apellido, String nombreUsuario, String dni, String email) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+    public static void persistirUsuarioAdmin(String nombre, String apellido, String nombreUsuario, String dni, String email, String empresa) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
 
         String contrasenia = PasswordGenerator.generateRandomPassword(10);
         Usuario usuario = new Usuario(Rol.ADMINISTRADOR, nombre, apellido, contrasenia, dni, email);
         usuario.setPersona();
+
+        Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
+        List<Entidad> entidad = repoEntidades.getTodosLosElementos();
+
+        if(repoEntidades.existe(empresa)){
+            usuario.getEntidades().add((Entidad) repoEntidades.buscarPorNombre(empresa));
+        }
 
         DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class);
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);

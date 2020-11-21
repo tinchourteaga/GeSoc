@@ -56,7 +56,7 @@
   </head>
   <body>
     <div id="base" class="">
-      <form action="/asociarIngresosYEgresos" method="post">
+      <form id="form_posta" action="/asociarIngresosYEgresos" method="post" onsubmit="return chequearLosCheckboxes()">
 
       <!-- Unnamed (Group) -->
       <div id="u842" class="ax_default" data-left="45" data-top="348" data-width="42" data-height="28">
@@ -721,6 +721,7 @@
         </div>
       </div>
         <div id="includedContent"></div>
+      </form>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
     <script>
@@ -749,6 +750,19 @@
             u848_input.disabled = true;
             u855_input.disabled = true;
 		}
+    }
+
+    function chequearLosCheckboxes(){
+
+      var e = document.getElementById("u879_input");
+      var strUser = e.options[e.selectedIndex].text;
+
+      if(strUser == "Automática"  && (!document.getElementById('chk_unos').checked && !document.getElementById('chk_doss').checked && !document.getElementById('chk_tress').checked)){
+        alert("Por lo menos debe seleccionar un criterio");
+        return false;
+      }else{
+        return true;
+      }
     }
 </script>
   </body>

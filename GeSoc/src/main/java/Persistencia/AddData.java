@@ -718,6 +718,15 @@ public class AddData {
         julieta.getEgresosAREvisar().add(egreso9);
         julieta.getEgresosAREvisar().add(egreso10);
 
+        usuarioAdmin.getEgresosAREvisar().add(egreso1);
+        usuarioAdmin.getEgresosAREvisar().add(egreso2);
+        usuarioAdmin.getEgresosAREvisar().add(egreso3);
+        usuarioAdmin.getEgresosAREvisar().add(egreso4);
+        usuarioAdmin.getEgresosAREvisar().add(egreso5);
+        usuarioAdmin.getEgresosAREvisar().add(egreso6);
+        usuarioAdmin.getEgresosAREvisar().add(egreso7);
+
+        usuarioAdmin.getEntidades().add(entidad1);
         alejandro.getEntidades().add(entidad1);
         rocio.getEntidades().add(entidad1);
         julieta.getEntidades().add(entidad4);

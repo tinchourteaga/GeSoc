@@ -262,26 +262,25 @@ public class ControllerEgresos {
         Set<Entidad> entidadSet= new HashSet<>();
         entidadSet.addAll(entidades);
         entidades.clear();
-        entidadSet.addAll(entidadSet);
-
-        Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
-        List<Egreso> egresos = repoEgresos.getTodosLosElementos();
+        entidades.addAll(entidadSet);
 
         Repositorio repoProveedores = new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
-        List<Egreso> proveedores = repoProveedores.getTodosLosElementos();
+        List<Proveedor> proveedores = repoProveedores.getTodosLosElementos();
 
         Repositorio repoCategorias = new Repositorio(new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class));
-        List<Egreso> categorias = repoCategorias.getTodosLosElementos();
+        List<CategoriaCriterio> categorias = repoCategorias.getTodosLosElementos();
 
-        datos.put("egreso",egresos);
+        datos.put("egreso",miUsuario.getEgresosAREvisar());
         datos.put("proveedor",proveedores);
+        datos.put("entidades",entidades);
         datos.put("categoria",categorias);
 
-        String egresoId = request.queryParams("eg");
+        Optional<String> egresoId =Optional.ofNullable( request.queryParams("eg"));
 
-        if(egresoId != null){
-            Egreso egreso = egresos.stream().filter(e -> e.getEgreso() == Integer.valueOf(egresoId).intValue()).collect(Collectors.toList()).get(0);
+        egresoId.ifPresent(egresoIdString->{
+            Egreso egreso = miUsuario.getEgresosAREvisar().stream().filter(e -> e.getEgreso() == Integer.valueOf(egresoIdString).intValue()).collect(Collectors.toList()).get(0);
 
+            datos.put("egresoPactado",egreso);
             LocalDate fecha = egreso.getFecha();
             List<Presupuesto> presupuestosConsiderados = egreso.getPresupuestosAConsiderar();
             Presupuesto presupuesto = egreso.getPresupuestoPactado();
@@ -289,16 +288,15 @@ public class ControllerEgresos {
             MetodoDePago mp = egreso.getMetodoDePago();
             List<CategoriaCriterio> cat = egreso.getCategorias();
             List<Item> items = egreso.getListaItems();
-
             datos.put("ing",ingresoVinculado);
             datos.put("presele",presupuesto);
             datos.put("cat",cat);
             datos.put("presasc",presupuestosConsiderados);
             datos.put("mp",mp);
-            datos.put("entidad",entidades);
+            datos.put("entidad",egreso.getEntidad());
             datos.put("fecha",fecha);
             datos.put("items",items);
-        }
+        });
 
         return vista;
     }

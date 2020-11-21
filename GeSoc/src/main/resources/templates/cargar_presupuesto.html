@@ -38,7 +38,7 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/cargar_presupuesto/data.js"></script>
+    <!--<script src="files/cargar_presupuesto/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
@@ -287,8 +287,8 @@
       <!-- Unnamed (Droplist) -->
       <div id="u1176" class="ax_default droplist">
         <div id="u1176_div" class=""></div>
-        <select name="proveedor" id="u1176_input" class="u1176_input">
-          <option class="u1176_input_option" value="Seleccionar Proveedor">Seleccionar Proveedor</option>
+        <select name="proveedor" id="u1176_input" class="u1176_input" required>
+          <option class="u1176_input_option" value="">Seleccionar Proveedor</option>
           {{#each proveedor}}
           <option class="u1176_input_option" value={{proveedor}}>{{nombre}}</option>
           {{/each}}
@@ -298,8 +298,8 @@
       <!-- Unnamed (Droplist) -->
       <div id="u1177" class="ax_default droplist">
         <div id="u1177_div" class=""></div>
-        <select name="documentoComercial" id="u1177_input" class="u1177_input">
-          <option class="u1177_input_option" value="Seleccionar Documento Comercial">Seleccionar Documento Comercial</option>
+        <select name="documentoComercial" id="u1177_input" class="u1177_input" required>
+          <option class="u1177_input_option" value="">Seleccionar Documento Comercial</option>
          {{#each documentos}}
           <option class="u1177_input_option" value={{.}} >{{.}}</option>
           {{/each}}
@@ -337,7 +337,7 @@
       <!-- Unnamed (Text Field) -->
       <div id="u1182" class="ax_default text_field">
         <div id="u1182_div" class=""></div>
-        <input name="fecha" id="u1182_input" type="date" value="Fecha" class="u1182_input"/>
+        <input name="fecha" id="u1182_input" type="date" value="Fecha" class="u1182_input" required/>
       </div>
 
       <!--
@@ -376,7 +376,7 @@ Lo comento por tiempos -->
       <!-- Unnamed (Text Field) -->
       <div id="u1187" class="ax_default text_field">
         <div id="u1187_div" class=""></div>
-        <input name="linkComprobante" id="u1187_input" value="" class="u1187_input"/>
+        <input name="linkComprobante" id="u1187_input" value="" class="u1187_input" placeholder="Agregue un link de acceso"/>
       </div>
 
       <!-- Unnamed (Rectangle) -->

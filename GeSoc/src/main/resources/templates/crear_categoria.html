@@ -38,7 +38,7 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/crear_categoria/data.js"></script>
+    <!--<script src="files/crear_categoria/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
@@ -207,8 +207,8 @@
         <!-- Unnamed (Droplist) -->
         <div id="u1386" class="ax_default droplist">
           <div id="u1386_div" class=""></div>
-          <select name="criterioAsociado" id="u1386_input" class="u1386_input">
-            <option class="u1386_input_option" value="Seleccionar un Criterio">Seleccionar un Criterio</option>
+          <select name="criterioAsociado" id="u1386_input" class="u1386_input" required>
+            <option class="u1386_input_option" value="">Seleccionar un Criterio</option>
             {{#each criterios}}
             <option class="u1386_input_option" value={{criterio}}>{{nombreCriterio}}</option>
             {{/each}}
@@ -218,7 +218,7 @@
         <!-- Unnamed (Text Field) -->
         <div id="u1387" class="ax_default text_field">
           <div id="u1387_div" class=""></div>
-          <input type="text" id="u1387_input"  name="nombreCategoria"  required>
+          <input type="text" id="u1387_input"  name="nombreCategoria"  placeholder="Ingrese un nombre para la categoría" required>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -240,7 +240,7 @@
         <!-- Unnamed (Text Area) -->
         <div id="u1390" class="ax_default text_area">
           <div id="u1390_div" class=""></div>
-          <textarea name="descripcion" id="u1390_input" class="u1390_input"></textarea>
+          <textarea name="descripcion" id="u1390_input" class="u1390_input" placeholder="Ingrese una descripción" required></textarea>
         </div>
       </div>
 

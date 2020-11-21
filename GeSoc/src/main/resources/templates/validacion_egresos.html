@@ -25,7 +25,7 @@
     </script>
 </head>
 <body>
-<form action="/validarEgreso" method="post">
+<form action="/validarEgreso" method="POST">
     <div id="base" class="">
 
         <div id="titulo_cargar_items">
@@ -39,7 +39,7 @@
 
         <div id="select_estrategias">
             <select id="estrategia" name="estrategia" class="select_bonito" onchange="disableCheckBox(this)" required>
-                <option value="Seleccione">Seleccione una estrategia</option>
+                <option value="">Seleccione una estrategia</option>
                 <option value="Manual">Manual</option>
                 <option value="Automática">Automática</option>
             </select>
@@ -50,8 +50,8 @@
         </div>
 
         <div id="select_egresos">
-            <select id="egreso" name="egreso" class="select_bonito">
-                <option value="Seleccione">Seleccione un egreso:</option>
+            <select id="egreso" name="egreso" class="select_bonito" required>
+                <option value="">Seleccione un egreso:</option>
                 {{#each egreso}}
                 <option value={{egreso}}>{{fecha}}:{{valor.importe}}</option>
                 {{/each}}
@@ -64,8 +64,8 @@
         </div>
 
         <div id="select_horas">
-            <select id="horas" name="hora" disabled class="select_bonito">
-                <option>Seleccione una hora</option>
+            <select id="horas" name="hora" disabled class="select_bonito" required>
+                <option value="">Seleccione una hora</option>
                 <option value="0">00:00hs</option>
                 <option value="1">01:00hs</option>
                 <option value="2">02:00hs</option>
@@ -99,8 +99,8 @@
         </div>
 
         <div id="select_minutos">
-            <select id="minutos" name="minutos" disabled class="select_bonito">
-                <option>Seleccione un minuto</option>
+            <select id="minutos" name="minutos" disabled class="select_bonito" required>
+                <option value="">Seleccione un minuto</option>
                 <option value="0">00min</option>
                 <option value="5">05min</option>
                 <option value="10">10min</option>

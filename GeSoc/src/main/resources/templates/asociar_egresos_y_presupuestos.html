@@ -38,7 +38,7 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/asociar_egresos_y_presupuestos/data.js"></script>
+    <!--<script src="files/asociar_egresos_y_presupuestos/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
@@ -80,7 +80,7 @@
         <!-- Unnamed (Text Field) -->
         <div id="u634" class="ax_default text_field">
           <div id="u634_div" class=""></div>
-          <input name="fecha" id="u634_input" type="date" value="Fecha" class="u634_input"/>
+          <input name="fecha" id="u634_input" type="date" value="Fecha" class="u634_input" required/>
         </div>
       </div>
 
@@ -107,8 +107,8 @@
       <!-- Unnamed (Droplist) -->
       <div id="u638" class="ax_default droplist">
         <div id="u638_div" class=""></div>
-        <select name="egreso" id="u638_input" class="u638_input">
-          <option class="u638_input_option" value="Seleccionar Egreso">Seleccionar Egreso</option>
+        <select name="egreso" id="u638_input" class="u638_input" required>
+          <option class="u638_input_option" value="">Seleccionar Egreso</option>
           {{#each egresosNoPactados}}
           <option class="u638_input_option" value="{{egreso}}">{{fecha}}:{{valor.importe}}</option>
           {{/each}}
@@ -126,8 +126,8 @@
       <!-- Unnamed (Droplist) -->
       <div id="u640" class="ax_default droplist">
         <div id="u640_div" class=""></div>
-        <select name="metodoPago" id="u640_input" class="u640_input">
-          <option class="u640_input_option" value="Seleccionar Categoría">Seleccionar Categoría</option>
+        <select name="metodoPago" id="u640_input" class="u640_input" required>
+          <option class="u640_input_option" value="">Seleccionar Categoría</option>
           {{#each categorias}}
           <option class="u638_input_option" value="{{categoria}}">{{nombreDeCategoria}}</option>
           {{/each}}
@@ -153,8 +153,8 @@
       <!-- Unnamed (Droplist) -->
       <div id="u643" class="ax_default droplist">
         <div id="u643_div" class=""></div>
-        <select name="presupuesto" id="u643_input" class="u643_input">
-          <option class="u643_input_option" value="Seleccionar Presupuesto">Seleccionar Presupuesto</option>
+        <select name="presupuesto" id="u643_input" class="u643_input" required>
+          <option class="u643_input_option" value="">Seleccionar Presupuesto</option>
           {{#each presupuesto}}
           <option class="u638_input_option" value="{{presupuesto}}">{{fecha}}:{{valor}}</option>
           {{/each}}

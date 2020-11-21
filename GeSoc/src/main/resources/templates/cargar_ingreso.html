@@ -38,7 +38,7 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/cargar_ingreso/data.js"></script>
+    <!--<script src="files/cargar_ingreso/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
@@ -217,7 +217,7 @@
       <!-- Unnamed (Text Field) -->
       <div id="u747" class="ax_default text_field">
         <div id="u747_div" class=""></div>
-        <input name="fecha" id="u747_input" type="date" value="Fecha" class="u747_input"/>
+        <input name="fecha" id="u747_input" type="date" value="Fecha" class="u747_input" required/>
       </div>
 
       <!-- Unnamed (Rectangle) -->
@@ -274,13 +274,13 @@
       <!-- Unnamed (Text Field) -->
       <div id="u770" class="ax_default text_field">
         <div id="u770_div" class=""></div>
-        <input name="importe" id="u770_input" type="text" value="" class="u770_input"/>
+        <input name="importe" id="u770_input" type="text" value="" class="u770_input" required/>
       </div>
 
       <!-- Unnamed (Text Area) -->
       <div id="u771" class="ax_default text_area">
         <div id="u771_div" class=""></div>
-        <textarea name="descripcion" id="u771_input" class="u771_input"></textarea>
+        <textarea name="descripcion" id="u771_input" class="u771_input" required></textarea>
       </div>
 
       <!-- Popup (Dynamic Panel) -->
@@ -354,8 +354,8 @@
       <!-- Entidades (Droplist) -->
       <div id="u781" class="ax_default droplist" data-label="Entidades">
         <div id="u781_div" class=""></div>
-        <select name="entidad" id="u781_input" class="u781_input">
-          <option class="u781_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
+        <select name="entidad" id="u781_input" class="u781_input" required>
+          <option class="u781_input_option" value="">Seleccione una Entidad</option>
           {{#each entidades}}
           <option class="u781_input_option" value={{entidad}}>{{nombre}}</option>
           {{/each}}

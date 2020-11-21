@@ -38,7 +38,7 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/cargar_egreso/data.js"></script>
+    <!--<script src="files/cargar_egreso/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
@@ -353,8 +353,8 @@
       <!-- Unnamed (Droplist) -->
       <div id="u531" class="ax_default droplist">
         <div id="u531_div" class=""></div>
-        <select name="seleccionarMetodoPago" id="u531_input" class="u531_input">
-          <option class="u531_input_option" selected value="Seleccionar Método de Pago">Seleccionar Método de Pago</option>
+        <select name="seleccionarMetodoPago" id="u531_input" class="u531_input" required>
+          <option class="u531_input_option" selected value="">Seleccionar Método de Pago</option>
           {{#each metodos}}
           <option class="u531_input_option" value={{.}} >{{.}}</option>
           {{/each}}
@@ -364,7 +364,7 @@
       <!-- Unnamed (Droplist) -->
       <div id="u532" class="ax_default droplist">
         <div id="u532_div" class=""></div>
-        <select name="criterio" id="u532_input" class="u532_input">
+        <select name="criterio" id="u532_input" class="u532_input" required>
           <option class="u532_input_option" value="">Seleccionar Criterio</option>
          {{#each criterios}}
           <option class="u532_input_option" value={{.}} >{{.}}</option>
@@ -376,7 +376,7 @@
       <div id="u533" class="ax_default droplist">
         <div id="u533_div" class=""></div>
         <select name="documentoComercial" id="u533_input" class="u533_input">
-          <option class="u533_input_option" value="Seleccionar Documento Comercial">Seleccionar Documento Comercial</option>
+          <option class="u533_input_option" value="">Seleccionar Documento Comercial</option>
          {{#each documentos}}
           <option class="u533_input_option" value={{.}} >{{.}}</option>
           {{/each}}
@@ -385,8 +385,8 @@
 
         <div id="u5333" class="ax_default droplist">
           <div id="u5333_div" class=""></div>
-          <select name="entidad" id="u5333_input" class="u533_input">
-            <option class="u533_input_option" value="Seleccionar Entidad">Seleccionar Entidad</option>
+          <select name="entidad" id="u5333_input" class="u533_input" required>
+            <option class="u533_input_option" value="">Seleccionar Entidad</option>
             {{#each entidad}}
             <option class="u533_input_option" value={{entidad}} >{{nombre}}</option>
             {{/each}}
@@ -427,7 +427,7 @@
             <p><span>Fecha:</span></p>
           </div>-->
           <div id="u538_div" class=""></div>
-          <input name="fecha" id="u538_input" type="date" value="Fecha" class="u538_input"/>
+          <input name="fecha" id="u538_input" type="date" value="Fecha" class="u538_input" required/>
         </div>
 
       <!-- Unnamed (Dynamic Panel) VER LO QUE TRAE CADA COLUMNA-->

@@ -38,7 +38,7 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/crear_criterio/data.js"></script>
+    <!--<script src="files/crear_criterio/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
@@ -156,7 +156,7 @@
         <!-- Unnamed (Text Field) -->
         <div id="u1293" class="ax_default text_field">
           <div id="u1293_div" class=""></div>
-          <input name="nombreCriterio" id="u1293_input" type="text" value="" class="u1293_input"/>
+          <input name="nombreCriterio" id="u1293_input" type="text" class="u1293_input" placeholder="Ingrese un nombre para el criterio" required/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -170,7 +170,7 @@
         <!-- Unnamed (Text Area) -->
         <div id="u1295" class="ax_default text_area">
           <div id="u1295_div" class=""></div>
-          <textarea name="descripcion" id="u1295_input" class="u1295_input"></textarea>
+          <textarea name="descripcion" id="u1295_input" class="u1295_input" placeholder="Ingrese una descripción" required></textarea>
         </div>
 
         <div id="u12944" class="ax_default heading_1">
@@ -182,7 +182,7 @@
 
         <div id="u305" class="ax_default droplist">
           <div id="u305_div" class=""></div>
-          <select id="u305_input" class="u305_input">
+          <select id="u305_input" class="u305_input" required>
             <option value="">Seleccionar empresa</option>
             {{#each entidades}}
             <option class="u305_input_option" value={{entidad}}>{{nombre}}</option>
@@ -199,8 +199,9 @@
 
         <div id="u3055" class="ax_default droplist">
           <div id="u3055_div" class=""></div>
-          <select id="u3055_input" class="u305_input">
-            <option>Seleccionar criterio</option>
+          <select id="u3055_input" class="u305_input" required>
+            <option value="">Seleccionar criterio</option>
+            <option value="falta">FALTA PONERLE LAS OPCIONES POSTA</option>
           </select>
         </div>
 

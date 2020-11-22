@@ -218,7 +218,7 @@
         <!-- Unnamed (Text Field) -->
         <div id="u1387" class="ax_default text_field">
           <div id="u1387_div" class=""></div>
-          <input type="text" id="u1387_input"  name="nombreCategoria"  placeholder="Ingrese un nombre para la categoría" required>
+          <input type="text" id="u1387_input"  name="nombreCategoria"  placeholder="Ingrese un nombre para la Categoría" required>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -240,7 +240,7 @@
         <!-- Unnamed (Text Area) -->
         <div id="u1390" class="ax_default text_area">
           <div id="u1390_div" class=""></div>
-          <textarea name="descripcion" id="u1390_input" class="u1390_input" placeholder="Ingrese una descripción" required></textarea>
+          <textarea name="descripcion" id="u1390_input" class="u1390_input" placeholder="Ingrese una descripción para la Categoría" required></textarea>
         </div>
       </div>
 
@@ -307,6 +307,34 @@
         <img id="u1400_img" class="img " src="images/pantalla_principal_usuario/u130.svg"/>
         <div id="u1400_text" class="text " style="display:none; visibility: hidden">
           <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Dynamic Panel) -->
+      <div id="u1984" class="ax_default">
+        <div id="u1984_state0" class="panel_state" data-label="State1" style="">
+          <div id="u1984_state0_content" class="panel_state_content" style="width:100%;">
+            <table id="u57577" class="tablaCSS">
+              <!--cellpadding="0" cellspacing="0" style="margin: 0px auto; font-family:verdana; font-size:110%; color:#515559;"-->
+              <thead>
+              <tr>
+                <!-- style=" border: 1px solid #515559; background-color:#e5e5e5;" -->
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre</th>
+                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Descripción</th>
+              </tr>
+              </thead>
+              <tbody>
+              {{#each categorias}}
+              <tr> <!-- style=" border: 1px solid #515559;" -->
+                <td>{{nombreDeCategoria}}</td>
+                <td>{{descripcion}}</td><!-- style=" border: 1px solid #515559;" -->
+              </tr>
+              {{/each}}
+
+              </tbody>
+            </table>
+
+          </div>
         </div>
       </div>
 

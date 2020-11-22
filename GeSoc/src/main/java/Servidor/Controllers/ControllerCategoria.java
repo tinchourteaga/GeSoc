@@ -19,12 +19,18 @@ public class ControllerCategoria {
         Map<String,Object> datos = new HashMap<>();
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
+        DAO DAOCategorias = new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class); //dao generico de BBDD
+        Repositorio repoCategorias = new Repositorio<Criterio>(DAOCategorias); //repositorio que tambien usa generics
+        List<CategoriaCriterio> categorias = repoCategorias.getTodosLosElementos();
+
         List<Criterio> criteriosLista= miUsuario.getEgresosAREvisar().stream().map(e->e.getCategorias()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList()).stream().map(c->c.getCriterio()).collect(Collectors.toList());
         Set<Criterio> criteriosSet=new HashSet<>();
         criteriosSet.addAll(criteriosLista);
         criteriosLista.clear();
         criteriosLista.addAll(criteriosSet);
         datos.put("criterios",criteriosLista);
+        datos.put("categorias", categorias);
+
         ModelAndView vista = new ModelAndView(datos, "crear_categoria.html");
 
         return vista;

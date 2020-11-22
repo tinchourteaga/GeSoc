@@ -49,7 +49,10 @@ public class ControllerPresupuesto {
         Map<String, Object> datos= new HashMap<>();
 
         Optional<String> presupuesto = Optional.ofNullable(request.queryParams("presupuesto"));
-        Optional<String> categoriaOCriterio= Optional.ofNullable(request.queryParams("categoria"));
+        Optional<String> categoriaOCriterio= Optional.ofNullable(request.queryParams("categoriaFiltro"));
+        Optional<String> proveedorFiltro= Optional.ofNullable(request.queryParams("proveedorFiltro"));
+        Optional<String> fechaFiltro= Optional.ofNullable(request.queryParams("fechaFiltro"));
+
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
         entidades.addAll(miUsuario.getEntidades());
@@ -60,12 +63,17 @@ public class ControllerPresupuesto {
 
         final List<Presupuesto>[] misPresupuestos = new List[]{new ArrayList()};
         entidades.forEach(e-> misPresupuestos[0].addAll(e.getOperaciones().stream().map(ee->ee.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList())));
+        datos.put("categorias", misPresupuestos[0].stream().map(p->p.getCategoria()).flatMap(List::stream).collect(Collectors.toList()));
+        datos.put("proveedores", misPresupuestos[0].stream().map(presu->presu.getProveedor()).collect(Collectors.toList()));
         final List<Presupuesto>[] presupuestosPosibles= new List[]{new ArrayList()};
         final int[] presuId = {0};
-        presupuesto.ifPresent(pres-> {
+
+        presupuesto.filter(idString->!idString.equals("seleccione")).ifPresent(pres-> {
             presupuestosPosibles[0] = misPresupuestos[0].stream().filter(pre -> pre.getPresupuesto() == Integer.valueOf(pres).intValue()).collect(Collectors.toList());});
         Optional<Presupuesto> presuAMostrar = presupuestosPosibles[0].stream().findFirst();
-        presuAMostrar.ifPresent(presu->datos.put("presupuesto", presu));
+        presuAMostrar.ifPresent(presu->{datos.put("presupuesto", presu);
+        datos.put("detalles",presu.getDetalles());
+        });
 
         Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
         List<Egreso> egresos = repoEgresos.getTodosLosElementos();
@@ -73,18 +81,20 @@ public class ControllerPresupuesto {
 
         datos.put("egresos", egresos);
         List<Egreso> egresosPactado = egresos.stream().filter(eg -> eg.getPresupuestoPactado() != null && eg.getPresupuestoPactado().getPresupuesto() == presuId[0]).collect(Collectors.toList());
-
        Optional<Egreso> egresoPactado= egresosPactado.stream().findFirst();
        egresoPactado.ifPresent(egreso->datos.put("egresoPactado",egreso));
 
-       datos.put("presupuestos", misPresupuestos[0]);
-
-       categoriaOCriterio.ifPresent(criterioString->{
-           datos.put("presupuestos", misPresupuestos[0].stream().filter(pre->pre.getCategoria().stream().anyMatch(cat->cat.getNombreDeCategoria().equals(criterioString))|| pre.getCriterios().stream().anyMatch(cri->cri.getNombreCriterio().equals(criterioString)) ).collect(Collectors.toList()));
+       categoriaOCriterio.filter(crit->!crit.equals("seleccione")).ifPresent(criterioString->{
+           misPresupuestos[0]= misPresupuestos[0].stream().filter(pre->pre.getCriterios().stream().anyMatch(cri->cri.getCriterio()==Integer.valueOf(criterioString))).collect(Collectors.toList());
+           Optional<Presupuesto> unPresu= misPresupuestos[0].stream().findFirst();
+           unPresu.ifPresent(pre->datos.put("proveedorFiltro",pre.getCategoria().stream().filter(cat->cat.getCategoria()==Integer.valueOf(criterioString)).collect(Collectors.toList()).get(0)));
         });
-
-        datos.put("categorias", misPresupuestos[0].stream().map(p->p.getCategoria()).flatMap(List::stream).collect(Collectors.toList()));
-
+        proveedorFiltro.filter(prov->!prov.equals("seleccione")).ifPresent(idStringProv->{
+            misPresupuestos[0]= misPresupuestos[0].stream().filter(pre->pre.getProveedor().getProveedor()==Integer.valueOf(idStringProv)).collect(Collectors.toList());
+            Optional<Presupuesto> unPresu= misPresupuestos[0].stream().findFirst();
+            unPresu.ifPresent(pre->datos.put("proveedorFiltro",pre.getProveedor()));
+        });
+        datos.put("presupuestos", misPresupuestos[0]);
         return new ModelAndView(datos, "detalle_presupuesto.html");
     }
 

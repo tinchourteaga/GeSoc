@@ -476,14 +476,21 @@ public class AddData {
 
 
         Presupuesto presupuesto1= new Presupuesto(criterios1, detalles1, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor8);
+        presupuesto1.setFecha(LocalDate.parse("2020-03-06"));
         Presupuesto presupuesto2= new Presupuesto(criterios2, detalles2, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor9);
+        presupuesto2.setFecha(LocalDate.parse("2020-04-04"));
         Presupuesto presupuesto3= new Presupuesto(criterios3, detalles3, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor1);
+        presupuesto3.setFecha(LocalDate.parse("2020-04-27"));
         Presupuesto presupuesto4= new Presupuesto(criterios4, detalles4, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor10);
+        presupuesto4.setFecha(LocalDate.parse("2020-05-11"));
         Presupuesto presupuesto5= new Presupuesto(criterios5, detalles5, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor11);
+        presupuesto5.setFecha(LocalDate.parse("2020-10-01"));
         Presupuesto presupuesto6= new Presupuesto(criterios6, detalles6, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor5);
+        presupuesto6.setFecha(LocalDate.parse("2020-03-12"));
         Presupuesto presupuesto7= new Presupuesto(criterios7, detalles7, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor12);
+        presupuesto7.setFecha(LocalDate.parse("2020-10-30"));
         Presupuesto presupuesto8= new Presupuesto(criterios8, detalles8, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor6);
-
+        presupuesto8.setFecha(LocalDate.parse("2020-07-08"));
 
         presupuestos1.add(presupuesto1);
         presupuestos1.add(presupuesto2);

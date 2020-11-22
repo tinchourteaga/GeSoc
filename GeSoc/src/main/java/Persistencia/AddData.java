@@ -622,6 +622,17 @@ public class AddData {
         categoria11.getEgresos().add(egreso7);
 
 
+        criterioDeCategorias2.setEntidad(entidad4);
+        criterioDeCategorias3.setEntidad(entidad4);
+        criterioDeCategorias1.setEntidad(entidad1);
+        criterioDeCategorias4.setEntidad(entidad1);
+        criterioDeCategorias5.setEntidad(entidad1);
+        criterioDeCategorias6.setEntidad(entidad1);
+        criterioDeCategorias7.setEntidad(entidad1);
+        criterioDeCategorias8.setEntidad(entidad1);
+        criterioDeCategorias9.setEntidad(entidad1);
+        criterioDeCategorias10.setEntidad(entidad1);
+
         Repositorio repoCriteriosDeCategorizacion= new Repositorio(new DAOBBDD<Criterio>(Criterio.class));
         repoCriteriosDeCategorizacion.agregar(criterioDeCategorias1);
         repoCriteriosDeCategorizacion.agregar(criterioDeCategorias2);

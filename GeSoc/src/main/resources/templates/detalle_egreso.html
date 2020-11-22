@@ -30,8 +30,12 @@
         <p><span>Filtre por entidad: </span></p>
     </div>
 
-    <select name="proveedor" id="select_proveedor" class="selects_bonitos" type="text" style="top 5%; width: 20%; text-align: center; position:absolute">
-        <option value="seleccione">Seleccionar...</option>
+    <select name="proveedor" id="select_proveedor" class="selects_bonitos" type="text" onchange="reloadearPagina(this)" style="top 5%; width: 20%; text-align: center; position:absolute">
+        {{#if entElegida includeZero=true}}
+        <option value={{entElegida.entidad}} selected>{{entElegida.nombre}}</option>
+        {{else}}
+        <option value="-" >Seleccionar...</option>
+        {{/if}}
         {{#each entidades}}
         <option value={{entidad}} >{{nombre}}</option>
         {{/each}}
@@ -43,17 +47,21 @@
 
     <div id="fecha_posta_div_div" class="ax_default text_field">
         <div id="fecha_posta_div" class=""></div>
-        <input name="fecha" id="fecha_posta" type="date" value="Fecha" class="u854_input"/>
+        <input name="fecha" id="fecha_posta" type="date" value="Fecha" onchange="reloadearPagina(this)" class="u854_input"/>
     </div>
 
     <div id="criterio_seleccionado">
         <p><span>Filtre por categoría/criterio: </span></p>
     </div>
 
-    <select name="categoria" id="select_criterio" class="selects_bonitos" type="text" style="top 5%; width: 20%; text-align: center; position:absolute">
-        <option value="seleccione">Seleccionar...</option>
+    <select name="categoria" id="select_criterio" class="selects_bonitos" onchange="reloadearPagina(this)" type="text" style="top 5%; width: 20%; text-align: center; position:absolute">
+        {{#if catElegido includeZero=true}}
+        <option value={{catElegido.categoria}} >{{catElegido.nombreDeCategoria}}</option>
+        {{else}}
+        <option value="-" >Seleccionar...</option>
+        {{/if}}
        {{#each categoria}}
-        <option value={{categoria}}>{{nombreDeCategoria}}</option>
+        <option value={{categoria}} >{{nombreDeCategoria}}</option>
         {{/each}}
     </select>
 
@@ -63,7 +71,7 @@
 
     <select name="egreso" id="select_egreso" class="selects_bonitos" type="text" onchange="reloadearPagina(this)" style="top 5%; width: 20%; text-align: center; position:absolute">
         {{#if egresoPactado includeZero=true}}
-        <option class="u300_input_option" value={{egreso}}>{{fecha}}</option>
+        <option class="u300_input_option" value={{egresoPactado.egreso}}>{{egresoPactado.fecha}}</option>
         {{else}}
         <option class="u300_input_option" value="seleccionEgreso">Seleccionar...</option>
         {{/if}}
@@ -76,21 +84,21 @@
 
 
         <div>
-            {{#if fecha includeZero=true}}
-            <input id="fecha_detalle" name="fecha" class="variables_fecha" value="-" disabled/>
+            {{#if fechaSelect includeZero=true}}
+            <input id="fecha_detalle_posta" name="fecha" class="variables_fecha" value={{fechaSelect}} disabled/>
             {{else}}
-            <input id="fecha_detalle_posta" name="fecha" class="variables_fecha" value={{.}} disabled/>
+            <input id="fecha_detalle" name="fecha" class="variables_fecha" value="-" disabled/>
             {{/if}}
         </div>
 
         <div>
             {{#if mp includeZero=true}}
             <p><span>Método de pago:
-            <input name="mp" class="variables_fijas" value="-" disabled/>
+            <input name="mp" class="variables_fijas" value={{mp.tipo}} disabled/>
             </span></p>
             {{else}}
             <p><span>Método de pago:
-            <input name="mp" class="variables_fijas" value={{tipo}} disabled/>
+                <input name="mp" class="variables_fijas" value="-" disabled/>
             </span></p>
             {{/if}}
         </div>
@@ -110,44 +118,51 @@
         </div>
 
         <table id="dataTable" class="tablaCSS" width="100%" border="1" position="absolute">
+            {{#each items}}
             <tr id="trTable">
-                {{#each items}}
                 <td><input type="checkbox" name="chk" style="align: center;"/></td>
-                <td><input class="variables" type="text" name="txt" style="width: 100%; text-align: center;"/></td>
-                <td>
-                    <select class="variables" type="text" name="txt" style="width: 100%; text-align: center;">
-                        <option value="seleccione">Seleccionar...</option>
-                        <option value="bien">Bien</option>
-                        <option value="servicio">Servicio</option>
-                    </select>
-                </td>
-                <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" onkeyup="sumatoria('dataTable')"  name="txt" style="width: 100%; text-align: center;"/></td>
-                <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" onkeyup="sumatoria('dataTable')" style="width: 100%; text-align: center;"/></td>
-            {{/each}}
+                <td><input class="variables" type="text" name="txt" value="{{descripcion}}" style="width: 100%; text-align: center;"/></td>
+                <td id="tipoProducto"><input id="tipoProductoInput" class="variables" type="text" value={{tipo}}  name="txt" style="width: 100%; text-align: center;" disabled /></td>
+                <td id="celdaCantidad"><input id="celdaCantidadInput" class="variables" type="text" value={{cantidad}}  name="txt" style="width: 100%; text-align: center;" disabled /></td>
+                <td id="celdaPrecioUnitario"><input type="text" class="variables" name="txt" value={{valor}} style="width: 100%; text-align: center;" disabled /></td>
             </tr>
+            {{/each}}
         </table>
 
         <div>
-            <p><span>Ingresos asociados:
-            <input name="ing" class="variables_fijas" value="  Ingresos asociados" disabled/>
+            <p><span>Ingreso asociado:
+                {{#if ing includeZero=true}}
+                <input name="ing" class="variables_fijas" value={{ing.descripcion}} disabled/>
+                {{else}}
+                <input name="ing" class="variables_fijas" value="-" disabled/>
+                {{/if}}
+
             </span></p>
         </div>
 
         <div>
             <p><span>Criterios/catg asociados:
-            <input name="cat" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
+                {{#each cat}}
+            <input name="cat" class="variables_fijas" value={{nombreDeCategoria}} disabled/>
+                {{/each}}
             </span></p>
         </div>
 
         <div>
             <p><span>Presupuesto elegido:
-            <input name="presele" class="variables_fijas" value="  Presupesto elegido" disabled/>
+                {{#if presele includeZero=true}}
+                <input name="presele" class="variables_fijas" value={{valor}} disabled/>
+                {{else}}
+                <input name="presele" class="variables_fijas" value="-" disabled/>
+                {{/if}}
             </span></p>
         </div>
 
         <div>
             <p><span>Presupuestos asociados:
-            <input name="presasc" class="variables_fijas" value="  Presupuestos asociados" disabled/>
+                {{#each presasc}}
+            <input name="presasc" class="variables_fijas" value={{valor}} disabled/>
+                {{/each}}
             </span></p>
             <a id="archivito" href={{egreso.imagen}} target="_blank" download>Descargar el documento comercial</a>
         </div>
@@ -158,9 +173,8 @@
 
 <script>
                 function reloadearPagina(v) {
-                if (v.value != 'seleccionEgreso') {
-                    location.href = '/detalle_egreso?eg=' + v.value;
-                }
+
+                    location.href = '/detalle_egreso?eg=' +select_egreso.value + '&catElegido='+ select_criterio.value+'&entElegida='+select_proveedor.value +'&fechaElegida='+fecha_posta.value;
             }
 </script>
 </body>

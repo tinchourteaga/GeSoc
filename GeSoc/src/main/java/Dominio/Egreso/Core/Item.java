@@ -38,6 +38,10 @@ public class Item {
         this.tipo = tipo;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }

@@ -22,6 +22,14 @@ public class ControllerEntidad {
         Map<String,Object> datos = new HashMap<>();
         ModelAndView vista = new ModelAndView(datos, "cargar_entidad.html");
 
+        DAO DAOEntidadBase = new DAOBBDD<EntidadBase>(EntidadBase.class); //dao generico de BBDD
+        Repositorio repoEntidadBase = new Repositorio<EntidadBase>(DAOEntidadBase); //repositorio que tambien usa generics
+        List<EntidadBase> entidadesBase = repoEntidadBase.getTodosLosElementos();
+
+        DAO DAOEntidadJuridica = new DAOBBDD<EntidadJuridica>(EntidadJuridica.class); //dao generico de BBDD
+        Repositorio repoEntidadJuridica = new Repositorio<EntidadJuridica>(DAOEntidadJuridica); //repositorio que tambien usa generics
+        List<EntidadJuridica> entidadesJuridicas = repoEntidadJuridica.getTodosLosElementos();
+
         Repositorio repoPaises=new Repositorio(new DAOBBDD<Pais>(Pais.class));
         List<Pais> paises = repoPaises.getTodosLosElementos();
 
@@ -69,6 +77,9 @@ public class ControllerEntidad {
         datos.put("pisoDefault",piso);
         datos.put("deptoDefault",depto);
         datos.put("numeroDefault",numero);
+
+        datos.put("entidades_base", entidadesBase);
+        datos.put("entidades_juridicas", entidadesJuridicas);
 
         return vista;
     }

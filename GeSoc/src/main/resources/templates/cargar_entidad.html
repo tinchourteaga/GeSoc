@@ -390,23 +390,23 @@
                             Nombre
                         </th>
                         <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
-                            Apellido
+                            Descripción
                         </th>
-                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                        <!--<th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
                             Dirección
-                        </th>
-                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                        </th>-->
+                        <!--<th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
                             Identificación
-                        </th>
+                        </th>-->
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each egreso}}
+                    {{#each entidades_base}}
                     <tr>
-                        <td>{{entidad.nombre}}</td>
-                        <td>{{fecha}}</td>
-                        <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
-                        <td>{{fecha}}:{{valor.importe}}</td>
+                        <td>{{nombre}}</td>
+                        <td>{{descripcion}}</td>
+                        <!--<td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>-->
+                        <!--<td>{{fecha}}:{{valor.importe}}</td>-->
                     </tr>
                     {{/each}}
                     </tbody>
@@ -552,20 +552,20 @@
                         <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
                             Razón Social
                         </th>
-                        <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
+                        <!--<th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
                             Dirección
-                        </th>
+                        </th>-->
                         <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">
                             CUIT/CUIL
                         </th>
                     </tr>
                     </thead>
                     <tbody>
-                    {{#each egreso}}
+                    {{#each entidades_juridicas}}
                     <tr>
-                        <td>{{entidad.nombre}}</td>
-                        <td>{{fecha}}</td>
-                        <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
+                        <td>{{tipoEntidadJuridica.razonSocial}}</td>
+                        <!--<td>{{fecha}}</td>-->
+                        <td>{{tipoEntidadJuridica.cuit}}</td>
                     </tr>
                     {{/each}}
                     </tbody>

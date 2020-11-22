@@ -106,4 +106,6 @@ public class Criterio {
     public void setCriterio(int criterio) {
         this.criterio = criterio;
     }
+
+    public void agregarHijos(Criterio criterio){ this.hijos.add(criterio);}
 }

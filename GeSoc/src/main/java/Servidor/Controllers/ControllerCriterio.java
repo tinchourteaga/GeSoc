@@ -40,10 +40,27 @@ public class ControllerCriterio {
 
         String nombreCriterio = request.queryParams("nombreCriterio");
         String descripcion = request.queryParams("descripcion");
+        String entidad = request.queryParams("entidad");
 
         List categoriasAsociadas = new ArrayList();
 
         Criterio criterio = new Criterio(categoriasAsociadas, nombreCriterio, descripcion);
+
+        Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
+        List<Entidad> entidades = repoEntidades.getTodosLosElementos();
+
+        if (!entidades.isEmpty()) {
+            Entidad entidadAgregar = entidades.get(0);
+            criterio.setEntidad(entidadAgregar);
+        }
+
+        Repositorio repoCriterios= new Repositorio(new DAOBBDD<Criterio>(Criterio.class));
+        List<Criterio> criteriosHijos = repoCriterios.getTodosLosElementos();
+
+        if (!criteriosHijos.isEmpty()) {
+            Criterio criterioHijo = criteriosHijos.get(0);
+            criterio.agregarHijos(criterioHijo);
+        }
 
         persistirCriterio(criterio);
 

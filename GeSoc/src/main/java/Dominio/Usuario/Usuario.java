@@ -114,6 +114,8 @@ public class Usuario {
     public void setRol(Rol unRol){
         this.rol = unRol;
     }
+    public String getDni() { return dni; }
+    public void setDni(String dni) { this.dni = dni; }
 
     public BandejaMensajes getBandejaDeMensajes() {
         return bandejaDeMensajes;

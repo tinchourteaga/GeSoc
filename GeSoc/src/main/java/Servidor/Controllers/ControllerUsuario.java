@@ -60,7 +60,8 @@ public class ControllerUsuario {
 
             Repositorio repoUsuario = new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
             List<Usuario> usuariosPosibles = repoUsuario.getTodosLosElementos();
-            List<Usuario> usuarioAVer = usuariosPosibles.stream().filter(us -> us.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList()).stream().anyMatch(e -> entidades.contains(e))).collect(Collectors.toList());
+            List<Usuario> usuarioAVer = usuariosPosibles.stream().filter(us -> us.getEntidades().stream().anyMatch(e -> entidades.contains(e))).collect(Collectors.toList());
+            //List<Usuario> usuarioAVer = usuariosPosibles.stream().filter(us -> us.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList()).stream().anyMatch(e -> entidades.contains(e))).collect(Collectors.toList());
 
             String entidadFiltro = request.queryParams("entidadFiltro");
             String apellidoFiltro = request.queryParamOrDefault("apellido", "Ingrese apellido");
@@ -71,18 +72,19 @@ public class ControllerUsuario {
 
             if (admin != null && admin.equals("true")) {
                 usuarioAVer = usuarioAVer.stream().filter(us -> us.getRol().equals(Rol.ADMINISTRADOR)).collect(Collectors.toList());
-                datos.put("esAdmin", admin);
+                datos.put("checkbox_admin", admin);
             }
             if (revisor != null && revisor.equals("true")) {
                 usuarioAVer = usuarioAVer.stream().filter(us -> !us.getEgresosAREvisar().isEmpty()).collect(Collectors.toList());
-                datos.put("esRevisor", revisor);
+                datos.put("checkbox_revisor", revisor);
             }
 
+            // ESTÁ OK
             if (entidadFiltro != null && !entidadFiltro.equals("Seleccione una empresa") && !entidadFiltro.equals("selected")) {
                 List<Entidad> posiblesEntidadesAfiltrar = entidades.stream().filter(e -> e.getEntidad() == Integer.valueOf(entidadFiltro).intValue()).collect(Collectors.toList());
                 if (!posiblesEntidadesAfiltrar.isEmpty()) {
                     Entidad entidadAfiltrar = posiblesEntidadesAfiltrar.get(0);
-                    usuarioAVer = usuarioAVer.stream().filter(unUs -> unUs.getEgresosAREvisar().stream().map(eg -> eg.getEntidad()).collect(Collectors.toList()).contains(entidadAfiltrar)).collect(Collectors.toList());
+                    usuarioAVer = usuarioAVer.stream().filter(unUs -> unUs.getEntidades().stream().anyMatch(e -> entidades.contains(entidadAfiltrar))).collect(Collectors.toList());
                     datos.put("empresaElegida", entidadAfiltrar);
                 }
             }
@@ -90,18 +92,18 @@ public class ControllerUsuario {
             if (!apellidoFiltro.equals("Ingrese apellido") && !apellidoFiltro.equals("Ingrese")) {
                 usuarioAVer = usuarioAVer.stream().filter(us -> us.getApellido().equals(apellidoFiltro)).collect(Collectors.toList());
             }
-            datos.put("apellidoDefault", apellidoFiltro);
+            datos.put("apellidoDefaultFiltro", apellidoFiltro);
 
             if (!identificacion.equals("Ingrese Nombre de Usuario") && !identificacion.equals("Ingrese")) {
                 usuarioAVer = usuarioAVer.stream().filter(us -> us.getNickName().equals(identificacion)).collect(Collectors.toList());
             }
-            datos.put("identificacionDefault", identificacion);
+            datos.put("identificacionDefaultFiltro", identificacion);
 
             if (!nombreFiltro.equals("Ingrese nombre") && !nombreFiltro.equals("Ingrese")) {
 
                 usuarioAVer = usuarioAVer.stream().filter(us -> us.getNombre().equals(nombreFiltro)).collect(Collectors.toList());
             }
-            datos.put("nombreDefault", nombreFiltro);
+            datos.put("nombreDefaultFiltro", nombreFiltro);
 
             datos.put("usuarios", usuarioAVer);
             datos.put("entidades", entidades);
@@ -211,7 +213,7 @@ public class ControllerUsuario {
         String dni = request.queryParams("dniAlta");
         String email = request.queryParams("emailAlta");
         String empresa = request.queryParams("empresaAlta");
-        String nombreUsuario = request.queryParams("usuarioAlta");
+        String nombreUsuario = request.queryParams("usuarioAlta"); // BORRAR para que le de uno autogenerado
 
         if(request.queryParams("checkAdmin") != null){
             persistirUsuarioAdmin(nombre, apellido, nombreUsuario, dni, email, empresa);
@@ -247,7 +249,7 @@ public class ControllerUsuario {
         }
 
         //Enviamos el mail a la persona con su usuario y contrasenia
-        SendEmail.main(email, nombreUsuario, contrasenia);
+        SendEmail.main(email, usuario.getNickName(), contrasenia);
     }
 
     public static void persistirUsuarioAdmin(String nombre, String apellido, String nombreUsuario, String dni, String email, String empresa) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
@@ -273,6 +275,6 @@ public class ControllerUsuario {
         }
 
         //Enviamos el mail a la persona con su usuario y contrasenia
-        SendEmail.main(email, nombreUsuario, contrasenia);
+        SendEmail.main(email, usuario.getNickName(), contrasenia);
     }
 }

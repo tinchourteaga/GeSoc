@@ -78,12 +78,12 @@
                 </thead>
                 <tbody>
                 {{#each usuarios}}
-                <tr> <!-- style=" border: 1px solid #515559;" -->
-                  <td>{{nombre}}</td>
-                  <td>{{apellido}}</td><!-- style=" border: 1px solid #515559;" -->
-                  <td>{{persona}}</td>
-                  <td>{{rol}}</td>
-                </tr>
+                  <tr> <!-- style=" border: 1px solid #515559;" -->
+                    <td>{{nombre}}</td>
+                    <td>{{apellido}}</td><!-- style=" border: 1px solid #515559;" -->
+                    <td>{{dni}}</td>
+                    <td>{{rol}}</td>
+                  </tr>
                 {{/each}}
 
                 </tbody>
@@ -261,7 +261,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2022" class="ax_default text_field" data-label="Filter Input">
           <div id="u2022_div" class=""></div>
-          <input id="u2022_input" type="text" name="identificacion" value={{identificacionDefault}} class="u2022_input"/>
+          <input id="u2022_input" type="text" name="identificacion" value={{identificacionDefaultFiltro}} class="u2022_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -275,7 +275,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2024" class="ax_default text_field" data-label="Filter Input">
           <div id="u2024_div" class=""></div>
-          <input id="u2024_input" name="apellido" type="text" value={{apellidoDefault}} class="u2024_input"/>
+          <input id="u2024_input" name="apellido" type="text" value={{apellidoDefaultFiltro}} class="u2024_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -289,7 +289,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2026" class="ax_default text_field" data-label="Filter Input">
           <div id="u2026_div" class=""></div>
-          <input id="u2026_input" name="nombre" type="text" value={{nombreDefault}} class="u2026_input"/>
+          <input id="u2026_input" name="nombre" type="text" value={{nombreDefaultFiltro}} class="u2026_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -621,19 +621,19 @@
               <input name="rolEnEmpresa" id="u2065_input" type="text" value="" class="u2065_input"/>
             </div> -->
 
-            <!-- Usuario (Text Field) -->
+            <!-- Usuario (Text Field)
             <div id="u2066" class="ax_default text_field" data-label="Usuario">
               <div id="u2066_div" class=""></div>
               <input name="usuarioAlta" id="u2066_input" type="text" value={{usuarioDefault}} class="u2066_input"/>
-            </div>
+            </div> -->
 
-            <!-- Unnamed (Rectangle) -->
+            <!-- Unnamed (Rectangle)
             <div id="u2067" class="ax_default box_1">
               <img id="u2067_img" class="img " src="images/administrar_usuarios/u2067.svg"/>
               <div id="u2067_text" class="text ">
                 <p><span>Usuario:</span></p>
               </div>
-            </div>
+            </div> -->
 
             <!-- Unnamed (Rectangle) -->
             <div id="u2068" class="ax_default box_1">

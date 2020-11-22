@@ -122,7 +122,7 @@
                 <!-- Empresa/Organizacion (Droplist) -->
                 <div id="u1481" class="ax_default droplist" data-label="Entidades">
                     <div id="u1481_div" class=""></div>
-                    <select id="u1481_input" class="u1481_input" onchange="location.href='alta_usuarios?entidad='+this.value;">
+                    <select id="u1481_input" class="u1481_input">
                         <option name="entidadNom" class="u1481_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
                         {{#each entidades}}
                         <option class="u1481_input_option" value="{{entidad}}">{{nombre}}</option>
@@ -176,7 +176,15 @@
                 <div id="u2018" class="ax_default primary_button" onclick="reloadearPagina(this)">
                     <div id="u2018_div" class=""></div>
                     <div id="u2018_text" class="text ">
-                        <p><span>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Aceptar</span></p>
+                        <p><span>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Agregar Usuario</span></p>
+                    </div>
+                </div>
+                    <!-- Unnamed (Shape) -->
+                    <div id="u2019" class="ax_default icon">
+                        <img id="u2019_img" class="img " src="images/administrar_usuarios/u2019.svg"/>
+                        <div id="u2019_text" class="text " style="display:none; visibility: hidden">
+                            <p></p>
+                        </div>
                     </div>
                 </div>
             </div>

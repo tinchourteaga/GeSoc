@@ -63,7 +63,6 @@ public class Servidor {
         Spark.get("/datos_usuario", ControllerUsuario::visualizarPantallaDatosUsuario, engine);//falta testear peor no hay boton para entrar jeje
         Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
         Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);//falta boton "Filtrar"
-        Spark.get("/alta_usuarios", ControllerUsuario::visualizarPantallaAltaUsuario, engine);
         Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);//Falta que se bloqueen bien los campos
         Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
         Spark.get("/validar_egresos", ControllerEgresos::visualizarPantallaValidacion, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
@@ -92,8 +91,7 @@ public class Servidor {
         Spark.get("/crear_proyecto_de_financiamiento", ControllerProyectoFinanciamiento::visualizarPantalla, engine);
         Spark.get("/configuracion_general", ControllerUsuario::visualizarPantallaConfiguracionGeneral, engine);
         Spark.get("/bitacora_operaciones", ControllerBitacora::visualizarPantalla, engine);
-
-
+        Spark.get("/alta_usuarios", ControllerUsuario::visualizarPantallaAltaUsuario, engine);
     }
 
     public static void levantarRutaPOST(){

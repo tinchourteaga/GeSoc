@@ -226,7 +226,7 @@
       </div>
 
       <!-- AgregarUsuario (Group) -->
-        <a href="/alta_usuarios"><div id="u2017" class="ax_default" data-label="AgregarUsuario" data-left="1050" data-top="555" data-width="140" data-height="40">
+        <div id="u2017" class="ax_default" data-label="AgregarUsuario" data-left="1050" data-top="555" data-width="140" data-height="40">
 
         <!-- Unnamed (Rectangle) -->
         <div id="u2018" class="ax_default primary_button"> <!--onclick="abrirPopUp()"-->
@@ -515,7 +515,7 @@
             <!-- Apellidos (Text Field) -->
             <div id="u2052" class="ax_default text_field" data-label="Apellidos">
               <div id="u2052_div" class=""></div>
-              <input name="apellido" id="u2052_input" type="text" value={{apellidoDefault}} class="u2052_input" required/>
+              <input name="apellidoAlta" id="u2052_input" type="text" value={{apellidoDefault}} class="u2052_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -529,7 +529,7 @@
             <!-- Nombres (Text Field) -->
             <div id="u2054" class="ax_default text_field" data-label="Nombres">
               <div id="u2054_div" class=""></div>
-              <input name="nombre" id="u2054_input" type="text" value={{nombreDefault}} class="u2054_input" required/>
+              <input name="nombreAlta" id="u2054_input" type="text" value={{nombreDefault}} class="u2054_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -543,7 +543,7 @@
             <!-- DNI (Text Field) -->
             <div id="u2056" class="ax_default text_field" data-label="DNI">
               <div id="u2056_div" class=""></div>
-              <input name="dni" id="u2056_input" type="text" value="" class="u2056_input" required/>
+              <input name="dniAlta" id="u2056_input" type="text" value={{DNIDefault}} class="u2056_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -557,7 +557,7 @@
             <!-- EmailPrincipal (Text Field) -->
             <div id="u2058" class="ax_default text_field" data-label="EmailPrincipal">
               <div id="u2058_div" class=""></div>
-              <input name="email" id="u2058_input" type="text" value="" class="u2058_input" required/>
+              <input name="emailAlta" id="u2058_input" type="text" value={{emailDefault}} class="u2058_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -568,19 +568,19 @@
               </div>
             </div>
 
-            <!-- Celular (Text Field) -->
+            <!-- Celular (Text Field)
             <div id="u2060" class="ax_default text_field" data-label="Celular">
               <div id="u2060_div" class=""></div>
-              <input name="telefono" id="u2060_input" type="text" value="" class="u2060_input" required/>
-            </div>
+              <input name="telefono" id="u2060_input" type="text" value="" class="u2060_input"/>
+            </div> -->
 
-            <!-- Unnamed (Rectangle) -->
+            <!-- Unnamed (Rectangle)
             <div id="u2061" class="ax_default box_1">
               <img id="u2061_img" class="img " src="images/administrar_usuarios/u2061.svg"/>
               <div id="u2061_text" class="text ">
                 <p><span>Teléfono Celular:</span></p>
               </div>
-            </div>
+            </div> -->
 
             <!-- Unnamed (Rectangle) -->
             <div id="u2062" class="ax_default box_1">
@@ -590,30 +590,41 @@
               </div>
             </div>
 
-            <!-- Unnamed (Rectangle) -->
+            <!-- Unnamed (Rectangle)
             <div id="u2063" class="ax_default box_1">
               <img id="u2063_img" class="img " src="images/administrar_usuarios/u2063.svg"/>
               <div id="u2063_text" class="text ">
                 <p><span>Rol en la Empresa / Organización: </span></p>
               </div>
-            </div>
+            </div> -->
 
-            <!-- EmpresaOrganizacion (Text Field) -->
+            <!-- EmpresaOrganizacion (Text Field)
             <div id="u2064" class="ax_default text_field" data-label="EmpresaOrganizacion">
               <div id="u2064_div" class=""></div>
-              <input name="empresa" id="u2064_input" type="text" value="" class="u2064_input" required/>
+              <input name="empresa" id="u2064_input" type="text" value="" class="u2064_input"/>
+            </div> -->
+
+            <!-- Empresa/Organizacion (Droplist) -->
+            <div id="u1481" class="ax_default droplist" data-label="Entidades">
+              <div id="u1481_div" class=""></div>
+              <select id="u1481_input" class="u1481_input">
+                <option name="empresaAlta" class="u1481_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
+                {{#each entidades}}
+                <option class="u1481_input_option" value="{{entidad}}">{{nombre}}</option>
+                {{/each}}
+              </select>
             </div>
 
-            <!-- Rol (Text Field) -->
+            <!-- Rol (Text Field)
             <div id="u2065" class="ax_default text_field" data-label="Rol">
               <div id="u2065_div" class=""></div>
-              <input name="rolEnEmpresa" id="u2065_input" type="text" value="" class="u2065_input" required/>
-            </div>
+              <input name="rolEnEmpresa" id="u2065_input" type="text" value="" class="u2065_input"/>
+            </div> -->
 
             <!-- Usuario (Text Field) -->
             <div id="u2066" class="ax_default text_field" data-label="Usuario">
               <div id="u2066_div" class=""></div>
-              <input name="usuario" id="u2066_input" type="text" value="" class="u2066_input" required/>
+              <input name="usuarioAlta" id="u2066_input" type="text" value={{usuarioDefault}} class="u2066_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -767,6 +778,7 @@
                   <p><span>CREAR CATEGORIA</span></p>
                 </div>
               </div>
+
 
               <!-- Tab Label 3 (Rectangle) -->
               <div id="u2088" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u2070Tabs">

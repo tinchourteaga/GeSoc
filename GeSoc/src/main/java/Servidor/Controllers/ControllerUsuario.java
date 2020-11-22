@@ -166,12 +166,13 @@ public class ControllerUsuario {
         return vista;
     }
 
-    public static ModelAndView visualizarPantallaAltaUsuario(Request request, Response response){
+    public static ModelAndView visualizarPantallaAltaUsuario(Request request, Response response) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
 
-        String nombre=obtenerNombreUsuario(request);
-        datos.put("nombreUsuario",nombre);
+        List<Entidad> misEntidades = miUsuario.getEntidades();
+        datos.put("entidades", misEntidades);
+
         ModelAndView vista = new ModelAndView(datos, "alta_usuarios.html");
 
         return vista;
@@ -205,12 +206,12 @@ public class ControllerUsuario {
 
     public static Object administrarUsuarios(Request request, Response response) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
 
-        String apellido = request.queryParams("apellido");
-        String nombre = request.queryParams("nombre");
-        String dni = request.queryParams("dni");
-        String email = request.queryParams("email");
-        String empresa = request.queryParams("empresa");
-        String nombreUsuario = request.queryParams("usuario");
+        String apellido = request.queryParams("apellidoAlta");
+        String nombre = request.queryParams("nombreAlta");
+        String dni = request.queryParams("dniAlta");
+        String email = request.queryParams("emailAlta");
+        String empresa = request.queryParams("empresaAlta");
+        String nombreUsuario = request.queryParams("usuarioAlta");
 
         if(request.queryParams("checkAdmin") != null){
             persistirUsuarioAdmin(nombre, apellido, nombreUsuario, dni, email, empresa);
@@ -230,15 +231,15 @@ public class ControllerUsuario {
         usuario.setPersona();
 
         Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
-        List<Entidad> entidad = repoEntidades.getTodosLosElementos();
+        List<Entidad> entidades = repoEntidades.getTodosLosElementos();
 
-        if(repoEntidades.existe(empresa)){
-            usuario.getEntidades().add((Entidad) repoEntidades.buscarPorNombre(empresa));
+        if (!entidades.isEmpty()) {
+            Entidad entidadAgregar = entidades.get(0);
+            usuario.agregarEntidades(entidadAgregar);
         }
 
         DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class);
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
-
 
         //Chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
         if(!repoUsuario.existe(usuario)){
@@ -256,15 +257,15 @@ public class ControllerUsuario {
         usuario.setPersona();
 
         Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
-        List<Entidad> entidad = repoEntidades.getTodosLosElementos();
+        List<Entidad> entidades = repoEntidades.getTodosLosElementos();
 
-        if(repoEntidades.existe(empresa)){
-            usuario.getEntidades().add((Entidad) repoEntidades.buscarPorNombre(empresa));
+        if (!entidades.isEmpty()) {
+            Entidad entidadAgregar = entidades.get(0);
+            usuario.agregarEntidades(entidadAgregar);
         }
 
         DAO DAOUsuario = new DAOBBDD<Usuario>(Usuario.class);
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
-
 
         //Chequear si ya existe en la bd -> si existe no lo agrego, sino lo meto
         if(!repoUsuario.existe(usuario)){

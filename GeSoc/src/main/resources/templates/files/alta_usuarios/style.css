@@ -1611,3 +1611,33 @@
   word-wrap:break-word;
   text-transform:none;
 }
+#u2019_img {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:12px;
+  height:12px;
+}
+#u2019 {
+  border-width:0px;
+  position:absolute;
+  left:1067px;
+  top:569px;
+  width:12px;
+  height:12px;
+  display:flex;
+}
+#u2019 .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#u2019_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+  visibility:hidden;
+}

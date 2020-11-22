@@ -61,6 +61,8 @@ public class Usuario {
         this.egresosARevisar.add(egreso);
     }
 
+    public void setEntidades(List<Entidad> entidades) { this.entidades = entidades; }
+
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "pers_usuarios_dom_entidades",
@@ -70,6 +72,8 @@ public class Usuario {
     protected List<Entidad> entidades = new ArrayList<>();
 
     public List<Entidad> getEntidades() { return this.entidades; }
+
+    public void agregarEntidades(Entidad entidad) { this.entidades.add(entidad);}
 
     @Embedded
     private BandejaMensajes bandejaDeMensajes;

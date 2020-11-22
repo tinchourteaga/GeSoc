@@ -11255,6 +11255,7 @@
     min-width: 400px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
+    -webkit-overflow-scrolling:touch;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
     font-weight:300;
@@ -11281,7 +11282,7 @@
     background-color: #f3f3f3;
 }
 
-.tablaCSS tbody tr:last-of-type{
+.tablaCSS tbody{
     border-bottom: 2px solid rgba(217, 70, 59, 1);
 }
 #cargar_items{

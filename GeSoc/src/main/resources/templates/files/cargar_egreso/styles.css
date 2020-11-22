@@ -6596,7 +6596,7 @@
     background-color: #f3f3f3;
 }
 
-.tablaCSS tbody tr:last-of-type{
+.tablaCSS tbody{
     border-bottom: 2px solid rgba(217, 70, 59, 1);
 }
 

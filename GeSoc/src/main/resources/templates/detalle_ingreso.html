@@ -30,8 +30,12 @@
     <p><span>Filtre por proveedor: </span></p>
 </div>
 
-<select id="select_proveedor" class="selects_bonitos" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
-    <option value="seleccione">Seleccionar...</option>
+<select id="select_proveedor" class="selects_bonitos" type="text" onchange="redireccion()" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
+    {{#if entidadFiltro includeZero=true}}
+    <option value={{entidadFiltro.entidad}} selected>{{entidadFiltro.nombre}}</option>
+    {{else}}
+    <option value="seleccione" selected>Seleccionar...</option>
+    {{/if}}
     {{#each entidades}}
     <option value={{entidad}}>{{nombre}}</option>
     {{/each}}
@@ -50,10 +54,14 @@
     <p><span>Filtre por categoría/criterio: </span></p>
 </div>
 
-<select id="select_criterio" class="selects_bonitos" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
-    <option value="seleccione">Seleccionar...</option>
+<select id="select_criterio" class="selects_bonitos" type="text" onchange="redireccion()" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
+    {{#if categoriaFiltro includeZero=true}}
+    <option value={{categoriaFiltro.categoria}} selected>{{categoriaFiltro.nombreDeCategoria}}</option>
+    {{else}}
+    <option value="seleccione" selected>Seleccionar...</option>
+    {{/if}}
     {{#each categorias}}
-    <option value={{categoria}}>{{nombreCategoria}}</option>
+    <option value={{categoria}}>{{nombreDeCategoria}}</option>
     {{/each}}
 </select>
 
@@ -61,42 +69,49 @@
     <p><span>Ingreso: </span></p>
 </div>
 
-<select id="select_egreso" class="selects_bonitos" type="text" onchange="redireccion(this)" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
-    <option value="seleccione">Seleccionar...</option>
+<select id="select_egreso" class="selects_bonitos" type="text" onchange="redireccion()" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
+    {{#if ingreso includedZero=true}}
+    <option value={{ingreso.ingreso}} selected>{{ingreso.descripcion}}</option>
+    {{else}}
+    <option value="seleccione" selected>Seleccionar...</option>
+    {{/if}}
     {{#each ingresos}}
-    <option value={{ingreso}}>{{fecha}}:{{valor}}</option>
+    <option value={{ingreso}}>{{descripcion}}</option>
     {{/each}}
 </select>
 
 <div id="detalle_posta">
     <div>
         <span style="color:rgba(217, 70, 59, 1); font-size:1.5vw;">Egresos asociados:
-        <input id="proveedorr" name="txt" class="variables_fijas" style="font-size:1.5vw;" value="  egresosAsoc" disabled/>
+            {{#each egresosAsociados}}
+            <input id="proveedorr" name="txt" class="variables_fijas" style="font-size:1.5vw;" value={{valor.importe}} disabled/>
+        {{/each}}
         </span>
     </div>
 
     <div>
         {{#if ingreso includedZero=true}}
-        <input id="fecha_detalle" name="txt" class="variables_fecha" style="font-size:1vw;" value="-" disabled/>
+        <input id="fecha_detalle_con_ing" name="txt" class="variables_fecha" style="font-size:1vw;" value={{ingreso.fecha}} disabled/>
         {{else}}
-        <input id="fecha_detalle_con_ing" name="txt" class="variables_fecha" style="font-size:1vw;" value={{fecha}} disabled/>
+        <input id="fecha_detalle" name="txt" class="variables_fecha" style="font-size:1vw;" value="-" disabled/>
         {{/if}}
     </div>
 
     <div>
         {{#if ingreso includeZero=true}}
         <span style="color:rgba(217, 70, 59, 1); font-size:1.5vw;">Total:
-        <input id="total_ingreso" name="txt" class="variables_fijas" style="font-size:1.5vw;" value="-" disabled/>
+        <input id="total_ingreso_posta" name="txt" class="variables_fijas" style="font-size:1.5vw;" value={{ingreso.valor.importe}} disabled/>
         </span>
         {{else}}
         <span style="color:rgba(217, 70, 59, 1); font-size:1.5vw;">Total:
-        <input id="total_ingreso_posta" name="txt" class="variables_fijas" style="font-size:1.5vw;" value={{valor}} disabled/>
+            <input id="total_ingreso" name="txt" class="variables_fijas" style="font-size:1.5vw;" value="-" disabled/>
         </span>
         {{/if}}
     </div>
 <script>
-    function  redireccion(v) {
-        location.href="/detalle_ingreso?ingreso="+v.value;
+    function  redireccion() {
+        location.href="/detalle_ingreso?ingreso="+select_egreso.value+'&categoriaFiltro='+
+            select_criterio.value+ '&entidad='+select_proveedor.value;
     }
 
 

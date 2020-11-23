@@ -40,7 +40,10 @@ public class ControllerIngresos {
 
         Map<String, Object> datos= new HashMap<>();
 
-        String ingreso = request.queryParams("ingreso");
+        Optional<String> ingreso = Optional.ofNullable(request.queryParams("ingreso"));
+        Optional<String> categoriaFiltro = Optional.ofNullable(request.queryParams("categoriaFiltro"));
+        Optional<String> entidad = Optional.ofNullable(request.queryParams("entidad"));
+
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
         Set<Entidad> entidadSet= new HashSet<>();
@@ -50,14 +53,23 @@ public class ControllerIngresos {
 
         datos.put("entidades", entidades);
 
-        List<Ingreso> ingresosQueManejo= entidades.stream().map(e->e.getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        final List<Ingreso>[] ingresosQueManejo = new List[]{entidades.stream().map(e -> e.getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList())};
 
-        datos.put("ingresos",ingresosQueManejo);
-        List<Ingreso> posiblesIngresos= ingresosQueManejo.stream().filter(in->in.getIngreso()==Integer.valueOf(ingreso)).collect(Collectors.toList());
+        categoriaFiltro.filter(cat-> !cat.equals("seleccione")).ifPresent(cat->{
+            ingresosQueManejo[0] = ingresosQueManejo[0].stream().filter(ingresoDeLista->ingresoDeLista.getCategoriasAsociadas().stream().anyMatch(cate-> cate.getCategoria()==Integer.valueOf(cat).intValue())).collect(Collectors.toList());
+            entidades.stream().map(e->e.getCriterios()).flatMap(List::stream).collect(Collectors.toList()).stream().map(cri-> cri.getCategoriaCriterios()).flatMap(List::stream).filter(categoriaposta->categoriaposta.getCategoria()==Integer.valueOf(cat).intValue()).findFirst().ifPresent(categoriaCriterio -> datos.put("categoriaFiltro",categoriaCriterio));
+        });
+        entidad.filter(ent-> !ent.equals("seleccione")).ifPresent(ent->{
+            ingresosQueManejo[0] = ingresosQueManejo[0].stream().filter(ingresoDeLista->ingresoDeLista.getEntidad().getEntidad()==Integer.valueOf(ent).intValue()).collect(Collectors.toList());
+            ingresosQueManejo[0].stream().findFirst().ifPresent(ingreso1 -> datos.put("entidadFiltro",ingreso1.getEntidad()));
+        });
 
-        if(!posiblesIngresos.isEmpty()){
-            datos.put("ingreso", posiblesIngresos.get(0));
-        }
+        datos.put("ingresos", ingresosQueManejo[0]);
+
+        ingreso.filter(ingresito->!ingresito.equals("seleccione")).ifPresent(ing->{
+                List<Ingreso> posiblesIngresos= ingresosQueManejo[0].stream().filter(in->in.getIngreso()==Integer.valueOf(ing)).collect(Collectors.toList());
+            posiblesIngresos.stream().findFirst().ifPresent(ingresoPresente->datos.put("ingreso", ingresoPresente));
+        });
 
         datos.put("categorias", entidades.stream().map(e->e.getCriterios()).flatMap(List::stream).collect(Collectors.toList()).stream().map(cri-> cri.getCategoriaCriterios()).flatMap(List::stream).collect(Collectors.toList()));
         //datos.put("egreso",egresosARevisar);

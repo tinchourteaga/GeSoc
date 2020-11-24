@@ -1,6 +1,7 @@
 package Servidor.Controllers;
 
 import Dominio.Entidad.*;
+import Dominio.Usuario.Usuario;
 import Lugares.Ciudad;
 import Lugares.Pais;
 import Lugares.Provincia;
@@ -14,6 +15,7 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ControllerEntidad {
@@ -22,25 +24,31 @@ public class ControllerEntidad {
         Map<String,Object> datos = new HashMap<>();
         ModelAndView vista = new ModelAndView(datos, "cargar_entidad.html");
 
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+
         DAO DAOEntidadBase = new DAOBBDD<EntidadBase>(EntidadBase.class); //dao generico de BBDD
         Repositorio repoEntidadBase = new Repositorio<EntidadBase>(DAOEntidadBase); //repositorio que tambien usa generics
         List<EntidadBase> entidadesBase = repoEntidadBase.getTodosLosElementos();
+
+        entidadesBase= entidadesBase.stream().filter(entidadBase -> miUsuario.getEntidades().contains(entidadBase)).collect(Collectors.toList());
 
         DAO DAOEntidadJuridica = new DAOBBDD<EntidadJuridica>(EntidadJuridica.class); //dao generico de BBDD
         Repositorio repoEntidadJuridica = new Repositorio<EntidadJuridica>(DAOEntidadJuridica); //repositorio que tambien usa generics
         List<EntidadJuridica> entidadesJuridicas = repoEntidadJuridica.getTodosLosElementos();
 
+        entidadesJuridicas= entidadesJuridicas.stream().filter(entidadJuridica -> miUsuario.getEntidades().contains(entidadJuridica)).collect(Collectors.toList());
+
+
         Repositorio repoPaises=new Repositorio(new DAOBBDD<Pais>(Pais.class));
         List<Pais> paises = repoPaises.getTodosLosElementos();
-
         List<Ciudad> ciudades;
-       String paisElegido= request.queryParams("pais");
-       Pais paisElegidoObj=null;
+
+        String paisElegido= request.queryParams("pais");
+        Pais paisElegidoObj=null;
        if(paisElegido!=null) {
            paisElegidoObj = paises.stream().filter(p -> p.getPais()==Integer.valueOf(paisElegido).intValue()).collect(Collectors.toList()).get(0);
            datos.put("paisElegido",paisElegidoObj);
            datos.put("provincias",paisElegidoObj.getProvincias());
-
        }
         String provinciaElegida= request.queryParams("provincia");
         if(provinciaElegida!=null && paisElegidoObj!=null){
@@ -57,27 +65,26 @@ public class ControllerEntidad {
         //saco los campos que pudieron completar antes
 
 
-        String rs=request.queryParamOrDefault("razonSocial","Ingrese razon social");
-        String rf=request.queryParamOrDefault("nombreFicticio","Ingrese nombre ficticio");
-        String cuit=request.queryParamOrDefault("cuilOCuit","Ingrese  CUIL o CUIT");
-        String codIGJ=request.queryParamOrDefault("codInscripcion","Ingrese codigo de IGJ");
-        String calle=request.queryParamOrDefault("calle","Ingrese calle");
-        String piso=request.queryParamOrDefault("piso","piso");
-        String numero=request.queryParamOrDefault("numeroCalle","nro");
-        String depto=request.queryParamOrDefault("dpto","depto");
+        Optional<String> rs=    Optional.ofNullable(request.queryParams("razonSocial"));
+        Optional<String> rf=    Optional.ofNullable(request.queryParams("nombreFicticio"));
+        Optional<String> cuit=  Optional.ofNullable(request.queryParams("cuilOCuit"));
+        Optional<String> codIGJ=Optional.ofNullable(request.queryParams("codInscripcion"));
+        Optional<String> calle= Optional.ofNullable(request.queryParams("calle"));
+        Optional<String> piso=  Optional.ofNullable(request.queryParams("piso"));
+        Optional<String> numero=Optional.ofNullable(request.queryParams("numeroCalle"));
+        Optional<String> depto= Optional.ofNullable(request.queryParams("dpto"));
 
+        datos.put("razonSocialDefault",rs.orElse(""));
+        datos.put("nombreFicticioDefault",rf.orElse(""));
+        datos.put("cuitDefault",cuit.orElse(""));
+        datos.put("codigoIGJDefault",codIGJ.orElse(""));
+        datos.put("calleDefault",calle.orElse(""));
+        datos.put("pisoDefault",piso.orElse(""));
+        datos.put("numeroDefault",numero.orElse(""));
+        datos.put("deptoDefault",depto.orElse(""));
 
         datos.put("paises",paises);
         datos.put("tipoEntidad",tipoEntidad);
-        datos.put("razonSocialDefault",rs);
-        datos.put("nombreFicticioDefault",rf);
-        datos.put("cuitDefault",cuit);
-        datos.put("codigoIGJDefault",codIGJ);
-        datos.put("calleDefault",calle);
-        datos.put("pisoDefault",piso);
-        datos.put("deptoDefault",depto);
-        datos.put("numeroDefault",numero);
-
         datos.put("entidades_base", entidadesBase);
         datos.put("entidades_juridicas", entidadesJuridicas);
 

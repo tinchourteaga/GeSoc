@@ -21,9 +21,13 @@ public class ControllerCategoria {
 
         DAO DAOCategorias = new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class); //dao generico de BBDD
         Repositorio repoCategorias = new Repositorio<Criterio>(DAOCategorias); //repositorio que tambien usa generics
-        List<CategoriaCriterio> categorias = repoCategorias.getTodosLosElementos();
+        List<CategoriaCriterio> categorias =miUsuario.getEgresosAREvisar().stream().map(e->e.getCategorias()).flatMap(List::stream).collect(Collectors.toList());
+        Set<CategoriaCriterio> categoriasSet=new HashSet<>();
+        categoriasSet.addAll(categorias);
+        categorias.clear();
+        categorias.addAll(categoriasSet);
 
-        List<Criterio> criteriosLista= miUsuario.getEgresosAREvisar().stream().map(e->e.getCategorias()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList()).stream().map(c->c.getCriterio()).collect(Collectors.toList());
+        List<Criterio> criteriosLista= miUsuario.getEgresosAREvisar().stream().map(e->e.getCategorias()).flatMap(List::stream).collect(Collectors.toList()).stream().map(c->c.getCriterio()).collect(Collectors.toList());
         Set<Criterio> criteriosSet=new HashSet<>();
         criteriosSet.addAll(criteriosLista);
         criteriosLista.clear();

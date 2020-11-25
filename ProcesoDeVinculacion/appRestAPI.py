@@ -12,11 +12,11 @@ class appRestAPI:
         self.app.run(port=5000)
 
     @app.route('/')
-    def index():
+    def index(self):
         return "Hello, World!"
 
     @app.route('/api_proceso_vinculacion')
-    def mostrar():
+    def mostrar(self):
         return "hola", 200
 
     @app.route('/api/add_message/<uuid>', methods=['POST'])

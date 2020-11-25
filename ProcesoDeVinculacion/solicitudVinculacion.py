@@ -1,7 +1,7 @@
 from flask import jsonify
 
 from condicion import PeriodoAceptacion, Condicion
-from criterio import OrdenValorPrimerIngreso, OrdenValorPrimerEgreso, Criterio
+from criterio import OrdenValorPrimerIngreso, OrdenValorPrimerEgreso, Criterio, OrdenFechaPrimerEgreso
 from fecha import Fecha
 from importe import Importe
 from vinculacion import Vinculacion
@@ -84,6 +84,9 @@ class SolicitudVinculacion:
                 temp = OrdenValorPrimerIngreso()
             elif criterio == "OrdenValorPrimeroEgreso":
                 temp = OrdenValorPrimerEgreso()
+            elif criterio == "OrdenFechaPrimerEgreso":
+                temp = OrdenFechaPrimerEgreso()
+
             self.agregarCriterio(temp)
 
     def agregarCriterio(self,criterio):

@@ -53,11 +53,11 @@ public class ValidadorDeOperacion {
             try {
                 validacion.validar(unaOperacion);
             } catch (NoCumpleValidacionException e) {
-                mensaje.set(new Mensaje(LocalDate.now(), null,"La operacion realizada en fecha " + unaOperacion.getFecha() + "y con valor: " +unaOperacion.getValor().getImporte() +" no se valido correctamente. ya que no cumple con las validaciones requeridas" ,unaOperacion));
+                mensaje.set(new Mensaje(LocalDate.now(), null,"La operacion realizada en fecha " + unaOperacion.getFecha() + " y con valor: " +unaOperacion.getValor().getImporte() +" no se valido correctamente. ya que no cumple con las validaciones requeridas" ,unaOperacion));
                 unaOperacion.setEstaVerificada(false);
                 flag.set(false);
             } catch (NoCumpleValidacionDeCriterioException e) {
-                mensaje.set(new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + unaOperacion.getFecha() + "y con valor: " +unaOperacion.getValor().getImporte() +" no se valido correctamente ya que no cumple con los criterios propuestos. Debe validarse nuevamente",unaOperacion));
+                mensaje.set(new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + unaOperacion.getFecha() + " y con valor: " +unaOperacion.getValor().getImporte() +" no se valido correctamente ya que no cumple con los criterios propuestos. Debe validarse nuevamente",unaOperacion));
                 unaOperacion.setEstaVerificada(false);
                 flag.set(false);
             }

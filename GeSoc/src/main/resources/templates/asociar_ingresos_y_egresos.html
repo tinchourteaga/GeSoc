@@ -172,7 +172,7 @@
         <select name="ingreso" id="u855_input" disabled class="u855_input" required>
           <option class="u855_input_option" value="">Seleccionar Ingreso</option>
           {{#each ingresos}}
-          <option class="u855_input_option" value={{ingreso}}>{{fecha}}:{{valor.importe}}</option>
+          <option class="u855_input_option" value={{ingreso}}>{{descripcion}}</option>
           {{/each}}
         </select>
       </div>
@@ -731,14 +731,14 @@
             chk_unos.disabled = false;
             chk_doss.disabled = false;
             chk_tress.disabled = false;
-            u854_input.disabled = true;
+            u854_input.disabled = false;
             u848_input.disabled = true;
             u855_input.disabled = true;
         }else if (v.value == 'Manual'){
             chk_unos.disabled = true;
             chk_doss.disabled = true;
             chk_tress.disabled = true;
-            u854_input.disabled = false;
+            u854_input.disabled = true;
             u848_input.disabled = false;
             u855_input.disabled = false;
         }

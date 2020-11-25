@@ -105,8 +105,18 @@ public class VinculadorPropio implements Vinculador {
     private String generarJson(List<Egreso> egresos, List<Ingreso> ingresos, List<String> criterios, List<Condicion> condiciones) {
         String json="{\"ingresos\" :[";
 
-        if(0<ingresos.size())
-            json= json.concat(new Gson().toJson(ingresos.get(0)));
+
+        if(0<ingresos.size()) {
+            try{
+                Ingreso ing = ingresos.get(0);
+                json = json.concat(new Gson().toJson(ing));
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+
+        }
+
 
         for (int i=1;i<ingresos.size();i++){
             json= json + ",";

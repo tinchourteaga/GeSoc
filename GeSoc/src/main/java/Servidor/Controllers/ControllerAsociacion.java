@@ -144,7 +144,7 @@ public class ControllerAsociacion {
         }else if(estrategia.equals("Automática")){
             //se lo mando a la API
             //todo
-            List<Ingreso> ingresos = miUsuario.getEgresosAREvisar().stream().map(x->x.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+            List<Ingreso> ingresos = miUsuario.getEntidades().stream().map(x -> x.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
             List<Egreso> egresos = miUsuario.getEgresosAREvisar();
             List<String> criterios =new ArrayList<>(); //Son los checkboxes
             List<Condicion> condiciones = new ArrayList<>();
@@ -157,10 +157,21 @@ public class ControllerAsociacion {
                 criterios.add("OrdenValorPrimeroIngreso");
             }
 
+            if(request.queryParams("OrdenFecha")!=null){
+                criterios.add("OrdenFechaPrimerEgreso");
+            }
+
+            System.out.println(fecha);
+
             LocalDate fechaHasta = LocalDate.parse(fecha);
             LocalDate fechaDesde = LocalDate.now();
 
+            System.out.println(fechaHasta);
+            System.out.println(fechaDesde);
+
             Integer diferenciaDia = fechaDesde.getDayOfYear() - fechaHasta.getDayOfYear();
+
+            System.out.println(diferenciaDia);
 
             List<Object> parametros = new ArrayList<>();
             parametros.add(diferenciaDia);

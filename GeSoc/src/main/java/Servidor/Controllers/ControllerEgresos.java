@@ -432,7 +432,7 @@ public class ControllerEgresos {
         List<Usuario> revisores= todosLosUs.stream().filter(us->us.getEgresosAREvisar().containsAll(egresosPosibles)).collect(Collectors.toList());
         revisores.forEach(rev-> {
             Repositorio repoMsj=new Repositorio(new DAOBBDD<Mensaje>(Mensaje.class));
-            Mensaje msj=new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + egresosPosibles.get(0).getFecha() + "y con valor: "+egresosPosibles.get(0).getValor().getImporte() +" no se valido correctamente. Debe validarse nuevamente", egresosPosibles.get(0));
+            Mensaje msj=new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + egresosPosibles.get(0).getFecha() + " y con valor: "+egresosPosibles.get(0).getValor().getImporte() +" no se valido correctamente. Debe validarse nuevamente", egresosPosibles.get(0));
             rev.getBandejaDeMensajes().getMensajes().add(msj);
             msj.setEgreso(egresosPosibles.get(0));
             msj.setUsuario(rev);
@@ -462,7 +462,7 @@ public class ControllerEgresos {
         List<Usuario> revisores= todosLosUs.stream().filter(us->us.getEgresosAREvisar().containsAll(egresosPosibles)).collect(Collectors.toList());
         revisores.forEach(rev-> {
             Repositorio repoMsj=new Repositorio(new DAOBBDD<Mensaje>(Mensaje.class));
-            Mensaje msj=new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + egresosPosibles.get(0).getFecha() + "y con valor: "+egresosPosibles.get(0).getValor().getImporte() +" se valido satifactoriamente", egresosPosibles.get(0));
+            Mensaje msj=new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + egresosPosibles.get(0).getFecha() + " y con valor: "+egresosPosibles.get(0).getValor().getImporte() +" se valido satifactoriamente", egresosPosibles.get(0));
             rev.getBandejaDeMensajes().getMensajes().add(msj);
             msj.setEgreso(egresosPosibles.get(0));
             msj.setUsuario(rev);

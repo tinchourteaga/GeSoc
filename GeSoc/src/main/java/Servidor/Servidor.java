@@ -50,37 +50,65 @@ public class Servidor {
     }
 
     public static void levantarRutaGET(){
+
+        //Checkeadisimos
+        //si quieren pruebenlos pero yo vi que andaban 10 puntos
         Spark.get("/", ControllerSesion::mostrarLogin, engine);
         Spark.get("/autenticacion_usuario", ControllerAutenticacion::visualizarPantalla, engine);
-        Spark.get("/cargar_egreso", ControllerEgresos::visualizarPantalla, engine);
         Spark.get("/cargar_presupuesto", ControllerPresupuesto::visualizarPantalla, engine);
-        Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
-        Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
-        Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
-        Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
-        Spark.get("/crear_categoria", ControllerCategoria::visualizarPantalla, engine);
-        Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
-        Spark.get("/datos_usuario", ControllerUsuario::visualizarPantallaDatosUsuario, engine);//falta testear peor no hay boton para entrar jeje
         Spark.get("/mensajes", ControllerMensajes::visualizarPantallaMensajes, engine);
-        Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);//falta boton "Filtrar"
-        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);//Falta que se bloqueen bien los campos
-        Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
-        Spark.get("/validar_egresos", ControllerEgresos::visualizarPantallaValidacion, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
-        Spark.get("/validar_egreso_manualmente", ControllerEgresos::visualizarPantallaValidacionManual, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
         Spark.get("/detalle_egreso",ControllerEgresos::visualizarPantallaDetalleEgreso,engine);
         Spark.get("/detalle_ingreso",ControllerIngresos::visualizarPantallaDetalleIngreso,engine);
         Spark.get("/detalle_presupuesto",ControllerPresupuesto::visualizarPantallaDetallePresupuesto,engine);
+        Spark.get("/pantalla_principal_usuario", ControllerUsuario::visualizarPantallaPrincipalUsuario, engine);
+
+
+
+        //falta checkear
+
+        Spark.get("/asociar_egresos_y_presupuestos", ControllerAsociacion::visualizarPantallaEgresosYPresupuestos, engine);
+        Spark.get("/asociar_ingresos_y_egresos", ControllerAsociacion::visualizarPantallaIngresosYEgresos, engine);
+        Spark.get("/datos_usuario", ControllerUsuario::visualizarPantallaDatosUsuario, engine);//falta testear peor no hay boton para entrar jeje
+        Spark.get("/administrar_usuarios", ControllerUsuario::visualizarPantallaAdministrarUsuario, engine);//falta boton "Filtrar"
+        Spark.get("/crear_criterio", ControllerCriterio::visualizarPantalla, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
+        Spark.get("/validar_egresos", ControllerEgresos::visualizarPantallaValidacion, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
+        Spark.get("/validar_egreso_manualmente", ControllerEgresos::visualizarPantallaValidacionManual, engine);//estaria bueno tener otro select pero de los criterios que pueden ser padre
+
 
         //haciendo
-        Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
 
 
         //para tincho
         Spark.get("/cargar_items_egreso", ControllerEgresos::visualizarPantallaItems, engine);
         Spark.get("/cargar_items_presupuestos", ControllerPresupuesto::visualizarPantallaItems, engine);
 
-        //TODO
+        //para juan TODO
+        Spark.get("/cargar_entidad", ControllerEntidad::visualizarPantalla, engine);
+        /*
+        El boton de carga se superpone con el de select de ciudades/provincias
+        */
 
+        Spark.get("/cargar_proveedor", ControllerProveedor::visualizarPantalla, engine);//Falta que se bloqueen bien los campos
+        /*
+        El boton de carga se superpone con el de select de ciudades/provincias
+        Hay tablas de entidades y son proveedores, no sirve tener esas tablas creo, hay que sacarlas y dejar una sola
+        centrada en el medio
+        */
+
+        Spark.get("/cargar_ingreso", ControllerIngresos::visualizarPantalla, engine);
+       // Falta poner un titulo a la tabla de la pantalla, es medio inexpresivo
+
+
+        Spark.get("/cargar_egreso", ControllerEgresos::visualizarPantalla, engine);
+        //El boton para seleccionar un arch no anda y se superpone con los otros campos
+
+        Spark.get("/crear_categoria", ControllerCategoria::visualizarPantalla, engine);
+        //falta un required en el select
+
+
+        Spark.get("/ver_ingresos_y_egresos", ControllerVisualizacionEI::visualizarPantalla, engine);
+        //La x cuanco abris con la lupita no cierra el popup de los egresos
+        //tiene sentido tener esta pagina ahora que tenemos las 3 de detalle?
 
 
         //bloqueado
@@ -100,7 +128,6 @@ public class Servidor {
         Spark.post("/cerrarSesion", ControllerSesion::cerrarSesion);
         Spark.post("/validarEgresoManual", ControllerEgresos::aceptarEgreso);
         Spark.post("/rechazarValidacion", ControllerEgresos::rechazarEgreso);
-
         Spark.post("/validarEgreso", ControllerEgresos::redireccionarValidacion);
 
         //haciendo

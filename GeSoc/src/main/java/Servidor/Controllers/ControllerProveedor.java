@@ -15,6 +15,7 @@ import spark.Response;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ControllerProveedor {
@@ -36,7 +37,6 @@ public class ControllerProveedor {
             paisElegidoObj = paises.stream().filter(p -> p.getPais()==Integer.valueOf(paisElegido).intValue()).collect(Collectors.toList()).get(0);
             datos.put("paisElegido",paisElegidoObj);
             datos.put("provincias",paisElegidoObj.getProvincias());
-
         }
         String provinciaElegida= request.queryParams("provincia");
         if(provinciaElegida!=null && paisElegidoObj!=null){
@@ -63,45 +63,40 @@ public class ControllerProveedor {
         //saco los campos que pudieron completar antes
 
 
-        String rs=request.queryParamOrDefault("razonSocial","Ingrese razon social");
-        String rf=request.queryParamOrDefault("nombreFicticio","Ingrese nombre ficticio");
-        String cuit=request.queryParamOrDefault("cuilOCuit","Ingrese  CUIL o CUIT");
-        String calle=request.queryParamOrDefault("calle","Ingrese calle");
-        String piso=request.queryParamOrDefault("piso","piso");
-        String numero=request.queryParamOrDefault("numeroCalle","nro");
-        String depto=request.queryParamOrDefault("dpto","depto");
-
-        String apellido=request.queryParamOrDefault("Apellido","Ingrese apellido");
-        String nombre=request.queryParamOrDefault("nombreFicticio","Ingrese nombre");
-        String dni=request.queryParamOrDefault("DNI","Ingrese  DNI");
-        String callePers=request.queryParamOrDefault("callePers","Ingrese calle");
-        String pisoPers=request.queryParamOrDefault("pisoPers","piso");
-        String numeroPers=request.queryParamOrDefault("numeroPers","nro");
-        String deptoPers=request.queryParamOrDefault("deptoPers","depto");
+        Optional<String> rs=        Optional.ofNullable(request.queryParams("razonSocial"));
+        Optional<String> rf=        Optional.ofNullable(request.queryParams("nombreFicticio"));
+        Optional<String> cuit=      Optional.ofNullable(request.queryParams("cuilOCuit"));
+        Optional<String> calle=     Optional.ofNullable(request.queryParams("calle"));
+        Optional<String> piso=      Optional.ofNullable(request.queryParams("piso"));
+        Optional<String> numero=    Optional.ofNullable(request.queryParams("numeroCalle"));
+        Optional<String> depto=     Optional.ofNullable(request.queryParams("dpto"));
+        Optional<String> apellido=  Optional.ofNullable(request.queryParams("Apellido"));
+        Optional<String> nombre=    Optional.ofNullable(request.queryParams("nombreFicticio"));
+        Optional<String> dni=       Optional.ofNullable(request.queryParams("DNI"));
+        Optional<String> callePers= Optional.ofNullable(request.queryParams("callePers"));
+        Optional<String> pisoPers=  Optional.ofNullable(request.queryParams("pisoPers"));
+        Optional<String> numeroPers=Optional.ofNullable(request.queryParams("numeroPers"));
+        Optional<String> deptoPers= Optional.ofNullable(request.queryParams("deptoPers"));
 
 
         datos.put("paises",paises);
         datos.put("esEmpresa",esEmpresa);
-        datos.put("razonSocialDefault",rs);
-        datos.put("nombreFicticioDefault",rf);
-        datos.put("cuitDefault",cuit);
-        datos.put("calleDefault",calle);
-        datos.put("pisoDefault",piso);
-        datos.put("deptoDefault",depto);
-        datos.put("numeroDefault",numero);
+        datos.put("razonSocialDefault",rs.orElse(""));
+        datos.put("nombreFicticioDefault",rf.orElse(""));
+        datos.put("cuitDefault",cuit.orElse(""));
+        datos.put("calleDefault",calle.orElse(""));
+        datos.put("pisoDefault",piso.orElse(""));
+        datos.put("deptoDefault",depto.orElse(""));
+        datos.put("numeroDefault",numero.orElse(""));
 
         datos.put("esPersona",esPersona);
-        datos.put("apellido",apellido);
-        datos.put("nombre",nombre);
-        datos.put("dni",dni);
-        datos.put("callePers",callePers);
-        datos.put("pisoPers",pisoPers);
-        datos.put("deptoPers",deptoPers);
-        datos.put("numeroPers",numeroPers);
-
-
-
-
+        datos.put("apellido",apellido.orElse(""));
+        datos.put("nombre",nombre.orElse(""));
+        datos.put("dni",dni.orElse(""));
+        datos.put("callePers",callePers.orElse(""));
+        datos.put("pisoPers",pisoPers.orElse(""));
+        datos.put("deptoPers",deptoPers.orElse(""));
+        datos.put("numeroPers",numeroPers.orElse(""));
 
         datos.put("paises",paises);
         ModelAndView vista = new ModelAndView(datos, "cargar_proveedor.html");

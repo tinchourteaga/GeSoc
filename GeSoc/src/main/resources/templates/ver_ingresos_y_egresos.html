@@ -1172,8 +1172,8 @@
           <div id="detalle_posta_ingreso">
             <div>
               <p><span class="span_piola">Empresa:
-              <input id="empresa" name="txt" class="variables_fijas" value="  EmpresaX" disabled/>
-              <input id="fecha_detalle_ingreso" name="txt" class="variables_fecha" value="  10/10/2020" disabled/>
+              <input id="empresa" name="txt" class="variables_fijas" value="EmpresaX" disabled/>
+              <input id="fecha_detalle_ingreso" name="txt" class="variables_fecha" value="10/10/2020" disabled/>
               </span></p>
             </div>
 
@@ -1210,12 +1210,12 @@
     <script>
       function openForm(v) {
         document.getElementById("myPopUp").style.display = "block";
-        proveedor = v.value.entidad.nombre;
-        fecha_detalle = v.value.fecha;
-        metodo_pago = v.value.metodoDePago.tipo;
-        ingresos = v.value.ingresos.valor;
-        prep = "-";
-        preps_asoc = "-";
+        proveedor.value = v.value.entidad.nombre;
+        fecha_detalle.value = v.value.fecha;
+        metodo_pago.value = v.value.metodoDePago.tipo;
+        ingresos.value = v.value.ingresos.valor;
+        prep.value = "-";
+        preps_asoc.value = "-";
       }
 
       function closeForm() {
@@ -1224,10 +1224,10 @@
 
       function openFormIngreso(v) {
         document.getElementById("myPopUpIngreso").style.display = "block";
-        empresa = v.value.entidad.nombre;
-        fecha_detalle_ingreso = v.value.fecha;
-        egresos = "-";
-        cricatingresos = "-";
+        empresa.value = v.value.entidad.nombre;
+        fecha_detalle_ingreso.value = v.value.fecha;
+        egresos.value = "-";
+        cricatingresos.value = "-";
       }
 
       function closeFormIngreso() {

@@ -144,7 +144,7 @@
 
       <div id="u3022" class="ax_default text_field" data-label="EntradaRazonSocial">
         <div id="u3022_div" class=""></div>
-        <input name="Apellido" id="u3022_input" type="text" value={{apellido}} class="u302_input" required/>
+        <input name="Apellido" id="u3022_input" type="text" {{#if apellido includeZero=true}} value={{apellido}} {{else}} value="" {{/if}} placeholder="Ingrese apellido" class="u302_input" required/>
       </div>
 
       <div id="u3033" class="ax_default heading_1">
@@ -156,7 +156,7 @@
 
       <div id="u3200" class="ax_default text_field" data-label="EntradaNombreFicticio">
         <div id="u3200_div" class=""></div>
-        <input name="nombre" id="u3200_input" type="text" value={{nombre}} class="u320_input" required/>
+        <input name="nombre" id="u3200_input" type="text" {{#if nombre includeZero=true}} value={{nombre}} {{else}} value="" {{/if}} placeholder="Ingrese nombre" class="u320_input" required/>
       </div>
 
       <div id="u3211" class="ax_default heading_1">
@@ -175,7 +175,7 @@
 
       <div id="u2999" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
         <div id="u2999_div" class=""></div>
-        <input name="DNI" id="u2999_input" type="text" value={{dni}} class="u299_input" required/>
+        <input name="DNI" id="u2999_input" type="text"  {{#if dni includeZero=true}} value={{dni}} {{else}} value="" {{/if}} placeholder="Ingrese DNI" class="u299_input" required/>
       </div>
 
       <div id="u3166" class="ax_default line">
@@ -201,7 +201,7 @@
 
       <div id="u3099" class="ax_default text_field" data-label="EntradaCalle">
         <div id="u3099_div" class=""></div>
-        <input name="callePers" id="u3099_input" type="text" value={{callePers}} class="u309_input" required/>
+        <input name="callePers" id="u3099_input" type="text"  {{#if callePers includeZero=true}} value={{callePers}} {{else}} value="" {{/if}} placeholder="Ingrese calle"  class="u309_input" required/>
       </div>
 
       <div id="u3100" class="ax_default heading_1">
@@ -213,7 +213,7 @@
 
       <div id="u3111" class="ax_default text_field" data-label="EntradaNumero">
         <div id="u3111_div" class=""></div>
-        <input name="numeroPers" id="u311_input" type="text" value={{numeroPers}} class="u311_input" required/>
+        <input name="numeroPers" id="u311_input" type="text"  {{#if numeroPers includeZero=true}} value={{numeroPers}} {{else}} value="" {{/if}} placeholder="nro"  class="u311_input" required/>
       </div>
 
       <div id="u3122" class="ax_default heading_1">
@@ -225,7 +225,7 @@
 
       <div id="u3133" class="ax_default text_field" data-label="EntradaPiso">
         <div id="u3133_div" class=""></div>
-        <input name="pisoPers" id="u3133_input" type="text" value={{pisoPers}} class="u313_input" required/>
+        <input name="pisoPers" id="u3133_input" type="text"  {{#if pisoPers includeZero=true}} value={{pisoPers}} {{else}} value="" {{/if}} placeholder="piso"  class="u313_input" required/>
       </div>
 
       <div id="u3144" class="ax_default heading_1">
@@ -237,7 +237,7 @@
 
       <div id="u3155" class="ax_default text_field" data-label="EntradaDepto">
         <div id="u3155_div" class=""></div>
-        <input name="deptoPers" id="u3155_input" type="text" value={{deptoPers}} class="u315_input" required/>
+        <input name="deptoPers" id="u3155_input" type="text"  {{#if deptoPers includeZero=true}} value={{deptoPers}} {{else}} value="" {{/if}} placeholder="depto"  class="u315_input" required/>
       </div>
 
       <div id="u2977" class="ax_default heading_1">
@@ -251,7 +251,7 @@
         <div id="u3000_div" class=""></div>
         <select name="pais" id="u3000_input" class="u300_input" onchange="buscar_provincias(this)" required>
           {{#if paisElegido includeZero=true}}
-          <option class="u300_input_option" value={{pais}} selected>{{name}}</option>
+          <option class="u300_input_option" value={{paisElegido.pais}} selected>{{paisElegido.name}}</option>
           {{else}}
           <option class="u300_input_option" value="">Seleccionar un País</option>
           {{/if}}
@@ -321,7 +321,7 @@
 
       <div id="u302" class="ax_default text_field" data-label="EntradaRazonSocial">
         <div id="u302_div" class=""></div>
-        <input name="razonSocial" id="u302_input" type="text" value={{razonSocialDefault}} class="u302_input" required/>
+        <input name="razonSocial" id="u302_input" type="text"  {{#if razonSocialDefault includeZero=true}} value={{razonSocialDefault}} {{else}} value="" {{/if}} placeholder="Ingrese razon social"  class="u302_input" required/>
       </div>
 
       <div id="u303" class="ax_default heading_1">
@@ -333,7 +333,7 @@
 
       <div id="u320" class="ax_default text_field" data-label="EntradaNombreFicticio">
         <div id="u320_div" class=""></div>
-        <input name="nombreFicticio" id="u320_input" type="text" value={{nombreFicticioDefault}} class="u320_input" required/>
+        <input name="nombreFicticio" id="u320_input" type="text" {{#if nombreFicticioDefault includeZero=true}} value={{nombreFicticioDefault}} {{else}} value="" {{/if}} placeholder="Ingrese nombre" class="u320_input" required/>
       </div>
 
       <div id="u321" class="ax_default heading_1">
@@ -352,7 +352,7 @@
 
       <div id="u299" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
         <div id="u299_div" class=""></div>
-        <input name="cuilOCuit" id="u299_input" type="text" value={{cuitDefault}} class="u299_input" required/>
+        <input name="cuilOCuit" id="u299_input" type="text"  {{#if cuitDefault includeZero=true}} value={{cuitDefault}} {{else}} value="" {{/if}} placeholder="Ingrese CUIT o CUIL"  class="u299_input" required/>
       </div>
 
       <div id="u316" class="ax_default line">
@@ -378,7 +378,7 @@
 
       <div id="u309" class="ax_default text_field" data-label="EntradaCalle">
         <div id="u309_div" class=""></div>
-        <input name="calle" id="u309_input" type="text" value={{calleDefault}} class="u309_input" required/>
+        <input name="calle" id="u309_input" type="text"  {{#if calleDefault includeZero=true}} value={{calleDefault}} {{else}} value="" {{/if}} placeholder="Ingrese calle"  class="u309_input" required/>
       </div>
 
       <div id="u310" class="ax_default heading_1">
@@ -390,7 +390,7 @@
 
       <div id="u311" class="ax_default text_field" data-label="EntradaNumero">
         <div id="u311_div" class=""></div>
-        <input name="numeroCalle" id="u3111_input" type="text" value={{numeroDefault}} class="u311_input" required/>
+        <input name="numeroCalle" id="u3111_input" type="text"  {{#if numeroDefault includeZero=true}} value={{numeroDefault}} {{else}} value="" {{/if}} placeholder="nro"  class="u311_input" required/>
       </div>
 
       <div id="u312" class="ax_default heading_1">
@@ -402,7 +402,7 @@
 
       <div id="u313" class="ax_default text_field" data-label="EntradaPiso">
         <div id="u313_div" class=""></div>
-        <input name="piso" id="u313_input" type="text" value={{pisoDefault}} class="u313_input" required/>
+        <input name="piso" id="u313_input" type="text" {{#if pisoDefault}} value={{pisoDefault}} {{else}} value="" {{/if}} placeholder="piso" class="u313_input" required/>
       </div>
 
       <div id="u314" class="ax_default heading_1">
@@ -414,7 +414,7 @@
 
       <div id="u315" class="ax_default text_field" data-label="EntradaDepto">
         <div id="u315_div" class=""></div>
-        <input name="dpto" id="u315_input" type="text" value={{deptoDefault}} class="u315_input" required/>
+        <input name="dpto" id="u315_input" type="text"  {{#if deptoDefault includeZero=true}} value={{deptoDefault}} {{else}} value="" {{/if}} placeholder="Ingrese depto"  class="u315_input" required/>
       </div>
 
       <div id="u297" class="ax_default heading_1">
@@ -428,7 +428,7 @@
         <div id="u300_div" class=""></div>
         <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)" required>
           {{#if paisElegido includeZero=true}}
-          <option class="u300_input_option" value={{pais}}>{{name}}</option>
+          <option class="u300_input_option" value={{paisElegido.pais}}>{{paisElegido.name}}</option>
           {{else}}
           <option class="u300_input_option" value="">Seleccionar un País</option>
           {{/if}}
@@ -1631,10 +1631,14 @@
       function buscar_provincias(v) {
           habilitar_provincias(v);
           if (v.value != '') {
-              location.href = '/cargar_proveedor?pais=' + v.value + '&entidad=' + select_entidades.value + '&' + u320_input.name + '=' + u320_input.value
+              location.href = '/cargar_proveedor?pais=' + v.value + '&tipo=' + select_entidades.value + '&' + u320_input.name + '=' + u320_input.value
                   + '&' + u302_input.name + '=' + u302_input.value + '&' + u299_input.name + '=' + u299_input.value + '&'
                   + u309_input.name + '=' + u309_input.value + '&' + u311_input.name + '=' + u311_input.value + '&' + u313_input.name + '=' + u313_input.value +
-                  '&' + u315_input.name + '=' + u315_input.value;
+                  '&' + u315_input.name + '=' + u315_input.value+ '&paisPers='+ u3000_input.value + '&provinciaPers=' + u3055_input.value
+                      + '&' + u3200_input.name + '=' + u3200_input.value
+                      + '&' + u3022_input.name + '=' + u3022_input.value + '&' + u2999_input.name + '=' + u2999_input.value + '&'
+                      + u3099_input.name + '=' + u3099_input.value + '&' + u3111_input.name + '=' + u3111_input.value + '&' + u3133_input.name + '=' + u3133_input.value +
+                      '&' + u3155_input.name + '=' + u3155_input.value;
           }
       }
 

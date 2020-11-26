@@ -1242,7 +1242,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:230px;
+  top:210px;
   width:98px;
   height:28px;
   display:flex;
@@ -1286,7 +1286,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:390px;
+  top:375px;
   width:200px;
   height:22px;
   display:flex;
@@ -1312,7 +1312,7 @@
   left:0px;
   top:0px;
   width:305px;
-  height:52px;
+  height:25px;
   padding:2px 2px 2px 2px;
   font-family:'Arial Normal', 'Arial', sans-serif;
   font-weight:400;
@@ -1332,7 +1332,7 @@
   left:0px;
   top:0px;
   width:305px;
-  height:52px;
+  height:25px;
   padding:2px 2px 2px 2px;
   font-family:'Arial Normal', 'Arial', sans-serif;
   font-weight:400;
@@ -1353,7 +1353,7 @@
   left:0px;
   top:0px;
   width:305px;
-  height:52px;
+  height:25px;
   background:inherit;
   background-color:rgba(255, 255, 255, 1);
   box-sizing:border-box;
@@ -1369,9 +1369,9 @@
   border-width:0px;
   position:absolute;
   left:58px;
-  top:412px;
+  top:395px;
   width:305px;
-  height:52px;
+  height:25px;
   display:flex;
 }
 #u524 .text {
@@ -1387,7 +1387,7 @@
   left:0px;
   top:0px;
   width:305px;
-  height:52px;
+  height:25px;
   background:inherit;
   background-color:rgba(240, 240, 240, 1);
   box-sizing:border-box;
@@ -1424,7 +1424,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:280px;
+  top:265px;
   width:63px;
   height:28px;
   display:flex;
@@ -1468,7 +1468,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:335px;
+  top:320px;
   width:173px;
   height:22px;
   display:flex;
@@ -1513,7 +1513,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:530px;
+  top:480px;
   width:173px;
   height:22px;
   display:flex;
@@ -1534,6 +1534,52 @@
   white-space:nowrap;
   text-transform:none;
 }
+
+#u52666_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:173px;
+  height:22px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:14px;
+}
+#u52666 {
+  border-width:0px;
+  position:absolute;
+  left:45px;
+  top:535px;
+  width:173px;
+  height:22px;
+  display:flex;
+  font-family:'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:14px;
+}
+#u52666 .text {
+  position:absolute;
+  align-self:flex-start;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+}
+#u52666_text {
+  border-width:0px;
+  white-space:nowrap;
+  text-transform:none;
+}
+
 #u527_div {
   border-width:0px;
   position:absolute;
@@ -1803,7 +1849,7 @@
   border-width:0px;
   position:absolute;
   left:130px;
-  top:590px;
+  top:600px;
   width:140px;
   height:40px;
   display:flex;
@@ -1908,7 +1954,7 @@
   border-width:0px;
   position:absolute;
   left:58px;
-  top:250px;
+  top:230px;
   width:305px;
   height:23px;
   display:flex;
@@ -2013,7 +2059,7 @@
   border-width:0px;
   position:absolute;
   left:58px;
-  top:300px;
+  top:285px;
   width:305px;
   height:23px;
   display:flex;
@@ -2118,7 +2164,7 @@
   border-width:0px;
   position:absolute;
   left:58px;
-  top:360px;
+  top:340px;
   width:305px;
   height:23px;
   display:flex;
@@ -2224,7 +2270,7 @@
   border-width:0px;
   position:absolute;
   left:58px;
-  top:550px;
+  top:500px;
   width:305px;
   height:23px;
   display:flex;
@@ -2373,7 +2419,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:195px;
+  top:175px;
   width:37px;
   height:28px;
   display:flex;
@@ -3429,7 +3475,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:500px;
+  top:455px;
   width:108px;
   height:22px;
   display:flex;
@@ -3466,7 +3512,7 @@
   border-width:0px;
   position:absolute;
   left:163px;
-  top:503px;
+  top:458px;
   width:100px;
   height:16px;
   display:flex;
@@ -3946,7 +3992,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:165px;
+  top:155px;
   width:48px;
   height:17px;
   display:flex;

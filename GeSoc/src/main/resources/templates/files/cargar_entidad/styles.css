@@ -11229,7 +11229,7 @@
 }
 
 #formulario_entidad_base{
-  position: fixed;
+  position: absolute;
   /*top: 40%;
   left: 2%;
   width:30%;
@@ -11238,7 +11238,7 @@
 }
 
 #formulario_entidad_juridica{
-  position: fixed;
+  position: absolute;
   /*top: 40%;
   left: 2%;
   width:30%;

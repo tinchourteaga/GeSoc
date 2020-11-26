@@ -148,7 +148,7 @@
                   <img class="lupita" value={{.}} src="images/ver_ingresos_y_egresos/lupa_u330.svg"
                        onmouseover="lupitahover(this);"
                        onmouseout="lupitaunhover(this);"
-                       onclick="openFormIngreso(this);">
+                       onclick="redireccionarAlDetalleIngreso(this);">
                 </td>
                 <td>{{valor.importe}}</td>
               </tr>
@@ -161,7 +161,7 @@
                   <img class="lupita" value={{.}} src="images/ver_ingresos_y_egresos/lupa_u330.svg"
                        onmouseover="lupitahover(this);"
                        onmouseout="lupitaunhover(this);"
-                       onclick="openForm(this);">
+                       onclick="redireccionarAlDetalleEgreso(this);">
                 </td>
                 <td>{{valor.importe}}</td>
               </tr>
@@ -1220,6 +1220,14 @@
 
       function closeForm() {
         document.getElementById("myPopUpIngreso").style.display = "none";
+      }
+
+      function redireccionarAlDetalleIngreso(){
+          location.href="/detalle_ingreso";
+      }
+
+      function redireccionarAlDetalleEgreso(){
+          location.href="/detalle_egreso";
       }
 
       function openFormIngreso(v) {

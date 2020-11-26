@@ -1332,6 +1332,65 @@
   text-transform:none;
 }
 
+#u20111 {
+  border-width:0px;
+  position:absolute;
+  left:88px;
+  top:210px;
+  width:140px;
+  height:40px;
+  display:flex;
+  font-family:'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:16px;
+}
+#u20111_div {
+  border-width:0px;
+  position:absolute;
+  left:17px;
+  top:0px;
+  width:130px;
+  height:40px;
+  background:inherit;
+  background-color:rgba(51, 51, 51, 1);
+  border:none;
+  border-radius:50px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:300;
+  font-style:normal;
+  font-size:14px;
+}
+#u201122_div {
+  border-width:0px;
+  position:absolute;
+  left:33px;
+  top:0px;
+  width:100px;
+  height:30px;
+  background:inherit;
+  background-color:transparent;
+  color: white;
+}
+#u20111 .text {
+  position:absolute;
+  top:2px;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#u20111.mouseOver {
+}
+#u20111_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+}
+
 #u202_img {
   border-width:0px;
   position:absolute;

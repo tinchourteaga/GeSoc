@@ -884,6 +884,54 @@
   white-space:nowrap;
   text-transform:none;
 }
+
+#u7488_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:161px;
+  height:48px;
+  background:inherit;
+  background-color:rgba(255, 255, 255, 0);
+  border:none;
+  border-radius:0px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:700;
+  font-style:normal;
+  font-size:16px;
+  color:#D9463B;
+}
+#u7488 {
+  border-width:0px;
+  position:absolute;
+  left:1px;
+  top:15px;
+  width:161px;
+  height:48px;
+  display:flex;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:700;
+  font-style:normal;
+  font-size:20px;
+  color:#D9463B;
+}
+#u7488 .text {
+  position:absolute;
+  align-self:flex-start;
+  padding:0px 0px 0px 0px;
+  box-sizing:border-box;
+  width:100%;
+}
+#u7488_text {
+  border-width:0px;
+  white-space:nowrap;
+  text-transform:none;
+}
+
 #u749_div {
   border-width:0px;
   position:absolute;

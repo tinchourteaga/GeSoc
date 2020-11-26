@@ -297,7 +297,14 @@
       <div id="u524" class="ax_default text_area">
         <div id="u524_div" class=""></div>
         <textarea name="descripcionDocComercial" id="u524_input" class="u524_input"></textarea>
+
+        <div id="imagen_a_subir">
+          <input type="file" id="myFileInput">
+        </div>
+
       </div>
+
+
 
       <!-- Unnamed (Rectangle) -->
       <div id="u525" class="ax_default heading_1">
@@ -434,28 +441,47 @@
       <div id="u539" class="ax_default">
         <div id="u539_state0" class="panel_state" data-label="State1" style="">
           <div id="u539_state0_content" class="panel_state_content" style="width:100%;">
-            <table class="tablaCSS" style="width:100%;">
-              <thead>
-              <tr>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Organización</th>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Método de Pago</th>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Documento Comercial</th>
-                <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Total</th>
-              </tr>
-              </thead>
-              <tbody>
-              {{#each egreso}}
-              <tr>
-                <td>{{entidad.nombre}}</td>
-                <td>{{fecha}}</td>
-                <td>{{metodoDePago.tipo}}</td>
-                <td>{{documentoComercial.tipo}}</td>
-                <td>{{valor.importe}}</td>
-              </tr>
-              {{/each}}
-              </tbody>
-            </table>
+
+            <div id="u340" class="ax_default line">
+              <img id="u340_img" class="img " src="images/cargar_entidad/u340.svg"/>
+              <div id="u340_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
+              </div>
+            </div>
+
+            <div id="u341" class="ax_default heading_1">
+              <div id="u341_div" class=""></div>
+              <div id="u341_text" class="text ">
+                <p><span>Egresos existentes:</span></p>
+
+                <table class="tablaCSS" style="width:100%;">
+                  <thead>
+                  <tr>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Organización</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Método de Pago</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Documento Comercial</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Total</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {{#each egreso}}
+                  <tr>
+                    <td>{{entidad.nombre}}</td>
+                    <td>{{fecha}}</td>
+                    <td>{{metodoDePago.tipo}}</td>
+                    <td>{{documentoComercial.tipo}}</td>
+                    <td>{{valor.importe}}</td>
+                  </tr>
+                  {{/each}}
+                  </tbody>
+                </table>
+
+
+              </div>
+            </div>
+
+
           </div>
         </div>
       </div>
@@ -527,9 +553,7 @@
         <input name="esRevisor" id="u560_input" type="checkbox" value="checkbox"/>
       </div>
 
-        <div id="imagen_a_subir">
-          <input type="file" id="myFileInput">
-        </div>
+
 
 
 

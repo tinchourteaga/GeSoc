@@ -195,8 +195,7 @@ public class ControllerUsuario {
         Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
         Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
 
-        if(usuario.getContrasenia().equals(contraActual) && contraActual.equals(verifContraNueva) && ValidadorDeContrasenia.validarContrasenia(contraNueva)){
-            //Si pasa todas las validaciones persisto en la db (tengo que hashearla antes?)
+        if(usuario.getContrasenia().equals(contraActual) && contraNueva.equals(verifContraNueva) && ValidadorDeContrasenia.validarContrasenia(contraNueva)){
             usuarioModificado.setContrasenia(contraNueva);
             repoUsuario.modificar(usuario,usuarioModificado);
         }

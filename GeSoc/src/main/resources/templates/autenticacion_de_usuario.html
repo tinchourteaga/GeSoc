@@ -80,6 +80,35 @@
                   </div>
                 </div>
 
+                <!-----------------Contraseña/usuario incorrectos------------------->
+                <div id="u744" class="ax_default ax_default" style="display:none">
+
+                  <!-- Unnamed (Group) -->
+                  <div id="u755" class="ax_default">
+
+                    <!-- Value State (Rectangle) -->
+                    <div id="u766" class="ax_default">
+                      <div id="u766_div" class=""></div>
+                      <div id="u766_text" class="text ">
+                        <p></p>
+                      </div>
+                    </div>
+
+                    <!-- Value State Text (Rectangle) -->
+                    <div id="u777" class="ax_default">
+                      <div id="u777_div" class=""></div>
+                      <div id="u777_text" class="text ">
+                        <p><span>Contraseña o usuario incorrecto.</span></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Unnamed (Group) -->
+                  <div id="u788" class="ax_default">
+                  </div>
+                </div>
+                <!----------------------------------------->
+
                 <!-- Username Label (Rectangle) -->
                 <div id="u60" class="ax_default label" data-label="Username Label">
                   <div id="u60_div" class=""></div>
@@ -355,5 +384,14 @@
       </div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
+    <script>
+      function mostrarPopUp(){
+        document.getElementById("u744").style.display = "block";
+      }
+
+      function ocultarPopUp(){
+        document.getElementById("u744").style.display = "none";
+      }
+    </script>
   </body>
 </html>

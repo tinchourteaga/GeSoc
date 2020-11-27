@@ -87,7 +87,7 @@ public class Egreso {
     public Egreso(LocalDate unaFecha, String pais, List<Item> items, MetodoDePago metodo, List<Presupuesto> presupuestos, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
        this.categorias=new ArrayList<>();
        this.fecha=unaFecha;
-       this.valor= new Valor(pais,items.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
+       this.valor= new Valor("Peso Argentino",items.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
        this.listaItems=items;
        this.metodoDePago=metodo;
        this.documentoComercial=unDocumento;
@@ -177,5 +177,10 @@ public class Egreso {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+
+    public void recalcularValor() {
+        this.valor.setImporte(this.getListaItems().stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
+
     }
 }

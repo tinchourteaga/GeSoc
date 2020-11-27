@@ -230,6 +230,7 @@ public class ControllerEgresos {
                         objItem.setEgreso(objEgreso);
                 items.add(objItem);
             });
+            objEgreso.recalcularValor();
 
         }
 

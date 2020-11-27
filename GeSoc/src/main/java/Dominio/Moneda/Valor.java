@@ -51,7 +51,23 @@ public class Valor {
         return importe;
     }
 
-   /* public double convertirA(String unPais){
+    public void setMoneda(int moneda) {
+        this.moneda = moneda;
+    }
+
+    public void setTipoDeMoneda(String tipoDeMoneda) {
+        this.tipoDeMoneda = tipoDeMoneda;
+    }
+
+    public void setSimbolo(String simbolo) {
+        this.simbolo = simbolo;
+    }
+
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
+
+    /* public double convertirA(String unPais){
 
         ControllerMercadoLibre controller;
         controller = ControllerMercadoLibre.getControllerMercadoLibre();

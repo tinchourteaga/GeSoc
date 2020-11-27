@@ -28,8 +28,14 @@ public class ControllerIngresos {
         entidades.clear();
         entidades.addAll(setEntidades);
 
+        Entidad entidad = miUsuario.getEntidades().get(0);
+
+        Repositorio repoIngreso = new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+        List<Ingreso> ingresosPosibles = repoIngreso.getTodosLosElementos();
+        List<Ingreso> ingresosTabla = ingresosPosibles.stream().filter(e -> e.getEntidad().equals(entidad)).collect(Collectors.toList());
+
         datos.put("entidades",entidades);
-        datos.put("egreso",miUsuario.getEgresosAREvisar());
+        datos.put("egreso",ingresosTabla);
 
         ModelAndView vista = new ModelAndView(datos, "cargar_ingreso.html");
 

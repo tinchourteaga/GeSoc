@@ -64,17 +64,22 @@ public class ControllerCategoria {
 
         List<Criterio> criteriosPosibles=criterios.stream().filter(c-> c.getCriterio()==Integer.valueOf(criterioAsociado).intValue()).collect(Collectors.toList());
 
-            criteriosPosibles.stream().findFirst().ifPresent(criterioPresente->{
-                criterioPresente.agregarCategoria(categoriaCriterio);
-                repoCriterio.modificar(null, criterioPresente);
+
+        criteriosPosibles.stream().findFirst().ifPresent(criterioPresente->{
+            criterioPresente.agregarCategoria(categoriaCriterio);
+            categoriaCriterio.setCriterio(criterioPresente);
             });
+
+
+
+
         DAO DAOCategoria = new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class); //dao generico de BBDD
         Repositorio repoCategoria = new Repositorio<CategoriaCriterio>(DAOCategoria); //repositorio que tambien usa generics
 
-        if(!repoCriterio.existe(categoriaCriterio)) {
-            repoCriterio.agregar(categoriaCriterio);
+        if(!repoCategoria.existe(categoriaCriterio)) {
+            repoCategoria.agregar(categoriaCriterio);
         }else{
-            repoCriterio.modificar(null,categoriaCriterio);
+            repoCategoria.modificar(null,categoriaCriterio);
         }
 
         }

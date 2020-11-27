@@ -78,18 +78,20 @@ public class ControllerIngresos {
 
     public static Object cargarIngreso(Request request, Response response) {
 
+        Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
         String entidad = request.queryParams("entidad"); //No lo tengo en mi constructor -> es necesario?
         String fecha = request.queryParams("fecha");
         String moneda = request.queryParams("moneda");
         String importe = request.queryParams("importe");
         String descripcion = request.queryParams("descripcion");
 
+
         List egresosAsociados = new ArrayList();
-
         Ingreso ingreso = new Ingreso(moneda, Double.parseDouble(importe), LocalDate.parse(fecha),LocalDate.now(), descripcion, egresosAsociados);
-
-        persistirIngreso(ingreso);
-
+        miUsuario.getEntidades().stream().filter(entidad1 -> entidad1.getEntidad() == Integer.valueOf(entidad).intValue()).findFirst().ifPresent(entidadCorrecta ->{
+            ingreso.setEntidad(entidadCorrecta);
+            persistirIngreso(ingreso);
+        });
         response.redirect("cargar_ingreso");
 
         return null;

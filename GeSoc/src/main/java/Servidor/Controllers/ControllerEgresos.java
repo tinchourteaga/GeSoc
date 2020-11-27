@@ -77,7 +77,7 @@ public class ControllerEgresos {
         String criterioString = request.queryParams("criterio");
         String documentoComercial = request.queryParams("documentoComercial");
         String descripcionDocComercial = request.queryParams("descripcionDocComercial");
-
+        String descripcionEgreso = request.queryParams("descripcionEgreso");
         DocumentoComercial documentoAsociado;
         CriterioSeleccionProveedor criterio;
         MetodoDePago medioDePago=null;
@@ -153,6 +153,8 @@ public class ControllerEgresos {
         Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
         List<Entidad> entidades= repoEntidades.getTodosLosElementos();
         List<Entidad> entidadesPosibles= entidades.stream().filter(e->e.getEntidad()==Integer.valueOf(entidadId).intValue()).collect(Collectors.toList());
+        egreso.setDescripcion(descripcionEgreso);
+
         if(!entidadesPosibles.isEmpty())
         egreso.setEntidad(entidadesPosibles.get(0));
         if(request.queryParams("esRevisor")!=null){

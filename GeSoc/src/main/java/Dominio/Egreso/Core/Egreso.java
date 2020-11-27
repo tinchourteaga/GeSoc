@@ -35,6 +35,9 @@ public class Egreso {
     @JoinColumn(name = "valor")
     private Valor valor;
 
+    @Column(name = "descripcion")
+    private String descripcion;
+
     @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL)
     private List<Item> listaItems;
 
@@ -166,5 +169,13 @@ public class Egreso {
 
     public void agregarItem(Item item){
         listaItems.add(item);
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 }

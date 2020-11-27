@@ -28,6 +28,9 @@ public class Presupuesto {
     @Column(name = "valor")
     private float valor;
 
+    @Column(name = "descripcion")
+    private String descripcion;
+
     @Column(name = "fecha_creado")
     @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
@@ -67,6 +70,17 @@ public class Presupuesto {
         return presupuesto;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void recalcularValor(){
+        this.valor = detalles.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element);
+    }
     public void setPresupuesto(int presupuesto) {
         this.presupuesto = presupuesto;
     }

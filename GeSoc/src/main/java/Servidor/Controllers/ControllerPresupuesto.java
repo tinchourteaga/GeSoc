@@ -145,12 +145,12 @@ public class ControllerPresupuesto {
         List<Proveedor> proveedoresDisponibles=repoProveedores.getTodosLosElementos();
         DocumentoComercial documentoAsociado= new DocumentoComercial(tipoDoc,"");
         proveedoresDisponibles=proveedoresDisponibles.stream().filter(p->p.getProveedor()== Integer.valueOf(proveedor).intValue()).collect(Collectors.toList());
-        System.out.println(proveedor);
-        System.out.println(proveedoresDisponibles);
+
 
         if(!proveedoresDisponibles.isEmpty()) {
             Presupuesto presupuesto = new Presupuesto(new ArrayList(), new ArrayList(), documentoAsociado, proveedoresDisponibles.get(0));
             presupuesto.setFecha(LocalDate.parse(fecha));
+            presupuesto.setDescripcion(request.queryParams("descripcionPresupuesto"));
             persistirPresupuesto(presupuesto);
             response.redirect("cargar_items_presupuestos?Presupuesto="+presupuesto.getPresupuesto()+"&us="+request.session().attribute("idUsuarioActual"));
         }else{
@@ -226,6 +226,7 @@ public class ControllerPresupuesto {
                 objItem.setPresupuesto(presupuestoObj);
                 repoDetalle.agregar(objItem);
             });
+            presupuestoObj.recalcularValor();
         }
         persistirPresupuesto(presupuestoObj);
         System.out.println(request.queryParams("form_json"));

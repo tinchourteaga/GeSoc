@@ -715,6 +715,9 @@ public class AddData {
         Usuario usuarioAdmin = new Usuario(Rol.ADMINISTRADOR, "martin", "urteaga", "M@rtin.98", "41589363", "martin@hotmail.com");
         usuarioAdmin.setPersona();
 
+        Usuario usuarioPrueba = new Usuario(Rol.ADMINISTRADOR, "Pato", "Donald", "!-*donald_!?", "41623818", "patito@hotmail.com");
+        usuarioPrueba.setPersona();
+
         Usuario alejandro = new Usuario(Rol.ESTANDAR, "Alejandro", "Roco", "*_aroco20!-?", "41589363", "aroco@hotmail.com");
         alejandro.setPersona();
 
@@ -744,13 +747,24 @@ public class AddData {
         usuarioAdmin.getEgresosAREvisar().add(egreso6);
         usuarioAdmin.getEgresosAREvisar().add(egreso7);
 
+        usuarioPrueba.getEgresosAREvisar().add(egreso1);
+        usuarioPrueba.getEgresosAREvisar().add(egreso2);
+        usuarioPrueba.getEgresosAREvisar().add(egreso3);
+        usuarioPrueba.getEgresosAREvisar().add(egreso4);
+        usuarioPrueba.getEgresosAREvisar().add(egreso5);
+        usuarioPrueba.getEgresosAREvisar().add(egreso6);
+        usuarioPrueba.getEgresosAREvisar().add(egreso7);
+
         usuarioAdmin.getEntidades().add(entidad1);
+        usuarioPrueba.getEntidades().add(entidad1);
+        usuarioPrueba.getEntidades().add(entidad4);
         alejandro.getEntidades().add(entidad1);
         rocio.getEntidades().add(entidad1);
         julieta.getEntidades().add(entidad4);
 
         List<Usuario> usuariosAPersistir = new ArrayList<>();
         usuariosAPersistir.add(usuarioAdmin);
+        usuariosAPersistir.add(usuarioPrueba);
         usuariosAPersistir.add(alejandro);
         usuariosAPersistir.add(rocio);
         usuariosAPersistir.add(julieta);

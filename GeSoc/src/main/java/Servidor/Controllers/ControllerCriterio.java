@@ -37,6 +37,7 @@ public class ControllerCriterio {
         String nombreCriterio = request.queryParams("nombreCriterio");
         String descripcion = request.queryParams("descripcion");
         String entidad = request.queryParams("entidad");
+        String idCriterioPadre=request.queryParams("criterioPadre");
 
         List categoriasAsociadas = new ArrayList();
 
@@ -51,15 +52,17 @@ public class ControllerCriterio {
         }
 
         Repositorio repoCriterios= new Repositorio(new DAOBBDD<Criterio>(Criterio.class));
-        List<Criterio> criteriosHijos = repoCriterios.getTodosLosElementos();
-
-        if (!criteriosHijos.isEmpty()) {
-            Criterio criterioHijo = criteriosHijos.get(0);
-            criterio.agregarHijos(criterioHijo);
-        }
+        List<Criterio> criteriosPadres = repoCriterios.getTodosLosElementos();
+        if(idCriterioPadre!=null && !idCriterioPadre.isEmpty())
+        criteriosPadres.stream().filter(crit->crit.getCriterio()==Integer.valueOf(idCriterioPadre).intValue()).findFirst().ifPresent( nuevoPadre->
+                {
+                 nuevoPadre.agregarHijos(criterio);
+                 criterio.setCriterio_padre(nuevoPadre);
+                 persistirCriterio(nuevoPadre);
+                }
+        );
 
         persistirCriterio(criterio);
-
         response.redirect("crear_criterio");
 
         return null;
@@ -70,7 +73,10 @@ public class ControllerCriterio {
         DAO DAOCriterio = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
         Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
 
-        if(!repoCriterio.existe(criterio))
+        if(!repoCriterio.existe(criterio)) {
             repoCriterio.agregar(criterio);
+        }else{
+            repoCriterio.modificar(null,criterio);
+        }
     }
 }

@@ -96,16 +96,16 @@ public class Servidor {
         Spark.post("/cargarIngreso", ControllerIngresos::cargarIngreso);
         Spark.post("/cargarPresupuesto", ControllerPresupuesto::cargarPresupuesto);
         Spark.post("/cargarItemsEgreso", ControllerEgresos::cargarItem);
+        Spark.post("/cargarItemsPresupuesto", ControllerPresupuesto::cargarItem);
+        Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
+
 
         //haciendo
         Spark.post("/asociarEgresosYPresupuestos", ControllerAsociacion::asociarEgresosYPresupuestos);
         Spark.post("/asociarIngresosYEgresos", ControllerAsociacion::asociarIngresosYEgresos);
-        Spark.post("/crearCriterio", ControllerCriterio::crearCriterio);
         Spark.post("/crearCategoria", ControllerCategoria::crearCategoria);
         Spark.post("/cambiarContrasenia", ControllerUsuario::cambiarContrasenia);
         Spark.post("/cargarEntidad", ControllerEntidad::cargarEntidad);
-
-        Spark.post("/cargarItemsPresupuesto", ControllerPresupuesto::cargarItem);
         Spark.post("/cargarProveedor", ControllerProveedor::cargarProveedor);
         Spark.post("/crearProyectoFinanciamiento", ControllerProyectoFinanciamiento::crearProyectoFinanciamiento);
         Spark.post("/administrarUsuarios", ControllerUsuario::administrarUsuarios);

@@ -32,11 +32,19 @@ public class ControllerAsociacion {
             response.redirect("/");
             return null;
         }
+
         List<Egreso> egresos = miUsuario.getEgresosAREvisar();
-        List<Ingreso> ingresos = egresos.stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+
+        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        Set<Entidad> entidadSet= new HashSet<>();
+        entidadSet.addAll(entidades);
+        entidades.clear();
+        entidades.addAll(entidadSet);
+        //List<Ingreso> ingresos = egresos.stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        final List<Ingreso>[] ingresosQueManejo = new List[]{entidades.stream().map(e -> e.getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList())};
 
         datos.put("egresos",egresos);
-        datos.put("ingresos",ingresos);
+        datos.put("ingresos",ingresosQueManejo[0]);
 
         ModelAndView vista = new ModelAndView(datos, "asociar_ingresos_y_egresos.html");
 
@@ -135,6 +143,9 @@ public class ControllerAsociacion {
              Ingreso ingresoPosta=ingresosPosibles.get(0);
              egresoPosta.setIngreso(ingresoPosta);
              ingresoPosta.agregarEgreso(egresoPosta);
+
+             //Actualizo el importe de mi ingreso
+             ingresoPosta.disminuirValor(egresoPosta.getValor().getImporte());
 
              Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
              Repositorio repoIngresos= new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));

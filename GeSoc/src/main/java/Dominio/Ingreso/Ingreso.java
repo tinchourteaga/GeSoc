@@ -101,4 +101,9 @@ public class Ingreso {
     public List<CategoriaCriterio> getCategoriasAsociadas() {
         return categoriasAsociadas;
     }
+
+    public void disminuirValor(Double importe){
+        Valor valor = this.getValor();
+        valor.setImporte(valor.getImporte() - importe);
+    }
 }

@@ -110,7 +110,7 @@
         <select name="egreso" id="u638_input" class="u638_input" required>
           <option class="u638_input_option" value="">Seleccionar Egreso</option>
           {{#each egresosNoPactados}}
-          <option class="u638_input_option" value="{{egreso}}">{{fecha}}:{{valor.importe}}</option>
+          <option class="u638_input_option" value="{{egreso}}">{{descripcion}}</option>
           {{/each}}
         </select>
       </div>
@@ -156,7 +156,7 @@
         <select name="presupuesto" id="u643_input" class="u643_input" required>
           <option class="u643_input_option" value="">Seleccionar Presupuesto</option>
           {{#each presupuesto}}
-          <option class="u638_input_option" value="{{presupuesto}}">{{fecha}}:{{valor}}</option>
+          <option class="u638_input_option" value="{{presupuesto}}">{{descripcion}}</option>
           {{/each}}
         </select>
       </div>

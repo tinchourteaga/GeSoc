@@ -19,6 +19,7 @@ import spark.Response;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 public class ControllerAsociacion {
@@ -80,22 +81,21 @@ public class ControllerAsociacion {
         String egreso = request.queryParams("egreso");
         String presupuesto = request.queryParams("presupuesto");
 
-        int statusCode=0;
+        AtomicInteger statusCode= new AtomicInteger(0);
         Integer egresoId = Integer.valueOf(egreso);
         Integer presupuestoId = Integer.valueOf(presupuesto);
         List<Egreso> egresosPosibles=miUsuario.getEgresosAREvisar().stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
-        List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()).stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().filter(e->e.getPresupuestoPactado()==null).map(e->e.getPresupuestosAConsiderar()).flatMap(List::stream).collect(Collectors.toList());
 
-        if(!egresosPosibles.isEmpty()&& !presupuestosPosibles.isEmpty()) {
-            Egreso egresoPosta = egresosPosibles.get(0);
-            Presupuesto presupuestoPosta=presupuestosPosibles.get(0);
-            egresoPosta.setPresupuestoPactado(presupuestoPosta);
-
-            Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
-            repoEgresos.modificar(null,egresoPosta);
-            statusCode=1;
-        }
-        response.redirect("asociar_egresos_y_presupuestos?Exito="+statusCode);
+        egresosPosibles.stream().findFirst().ifPresent(egresoPosible->{
+           presupuestosPosibles.stream().filter(pres->pres.getPresupuesto()==Integer.valueOf(presupuestoId)).findFirst().ifPresent(presu->{
+                egresoPosible.setPresupuestoPactado(presu);
+                Repositorio repoEgreso= new Repositorio<Egreso>(new DAOBBDD<Egreso>(Egreso.class));
+                repoEgreso.modificar(null,egresoPosible);
+                statusCode.set(1);
+            });
+        });
+        response.redirect("asociar_egresos_y_presupuestos?Exito="+statusCode.get());
         return null;
     }
 

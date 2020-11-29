@@ -71,12 +71,12 @@
 
     <select name="egreso" id="select_egreso" class="selects_bonitos" type="text" onchange="reloadearPagina(this)" style="top 5%; width: 20%; text-align: center; position:absolute">
         {{#if egresoPactado includeZero=true}}
-        <option class="u300_input_option" value={{egresoPactado.egreso}}>{{egresoPactado.fecha}}</option>
+        <option class="u300_input_option" value={{egresoPactado.egreso}}>{{egresoPactado.descripcion}}</option>
         {{else}}
         <option class="u300_input_option" value="seleccionEgreso">Seleccionar...</option>
         {{/if}}
         {{#each egreso}}
-        <option class="u300_input_option" value={{egreso}}>{{fecha}}</option>
+        <option class="u300_input_option" value={{egreso}}>{{descripcion}}</option>
         {{/each}}
     </select>
 

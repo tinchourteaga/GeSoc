@@ -37,6 +37,7 @@ public class Valor {
 
         this.importe = importe;
         this.tipoDeMoneda = moneda;
+        this.simbolo="$";
     }
 
     public String getMoneda() {

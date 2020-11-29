@@ -112,89 +112,93 @@ public class ControllerAsociacion {
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         String estrategia = request.queryParams("estrategia");
-        String fecha = request.queryParams("fecha");
+
         String egreso = request.queryParams("egreso");
         String ingreso = request.queryParams("ingreso");
 
 
         int statusCode=0;
         if(estrategia.equals("Manual")){
-            //no delego nada y lo hago aca
-
             Integer egresoId = Integer.valueOf(egreso);
             Integer ingresoId = Integer.valueOf(ingreso);
-
-
-            DAO DAOIngreso = new DAOBBDD<Ingreso>(Ingreso.class);
-            Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso);
-
-            int idEgreso= egresoId.intValue();
-            List<Egreso> egresos =miUsuario.getEgresosAREvisar();
-            List<Egreso> egresosPosibles=egresos.stream().filter(e->e.getEgreso()==idEgreso).collect(Collectors.toList());
-
-            int idIngreso= ingresoId.intValue();
-            List<Ingreso> ingresos =miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
-            List<Ingreso> ingresosPosibles=ingresos.stream().filter(e->e.getIngreso()==idIngreso).collect(Collectors.toList());
-
-
-            if(!ingresosPosibles.isEmpty()&& !egresosPosibles.isEmpty()){
-
-             Egreso egresoPosta=egresosPosibles.get(0);
-             Ingreso ingresoPosta=ingresosPosibles.get(0);
-             egresoPosta.setIngreso(ingresoPosta);
-             ingresoPosta.agregarEgreso(egresoPosta);
-
-             //Actualizo el importe de mi ingreso
-             ingresoPosta.disminuirValor(egresoPosta.getValor().getImporte());
-
-             Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
-             Repositorio repoIngresos= new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
-             repoEgresos.modificar(null,egresoPosta);
-             repoIngreso.modificar(null,ingresoPosta);
-            }
+            //no delego nada y lo hago aca
+            realizarAsociacionManual(egresoId, ingresoId,miUsuario);
         }else if(estrategia.equals("Automática")){
             //se lo mando a la API
             //todo
-            List<Ingreso> ingresos = miUsuario.getEntidades().stream().map(x -> x.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
-            List<Egreso> egresos = miUsuario.getEgresosAREvisar();
-            List<String> criterios =new ArrayList<>(); //Son los checkboxes
-            List<Condicion> condiciones = new ArrayList<>();
-
-            if(request.queryParams("OVPE")!=null){
-                criterios.add("OrdenValorPrimeroEgreso");
-            }
-
-            if(request.queryParams("OVPI")!=null){
-                criterios.add("OrdenValorPrimeroIngreso");
-            }
-
-            if(request.queryParams("OrdenFecha")!=null){
-                criterios.add("OrdenFechaPrimerEgreso");
-            }
-
-            System.out.println(fecha);
-
-            LocalDate fechaHasta = LocalDate.parse(fecha);
-            LocalDate fechaDesde = LocalDate.now();
-
-            System.out.println(fechaHasta);
-            System.out.println(fechaDesde);
-
-            Integer diferenciaDia = fechaDesde.getDayOfYear() - fechaHasta.getDayOfYear();
-
-            System.out.println(diferenciaDia);
-
-            List<Object> parametros = new ArrayList<>();
-            parametros.add(diferenciaDia);
-            Condicion condicion = new Condicion("PeriodoAceptacion",parametros);
-            condiciones.add(condicion);
-
-            ControllerVinculacion.obtenerInstacia().vincular(egresos, ingresos, criterios,condiciones);
+            realizarAsociacionAutomatica(request,response,miUsuario);
         }
 
         response.redirect("asociar_ingresos_y_egresos?Exito="+statusCode);
 
         return null;
+    }
+
+    private static void realizarAsociacionAutomatica(Request request, Response response, Usuario miUsuario) {
+
+        List<Ingreso> ingresos = miUsuario.getEntidades().stream().map(x -> x.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
+        List<Egreso> egresos = miUsuario.getEgresosAREvisar();
+        List<String> criterios =new ArrayList<>(); //Son los checkboxes
+        List<Condicion> condiciones = new ArrayList<>();
+        String fecha = request.queryParams("fecha");
+
+        if(request.queryParams("OVPE")!=null){
+            criterios.add("OrdenValorPrimeroEgreso");
+        }
+
+        if(request.queryParams("OVPI")!=null){
+            criterios.add("OrdenValorPrimeroIngreso");
+        }
+
+        if(request.queryParams("OrdenFecha")!=null){
+            criterios.add("OrdenFechaPrimerEgreso");
+        }
+
+
+        LocalDate fechaHasta = LocalDate.parse(fecha);
+        LocalDate fechaDesde = LocalDate.now();
+
+        Integer diferenciaDia = fechaDesde.getDayOfYear() - fechaHasta.getDayOfYear();
+
+        List<Object> parametros = new ArrayList<>();
+        parametros.add(diferenciaDia);
+        Condicion condicion = new Condicion("PeriodoAceptacion",parametros);
+        condiciones.add(condicion);
+
+        ControllerVinculacion.obtenerInstacia().vincular(egresos, ingresos, criterios,condiciones);
+    }
+
+    private static void realizarAsociacionManual(Integer egresoId, Integer ingresoId,Usuario miUsuario) throws NoPuedoAsignarMasDineroDelQueTengoException {
+
+        DAO DAOIngreso = new DAOBBDD<Ingreso>(Ingreso.class);
+        Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso);
+
+        int idEgreso = egresoId.intValue();
+        List<Egreso> egresos = miUsuario.getEgresosAREvisar();
+        List<Egreso> egresosPosibles = egresos.stream().filter(e -> e.getEgreso() == idEgreso).collect(Collectors.toList());
+
+        int idIngreso = ingresoId.intValue();
+        List<Ingreso> ingresos = miUsuario.getEgresosAREvisar().stream().map(e -> e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Ingreso> ingresosPosibles = ingresos.stream().filter(e -> e.getIngreso() == idIngreso).collect(Collectors.toList());
+
+
+        if (!ingresosPosibles.isEmpty() && !egresosPosibles.isEmpty()) {
+
+            Egreso egresoPosta = egresosPosibles.get(0);
+            Ingreso ingresoPosta = ingresosPosibles.get(0);
+            egresoPosta.setIngreso(ingresoPosta);
+            ingresoPosta.agregarEgreso(egresoPosta);
+
+            //Actualizo el importe de mi ingreso
+            ingresoPosta.disminuirValor(egresoPosta.getValor().getImporte());
+
+            Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+            Repositorio repoIngresos = new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+            repoEgresos.modificar(null, egresoPosta);
+            repoIngreso.modificar(null, ingresoPosta);
+
+        }
+
     }
 
     /*

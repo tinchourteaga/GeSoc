@@ -109,7 +109,7 @@ public class VinculadorPropio implements Vinculador {
         if(0<ingresos.size()) {
             try{
                 Ingreso ing = ingresos.get(0);
-                json = json.concat(new Gson().toJson(ing));
+                json = json.concat(this.generarJsonDelIngreso(ing));
             }
             catch (Exception e){
                 e.printStackTrace();
@@ -120,43 +120,71 @@ public class VinculadorPropio implements Vinculador {
 
         for (int i=1;i<ingresos.size();i++){
             json= json + ",";
-            json= json.concat(new Gson().toJson(ingresos.get(i)));
+            json= json.concat(this.generarJsonDelIngreso(ingresos.get(i)));
 
         }
         json=json.concat("],");
         json=json.concat("\"egresos\" :[");
 
         if(0<egresos.size())
-            json= json.concat(new Gson().toJson(egresos.get(0)));
+            json= json.concat(this.generarJsonDelEgreso(egresos.get(0)));
 
         for (int i=1;i<egresos.size();i++){
             json= json + ",";
-            json= json.concat(new Gson().toJson(egresos.get(i)));
+            json= json.concat(this.generarJsonDelEgreso(egresos.get(i)));
         }
         json=json.concat("],");
 
         json=json.concat("\"criterios\" :[");
 
         if(0<criterios.size())
-            json= json.concat(new Gson().toJson(criterios.get(0)));
+            json= json.concat(criterios.get(0));
 
         for (int i=1;i<criterios.size();i++){
             json= json + ",";
-            json= json.concat(new Gson().toJson(criterios.get(i)));
+            json= json.concat(criterios.get(i));
         }
         json=json.concat("],");
 
         json=json.concat("\"condiciones\" :[");
 
         if(0<condiciones.size())
-            json= json.concat(new Gson().toJson(condiciones.get(0)));
+            json= json.concat(this.generarJsonCondicion(condiciones.get(0)));
 
         for (int i=1;i<condiciones.size();i++){
             json= json + ",";
-            json= json.concat(new Gson().toJson(condiciones.get(i)));
+            json= json.concat(this.generarJsonCondicion(condiciones.get(i)));
         }
         json=json.concat("]}");
         return json;
+    }
+
+    private String generarJsonCondicion(Condicion condicion) {
+        String jsonCondicion = "{" + "nombreCondicion : "+ condicion.nombreCondicion +
+                "parametros : [" +
+                condicion.parametros.get(0)
+                ;
+        for(int i=1;i<= condicion.parametros.size();i++){
+            jsonCondicion=jsonCondicion.concat(",");
+            jsonCondicion=jsonCondicion.concat(condicion.parametros.get(i).toString());
+        }
+        jsonCondicion=jsonCondicion.concat("]");
+        jsonCondicion=jsonCondicion.concat("}");
+        return jsonCondicion;
+    }
+
+
+    private String generarJsonDelEgreso(Egreso egreso) {
+        String egresoJson="{" +"fecha: "+egreso.getFecha()+ ", egreso:"+ egreso.getEgreso() + ", valor"+egreso.getValor().getImporte()+
+                "}";
+        return egresoJson;
+    }
+
+    private String generarJsonDelIngreso(Ingreso ing) {
+        String ingresoJson="{" +"fecha: "+ing.getFecha()+ ", ingreso:"+ ing.getIngreso() + ", valor"+ing.getValor().getImporte()+
+                "}";
+
+        return ingresoJson;
     }
 
     class Vinculacion{

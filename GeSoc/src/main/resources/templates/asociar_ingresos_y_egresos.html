@@ -104,7 +104,7 @@
         <select name="egreso" id="u848_input" disabled class="u848_input" required>
           <option class="u848_input_option" value="">Seleccionar Egreso</option>
          {{#each egresos}}
-          <option class="u848_input_option" value={{egreso}}>{{fecha}}:{{valor.importe}}</option>
+          <option class="u848_input_option" value={{egreso}}>{{descripcion}}</option>
           {{/each}}
         </select>
       </div>
@@ -177,21 +177,10 @@
         </select>
       </div>
 
-        <div id="u8555" class="ax_default droplist">
-          <div id="u8555_div" class=""></div>
-          <select name="ingreso" id="u8555_input" class="u8555_input" required>
-            <option class="u8555_input_option" value="">Seleccionar Entidad</option>
-            {{#each ingresos}}
-            <option class="u8555_input_option" value={{ingreso}}>{{descripcion}}</option>
-            {{/each}}
-          </select>
-        </div>
-
         <!-- Unnamed (Rectangle) -->
         <div id="u8566" class="ax_default heading_1">
           <div id="u8566_div" class=""></div>
           <div id="u8566_text" class="text ">
-            <p><span>Entidad:</span></p>
           </div>
         </div>
 

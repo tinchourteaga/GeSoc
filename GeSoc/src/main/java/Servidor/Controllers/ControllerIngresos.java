@@ -28,8 +28,14 @@ public class ControllerIngresos {
         entidades.clear();
         entidades.addAll(setEntidades);
 
+        Entidad entidad = miUsuario.getEntidades().get(0);
+
+        Repositorio repoIngreso = new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+        List<Ingreso> ingresosPosibles = repoIngreso.getTodosLosElementos();
+        List<Ingreso> ingresosTabla = ingresosPosibles.stream().filter(e -> e.getEntidad().equals(entidad)).collect(Collectors.toList());
+
         datos.put("entidades",entidades);
-        datos.put("egreso",miUsuario.getEgresosAREvisar());
+        datos.put("egreso",ingresosTabla);
 
         ModelAndView vista = new ModelAndView(datos, "cargar_ingreso.html");
 
@@ -78,18 +84,20 @@ public class ControllerIngresos {
 
     public static Object cargarIngreso(Request request, Response response) {
 
+        Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
         String entidad = request.queryParams("entidad"); //No lo tengo en mi constructor -> es necesario?
         String fecha = request.queryParams("fecha");
         String moneda = request.queryParams("moneda");
         String importe = request.queryParams("importe");
         String descripcion = request.queryParams("descripcion");
 
+
         List egresosAsociados = new ArrayList();
-
         Ingreso ingreso = new Ingreso(moneda, Double.parseDouble(importe), LocalDate.parse(fecha),LocalDate.now(), descripcion, egresosAsociados);
-
-        persistirIngreso(ingreso);
-
+        miUsuario.getEntidades().stream().filter(entidad1 -> entidad1.getEntidad() == Integer.valueOf(entidad).intValue()).findFirst().ifPresent(entidadCorrecta ->{
+            ingreso.setEntidad(entidadCorrecta);
+            persistirIngreso(ingreso);
+        });
         response.redirect("cargar_ingreso");
 
         return null;

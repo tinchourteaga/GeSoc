@@ -21,6 +21,7 @@ import spark.Response;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
@@ -48,12 +49,20 @@ public class ControllerEgresos {
         entidades.clear();
         entidades.addAll(entidadSet);
 
+        Entidad entidad = miUsuario.getEntidades().get(0);
+
+        Repositorio repoEgreso = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+        List<Egreso> egresosPosibles = repoEgreso.getTodosLosElementos();
+        List<Egreso> egresosTabla = egresosPosibles.stream().filter(e -> e.getEntidad().equals(entidad)).collect(Collectors.toList());
+
         datos.put("entidad",entidades);
         datos.put("criterios",criterios);
         datos.put("documentos",documentos);
         datos.put("metodos",metodos);
         datos.put("egreso",egresos);
         datos.put("Exito",valor);//tiene "2 si anduvo, 1 si pincho o 0 si es la primera vez que entra
+
+        datos.put("egresoTabla", egresosTabla);
         ModelAndView vista = new ModelAndView(datos, "cargar_egreso.html");
 
         return vista;
@@ -62,13 +71,13 @@ public class ControllerEgresos {
     public static Object cargarEgreso(Request request, Response response) {
 
 
-        String fecha = request.queryParams("fecha");
+        String fecha = String.format(request.queryParams("fecha"), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         String pais = request.queryParams("pais");
         String metodoPago = request.queryParams("seleccionarMetodoPago");
         String criterioString = request.queryParams("criterio");
         String documentoComercial = request.queryParams("documentoComercial");
         String descripcionDocComercial = request.queryParams("descripcionDocComercial");
-
+        String descripcionEgreso = request.queryParams("descripcionEgreso");
         DocumentoComercial documentoAsociado;
         CriterioSeleccionProveedor criterio;
         MetodoDePago medioDePago=null;
@@ -144,6 +153,8 @@ public class ControllerEgresos {
         Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
         List<Entidad> entidades= repoEntidades.getTodosLosElementos();
         List<Entidad> entidadesPosibles= entidades.stream().filter(e->e.getEntidad()==Integer.valueOf(entidadId).intValue()).collect(Collectors.toList());
+        egreso.setDescripcion(descripcionEgreso);
+
         if(!entidadesPosibles.isEmpty())
         egreso.setEntidad(entidadesPosibles.get(0));
         if(request.queryParams("esRevisor")!=null){
@@ -219,6 +230,7 @@ public class ControllerEgresos {
                         objItem.setEgreso(objEgreso);
                 items.add(objItem);
             });
+            objEgreso.recalcularValor();
 
         }
 

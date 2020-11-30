@@ -119,7 +119,7 @@ public class AddData {
         Proveedor proveedor7 = new Proveedor("Telas ZN", "", "", direccionPostal7);
         Proveedor proveedor8 = new Proveedor("Pinturerías REX", "", "", direccionPostal8);
         Proveedor proveedor9 = new Proveedor("Pinturerías San Jorge", "", "", direccionPostal9);
-        Proveedor proveedor10 = new Proveedor("La casa del Audio ", "", "", direccionPostal10);
+        Proveedor proveedor10 = new Proveedor("La casa del Audio", "", "", direccionPostal10);
         Proveedor proveedor11 = new Proveedor("Garbarino", "", "", direccionPostal11);
         Proveedor proveedor12 = new Proveedor("Corralón San Juan SRL", "", "", direccionPostal12);
 
@@ -477,20 +477,38 @@ public class AddData {
 
         Presupuesto presupuesto1= new Presupuesto(criterios1, detalles1, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor8);
         presupuesto1.setFecha(LocalDate.parse("2020-03-06"));
+        presupuesto1.setDescripcion("Pinturas para la oficina BA - REX");
+
         Presupuesto presupuesto2= new Presupuesto(criterios2, detalles2, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor9);
         presupuesto2.setFecha(LocalDate.parse("2020-04-04"));
+        presupuesto2.setDescripcion("Pinturas para la oficina BA - San Jorge");
+
         Presupuesto presupuesto3= new Presupuesto(criterios3, detalles3, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor1);
         presupuesto3.setFecha(LocalDate.parse("2020-04-27"));
+        presupuesto3.setDescripcion("Pinturas para la oficina BA - Serretino");
+
         Presupuesto presupuesto4= new Presupuesto(criterios4, detalles4, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor10);
         presupuesto4.setFecha(LocalDate.parse("2020-05-11"));
+        presupuesto4.setDescripcion("Telefonos Motorola - La casa del Audio");
+
         Presupuesto presupuesto5= new Presupuesto(criterios5, detalles5, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor11);
         presupuesto5.setFecha(LocalDate.parse("2020-10-01"));
+        presupuesto5.setDescripcion("Telefonos Motorola - Ingeniería Comercial SRL");
+
         Presupuesto presupuesto6= new Presupuesto(criterios6, detalles6, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor5);
         presupuesto6.setFecha(LocalDate.parse("2020-03-12"));
+        presupuesto6.setDescripcion("Telefonos Motorola - Garbarino");
+
         Presupuesto presupuesto7= new Presupuesto(criterios7, detalles7, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor12);
         presupuesto7.setFecha(LocalDate.parse("2020-10-30"));
+        presupuesto7.setDescripcion("Elementos de construccion - Corralón San Juan SRL");
+
         Presupuesto presupuesto8= new Presupuesto(criterios8, detalles8, new DocumentoComercial (TipoDocumentoComercial.SIN_DOCUMENTO,""), proveedor6);
         presupuesto8.setFecha(LocalDate.parse("2020-07-08"));
+        presupuesto8.setDescripcion("Elementos de construccion - Corralón Laprida SRL");
+
+
+
 
         presupuestos1.add(presupuesto1);
         presupuestos1.add(presupuesto2);
@@ -508,25 +526,43 @@ public class AddData {
         List<Egreso>egresosAPersistir=new ArrayList();
         Egreso egreso1= new Egreso(LocalDate.parse("2020-03-10"), "Argentina", items1, metodo1, presupuestos1,  unDocumento1, criterio1);
         items1.forEach(item->item.setEgreso(egreso1));
+        egreso1.setDescripcion("Pinturas");
         Egreso egreso2= new Egreso(LocalDate.parse("2020-07-08"), "Argentina", items2, metodo2, presupuestos2,  unDocumento2, criterio1);
         items2.forEach(item->item.setEgreso(egreso2));
+        egreso2.setDescripcion("Factura de luz junio 2020");
+
         Egreso egreso3= new Egreso(LocalDate.parse("2020-07-09"), "Argentina", items3, metodo3, presupuestos3,  unDocumento3, criterio1);
         items3.forEach(item->item.setEgreso(egreso3));
+        egreso3.setDescripcion("Factura de gas junio 2020");
+
         Egreso egreso4= new Egreso(LocalDate.parse("2020-08-03"), "Argentina", items4, metodo4, presupuestos4,  unDocumento4, criterio1);
         items4.forEach(item->item.setEgreso(egreso4));
+        egreso4.setDescripcion("Pava y cafetera para oficina");
+
         Egreso egreso5= new Egreso(LocalDate.parse("2020-09-27"), "Argentina", items5, metodo5, presupuestos5,  unDocumento5, criterio1);
         items5.forEach(item->item.setEgreso(egreso5));
+        egreso5.setDescripcion("Telefonos Motorola");
+
         Egreso egreso6= new Egreso(LocalDate.parse("2020-10-01"), "Argentina", items6, metodo6, presupuestos6,  unDocumento6, criterio1);
         items6.forEach(item->item.setEgreso(egreso6));
+        egreso6.setDescripcion("Obra de construccion 2020");
+
         Egreso egreso7= new Egreso(LocalDate.parse("2020-10-05"), "Argentina", items7, metodo7, presupuestos7,  unDocumento7, criterio1);
         items7.forEach(item->item.setEgreso(egreso7));
+        egreso7.setDescripcion("Ladrillos para obra 2020");
+
         Egreso egreso8= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", items8, metodo8, presupuestos8,  unDocumento8, criterio1);
         items8.forEach(item->item.setEgreso(egreso8));
+        egreso8.setDescripcion("Factura de luz 2020");
+
         Egreso egreso9= new Egreso(LocalDate.parse("2020-07-10"), "Argentina", items9, metodo9, presupuestos9,  unDocumento9, criterio1);
         items9.forEach(item->item.setEgreso(egreso9));
+        egreso9.setDescripcion("Factua de gas 2020");
+
         Egreso egreso10= new Egreso(LocalDate.parse("2020-09-25"), "Argentina", items10, metodo10, presupuestos10,  unDocumento10, criterio1);
         items10.forEach(item->item.setEgreso(egreso10));
         CategoriaCriterio categoria1= new CategoriaCriterio("Para gastos de Agua, Luz y otros", "Servicios Generales");
+        egreso10.setDescripcion("Cortinas Blackout");
 
         Criterio criterioDeCategorias1= new Criterio(Arrays.asList(categoria1), "Gastos Generales", "Diferentes gastos de la organizacion no catalogados");
         categoria1.setCriterio(criterioDeCategorias1);
@@ -715,6 +751,9 @@ public class AddData {
         Usuario usuarioAdmin = new Usuario(Rol.ADMINISTRADOR, "martin", "urteaga", "M@rtin.98", "41589363", "martin@hotmail.com");
         usuarioAdmin.setPersona();
 
+        Usuario usuarioPrueba = new Usuario(Rol.ADMINISTRADOR, "Pato", "Donald", "!-*donald_!?", "41623818", "patito@hotmail.com");
+        usuarioPrueba.setPersona();
+
         Usuario alejandro = new Usuario(Rol.ESTANDAR, "Alejandro", "Roco", "*_aroco20!-?", "41589363", "aroco@hotmail.com");
         alejandro.setPersona();
 
@@ -744,13 +783,24 @@ public class AddData {
         usuarioAdmin.getEgresosAREvisar().add(egreso6);
         usuarioAdmin.getEgresosAREvisar().add(egreso7);
 
+        usuarioPrueba.getEgresosAREvisar().add(egreso1);
+        usuarioPrueba.getEgresosAREvisar().add(egreso2);
+        usuarioPrueba.getEgresosAREvisar().add(egreso3);
+        usuarioPrueba.getEgresosAREvisar().add(egreso4);
+        usuarioPrueba.getEgresosAREvisar().add(egreso5);
+        usuarioPrueba.getEgresosAREvisar().add(egreso6);
+        usuarioPrueba.getEgresosAREvisar().add(egreso7);
+
         usuarioAdmin.getEntidades().add(entidad1);
+        usuarioPrueba.getEntidades().add(entidad1);
+        usuarioPrueba.getEntidades().add(entidad4);
         alejandro.getEntidades().add(entidad1);
         rocio.getEntidades().add(entidad1);
         julieta.getEntidades().add(entidad4);
 
         List<Usuario> usuariosAPersistir = new ArrayList<>();
         usuariosAPersistir.add(usuarioAdmin);
+        usuariosAPersistir.add(usuarioPrueba);
         usuariosAPersistir.add(alejandro);
         usuariosAPersistir.add(rocio);
         usuariosAPersistir.add(julieta);

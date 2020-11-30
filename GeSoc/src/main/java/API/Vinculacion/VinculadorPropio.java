@@ -4,10 +4,9 @@ import API.RequestMaker.RequestMaker;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 import Dominio.Ingreso.Ingreso;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import Persistencia.DAO.DAOBBDD;
+import Persistencia.Repos.Repositorio;
+import com.google.gson.*;
 import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import retrofit2.http.Headers;
@@ -36,6 +35,7 @@ public class VinculadorPropio implements Vinculador {
     @Headers("Content-Type: application/json")
     private void leerJson(HttpEntity respuesta, List<Egreso> egresos, List<Ingreso> ingresos) throws IOException {
         String responseStr = IOUtils.toString(respuesta.getContent(), "UTF-8");
+        System.out.println(responseStr);
         if (responseStr != null && !responseStr.isEmpty()) {
             JsonParser parser = new JsonParser();
             JsonArray responseObj = parser.parse(responseStr).getAsJsonArray();
@@ -84,6 +84,13 @@ public class VinculadorPropio implements Vinculador {
         ingresosVinculados.forEach(ingresoAVincular-> {
             try {
                 ingresoAVincular.agregarEgreso(egresoVinculado);
+                ingresoAVincular.disminuirValor(egresoVinculado.getValor().getImporte());
+                egresoVinculado.setIngreso(ingresoAVincular);
+
+                Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+                Repositorio repoIngreso = new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+                repoEgresos.modificar(null, egresoVinculado);
+                repoIngreso.modificar(null, ingresoAVincular);
             } catch (NoPuedoAsignarMasDineroDelQueTengoException e) {
                 e.printStackTrace();//no deberia pasar esto a menos que la api este mal
             }
@@ -101,6 +108,13 @@ public class VinculadorPropio implements Vinculador {
         egresosVinculados.forEach(egresoAVincular-> {
             try {
                 ingresoVinculado.agregarEgreso(egresoAVincular);
+                ingresoVinculado.disminuirValor(egresoAVincular.getValor().getImporte());
+                egresoAVincular.setIngreso(ingresoVinculado);
+
+                Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+                Repositorio repoIngreso = new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+                repoEgresos.modificar(null, egresoAVincular);
+                repoIngreso.modificar(null, ingresoVinculado);
             } catch (NoPuedoAsignarMasDineroDelQueTengoException e) {
                 e.printStackTrace();//no deberia pasar esto a menos que la api este mal
             }
@@ -144,11 +158,11 @@ public class VinculadorPropio implements Vinculador {
         json=json.concat("\"criterios\": [");
 
         if(0<criterios.size())
-            json= json.concat(criterios.get(0));
+            json= json.concat("\""+criterios.get(0)+"\"");
 
         for (int i=1;i<criterios.size();i++){
             json= json + ", ";
-            json= json.concat(criterios.get(i));
+            json= json.concat("\""+criterios.get(i)+"\"");
         }
         json=json.concat("], ");
 
@@ -166,8 +180,8 @@ public class VinculadorPropio implements Vinculador {
     }
 
     private String generarJsonCondicion(Condicion condicion) {
-        String jsonCondicion = "{" + "\"nombreCondicion\": "+ condicion.nombreCondicion +
-                "\"parametros\": [" +
+        String jsonCondicion = "{" + "\"nombreCondicion\": "+ "\"" + condicion.nombreCondicion + "\"" +
+                ", \"parametros\": [" +
                 condicion.parametros.get(0)
                 ;
         for(int i=1;i< condicion.parametros.size();i++){
@@ -181,13 +195,13 @@ public class VinculadorPropio implements Vinculador {
 
 
     private String generarJsonDelEgreso(Egreso egreso) {
-        String egresoJson="{" +"\"fecha\": "+egreso.getFecha()+ ", \"egreso\": "+ egreso.getEgreso() + ", \"valor\": "+egreso.getValor().getImporte()+
+        String egresoJson="{" +"\"fecha\": "+ new Gson().toJson(egreso.getFecha()) + ", \"egreso\": "+ egreso.getEgreso() + ", \"valor\": "+new Gson().toJson(egreso.getValor())+
                 "}";
         return egresoJson;
     }
 
     private String generarJsonDelIngreso(Ingreso ing) {
-        String ingresoJson="{" +"\"fecha\": "+ing.getFecha()+ ", \"ingreso\": "+ ing.getIngreso() + ", \"valor\": "+ing.getValor().getImporte()+
+        String ingresoJson="{" +"\"fecha\": "+ new Gson().toJson(ing.getFecha()) + ", \"ingreso\": "+ ing.getIngreso() + ", \"valor\": "+new Gson().toJson(ing.getValor())+
                 "}";
 
         return ingresoJson;

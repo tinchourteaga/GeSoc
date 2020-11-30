@@ -1255,7 +1255,71 @@
   font-weight:400;
   font-style:normal;
 }
-
+#u3015_div {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:140px;
+  height:40px;
+  background:inherit;
+  background-color:rgba(217, 70, 59, 1);
+  border:none;
+  border-radius:50px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:300;
+  font-style:normal;
+  font-size:14px;
+}
+#u3015 {
+  border-width:0px;
+  position:absolute;
+  left:176px;
+  top:593px;
+  width:140px;
+  height:40px;
+  display:flex;
+  font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:300;
+  font-style:normal;
+  font-size:14px;
+}
+#u3015 .text {
+  position:absolute;
+  align-self:center;
+  padding:2px 2px 2px 2px;
+  box-sizing:border-box;
+  width:100%;
+}
+#u3015_div.mouseOver {
+  border-width:0px;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:140px;
+  height:40px;
+  background:inherit;
+  background-color:rgba(179, 49, 41, 1);
+  border:none;
+  border-radius:50px;
+  -moz-box-shadow:none;
+  -webkit-box-shadow:none;
+  box-shadow:none;
+  font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:300;
+  font-style:normal;
+  font-size:14px;
+}
+#u3015.mouseOver {
+}
+#u3015_text {
+  border-width:0px;
+  word-wrap:break-word;
+  text-transform:none;
+}
 #u301_div {
   border-width:0px;
   position:absolute;

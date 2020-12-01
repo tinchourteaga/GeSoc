@@ -94,7 +94,7 @@ public class ControllerEntidad {
     public static Object cargarEntidad(Request request, Response response) {
 
         //Datos principales
-        String tipoEntidad = request.queryParams("entidad");
+        String tipoEntidad = request.queryParams("tipoEntidad");
         String razonSocial = request.queryParams("razonSocial");
         String descripcion = request.queryParams("descripcion");
         String nombreFicticio = request.queryParams("nombreFicticio");
@@ -116,7 +116,7 @@ public class ControllerEntidad {
 
 
         switch(tipoEntidad){
-            case "Entidad Base":
+            case "EntidadBase":
                 EntidadBase nuevaEntidadBase=new EntidadBase(nombreFicticio,descripcion,null);
                 persistirEntidadBase(nuevaEntidadBase);
             break;
@@ -129,7 +129,7 @@ public class ControllerEntidad {
                 EntidadJuridica nuevaEmpresa = new EntidadJuridica(nombreFicticio, descripcion, tipoEmpresa);
                 persistirEntidadJuridica(nuevaEmpresa);
             break;
-            case "Organizacion Social":
+            case "OrganizacionSocial":
                 OrganizacionSocial nuevaorg=new OrganizacionSocial();
                 nuevaorg.setDireccionPostal(nuevaDir);
                 nuevaorg.setCodigoDeInscripcion(codInscripcion);

@@ -116,21 +116,9 @@
         </div>
 
         <!-- JurídicaBase (Droplist) -->
-        <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
-            <div id="u295_div" class=""></div>
-            <select name="entidad" id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
-                {{#if tipoEntidad includeZero=true}}
-                <option value={{tipoEntidad}} selected>{{tipoEntidad}}</option>
-                {{else}}
-                <option value="Seleccionar una opción">Seleccionar una opción</option>
-                {{/if}}
-                <option value="Empresa">Empresa</option>
-                <option value="OrganizacionSocial">Organizacion Social</option>
-                <option value="EntidadBase">Entidad Base</option>
-            </select>
-        </div>
 
-        <form action="/cargarEntidad" method="post">
+
+        <form action="/cargarEntidad?tipoEntidad=EntidadBase" method="post">
             <div id="formulario_entidad_base" >
 
                 <div class="u318" class="ax_default line">
@@ -180,7 +168,20 @@
             </div>
         </form>
 
-        <form  action="/cargarEntidad" method="post">
+        <form  action='/cargarEntidad' method="post">
+            <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
+                <div id="u295_div" class=""></div>
+                <select name="tipoEntidad" id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
+                    {{#if tipoEntidad includeZero=true}}
+                    <option value={{tipoEntidad}} selected>{{tipoEntidad}}</option>
+                    {{else}}
+                    <option value="Seleccionar una opción">Seleccionar una opción</option>
+                    {{/if}}
+                    <option value="Empresa">Empresa</option>
+                    <option value="OrganizacionSocial">Organizacion Social</option>
+                    <option value="EntidadBase">Entidad Base</option>
+                </select>
+            </div>
             <div id="formulario_entidad_juridica">
 
                 <div class="u318" class="ax_default line">

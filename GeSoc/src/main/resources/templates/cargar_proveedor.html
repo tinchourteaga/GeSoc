@@ -82,13 +82,13 @@
     <!-- EntidadBase (Group) -->
     <div id="u287" class="ax_default ax_default_hidden" data-label="EntidadBase" style="display:none; visibility: hidden" data-left="45" data-top="228" data-width="401" data-height="246">
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)
       <div id="u288" class="ax_default primary_button">
         <div id="u288_div" class=""></div>
         <div id="u288_text" class="text ">
           <p><span>Cargar</span></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Unnamed (Line) -->
       <div id="u291" class="ax_default line">
@@ -125,361 +125,372 @@
       </select>
     </div>
 
-    <div id="formulario_entidad_base">
+    <form action="/cargarEntidad" method="post">
+      <div id="formulario_entidad_base">
 
 
-      <div class="u318" class="ax_default line">
-        <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
-        <div class="u318_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
+        <div class="u318" class="ax_default line">
+          <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
+          <div class="u318_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
         </div>
-      </div>
 
-      <div class="u319" class="ax_default heading_1">
-        <div class="u319_div" class=""></div>
-        <div class="u319_text" class="text ">
-          <p><span>Datos Principales</span></p>
+        <div class="u319" class="ax_default heading_1">
+          <div class="u319_div" class=""></div>
+          <div class="u319_text" class="text ">
+            <p><span>Datos Principales</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u3022" class="ax_default text_field" data-label="EntradaRazonSocial">
-        <div id="u3022_div" class=""></div>
-        <input name="Apellido" id="u3022_input" type="text" {{#if apellido includeZero=true}} value={{apellido}} {{else}} value="" {{/if}} placeholder="Ingrese apellido" class="u302_input" required/>
-      </div>
-
-      <div id="u3033" class="ax_default heading_1">
-        <div id="u3033_div" class=""></div>
-        <div id="u3033_text" class="text ">
-          <p><span>Apellido: </span></p>
+        <div id="u3022" class="ax_default text_field" data-label="EntradaRazonSocial">
+          <div id="u3022_div" class=""></div>
+          <input name="Apellido" id="u3022_input" type="text" {{#if apellido includeZero=true}} value={{apellido}} {{else}} value="" {{/if}} placeholder="Ingrese apellido" class="u302_input" required/>
         </div>
-      </div>
 
-      <div id="u3200" class="ax_default text_field" data-label="EntradaNombreFicticio">
-        <div id="u3200_div" class=""></div>
-        <input name="nombre" id="u3200_input" type="text" {{#if nombre includeZero=true}} value={{nombre}} {{else}} value="" {{/if}} placeholder="Ingrese nombre" class="u320_input" required/>
-      </div>
-
-      <div id="u3211" class="ax_default heading_1">
-        <div id="u3211_div" class=""></div>
-        <div id="u3211_text" class="text ">
-          <p><span>Nombre: </span></p>
+        <div id="u3033" class="ax_default heading_1">
+          <div id="u3033_div" class=""></div>
+          <div id="u3033_text" class="text ">
+            <p><span>Apellido: </span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u2988" class="ax_default heading_1">
-        <div id="u2988_div" class=""></div>
-        <div id="u2988_text" class="text ">
-          <p><span>DNI:</span></p>
+        <div id="u3200" class="ax_default text_field" data-label="EntradaNombreFicticio">
+          <div id="u3200_div" class=""></div>
+          <input name="nombre" id="u3200_input" type="text" {{#if nombre includeZero=true}} value={{nombre}} {{else}} value="" {{/if}} placeholder="Ingrese nombre" class="u320_input" required/>
         </div>
-      </div>
 
-      <div id="u2999" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
-        <div id="u2999_div" class=""></div>
-        <input name="DNI" id="u2999_input" type="text"  {{#if dni includeZero=true}} value={{dni}} {{else}} value="" {{/if}} placeholder="Ingrese DNI" class="u299_input" required/>
-      </div>
-
-      <div id="u3166" class="ax_default line">
-        <img id="u3166_img" class="img " src="images/cargar_entidad/u316.svg"/>
-        <div id="u3166_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
+        <div id="u3211" class="ax_default heading_1">
+          <div id="u3211_div" class=""></div>
+          <div id="u3211_text" class="text ">
+            <p><span>Nombre: </span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u3177" class="ax_default heading_1">
-        <div id="u3177_div" class=""></div>
-        <div id="u3177_text" class="text ">
-          <p><span>Domicilio</span></p>
+        <div id="u2988" class="ax_default heading_1">
+          <div id="u2988_div" class=""></div>
+          <div id="u2988_text" class="text ">
+            <p><span>DNI:</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u3088" class="ax_default heading_1">
-        <div id="u3088_div" class=""></div>
-        <div id="u3088_text" class="text ">
-          <p><span>Calle:</span></p>
+        <div id="u2999" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
+          <div id="u2999_div" class=""></div>
+          <input name="DNI" id="u2999_input" type="text"  {{#if dni includeZero=true}} value={{dni}} {{else}} value="" {{/if}} placeholder="Ingrese DNI" class="u299_input" required/>
         </div>
-      </div>
 
-      <div id="u3099" class="ax_default text_field" data-label="EntradaCalle">
-        <div id="u3099_div" class=""></div>
-        <input name="callePers" id="u3099_input" type="text"  {{#if callePers includeZero=true}} value={{callePers}} {{else}} value="" {{/if}} placeholder="Ingrese calle"  class="u309_input" required/>
-      </div>
-
-      <div id="u3100" class="ax_default heading_1">
-        <div id="u3100_div" class=""></div>
-        <div id="u3100_text" class="text ">
-          <p><span>Número:</span></p>
+        <div id="u3166" class="ax_default line">
+          <img id="u3166_img" class="img " src="images/cargar_entidad/u316.svg"/>
+          <div id="u3166_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u3111" class="ax_default text_field" data-label="EntradaNumero">
-        <div id="u3111_div" class=""></div>
-        <input name="numeroPers" id="u311_input" type="text"  {{#if numeroPers includeZero=true}} value={{numeroPers}} {{else}} value="" {{/if}} placeholder="nro"  class="u311_input" required/>
-      </div>
-
-      <div id="u3122" class="ax_default heading_1">
-        <div id="u3122_div" class=""></div>
-        <div id="u3122_text" class="text ">
-          <p><span>Piso:</span></p>
+        <div id="u3177" class="ax_default heading_1">
+          <div id="u3177_div" class=""></div>
+          <div id="u3177_text" class="text ">
+            <p><span>Domicilio</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u3133" class="ax_default text_field" data-label="EntradaPiso">
-        <div id="u3133_div" class=""></div>
-        <input name="pisoPers" id="u3133_input" type="text"  {{#if pisoPers includeZero=true}} value={{pisoPers}} {{else}} value="" {{/if}} placeholder="piso"  class="u313_input" required/>
-      </div>
-
-      <div id="u3144" class="ax_default heading_1">
-        <div id="u3144_div" class=""></div>
-        <div id="u3144_text" class="text ">
-          <p><span>Departamento:</span></p>
+        <div id="u3088" class="ax_default heading_1">
+          <div id="u3088_div" class=""></div>
+          <div id="u3088_text" class="text ">
+            <p><span>Calle:</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u3155" class="ax_default text_field" data-label="EntradaDepto">
-        <div id="u3155_div" class=""></div>
-        <input name="deptoPers" id="u3155_input" type="text"  {{#if deptoPers includeZero=true}} value={{deptoPers}} {{else}} value="" {{/if}} placeholder="depto"  class="u315_input" required/>
-      </div>
-
-      <div id="u2977" class="ax_default heading_1">
-        <div id="u2977_div" class=""></div>
-        <div id="u2977_text" class="text ">
-          <p><span>País: </span></p>
+        <div id="u3099" class="ax_default text_field" data-label="EntradaCalle">
+          <div id="u3099_div" class=""></div>
+          <input name="callePers" id="u3099_input" type="text"  {{#if callePers includeZero=true}} value={{callePers}} {{else}} value="" {{/if}} placeholder="Ingrese calle"  class="u309_input" required/>
         </div>
-      </div>
 
-      <div id="u3000" class="ax_default droplist">
-        <div id="u3000_div" class=""></div>
-        <select name="pais" id="u3000_input" class="u300_input" onchange="buscar_provincias(this)" required>
-          {{#if paisElegido includeZero=true}}
-          <option class="u300_input_option" value={{paisElegido.pais}} selected>{{paisElegido.name}}</option>
-          {{else}}
-          <option class="u300_input_option" value="">Seleccionar un País</option>
-          {{/if}}
-          {{#each paises}}
-          <option class="u300_input_option" value={{pais}}>{{name}}</option>
-          {{/each}}
-        </select>
-      </div>
-
-      <div id="u3044" class="ax_default heading_1">
-        <div id="u3044_div" class=""></div>
-        <div id="u3044_text" class="text ">
-          <p><span>Provincia:</span></p>
+        <div id="u3100" class="ax_default heading_1">
+          <div id="u3100_div" class=""></div>
+          <div id="u3100_text" class="text ">
+            <p><span>Número:</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u3055" class="ax_default droplist">
-        <div id="u3055_div" class=""></div>
-        <select name="provincia" id="u3055_input" class="u305_input" disabled onchange="buscar_ciudades(this)" required>
-          {{#if provinciaElegida includeZero=true}}
-          <option class="u3055_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}
-          </option>
-          {{else}}
-          <option class="u3055_input_option" value="">Seleccionar una Provincia
-          </option>
-          {{/if}}
-          {{#each provincias}}
-          <option class="u3055_input_option" value={{provincia}}>{{name}}</option>
-          {{/each}}
-        </select>
-      </div>
-
-      <div id="u3066" class="ax_default heading_1">
-        <div id="u3066_div" class=""></div>
-        <div id="u3066_text" class="text ">
-          <p><span>Ciudad:</span></p>
+        <div id="u3111" class="ax_default text_field" data-label="EntradaNumero">
+          <div id="u3111_div" class=""></div>
+          <input name="numeroPers" id="u311_input" type="text"  {{#if numeroPers includeZero=true}} value={{numeroPers}} {{else}} value="" {{/if}} placeholder="nro"  class="u311_input" required/>
         </div>
-      </div>
 
-      <div id="u3077" class="ax_default droplist">
-        <div id="u3077_div" class=""></div>
-        <select name="ciudad" id="u3077_input" class="u307_input" disabled required>
+        <div id="u3122" class="ax_default heading_1">
+          <div id="u3122_div" class=""></div>
+          <div id="u3122_text" class="text ">
+            <p><span>Piso:</span></p>
+          </div>
+        </div>
+
+        <div id="u3133" class="ax_default text_field" data-label="EntradaPiso">
+          <div id="u3133_div" class=""></div>
+          <input name="pisoPers" id="u3133_input" type="text"  {{#if pisoPers includeZero=true}} value={{pisoPers}} {{else}} value="" {{/if}} placeholder="piso"  class="u313_input" required/>
+        </div>
+
+        <div id="u3144" class="ax_default heading_1">
+          <div id="u3144_div" class=""></div>
+          <div id="u3144_text" class="text ">
+            <p><span>Departamento:</span></p>
+          </div>
+        </div>
+
+        <div id="u3155" class="ax_default text_field" data-label="EntradaDepto">
+          <div id="u3155_div" class=""></div>
+          <input name="deptoPers" id="u3155_input" type="text"  {{#if deptoPers includeZero=true}} value={{deptoPers}} {{else}} value="" {{/if}} placeholder="depto"  class="u315_input" required/>
+        </div>
+
+        <div id="u2977" class="ax_default heading_1">
+          <div id="u2977_div" class=""></div>
+          <div id="u2977_text" class="text ">
+            <p><span>País: </span></p>
+          </div>
+        </div>
+
+        <div id="u3000" class="ax_default droplist">
+          <div id="u3000_div" class=""></div>
+          <select name="pais" id="u3000_input" class="u300_input" onchange="buscar_provincias(this)" required>
+            {{#if paisElegido includeZero=true}}
+            <option class="u300_input_option" value={{paisElegido.pais}} selected>{{paisElegido.name}}</option>
+            {{else}}
+            <option class="u300_input_option" value="">Seleccionar un País</option>
+            {{/if}}
+            {{#each paises}}
+            <option class="u300_input_option" value={{pais}}>{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div id="u3044" class="ax_default heading_1">
+          <div id="u3044_div" class=""></div>
+          <div id="u3044_text" class="text ">
+            <p><span>Provincia:</span></p>
+          </div>
+        </div>
+
+        <div id="u3055" class="ax_default droplist">
+          <div id="u3055_div" class=""></div>
+          <select name="provincia" id="u3055_input" class="u305_input" disabled onchange="buscar_ciudades(this)" required>
+            {{#if provinciaElegida includeZero=true}}
+            <option class="u3055_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}
+            </option>
+            {{else}}
+            <option class="u3055_input_option" value="">Seleccionar una Provincia
+            </option>
+            {{/if}}
+            {{#each provincias}}
+            <option class="u3055_input_option" value={{provincia}}>{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div id="u3066" class="ax_default heading_1">
+          <div id="u3066_div" class=""></div>
+          <div id="u3066_text" class="text ">
+            <p><span>Ciudad:</span></p>
+          </div>
+        </div>
+
+        <div id="u3077" class="ax_default droplist">
+          <div id="u3077_div" class=""></div>
+          <select name="ciudad" id="u3077_input" class="u307_input" disabled required>
             <option class="u3077_input_option" value="">Seleccionar una Ciudad</option>
             {{#each ciudades}}
             <option class="u3077_input_option" value={{ciudad}}>{{name}}</option>
             {{/each}}
-        </select>
-      </div>
-
-    </div>
-
-    <div id="formulario_entidad_juridica">
-
-      <div class="u318" class="ax_default line">
-        <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
-        <div class="u318_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
+          </select>
         </div>
-      </div>
 
-      <div class="u319" class="ax_default heading_1">
-        <div class="u319_div" class=""></div>
-        <div class="u319_text" class="text ">
-          <p><span>Datos Principales</span></p>
+        <div id="cargar_items">
+          <input type="submit" class="boton_cargar_items" value="Cargar"/>
         </div>
-      </div>
 
-      <div id="u302" class="ax_default text_field" data-label="EntradaRazonSocial">
-        <div id="u302_div" class=""></div>
-        <input name="razonSocial" id="u302_input" type="text"  {{#if razonSocialDefault includeZero=true}} value={{razonSocialDefault}} {{else}} value="" {{/if}} placeholder="Ingrese razon social"  class="u302_input" required/>
       </div>
+    </form>
 
-      <div id="u303" class="ax_default heading_1">
-        <div id="u303_div" class=""></div>
-        <div id="u303_text" class="text ">
-          <p><span>Razón Social: </span></p>
+    <form action="/cargarEntidad" method="post">
+      <div id="formulario_entidad_juridica">
+
+        <div class="u318" class="ax_default line">
+          <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
+          <div class="u318_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u320" class="ax_default text_field" data-label="EntradaNombreFicticio">
-        <div id="u320_div" class=""></div>
-        <input name="nombreFicticio" id="u320_input" type="text" {{#if nombreFicticioDefault includeZero=true}} value={{nombreFicticioDefault}} {{else}} value="" {{/if}} placeholder="Ingrese nombre" class="u320_input" required/>
-      </div>
-
-      <div id="u321" class="ax_default heading_1">
-        <div id="u321_div" class=""></div>
-        <div id="u321_text" class="text ">
-          <p><span>Nombre Ficticio: </span></p>
+        <div class="u319" class="ax_default heading_1">
+          <div class="u319_div" class=""></div>
+          <div class="u319_text" class="text ">
+            <p><span>Datos Principales</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u298" class="ax_default heading_1">
-        <div id="u298_div" class=""></div>
-        <div id="u298_text" class="text ">
-          <p><span>CUIL/CUIT:</span></p>
+        <div id="u302" class="ax_default text_field" data-label="EntradaRazonSocial">
+          <div id="u302_div" class=""></div>
+          <input name="razonSocial" id="u302_input" type="text"  {{#if razonSocialDefault includeZero=true}} value={{razonSocialDefault}} {{else}} value="" {{/if}} placeholder="Ingrese razon social"  class="u302_input" required/>
         </div>
-      </div>
 
-      <div id="u299" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
-        <div id="u299_div" class=""></div>
-        <input name="cuilOCuit" id="u299_input" type="text"  {{#if cuitDefault includeZero=true}} value={{cuitDefault}} {{else}} value="" {{/if}} placeholder="Ingrese CUIT o CUIL"  class="u299_input" required/>
-      </div>
-
-      <div id="u316" class="ax_default line">
-        <img id="u316_img" class="img " src="images/cargar_entidad/u316.svg"/>
-        <div id="u316_text" class="text " style="display:none; visibility: hidden">
-          <p></p>
+        <div id="u303" class="ax_default heading_1">
+          <div id="u303_div" class=""></div>
+          <div id="u303_text" class="text ">
+            <p><span>Razón Social: </span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u317" class="ax_default heading_1">
-        <div id="u317_div" class=""></div>
-        <div id="u317_text" class="text ">
-          <p><span>Domicilio</span></p>
+        <div id="u320" class="ax_default text_field" data-label="EntradaNombreFicticio">
+          <div id="u320_div" class=""></div>
+          <input name="nombreFicticio" id="u320_input" type="text" {{#if nombreFicticioDefault includeZero=true}} value={{nombreFicticioDefault}} {{else}} value="" {{/if}} placeholder="Ingrese nombre" class="u320_input" required/>
         </div>
-      </div>
 
-      <div id="u308" class="ax_default heading_1">
-        <div id="u308_div" class=""></div>
-        <div id="u308_text" class="text ">
-          <p><span>Calle:</span></p>
+        <div id="u321" class="ax_default heading_1">
+          <div id="u321_div" class=""></div>
+          <div id="u321_text" class="text ">
+            <p><span>Nombre Ficticio: </span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u309" class="ax_default text_field" data-label="EntradaCalle">
-        <div id="u309_div" class=""></div>
-        <input name="calle" id="u309_input" type="text"  {{#if calleDefault includeZero=true}} value={{calleDefault}} {{else}} value="" {{/if}} placeholder="Ingrese calle"  class="u309_input" required/>
-      </div>
-
-      <div id="u310" class="ax_default heading_1">
-        <div id="u310_div" class=""></div>
-        <div id="u310_text" class="text ">
-          <p><span>Número:</span></p>
+        <div id="u298" class="ax_default heading_1">
+          <div id="u298_div" class=""></div>
+          <div id="u298_text" class="text ">
+            <p><span>CUIL/CUIT:</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u311" class="ax_default text_field" data-label="EntradaNumero">
-        <div id="u311_div" class=""></div>
-        <input name="numeroCalle" id="u3111_input" type="text"  {{#if numeroDefault includeZero=true}} value={{numeroDefault}} {{else}} value="" {{/if}} placeholder="nro"  class="u311_input" required/>
-      </div>
-
-      <div id="u312" class="ax_default heading_1">
-        <div id="u312_div" class=""></div>
-        <div id="u312_text" class="text ">
-          <p><span>Piso:</span></p>
+        <div id="u299" class="ax_default text_field" data-label="EntradaCUIL/CUIT">
+          <div id="u299_div" class=""></div>
+          <input name="cuilOCuit" id="u299_input" type="text"  {{#if cuitDefault includeZero=true}} value={{cuitDefault}} {{else}} value="" {{/if}} placeholder="Ingrese CUIT o CUIL"  class="u299_input" required/>
         </div>
-      </div>
 
-      <div id="u313" class="ax_default text_field" data-label="EntradaPiso">
-        <div id="u313_div" class=""></div>
-        <input name="piso" id="u313_input" type="text" {{#if pisoDefault}} value={{pisoDefault}} {{else}} value="" {{/if}} placeholder="piso" class="u313_input" required/>
-      </div>
-
-      <div id="u314" class="ax_default heading_1">
-        <div id="u314_div" class=""></div>
-        <div id="u314_text" class="text ">
-          <p><span>Departamento:</span></p>
+        <div id="u316" class="ax_default line">
+          <img id="u316_img" class="img " src="images/cargar_entidad/u316.svg"/>
+          <div id="u316_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u315" class="ax_default text_field" data-label="EntradaDepto">
-        <div id="u315_div" class=""></div>
-        <input name="dpto" id="u315_input" type="text"  {{#if deptoDefault includeZero=true}} value={{deptoDefault}} {{else}} value="" {{/if}} placeholder="Ingrese depto"  class="u315_input" required/>
-      </div>
-
-      <div id="u297" class="ax_default heading_1">
-        <div id="u297_div" class=""></div>
-        <div id="u297_text" class="text ">
-          <p><span>País: </span></p>
+        <div id="u317" class="ax_default heading_1">
+          <div id="u317_div" class=""></div>
+          <div id="u317_text" class="text ">
+            <p><span>Domicilio</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u300" class="ax_default droplist">
-        <div id="u300_div" class=""></div>
-        <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)" required>
-          {{#if paisElegido includeZero=true}}
-          <option class="u300_input_option" value={{paisElegido.pais}}>{{paisElegido.name}}</option>
-          {{else}}
-          <option class="u300_input_option" value="">Seleccionar un País</option>
-          {{/if}}
-          {{#each paises}}
-          <option class="u300_input_option" value={{pais}}>{{name}}</option>
-          {{/each}}
-        </select>
-      </div>
-
-      <div id="u304" class="ax_default heading_1">
-        <div id="u304_div" class=""></div>
-        <div id="u304_text" class="text ">
-          <p><span>Provincia:</span></p>
+        <div id="u308" class="ax_default heading_1">
+          <div id="u308_div" class=""></div>
+          <div id="u308_text" class="text ">
+            <p><span>Calle:</span></p>
+          </div>
         </div>
-      </div>
 
-      <div id="u305" class="ax_default droplist">
-        <div id="u305_div" class=""></div>
-        <select name="provincia" id="u305_input" class="u305_input" disabled onchange="buscar_ciudades(this)" required>
-          {{#if provinciaElegida includeZero=true}}
-          <option class="u305_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}
-          </option>
-          {{else}}
-          <option class="u305_input_option" value="">Seleccionar una Provincia
-          </option>
-          {{/if}}
-          {{#each provincias}}
-          <option class="u305_input_option" value={{provincia}}>{{name}}</option>
-          {{/each}}
-        </select>
-      </div>
-
-      <div id="u306" class="ax_default heading_1">
-        <div id="u306_div" class=""></div>
-        <div id="u306_text" class="text ">
-          <p><span>Ciudad:</span></p>
+        <div id="u309" class="ax_default text_field" data-label="EntradaCalle">
+          <div id="u309_div" class=""></div>
+          <input name="calle" id="u309_input" type="text"  {{#if calleDefault includeZero=true}} value={{calleDefault}} {{else}} value="" {{/if}} placeholder="Ingrese calle"  class="u309_input" required/>
         </div>
-      </div>
 
-      <div id="u307" class="ax_default droplist">
-        <div id="u307_div" class=""></div>
-        <select name="ciudad" id="u307_input" class="u307_input" disabled required>
+        <div id="u310" class="ax_default heading_1">
+          <div id="u310_div" class=""></div>
+          <div id="u310_text" class="text ">
+            <p><span>Número:</span></p>
+          </div>
+        </div>
+
+        <div id="u311" class="ax_default text_field" data-label="EntradaNumero">
+          <div id="u311_div" class=""></div>
+          <input name="numeroCalle" id="u3111_input" type="text"  {{#if numeroDefault includeZero=true}} value={{numeroDefault}} {{else}} value="" {{/if}} placeholder="nro"  class="u311_input" required/>
+        </div>
+
+        <div id="u312" class="ax_default heading_1">
+          <div id="u312_div" class=""></div>
+          <div id="u312_text" class="text ">
+            <p><span>Piso:</span></p>
+          </div>
+        </div>
+
+        <div id="u313" class="ax_default text_field" data-label="EntradaPiso">
+          <div id="u313_div" class=""></div>
+          <input name="piso" id="u313_input" type="text" {{#if pisoDefault}} value={{pisoDefault}} {{else}} value="" {{/if}} placeholder="piso" class="u313_input" required/>
+        </div>
+
+        <div id="u314" class="ax_default heading_1">
+          <div id="u314_div" class=""></div>
+          <div id="u314_text" class="text ">
+            <p><span>Departamento:</span></p>
+          </div>
+        </div>
+
+        <div id="u315" class="ax_default text_field" data-label="EntradaDepto">
+          <div id="u315_div" class=""></div>
+          <input name="dpto" id="u315_input" type="text"  {{#if deptoDefault includeZero=true}} value={{deptoDefault}} {{else}} value="" {{/if}} placeholder="Ingrese depto"  class="u315_input" required/>
+        </div>
+
+        <div id="u297" class="ax_default heading_1">
+          <div id="u297_div" class=""></div>
+          <div id="u297_text" class="text ">
+            <p><span>País: </span></p>
+          </div>
+        </div>
+
+        <div id="u300" class="ax_default droplist">
+          <div id="u300_div" class=""></div>
+          <select name="pais" id="u300_input" class="u300_input" onchange="buscar_provincias(this)" required>
+            {{#if paisElegido includeZero=true}}
+            <option class="u300_input_option" value={{paisElegido.pais}}>{{paisElegido.name}}</option>
+            {{else}}
+            <option class="u300_input_option" value="">Seleccionar un País</option>
+            {{/if}}
+            {{#each paises}}
+            <option class="u300_input_option" value={{pais}}>{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div id="u304" class="ax_default heading_1">
+          <div id="u304_div" class=""></div>
+          <div id="u304_text" class="text ">
+            <p><span>Provincia:</span></p>
+          </div>
+        </div>
+
+        <div id="u305" class="ax_default droplist">
+          <div id="u305_div" class=""></div>
+          <select name="provincia" id="u305_input" class="u305_input" disabled onchange="buscar_ciudades(this)" required>
+            {{#if provinciaElegida includeZero=true}}
+            <option class="u305_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}
+            </option>
+            {{else}}
+            <option class="u305_input_option" value="">Seleccionar una Provincia
+            </option>
+            {{/if}}
+            {{#each provincias}}
+            <option class="u305_input_option" value={{provincia}}>{{name}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div id="u306" class="ax_default heading_1">
+          <div id="u306_div" class=""></div>
+          <div id="u306_text" class="text ">
+            <p><span>Ciudad:</span></p>
+          </div>
+        </div>
+
+        <div id="u307" class="ax_default droplist">
+          <div id="u307_div" class=""></div>
+          <select name="ciudad" id="u307_input" class="u307_input" disabled required>
             <option class="u307_input_option" value="">Seleccionar una Ciudad</option>
             {{#each ciudades}}
             <option class="u307_input_option" value={{ciudad}}>{{name}}</option>
             {{/each}}
-        </select>
+          </select>
+        </div>
       </div>
 
+      <div id="cargar_itemss">
+        <input type="submit" class="boton_cargar_items" value="Cargar"/>
+      </div>
 
-    </div>
+    </form>
 
     <!-- EntidadJurídica (Group) -->
     <div id="u296" class="ax_default ax_default_hidden" data-label="EntidadJurídica" style="display:none; visibility: hidden" data-left="45" data-top="228" data-width="401" data-height="405">
@@ -1578,10 +1589,6 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <div id="cargar_items">
-      <input type="button" class="boton_cargar_items" value="Cargar"/>
     </div>
 
     <div id="includedContent"></div>

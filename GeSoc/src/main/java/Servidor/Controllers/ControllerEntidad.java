@@ -111,35 +111,37 @@ public class ControllerEntidad {
         String provincia = request.queryParams("provincia");
         String ciudad = request.queryParams("ciudad");
 
-        DireccionPostal nuevaDir=ControllerDirecciones.generarDireccion(calle,numeroCalle,piso,dpto,pais,provincia,ciudad);
+        DireccionPostal nuevaDir;
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
+        if(tipoEntidad==null){
+            EntidadBase nuevaEntidadBase = new EntidadBase(request.queryParams("nombreFicticio1"), descripcion, (EntidadJuridica)miUsuario.getEntidades().get(0));
+            persistirEntidadBase(nuevaEntidadBase);
+        }else {
 
-
-        switch(tipoEntidad){
-            case "EntidadBase":
-                EntidadBase nuevaEntidadBase=new EntidadBase(nombreFicticio,descripcion,null);
-                persistirEntidadBase(nuevaEntidadBase);
-            break;
-            case "Empresa":
-                Empresa tipoEmpresa=new Empresa();
-                tipoEmpresa.setDireccionPostal(nuevaDir);
-                tipoEmpresa.setCodigoDeInscripcion(codInscripcion);
-                tipoEmpresa.setCuit(cuilOCuit);
-                tipoEmpresa.setRazonSocial(razonSocial);
-                EntidadJuridica nuevaEmpresa = new EntidadJuridica(nombreFicticio, descripcion, tipoEmpresa);
-                persistirEntidadJuridica(nuevaEmpresa);
-            break;
-            case "OrganizacionSocial":
-                OrganizacionSocial nuevaorg=new OrganizacionSocial();
-                nuevaorg.setDireccionPostal(nuevaDir);
-                nuevaorg.setCodigoDeInscripcion(codInscripcion);
-                nuevaorg.setCuit(cuilOCuit);
-                nuevaorg.setRazonSocial(razonSocial);
-                EntidadJuridica nuevaOrganizacionSocial = new EntidadJuridica(nombreFicticio, descripcion, nuevaorg);
-                persistirEntidadJuridica(nuevaOrganizacionSocial);
-            break;
+            switch (tipoEntidad) {
+                case "Empresa":
+                    Empresa tipoEmpresa = new Empresa();
+                    nuevaDir = ControllerDirecciones.generarDireccion(calle, numeroCalle, piso, dpto, pais, provincia, ciudad);
+                    tipoEmpresa.setDireccionPostal(nuevaDir);
+                    tipoEmpresa.setCodigoDeInscripcion(codInscripcion);
+                    tipoEmpresa.setCuit(cuilOCuit);
+                    tipoEmpresa.setRazonSocial(razonSocial);
+                    EntidadJuridica nuevaEmpresa = new EntidadJuridica(nombreFicticio, descripcion, tipoEmpresa);
+                    persistirEntidadJuridica(nuevaEmpresa);
+                    break;
+                case "OrganizacionSocial":
+                    OrganizacionSocial nuevaorg = new OrganizacionSocial();
+                    nuevaDir = ControllerDirecciones.generarDireccion(calle, numeroCalle, piso, dpto, pais, provincia, ciudad);
+                    nuevaorg.setDireccionPostal(nuevaDir);
+                    nuevaorg.setCodigoDeInscripcion(codInscripcion);
+                    nuevaorg.setCuit(cuilOCuit);
+                    nuevaorg.setRazonSocial(razonSocial);
+                    EntidadJuridica nuevaOrganizacionSocial = new EntidadJuridica(nombreFicticio, descripcion, nuevaorg);
+                    persistirEntidadJuridica(nuevaOrganizacionSocial);
+                    break;
+            }
         }
-
         response.redirect("cargar_entidad");
 
 

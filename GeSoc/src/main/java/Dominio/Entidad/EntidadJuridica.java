@@ -6,7 +6,6 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue(value = "Jurídica")
-@Embeddable
 public class EntidadJuridica extends Entidad{
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "entidad_juridica", referencedColumnName = "entidad_juridica")

@@ -53,7 +53,7 @@ public class VinculadorPropio implements Vinculador {
         System.out.println(ids_asociados);
 
         String tipoVinculacion=objetito.getAsJsonObject().get("criterio").getAsString();
-        if(tipoVinculacion.equals("OrdenValorPrimerEgreso")){
+        if(tipoVinculacion.equals("OrdenValorPrimerEgreso") || tipoVinculacion.equals("OrdenFechaPrimerEgreso")){
             System.out.println(tipoVinculacion);
             reflejarVinculacionEgresoIngreso(id_movimiento, ids_asociados,egresos,ingresos);
         }else {

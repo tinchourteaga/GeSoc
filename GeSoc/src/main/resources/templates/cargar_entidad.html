@@ -159,6 +159,24 @@
                     <textarea id="u293_input" class="u293_input" required></textarea>
                 </div>
 
+                <div id="u2944" class="ax_default heading_1">
+                    <div id="u2944_div" class=""></div>
+                    <div id="u2944_text" class="text ">
+                        <p><span>Entidad:</span></p>
+                    </div>
+                </div>
+
+                <div id="u2933" class="ax_default text_area">
+                    <div id="u2933_div" class=""></div>
+                    <select name="entidad" id="u2933_input" class="u781_input" required>
+                        <option class="u2933_input_option" value="">Seleccione una Entidad</option>
+                        {{#each entidades}}
+                        <option class="u2933_input_option" value={{entidad}}>{{nombre}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+
                 <button id="u301" class="ax_default primary_button">
                     <div id="u301_div" class=""></div>
                     <div id="u301_text" class="text ">

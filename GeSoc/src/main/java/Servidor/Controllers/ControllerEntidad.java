@@ -87,6 +87,7 @@ public class ControllerEntidad {
         datos.put("tipoEntidad",tipoEntidad);
         datos.put("entidades_base", entidadesBase);
         datos.put("entidades_juridicas", entidadesJuridicas);
+        datos.put("entidadesJuridicas",entidadesJuridicas);
 
         return vista;
     }
@@ -115,8 +116,11 @@ public class ControllerEntidad {
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
         if(tipoEntidad==null){
-            EntidadBase nuevaEntidadBase = new EntidadBase(request.queryParams("nombreFicticio1"), descripcion, (EntidadJuridica)miUsuario.getEntidades().get(0));
+            String entidadJuridicaAsociada= request.queryParams("entidadJuridicaAsociada");
+            Optional<Entidad> entidadJuridica=miUsuario.getEntidades().stream().filter(entidad->entidad.getEntidad()==Integer.valueOf(entidadJuridicaAsociada).intValue()).findFirst();
+            EntidadBase nuevaEntidadBase = new EntidadBase(request.queryParams("nombreFicticio1"), descripcion, (EntidadJuridica)entidadJuridica.get());
             persistirEntidadBase(nuevaEntidadBase);
+
         }else {
 
             switch (tipoEntidad) {

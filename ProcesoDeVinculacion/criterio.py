@@ -73,7 +73,7 @@ class OrdenFechaPrimerEgreso(Criterio):
 
 class OrdenValorPrimerIngreso(Criterio):
 
-    valorDelEgreso = ""
+    valorDelEgreso = 0
     vinculacion = ""
     ingresosAux = []
 
@@ -81,10 +81,10 @@ class OrdenValorPrimerIngreso(Criterio):
         self.valorDelEgreso = egreso.getValorImporte()
         self.vinculacion = Vinculacion(egreso,self)
         ingresos.sort(key=lambda x: x.getValorImporte())
+
         for unIngreso in ingresos:
-            if(self.ingresosAux.count(unIngreso) != 0):
+            if(self.ingresosAux.count(unIngreso) == 0):
                 self.ordenPorValorPrimerIngreso(unIngreso)
-        #list(egresosYaFiltrados - self.vinculacion.egresos)
 
         return self.vinculacion
 

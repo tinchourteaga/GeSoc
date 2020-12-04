@@ -54,7 +54,6 @@ public class VinculadorPropio implements Vinculador {
 
         String tipoVinculacion=objetito.getAsJsonObject().get("criterio").getAsString();
         if(tipoVinculacion.equals("OrdenValorPrimerEgreso") || tipoVinculacion.equals("OrdenFechaPrimerEgreso")){
-            System.out.println(tipoVinculacion);
             reflejarVinculacionEgresoIngreso(id_movimiento, ids_asociados,egresos,ingresos);
         }else {
             reflejarVinculacionIngresoEgreso(id_movimiento, ids_asociados,egresos,ingresos);
@@ -75,13 +74,14 @@ public class VinculadorPropio implements Vinculador {
 
     private void reflejarVinculacionIngresoEgreso(Integer id_movimiento, List<Integer> ids_asociados, List<Egreso> egresos, List<Ingreso> ingresos) {
 
-        List<Ingreso> ingresosVinculados=ingresos.stream().filter(ingreso->ids_asociados.contains(ingreso.getIngreso())).collect(Collectors.toList());
+        List<Ingreso> ingresosVinculados = ingresos.stream().filter(egreso->egreso.getIngreso()==id_movimiento).collect(Collectors.toList());
 
-        List<Egreso> egresosAux = egresos.stream().filter(egreso->egreso.getEgreso()==id_movimiento).collect(Collectors.toList());
+        List<Egreso> egresosAux = egresos.stream().filter(egreso->ids_asociados.contains(egreso.getEgreso())).collect(Collectors.toList());
 
+        //Creo que puede llegar a pinchar o no asociar si tenemos mas de un ingreso
         if(!egresosAux.isEmpty()){
-            Egreso egresoVinculado = egresosAux.get(0);
-        ingresosVinculados.forEach(ingresoAVincular-> {
+            Ingreso ingresoAVincular = ingresosVinculados.get(0);
+            egresosAux.forEach(egresoVinculado-> {
             try {
                 ingresoAVincular.agregarEgreso(egresoVinculado);
                 ingresoAVincular.disminuirValor(egresoVinculado.getValor().getImporte());
@@ -99,7 +99,7 @@ public class VinculadorPropio implements Vinculador {
 
     private void reflejarVinculacionEgresoIngreso(Integer id_movimiento, List<Integer> ids_asociados, List<Egreso> egresos, List<Ingreso> ingresos) {
 
-        List<Egreso> egresosVinculados=egresos.stream().filter(egreso->ids_asociados.contains(egreso.getEgreso())).collect(Collectors.toList());
+        List<Egreso> egresosVinculados = egresos.stream().filter(egreso->ids_asociados.contains(egreso.getEgreso())).collect(Collectors.toList());
 
         List<Ingreso> ingresosAux = ingresos.stream().filter(egreso->egreso.getIngreso()==id_movimiento).collect(Collectors.toList());
 

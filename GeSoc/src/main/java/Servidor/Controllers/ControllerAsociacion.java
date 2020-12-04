@@ -137,7 +137,8 @@ public class ControllerAsociacion {
     private static void realizarAsociacionAutomatica(Request request, Response response, Usuario miUsuario) {
 
         List<Ingreso> ingresos = miUsuario.getEntidades().stream().map(x -> x.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
-        List<Egreso> egresos = miUsuario.getEgresosAREvisar();
+        //Esto deberia traerme los egresos que no estan vinculados
+        List<Egreso> egresos = miUsuario.getEgresosAREvisar().stream().filter(e -> e.getIngreso() == null).collect(Collectors.toList());
         List<String> criterios =new ArrayList<>(); //Son los checkboxes
         List<Condicion> condiciones = new ArrayList<>();
         String fecha = request.queryParams("fecha");

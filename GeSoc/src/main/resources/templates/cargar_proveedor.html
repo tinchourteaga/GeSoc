@@ -61,7 +61,7 @@
 </head>
 <body>
 <div id="base" class="">
-  <form action="/cargarEntidad" method="post">
+  <form action="/cargarProveedor" method="post">
 
     <!-- Unnamed (Rectangle) -->
     <div id="u285" class="ax_default heading_1">
@@ -125,7 +125,7 @@
       </select>
     </div>
 
-    <form action="/cargarEntidad" method="post">
+    <form action="/cargarProveedor" method="post">
       <div id="formulario_entidad_base">
 
 
@@ -250,7 +250,7 @@
 
         <div id="u3000" class="ax_default droplist">
           <div id="u3000_div" class=""></div>
-          <select name="pais" id="u3000_input" class="u300_input" onchange="buscar_provincias(this)" required>
+          <select name="paisPers" id="u3000_input" class="u300_input" onchange="buscar_provincias(this)" required>
             {{#if paisElegido includeZero=true}}
             <option class="u300_input_option" value={{paisElegido.pais}} selected>{{paisElegido.name}}</option>
             {{else}}
@@ -271,7 +271,7 @@
 
         <div id="u3055" class="ax_default droplist">
           <div id="u3055_div" class=""></div>
-          <select name="provincia" id="u3055_input" class="u305_input" disabled onchange="buscar_ciudades(this)" required>
+          <select name="provinciaPers" id="u3055_input" class="u305_input" disabled onchange="buscar_ciudades(this)" required>
             {{#if provinciaElegida includeZero=true}}
             <option class="u3055_input_option" value={{provinciaElegida.provincia}}>{{provinciaElegida.name}}
             </option>
@@ -294,7 +294,7 @@
 
         <div id="u3077" class="ax_default droplist">
           <div id="u3077_div" class=""></div>
-          <select name="ciudad" id="u3077_input" class="u307_input" disabled required>
+          <select name="ciudadPers" id="u3077_input" class="u307_input" disabled required>
             <option class="u3077_input_option" value="">Seleccionar una Ciudad</option>
             {{#each ciudades}}
             <option class="u3077_input_option" value={{ciudad}}>{{name}}</option>
@@ -309,7 +309,7 @@
       </div>
     </form>
 
-    <form action="/cargarEntidad" method="post">
+    <form action="/cargarProveedor" method="post">
       <div id="formulario_entidad_juridica">
 
         <div class="u318" class="ax_default line">

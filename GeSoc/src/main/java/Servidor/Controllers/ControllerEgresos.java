@@ -411,19 +411,19 @@ public class ControllerEgresos {
             Repositorio repoEgreso= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
             List<Egreso> egresosPosibles= repoEgreso.getTodosLosElementos();
             egresosPosibles=egresosPosibles.stream().filter(e->e.getEgreso()==Integer.valueOf(egreso).intValue()).collect(Collectors.toList());
-            if(!egresosPosibles.isEmpty()){
+            if(egresosPosibles.isEmpty()){
                 response.redirect("/validar_egresos");
                 return null;
             }else{
                 Egreso egresoObj=egresosPosibles.get(0);
                 ValidadorDeOperacion.validarPorEstrategia(egresoObj);
-                response.redirect("/pantalla_principal_usuario");
+                response.redirect("/validar_egresos");
                 return null;
             }
         }
 
 
-        response.redirect("/pantalla_principal_usuario");
+        response.redirect("/validar_egresos");
         return null;
     }
 

@@ -61,7 +61,6 @@
 </head>
 <body>
 <div id="base" class="">
-  <form action="/cargarProveedor" method="post">
 
     <!-- Unnamed (Rectangle) -->
     <div id="u285" class="ax_default heading_1">
@@ -125,9 +124,8 @@
       </select>
     </div>
 
-    <form action="/cargarProveedor" method="post">
-      <div id="formulario_entidad_base">
-
+    <form id="id_form_entidad_base" action="/cargarProveedorF" method="post">
+      <div id="formulario_entidad_basee">
 
         <div class="u318" class="ax_default line">
           <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
@@ -302,6 +300,13 @@
           </select>
         </div>
 
+        <!--<button id="u3015" class="ax_default primary_button">
+          <div id="u3015_div" class=""></div>
+          <div id="u3015_text" class="text ">
+            <p><span>Cargar</span></p>
+          </div>
+        </button>-->
+
         <div id="cargar_items">
           <input type="submit" class="boton_cargar_items" value="Cargar"/>
         </div>
@@ -310,7 +315,7 @@
     </form>
 
     <form action="/cargarProveedor" method="post">
-      <div id="formulario_entidad_juridica">
+      <div id="formulario_entidad_juridicaa">
 
         <div class="u318" class="ax_default line">
           <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
@@ -1592,22 +1597,29 @@
     </div>
 
     <div id="includedContent"></div>
-  </form>
 </div>
 
 <script src="resources/scripts/axure/ios.js"></script>
 <script>
       function mostrarFormularioCorrespondiente(v) {
         if(v.value == 'Persona'){
-            document.getElementById("formulario_entidad_base").style.display = "block";
-            document.getElementById("formulario_entidad_juridica").style.display = "none";
+            document.getElementById("formulario_entidad_basee").style.display = "block";
+            document.getElementById("cargar_items").style.display = "block";
+
+            document.getElementById("formulario_entidad_juridicaa").style.display = "none";
+            document.getElementById("cargar_itemss").style.display = "none";
 
         }else if(v.value == 'Empresa'){
-            document.getElementById("formulario_entidad_juridica").style.display = "block";
-            document.getElementById("formulario_entidad_base").style.display = "none";
+            document.getElementById("formulario_entidad_juridicaa").style.display = "block";
+            document.getElementById("cargar_itemss").style.display = "block";
+
+            document.getElementById("formulario_entidad_basee").style.display = "none";
+            document.getElementById("cargar_items").style.display = "none";
         }else{
-            document.getElementById("formulario_entidad_juridica").style.display = "none";
-            document.getElementById("formulario_entidad_base").style.display = "none";
+            document.getElementById("formulario_entidad_juridicaa").style.display = "none";
+            document.getElementById("formulario_entidad_basee").style.display = "none";
+            document.getElementById("cargar_itemss").style.display = "none";
+            document.getElementById("cargar_items").style.display = "none";
         }
       }
 
@@ -1691,6 +1703,11 @@
       $(document).ready(
               (habilitar_ciudades(u3055_input))
       );
+
+      function enviarForm(){
+        var form=document.getElementById("id_form_entidad_base");
+        form.submit();
+      }
 
     </script>
 </body>

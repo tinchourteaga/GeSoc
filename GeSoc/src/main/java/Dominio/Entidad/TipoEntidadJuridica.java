@@ -40,6 +40,10 @@ public abstract class TipoEntidadJuridica {
 
     public TipoEntidadJuridica() { }
 
+    public int getEntidad_juridica() {
+        return entidad_juridica;
+    }
+
     //GETTERS Y SETTERS
     public String getRazonSocial() {
         return razonSocial;

@@ -119,12 +119,12 @@ public class ControllerProveedor {
         String calle, numero, piso, departamento, pais, provincia, ciudad;
         DireccionPostal nuevaDir;
 
-        String seleccionarPersonaEmpresa = request.queryParams("seleccionarPersonaEmpresa");
+        String seleccionarPersonaEmpresa = request.queryParams("select_entidades");
 
         if(seleccionarPersonaEmpresa!=null) {
             String apellido = request.queryParams("apellido");
             String nombre = request.queryParams("nombre");
-            String dni = request.queryParams("dni");
+            String dni = request.queryParams("DNI");
             calle = request.queryParams("callePers");
             numero = request.queryParams("numeroPers");
             piso = request.queryParams("pisoPers");
@@ -145,7 +145,7 @@ public class ControllerProveedor {
                 calle = request.queryParams("calle");
                 numero = request.queryParams("numero");
                 piso = request.queryParams("piso");
-                departamento = request.queryParams("depto");
+                departamento = request.queryParams("dpto");
                 pais = request.queryParams("pais");
                 provincia = request.queryParams("provincia");
                 ciudad = request.queryParams("ciudad");

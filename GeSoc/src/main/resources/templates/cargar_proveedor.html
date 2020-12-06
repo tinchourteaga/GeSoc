@@ -107,26 +107,28 @@
     </div>
 
     <!-- JurídicaBase (Droplist) -->
-    <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
-      <div id="u295_div" class=""></div>
-      <select id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
-        <option value="Seleccionar una opción">Seleccionar una opción</option>
-        {{#if esPersona includeZero=true}}
-        <option value="Persona" selected>Persona</option>
-        {{else}}
-        <option value="Persona" >Persona</option>
-        {{/if}}
-        {{#if esEmpresa includeZero=true}}
-        <option value="Empresa" selected>Empresa</option>
-        {{else}}
-        <option value="Empresa">Empresa</option>
-        {{/if}}
-      </select>
-    </div>
 
-    <form id="id_form_entidad_base" action="/cargarProveedorF" method="post">
+
+    <form id="id_form_entidad_base" action="/cargarProveedor" method="post">
+
+      <div id="u295" class="ax_default droplist" data-label="JurídicaBase">
+        <div id="u295_div" class=""></div>
+        <select name="select_entidades" id="select_entidades" class="u295_input" onchange="mostrarFormularioCorrespondiente(this)">
+          <option value="Seleccionar una opción">Seleccionar una opción</option>
+          {{#if esPersona includeZero=true}}
+          <option value="Persona" selected>Persona</option>
+          {{else}}
+          <option value="Persona" >Persona</option>
+          {{/if}}
+          {{#if esEmpresa includeZero=true}}
+          <option value="Empresa" selected>Empresa</option>
+          {{else}}
+          <option value="Empresa">Empresa</option>
+          {{/if}}
+        </select>
+      </div>
+
       <div id="formulario_entidad_basee">
-
         <div class="u318" class="ax_default line">
           <img class="u318_img" class="img " src="images/cargar_entidad/u291.svg"/>
           <div class="u318_text" class="text " style="display:none; visibility: hidden">

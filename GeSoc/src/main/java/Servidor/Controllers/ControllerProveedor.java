@@ -130,7 +130,7 @@ public class ControllerProveedor {
         String seleccionarPersonaEmpresa = request.queryParams("select_entidades");
 
         if(seleccionarPersonaEmpresa!=null) {
-            String apellido = request.queryParams("apellido");
+            String apellido = request.queryParams("Apellido");
             String nombre = request.queryParams("nombre");
             String dni = request.queryParams("DNI");
             calle = request.queryParams("callePers");

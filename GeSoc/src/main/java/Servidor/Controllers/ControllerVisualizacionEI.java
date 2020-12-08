@@ -25,9 +25,8 @@ public class ControllerVisualizacionEI {
         List<Egreso> egreso = miUsuario.getEgresosAREvisar();
         List<Entidad> entidades = egreso.stream().map(eg->eg.getEntidad()).collect(Collectors.toList());
         List<Ingreso> ingreso = entidades.stream().map(ent->ent.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
-        List<CategoriaCriterio> categorias = egreso.stream().map(eg->eg.getCategorias()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
-
-        List<Criterio> criterios = egreso.stream().map(eg->eg.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Criterio> criterios =  miUsuario.getEntidades().stream().map(ent->ent.getCriterios()).flatMap(List::stream).collect(Collectors.toList());
+        List<CategoriaCriterio> categorias =criterios.stream().map(crit->crit.getCategoriaCriterios()).flatMap(List::stream).collect(Collectors.toList());
 
         //remuevo repetidos
         Set<Entidad> setEntidades = new HashSet<Entidad>(entidades);

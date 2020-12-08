@@ -41,24 +41,21 @@ public class ControllerCriterio {
 
         List categoriasAsociadas = new ArrayList();
 
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         Criterio criterio = new Criterio(categoriasAsociadas, nombreCriterio, descripcion);
-
-        Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
-        List<Entidad> entidades = repoEntidades.getTodosLosElementos();
-
-        if (!entidades.isEmpty()) {
-            Entidad entidadAgregar = entidades.get(0);
-            criterio.setEntidad(entidadAgregar);
+        List<Entidad> entidades = miUsuario.getEntidades();
+        if (entidad!=null && !entidad.isEmpty() && entidad.matches("[0-9]+")) {
+            entidades.stream().filter(entidad1 -> entidad1.getEntidad() == Integer.valueOf(entidad)).findFirst().ifPresent(entidad1 -> criterio.setEntidad(entidad1));
         }
 
         Repositorio repoCriterios= new Repositorio(new DAOBBDD<Criterio>(Criterio.class));
         List<Criterio> criteriosPadres = repoCriterios.getTodosLosElementos();
-        if(idCriterioPadre!=null && !idCriterioPadre.isEmpty())
+        if(idCriterioPadre!=null && !idCriterioPadre.isEmpty()&& idCriterioPadre.matches("[0-9]+"))
         criteriosPadres.stream().filter(crit->crit.getCriterio()==Integer.valueOf(idCriterioPadre).intValue()).findFirst().ifPresent( nuevoPadre->
                 {
                  nuevoPadre.agregarHijos(criterio);
                  criterio.setCriterio_padre(nuevoPadre);
-                 persistirCriterio(nuevoPadre);
+                 persistirCriterio(nuevoPadre);//esto creo que no va
                 }
         );
 
@@ -73,7 +70,7 @@ public class ControllerCriterio {
         DAO DAOCriterio = new DAOBBDD<Criterio>(Criterio.class); //dao generico de BBDD
         Repositorio repoCriterio = new Repositorio<Criterio>(DAOCriterio); //repositorio que tambien usa generics
 
-        if(!repoCriterio.existe(criterio)) {
+        if(criterio.getCriterio()==0) {
             repoCriterio.agregar(criterio);
         }else{
             repoCriterio.modificar(null,criterio);

@@ -526,12 +526,12 @@
           </tr>
           </thead>
           <tbody>
-          {{#each egreso}}
+          {{#each proveedorPersona}}
           <tr>
-            <td>{{entidad.nombre}}</td>
-            <td>{{fecha}}</td>
-            <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
-            <td>{{fecha}}:{{valor.importe}}</td>
+            <td>{{nombre}}</td>
+            <td>{{apellido}}</td>
+            <td>{{calle}}-{{altura}}</td>
+            <td>{{documento}}</td>
           </tr>
           {{/each}}
           </tbody>
@@ -674,11 +674,11 @@
           </tr>
           </thead>
           <tbody>
-          {{#each egreso}}
+          {{#each proveedorEmpresa}}
           <tr>
-            <td>{{entidad.nombre}}</td>
-            <td>{{fecha}}</td>
-            <td>{{ingreso.fecha}}:{{ingreso.valor.importe}}</td>
+            <td>{{nombre}}</td>
+            <td>{{calle}}-{{altura}}</td>
+            <td>{{documento}}</td>
           </tr>
           {{/each}}
           </tbody>

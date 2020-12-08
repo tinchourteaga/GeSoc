@@ -6,6 +6,7 @@ import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.Repos.Repositorio;
+import org.apache.commons.lang3.math.NumberUtils;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -44,13 +45,13 @@ public class ControllerCriterio {
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         Criterio criterio = new Criterio(categoriasAsociadas, nombreCriterio, descripcion);
         List<Entidad> entidades = miUsuario.getEntidades();
-        if (entidad!=null && !entidad.isEmpty() && entidad.matches("[0-9]+")) {
+        if (entidad!=null &&  NumberUtils.isNumber(entidad)) {
             entidades.stream().filter(entidad1 -> entidad1.getEntidad() == Integer.valueOf(entidad)).findFirst().ifPresent(entidad1 -> criterio.setEntidad(entidad1));
         }
 
         Repositorio repoCriterios= new Repositorio(new DAOBBDD<Criterio>(Criterio.class));
         List<Criterio> criteriosPadres = repoCriterios.getTodosLosElementos();
-        if(idCriterioPadre!=null && !idCriterioPadre.isEmpty()&& idCriterioPadre.matches("[0-9]+"))
+        if(idCriterioPadre!=null && NumberUtils.isNumber(entidad))
         criteriosPadres.stream().filter(crit->crit.getCriterio()==Integer.valueOf(idCriterioPadre).intValue()).findFirst().ifPresent( nuevoPadre->
                 {
                  nuevoPadre.agregarHijos(criterio);

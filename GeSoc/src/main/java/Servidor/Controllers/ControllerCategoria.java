@@ -27,7 +27,7 @@ public class ControllerCategoria {
         categorias.clear();
         categorias.addAll(categoriasSet);
 
-        List<Criterio> criteriosLista= miUsuario.getEgresosAREvisar().stream().map(e->e.getCategorias()).flatMap(List::stream).collect(Collectors.toList()).stream().map(c->c.getCriterio()).collect(Collectors.toList());
+        List<Criterio> criteriosLista= miUsuario.getEntidades().stream().map(ent->ent.getCriterios()).flatMap(List::stream).collect(Collectors.toList());
         Set<Criterio> criteriosSet=new HashSet<>();
         criteriosSet.addAll(criteriosLista);
         criteriosLista.clear();

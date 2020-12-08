@@ -71,5 +71,6 @@ public class Proveedor {
     public Presupuesto getPresupuestoCriterio(CriterioSeleccionProveedor criterio){ return criterio.seleccionarPresupuesto(presupuestos); }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setApellido(String apellido) { this.apellido= apellido; }
+    public String getApellido() { return this.apellido; }
     public void setDireccion(DireccionPostal direccion) { this.direccion = direccion; }
 }

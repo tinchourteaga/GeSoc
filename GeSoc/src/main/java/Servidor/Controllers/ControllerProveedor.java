@@ -108,7 +108,15 @@ public class ControllerProveedor {
         datos.put("deptoPers",deptoPers.orElse(""));
         datos.put("numeroPers",numeroPers.orElse(""));
 
+
+        Repositorio repoProv= new Repositorio<Proveedor>(new DAOBBDD<Proveedor>(Proveedor.class));
+        List<Proveedor> todosLosProveedores= repoProv.getTodosLosElementos();
+        List<Proveedor>proveedorEmpresa=todosLosProveedores.stream().filter(prov->prov.getApellido()==null || prov.getApellido().equals("")).collect(Collectors.toList());
+        List<Proveedor>proveedorPersona=todosLosProveedores.stream().filter(prov-> !proveedorEmpresa.contains(prov)).collect(Collectors.toList());
         datos.put("paises",paises);
+        datos.put("proveedorEmpresa",proveedorEmpresa);
+        datos.put("proveedorPersona",proveedorPersona);
+
         ModelAndView vista = new ModelAndView(datos, "cargar_proveedor.html");
 
         return vista;

@@ -107,7 +107,7 @@ public class ControllerAsociacion {
         return null;
     }
 
-    public static Object asociarIngresosYEgresos(Request request, Response response) throws NoPuedoAsignarMasDineroDelQueTengoException {
+    public static Object asociarIngresosYEgresos(Request request, Response response) {
 
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
@@ -122,11 +122,17 @@ public class ControllerAsociacion {
             Integer egresoId = Integer.valueOf(egreso);
             Integer ingresoId = Integer.valueOf(ingreso);
             //no delego nada y lo hago aca
-            realizarAsociacionManual(egresoId, ingresoId,miUsuario);
+            try {
+                realizarAsociacionManual(egresoId, ingresoId,miUsuario);
+                statusCode=1;
+            } catch (NoPuedoAsignarMasDineroDelQueTengoException e) {
+                e.printStackTrace();
+            }
         }else if(estrategia.equals("Automática")){
             //se lo mando a la API
             //todo
             realizarAsociacionAutomatica(request,response,miUsuario);
+            statusCode=1;
         }
 
         response.redirect("asociar_ingresos_y_egresos?Exito="+statusCode);

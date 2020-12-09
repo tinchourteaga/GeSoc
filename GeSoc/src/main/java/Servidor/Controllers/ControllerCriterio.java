@@ -51,15 +51,15 @@ public class ControllerCriterio {
 
         Repositorio repoCriterios= new Repositorio(new DAOBBDD<Criterio>(Criterio.class));
         List<Criterio> criteriosPadres = repoCriterios.getTodosLosElementos();
-        if(idCriterioPadre!=null && NumberUtils.isNumber(entidad))
-        criteriosPadres.stream().filter(crit->crit.getCriterio()==Integer.valueOf(idCriterioPadre).intValue()).findFirst().ifPresent( nuevoPadre->
-                {
-                 nuevoPadre.agregarHijos(criterio);
-                 criterio.setCriterio_padre(nuevoPadre);
-                 persistirCriterio(nuevoPadre);//esto creo que no va
-                }
-        );
-
+        if(!idCriterioPadre.equals("") && NumberUtils.isNumber(entidad)) {
+            criteriosPadres.stream().filter(crit -> crit.getCriterio() == Integer.valueOf(idCriterioPadre).intValue()).findFirst().ifPresent(nuevoPadre ->
+                    {
+                        nuevoPadre.agregarHijos(criterio);
+                        criterio.setCriterio_padre(nuevoPadre);
+                        //persistirCriterio(nuevoPadre);//esto creo que no va
+                    }
+            );
+        }
         persistirCriterio(criterio);
         response.redirect("crear_criterio");
 

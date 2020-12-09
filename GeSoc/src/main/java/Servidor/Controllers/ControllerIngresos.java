@@ -21,18 +21,13 @@ public class ControllerIngresos {
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
-        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        List<Entidad> entidades= miUsuario.getEntidades();
 
         Set<Entidad> setEntidades= new HashSet<Entidad>();
         setEntidades.addAll(entidades);
         entidades.clear();
         entidades.addAll(setEntidades);
-
-        Entidad entidad = miUsuario.getEntidades().get(0);
-
-        Repositorio repoIngreso = new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
-        List<Ingreso> ingresosPosibles = repoIngreso.getTodosLosElementos();
-        List<Ingreso> ingresosTabla = ingresosPosibles.stream().filter(e -> e.getEntidad().equals(entidad)).collect(Collectors.toList());
+        List<Ingreso> ingresosTabla = entidades.stream().map(ent-> ent.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
 
         datos.put("entidades",entidades);
         datos.put("egreso",ingresosTabla);
@@ -51,7 +46,7 @@ public class ControllerIngresos {
         Optional<String> entidad = Optional.ofNullable(request.queryParams("entidad"));
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
-        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        List<Entidad> entidades= miUsuario.getEntidades();
         Set<Entidad> entidadSet= new HashSet<>();
         entidadSet.addAll(entidades);
         entidades.clear();

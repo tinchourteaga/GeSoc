@@ -252,7 +252,7 @@ public class ControllerEgresos {
         }
 
         Map<String,Object> datos= new HashMap<String, Object>();
-        Egreso egreso=null;
+        Egreso egreso;
         Repositorio repoEgresos= new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
         List<Egreso>egresos= repoEgresos.getTodosLosElementos();
         egresos= egresos.stream().filter(e->e.getEgreso()== Integer.valueOf(egresoId).intValue()).collect(Collectors.toList());
@@ -288,7 +288,7 @@ public class ControllerEgresos {
         Optional<String> fechaFiltro =Optional.ofNullable( request.queryParams("fechaElegida"));
         Optional<String> catId =Optional.ofNullable( request.queryParams("catElegido"));
 
-        entidadId.filter(id->!id.equals("seleccionEgreso")).ifPresent(idString-> {
+        entidadId.filter(id->!id.equals("-")).ifPresent(idString-> {
                     datos.put("entElegida", entidades.stream().filter(ent -> ent.getEntidad() ==Integer.valueOf(idString).intValue()).collect(Collectors.toList()).get(0));
                 });
 

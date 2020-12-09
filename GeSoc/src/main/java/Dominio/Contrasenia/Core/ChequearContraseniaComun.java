@@ -1,12 +1,13 @@
 package Dominio.Contrasenia.Core;
 
+import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import Dominio.Contrasenia.Excepciones.*;
 
 public class ChequearContraseniaComun implements IValidacion {
     private static List<String> contraseniaComun;
@@ -20,8 +21,7 @@ public class ChequearContraseniaComun implements IValidacion {
         }
     }
 
-    @Override
-    public void validar(String contrasenia) throws ExcepcionContraseniaComun {
+    public static void validar(String contrasenia) throws ExcepcionContraseniaComun {
 
         boolean contraseniaEncontrada = contraseniaComun.stream().anyMatch(commonPassword -> commonPassword.equals(contrasenia));
 

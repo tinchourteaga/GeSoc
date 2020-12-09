@@ -177,7 +177,7 @@ public class ControllerPresupuesto {
         String idUS= request.queryParams("us");
         if(!idUS.equals(request.session().attribute("idUsuarioActual"))){
             //a tu casa crack, no podes cargar items de cosas que no te corresponde
-            response.redirect("/pantalla_principal_usuario");
+            response.redirect("pantalla_principal_usuario");
         }
         Map<String, Object> datos= new HashMap<>();
         String presupeustoId=  request.queryParams("Presupuesto");

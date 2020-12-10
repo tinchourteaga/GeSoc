@@ -170,6 +170,7 @@ public class ControllerEgresos {
 
         persistirEgreso(egreso);
 
+
         //para que no se pase de vivo y no modifique cosas que no deberia el weon
         response.redirect("cargar_items_egreso?egreso="+egreso.getEgreso()+"&us="+request.session().attribute("idUsuarioActual"));
 
@@ -181,7 +182,7 @@ public class ControllerEgresos {
         DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class); //dao generico de BBDD
         Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso); //repositorio que tambien usa generics
 
-        if(!repoEgreso.existe(egreso)) {
+        if(egreso.getEgreso()==0) {
             repoEgreso.agregar(egreso);
         }else{
             repoEgreso.modificar(null,egreso);
@@ -235,6 +236,13 @@ public class ControllerEgresos {
 
 
         persistirEgreso(objEgreso);
+        /*
+        Si lo de persisitr egreso no funca borralo y pone:
+
+        DAO DAOEgreso = new DAOBBDD<Egreso>(Egreso.class);
+        Repositorio repoEgreso = new Repositorio<Egreso>(DAOEgreso);
+        repoEgreso.modificar(null,objEgreso);
+        */
 
         response.redirect("cargar_egreso");
 

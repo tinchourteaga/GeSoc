@@ -157,17 +157,16 @@ public class ControllerEgresos {
 
         if(!entidadesPosibles.isEmpty())
         egreso.setEntidad(entidadesPosibles.get(0));
-        if(request.queryParams("esRevisor")!=null){
 
-            Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
-            Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
+        Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
+        Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
 
-            usuarioModificado.agregarEgresoARevisar(egreso);
+        usuarioModificado.agregarEgresoARevisar(egreso);
 
-            DAO DAOUsuario = new DAOBBDD<Usuario>();
-            Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
-            repoUsuario.modificar(usuario, usuarioModificado);
-        }
+        DAO DAOUsuario = new DAOBBDD<Usuario>();
+        Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
+        repoUsuario.modificar(usuario, usuarioModificado);
+
 
         persistirEgreso(egreso);
 

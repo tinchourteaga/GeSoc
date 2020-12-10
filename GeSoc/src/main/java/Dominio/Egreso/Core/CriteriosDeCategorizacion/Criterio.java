@@ -94,6 +94,10 @@ public class Criterio {
         return categoriaCriterios.stream().filter(categoriaCriterio -> categoriaCriterio.getNombreDeCategoria().equals(nombre)).collect(Collectors.toList()).get(0);
     }
 
+    public List<CategoriaCriterio> getCategorias() {
+        return categoriaCriterios;
+    }
+
     public void aplicar(Egreso egreso){
         hijos.forEach(hijo -> hijo.aplicar(egreso));
         egreso.getCriterioDeCategorizacion().add(this);

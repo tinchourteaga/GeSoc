@@ -16,7 +16,7 @@ public class Servidor {
     public static void levantarServidor(){
 
         enableDebugScreen();
-        Integer puerto = 15006;
+        Integer puerto = 15008;
         port(puerto);
 
         boolean localhost = true;

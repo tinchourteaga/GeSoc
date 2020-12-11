@@ -104,7 +104,7 @@
         <select name="egreso" id="u848_input" disabled class="u848_input" required>
           <option class="u848_input_option" value="">Seleccionar Egreso</option>
          {{#each egresos}}
-          <option class="u848_input_option" value={{egreso}}>{{descripcion}}</option>
+          <option class="u848_input_option" value={{egreso}}>{{descripcion}} | Valor: {{valor.importe}}</option>
           {{/each}}
         </select>
       </div>
@@ -172,7 +172,7 @@
         <select name="ingreso" id="u855_input" disabled class="u855_input" required>
           <option class="u855_input_option" value="">Seleccionar Ingreso</option>
           {{#each ingresos}}
-          <option class="u855_input_option" value={{ingreso}}>{{descripcion}}</option>
+          <option class="u855_input_option" value={{ingreso}}>{{descripcion}} | Valor: {{valor.importe}}</option>
           {{/each}}
         </select>
       </div>

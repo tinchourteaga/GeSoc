@@ -371,6 +371,24 @@
         <input name="linkComprobante" id="u1187_input" value="" class="u1187_input" placeholder="Agregue un link de acceso"/>
       </div>
 
+        <div id="u843" class="ax_default heading_1">
+          <div id="u843_div" class=""></div>
+          <div id="u843_text" class="text ">
+            <p><span>Egreso:</span></p>
+          </div>
+        </div>
+    </div>
+
+        <div id="u848" class="ax_default droplist">
+          <div id="u848_div" class=""></div>
+          <select name="egreso" id="u848_input" disabled class="u848_input" required>
+            <option class="u848_input_option" value="">Seleccionar Egreso</option>
+            {{#each egresos}}
+            <option class="u848_input_option" value={{egreso}}>{{descripcion}} | Valor: {{valor.importe}}</option>
+            {{/each}}
+          </select>
+        </div>
+
       <!-- Unnamed (Rectangle) -->
       <button type="submit" id="u1188" class="ax_default primary_button">
         <div id="u1188_div" class=""></div>
@@ -378,6 +396,8 @@
           <p><span>Cargar items</span></p>
         </div>
       </button>
+
+
 
       <!-- Unnamed (Dynamic Panel) -->
       <div id="u1189" class="ax_default">

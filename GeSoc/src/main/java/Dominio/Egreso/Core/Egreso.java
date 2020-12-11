@@ -10,11 +10,14 @@ import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Ingreso;
 import Dominio.Moneda.Valor;
+import Dominio.Usuario.Usuario;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
@@ -73,6 +76,8 @@ public class Egreso {
     @JoinColumn(name = "egreso_asociado")
     List<Mensaje> mensajes = new ArrayList<>();
 
+    @ManyToMany(mappedBy = "egresosARevisar")
+    private Set<Usuario> revisores = new HashSet<Usuario>();
 
     @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     @JoinColumn(name = "presupuesto_pactado")
@@ -182,5 +187,9 @@ public class Egreso {
     public void recalcularValor() {
         this.valor.setImporte(this.getListaItems().stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
 
+    }
+
+    public Set<Usuario> getRevisores() {
+        return revisores;
     }
 }

@@ -159,13 +159,16 @@ public class ControllerEgresos {
         egreso.setEntidad(entidadesPosibles.get(0));
 
         Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
-        Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
+        usuario.agregarEgresoARevisar(egreso);
 
-        usuarioModificado.agregarEgresoARevisar(egreso);
 
-        DAO DAOUsuario = new DAOBBDD<Usuario>();
+       /* DAO DAOUsuario = new DAOBBDD<Usuario>();
         Repositorio repoUsuario = new Repositorio<Usuario>(DAOUsuario);
         repoUsuario.modificar(usuario, usuarioModificado);
+        */
+
+        egreso.getRevisores().add(usuario);
+        persistirEgreso(egreso);
 
         //para que no se pase de vivo y no modifique cosas que no deberia el weon
         response.redirect("cargar_items_egreso?egreso="+egreso.getEgreso()+"&us="+request.session().attribute("idUsuarioActual"));

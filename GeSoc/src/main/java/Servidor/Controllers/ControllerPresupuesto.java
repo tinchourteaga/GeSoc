@@ -105,6 +105,7 @@ public class ControllerPresupuesto {
         String proveedor = request.queryParams("proveedor");
         String documentoComercial = request.queryParams("documentoComercial");
         String linkComprobante = request.queryParams("linkComprobante");
+        String egreso = request.queryParams("egreso");
 
         System.out.println(request.queryParams());
         String archivo=  request.queryParams("file");
@@ -141,6 +142,7 @@ public class ControllerPresupuesto {
                 break;
         }
 
+
         Repositorio repoProveedores= new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
         List<Proveedor> proveedoresDisponibles=repoProveedores.getTodosLosElementos();
         DocumentoComercial documentoAsociado= new DocumentoComercial(tipoDoc,"");
@@ -151,6 +153,18 @@ public class ControllerPresupuesto {
             Presupuesto presupuesto = new Presupuesto(new ArrayList(), new ArrayList(), documentoAsociado, proveedoresDisponibles.get(0));
             presupuesto.setFecha(LocalDate.parse(fecha));
             presupuesto.setDescripcion(request.queryParams("descripcionPresupuesto"));
+
+            Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+            Integer egresoId = Integer.valueOf(egreso);
+            List<Egreso> egresosPosibles = miUsuario.getEgresosAREvisar().stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
+            egresosPosibles.stream().findFirst().ifPresent(egresoPosible->{
+                egresoPosible.agregarPresupuestoAConsiderar(presupuesto);
+                Repositorio repoEgreso= new Repositorio<Egreso>(new DAOBBDD<Egreso>(Egreso.class));
+                repoEgreso.modificar(null,egresoPosible);
+            });
+
+            //Puede ser que si persisto el egreso con este nuevo presupuesto agregado y luego persisto el presupuesto, se me genere dos veces
+
             persistirPresupuesto(presupuesto);
             response.redirect("cargar_items_presupuestos?Presupuesto="+presupuesto.getPresupuesto()+"&us="+request.session().attribute("idUsuarioActual"));
         }else{

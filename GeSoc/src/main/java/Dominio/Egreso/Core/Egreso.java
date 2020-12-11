@@ -192,4 +192,8 @@ public class Egreso {
     public Set<Usuario> getRevisores() {
         return revisores;
     }
+
+    public void agregarPresupuestoAConsiderar(Presupuesto presupuesto){
+        presupuestosAConsiderar.add(presupuesto);
+    }
 }

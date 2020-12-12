@@ -12,19 +12,16 @@ import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
+import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-
-import static Persistencia.EntityManagerHelper.getEntityManager;
 
 public class ControllerAsociacion {
 
@@ -65,9 +62,8 @@ public class ControllerAsociacion {
         Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
         List<Entidad> entidades = repoEntidades.getTodosLosElementos();
 
-
-        //Tests
-        List<Egreso> egresos = new ArrayList();//no le pongo todos porque sino es una guazada
+        
+        List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(request.session().attribute("nombreUsuario"));
 
         List<Criterio> criterios = egresos.stream().map(e->e.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
         List<CategoriaCriterio> categorias=criterios.stream().map(c->c.getCategoriaCriterios()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
@@ -77,18 +73,6 @@ public class ControllerAsociacion {
         categorias.addAll(categoriasSet);
 
         List<Presupuesto> presupuestos = egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()).stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
-        String queryString = "SELECT egreso FROM gesoc.dom_rol_dom_egresos RxE JOIN gesoc.pers_usuarios us ON RxE.rol=us.usuario WHERE us.nickname= :username ";
-
-        TypedQuery<Integer> query = getEntityManager().createQuery(queryString, Integer.class);
-
-        query.setParameter("username", request.session().attribute("nombreUsuario"));
-
-        List<Integer> egresosIDs = query.getResultList();
-
-        EntityManager em = getEntityManager();
-        egresosIDs.forEach(idEgreso->{
-            egresos.add(em.find(Egreso.class, idEgreso));
-        });
 
         datos.put("egresosPactados",egresos.stream().filter(e->e.getPresupuestoPactado()!=null).collect(Collectors.toList()));
         datos.put("egresosNoPactados",egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()));

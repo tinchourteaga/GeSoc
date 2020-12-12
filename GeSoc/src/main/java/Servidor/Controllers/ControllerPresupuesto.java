@@ -33,8 +33,10 @@ public class ControllerPresupuesto {
         Repositorio repoProveedores= new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
         List<Proveedor> proveedores=repoProveedores.getTodosLosElementos();
         List<Presupuesto> egresos= miUsuario.getEgresosAREvisar().stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Egreso> egresitos = miUsuario.getEgresosAREvisar();
 
         Map<String,Object> datos = new HashMap<>();
+        datos.put("egresos",egresitos);
         datos.put("documentos",documentos);
         datos.put("proveedor",proveedores);
         datos.put("egreso",egresos);
@@ -125,7 +127,7 @@ public class ControllerPresupuesto {
             case "Credito":
                 tipoDoc=TipoDocumentoComercial.NOTA_CREDITO;
                 break;
-            case "Debito":
+            case "Cebito":
                 tipoDoc=TipoDocumentoComercial.NOTA_DEBITO;
                 break;
             case "FacturaA":
@@ -159,11 +161,9 @@ public class ControllerPresupuesto {
             List<Egreso> egresosPosibles = miUsuario.getEgresosAREvisar().stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
             egresosPosibles.stream().findFirst().ifPresent(egresoPosible->{
                 egresoPosible.agregarPresupuestoAConsiderar(presupuesto);
-                Repositorio repoEgreso= new Repositorio<Egreso>(new DAOBBDD<Egreso>(Egreso.class));
-                repoEgreso.modificar(null,egresoPosible);
+                presupuesto.setEgreso(egresoPosible);
             });
 
-            //Puede ser que si persisto el egreso con este nuevo presupuesto agregado y luego persisto el presupuesto, se me genere dos veces
 
             persistirPresupuesto(presupuesto);
             response.redirect("cargar_items_presupuestos?Presupuesto="+presupuesto.getPresupuesto()+"&us="+request.session().attribute("idUsuarioActual"));
@@ -189,10 +189,12 @@ public class ControllerPresupuesto {
     public static ModelAndView visualizarPantallaItems(Request request, Response response) {
 
         String idUS= request.queryParams("us");
+        /*
         if(!idUS.equals(request.session().attribute("idUsuarioActual"))){
             //a tu casa crack, no podes cargar items de cosas que no te corresponde
             response.redirect("pantalla_principal_usuario");
         }
+        */
         Map<String, Object> datos= new HashMap<>();
         String presupeustoId=  request.queryParams("Presupuesto");
 

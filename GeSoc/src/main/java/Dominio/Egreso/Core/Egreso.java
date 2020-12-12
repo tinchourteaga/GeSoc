@@ -79,12 +79,11 @@ public class Egreso {
     @ManyToMany(mappedBy = "egresosARevisar")
     private Set<Usuario> revisores = new HashSet<Usuario>();
 
-    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
     @JoinColumn(name = "presupuesto_pactado")
     private Presupuesto presupuestoPactado;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    @JoinColumn(name = "egreso_presupuestado")
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "egreso")
     private List<Presupuesto> presupuestosAConsiderar;
 
     public Egreso() { }

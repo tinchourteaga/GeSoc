@@ -47,6 +47,10 @@ public class Presupuesto {
     @JoinColumn(name = "proveedor", referencedColumnName = "proveedor")
     private Proveedor proveedor;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "egreso_presupuestado")
+    private Egreso egreso;
+
     public Presupuesto() { }
 
     public Presupuesto(List<CategoriaCriterio> categorias, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
@@ -55,6 +59,10 @@ public class Presupuesto {
         this.detalles = detalles;
         this.documentoComercial = documentoComercial;
         this.proveedor = proveedor;
+    }
+
+    public void setEgreso(Egreso egreso) {
+        this.egreso = egreso;
     }
 
     public Proveedor getProveedor(){return this.proveedor;}

@@ -65,7 +65,7 @@ public class ControllerAsociacion {
         //Tests
         List<Egreso> egresos = miUsuario.getEgresosAREvisar();//no le pongo todos porque sino es una guazada
 
-       List<Criterio> criterios = egresos.stream().map(e->e.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Criterio> criterios = egresos.stream().map(e->e.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
         List<CategoriaCriterio> categorias=criterios.stream().map(c->c.getCategoriaCriterios()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
         Set<CategoriaCriterio> categoriasSet= new HashSet<>();
         categoriasSet.addAll(categorias);

@@ -12,6 +12,7 @@ import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
+import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -42,7 +43,7 @@ public class ControllerEgresos {
         List<String> criterios= Arrays.asList("Menor Precio");
         List<String> documentos=Arrays.asList("Remito","debito","credito","FacturaA","FacturaB","FacturaC","Ticket");
         List<String> metodos= Arrays.asList("TarjetaCredito","TarjetaDebito","Efectivo","Cheque");
-        List<Egreso> egresos= miUsuario.getEgresosAREvisar();
+        List<Egreso> egresos= QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
         List<Entidad> entidades= egresos.stream().map(e->e.getEntidad()).collect(Collectors.toList());
         Set<Entidad> entidadSet=new HashSet<>();
         entidadSet.addAll(entidades);
@@ -271,7 +272,7 @@ public class ControllerEgresos {
         ModelAndView vista = new ModelAndView(datos, "detalle_egreso.html");
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
-        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        List<Entidad> entidades= miUsuario.getEntidades();
         Set<Entidad> entidadSet= new HashSet<>();
         entidadSet.addAll(entidades);
         entidades.clear();
@@ -296,7 +297,7 @@ public class ControllerEgresos {
         catId.filter(id->!id.equals("-")).ifPresent(idCat->{
             datos.put("catElegido", finalCategorias.stream().filter(cat-> cat.getCategoria()==Integer.valueOf(idCat)).collect(Collectors.toList()).get(0));
         });
-        datos.put("egreso",miUsuario.getEgresosAREvisar().stream().filter(eg->{
+        datos.put("egreso",QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(eg->{
 
             String idAFiltrar=entidadId.filter(id->!id.equals("-")).orElse(String.valueOf(eg.getEntidad().getEntidad()));
 
@@ -314,7 +315,7 @@ public class ControllerEgresos {
         datos.put("categoria",categorias);
 
         egresoId.filter(id->!id.equals("seleccionEgreso")).ifPresent(egresoIdString->{
-            Egreso egreso = miUsuario.getEgresosAREvisar().stream().filter(e -> e.getEgreso() == Integer.valueOf(egresoIdString).intValue()).collect(Collectors.toList()).get(0);
+            Egreso egreso = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(e -> e.getEgreso() == Integer.valueOf(egresoIdString).intValue()).collect(Collectors.toList()).get(0);
 
             datos.put("egresoPactado",egreso);
             LocalDate fecha = egreso.getFecha();
@@ -342,7 +343,7 @@ public class ControllerEgresos {
 
         Map<String, Object> datos= new HashMap<>();
         Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
-        List<Egreso> egresosARevisar=miUsuario.getEgresosAREvisar().stream().filter(e->!e.isEstaVerificada()).collect(Collectors.toList());
+        List<Egreso> egresosARevisar=QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(e->!e.isEstaVerificada()).collect(Collectors.toList());
         datos.put("egreso",egresosARevisar);
         return new ModelAndView(datos, "validacion_egresos.html");
     }
@@ -441,7 +442,7 @@ public class ControllerEgresos {
         }
         Repositorio repositorioUs= new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
         List<Usuario> todosLosUs= repositorioUs.getTodosLosElementos();
-        List<Usuario> revisores= todosLosUs.stream().filter(us->us.getEgresosAREvisar().containsAll(egresosPosibles)).collect(Collectors.toList());
+        List<Usuario> revisores= todosLosUs.stream().filter(us->QueriesUtiles.obtenerEgresosDe(us.getNickName()).stream().anyMatch(eg-> egresosPosibles.stream().map(eg2->eg2.getEgreso()).collect(Collectors.toList()).contains(eg.getEgreso()))).collect(Collectors.toList());
         revisores.forEach(rev-> {
             Repositorio repoMsj=new Repositorio(new DAOBBDD<Mensaje>(Mensaje.class));
             Mensaje msj=new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + egresosPosibles.get(0).getFecha() + " y con valor: "+egresosPosibles.get(0).getValor().getImporte() +" no se valido correctamente. Debe validarse nuevamente", egresosPosibles.get(0));
@@ -450,7 +451,7 @@ public class ControllerEgresos {
             msj.setUsuario(rev);
             repoMsj.agregar(msj);
         });
-        egresosPosibles.get(0).setEstaVerificada(true);
+        egresosPosibles.get(0).setEstaVerificada(false);
         repositorio.modificar(null,egresosPosibles.get(0));
         revisores.forEach(rev-> repositorioUs.modificar(null,rev));
         response.redirect("/validar_egresos");
@@ -471,7 +472,7 @@ public class ControllerEgresos {
         }
         Repositorio repositorioUs= new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
         List<Usuario> todosLosUs= repositorioUs.getTodosLosElementos();
-        List<Usuario> revisores= todosLosUs.stream().filter(us->us.getEgresosAREvisar().containsAll(egresosPosibles)).collect(Collectors.toList());
+        List<Usuario> revisores= todosLosUs.stream().filter(us->QueriesUtiles.obtenerEgresosDe(us.getNickName()).stream().anyMatch(eg-> egresosPosibles.stream().map(eg2->eg2.getEgreso()).collect(Collectors.toList()).contains(eg.getEgreso()))).collect(Collectors.toList());
         revisores.forEach(rev-> {
             Repositorio repoMsj=new Repositorio(new DAOBBDD<Mensaje>(Mensaje.class));
             Mensaje msj=new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + egresosPosibles.get(0).getFecha() + " y con valor: "+egresosPosibles.get(0).getValor().getImporte() +" se valido satifactoriamente", egresosPosibles.get(0));

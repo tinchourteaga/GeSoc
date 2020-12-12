@@ -20,7 +20,7 @@ public class ControllerCriterio {
         Map<String,Object> datos = new HashMap<>();
         Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
 
-        List<Entidad>entidades=miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        List<Entidad>entidades=miUsuario.getEntidades();
         Set<Entidad>entidadesSet=new HashSet<>();
         entidadesSet.addAll(entidades);
         entidades.clear();

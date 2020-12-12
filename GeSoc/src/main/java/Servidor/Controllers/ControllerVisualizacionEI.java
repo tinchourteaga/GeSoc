@@ -6,6 +6,7 @@ import Dominio.Egreso.Core.Egreso;
 import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
+import Persistencia.QueriesUtiles;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -22,7 +23,7 @@ public class ControllerVisualizacionEI {
 
         Usuario usuarioActual= ControllerSesion.obtenerUsuariodeSesion(request);
         //Estas cinco listas las tenemos que traer de la BD
-        List<Egreso> egreso = miUsuario.getEgresosAREvisar();
+        List<Egreso> egreso = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
         List<Entidad> entidades = egreso.stream().map(eg->eg.getEntidad()).collect(Collectors.toList());
         List<Ingreso> ingreso = entidades.stream().map(ent->ent.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
         List<Criterio> criterios =  miUsuario.getEntidades().stream().map(ent->ent.getCriterios()).flatMap(List::stream).collect(Collectors.toList());

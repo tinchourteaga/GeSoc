@@ -11,6 +11,7 @@ import Dominio.Usuario.Rol;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
+import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import Servidor.Controllers.Hash.FuncionHash;
 import Servidor.Controllers.Hash.Hash;
@@ -51,7 +52,7 @@ public class ControllerUsuario {
         Map<String,Object> datos = new HashMap<>();
 
         if(miUsuario.getRol().equals(Rol.ADMINISTRADOR)) {
-            List<Egreso> egreso = miUsuario.getEgresosAREvisar();
+            List<Egreso> egreso = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
             List<Entidad> entidades = egreso.stream().map(eg->eg.getEntidad()).collect(Collectors.toList());
             Set<Entidad> entidadesSinRepetidos = new HashSet<>();
             entidadesSinRepetidos.addAll(entidades);
@@ -61,7 +62,6 @@ public class ControllerUsuario {
             Repositorio repoUsuario = new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
             List<Usuario> usuariosPosibles = repoUsuario.getTodosLosElementos();
             List<Usuario> usuarioAVer = usuariosPosibles.stream().filter(us -> us.getEntidades().stream().anyMatch(e -> entidades.contains(e))).collect(Collectors.toList());
-            //List<Usuario> usuarioAVer = usuariosPosibles.stream().filter(us -> us.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList()).stream().anyMatch(e -> entidades.contains(e))).collect(Collectors.toList());
 
             String entidadFiltro = request.queryParams("entidadFiltro");
             String apellidoFiltro = request.queryParamOrDefault("apellido", "Ingrese apellido");
@@ -75,7 +75,7 @@ public class ControllerUsuario {
                 datos.put("checkbox_admin", admin);
             }
             if (revisor != null && revisor.equals("true")) {
-                usuarioAVer = usuarioAVer.stream().filter(us -> !us.getEgresosAREvisar().isEmpty()).collect(Collectors.toList());
+                usuarioAVer = usuarioAVer.stream().filter(us -> !QueriesUtiles.obtenerEgresosDe(us.getNickName()).isEmpty()).collect(Collectors.toList());
                 datos.put("checkbox_revisor", revisor);
             }
 
@@ -127,7 +127,7 @@ public class ControllerUsuario {
 
         String idUsuarioAModificar = request.queryParams("usm");
 
-        List<Entidad> entidadesALasQuePertenezco = miUsuario.getEgresosAREvisar().stream().map(e -> e.getEntidad()).collect(Collectors.toList());
+        List<Entidad> entidadesALasQuePertenezco = miUsuario.getEntidades();
         Set<Entidad> setEntidades = new HashSet<Entidad>();
         setEntidades.addAll(entidadesALasQuePertenezco);
         entidadesALasQuePertenezco.clear();
@@ -136,7 +136,7 @@ public class ControllerUsuario {
         Map<String,Object> datos = new HashMap<>();
         Repositorio repoUsuario = new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
         List<Usuario> todosLosUsuarios = repoUsuario.getTodosLosElementos();
-        List<Usuario> usuariosQuePuedoModificar = todosLosUsuarios.stream().filter(usuario -> usuario.getEgresosAREvisar().stream().map(egreso -> egreso.getEntidad()).collect(Collectors.toList()).stream().anyMatch(ent -> entidadesALasQuePertenezco.contains(ent))).collect(Collectors.toList());
+        List<Usuario> usuariosQuePuedoModificar = todosLosUsuarios.stream().filter(usuario -> QueriesUtiles.obtenerEgresosDe(usuario.getNickName()).stream().map(egreso -> egreso.getEntidad()).collect(Collectors.toList()).stream().anyMatch(ent -> entidadesALasQuePertenezco.contains(ent))).collect(Collectors.toList());
         List<Usuario> usuarioAModificarONull = usuariosQuePuedoModificar.stream().filter(usuarioPosible -> usuarioPosible.getUsuario() == Integer.valueOf(idUsuarioAModificar).intValue()).collect(Collectors.toList());
         if (!usuarioAModificarONull.isEmpty()){
             Usuario usuarioPosta = usuarioAModificarONull.get(0);

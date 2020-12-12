@@ -5,6 +5,7 @@ import Dominio.Entidad.Entidad;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
+import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
@@ -32,8 +33,9 @@ public class ControllerPresupuesto {
         List<String> documentos=Arrays.asList("Remito","Cebito","Credito","FacturaA","FacturaB","FacturaC","Ticket");
         Repositorio repoProveedores= new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
         List<Proveedor> proveedores=repoProveedores.getTodosLosElementos();
-        List<Presupuesto> egresos= miUsuario.getEgresosAREvisar().stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
-        List<Egreso> egresitos = miUsuario.getEgresosAREvisar();
+        List<Egreso> egresitos = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
+        List<Presupuesto> egresos= egresitos.stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+
 
         Map<String,Object> datos = new HashMap<>();
         datos.put("egresos",egresitos);
@@ -56,7 +58,7 @@ public class ControllerPresupuesto {
         Optional<String> fechaFiltro= Optional.ofNullable(request.queryParams("fechaFiltro"));
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
-        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        List<Entidad> entidades= miUsuario.getEntidades();
         entidades.addAll(miUsuario.getEntidades());
         Set<Entidad> entidadSet= new HashSet<>();
         entidadSet.addAll(entidades);
@@ -158,7 +160,7 @@ public class ControllerPresupuesto {
 
             Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
             Integer egresoId = Integer.valueOf(egreso);
-            List<Egreso> egresosPosibles = miUsuario.getEgresosAREvisar().stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
+            List<Egreso> egresosPosibles = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
             egresosPosibles.stream().findFirst().ifPresent(egresoPosible->{
                 egresoPosible.agregarPresupuestoAConsiderar(presupuesto);
                 presupuesto.setEgreso(egresoPosible);

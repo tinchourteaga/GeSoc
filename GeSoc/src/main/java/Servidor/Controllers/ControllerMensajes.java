@@ -3,6 +3,7 @@ package Servidor.Controllers;
 import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Usuario.Usuario;
+import Persistencia.QueriesUtiles;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -24,7 +25,7 @@ public class ControllerMensajes {
 
         if (usuario != null) {
 
-            if (usuario.getEgresosAREvisar().isEmpty()) {
+            if (QueriesUtiles.obtenerEgresosDe(usuario.getNickName()).isEmpty()) {
                 return visualizarPantallaMensajesNoRevisor(request, response);
             } else {
                 return visualizarPantallaMensajesRevisor(request, response, usuario);

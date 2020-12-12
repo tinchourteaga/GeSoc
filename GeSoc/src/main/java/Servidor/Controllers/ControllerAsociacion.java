@@ -34,9 +34,9 @@ public class ControllerAsociacion {
             return null;
         }
 
-        List<Egreso> egresos = miUsuario.getEgresosAREvisar();
+        List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
 
-        List<Entidad> entidades= miUsuario.getEgresosAREvisar().stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        List<Entidad> entidades= miUsuario.getEntidades();
         Set<Entidad> entidadSet= new HashSet<>();
         entidadSet.addAll(entidades);
         entidades.clear();
@@ -62,7 +62,7 @@ public class ControllerAsociacion {
         Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
         List<Entidad> entidades = repoEntidades.getTodosLosElementos();
 
-        
+
         List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(request.session().attribute("nombreUsuario"));
 
         List<Criterio> criterios = egresos.stream().map(e->e.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
@@ -93,7 +93,7 @@ public class ControllerAsociacion {
         AtomicInteger statusCode= new AtomicInteger(0);
         Integer egresoId = Integer.valueOf(egreso);
         Integer presupuestoId = Integer.valueOf(presupuesto);
-        List<Egreso> egresosPosibles=miUsuario.getEgresosAREvisar().stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
+        List<Egreso> egresosPosibles=QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
         List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().filter(e->e.getPresupuestoPactado()==null).map(e->e.getPresupuestosAConsiderar()).flatMap(List::stream).collect(Collectors.toList());
 
         egresosPosibles.stream().findFirst().ifPresent(egresoPosible->{
@@ -145,7 +145,7 @@ public class ControllerAsociacion {
 
         List<Ingreso> ingresos = miUsuario.getEntidades().stream().map(x -> x.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
         //Esto deberia traerme los egresos que no estan vinculados
-        List<Egreso> egresos = miUsuario.getEgresosAREvisar().stream().filter(e -> e.getIngreso() == null).collect(Collectors.toList());
+        List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(e -> e.getIngreso() == null).collect(Collectors.toList());
         List<String> criterios =new ArrayList<>(); //Son los checkboxes
         List<Condicion> condiciones = new ArrayList<>();
         String fecha = request.queryParams("fecha");
@@ -182,11 +182,11 @@ public class ControllerAsociacion {
         Repositorio repoIngreso = new Repositorio<Ingreso>(DAOIngreso);
 
         int idEgreso = egresoId.intValue();
-        List<Egreso> egresos = miUsuario.getEgresosAREvisar();
+        List<Egreso> egresos =QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
         List<Egreso> egresosPosibles = egresos.stream().filter(e -> e.getEgreso() == idEgreso).collect(Collectors.toList());
 
         int idIngreso = ingresoId.intValue();
-        List<Ingreso> ingresos = miUsuario.getEgresosAREvisar().stream().map(e -> e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Ingreso> ingresos = miUsuario.getEntidades().stream().map(ent->ent.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
         List<Ingreso> ingresosPosibles = ingresos.stream().filter(e -> e.getIngreso() == idIngreso).collect(Collectors.toList());
 
 

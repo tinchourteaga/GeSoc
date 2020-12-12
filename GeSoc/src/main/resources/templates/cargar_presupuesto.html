@@ -37,7 +37,7 @@
     <script src="resources/scripts/axure/viewer.js"></script>
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
-    <script src="data/document.js"></script>
+    <!-- <script src="data/document.js"></script> -->
     <!--<script src="files/cargar_presupuesto/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
@@ -381,7 +381,7 @@
 
         <div id="u848" class="ax_default droplist">
           <div id="u848_div" class=""></div>
-          <select name="egreso" id="u848_input" disabled class="u848_input" required>
+          <select name="egreso" id="u848_input" class="u848_input" required>
             <option class="u848_input_option" value="">Seleccionar Egreso</option>
             {{#each egresos}}
             <option class="u848_input_option" value={{egreso}}>{{descripcion}} | Valor: {{valor.importe}}</option>

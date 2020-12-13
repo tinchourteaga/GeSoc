@@ -60,7 +60,7 @@ public class ControllerAsociacion {
 
 
 
-        List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(request.session().attribute("nombreUsuario"));
+        List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
 
         List<Criterio> criterios = egresos.stream().map(e->e.getCriterioDeCategorizacion()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
         List<CategoriaCriterio> categorias=criterios.stream().map(c->c.getCategoriaCriterios()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
@@ -69,11 +69,11 @@ public class ControllerAsociacion {
         categorias.clear();
         categorias.addAll(categoriasSet);
 
-        List<Presupuesto> presupuestos = egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()).stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Presupuesto> presupuestos = egresos.stream().map(e-> QueriesUtiles.obtenerPresupuestosDe(e)).flatMap(List::stream).collect(Collectors.toList());
 
-        datos.put("egresosPactados",egresos.stream().filter(e->e.getPresupuestoPactado()!=null).collect(Collectors.toList()));
-        datos.put("egresosNoPactados",egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()));
-        datos.put("presupuesto",egresos.stream().map(e-> QueriesUtiles.obtenerPresupuestosDe(e)).collect(Collectors.toList()));
+        datos.put("egresosPactados",QueriesUtiles.obtenerEgresosPactados(miUsuario.getNickName()));
+        datos.put("egresosNoPactados",QueriesUtiles.obtenerEgresosNoPactados(miUsuario.getNickName()));
+        datos.put("presupuesto",presupuestos);
         datos.put("categorias",categorias);
 
         ModelAndView vista = new ModelAndView(datos, "asociar_egresos_y_presupuestos.html");

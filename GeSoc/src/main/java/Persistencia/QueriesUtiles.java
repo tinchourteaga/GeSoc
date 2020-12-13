@@ -34,4 +34,17 @@ public class QueriesUtiles {
         return query.getResultList();
     }
 
+    public static List<Egreso> obtenerEgresosNoPactados(String nickName) {
+        String queryString = "SELECT e FROM Egreso e JOIN e.revisores us WHERE us.persona = :username AND (e.presupuestoPactado is NULL )";
+        TypedQuery<Egreso> query = getEntityManager().createQuery(queryString, Egreso.class);
+        query.setParameter("username", nickName);
+        return query.getResultList();
+    }
+
+    public static List<Egreso>  obtenerEgresosPactados(String nickName) {
+        String queryString = "SELECT e FROM Egreso e JOIN e.revisores us WHERE us.persona = :username AND (e.presupuestoPactado is not NULL  )";
+        TypedQuery<Egreso> query = getEntityManager().createQuery(queryString, Egreso.class);
+        query.setParameter("username", nickName);
+        return query.getResultList();
+    }
 }

@@ -58,9 +58,6 @@ public class ControllerAsociacion {
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
-        //miUsuario.getEntidadesAlaQuePertenece(); en vez de buscar todas las entidades habria que hacerlo con este metodo y gg
-        Repositorio repoEntidades= new Repositorio(new DAOBBDD<Entidad>(Entidad.class));
-        List<Entidad> entidades = repoEntidades.getTodosLosElementos();
 
 
         List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(request.session().attribute("nombreUsuario"));
@@ -76,7 +73,7 @@ public class ControllerAsociacion {
 
         datos.put("egresosPactados",egresos.stream().filter(e->e.getPresupuestoPactado()!=null).collect(Collectors.toList()));
         datos.put("egresosNoPactados",egresos.stream().filter(e->e.getPresupuestoPactado()==null).collect(Collectors.toList()));
-        datos.put("presupuesto",presupuestos);
+        datos.put("presupuesto",egresos.stream().map(e-> QueriesUtiles.obtenerPresupuestosDe(e)).collect(Collectors.toList()));
         datos.put("categorias",categorias);
 
         ModelAndView vista = new ModelAndView(datos, "asociar_egresos_y_presupuestos.html");
@@ -94,7 +91,7 @@ public class ControllerAsociacion {
         Integer egresoId = Integer.valueOf(egreso);
         Integer presupuestoId = Integer.valueOf(presupuesto);
         List<Egreso> egresosPosibles=QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(e->e.getEgreso()==egresoId.intValue()).collect(Collectors.toList());
-        List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().filter(e->e.getPresupuestoPactado()==null).map(e->e.getPresupuestosAConsiderar()).flatMap(List::stream).collect(Collectors.toList());
+        List<Presupuesto> presupuestosPosibles=egresosPosibles.stream().filter(e->e.getPresupuestoPactado()==null).map(e->QueriesUtiles.obtenerPresupuestosDe(e)).flatMap(List::stream).collect(Collectors.toList());
 
         egresosPosibles.stream().findFirst().ifPresent(egresoPosible->{
            presupuestosPosibles.stream().filter(pres->pres.getPresupuesto()==Integer.valueOf(presupuestoId)).findFirst().ifPresent(presu->{

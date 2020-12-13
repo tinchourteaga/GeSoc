@@ -527,6 +527,10 @@ public class AddData {
         Egreso egreso1= new Egreso(LocalDate.parse("2020-03-10"), "Argentina", items1, metodo1, presupuestos1,  unDocumento1, criterio1);
         items1.forEach(item->item.setEgreso(egreso1));
         egreso1.setDescripcion("Pinturas");
+        presupuesto1.setEgreso(egreso1);
+        presupuesto2.setEgreso(egreso1);
+        presupuesto3.setEgreso(egreso1);
+
         Egreso egreso2= new Egreso(LocalDate.parse("2020-07-08"), "Argentina", items2, metodo2, presupuestos2,  unDocumento2, criterio1);
         items2.forEach(item->item.setEgreso(egreso2));
         egreso2.setDescripcion("Factura de luz junio 2020");
@@ -542,10 +546,15 @@ public class AddData {
         Egreso egreso5= new Egreso(LocalDate.parse("2020-09-27"), "Argentina", items5, metodo5, presupuestos5,  unDocumento5, criterio1);
         items5.forEach(item->item.setEgreso(egreso5));
         egreso5.setDescripcion("Telefonos Motorola");
+        presupuesto4.setEgreso(egreso5);
+        presupuesto5.setEgreso(egreso5);
+        presupuesto6.setEgreso(egreso5);
 
         Egreso egreso6= new Egreso(LocalDate.parse("2020-10-01"), "Argentina", items6, metodo6, presupuestos6,  unDocumento6, criterio1);
         items6.forEach(item->item.setEgreso(egreso6));
         egreso6.setDescripcion("Obra de construccion 2020");
+        presupuesto7.setEgreso(egreso6);
+        presupuesto8.setEgreso(egreso6);
 
         Egreso egreso7= new Egreso(LocalDate.parse("2020-10-05"), "Argentina", items7, metodo7, presupuestos7,  unDocumento7, criterio1);
         items7.forEach(item->item.setEgreso(egreso7));

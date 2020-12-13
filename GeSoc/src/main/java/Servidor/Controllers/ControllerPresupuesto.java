@@ -34,7 +34,7 @@ public class ControllerPresupuesto {
         Repositorio repoProveedores= new Repositorio(new DAOBBDD<Proveedor>(Proveedor.class));
         List<Proveedor> proveedores=repoProveedores.getTodosLosElementos();
         List<Egreso> egresitos = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
-        List<Presupuesto> egresos= egresitos.stream().map(e->e.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Presupuesto> egresos= egresitos.stream().map(e->QueriesUtiles.obtenerPresupuestosDe(e)).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
 
 
         Map<String,Object> datos = new HashMap<>();

@@ -19,10 +19,8 @@ public class ControllerVisualizacionEI {
     public static ModelAndView visualizarPantalla(Request request, Response response){
         Usuario miUsuario=ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
-        ;
-
-        Usuario usuarioActual= ControllerSesion.obtenerUsuariodeSesion(request);
         //Estas cinco listas las tenemos que traer de la BD
+
         List<Egreso> egreso = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
         List<Entidad> entidades = egreso.stream().map(eg->eg.getEntidad()).collect(Collectors.toList());
         List<Ingreso> ingreso = entidades.stream().map(ent->ent.getIngresos()).flatMap(List::stream).collect(Collectors.toList());

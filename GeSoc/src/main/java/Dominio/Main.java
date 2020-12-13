@@ -5,14 +5,14 @@ import Dominio.Contrasenia.Excepciones.ExcepcionContraseniaComun;
 import Dominio.Contrasenia.Excepciones.ExcepcionLongitud;
 import Dominio.Contrasenia.Excepciones.ExcepcionNumero;
 import Persistencia.AddData;
-import Servidor.Servidor;
 
 import java.io.IOException;
+
+import static Servidor.Servidor.levantarServidor;
 
 public class Main {
 
     public static void main(String[] args){
-
 
        String[] arg= {"Y", "Y"};
         args=arg;
@@ -41,6 +41,10 @@ public class Main {
                     System.out.println("No se reconocio la respuesta. Por favor ingrese correctamente.");
                     break;
             }
-        Servidor.levantarServidor();
+        levantarServidor();
     }
-}
+
+
+
+    }
+

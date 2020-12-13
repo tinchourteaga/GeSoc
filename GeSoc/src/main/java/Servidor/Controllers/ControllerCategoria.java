@@ -5,6 +5,7 @@ import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
+import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
@@ -22,7 +23,7 @@ public class ControllerCategoria {
         DAO DAOCategorias = new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class); //dao generico de BBDD
         Repositorio repoCategorias = new Repositorio<Criterio>(DAOCategorias); //repositorio que tambien usa generics
         
-         List<Criterio> criteriosLista= miUsuario.getEntidades().stream().map(ent->ent.getCriterios()).flatMap(List::stream).collect(Collectors.toList());
+         List<Criterio> criteriosLista= miUsuario.getEntidades().stream().map(ent-> QueriesUtiles.obtenerCriterioDe(ent)).flatMap(List::stream).collect(Collectors.toList());
         Set<Criterio> criteriosSet=new HashSet<>();
         criteriosSet.addAll(criteriosLista);
         criteriosLista.clear();

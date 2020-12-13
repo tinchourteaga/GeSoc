@@ -1,6 +1,7 @@
 package Persistencia;
 
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Detalle;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Egreso.Core.Presupuesto;
@@ -111,6 +112,13 @@ public class QueriesUtiles {
         String queryString = "SELECT cat FROM Egreso egresito JOIN egresito.categorias cat WHERE egresito.egreso = :egresoID";
         TypedQuery<CategoriaCriterio> query = getEntityManager().createQuery(queryString, CategoriaCriterio.class);
         query.setParameter("egresoID", eg.getEgreso());
+        return query.getResultList();
+    }
+
+    public static List<Criterio> obtenerCriterioDe(Entidad ent) {
+        String queryString = "SELECT crit FROM Entidad entidad JOIN entidad.criterios crit WHERE entidad.entidad = :entidadID";
+        TypedQuery<Criterio> query = getEntityManager().createQuery(queryString, Criterio.class);
+        query.setParameter("entidadID", ent.getEntidad());
         return query.getResultList();
     }
 

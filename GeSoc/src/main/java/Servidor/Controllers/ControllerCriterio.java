@@ -5,6 +5,7 @@ import Dominio.Entidad.Entidad;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
+import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import org.apache.commons.lang3.math.NumberUtils;
 import spark.ModelAndView;
@@ -25,7 +26,7 @@ public class ControllerCriterio {
         entidadesSet.addAll(entidades);
         entidades.clear();
         entidades.addAll(entidadesSet);
-        List<Criterio> criterios = entidades.stream().map(entidad->entidad.getCriterios()).flatMap(List::stream).collect(Collectors.toList());
+        List<Criterio> criterios = entidades.stream().map(entidad-> QueriesUtiles.obtenerCriterioDe(entidad)).flatMap(List::stream).collect(Collectors.toList());
         datos.put("entidades",entidades);
         datos.put("criterios", criterios);
 

@@ -530,7 +530,7 @@
           <tr>
             <td>{{nombre}}</td>
             <td>{{apellido}}</td>
-            <td>{{calle}}-{{altura}}</td>
+            <td>{{direccion.direccion.calle}}-{{direccion.direccion.altura}}</td>
             <td>{{documento}}</td>
           </tr>
           {{/each}}
@@ -677,7 +677,7 @@
           {{#each proveedorEmpresa}}
           <tr>
             <td>{{nombre}}</td>
-            <td>{{calle}}-{{altura}}</td>
+            <td>{{direccion.direccion.calle}}-{{direccion.direccion.altura}}</td>
             <td>{{documento}}</td>
           </tr>
           {{/each}}

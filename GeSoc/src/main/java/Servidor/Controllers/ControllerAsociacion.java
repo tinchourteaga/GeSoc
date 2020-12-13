@@ -14,6 +14,7 @@ import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
 import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
+import org.apache.commons.lang3.math.NumberUtils;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -58,7 +59,7 @@ public class ControllerAsociacion {
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
 
-
+        String egresoID= request.queryParams("egreso");
 
         List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
 
@@ -69,8 +70,12 @@ public class ControllerAsociacion {
         categorias.clear();
         categorias.addAll(categoriasSet);
 
-        List<Presupuesto> presupuestos = egresos.stream().map(e-> QueriesUtiles.obtenerPresupuestosDe(e)).flatMap(List::stream).collect(Collectors.toList());
-
+        List<Presupuesto> presupuestos;
+        if(NumberUtils.isNumber(egresoID)) {
+            presupuestos = egresos.stream().filter(eg -> eg.getEgreso() == Integer.valueOf(egresoID)).map(e -> QueriesUtiles.obtenerPresupuestosDe(e)).flatMap(List::stream).collect(Collectors.toList());
+        }else{
+            presupuestos=egresos.stream().map(e -> QueriesUtiles.obtenerPresupuestosDe(e)).flatMap(List::stream).collect(Collectors.toList());
+        }
         datos.put("egresosPactados",QueriesUtiles.obtenerEgresosPactados(miUsuario.getNickName()));
         datos.put("egresosNoPactados",QueriesUtiles.obtenerEgresosNoPactados(miUsuario.getNickName()));
         datos.put("presupuesto",presupuestos);

@@ -7,6 +7,7 @@ import Lugares.Pais;
 import Lugares.Provincia;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
+import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
@@ -30,13 +31,13 @@ public class ControllerEntidad {
         Repositorio repoEntidadBase = new Repositorio<EntidadBase>(DAOEntidadBase); //repositorio que tambien usa generics
         List<EntidadBase> entidadesBase = repoEntidadBase.getTodosLosElementos();
 
-        entidadesBase= entidadesBase.stream().filter(entidadBase -> miUsuario.getEntidades().contains(entidadBase)).collect(Collectors.toList());
+        entidadesBase= entidadesBase.stream().filter(entidadBase -> QueriesUtiles.obtenerEntidadDeUsuario(miUsuario).contains(entidadBase)).collect(Collectors.toList());
 
         DAO DAOEntidadJuridica = new DAOBBDD<EntidadJuridica>(EntidadJuridica.class); //dao generico de BBDD
         Repositorio repoEntidadJuridica = new Repositorio<EntidadJuridica>(DAOEntidadJuridica); //repositorio que tambien usa generics
         List<EntidadJuridica> entidadesJuridicas = repoEntidadJuridica.getTodosLosElementos();
 
-        entidadesJuridicas= entidadesJuridicas.stream().filter(entidadJuridica -> miUsuario.getEntidades().contains(entidadJuridica)).collect(Collectors.toList());
+        entidadesJuridicas= entidadesJuridicas.stream().filter(entidadJuridica -> QueriesUtiles.obtenerEntidadDeUsuario(miUsuario).contains(entidadJuridica)).collect(Collectors.toList());
 
 
         Repositorio repoPaises=new Repositorio(new DAOBBDD<Pais>(Pais.class));
@@ -119,6 +120,8 @@ public class ControllerEntidad {
             String entidadJuridicaAsociada= request.queryParams("entidadJuridicaAsociada");
             Optional<Entidad> entidadJuridica=miUsuario.getEntidades().stream().filter(entidad->entidad.getEntidad()==Integer.valueOf(entidadJuridicaAsociada).intValue()).findFirst();
             EntidadBase nuevaEntidadBase = new EntidadBase(request.queryParams("nombreFicticio1"), descripcion, (EntidadJuridica)entidadJuridica.get());
+            //nuevaEntidadBase.agregarEmpleado(miUsuario);
+            miUsuario.agregarEntidades(nuevaEntidadBase);
             persistirEntidadBase(nuevaEntidadBase);
 
         }else {
@@ -132,6 +135,8 @@ public class ControllerEntidad {
                     tipoEmpresa.setCuit(cuilOCuit);
                     tipoEmpresa.setRazonSocial(razonSocial);
                     EntidadJuridica nuevaEmpresa = new EntidadJuridica(nombreFicticio, descripcion, tipoEmpresa);
+                    //nuevaEmpresa.agregarEmpleado(miUsuario);
+                    miUsuario.agregarEntidades(nuevaEmpresa);
                     persistirEntidadJuridica(nuevaEmpresa);
                     break;
                 case "OrganizacionSocial":
@@ -142,6 +147,8 @@ public class ControllerEntidad {
                     nuevaorg.setCuit(cuilOCuit);
                     nuevaorg.setRazonSocial(razonSocial);
                     EntidadJuridica nuevaOrganizacionSocial = new EntidadJuridica(nombreFicticio, descripcion, nuevaorg);
+                    //nuevaOrganizacionSocial.agregarEmpleado(miUsuario);
+                    miUsuario.agregarEntidades(nuevaOrganizacionSocial);
                     persistirEntidadJuridica(nuevaOrganizacionSocial);
                     break;
             }

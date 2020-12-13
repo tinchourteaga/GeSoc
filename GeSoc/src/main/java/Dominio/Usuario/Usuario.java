@@ -53,16 +53,6 @@ public class Usuario {
     )
     protected List<Egreso> egresosARevisar=new ArrayList();
 
-    public List<Egreso> getEgresosAREvisar() {
-        return this.egresosARevisar;
-    }
-
-    public void agregarEgresoARevisar(Egreso egreso) {
-        this.egresosARevisar.add(egreso);
-    }
-
-    public void setEntidades(List<Entidad> entidades) { this.entidades = entidades; }
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "pers_usuarios_dom_entidades",
@@ -93,6 +83,16 @@ public class Usuario {
         this.contrasenia = contrasenia;
         this.bandejaDeMensajes = new BandejaMensajes();
     }
+
+    public List<Egreso> getEgresosAREvisar() {
+        return this.egresosARevisar;
+    }
+
+    public void agregarEgresoARevisar(Egreso egreso) {
+        this.egresosARevisar.add(egreso);
+    }
+
+    public void setEntidades(List<Entidad> entidades) { this.entidades = entidades; }
 
     public void setPersona() { this.persona = ControllerNombreUsuario.otorgarNombreUsuario(this);
     }

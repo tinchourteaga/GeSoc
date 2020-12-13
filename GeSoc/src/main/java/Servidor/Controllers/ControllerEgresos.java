@@ -45,7 +45,7 @@ public class ControllerEgresos {
         List<String> documentos=Arrays.asList("Remito","debito","credito","FacturaA","FacturaB","FacturaC","Ticket");
         List<String> metodos= Arrays.asList("TarjetaCredito","TarjetaDebito","Efectivo","Cheque");
         List<Egreso> egresos= QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
-        List<Entidad> entidades= egresos.stream().map(e->e.getEntidad()).collect(Collectors.toList());
+        List<Entidad> entidades= QueriesUtiles.obtenerEntidadDeUsuario(miUsuario);
         Set<Entidad> entidadSet=new HashSet<>();
         entidadSet.addAll(entidades);
         entidades.clear();

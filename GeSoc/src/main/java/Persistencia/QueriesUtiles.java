@@ -7,6 +7,7 @@ import Dominio.Egreso.Core.Presupuesto;
 import Dominio.Egreso.Core.Proveedor;
 import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Ingreso;
+import Dominio.Usuario.Usuario;
 
 import javax.persistence.TypedQuery;
 import java.util.List;
@@ -98,8 +99,14 @@ public class QueriesUtiles {
         return query.getSingleResult();
     }
 
-    public static List<CategoriaCriterio> obtenerCategoriasDe(Egreso eg) {
+    public static List<Entidad> obtenerEntidadDeUsuario(Usuario us) {
+        String queryString = "SELECT ent FROM Usuario us JOIN us.entidades ent WHERE us.usuario = :usuarioID";
+        TypedQuery<Entidad> query = getEntityManager().createQuery(queryString, Entidad.class);
+        query.setParameter("usuarioID", us.getUsuario());
+        return query.getResultList();
+    }
 
+    public static List<CategoriaCriterio> obtenerCategoriasDe(Egreso eg) {
         String queryString = "SELECT cat FROM Egreso egresito JOIN egresito.categorias cat WHERE egresito.egreso = :egresoID";
         TypedQuery<CategoriaCriterio> query = getEntityManager().createQuery(queryString, CategoriaCriterio.class);
         query.setParameter("egresoID", eg.getEgreso());

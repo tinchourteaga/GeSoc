@@ -22,10 +22,10 @@ public class ControllerVisualizacionEI {
         //Estas cinco listas las tenemos que traer de la BD
 
         List<Egreso> egreso = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
-        List<Entidad> entidades = egreso.stream().map(eg->eg.getEntidad()).collect(Collectors.toList());
+        List<Entidad> entidades = QueriesUtiles.obtenerEntidadDeUsuario(miUsuario);
         List<Ingreso> ingreso = entidades.stream().map(ent->ent.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
         List<Criterio> criterios =  miUsuario.getEntidades().stream().map(ent->ent.getCriterios()).flatMap(List::stream).collect(Collectors.toList());
-        List<CategoriaCriterio> categorias =criterios.stream().map(crit->crit.getCategoriaCriterios()).flatMap(List::stream).collect(Collectors.toList());
+        List<CategoriaCriterio> categorias = criterios.stream().map(crit->crit.getCategoriaCriterios()).flatMap(List::stream).collect(Collectors.toList());
 
         //remuevo repetidos
         Set<Entidad> setEntidades = new HashSet<Entidad>(entidades);

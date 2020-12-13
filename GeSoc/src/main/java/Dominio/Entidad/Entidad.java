@@ -3,10 +3,13 @@ package Dominio.Entidad;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Ingreso.Ingreso;
+import Dominio.Usuario.Usuario;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "dom_entidades")
@@ -37,6 +40,9 @@ public abstract class Entidad {
     @OneToOne
     @JoinColumn(name = "entidad_juridica_asociada", referencedColumnName = "entidad")
     protected EntidadJuridica entidad_juridica_asociada;
+
+    @ManyToMany(mappedBy = "entidades")
+    private Set<Usuario> empleados = new HashSet<Usuario>();
 
     public Entidad() { }
 
@@ -74,5 +80,9 @@ public abstract class Entidad {
 
     public List<Ingreso> getIngresos() {
         return ingresos;
+    }
+
+    public void agregarEmpleado(Usuario empleado){
+        empleados.add(empleado);
     }
 }

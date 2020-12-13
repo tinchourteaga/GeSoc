@@ -183,7 +183,7 @@ public class ControllerAsociacion {
         List<Egreso> egresosPosibles = egresos.stream().filter(e -> e.getEgreso() == idEgreso).collect(Collectors.toList());
 
         int idIngreso = ingresoId.intValue();
-        List<Ingreso> ingresos = miUsuario.getEntidades().stream().map(ent->ent.getIngresos()).flatMap(List::stream).collect(Collectors.toList());
+        List<Ingreso> ingresos = miUsuario.getEntidades().stream().map(ent-> QueriesUtiles.obtenerTodosLosIngresosDe(ent)).flatMap(List::stream).collect(Collectors.toList());
         List<Ingreso> ingresosPosibles = ingresos.stream().filter(e -> e.getIngreso() == idIngreso).collect(Collectors.toList());
 
 

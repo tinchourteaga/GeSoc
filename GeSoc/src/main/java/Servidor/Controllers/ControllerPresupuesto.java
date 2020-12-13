@@ -1,7 +1,6 @@
 package Servidor.Controllers;
 
 import Dominio.Egreso.Core.*;
-import Dominio.Entidad.Entidad;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
@@ -9,6 +8,7 @@ import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
+import org.apache.commons.lang3.math.NumberUtils;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -58,45 +58,37 @@ public class ControllerPresupuesto {
         Optional<String> fechaFiltro= Optional.ofNullable(request.queryParams("fechaFiltro"));
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
-        List<Entidad> entidades= miUsuario.getEntidades();
-        entidades.addAll(miUsuario.getEntidades());
-        Set<Entidad> entidadSet= new HashSet<>();
-        entidadSet.addAll(entidades);
-        entidades.clear();
-        entidades.addAll(entidadSet);
 
         final List<Presupuesto>[] misPresupuestos = new List[]{new ArrayList()};
-        entidades.forEach(e-> misPresupuestos[0].addAll(e.getOperaciones().stream().map(ee->ee.getPresupuestosAConsiderar()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList())));
-        datos.put("categorias", misPresupuestos[0].stream().map(p->p.getCategoria()).flatMap(List::stream).collect(Collectors.toList()));
-        datos.put("proveedores", misPresupuestos[0].stream().map(presu->presu.getProveedor()).collect(Collectors.toList()));
+        QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).forEach(e-> misPresupuestos[0].addAll(QueriesUtiles.obtenerPresupuestosDe(e)));
+
+        datos.put("categorias", misPresupuestos[0].stream().map(p->QueriesUtiles.obtenerCategoriaDe(p)).flatMap(List::stream).collect(Collectors.toList()));
+
+        List<Proveedor> proveedoresAMostrar=misPresupuestos[0].stream().map(presu->QueriesUtiles.obtenerProveedorDe(presu)).collect(Collectors.toList());
+
+        datos.put("proveedores",proveedoresAMostrar.stream().filter(ControllerPredicado.distinctByKey(Proveedor::getProveedor)).collect(Collectors.toList()));//TODO esto es MAGIC MACI casi
+
         final List<Presupuesto>[] presupuestosPosibles= new List[]{new ArrayList()};
         final int[] presuId = {0};
 
-        presupuesto.filter(idString->!idString.equals("seleccione")).ifPresent(pres-> {
+        presupuesto.filter(idString-> NumberUtils.isNumber(idString)).ifPresent(pres-> {
             presupuestosPosibles[0] = misPresupuestos[0].stream().filter(pre -> pre.getPresupuesto() == Integer.valueOf(pres).intValue()).collect(Collectors.toList());});
-        Optional<Presupuesto> presuAMostrar = presupuestosPosibles[0].stream().findFirst();
-        presuAMostrar.ifPresent(presu->{datos.put("presupuesto", presu);
-        datos.put("detalles",presu.getDetalles());
+        presupuestosPosibles[0].stream().findFirst().ifPresent(presu->{
+            datos.put("presupuesto", presu);
+            QueriesUtiles.obtenerEgresosPactadoDeParaPresupuesto(presu,miUsuario.getNickName()).ifPresent(egresoPactadoPresente->datos.put("egresoPactado",egresoPactadoPresente));
+            datos.put("detalles",QueriesUtiles.obtenerDetallesDe(presu));
         });
 
-        Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
-        List<Egreso> egresos = repoEgresos.getTodosLosElementos();
-        egresos = egresos.stream().filter(e -> e.getPresupuestosAConsiderar().stream().anyMatch(p -> p.getPresupuesto() == presuId[0])).collect(Collectors.toList());
 
-        datos.put("egresos", egresos);
-        List<Egreso> egresosPactado = egresos.stream().filter(eg -> eg.getPresupuestoPactado() != null && eg.getPresupuestoPactado().getPresupuesto() == presuId[0]).collect(Collectors.toList());
-       Optional<Egreso> egresoPactado= egresosPactado.stream().findFirst();
-       egresoPactado.ifPresent(egreso->datos.put("egresoPactado",egreso));
-
-       categoriaOCriterio.filter(crit->!crit.equals("seleccione")).ifPresent(criterioString->{
-           misPresupuestos[0]= misPresupuestos[0].stream().filter(pre->pre.getCriterios().stream().anyMatch(cri->cri.getCriterio()==Integer.valueOf(criterioString))).collect(Collectors.toList());
+       categoriaOCriterio.filter(crit-> NumberUtils.isNumber(crit)).ifPresent(criterioString->{
+           misPresupuestos[0]= misPresupuestos[0].stream().filter(pre->QueriesUtiles.obtenerCategoriaDe(pre).stream().anyMatch(cri->cri.getCategoria()==Integer.valueOf(criterioString))).collect(Collectors.toList());
            Optional<Presupuesto> unPresu= misPresupuestos[0].stream().findFirst();
-           unPresu.ifPresent(pre->datos.put("proveedorFiltro",pre.getCategoria().stream().filter(cat->cat.getCategoria()==Integer.valueOf(criterioString)).collect(Collectors.toList()).get(0)));
+           unPresu.ifPresent(pre->datos.put("categoriaFiltro",QueriesUtiles.obtenerCategoriaPorPK(Integer.valueOf(criterioString))));
         });
-        proveedorFiltro.filter(prov->!prov.equals("seleccione")).ifPresent(idStringProv->{
-            misPresupuestos[0]= misPresupuestos[0].stream().filter(pre->pre.getProveedor().getProveedor()==Integer.valueOf(idStringProv)).collect(Collectors.toList());
+        proveedorFiltro.filter(prov-> NumberUtils.isNumber(prov)).ifPresent(idStringProv->{
+            misPresupuestos[0]= misPresupuestos[0].stream().filter(pre->QueriesUtiles.obtenerProveedorDe(pre).getProveedor()==Integer.valueOf(idStringProv)).collect(Collectors.toList());
             Optional<Presupuesto> unPresu= misPresupuestos[0].stream().findFirst();
-            unPresu.ifPresent(pre->datos.put("proveedorFiltro",pre.getProveedor()));
+            unPresu.ifPresent(pre->datos.put("proveedorFiltro",QueriesUtiles.obtenerProveedorDe(pre)));
         });
         datos.put("presupuestos", misPresupuestos[0]);
         return new ModelAndView(datos, "detalle_presupuesto.html");

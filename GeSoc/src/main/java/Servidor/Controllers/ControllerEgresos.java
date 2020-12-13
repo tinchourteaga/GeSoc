@@ -16,6 +16,7 @@ import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
+import org.apache.commons.lang3.math.NumberUtils;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -269,7 +270,7 @@ public class ControllerEgresos {
     public static ModelAndView visualizarPantallaDetalleEgreso(Request request, Response response) {
 
         Map<String, Object> datos= new HashMap<>();
-        ModelAndView vista = new ModelAndView(datos, "detalle_egreso.html");
+
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         List<Entidad> entidades= miUsuario.getEntidades();
@@ -289,32 +290,33 @@ public class ControllerEgresos {
         Optional<String> fechaFiltro =Optional.ofNullable( request.queryParams("fechaElegida"));
         Optional<String> catId =Optional.ofNullable( request.queryParams("catElegido"));
 
-        entidadId.filter(id->!id.equals("-")).ifPresent(idString-> {
+        entidadId.filter(id->NumberUtils.isNumber(id)).ifPresent(idString-> {
                     datos.put("entElegida", entidades.stream().filter(ent -> ent.getEntidad() ==Integer.valueOf(idString).intValue()).collect(Collectors.toList()).get(0));
                 });
 
         List<CategoriaCriterio> finalCategorias = categorias;
-        catId.filter(id->!id.equals("-")).ifPresent(idCat->{
+        catId.filter(id->NumberUtils.isNumber(id)).ifPresent(idCat->{
             datos.put("catElegido", finalCategorias.stream().filter(cat-> cat.getCategoria()==Integer.valueOf(idCat)).collect(Collectors.toList()).get(0));
         });
         datos.put("egreso",QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(eg->{
 
-            String idAFiltrar=entidadId.filter(id->!id.equals("-")).orElse(String.valueOf(eg.getEntidad().getEntidad()));
+            final AtomicBoolean[] flag = {new AtomicBoolean(true)};
 
-            final AtomicBoolean[] flag = {new AtomicBoolean(eg.getEntidad().getEntidad() == Integer.valueOf(idAFiltrar).intValue())};
-            fechaFiltro.filter(val->!val.equals("")).ifPresent(fecha->{
+            entidadId.filter(id->NumberUtils.isNumber(id)).ifPresent(id->flag[0].set(QueriesUtiles.obtenerEntidadDe(eg).getEntidad()==Integer.valueOf(id)));
+            fechaFiltro.filter(val->NumberUtils.isNumber(val)).ifPresent(fecha->{
                 flag[0].set(flag[0].get() &&  eg.getFecha().toString().equals(fechaFiltro));
             });
 
-            flag[0].set(flag[0].get() && eg.getCategorias().stream().anyMatch(cat -> cat.getCategoria()==Integer.valueOf(catId.filter(id->!id.equals("-")).orElse(String.valueOf(cat.getCategoria())))));
-
+           catId.filter(id->NumberUtils.isNumber(id)).ifPresent(cat->{
+               flag[0].set(flag[0].get() &&  QueriesUtiles.obtenerCategoriasDe(eg).stream().anyMatch(crit-> crit.getCategoria()==Integer.valueOf(cat)));
+           });
             return flag[0].get();
         }).collect(Collectors.toList()));
         datos.put("entidades",entidades);
 
         datos.put("categoria",categorias);
 
-        egresoId.filter(id->!id.equals("seleccionEgreso")).ifPresent(egresoIdString->{
+        egresoId.filter(id-> NumberUtils.isNumber(id)).ifPresent(egresoIdString->{
             Egreso egreso = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName()).stream().filter(e -> e.getEgreso() == Integer.valueOf(egresoIdString).intValue()).collect(Collectors.toList()).get(0);
 
             datos.put("egresoPactado",egreso);
@@ -335,6 +337,7 @@ public class ControllerEgresos {
             datos.put("items",items);
         });
 
+        ModelAndView vista = new ModelAndView(datos, "detalle_egreso.html");
         return vista;
     }
 

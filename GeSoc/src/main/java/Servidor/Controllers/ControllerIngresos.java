@@ -5,6 +5,7 @@ import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
 import Persistencia.DAO.DAOBBDD;
+import Persistencia.QueriesUtiles;
 import Persistencia.Repos.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
@@ -54,7 +55,7 @@ public class ControllerIngresos {
 
         datos.put("entidades", entidades);
 
-        final List<Ingreso>[] ingresosQueManejo = new List[]{entidades.stream().map(e -> e.getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList())};
+        final List<Ingreso>[] ingresosQueManejo = new List[]{entidades.stream().map(ent -> QueriesUtiles.obtenerTodosLosIngresosDe(ent)).flatMap(List::stream).collect(Collectors.toList())};
 
         categoriaFiltro.filter(cat-> !cat.equals("seleccione")).ifPresent(cat->{
             ingresosQueManejo[0] = ingresosQueManejo[0].stream().filter(ingresoDeLista->ingresoDeLista.getCategoriasAsociadas().stream().anyMatch(cate-> cate.getCategoria()==Integer.valueOf(cat).intValue())).collect(Collectors.toList());
@@ -65,11 +66,15 @@ public class ControllerIngresos {
             ingresosQueManejo[0].stream().findFirst().ifPresent(ingreso1 -> datos.put("entidadFiltro",ingreso1.getEntidad()));
         });
 
+
         datos.put("ingresos", ingresosQueManejo[0]);
 
         ingreso.filter(ingresito->!ingresito.equals("seleccione")).ifPresent(ing->{
                 List<Ingreso> posiblesIngresos= ingresosQueManejo[0].stream().filter(in->in.getIngreso()==Integer.valueOf(ing)).collect(Collectors.toList());
-            posiblesIngresos.stream().findFirst().ifPresent(ingresoPresente->datos.put("ingreso", ingresoPresente));
+            posiblesIngresos.stream().findFirst().ifPresent(ingresoPresente->{
+                datos.put("ingreso", ingresoPresente);
+                datos.put("egresosAsociados", QueriesUtiles.obtenerEgresosDeIngreso(ingresoPresente));
+            });
         });
 
         datos.put("categorias", entidades.stream().map(e->e.getCriterios()).flatMap(List::stream).collect(Collectors.toList()).stream().map(cri-> cri.getCategoriaCriterios()).flatMap(List::stream).collect(Collectors.toList()));

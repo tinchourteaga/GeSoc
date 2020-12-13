@@ -84,7 +84,7 @@
     <div>
         <span style="color:rgba(217, 70, 59, 1); font-size:1.5vw;">Egresos asociados:
             {{#each egresosAsociados}}
-            <input id="proveedorr" name="txt" class="variables_fijas" style="font-size:1.5vw;" value={{valor.importe}} disabled/>
+            <input id="proveedorr" name="txt" class="variables_fijas" style="font-size:1.5vw;" value={{descripcion}}|{{valor.importe}} disabled/>
         {{/each}}
         </span>
     </div>

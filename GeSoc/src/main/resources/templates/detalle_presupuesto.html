@@ -73,7 +73,7 @@
 <select id="select_egreso" class="selects_bonitos" onchange="redireccionar()" type="text" name="txt" style="top 5%; width: 20%; text-align: center; position:absolute">
     <option value="seleccione">Seleccionar...</option>
     {{#each presupuestos}}
-    <option value={{presupuesto}} >{{proveedor.nombre}}:{{fecha}}</option>
+    <option value={{presupuesto}} >{{descripcion}}</option>
     {{/each}}
 </select>
 
@@ -125,7 +125,7 @@
 
     <div>
         <p><span>Egresos asociados:
-            {{#if egresoAsociado includeZero=true}}
+            {{#if egresoPactado includeZero=true}}
             <input name="txt" class="variables_fijas" value={{egresoPactado.descripcion}} disabled/>
             {{else}}
             <input name="txt" class="variables_fijas" value="-" disabled />

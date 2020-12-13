@@ -120,6 +120,7 @@ public class ControllerEntidad {
             String entidadJuridicaAsociada= request.queryParams("entidadJuridicaAsociada");
             Optional<Entidad> entidadJuridica=miUsuario.getEntidades().stream().filter(entidad->entidad.getEntidad()==Integer.valueOf(entidadJuridicaAsociada).intValue()).findFirst();
             EntidadBase nuevaEntidadBase = new EntidadBase(request.queryParams("nombreFicticio1"), descripcion, (EntidadJuridica)entidadJuridica.get());
+            nuevaEntidadBase.setDescripcion(descripcion);
             //nuevaEntidadBase.agregarEmpleado(miUsuario);
             miUsuario.agregarEntidades(nuevaEntidadBase);
             persistirEntidadBase(nuevaEntidadBase);
@@ -135,6 +136,7 @@ public class ControllerEntidad {
                     tipoEmpresa.setCuit(cuilOCuit);
                     tipoEmpresa.setRazonSocial(razonSocial);
                     EntidadJuridica nuevaEmpresa = new EntidadJuridica(nombreFicticio, descripcion, tipoEmpresa);
+                    nuevaEmpresa.setDescripcion(descripcion);
                     //nuevaEmpresa.agregarEmpleado(miUsuario);
                     miUsuario.agregarEntidades(nuevaEmpresa);
                     persistirEntidadJuridica(nuevaEmpresa);
@@ -147,6 +149,7 @@ public class ControllerEntidad {
                     nuevaorg.setCuit(cuilOCuit);
                     nuevaorg.setRazonSocial(razonSocial);
                     EntidadJuridica nuevaOrganizacionSocial = new EntidadJuridica(nombreFicticio, descripcion, nuevaorg);
+                    nuevaOrganizacionSocial.setDescripcion(descripcion);
                     //nuevaOrganizacionSocial.agregarEmpleado(miUsuario);
                     miUsuario.agregarEntidades(nuevaOrganizacionSocial);
                     persistirEntidadJuridica(nuevaOrganizacionSocial);

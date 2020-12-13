@@ -47,9 +47,10 @@ public class QueriesUtiles {
     }
 
     public static List<Egreso>  obtenerEgresosPactados(String nickName) {
-        String queryString = "SELECT e FROM Egreso e JOIN e.revisores us WHERE us.persona = :username AND (e.presupuestoPactado is not NULL  )";
+        String queryString = "SELECT e FROM Egreso e JOIN e.revisores us WHERE us.persona = :username AND (e.presupuestoPactado != 'NULL'  )";
         TypedQuery<Egreso> query = getEntityManager().createQuery(queryString, Egreso.class);
         query.setParameter("username", nickName);
+        query.getResultList().forEach(q->System.out.println(q));
         return query.getResultList();
     }
 

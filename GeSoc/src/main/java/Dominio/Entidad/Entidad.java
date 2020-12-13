@@ -65,6 +65,9 @@ public abstract class Entidad {
     public String getDescripcion() {
         return descripcion;
     }
+    public void setDescripcion(String desc){
+        this.descripcion = desc;
+    }
     public String getNombre() {
         return nombre;
     }

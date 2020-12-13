@@ -11,6 +11,7 @@ import java.util.List;
 
 public class ChequearContraseniaComun implements IValidacion {
     private static List<String> contraseniaComun;
+    private static String archivoContraseniasComunes="../10000_commonPasswords.txt"; //en local: "10000_commonPasswords.txt"
 
     // Vuela cuando sea base de datos
     static {
@@ -33,7 +34,7 @@ public class ChequearContraseniaComun implements IValidacion {
         String line;
         List<String> contraseniasComunes = new ArrayList();
 
-        File file = new File("10000_commonPasswords.txt");
+        File file = new File(archivoContraseniasComunes);
 
         BufferedReader buffer = new BufferedReader(new FileReader(file));
 

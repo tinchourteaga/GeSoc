@@ -16,7 +16,7 @@ public class Test {
 
     Rol rolPrueba = Rol.ADMINISTRADOR;
 
-/*    @org.junit.Test(expected = ExcepcionNumero.class)
+    @org.junit.Test(expected = ExcepcionNumero.class)
     public void testContraseniaSinNumeros() throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException, ExcepcionCaracterEspecial, ExcepcionLongitud, ExcepcionContraseniaComun {
         ContieneNumero validacion1 =new ContieneNumero();
         validacion1.validar("saraza");
@@ -36,7 +36,7 @@ public class Test {
         ChequearContraseniaComun validacion1 =new ChequearContraseniaComun();
         validacion1.validar("qwerty");
     }
-*/
+
     @org.junit.Test
     public void testContraseniaCorrecta() throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
         ChequearContraseniaComun validacion1 =new ChequearContraseniaComun();

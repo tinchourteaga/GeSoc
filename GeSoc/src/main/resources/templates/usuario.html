@@ -225,7 +225,7 @@
               </div>
             </div>
 
-            <input id="mensajePassword" name="mensajePassword" value="{{mensaje}}" style="display:none; visibility: hidden;">
+            <input id="mensajePassword" name="mensajePassword" value="{{mensaje}}" onclick="chequearContra()" style="display:none; visibility: hidden;">
 
             <div id="u2011" class="ax_default primary_button">
               <div id="u2011_div" class=""></div>
@@ -841,16 +841,20 @@
 
       function chequearContra() {
 
-        if (mensajePassword.value === '') {
+         mensaje = document.getElementById('mensajePassword');
+
+        if (mensaje.value === '') {
           //no llego nada
         } else {
-          if (mensajePassword.value === 'OK') {
+          if (mensaje.value === 'OK') {
             alert('La contraseña fue cambiada de forma exitosa.');
           }else{
             show();
-            alert(mensajePassword.value);
+            alert(mensaje.value);
           }
         }
+
+        alert("Entré a la función");
       }
 
 

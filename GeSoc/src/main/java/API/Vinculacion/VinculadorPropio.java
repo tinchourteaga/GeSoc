@@ -105,21 +105,27 @@ public class VinculadorPropio implements Vinculador {
         List<Ingreso> ingresosAux = ingresos.stream().filter(egreso->egreso.getIngreso()==id_movimiento).collect(Collectors.toList());
 
         if(!ingresosAux.isEmpty()){
+
         Ingreso ingresoVinculado = ingresosAux.get(0);
         egresosVinculados.forEach(egresoAVincular-> {
             try {
-                ingresoVinculado.agregarEgreso(egresoAVincular);
-                ingresoVinculado.disminuirValor(egresoAVincular.getValor().getImporte());
-                egresoAVincular.setIngreso(ingresoVinculado);
-
-                Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
-                Repositorio repoIngreso = new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
-                repoEgresos.modificar(null, egresoAVincular);
-                repoIngreso.modificar(null, ingresoVinculado);
+                if(ingresoVinculado.getValor().getImporte()>=egresoAVincular.getValor().getImporte()) {
+                    ingresoVinculado.agregarEgreso(egresoAVincular);
+                    ingresoVinculado.disminuirValor(egresoAVincular.getValor().getImporte());
+                    egresoAVincular.setIngreso(ingresoVinculado);
+                    Repositorio repoEgresos = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
+                    repoEgresos.modificar(null, egresoAVincular);
+                }
             } catch (NoPuedoAsignarMasDineroDelQueTengoException e) {
-                e.printStackTrace();//no deberia pasar esto a menos que la api este mal
+                e.printStackTrace();
             }
-        });}
+        });
+
+            Repositorio repoIngreso = new Repositorio(new DAOBBDD<Ingreso>(Ingreso.class));
+            repoIngreso.modificar(null, ingresoVinculado);
+        }
+
+
 
     }
 

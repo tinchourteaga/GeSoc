@@ -841,32 +841,31 @@
 
       function chequearContra() {
 
-         mensaje = document.getElementById('mensajePassword');
+         mensaje = document.getElementById('mensajePassword').getAttribute('value');
 
-        if (mensaje.value != '') {
+        if (mensaje != '') {
             show();
-              switch (mensaje.value) {
-                  case 0:
+              switch (mensaje) {
+                  case "0":
                       alert('Hubo un error interno y no se pudo cambiar su contraseña. Intente mas tarde.');
                       break;
-                  case 1:
+                  case "1":
                       alert('Su contraseña no posee números, intente otra vez.');
                       break;
-                  case 2:
+                  case "2":
                       alert('Su contraseña es muy corta, intente otra vez.');
                       break;
-                  case 3:
+                  case "3":
                       alert('Su contraseña no posee caracteres especiales, intente otra vez.');
                       break;
-                  case 4:
+                  case "4":
                       alert('Su contraseña es muy común, intente otra vez.');
                       break;
-                  case 5:
+                  case "5":
                       alert('La contraseña fue cambiada de forma exitosa.');
                       break;
               }
           }
-        alert("Entré a la función");
       }
 
 

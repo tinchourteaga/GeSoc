@@ -51,7 +51,7 @@ public class Test {
         ValidadorDeContrasenia.validarContrasenia("S4R4z@78P212EyR");
     }
 
-    @org.junit.Test
+ /*   @org.junit.Test
     public void testContraseniaCambiadaASinNumeros() throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException, ContraseniasDistintasException {
 
         ChequearContraseniaComun validacion1 =new ChequearContraseniaComun();
@@ -95,5 +95,6 @@ public class Test {
         Assert.assertEquals(usuario.getContrasenia(),"S4R4z@78P212EyR");
 
     }
+    */
 
 }

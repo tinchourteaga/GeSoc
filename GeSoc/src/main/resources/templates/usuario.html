@@ -225,7 +225,7 @@
               </div>
             </div>
 
-            <input id="mensajePassword" name="mensajePassword" value="{{mensaje}}" onclick="chequearContra()" style="display:none; visibility: hidden;">
+              <div id="mensajePassword" name="mensajePassword" value={{mensaje}} style="display:none; visibility: hidden;"></div>
 
             <div id="u2011" class="ax_default primary_button">
               <div id="u2011_div" class=""></div>
@@ -843,17 +843,29 @@
 
          mensaje = document.getElementById('mensajePassword');
 
-        if (mensaje.value === '') {
-          //no llego nada
-        } else {
-          if (mensaje.value === 'OK') {
-            alert('La contraseña fue cambiada de forma exitosa.');
-          }else{
+        if (mensaje.value != '') {
             show();
-            alert(mensaje.value);
+              switch (mensaje.value) {
+                  case 0:
+                      alert('Hubo un error interno y no se pudo cambiar su contraseña. Intente mas tarde.');
+                      break;
+                  case 1:
+                      alert('Su contraseña no posee números, intente otra vez.');
+                      break;
+                  case 2:
+                      alert('Su contraseña es muy corta, intente otra vez.');
+                      break;
+                  case 3:
+                      alert('Su contraseña no posee caracteres especiales, intente otra vez.');
+                      break;
+                  case 4:
+                      alert('Su contraseña es muy común, intente otra vez.');
+                      break;
+                  case 5:
+                      alert('La contraseña fue cambiada de forma exitosa.');
+                      break;
+              }
           }
-        }
-
         alert("Entré a la función");
       }
 
@@ -861,7 +873,6 @@
       $(document).ready(
               (chequearContra())
       );
-
     </script>
   </body>
 </html>

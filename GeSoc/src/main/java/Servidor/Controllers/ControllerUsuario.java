@@ -41,34 +41,8 @@ public class ControllerUsuario {
         datos.put("email",miUsuario.getMail());
         datos.put("rol",miUsuario.getRol());
         datos.put("nickname",miUsuario.getNickName());
-        String cc= request.queryParamOrDefault("cc","3");
-        String error=request.queryParamOrDefault("err","OK");
-        String msj="";
-        if(cc.equals("0")){
-                 switch (error){
-                     case "IO":
-                         msj="Hubo un error interno y no se pudo cambiar su contraseña. Intente mas tarde.";
-                         break;
-                     case "NUM":
-                         msj="Su contraseña no posee números, intente otra vez.";
-                         break;
-                     case "LONG":
-                         msj="Su contraseña es muy corta, intente otra vez.";
-                         break;
-                     case "SPC":
-                         msj="Su contraseña no posee caracteres especiales, intente otra vez.";
-                         break;
-                     case "CMN":
-                         msj="Su contraseña es muy común, intente otra vez.";
-                         break;
-
-                 }
-        }else{
-            if(cc.equals("1")) {
-                msj = "OK";
-            }
-         }
-        datos.put("mensaje",msj);
+        String error=request.queryParamOrDefault("err","");
+        datos.put("mensaje",error);
 
         ModelAndView vista = new ModelAndView(datos, "usuario.html");
 
@@ -230,19 +204,18 @@ public class ControllerUsuario {
             if(usuario.getContrasenia().equals(contraActual) && contraNueva.equals(verifContraNueva) && ValidadorDeContrasenia.validarContrasenia(contraNueva)){
                 usuarioModificado.setContrasenia(contraNueva);
                 repoUsuario.modificar(usuario,usuarioModificado);
-                cc=1;
-                response.redirect("usuario?cc="+cc);
+                response.redirect("usuario?err=5");
             }
         } catch (IOException e) {
-            response.redirect("usuario?cc="+cc+"&err=IO");
+            response.redirect("usuario?err=0");
         } catch (ExcepcionNumero excepcionNumero) {
-            response.redirect("usuario?cc="+cc+"&err=NUM");
+            response.redirect("usuario?err=1");
         } catch (ExcepcionLongitud excepcionLongitud) {
-            response.redirect("usuario?cc="+cc+"&err=LONG");
+            response.redirect("usuario?err=2");
         } catch (ExcepcionCaracterEspecial excepcionCaracterEspecial) {
-            response.redirect("usuario?cc="+cc+"&err=SPC");
+            response.redirect("usuario?err=3");
         } catch (ExcepcionContraseniaComun excepcionContraseniaComun) {
-            response.redirect("usuario?cc="+cc+"&err=CMN");
+            response.redirect("usuario?err=4");
         }
         response.redirect("usuario");
         return null;

@@ -26,16 +26,10 @@ public class ValidadorDeContrasenia {
 
         AtomicBoolean esSegura = new AtomicBoolean(true);
 
-        try {
             ChequearContraseniaComun.validar(contrasenia);
             ChequearLongitudContrasenia.validar(contrasenia);
             ContieneNumero.validar(contrasenia);
             ContieneCaracterEspecial.validar(contrasenia);
-
-        }  catch (ExcepcionContraseniaComun | ExcepcionLongitud | ExcepcionNumero | ExcepcionCaracterEspecial e) {
-            e.printStackTrace();
-            esSegura.set(false);
-        }
 
         return esSegura.get();
     }

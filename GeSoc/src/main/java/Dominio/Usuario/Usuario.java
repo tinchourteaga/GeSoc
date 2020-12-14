@@ -79,7 +79,7 @@ public class Usuario {
         this.apellido = apellido;
         this.dni = dni;
         this.mail = mail;
-        ValidadorDeContrasenia.validarContrasenia(contrasenia);
+        //ValidadorDeContrasenia.validarContrasenia(contrasenia);
         this.contrasenia = contrasenia;
         this.bandejaDeMensajes = new BandejaMensajes();
     }

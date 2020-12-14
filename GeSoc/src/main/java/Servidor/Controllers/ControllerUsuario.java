@@ -44,32 +44,32 @@ public class ControllerUsuario {
         String cc= request.queryParamOrDefault("cc","3");
         String error=request.queryParamOrDefault("err","OK");
         String msj="";
-         switch (cc){
-             case "0":
+        if(cc.equals("0")){
                  switch (error){
-                     case"IO":
+                     case "IO":
                          msj="Hubo un error interno y no se pudo cambiar su contraseña. Intente mas tarde.";
                          break;
-                     case"NUM":
+                     case "NUM":
                          msj="Su contraseña no posee números, intente otra vez.";
                          break;
-                     case"LONG":
+                     case "LONG":
                          msj="Su contraseña es muy corta, intente otra vez.";
                          break;
-                     case"SPC":
+                     case "SPC":
                          msj="Su contraseña no posee caracteres especiales, intente otra vez.";
                          break;
-                     case"CMN":
+                     case "CMN":
                          msj="Su contraseña es muy común, intente otra vez.";
                          break;
 
                  }
-                 break;
-             case "1":
-                 msj="OK";
-                 break;
+        }else{
+            if(cc.equals("1")) {
+                msj = "OK";
+            }
          }
         datos.put("mensaje",msj);
+
         ModelAndView vista = new ModelAndView(datos, "usuario.html");
 
         return vista;
@@ -190,7 +190,8 @@ public class ControllerUsuario {
 
         Map<String,Object> datos = new HashMap<>();
 
-        String nombre=obtenerNombreUsuario(request);
+        Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
+        String nombre=miUsuario.getNombre();
         datos.put("nombreUsuario",nombre);
         ModelAndView vista = new ModelAndView(datos, "pantalla_principal_usuario.html");
 
@@ -209,9 +210,9 @@ public class ControllerUsuario {
         return vista;
     }
 
-    private static String obtenerNombreUsuario(Request request) {
+   /* private static String obtenerNombreUsuario(Request request) {
         return request.queryParams("usuario");
-    }
+    }*/
 
     public static Object cambiarContrasenia(Request request, Response response){
         String contraActual = request.queryParams("contraActual");
@@ -231,11 +232,8 @@ public class ControllerUsuario {
                 repoUsuario.modificar(usuario,usuarioModificado);
                 cc=1;
                 response.redirect("usuario?cc="+cc);
-            }else{
-
             }
         } catch (IOException e) {
-
             response.redirect("usuario?cc="+cc+"&err=IO");
         } catch (ExcepcionNumero excepcionNumero) {
             response.redirect("usuario?cc="+cc+"&err=NUM");
@@ -246,7 +244,7 @@ public class ControllerUsuario {
         } catch (ExcepcionContraseniaComun excepcionContraseniaComun) {
             response.redirect("usuario?cc="+cc+"&err=CMN");
         }
-
+        response.redirect("usuario");
         return null;
     }
 

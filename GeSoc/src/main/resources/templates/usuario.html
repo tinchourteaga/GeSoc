@@ -51,9 +51,9 @@
     <script src="jquery.js"></script>
 
     <script>
+
     $(function(){
       $("#includedContent").load("sidebar.html");
-      chequearContra();
     });
     </script>
 
@@ -839,17 +839,25 @@
         document.getElementById('u199_lightbox').style.display = 'block';
       }
 
-      function chequearContra(){
-        mensaje = document.getElementById('mensajePassword');
+      function chequearContra() {
 
-        if(mensaje.value != ""){
-          //Me llego algo del backend
-          if(mensaje.value != "OK"){
+        if (mensajePassword.value === '') {
+          //no llego nada
+        } else {
+          if (mensajePassword.value === 'OK') {
+            alert('La contraseña fue cambiada de forma exitosa.');
+          }else{
             show();
-            alert(mensaje.value);
-            }
+            alert(mensajePassword.value);
+          }
         }
       }
+
+
+      $(document).ready(
+              (chequearContra())
+      );
+
     </script>
   </body>
 </html>

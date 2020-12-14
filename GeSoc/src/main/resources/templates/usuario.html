@@ -53,13 +53,14 @@
     <script>
     $(function(){
       $("#includedContent").load("sidebar.html");
+      chequearContra();
     });
     </script>
 
   </head>
   <body>
     <div id="base" class="">
-      <form action="/cambiarContrasenia" method="post">
+      <form id="formAEnviar" action="/cambiarContrasenia" method="post">
 
       <!-- Unnamed (Image) -->
       <div id="u178" class="ax_default image">
@@ -223,6 +224,8 @@
                 </p>
               </div>
             </div>
+
+            <input id="mensajePassword" name="mensajePassword" value="{{mensaje}}" style="display:none; visibility: hidden;">
 
             <div id="u2011" class="ax_default primary_button">
               <div id="u2011_div" class=""></div>
@@ -829,6 +832,23 @@
         document.getElementById('u199').style.display = 'none';
         document.getElementById('u199_lightbox').style.display = 'none';
         location.href="/usuario";
+      }
+
+      function show() {
+        document.getElementById('u199').style.display = 'block';
+        document.getElementById('u199_lightbox').style.display = 'block';
+      }
+
+      function chequearContra(){
+        mensaje = document.getElementById('mensajePassword');
+
+        if(mensaje.value != ""){
+          //Me llego algo del backend
+          if(mensaje.value != "OK"){
+            show();
+            alert(mensaje.value);
+            }
+        }
       }
     </script>
   </body>

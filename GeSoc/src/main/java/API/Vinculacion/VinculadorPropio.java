@@ -18,8 +18,9 @@ import java.util.stream.Collectors;
 
 public class VinculadorPropio implements Vinculador {
 
-    private String urlDominio="http://localhost:5000/api/add_message/1234";//poner el dominio aca
+    private String urlDominio="http://18.191.215.210:5000/api/add_message/1234";//poner el dominio aca
 
+    //Dominio Python: http://18.191.215.210:5000/api/add_message/1234
     //Dominio Python: http://localhost:5000/api/add_message/1234
     //Dominio Java2: http://localhost:4575/
 

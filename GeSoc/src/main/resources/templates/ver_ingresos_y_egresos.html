@@ -1222,12 +1222,12 @@
         document.getElementById("myPopUpIngreso").style.display = "none";
       }
 
-      function redireccionarAlDetalleIngreso(){
-          location.href="/detalle_ingreso";
+      function redireccionarAlDetalleIngreso(v){
+          location.href="/detalle_ingreso?ingreso="+v.value.ingreso;
       }
 
-      function redireccionarAlDetalleEgreso(){
-          location.href="/detalle_egreso";
+      function redireccionarAlDetalleEgreso(v){
+          location.href="/detalle_egreso?eg="+v.value.egreso;
       }
 
       function openFormIngreso(v) {

@@ -41,6 +41,35 @@ public class ControllerUsuario {
         datos.put("email",miUsuario.getMail());
         datos.put("rol",miUsuario.getRol());
         datos.put("nickname",miUsuario.getNickName());
+        String cc= request.queryParamOrDefault("cc","3");
+        String error=request.queryParamOrDefault("err","OK");
+        String msj="";
+         switch (cc){
+             case "0":
+                 switch (error){
+                     case"IO":
+                         msj="Hubo un error interno y no se pudo cambiar su contraseña. Intente mas tarde.";
+                         break;
+                     case"NUM":
+                         msj="Su contraseña no posee números, intente otra vez.";
+                         break;
+                     case"LONG":
+                         msj="Su contraseña es muy corta, intente otra vez.";
+                         break;
+                     case"SPC":
+                         msj="Su contraseña no posee caracteres especiales, intente otra vez.";
+                         break;
+                     case"CMN":
+                         msj="Su contraseña es muy común, intente otra vez.";
+                         break;
+
+                 }
+                 break;
+             case "1":
+                 msj="OK";
+                 break;
+         }
+        datos.put("mensaje",msj);
         ModelAndView vista = new ModelAndView(datos, "usuario.html");
 
         return vista;
@@ -168,7 +197,7 @@ public class ControllerUsuario {
         return vista;
     }
 
-    public static ModelAndView visualizarPantallaAltaUsuario(Request request, Response response) throws IOException, ExcepcionNumero, ExcepcionLongitud, ExcepcionCaracterEspecial, ExcepcionContraseniaComun {
+    public static ModelAndView visualizarPantallaAltaUsuario(Request request, Response response) {
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
         Map<String,Object> datos = new HashMap<>();
 
@@ -184,7 +213,7 @@ public class ControllerUsuario {
         return request.queryParams("usuario");
     }
 
-    public static Object cambiarContrasenia(Request request, Response response) throws ExcepcionNumero, ExcepcionContraseniaComun, ExcepcionLongitud, ExcepcionCaracterEspecial, IOException {
+    public static Object cambiarContrasenia(Request request, Response response){
         String contraActual = request.queryParams("contraActual");
         String contraNueva = request.queryParams("contraNueva");
         String verifContraNueva = request.queryParams("verifContraNueva");
@@ -195,12 +224,28 @@ public class ControllerUsuario {
         Usuario usuario = ControllerSesion.obtenerUsuariodeSesion(request);
         Usuario usuarioModificado = ControllerSesion.obtenerUsuariodeSesion(request);
 
-        if(usuario.getContrasenia().equals(contraActual) && contraNueva.equals(verifContraNueva) && ValidadorDeContrasenia.validarContrasenia(contraNueva)){
-            usuarioModificado.setContrasenia(contraNueva);
-            repoUsuario.modificar(usuario,usuarioModificado);
-        }
+        int cc=0;
+        try {
+            if(usuario.getContrasenia().equals(contraActual) && contraNueva.equals(verifContraNueva) && ValidadorDeContrasenia.validarContrasenia(contraNueva)){
+                usuarioModificado.setContrasenia(contraNueva);
+                repoUsuario.modificar(usuario,usuarioModificado);
+                cc=1;
+                response.redirect("usuario?cc="+cc);
+            }else{
 
-        response.redirect("usuario");
+            }
+        } catch (IOException e) {
+
+            response.redirect("usuario?cc="+cc+"&err=IO");
+        } catch (ExcepcionNumero excepcionNumero) {
+            response.redirect("usuario?cc="+cc+"&err=NUM");
+        } catch (ExcepcionLongitud excepcionLongitud) {
+            response.redirect("usuario?cc="+cc+"&err=LONG");
+        } catch (ExcepcionCaracterEspecial excepcionCaracterEspecial) {
+            response.redirect("usuario?cc="+cc+"&err=SPC");
+        } catch (ExcepcionContraseniaComun excepcionContraseniaComun) {
+            response.redirect("usuario?cc="+cc+"&err=CMN");
+        }
 
         return null;
     }

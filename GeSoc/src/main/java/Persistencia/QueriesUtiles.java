@@ -114,6 +114,13 @@ public class QueriesUtiles {
         query.setParameter("egresoID", eg.getEgreso());
         return query.getResultList();
     }
+    public static List<CategoriaCriterio> obtenerCategoriasDe(Entidad ent) {
+        String queryString = "SELECT cat FROM Entidad ent JOIN ent.criterios cri JOIN cri.categoriaCriterios cat WHERE ent.entidad = :entidadID";
+        TypedQuery<CategoriaCriterio> query = getEntityManager().createQuery(queryString, CategoriaCriterio.class);
+        query.setParameter("entidadID", ent.getEntidad());
+        return query.getResultList();
+    }
+
 
     public static List<Criterio> obtenerCriterioDe(Entidad ent) {
         String queryString = "SELECT crit FROM Entidad entidad JOIN entidad.criterios crit WHERE entidad.entidad = :entidadID";

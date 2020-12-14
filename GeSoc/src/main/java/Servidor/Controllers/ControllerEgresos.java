@@ -273,17 +273,10 @@ public class ControllerEgresos {
 
 
         Usuario miUsuario= ControllerSesion.obtenerUsuariodeSesion(request);
-        List<Entidad> entidades= miUsuario.getEntidades();
-        Set<Entidad> entidadSet= new HashSet<>();
-        entidadSet.addAll(entidades);
-        entidades.clear();
-        entidades.addAll(entidadSet);
+        List<Entidad> entidades= QueriesUtiles.obtenerEntidadDeUsuario(miUsuario);
 
+        List<CategoriaCriterio> categorias = entidades.stream().map(ent->QueriesUtiles.obtenerCategoriasDe(ent)).flatMap(List::stream).collect(Collectors.toList());
 
-
-        Repositorio repoCats =new Repositorio(new DAOBBDD<CategoriaCriterio>(CategoriaCriterio.class));
-        List<CategoriaCriterio> categorias = repoCats.getTodosLosElementos();
-        categorias= categorias.stream().filter(cat-> entidades.contains(cat.getCriterio().getEntidad())).collect(Collectors.toList());
 
         Optional<String> egresoId =Optional.ofNullable( request.queryParams("eg"));
         Optional<String> entidadId =Optional.ofNullable( request.queryParams("entElegida"));

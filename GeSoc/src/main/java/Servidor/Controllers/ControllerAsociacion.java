@@ -76,6 +76,7 @@ public class ControllerAsociacion {
         List<Presupuesto> presupuestos;
         if(NumberUtils.isNumber(egresoID)) {
             presupuestos = egresos.stream().filter(eg -> eg.getEgreso() == Integer.valueOf(egresoID)).map(e -> QueriesUtiles.obtenerPresupuestosDe(e)).flatMap(List::stream).collect(Collectors.toList());
+            egresos.stream().filter(eg -> eg.getEgreso() == Integer.valueOf(egresoID)).findFirst().ifPresent(eg -> datos.put("egresoSeleccionado",eg));
         }else{
             presupuestos=egresos.stream().map(e -> QueriesUtiles.obtenerPresupuestosDe(e)).flatMap(List::stream).collect(Collectors.toList());
         }

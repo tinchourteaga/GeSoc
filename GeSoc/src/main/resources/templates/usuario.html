@@ -70,6 +70,8 @@
         </div>
       </div>
 
+
+
       <!-- Unnamed (Group) -->
       <div id="u179" class="ax_default" data-left="45" data-top="2" data-width="249" data-height="68">
 
@@ -201,6 +203,16 @@
         </div>
       </div>
 
+        <div id="blurBackground" style="position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 90%;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(3px);
+        visibility: hidden;
+        opacity: 0;"></div>
+
       <!-- Popup (Dynamic Panel) -->
       <div id="u199" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
         <div id="u199_state0" class="panel_state" data-label="State1" style="">
@@ -225,7 +237,7 @@
               </div>
             </div>
 
-              <div id="mensajePassword" name="mensajePassword" value={{mensaje}} style="display:none; visibility: hidden;"></div>
+            <input id="mensajePassword" name="mensajePassword" value="{{mensaje}}" onclick="chequearContra()" style="display:none; visibility: hidden;">
 
             <div id="u2011" class="ax_default primary_button">
               <div id="u2011_div" class=""></div>
@@ -804,6 +816,7 @@
           </div>
         </div>
       </div>
+        <!--<button id="lal" onclick="showw()">TOCAR BOTON</button>-->
 
       <!-- Unnamed (Shape)
       <div id="u282" class="ax_default icon">
@@ -829,49 +842,48 @@
     </div>
     <script>
       function hide() {
+        document.getElementById("blurBackground").style.opacity = 0;
+        document.getElementById("blurBackground").style.display = 'none';
+        document.getElementById("blurBackground").style.visibility = "hidden";
+
         document.getElementById('u199').style.display = 'none';
         document.getElementById('u199_lightbox').style.display = 'none';
+
         location.href="/usuario";
       }
 
-      function show() {
-        document.getElementById('u199').style.display = 'block';
-        document.getElementById('u199_lightbox').style.display = 'block';
+      function showw() {
+        document.getElementById("blurBackground").style.visibility = "visible";
+        document.getElementById("blurBackground").style.display = 'block';
+        document.getElementById("blurBackground").style.opacity = 1;
+
+        document.getElementById("u199").style.display = "block";
+        document.getElementById("u199").style.visibility = "visible";
       }
 
       function chequearContra() {
 
-         mensaje = document.getElementById('mensajePassword').getAttribute('value');
+         mensaje = document.getElementById('mensajePassword');
 
-        if (mensaje != '') {
-            show();
-              switch (mensaje) {
-                  case "0":
-                      alert('Hubo un error interno y no se pudo cambiar su contraseña. Intente mas tarde.');
-                      break;
-                  case "1":
-                      alert('Su contraseña no posee números, intente otra vez.');
-                      break;
-                  case "2":
-                      alert('Su contraseña es muy corta, intente otra vez.');
-                      break;
-                  case "3":
-                      alert('Su contraseña no posee caracteres especiales, intente otra vez.');
-                      break;
-                  case "4":
-                      alert('Su contraseña es muy común, intente otra vez.');
-                      break;
-                  case "5":
-                      alert('La contraseña fue cambiada de forma exitosa.');
-                      break;
-              }
+        if (mensaje.value === '') {
+          //no llego nada
+        } else {
+          if (mensaje.value === 'OK') {
+            alert('La contraseña fue cambiada de forma exitosa.');
+          }else{
+            showw();
+            alert(mensaje.value);
           }
+        }
+
+        alert("Entré a la función");
       }
 
 
       $(document).ready(
               (chequearContra())
       );
+
     </script>
   </body>
 </html>

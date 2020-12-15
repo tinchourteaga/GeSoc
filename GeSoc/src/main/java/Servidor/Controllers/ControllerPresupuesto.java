@@ -190,7 +190,7 @@ public class ControllerPresupuesto {
         List<Presupuesto> presupuestosPosibles= presupeustos.stream().filter(p->p.getPresupuesto()==Integer.valueOf(presupeustoId).intValue()).collect(Collectors.toList());
 
         if(presupuestosPosibles.isEmpty()){
-            response.redirect("pantalla_principal_usuario");
+            response.redirect("pantalla_principal_usuario?pre="+presupeustoId);
             return null;
         }else {
             Presupuesto presupuestofinal=presupuestosPosibles.get(0);

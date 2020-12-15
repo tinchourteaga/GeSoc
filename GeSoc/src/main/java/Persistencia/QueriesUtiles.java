@@ -143,4 +143,11 @@ public class QueriesUtiles {
         query.setParameter("usID", us.getUsuario());
         return query.getResultList();
     }
+
+    public static List<Egreso> obtenerEgresosNoAsociadosDe(String nickName) {
+        String queryString = "SELECT e FROM Egreso e JOIN e.revisores us WHERE us.persona = :username AND (e.ingreso is NULL )";
+        TypedQuery<Egreso> query = getEntityManager().createQuery(queryString, Egreso.class);
+        query.setParameter("username", nickName);
+        return query.getResultList();
+    }
 }

@@ -7,6 +7,7 @@ import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Egreso.Core.Presupuesto;
 import Dominio.Entidad.Entidad;
+import Dominio.Entidad.EntidadJuridica;
 import Dominio.Ingreso.Excepciones.NoPuedoAsignarMasDineroDelQueTengoException;
 import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
@@ -35,14 +36,13 @@ public class ControllerAsociacion {
             return null;
         }
 
-        List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
+        List<Egreso> egresos = QueriesUtiles.obtenerEgresosNoAsociadosDe(miUsuario.getNickName());
+        List<Entidad> entidades;
+        DAO DAOEntidadJuridica = new DAOBBDD<EntidadJuridica>(EntidadJuridica.class); //dao generico de BBDD
+        Repositorio repoEntidadJuridica = new Repositorio<EntidadJuridica>(DAOEntidadJuridica); //repositorio que tambien usa generics
+        List<EntidadJuridica> entidadesJuridicas = repoEntidadJuridica.getTodosLosElementos();
+        entidades= entidadesJuridicas.stream().filter(entidadJuridica -> QueriesUtiles.obtenerEntidadDeUsuario(miUsuario).contains(entidadJuridica)).collect(Collectors.toList());
 
-        List<Entidad> entidades= miUsuario.getEntidades();
-        Set<Entidad> entidadSet= new HashSet<>();
-        entidadSet.addAll(entidades);
-        entidades.clear();
-        entidades.addAll(entidadSet);
-        //List<Ingreso> ingresos = egresos.stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
         final List<Ingreso>[] ingresosQueManejo = new List[]{entidades.stream().map(e -> QueriesUtiles.obtenerTodosLosIngresosDe(e)).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList())};
 
         List<Egreso> egreso = ingresosQueManejo[0].stream().map(i->QueriesUtiles.obtenerEgresosDeIngreso(i)).flatMap(List::stream).collect(Collectors.toList());

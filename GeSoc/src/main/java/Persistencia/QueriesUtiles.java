@@ -143,4 +143,18 @@ public class QueriesUtiles {
         query.setParameter("usID", us.getUsuario());
         return query.getResultList();
     }
+
+    public static List<Egreso> obtenerEgresosNoAsociadosDe(String nickName) {
+        String queryString = "SELECT e FROM Egreso e JOIN e.revisores us WHERE us.persona = :username AND (e.ingreso is NULL )";
+        TypedQuery<Egreso> query = getEntityManager().createQuery(queryString, Egreso.class);
+        query.setParameter("username", nickName);
+        return query.getResultList();
+    }
+
+    public static Optional<Presupuesto> obtenerPresupeustoPorPK(String presupeustoId) {
+        String queryString = "SELECT p FROM Presupuesto p JOIN p.proveedor JOIN p.documentoComercial JOIN p.egreso WHERE p.presupuesto = :idPresupuesto";
+        TypedQuery<Presupuesto> query = getEntityManager().createQuery(queryString, Presupuesto.class);
+        query.setParameter("idPresupuesto", Integer.valueOf(presupeustoId));
+        return query.getResultList().stream().findFirst();
+    }
 }

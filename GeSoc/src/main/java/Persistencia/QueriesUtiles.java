@@ -1,5 +1,6 @@
 package Persistencia;
 
+import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Detalle;
@@ -133,6 +134,13 @@ public class QueriesUtiles {
         String queryString = "SELECT egresosGastados FROM Ingreso ingresito JOIN ingresito.gastadoEn egresosGastados WHERE ingresito.ingreso = :ingresoID";
         TypedQuery<Egreso> query = getEntityManager().createQuery(queryString, Egreso.class);
         query.setParameter("ingresoID", ing.getIngreso());
+        return query.getResultList();
+    }
+
+    public static List<Mensaje> obtenerTodosLosMensajes(Usuario us){
+        String queryString = "SELECT mensajes FROM Usuario us JOIN us.bandejaDeMensajes.mensajes mensajes WHERE us.usuario = :usID";
+        TypedQuery<Mensaje> query = getEntityManager().createQuery(queryString, Mensaje.class);
+        query.setParameter("usID", us.getUsuario());
         return query.getResultList();
     }
 }

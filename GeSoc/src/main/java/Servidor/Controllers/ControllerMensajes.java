@@ -44,13 +44,15 @@ public class ControllerMensajes {
 
     public static ModelAndView visualizarPantallaMensajesRevisor(Request request, Response response, Usuario usuario) {
 
+        Usuario user = ControllerSesion.obtenerUsuariodeSesion(request);
+
         //con el usuario vas sacando datos
         String fecha = request.queryParams("fechaFiltrado");
         String egreso = request.queryParams("egreso");
-        List<Mensaje> todosLosMsj = new ArrayList();
+        List<Mensaje> todosLosMsj = QueriesUtiles.obtenerTodosLosMensajes(user);
 
         if (egreso != null && fecha != null) {
-            todosLosMsj = usuario.getBandejaDeMensajes().getMensajes().stream().filter(msj -> msj.getFechaCreado().isBefore(LocalDate.parse(fecha))&& msj.getEgreso().getEgreso()==Integer.valueOf(egreso).intValue()).collect(Collectors.toList());
+            todosLosMsj = todosLosMsj.stream().filter(msj -> msj.getFechaCreado().isBefore(LocalDate.parse(fecha))&& msj.getEgreso().getEgreso()==Integer.valueOf(egreso).intValue()).collect(Collectors.toList());
         } else {
 
             if (fecha != null) {

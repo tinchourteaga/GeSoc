@@ -191,7 +191,7 @@ public class ControllerPresupuesto {
 
         Optional<Presupuesto> presupuestofinal=QueriesUtiles.obtenerPresupeustoPorPK(presupeustoId);
         if(presupuestofinal.isPresent()){
-            datos.put("presupuesto", presupuestofinal);
+            datos.put("presupuesto", presupuestofinal.get());
             return new ModelAndView(datos, "cargar_items_presupuestos.html");
         }
         response.redirect("pantalla_principal_usuario?pre="+presupeustoId);

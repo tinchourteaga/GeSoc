@@ -38,7 +38,7 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/usuario/data.js"></script>
+    <!--<script src="files/usuario/data.js"></script>-->
     <script src="resources/scripts/jquery-3.2.1.min.js"></script>
     <script src="jquery.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -868,15 +868,34 @@
         if (mensaje.value === '') {
           //no llego nada
         } else {
-          if (mensaje.value === 'OK') {
-            alert('La contraseña fue cambiada de forma exitosa.');
-          }else{
+          switch(mensaje.value){
+          case "0":
+            alert('Ocurrió un error interno vuelva a intentar.');
             showw();
-            alert(mensaje.value);
+          break;
+          case "1":
+            alert('La contraseña no posee un número. Vuelva a intentarlo');
+            showw();
+          break;
+          case "2":
+            alert('La contraseña debe tener como mínimo una longitud de 8 caracteres. Vuelva a intentarlo');
+            showw();
+          break;
+          case "3":
+            alert('La contraseña no posee un caracter especial. Vuelva a intentarlo');
+            showw();
+          break;
+          case "4":
+            alert('La contraseña ingresada es muy común. Vuelva a intentarlo');
+            showw();
+          break;
+          case "5":
+            alert('La contraseña fue cambiada de forma exitosa.');
+          break;
           }
         }
 
-        alert("Entré a la función");
+        //alert("Entré a la función");
       }
 
 

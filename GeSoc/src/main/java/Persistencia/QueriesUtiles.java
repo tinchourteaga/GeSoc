@@ -152,7 +152,7 @@ public class QueriesUtiles {
     }
 
     public static Optional<Presupuesto> obtenerPresupeustoPorPK(String presupeustoId) {
-        String queryString = "SELECT p FROM Presupuesto p WHERE p.presupuesto = :idPresupuesto";
+        String queryString = "SELECT p FROM Presupuesto p JOIN p.proveedor JOIN p.documentoComercial JOIN p.egreso WHERE p.presupuesto = :idPresupuesto";
         TypedQuery<Presupuesto> query = getEntityManager().createQuery(queryString, Presupuesto.class);
         query.setParameter("idPresupuesto", Integer.valueOf(presupeustoId));
         return query.getResultList().stream().findFirst();

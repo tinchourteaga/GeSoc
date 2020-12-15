@@ -1,13 +1,6 @@
 package Dominio.Moneda;
 
-import API.ML.ControllerMercadoLibre;
-import API.ML.DTOs.ConversionDTO;
-import API.ML.DTOs.MonedaDTO;
-import API.ML.Excepciones.ExcepcionNoSePudoConvertir;
-import API.ML.Excepciones.NoExisteMonedaException;
-
 import javax.persistence.*;
-import java.io.IOException;
 import java.math.BigDecimal;
 
 @Entity
@@ -26,6 +19,8 @@ public class Valor {
     @Column(name = "importe")
     private double importe;
 
+    public Valor() { }
+
     public Valor(String moneda, double importe) {
 
         //ControllerMercadoLibre controller;
@@ -42,6 +37,7 @@ public class Valor {
 
         this.importe = importe;
         this.tipoDeMoneda = moneda;
+        this.simbolo="$";
     }
 
     public String getMoneda() {
@@ -56,7 +52,23 @@ public class Valor {
         return importe;
     }
 
-    public double convertirA(String unPais){
+    public void setMoneda(int moneda) {
+        this.moneda = moneda;
+    }
+
+    public void setTipoDeMoneda(String tipoDeMoneda) {
+        this.tipoDeMoneda = tipoDeMoneda;
+    }
+
+    public void setSimbolo(String simbolo) {
+        this.simbolo = simbolo;
+    }
+
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
+
+    /* public double convertirA(String unPais){
 
         ControllerMercadoLibre controller;
         controller = ControllerMercadoLibre.getControllerMercadoLibre();
@@ -79,6 +91,6 @@ public class Valor {
 
         BigDecimal importeNuevo = new BigDecimal(monedaConvertida);
         return importeNuevo.setScale(monedaDTO.getDecimal_places()).doubleValue();
-    }
+    }*/
 
 }

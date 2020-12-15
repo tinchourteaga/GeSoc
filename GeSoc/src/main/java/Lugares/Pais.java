@@ -11,7 +11,7 @@ public class Pais {
     @GeneratedValue
     private int pais;
 
-    @Transient
+    @Column(name="id_mercado_libre")
     String id;
 
     @Column(name = "nombre")
@@ -22,8 +22,11 @@ public class Pais {
     @Transient
     private String currency_id;
 
-    @OneToMany(mappedBy = "pais", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "pais")
     private List<Provincia> provincias = new ArrayList<>();
+
+    public Pais() { }
 
     public Pais(String id, String name, String locale, String currency_id) {
         this.id = id;
@@ -35,6 +38,10 @@ public class Pais {
     public Pais(String id, String name) {
         this.id = id;
         this.name = name;
+    }
+
+    public int getPais() {
+        return pais;
     }
 
     public String getId() {

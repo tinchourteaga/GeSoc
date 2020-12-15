@@ -37,7 +37,7 @@ public class DAOMemoria <T> implements DAO  {
         }
     }
 
-    public <T> int buscar(T elemento) {
+    public <T> Integer buscar(T elemento) {
         return listaElementos.indexOf(elemento);
     }
 

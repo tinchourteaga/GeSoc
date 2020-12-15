@@ -1,6 +1,8 @@
 package Dominio.Egreso.Core;
 
 import Converters.LocalDateAttributeConverter;
+import Converters.SeleccionProveedorAttributeConverter;
+import Dominio.BandejaMensajes.Mensaje;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.CriteriosProveedor.CriterioSeleccionProveedor;
@@ -8,22 +10,22 @@ import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Entidad;
 import Dominio.Ingreso.Ingreso;
 import Dominio.Moneda.Valor;
+import Dominio.Usuario.Usuario;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "dom_egresos")
 public class Egreso {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int egreso;
-
-    @ManyToOne
-    @JoinColumn(name = "proveedor", referencedColumnName = "proveedor")
-    private Proveedor proveedorSeleccionado;
 
     @Column(name = "validado")
     private boolean estaVerificada;
@@ -32,25 +34,35 @@ public class Egreso {
     @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
-    @OneToOne
+    @OneToOne(cascade= CascadeType.ALL)
     @JoinColumn(name = "valor")
     private Valor valor;
+
+    @Column(name = "descripcion")
+    private String descripcion;
 
     @OneToMany(mappedBy = "egreso", cascade = CascadeType.ALL)
     private List<Item> listaItems;
 
-    @Embedded
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name = "metodo_pago")
     private MetodoDePago metodoDePago;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "documento_comercial")
     private DocumentoComercial documentoComercial;
 
-    @Transient
+    @Column(name = "criterio_seleccion_proveedor")
+    @Convert(converter = SeleccionProveedorAttributeConverter.class)
     private CriterioSeleccionProveedor criterioSeleccionProveedor;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Criterio> criterios;
+    @JoinTable(
+            name = "dom_egresos_dom_criterios",
+            joinColumns = { @JoinColumn(name = "egreso") },
+            inverseJoinColumns = { @JoinColumn(name = "categoria") }
+    )
+    private List<CategoriaCriterio> categorias=new ArrayList<>();
 
     @ManyToOne
     @JoinColumn(name = "ingreso", referencedColumnName = "ingreso")
@@ -60,17 +72,31 @@ public class Egreso {
     @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     private Entidad entidad;
 
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "egreso_asociado")
+    List<Mensaje> mensajes = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "egresosARevisar")
+    private Set<Usuario> revisores = new HashSet<Usuario>();
+
+    @OneToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "presupuesto_pactado")
     private Presupuesto presupuestoPactado;
 
-    public Egreso(LocalDate unaFecha, String pais, double importe, List<Item> items, MetodoDePago metodo, List<Proveedor> proveedores, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
-       this.criterios=new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER, mappedBy = "egreso")
+    private List<Presupuesto> presupuestosAConsiderar;
+
+    public Egreso() { }
+
+    public Egreso(LocalDate unaFecha, String pais, List<Item> items, MetodoDePago metodo, List<Presupuesto> presupuestos, DocumentoComercial unDocumento, CriterioSeleccionProveedor criterio){
+       this.categorias=new ArrayList<>();
        this.fecha=unaFecha;
-       this.valor= new Valor(pais,importe);
+       this.valor= new Valor("Peso Argentino",items.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
        this.listaItems=items;
        this.metodoDePago=metodo;
        this.documentoComercial=unDocumento;
+       this.presupuestosAConsiderar=presupuestos;
        this.setCriterio(criterio);
-       this.proveedorSeleccionado = criterio.seleccionarProveedor(proveedores);
        this.estaVerificada=false;
     }
 
@@ -78,16 +104,18 @@ public class Egreso {
         this.criterioSeleccionProveedor = criterio;
     }
 
+    public void elegirPresupuesto(){
+        presupuestoPactado=this.criterioSeleccionProveedor.seleccionarPresupuesto(this.presupuestosAConsiderar);
+    }
+
     public CriterioSeleccionProveedor getCriterio(){
         return this.criterioSeleccionProveedor;
     }
 
-    public Proveedor getProveedorSeleccionado() {
-        return proveedorSeleccionado;
-    }
+    public List<Presupuesto> getPresupuestosAConsiderar(){return this.presupuestosAConsiderar;}
 
     public List<Criterio> getCriterioDeCategorizacion() {
-        return criterios;
+        return categorias.stream().map(cat-> cat.getCriterio()).collect(Collectors.toList());
     }
 
     public LocalDate getFecha() { return fecha; }
@@ -100,17 +128,12 @@ public class Egreso {
 
     public DocumentoComercial getDocumentoComercial() { return documentoComercial; }
 
-    public void asignarCriterioDeCategorizacion(Criterio criterioDeCategorizacion) {this.criterios.add(criterioDeCategorizacion); }
-
     public void validar(){
         ValidadorDeOperacion.validarDefault(this);
     }
 
     public List<CategoriaCriterio> getCategorias() {
-
-        List<CategoriaCriterio> todasLasCategoriaCriterios =new ArrayList();
-        criterios.forEach(criterio->criterio.getCategoriaCriterios().forEach(categoriaCriterio -> todasLasCategoriaCriterios.add(categoriaCriterio)));
-        return todasLasCategoriaCriterios;
+        return this.categorias;
     }
 
     public boolean isEstaVerificada() {
@@ -146,5 +169,30 @@ public class Egreso {
 
     public Ingreso getIngreso(){
         return this.ingreso;
+    }
+
+    public void agregarItem(Item item){
+        listaItems.add(item);
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void recalcularValor() {
+        this.valor.setImporte(this.getListaItems().stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element));
+
+    }
+
+    public Set<Usuario> getRevisores() {
+        return revisores;
+    }
+
+    public void agregarPresupuestoAConsiderar(Presupuesto presupuesto){
+        presupuestosAConsiderar.add(presupuesto);
     }
 }

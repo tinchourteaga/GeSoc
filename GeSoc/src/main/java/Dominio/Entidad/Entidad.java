@@ -3,10 +3,13 @@ package Dominio.Entidad;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 import Dominio.Egreso.Core.Egreso;
 import Dominio.Ingreso.Ingreso;
+import Dominio.Usuario.Usuario;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "dom_entidades")
@@ -27,7 +30,8 @@ public abstract class Entidad {
     @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
     protected List<Egreso> egresos;
 
-    @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     protected List<Ingreso> ingresos;
 
     @OneToMany(mappedBy = "entidad", cascade = CascadeType.ALL)
@@ -36,6 +40,11 @@ public abstract class Entidad {
     @OneToOne
     @JoinColumn(name = "entidad_juridica_asociada", referencedColumnName = "entidad")
     protected EntidadJuridica entidad_juridica_asociada;
+
+    @ManyToMany(mappedBy = "entidades")
+    private Set<Usuario> empleados = new HashSet<Usuario>();
+
+    public Entidad() { }
 
     public Entidad(String nombreEntidad, String descripcionEntidad){
         this.descripcion=descripcionEntidad;
@@ -56,6 +65,9 @@ public abstract class Entidad {
     public String getDescripcion() {
         return descripcion;
     }
+    public void setDescripcion(String desc){
+        this.descripcion = desc;
+    }
     public String getNombre() {
         return nombre;
     }
@@ -68,4 +80,12 @@ public abstract class Entidad {
     public void setCriterios(List<Criterio> criterios) { this.criterios = criterios; }
     public void setEntidad(int entidad) {this.entidad = entidad;}
     public int getEntidad() {return entidad;}
+
+    public List<Ingreso> getIngresos() {
+        return ingresos;
+    }
+
+    public void agregarEmpleado(Usuario empleado){
+        empleados.add(empleado);
+    }
 }

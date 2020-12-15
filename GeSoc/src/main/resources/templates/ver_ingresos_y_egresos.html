@@ -39,11 +39,31 @@
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
     <script src="files/ver_ingresos_y_egresos/data.js"></script>
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
+    <style>
+        .img-fluid {
+          display: block;
+          max-width: 100%;
+          max-height: 100%;
+        }
+    </style>
+
   </head>
   <body>
     <div id="base" class="">
@@ -78,21 +98,21 @@
       <!-- Unnamed (Group) -->
       <div id="u1453" class="ax_default" data-left="45" data-top="2" data-width="249" data-height="68">
 
-        <!-- Unnamed (Rectangle) -->
+        <!-- Unnamed (Rectangle)
         <div id="u1454" class="ax_default heading_1">
           <div id="u1454_div" class=""></div>
           <div id="u1454_text" class="text ">
             <p style="font-size:35px;"><span style="font-family:'Calibri Bold Italic', 'Calibri Regular', 'Calibri', sans-serif;font-style:italic;color:#D9463B;">GeSoc</span></p><p style="font-size:15px;"><span style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;font-style:normal;color:#000000;">Gestión de Proyectos Sociales</span></p>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Unnamed (Image) -->
+        <!-- Unnamed (Image)
         <div id="u1455" class="ax_default image">
           <img id="u1455_img" class="img " src="images/usuario/u181.png"/>
           <div id="u1455_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- Unnamed (Rectangle) -->
@@ -108,46 +128,42 @@
         <div id="u1457_state0" class="panel_state" data-label="State1" style="">
           <div id="u1457_state0_content" class="panel_state_content">
 
-            <table id="u5757" class="centerTable" cellpadding="0" cellspacing="0" style="margin: 0px auto; font-family:verdana; font-size:110%; color:#515559;" >
+            <table id="u5757" class="tablaCSS">
+              <!--cellpadding="0" cellspacing="0" style="margin: 0px auto; font-family:verdana; font-size:110%; color:#515559;"-->
               <thead>
-              <tr>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Entidad</th>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Fecha</th>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Operacion</th>
-                <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Importe</th>
-              </tr>
+                <tr>
+                  <!-- style=" border: 1px solid #515559; background-color:#e5e5e5;" -->
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Entidad</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Operacion</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Importe</th>
+                </tr>
               </thead>
               <tbody>
               {{#each ingreso}}
-              <tr style=" border: 1px solid #515559;">
-                <td style=" border: 1px solid #515559;">
-                  {{entidad.nombre}}
+              <tr> <!-- style=" border: 1px solid #515559;" -->
+                <td>{{entidad.nombre}}</td>
+                <td>{{fecha}}</td><!-- style=" border: 1px solid #515559;" -->
+                <td>ingreso
+                  <img class="lupita" value={{.}} src="images/ver_ingresos_y_egresos/lupa_u330.svg"
+                       onmouseover="lupitahover(this);"
+                       onmouseout="lupitaunhover(this);"
+                       onclick="redireccionarAlDetalleIngreso(this);">
                 </td>
-                <td style=" border: 1px solid #515559;">
-                  {{fecha}}
-                </td>
-                <td style=" border: 1px solid #515559;">
-                  ingreso
-                </td>
-                <td style=" border: 1px solid #515559;">
-                  {{valor.importe}}
-                </td>
+                <td>{{valor.importe}}</td>
               </tr>
               {{/each}}
               {{#each egreso}}
-              <tr style=" border: 1px solid #515559;">
-                <td style=" border: 1px solid #515559;">
-                  {{entidad.nombre}}
+              <tr>
+                <td>{{entidad.nombre}}</td>
+                <td>{{fecha}}</td>
+                <td>egreso
+                  <img class="lupita" value={{.}} src="images/ver_ingresos_y_egresos/lupa_u330.svg"
+                       onmouseover="lupitahover(this);"
+                       onmouseout="lupitaunhover(this);"
+                       onclick="redireccionarAlDetalleEgreso(this);">
                 </td>
-                <td style=" border: 1px solid #515559;">
-                  {{fecha}}
-                </td>
-                <td style=" border: 1px solid #515559;">
-                  egreso
-                </td>
-                <td style=" border: 1px solid #515559;">
-                  {{valor.importe}}
-                </td>
+                <td>{{valor.importe}}</td>
               </tr>
               {{/each}}
               </tbody>
@@ -692,13 +708,13 @@
 
       <!-- Unnamed (NavBar) -->
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)
       <div id="u1485" class="ax_default box_1">
         <div id="u1485_div" class=""></div>
         <div id="u1485_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Tabs (Group) -->
       <div id="u1486" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247" data-height="65">
@@ -706,29 +722,29 @@
         <!-- Unnamed (Group) -->
         <div id="u1487" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u1488" class="ax_default heading_1">
             <div id="u1488_div" class=""></div>
             <div id="u1488_text" class="text ">
               <p><span>GeSoc</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u1489" class="ax_default box_1">
             <img id="u1489_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
             <div id="u1489_text" class="text ">
               <p><span>Gestión de Proyectos Sociales</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Image) -->
+          <!-- Unnamed (Image)
           <div id="u1490" class="ax_default image">
             <img id="u1490_img" class="img " src="images/pantalla_principal/u7.png"/>
             <div id="u1490_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -760,29 +776,29 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1495" class="ax_default icon">
         <img id="u1495_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
         <div id="u1495_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1496" class="ax_default icon">
         <img id="u1496_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
         <div id="u1496_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1497" class="ax_default icon">
         <img id="u1497_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
         <div id="u1497_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Criterios de Categorización (Group) -->
       <div id="u1498" class="ax_default ax_default_hidden" data-label="Criterios de Categorización" style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
@@ -1001,25 +1017,25 @@
         <div id="u1528_state0" class="panel_state" data-label="State1" style="">
           <div id="u1528_state0_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u1529" class="ax_default icon">
               <img id="u1529_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u1529_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="u1528_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
           <div id="u1528_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u1530" class="ax_default icon">
               <img id="u1530_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u1530_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -1080,13 +1096,13 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1539" class="ax_default icon">
         <img id="u1539_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
         <div id="u1539_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
       <div id="u1484" style="display:none; visibility:hidden;"></div>
 
       <!-- RUTA VER INGRESOS Y EGRESOS (Group) -->
@@ -1100,7 +1116,147 @@
           </div>
         </div>
       </div>
+
+      <div class="div-padre">
+
+        <div class="nav__overlay" id="nav_esfumada"></div>
+
+        <div class="form-popup" id="myPopUp">
+
+          <div id="detalle_posta">
+            <div>
+              <p><span class="span_piola">Empresa:
+              <input id="proveedor" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>
+              <input id="fecha_detalle" name="txt" class="variables_fecha" value="  10/10/2020" disabled/>
+              </span></p>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Método de pago:
+              <input id="metodo_pago" name="txt" class="variables_fijas" value="  PagoX" disabled/>
+              </span></p>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Ingresos asociados:
+              <input id="ingresos" name="txt" class="variables_fijas" value="  Ingresos asociados" disabled/>
+              </span></p>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Criterios/catg asociados:
+              <input id="cricat" name="txt" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
+              </span></p>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Presupuesto elegido:
+              <input id="prep" name="txt" class="variables_fijas" value="  Presupesto elegido" disabled/>
+              </span></p>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Presupuestos asociados:
+              <input id="preps_asoc" name="txt" class="variables_fijas" value="  Presupuestos asociados" disabled/>
+              </span></p>
+            </div>
+
+            <img id="botoncito_cerrar" class="botoncito_lupita"
+                 src="images/ver_ingresos_y_egresos/closeButton.png"
+                 onclick="closeForm();">
+          </div>
+        </div>
+
+        <div class="form-popup" id="myPopUpIngreso">
+
+          <div id="detalle_posta_ingreso">
+            <div>
+              <p><span class="span_piola">Empresa:
+              <input id="empresa" name="txt" class="variables_fijas" value="EmpresaX" disabled/>
+              <input id="fecha_detalle_ingreso" name="txt" class="variables_fecha" value="10/10/2020" disabled/>
+              </span></p>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Egresos asociados:
+              <input id="egresos" name="txt" class="variables_fijas" value="  Egresos asociados" disabled/>
+              </span></p>
+            </div>
+
+            <div>
+              <p><span class="span_piola">Criterios/catg asociados:
+              <input id="cricatingresos" name="txt" class="variables_fijas" value="  Criterios/catg asociados" disabled/>
+              </span></p>
+            </div>
+
+            <img id="botoncito_cerrar_ingresos" class="botoncito_lupita"
+                 src="images/ver_ingresos_y_egresos/closeButton.png"
+                 onclick="closeFormIngreso();">
+          </div>
+        </div>
+
+      </div>
+
+
+        <div id="includedContent"></div>
     </div>
+
+    <!--<div class="botoncitoo" style="left:50%;">
+      <span class="fas fa-bars"></span>
+    </div>-->
+
     <script src="resources/scripts/axure/ios.js"></script>
+
+    <script>
+      function openForm(v) {
+        document.getElementById("myPopUp").style.display = "block";
+        proveedor.value = v.value.entidad.nombre;
+        fecha_detalle.value = v.value.fecha;
+        metodo_pago.value = v.value.metodoDePago.tipo;
+        ingresos.value = v.value.ingresos.valor;
+        prep.value = "-";
+        preps_asoc.value = "-";
+      }
+
+      function closeForm() {
+        document.getElementById("myPopUpIngreso").style.display = "none";
+      }
+
+      function redireccionarAlDetalleIngreso(v){
+          location.href="/detalle_ingreso?ingreso="+v.value.ingreso;
+      }
+
+      function redireccionarAlDetalleEgreso(v){
+          location.href="/detalle_egreso?eg="+v.value.egreso;
+      }
+
+      function openFormIngreso(v) {
+        document.getElementById("myPopUpIngreso").style.display = "block";
+        empresa.value = v.value.entidad.nombre;
+        fecha_detalle_ingreso.value = v.value.fecha;
+        egresos.value = "-";
+        cricatingresos.value = "-";
+      }
+
+      function closeFormIngreso() {
+        document.getElementById("myPopUpIngreso").style.display = "none";
+      }
+
+      function lupitahover(element){
+        element.setAttribute('src', 'images/ver_ingresos_y_egresos/lupa_u330_mouseOver.svg');
+      }
+
+      function lupitaunhover(element){
+        element.setAttribute('src', 'images/ver_ingresos_y_egresos/lupa_u330.svg');
+      }
+
+      $('.lupita').click(function(){
+        $('.div-padre').toggleClass("show");
+      });
+
+      $('.botoncito_lupita').click(function(){
+        $('.div-padre').toggleClass("show");
+      });
+    </script>
   </body>
 </html>

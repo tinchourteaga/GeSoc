@@ -32,8 +32,7 @@ public class Proveedor {
     @OneToMany(mappedBy = "proveedor", cascade = CascadeType.ALL)
     private List<Presupuesto> presupuestos;
 
-    @OneToMany(mappedBy = "proveedorSeleccionado", cascade = CascadeType.ALL)
-    private List<Egreso> egreso;
+    public Proveedor() { }
 
     public Proveedor(String nombre, String apellido, String dni, DireccionPostal unaDireccion) {
         this.nombre=nombre;
@@ -48,6 +47,10 @@ public class Proveedor {
         this.documento=cuitOcuil;
         this.direccion=unaDireccion;
         this.presupuestos= new ArrayList<Presupuesto>();
+    }
+
+    public int getProveedor() {
+        return proveedor;
     }
 
     public String getRazonSocial() {
@@ -68,5 +71,6 @@ public class Proveedor {
     public Presupuesto getPresupuestoCriterio(CriterioSeleccionProveedor criterio){ return criterio.seleccionarPresupuesto(presupuestos); }
     public void setNombre(String nombre) { this.nombre = nombre; }
     public void setApellido(String apellido) { this.apellido= apellido; }
+    public String getApellido() { return this.apellido; }
     public void setDireccion(DireccionPostal direccion) { this.direccion = direccion; }
 }

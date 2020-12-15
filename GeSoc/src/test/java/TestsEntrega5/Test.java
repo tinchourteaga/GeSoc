@@ -9,7 +9,7 @@ public class Test {
         String nombre = "pruebita";
         String apellido = "normal";
         Usuario usuario = new Usuario(rolPrueba, nombre, apellido,"chaybsafsa", "41658239", "mail@mail.com");
-        usuario.setPersona(nombre, apellido);
+        usuario.setPersona();
         RepositorioUsuario.getInstance().agregar(usuario);
     }
 
@@ -19,7 +19,7 @@ public class Test {
         String nombre = "pepito";
         String apellido = "fachero";
         Usuario usuario= new Usuario(rolPrueba,nombre, apellido, "holaslfmaf", "41658239", "mail@mail.com");
-        usuario.setPersona(nombre, apellido);
+        usuario.setPersona();
         RepositorioUsuario.getInstance().agregar(usuario);
     }*/
 }

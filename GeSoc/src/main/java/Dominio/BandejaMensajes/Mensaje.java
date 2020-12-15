@@ -1,6 +1,7 @@
 package Dominio.BandejaMensajes;
 
 import Converters.LocalDateAttributeConverter;
+import Dominio.Egreso.Core.Egreso;
 import Dominio.Usuario.Usuario;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -31,11 +32,18 @@ public class Mensaje {
     @Column(name = "leido")
     private Boolean leido;
 
-    public Mensaje(LocalDate fechaCreado, LocalDate fechaLeido, String mensajeResultado) {
+    @ManyToOne
+    @JoinColumn(name = "egreso_asociado")
+    Egreso egreso;
+
+    public Mensaje() { }
+
+    public Mensaje(LocalDate fechaCreado, LocalDate fechaLeido, String mensajeResultado, Egreso egreso) {
         this.fechaCreado = fechaCreado;
         this.fechaLeido = fechaLeido;
         this.mensajeResultado = mensajeResultado;
         this.leido = false;
+        this.egreso = egreso;
     }
 
     public void leer(){
@@ -55,5 +63,21 @@ public class Mensaje {
 
     public Boolean getLeido() {
         return leido;
+    }
+
+    public Egreso getEgreso() {
+        return egreso;
+    }
+
+    public void setEgreso(Egreso egreso) {
+        this.egreso = egreso;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 }

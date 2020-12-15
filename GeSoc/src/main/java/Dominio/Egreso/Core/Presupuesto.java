@@ -1,11 +1,13 @@
 package Dominio.Egreso.Core;
 
 import Converters.LocalDateAttributeConverter;
+import Dominio.Egreso.Core.CriteriosDeCategorizacion.CategoriaCriterio;
 import Dominio.Egreso.Core.CriteriosDeCategorizacion.Criterio;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "dom_presupuestos")
@@ -15,20 +17,29 @@ public class Presupuesto {
     @GeneratedValue
     private int presupuesto;
 
-    @OneToMany(mappedBy = "criterio", cascade = CascadeType.ALL)
-    private List<Criterio> criterios;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "dom_presupuestos_dom_categoria",
+            joinColumns = { @JoinColumn(name = "presupuesto") },
+            inverseJoinColumns = { @JoinColumn(name = "categoria") }
+    )
+    private List<CategoriaCriterio> categorias;
 
     @Column(name = "valor")
     private float valor;
+
+    @Column(name = "descripcion")
+    private String descripcion;
 
     @Column(name = "fecha_creado")
     @Convert(converter = LocalDateAttributeConverter.class)
     private LocalDate fecha;
 
-    @OneToMany(mappedBy = "detalle", cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "presupuesto")
     private List<Detalle> detalles;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "documento_comercial")
     private DocumentoComercial documentoComercial;
 
@@ -36,15 +47,27 @@ public class Presupuesto {
     @JoinColumn(name = "proveedor", referencedColumnName = "proveedor")
     private Proveedor proveedor;
 
-    public Presupuesto(List<Criterio> criterios, float valor, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
-        this.criterios = criterios;
-        this.valor = valor;
+    @ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+    @JoinColumn(name = "egreso_presupuestado")
+    private Egreso egreso;
+
+    public Presupuesto() { }
+
+    public Presupuesto(List<CategoriaCriterio> categorias, List<Detalle> detalles, DocumentoComercial documentoComercial, Proveedor proveedor) {
+        this.categorias = categorias;
+        this.valor = detalles.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element);
         this.detalles = detalles;
         this.documentoComercial = documentoComercial;
         this.proveedor = proveedor;
     }
 
-    public List<Criterio> getCriterios() { return criterios; }
+    public void setEgreso(Egreso egreso) {
+        this.egreso = egreso;
+    }
+
+    public Proveedor getProveedor(){return this.proveedor;}
+    public List<Criterio> getCriterios() { return categorias.stream().map(cat->cat.getCriterio()).collect(Collectors.toList()); }
+    public List<CategoriaCriterio> getCategoria() { return categorias; }
     public float getValor() { return valor;}
     public List<Detalle> getDetalles() {return detalles;}
     public DocumentoComercial getDocumentoComercial() { return documentoComercial;}
@@ -55,6 +78,17 @@ public class Presupuesto {
         return presupuesto;
     }
 
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void recalcularValor(){
+        this.valor = detalles.stream().map(det-> det.getValor()*det.getCantidad()).reduce(0f, (subtotal, element) -> subtotal + element);
+    }
     public void setPresupuesto(int presupuesto) {
         this.presupuesto = presupuesto;
     }

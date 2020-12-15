@@ -20,9 +20,17 @@ public class Criterio {
     @OneToMany(mappedBy = "criterio", cascade = CascadeType.ALL)
     private List<CategoriaCriterio> categoriaCriterios;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "criterio_padre", referencedColumnName = "criterio")
     private Criterio criterio_padre;
+
+    public Criterio getCriterio_padre() {
+        return criterio_padre;
+    }
+
+    public void setCriterio_padre(Criterio criterio_padre) {
+        this.criterio_padre = criterio_padre;
+    }
 
     @OneToMany(mappedBy = "hijos", cascade = CascadeType.ALL)
     private List<Criterio> hijos;
@@ -33,13 +41,15 @@ public class Criterio {
     @Column(name = "descripcion")
     private String descripcion;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "entidad", referencedColumnName = "entidad")
     private Entidad entidad;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.ALL)
     @JoinColumn(name = "presupuesto", referencedColumnName = "presupuesto")
     private Presupuesto presupuesto;
+
+    public Criterio() { }
 
     public Criterio(List<CategoriaCriterio> categoriaCriterios, String nombreCriterio, String descripcion) {
         this.categoriaCriterios = categoriaCriterios;
@@ -54,6 +64,14 @@ public class Criterio {
 
     public void setCategoriaCriterios(List<CategoriaCriterio> categoriaCriterios) {
         this.categoriaCriterios = categoriaCriterios;
+    }
+
+    public Entidad getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(Entidad entidad) {
+        this.entidad = entidad;
     }
 
     public List<Criterio> getHijos() {
@@ -76,6 +94,10 @@ public class Criterio {
         return categoriaCriterios.stream().filter(categoriaCriterio -> categoriaCriterio.getNombreDeCategoria().equals(nombre)).collect(Collectors.toList()).get(0);
     }
 
+    public List<CategoriaCriterio> getCategorias() {
+        return categoriaCriterios;
+    }
+
     public void aplicar(Egreso egreso){
         hijos.forEach(hijo -> hijo.aplicar(egreso));
         egreso.getCriterioDeCategorizacion().add(this);
@@ -88,4 +110,6 @@ public class Criterio {
     public void setCriterio(int criterio) {
         this.criterio = criterio;
     }
+
+    public void agregarHijos(Criterio criterio){ this.hijos.add(criterio);}
 }

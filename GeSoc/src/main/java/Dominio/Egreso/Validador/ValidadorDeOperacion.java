@@ -6,11 +6,12 @@ import Dominio.Egreso.Validador.EstrategiasRevision.EstrategiaRevision;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
 import Dominio.Egreso.Validador.Validaciones.ValidacionOperacion;
-import Dominio.Rol.Acciones.LeerMensaje;
 import Dominio.Rol.Mensajero;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
+import Persistencia.DAO.DAOBBDD;
 import Persistencia.DAO.DAOMemoria;
+import Persistencia.Repos.Repositorio;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -44,15 +45,19 @@ public class ValidadorDeOperacion {
     }
 
     public static Mensaje validarCustomSinBasicas(Egreso unaOperacion, List<ValidacionOperacion> validacionesEspecificas) {
-        AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(LocalDate.now(), null, "Paso exitosamente todas las Validaciones"));
+        AtomicReference<Mensaje> mensaje = new AtomicReference<Mensaje>(new Mensaje(LocalDate.now(), null, "Paso exitosamente todas las Validaciones", unaOperacion));
 
         AtomicBoolean flag = new AtomicBoolean(true);
 
         validacionesEspecificas.forEach(validacion -> {
             try {
                 validacion.validar(unaOperacion);
-            } catch (NoCumpleValidacionException | NoCumpleValidacionDeCriterioException e) {
-                mensaje.set(new Mensaje(LocalDate.now(), null, e.toString()));
+            } catch (NoCumpleValidacionException e) {
+                mensaje.set(new Mensaje(LocalDate.now(), null,"La operacion realizada en fecha " + unaOperacion.getFecha() + " y con valor: " +unaOperacion.getValor().getImporte() +" no se valido correctamente. ya que no cumple con las validaciones requeridas" ,unaOperacion));
+                unaOperacion.setEstaVerificada(false);
+                flag.set(false);
+            } catch (NoCumpleValidacionDeCriterioException e) {
+                mensaje.set(new Mensaje(LocalDate.now(), null, "La operacion realizada en fecha " + unaOperacion.getFecha() + " y con valor: " +unaOperacion.getValor().getImporte() +" no se valido correctamente ya que no cumple con los criterios propuestos. Debe validarse nuevamente",unaOperacion));
                 unaOperacion.setEstaVerificada(false);
                 flag.set(false);
             }
@@ -73,8 +78,12 @@ public class ValidadorDeOperacion {
     }
 
     private static void enviarMensaje(Usuario usuario, Mensaje mensaje) {
-       usuario.getRol().getAcciones().add(new LeerMensaje(mensaje));
        usuario.getBandejaDeMensajes().agregarMensaje(mensaje);
+       mensaje.setUsuario(usuario);
+       Repositorio repoMsj= new Repositorio(new DAOBBDD<Mensaje>(Mensaje.class));
+       repoMsj.agregar(mensaje);
+        Repositorio repoUs= new Repositorio(new DAOBBDD<Usuario>(Usuario.class));
+        repoUs.modificar(null,usuario);
     }
 
 }

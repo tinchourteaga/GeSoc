@@ -11,7 +11,7 @@ public class DireccionPostal {
     @Embedded
     private Direccion direccion;
 
-    @Transient
+    @Column(name = "codigo_postal")
     private int cp;
 
     @Transient
@@ -20,8 +20,7 @@ public class DireccionPostal {
     @Transient
     private Provincia provincia;
 
-    @OneToOne
-    @JoinColumn(name = "ciudad")
+    @Transient
     private Ciudad ciudad;
 
     public DireccionPostal(Direccion direccion, int cp, Pais pais, Provincia provincia, Ciudad ciudad) {

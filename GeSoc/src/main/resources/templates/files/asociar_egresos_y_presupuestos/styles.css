@@ -3,7 +3,7 @@
   background-image:none;
   position:relative;
   left:0px;
-  width:1350px;
+  width:100%;
   margin-left:auto;
   margin-right:auto;
   text-align:left;
@@ -813,15 +813,15 @@
 #u645 {
   border-width:0px;
   position:absolute;
-  left:541px;
-  top:195px;
+  left: 350px;
+  top:200px;
   width:765px;
   height:335px;
 }
 #u645_state0 {
   border-width:0px;
   position:absolute;
-  left:0px;
+  left: 100px;
   top:0px;
   width:765px;
   height:335px;
@@ -1723,74 +1723,74 @@
 }
 #u667_input {
   position:absolute;
-  left:0px;
-  top:0px;
-  width:256px;
-  height:23px;
-  padding:2px 2px 2px 2px;
-  font-family:'Calibri', sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:13px;
-  letter-spacing:normal;
-  color:#000000;
-  vertical-align:none;
-  text-align:left;
-  text-transform:none;
-  background-color:transparent;
-  border-color:transparent;
+    left:0px;
+    top:0px;
+    width:308px;
+    height:23px;
+    padding:2px 2px 2px 2px;
+    font-family:'Calibri', sans-serif;
+    font-weight:400;
+    font-style:normal;
+    font-size:13px;
+    letter-spacing:normal;
+    color:#000000;
+    vertical-align:none;
+    text-align:left;
+    text-transform:none;
+    background-color:transparent;
+    border-color:transparent;
 }
 #u667_input.disabled {
   position:absolute;
-  left:0px;
-  top:0px;
-  width:256px;
-  height:23px;
-  padding:2px 2px 2px 2px;
-  font-family:'Calibri', sans-serif;
-  font-weight:400;
-  font-style:normal;
-  font-size:13px;
-  letter-spacing:normal;
-  color:#000000;
-  vertical-align:none;
-  text-align:left;
-  text-transform:none;
-  background-color:transparent;
-  border-color:transparent;
+    left:0px;
+    top:0px;
+    width:308px;
+    height:23px;
+    padding:2px 2px 2px 2px;
+    font-family:'Calibri', sans-serif;
+    font-weight:400;
+    font-style:normal;
+    font-size:13px;
+    letter-spacing:normal;
+    color:#000000;
+    vertical-align:none;
+    text-align:left;
+    text-transform:none;
+    background-color:transparent;
+    border-color:transparent;
 }
 #u667_div {
   border-width:0px;
-  position:absolute;
-  left:0px;
-  top:0px;
-  width:256px;
-  height:23px;
-  background:inherit;
-  background-color:rgba(255, 255, 255, 1);
-  box-sizing:border-box;
-  border-width:1px;
-  border-style:solid;
-  border-color:rgba(121, 121, 121, 1);
-  border-radius:5px;
-  -moz-box-shadow:none;
-  -webkit-box-shadow:none;
-  box-shadow:none;
-  font-family:'Calibri', sans-serif;
-  font-weight:400;
-  font-style:normal;
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:308px;
+    height:23px;
+    background:inherit;
+    background-color:rgba(255, 255, 255, 1);
+    box-sizing:border-box;
+    border-width:1px;
+    border-style:solid;
+    border-color:rgba(121, 121, 121, 1);
+    border-radius:5px;
+    -moz-box-shadow:none;
+    -webkit-box-shadow:none;
+    box-shadow:none;
+    font-family:'Calibri', sans-serif;
+    font-weight:400;
+    font-style:normal;
 }
 #u667 {
   border-width:0px;
-  position:absolute;
-  left:107px;
-  top:210px;
-  width:256px;
-  height:23px;
-  display:flex;
-  font-family:'Calibri', sans-serif;
-  font-weight:400;
-  font-style:normal;
+    position:absolute;
+    left:57px;
+    top:205px;
+    width:308px;
+    height:23px;
+    display:flex;
+    font-family:'Calibri', sans-serif;
+    font-weight:400;
+    font-style:normal;
 }
 #u667 .text {
   position:absolute;
@@ -1849,7 +1849,7 @@
   border-width:0px;
   position:absolute;
   left:45px;
-  top:210px;
+  top:180px;
   width:48px;
   height:17px;
   display:flex;
@@ -4465,4 +4465,41 @@
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+}
+
+.tablaCSS{
+    border-collapse: collapse;
+    margin 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-size:14px;
+}
+
+.tablaCSS thead tr{
+    background-color: rgba(217, 70, 59, 1);
+    color: white;
+    text-align: center;
+    /*border: 1px solid #515559;*/
+}
+.tablaCSS th,
+.tablaCSS td{
+    padding: 12px 15px;
+}
+
+.tablaCSS tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablaCSS tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.tablaCSS tbody tr:last-of-type{
+    border-bottom: 2px solid rgba(217, 70, 59, 1);
 }

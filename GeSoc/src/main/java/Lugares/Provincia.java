@@ -11,18 +11,22 @@ public class Provincia {
     @GeneratedValue
     private int provincia;
 
-    @Transient
+    @Column(name="id_mercado_libre")
     String id;
 
     @Column(name = "nombre")
     String name;
 
     @ManyToOne
-    @JoinColumn(name = "pais", referencedColumnName = "pais")
+    @JoinColumn(name = "pais")
     Pais pais;
 
-    @OneToMany(mappedBy = "ciudad", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
-    List<Ciudad> ciudades = new ArrayList<>();;
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "provincia")
+    List<Ciudad> ciudades = new ArrayList<>();
+
+
+    public Provincia() { }
 
     public Provincia(String id, String name){
         this.id = id;
@@ -38,6 +42,10 @@ public class Provincia {
     public String getId() { return id; }
     public void setId(String id) {
         this.id = id;
+    }
+
+    public int getProvincia() {
+        return provincia;
     }
 
     public String getName() {

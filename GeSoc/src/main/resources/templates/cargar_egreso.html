@@ -38,12 +38,21 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/cargar_egreso/data.js"></script>
+    <!--<script src="files/cargar_egreso/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
   </head>
   <body>
     <div id="base" class="">
@@ -268,7 +277,7 @@
         </div>
       </div>
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)-->
       <div id="u522" class="ax_default heading_1">
         <div id="u522_div" class=""></div>
         <div id="u522_text" class="text ">
@@ -288,13 +297,20 @@
       <div id="u524" class="ax_default text_area">
         <div id="u524_div" class=""></div>
         <textarea name="descripcionDocComercial" id="u524_input" class="u524_input"></textarea>
+
+        <div id="imagen_a_subir">
+          <input type="file" id="myFileInput">
+        </div>
+
       </div>
+
+
 
       <!-- Unnamed (Rectangle) -->
       <div id="u525" class="ax_default heading_1">
         <div id="u525_div" class=""></div>
         <div id="u525_text" class="text ">
-          <p><span>Proveedor:</span></p>
+          <p><span>Criterio:</span></p>
         </div>
       </div>
 
@@ -306,53 +322,60 @@
         </div>
       </div>
 
-      <!-- Unnamed (Rectangle) -->
+        <div id="u5266" class="ax_default heading_1">
+          <div id="u5266_div" class=""></div>
+          <div id="u5266_text" class="text ">
+            <p><span>Entidad:</span></p>
+          </div>
+        </div>
+
+      <!-- Unnamed (Rectangle)
       <div id="u527" class="ax_default heading_1">
         <div id="u527_div" class=""></div>
         <div id="u527_text" class="text ">
           <p><span>Agregar item:</span></p>
         </div>
-      </div>
+      </div>-->
 
-      <!-- EntradaNombreItem (Text Field) -->
+      <!-- EntradaNombreItem (Text Field)
       <div id="u528" class="ax_default text_field" data-label="EntradaNombreItem">
         <div id="u528_div" class=""></div>
         <input name="item" id="u528_input" type="text" value="" class="u528_input"/>
-      </div>
+      </div>-->
 
-      <!-- EntradaValorItem (Text Field) -->
+      <!-- EntradaValorItem (Text Field)
       <div id="u529" class="ax_default text_field" data-label="EntradaValorItem">
         <div id="u529_div" class=""></div>
         <input name="valor" id="u529_input" type="text" value="" class="u529_input"/>
-      </div>
+      </div>-->
 
       <!-- Unnamed (Rectangle) -->
       <button id="u530" class="ax_default primary_button">
         <div id="u530_div" class=""></div>
         <div id="u530_text" class="text ">
-          <p><span>Cargar</span></p>
+          <p><span>Cargar items</span></p>
         </div>
       </button>
 
       <!-- Unnamed (Droplist) -->
       <div id="u531" class="ax_default droplist">
         <div id="u531_div" class=""></div>
-        <select name="seleccionarMetodoPago" id="u531_input" class="u531_input">
-          <option class="u531_input_option" selected value="Seleccionar Método de Pago">Seleccionar Método de Pago</option>
-          <option class="u531_input_option" value="Crédito">Crédito</option>
-          <option class="u531_input_option" value="Débito">Débito</option>
-          <option class="u531_input_option" value="Transferencia Bancaria">Transferencia Bancaria</option>
+        <select name="seleccionarMetodoPago" id="u531_input" class="u531_input" required>
+          <option class="u531_input_option" selected value="">Seleccionar Método de Pago</option>
+          {{#each metodos}}
+          <option class="u531_input_option" value={{.}} >{{.}}</option>
+          {{/each}}
         </select>
       </div>
 
       <!-- Unnamed (Droplist) -->
       <div id="u532" class="ax_default droplist">
         <div id="u532_div" class=""></div>
-        <select name="proveedor" id="u532_input" class="u532_input">
-          <option class="u532_input_option" value="Seleccionar Proveedor">Seleccionar Proveedor</option>
-          <option class="u532_input_option" value="Proveedor 1">Proveedor 1</option>
-          <option class="u532_input_option" value="Proveedor 2">Proveedor 2</option>
-          <option class="u532_input_option" value="Proveedor 3">Proveedor 3</option>
+        <select name="criterio" id="u532_input" class="u532_input" required>
+          <option class="u532_input_option" value="">Seleccionar Criterio</option>
+         {{#each criterios}}
+          <option class="u532_input_option" value={{.}} >{{.}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -360,22 +383,45 @@
       <div id="u533" class="ax_default droplist">
         <div id="u533_div" class=""></div>
         <select name="documentoComercial" id="u533_input" class="u533_input">
-          <option class="u533_input_option" value="Seleccionar Documento Comercial">Seleccionar Documento Comercial</option>
-          <option class="u533_input_option" value="Cheque">Cheque</option>
-          <option class="u533_input_option" value="Pagaré">Pagaré</option>
-          <option class="u533_input_option" value="Factura A">Factura A</option>
-          <option class="u533_input_option" value="Factura B">Factura B</option>
-          <option class="u533_input_option" value="Factura C">Factura C</option>
+          <option class="u533_input_option" value="">Seleccionar Documento Comercial</option>
+         {{#each documentos}}
+          <option class="u533_input_option" value={{.}} >{{.}}</option>
+          {{/each}}
         </select>
       </div>
 
-      <!-- Unnamed (Image) -->
+        <div id="u5333" class="ax_default droplist">
+          <div id="u5333_div" class=""></div>
+          <select name="entidad" id="u5333_input" class="u533_input" required>
+            <option class="u533_input_option" value="">Seleccionar Entidad</option>
+            {{#each entidad}}
+            <option class="u533_input_option" value={{entidad}} >{{nombre}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div id="u52666" class="ax_default heading_1">
+          <div id="u52666_div" class=""></div>
+          <div id="u52666_text" class="text ">
+            <p><span>Descripción del egreso:</span></p>
+          </div>
+        </div>
+
+        <div id="u53333">
+          <div id="u53333_div" class="">
+            <textarea name="descripcionEgreso" id="descripcionEgreso" style="width: 303px; height: 30px; resize: none; top: 555px; left: 60px; position: absolute;"
+            placeholder="Agregue una descipción para el egreso"
+            ></textarea>
+          </div>
+        </div>
+
+      <!-- Unnamed (Image)
       <div id="u534" class="ax_default image">
         <img id="u534_img" class="img " src="images/cargar_egreso/u534.png"/>
         <div id="u534_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Table Title Bar (Group) -->
       <div id="u535" class="ax_default" data-label="Table Title Bar" data-left="0" data-top="0" data-width="0" data-height="0">
@@ -389,390 +435,126 @@
         </div>
       </div>
 
-      <!-- Unnamed (Rectangle) -->
-      <div id="u537" class="ax_default heading_1">
-        <div id="u537_div" class=""></div>
-        <div id="u537_text" class="text ">
-          <p><span>Fecha:</span></p>
+      <!-- Unnamed (Rectangle) COMO CAMBIAR LA POSICION
+        <div id="u571" class="ax_default heading_1">
+          <div id="u571_div" class=""></div>
+          <div id="u571_text" class="text ">
+            <p><span>Fecha:</span></p>
+          </div>
+        </div>-->
+
+        <div id="u537" class="ax_default text_field">
+          <!--<div id="u537_div" class=""></div>
+          <div id="u537_text" class="text ">
+            <p><span>Fecha:</span></p>
+          </div>-->
+          <div id="u538_div" class=""></div>
+          <input name="fecha" id="u538_input" type="date" value="Fecha" class="u538_input" required/>
         </div>
-      </div>
 
-      <!-- Unnamed (Text Field) -->
-      <div id="u538" class="ax_default text_field">
-        <div id="u538_div" class=""></div>
-        <input name="fecha" id="u538_input" type="date" value="Fecha" class="u538_input"/>
-      </div>
-
-      <!-- Unnamed (Dynamic Panel) -->
+      <!-- Unnamed (Dynamic Panel) VER LO QUE TRAE CADA COLUMNA-->
       <div id="u539" class="ax_default">
         <div id="u539_state0" class="panel_state" data-label="State1" style="">
-          <div id="u539_state0_content" class="panel_state_content">
+          <div id="u539_state0_content" class="panel_state_content" style="width:100%;">
 
-            <!-- Unnamed (Repeater) -->
-            <div id="u540" class="ax_default">
-              <script id="u540_script" type="axure-repeater-template">
-
-                <!-- Fecha (Rectangle) -->
-                <div id="u541" class="ax_default box_1 u541" data-label="Fecha">
-                  <div id="u541_div" class="u541_div"></div>
-                  <div id="u541_text" class="text u541_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </script>
-              <div id="u540-1" class="preeval" style="width: 100px; height: 30px;">
-
-                <!-- Fecha (Rectangle) -->
-                <div id="u541-1" class="ax_default box_1 u541" data-label="Fecha" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u541-1_div" class="u541_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u541-1_text" class="text u541_text" style="visibility: inherit">
-                    <p><span>2020-08-26</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u540-2" class="preeval" style="width: 100px; height: 30px;">
-
-                <!-- Fecha (Rectangle) -->
-                <div id="u541-2" class="ax_default box_1 u541" data-label="Fecha" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u541-2_div" class="u541_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u541-2_text" class="text u541_text" style="visibility: inherit">
-                    <p><span>2020-08-25</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u540-3" class="preeval" style="width: 100px; height: 30px;">
-
-                <!-- Fecha (Rectangle) -->
-                <div id="u541-3" class="ax_default box_1 u541" data-label="Fecha" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u541-3_div" class="u541_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u541-3_text" class="text u541_text" style="visibility: inherit">
-                    <p><span>2020-08-22</span></p>
-                  </div>
-                </div>
+            <div id="u340" class="ax_default line">
+              <img id="u340_img" class="img " src="images/cargar_entidad/u340.svg"/>
+              <div id="u340_text" class="text " style="display:none; visibility: hidden">
+                <p></p>
               </div>
             </div>
 
-            <!-- Unnamed (Repeater) -->
-            <div id="u542" class="ax_default">
-              <script id="u542_script" type="axure-repeater-template">
+            <div id="u341" class="ax_default heading_1">
+              <div id="u341_div" class=""></div>
+              <div id="u341_text" class="text ">
+                <p><span>Egresos existentes:</span></p>
 
-                <!-- Proveedor (Rectangle) -->
-                <div id="u543" class="ax_default box_1 u543" data-label="Proveedor">
-                  <div id="u543_div" class="u543_div"></div>
-                  <div id="u543_text" class="text u543_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </script>
-              <div id="u542-1" class="preeval" style="width: 100px; height: 30px;">
+                <table class="tablaCSS" style="width:100%;">
+                  <thead>
+                  <tr>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Organización</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Método de Pago</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Documento Comercial</th>
+                    <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Total</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {{#each egresoTabla}}
+                  <tr>
+                    <td>{{entidad.nombre}}</td>
+                    <td>{{fecha}}</td>
+                    <td>{{metodoDePago.tipo}}</td>
+                    <td>{{documentoComercial.tipo}}</td>
+                    <td>{{valor.importe}}</td>
+                  </tr>
+                  {{/each}}
+                  </tbody>
+                </table>
 
-                <!-- Proveedor (Rectangle) -->
-                <div id="u543-1" class="ax_default box_1 u543" data-label="Proveedor" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u543-1_div" class="u543_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u543-1_text" class="text u543_text" style="visibility: inherit">
-                    <p><span>Proveedor2</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u542-2" class="preeval" style="width: 100px; height: 30px;">
 
-                <!-- Proveedor (Rectangle) -->
-                <div id="u543-2" class="ax_default box_1 u543" data-label="Proveedor" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u543-2_div" class="u543_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u543-2_text" class="text u543_text" style="visibility: inherit">
-                    <p><span>Proveedor1</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u542-3" class="preeval" style="width: 100px; height: 30px;">
-
-                <!-- Proveedor (Rectangle) -->
-                <div id="u543-3" class="ax_default box_1 u543" data-label="Proveedor" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u543-3_div" class="u543_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u543-3_text" class="text u543_text" style="visibility: inherit">
-                    <p><span>Proveedor2</span></p>
-                  </div>
-                </div>
               </div>
             </div>
 
-            <!-- Unnamed (Repeater) -->
-            <div id="u544" class="ax_default">
-              <script id="u544_script" type="axure-repeater-template">
 
-                <!-- Total (Rectangle) -->
-                <div id="u545" class="ax_default box_1 u545" data-label="Total">
-                  <div id="u545_div" class="u545_div"></div>
-                  <div id="u545_text" class="text u545_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </script>
-              <div id="u544-1" class="preeval" style="width: 100px; height: 30px;">
-
-                <!-- Total (Rectangle) -->
-                <div id="u545-1" class="ax_default box_1 u545" data-label="Total" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u545-1_div" class="u545_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u545-1_text" class="text u545_text" style="visibility: inherit">
-                    <p><span>10.500</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u544-2" class="preeval" style="width: 100px; height: 30px;">
-
-                <!-- Total (Rectangle) -->
-                <div id="u545-2" class="ax_default box_1 u545" data-label="Total" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u545-2_div" class="u545_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u545-2_text" class="text u545_text" style="visibility: inherit">
-                    <p><span>2.850</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u544-3" class="preeval" style="width: 100px; height: 30px;">
-
-                <!-- Total (Rectangle) -->
-                <div id="u545-3" class="ax_default box_1 u545" data-label="Total" style="width: 100px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u545-3_div" class="u545_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                  <div id="u545-3_text" class="text u545_text" style="visibility: inherit">
-                    <p><span>9.325</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Medio de Pago (Repeater) -->
-            <div id="u546" class="ax_default" data-label="Medio de Pago">
-              <script id="u546_script" type="axure-repeater-template" data-label="Medio de Pago">
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u547" class="ax_default box_1 u547">
-                  <div id="u547_div" class="u547_div"></div>
-                  <div id="u547_text" class="text u547_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </script>
-              <div id="u546-1" class="preeval" style="width: 145px; height: 30px;">
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u547-1" class="ax_default box_1 u547" style="width: 145px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u547-1_div" class="u547_div" style="width: 145px; height: 30px;visibility: inherit"></div>
-                  <div id="u547-1_text" class="text u547_text" style="visibility: inherit">
-                    <p><span>Crédito</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u546-2" class="preeval" style="width: 145px; height: 30px;">
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u547-2" class="ax_default box_1 u547" style="width: 145px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u547-2_div" class="u547_div" style="width: 145px; height: 30px;visibility: inherit"></div>
-                  <div id="u547-2_text" class="text u547_text" style="visibility: inherit">
-                    <p><span>Débito</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u546-3" class="preeval" style="width: 145px; height: 30px;">
-
-                <!-- Unnamed (Rectangle) -->
-                <div id="u547-3" class="ax_default box_1 u547" style="width: 145px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u547-3_div" class="u547_div" style="width: 145px; height: 30px;visibility: inherit"></div>
-                  <div id="u547-3_text" class="text u547_text" style="visibility: inherit">
-                    <p><span>Débito</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Unnamed (Repeater) -->
-            <div id="u548" class="ax_default">
-              <script id="u548_script" type="axure-repeater-template">
-
-                <!-- Documento Comercial (Rectangle) -->
-                <div id="u549" class="ax_default box_1 u549" data-label="Documento Comercial">
-                  <div id="u549_div" class="u549_div"></div>
-                  <div id="u549_text" class="text u549_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-
-                <!-- Lupa (Shape) -->
-                <div id="u550" class="ax_default icon u550" data-label="Lupa">
-                  <img id="u550_img" class="img u550_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                  <div id="u550_text" class="text u550_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </script>
-              <div id="u548-1" class="preeval" style="width: 207px; height: 30px;">
-
-                <!-- Documento Comercial (Rectangle) -->
-                <div id="u549-1" class="ax_default box_1 u549" data-label="Documento Comercial" style="width: 178px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u549-1_div" class="u549_div" style="width: 178px; height: 30px;visibility: inherit"></div>
-                  <div id="u549-1_text" class="text u549_text" style="visibility: inherit">
-                    <p><span>Factura C</span></p>
-                  </div>
-                </div>
-
-                <!-- Lupa (Shape) -->
-                <div id="u550-1" class="ax_default icon u550" data-label="Lupa" style="width: 20px; height: 20px; left: 187px; top: 3px;visibility: inherit">
-                  <img id="u550-1_img" class="img u550_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                  <div id="u550-1_text" class="text u550_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u548-2" class="preeval" style="width: 207px; height: 30px;">
-
-                <!-- Documento Comercial (Rectangle) -->
-                <div id="u549-2" class="ax_default box_1 u549" data-label="Documento Comercial" style="width: 178px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u549-2_div" class="u549_div" style="width: 178px; height: 30px;visibility: inherit"></div>
-                  <div id="u549-2_text" class="text u549_text" style="visibility: inherit">
-                    <p><span>Cheque</span></p>
-                  </div>
-                </div>
-
-                <!-- Lupa (Shape) -->
-                <div id="u550-2" class="ax_default icon u550" data-label="Lupa" style="width: 20px; height: 20px; left: 187px; top: 3px;visibility: inherit">
-                  <img id="u550-2_img" class="img u550_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                  <div id="u550-2_text" class="text u550_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u548-3" class="preeval" style="width: 207px; height: 30px;">
-
-                <!-- Documento Comercial (Rectangle) -->
-                <div id="u549-3" class="ax_default box_1 u549" data-label="Documento Comercial" style="width: 178px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u549-3_div" class="u549_div" style="width: 178px; height: 30px;visibility: inherit"></div>
-                  <div id="u549-3_text" class="text u549_text" style="visibility: inherit">
-                    <p><span>Factura C</span></p>
-                  </div>
-                </div>
-
-                <!-- Lupa (Shape) -->
-                <div id="u550-3" class="ax_default icon u550" data-label="Lupa" style="width: 20px; height: 20px; left: 187px; top: 3px;visibility: inherit">
-                  <img id="u550-3_img" class="img u550_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                  <div id="u550-3_text" class="text u550_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Unnamed (Repeater) -->
-            <div id="u551" class="ax_default">
-              <script id="u551_script" type="axure-repeater-template">
-
-                <!-- Entidad (Rectangle) -->
-                <div id="u552" class="ax_default box_1 u552" data-label="Entidad">
-                  <div id="u552_div" class="u552_div"></div>
-                  <div id="u552_text" class="text u552_text" style="display:none; visibility: hidden">
-                    <p></p>
-                  </div>
-                </div>
-              </script>
-              <div id="u551-1" class="preeval" style="width: 150px; height: 30px;">
-
-                <!-- Entidad (Rectangle) -->
-                <div id="u552-1" class="ax_default box_1 u552" data-label="Entidad" style="width: 150px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u552-1_div" class="u552_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                  <div id="u552-1_text" class="text u552_text" style="visibility: inherit">
-                    <p><span>Entidad 1</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u551-2" class="preeval" style="width: 150px; height: 30px;">
-
-                <!-- Entidad (Rectangle) -->
-                <div id="u552-2" class="ax_default box_1 u552" data-label="Entidad" style="width: 150px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u552-2_div" class="u552_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                  <div id="u552-2_text" class="text u552_text" style="visibility: inherit">
-                    <p><span>Entidad 1</span></p>
-                  </div>
-                </div>
-              </div>
-              <div id="u551-3" class="preeval" style="width: 150px; height: 30px;">
-
-                <!-- Entidad (Rectangle) -->
-                <div id="u552-3" class="ax_default box_1 u552" data-label="Entidad" style="width: 150px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                  <div id="u552-3_div" class="u552_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                  <div id="u552-3_text" class="text u552_text" style="visibility: inherit">
-                    <p><span>Entidad 2</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)
       <div id="u553" class="ax_default box_11">
         <div id="u553_div" class=""></div>
         <div id="u553_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div>-->
 
-      <!-- Input-Text (Rectangle) -->
+      <!-- Input-Text (Rectangle)
       <div id="u554" class="ax_default" data-label="Input-Text">
         <div id="u554_div" class=""></div>
         <div id="u554_text" class="text ">
           <p><span>Fecha</span></p>
         </div>
-      </div>
+      </div>-->
 
-      <!-- Input-Text (Rectangle) -->
+      <!-- Input-Text (Rectangle)
       <div id="u555" class="ax_default" data-label="Input-Text">
         <div id="u555_div" class=""></div>
         <div id="u555_text" class="text ">
           <p><span>Proveedor</span></p>
         </div>
-      </div>
+      </div>-->
 
-      <!-- Input-Text (Rectangle) -->
+      <!-- Input-Text (Rectangle)
       <div id="u556" class="ax_default" data-label="Input-Text">
         <div id="u556_div" class=""></div>
         <div id="u556_text" class="text ">
           <p><span>Total</span></p>
         </div>
-      </div>
+      </div>-->
 
-      <!-- Input-Text (Rectangle) -->
+      <!-- Input-Text (Rectangle)
       <div id="u557" class="ax_default" data-label="Input-Text">
         <div id="u557_div" class=""></div>
         <div id="u557_text" class="text ">
           <p><span>Método de Pago</span></p>
         </div>
-      </div>
+      </div>-->
 
-      <!-- Input-Text (Rectangle) -->
+      <!-- Input-Text (Rectangle)
       <div id="u558" class="ax_default" data-label="Input-Text">
         <div id="u558_div" class=""></div>
         <div id="u558_text" class="text ">
           <p><span>Documento Comercial</span></p>
         </div>
-      </div>
+      </div>-->
+        
 
-      <!-- Unnamed (Rectangle) -->
-      <div id="u559" class="ax_default heading_1">
-        <div id="u559_div" class=""></div>
-        <div id="u559_text" class="text ">
-          <p><span>Revisor del Egreso: </span></p>
-        </div>
-      </div>
 
-      <!-- Unnamed (Checkbox) -->
-      <div id="u560" class="ax_default checkbox">
-        <label id="u560_input_label" for="u560_input" style="position: absolute; left: 0px;">
-          <img id="u560_img" class="img " src="images/cargar_egreso/u560.svg"/>
-          <div id="u560_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
-          </div>
-        </label>
-        <input name="esRevisor" id="u560_input" type="checkbox" value="checkbox"/>
-      </div>
+
+
+
+
 
       <!-- Popup (Dynamic Panel) -->
       <div id="u561" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
@@ -842,7 +624,7 @@
         </div>
       </div>
 
-      <!-- Entidades (Droplist) -->
+      <!-- Entidades (Droplist)
       <div id="u570" class="ax_default droplist" data-label="Entidades">
         <div id="u570_div" class=""></div>
         <select name="seleccionarEntidad" id="u570_input" class="u570_input">
@@ -851,33 +633,33 @@
           <option class="u570_input_option" value="Entidad 2">Entidad 2</option>
           <option class="u570_input_option" value="Entidad 3">Entidad 3</option>
         </select>
-      </div>
+      </div>-->
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)-->
       <div id="u571" class="ax_default heading_1">
         <div id="u571_div" class=""></div>
         <div id="u571_text" class="text ">
-          <p><span>Entidad:</span></p>
+          <p><span>Fecha:</span></p>
         </div>
       </div>
 
-      <!-- Input-Text (Rectangle) -->
+      <!-- Input-Text (Rectangle)
       <div id="u572" class="ax_default" data-label="Input-Text">
         <div id="u572_div" class=""></div>
         <div id="u572_text" class="text ">
           <p><span>Entidad</span></p>
         </div>
-      </div>
+      </div>-->
 
       <!-- Unnamed (NavBar) -->
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)
       <div id="u574" class="ax_default box_1">
         <div id="u574_div" class=""></div>
         <div id="u574_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Tabs (Group) -->
       <div id="u575" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247" data-height="65">
@@ -885,29 +667,29 @@
         <!-- Unnamed (Group) -->
         <div id="u576" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u577" class="ax_default heading_1">
             <div id="u577_div" class=""></div>
             <div id="u577_text" class="text ">
               <p><a class="btn btn-dark" href="/pantalla_principal_usuario" style="text-decoration: none">GeSoc</a></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u578" class="ax_default box_1">
             <img id="u578_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
             <div id="u578_text" class="text ">
               <p><a class="btn btn-dark" href="/pantalla_principal_usuario" style="text-decoration: none">Gestión de Proyectos Sociales</a></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Image) -->
+          <!-- Unnamed (Image)
           <div id="u579" class="ax_default image">
             <img id="u579_img" class="img " src="images/pantalla_principal/u7.png"/>
             <div id="u579_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -939,29 +721,29 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u584" class="ax_default icon">
         <img id="u584_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
         <div id="u584_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u585" class="ax_default icon">
         <img id="u585_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
         <div id="u585_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u586" class="ax_default icon">
         <img id="u586_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
         <div id="u586_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Criterios de Categorización (Group) -->
       <div id="u587" class="ax_default ax_default_hidden" data-label="Criterios de Categorización" style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
@@ -1180,25 +962,25 @@
         <div id="u617_state0" class="panel_state" data-label="State1" style="">
           <div id="u617_state0_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u618" class="ax_default icon">
               <img id="u618_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u618_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="u617_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
           <div id="u617_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u619" class="ax_default icon">
               <img id="u619_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u619_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -1259,13 +1041,13 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u628" class="ax_default icon">
         <img id="u628_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
         <div id="u628_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
       <div id="u573" style="display:none; visibility:hidden;"></div>
 
       <!-- RUTA CARGAR EGRESO (Group) -->
@@ -1279,7 +1061,32 @@
           </div>
         </div>
       </div>
+        <div id="id_imagen">
+          <a id="archivito" name="imagenSubidaHref" href="lala" target="_blank"></a>
+          <input id="input_imagen" name="imagenSubida" type="txt" style="display:none; visibility:hidden;">
+        </div>
+
+        <div id="includedContent"></div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
+    <script>
+
+        document.querySelector("#myFileInput").addEventListener("change",function () {
+
+            const reader = new FileReader();
+
+            reader.addEventListener("load",() => {
+
+                localStorage.setItem("recent-image",reader.result);
+                imagenString = reader.result;
+                $("#archivito").attr("href", imagenString);
+                $("#input_imagen").attr("value", imagenString);
+            });
+
+            reader.readAsDataURL(this.files[0]);
+            //document.write(String(input_imagen.value));
+        });
+
+    </script>
   </body>
 </html>

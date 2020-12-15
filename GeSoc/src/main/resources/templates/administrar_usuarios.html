@@ -44,6 +44,15 @@
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
   </head>
   <body>
     <div id="base" class="">
@@ -55,417 +64,31 @@
         <!-- Unnamed (Dynamic Panel) -->
         <div id="u1984" class="ax_default">
           <div id="u1984_state0" class="panel_state" data-label="State1" style="">
-            <div id="u1984_state0_content" class="panel_state_content">
+            <div id="u1984_state0_content" class="panel_state_content" style="width:100%;">
+              <table id="u57577" class="tablaCSS">
+                <!--cellpadding="0" cellspacing="0" style="margin: 0px auto; font-family:verdana; font-size:110%; color:#515559;"-->
+                <thead>
+                <tr>
+                  <!-- style=" border: 1px solid #515559; background-color:#e5e5e5;" -->
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Apellido</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Identificación</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Rol</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each usuarios}}
+                  <tr> <!-- style=" border: 1px solid #515559;" -->
+                    <td>{{nombre}}</td>
+                    <td>{{apellido}}</td><!-- style=" border: 1px solid #515559;" -->
+                    <td>{{dni}}</td>
+                    <td>{{rol}}</td>
+                  </tr>
+                {{/each}}
 
-              <!-- Table (Repeater) -->
-              <div id="u1985" class="ax_default" data-label="Table">
-                <script id="u1985_script" type="axure-repeater-template" data-label="Table">
+                </tbody>
+              </table>
 
-                  <!-- col 5 (Rectangle) -->
-                  <div id="u1986" class="ax_default box_1 u1986" data-label="col 5">
-                    <div id="u1986_div" class="u1986_div"></div>
-                    <div id="u1986_text" class="text u1986_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-
-                  <!-- col 4 (Rectangle) -->
-                  <div id="u1987" class="ax_default box_1 u1987" data-label="col 4">
-                    <div id="u1987_div" class="u1987_div"></div>
-                    <div id="u1987_text" class="text u1987_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-
-                  <!-- col 3 (Rectangle) -->
-                  <div id="u1988" class="ax_default box_1 u1988" data-label="col 3">
-                    <div id="u1988_div" class="u1988_div"></div>
-                    <div id="u1988_text" class="text u1988_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-
-                  <!-- col 2 (Rectangle) -->
-                  <div id="u1989" class="ax_default box_1 u1989" data-label="col 2">
-                    <div id="u1989_div" class="u1989_div"></div>
-                    <div id="u1989_text" class="text u1989_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-
-                  <!-- col 1 (Rectangle) -->
-                  <div id="u1990" class="ax_default box_1 u1990" data-label="col 1">
-                    <div id="u1990_div" class="u1990_div"></div>
-                    <div id="u1990_text" class="text u1990_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-
-                  <!-- col 6 (Rectangle) -->
-                  <div id="u1991" class="ax_default box_1 u1991" data-label="col 6">
-                    <div id="u1991_div" class="u1991_div"></div>
-                    <div id="u1991_text" class="text u1991_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-
-                  <!-- Lupa (Shape) -->
-                  <div id="u1992" class="ax_default icon u1992" data-label="Lupa">
-                    <img id="u1992_img" class="img u1992_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                    <div id="u1992_text" class="text u1992_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-                </script>
-                <div id="u1985-1" class="preeval" style="width: 1080px; height: 30px;">
-
-                  <!-- col 5 (Rectangle) -->
-                  <div id="u1986-1" class="ax_default box_1 u1986" data-label="col 5" style="width: 70px; height: 30px; left: 880px; top: 0px;visibility: inherit">
-                    <div id="u1986-1_div" class="u1986_div" style="width: 70px; height: 30px;visibility: inherit"></div>
-                    <div id="u1986-1_text" class="text u1986_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 4 (Rectangle) -->
-                  <div id="u1987-1" class="ax_default box_1 u1987" data-label="col 4" style="width: 230px; height: 30px; left: 650px; top: 0px;visibility: inherit">
-                    <div id="u1987-1_div" class="u1987_div" style="width: 230px; height: 30px;visibility: inherit"></div>
-                    <div id="u1987-1_text" class="text u1987_text" style="visibility: inherit">
-                      <p><span>PROEM</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 3 (Rectangle) -->
-                  <div id="u1988-1" class="ax_default box_1 u1988" data-label="col 3" style="width: 150px; height: 30px; left: 500px; top: 0px;visibility: inherit">
-                    <div id="u1988-1_div" class="u1988_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                    <div id="u1988-1_text" class="text u1988_text" style="visibility: inherit">
-                      <p><span>10.616.522</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 2 (Rectangle) -->
-                  <div id="u1989-1" class="ax_default box_1 u1989" data-label="col 2" style="width: 250px; height: 30px; left: 250px; top: 0px;visibility: inherit">
-                    <div id="u1989-1_div" class="u1989_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1989-1_text" class="text u1989_text" style="visibility: inherit">
-                      <p><span>Leandro</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 1 (Rectangle) -->
-                  <div id="u1990-1" class="ax_default box_1 u1990" data-label="col 1" style="width: 250px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                    <div id="u1990-1_div" class="u1990_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1990-1_text" class="text u1990_text" style="visibility: inherit">
-                      <p><span>Schvartzer</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 6 (Rectangle) -->
-                  <div id="u1991-1" class="ax_default box_1 u1991" data-label="col 6" style="width: 100px; height: 30px; left: 950px; top: 0px;visibility: inherit">
-                    <div id="u1991-1_div" class="u1991_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                    <div id="u1991-1_text" class="text u1991_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Lupa (Shape) -->
-                  <div id="u1992-1" class="ax_default icon u1992" data-label="Lupa" style="width: 20px; height: 20px; left: 1060px; top: 5px;visibility: inherit">
-                    <img id="u1992-1_img" class="img u1992_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                    <div id="u1992-1_text" class="text u1992_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-                <div id="u1985-2" class="preeval" style="width: 1080px; height: 30px;">
-
-                  <!-- col 5 (Rectangle) -->
-                  <div id="u1986-2" class="ax_default box_1 u1986" data-label="col 5" style="width: 70px; height: 30px; left: 880px; top: 0px;visibility: inherit">
-                    <div id="u1986-2_div" class="u1986_div" style="width: 70px; height: 30px;visibility: inherit"></div>
-                    <div id="u1986-2_text" class="text u1986_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 4 (Rectangle) -->
-                  <div id="u1987-2" class="ax_default box_1 u1987" data-label="col 4" style="width: 230px; height: 30px; left: 650px; top: 0px;visibility: inherit">
-                    <div id="u1987-2_div" class="u1987_div" style="width: 230px; height: 30px;visibility: inherit"></div>
-                    <div id="u1987-2_text" class="text u1987_text" style="visibility: inherit">
-                      <p><span>PROEM</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 3 (Rectangle) -->
-                  <div id="u1988-2" class="ax_default box_1 u1988" data-label="col 3" style="width: 150px; height: 30px; left: 500px; top: 0px;visibility: inherit">
-                    <div id="u1988-2_div" class="u1988_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                    <div id="u1988-2_text" class="text u1988_text" style="visibility: inherit">
-                      <p><span>21.526.846</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 2 (Rectangle) -->
-                  <div id="u1989-2" class="ax_default box_1 u1989" data-label="col 2" style="width: 250px; height: 30px; left: 250px; top: 0px;visibility: inherit">
-                    <div id="u1989-2_div" class="u1989_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1989-2_text" class="text u1989_text" style="visibility: inherit">
-                      <p><span>Belén</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 1 (Rectangle) -->
-                  <div id="u1990-2" class="ax_default box_1 u1990" data-label="col 1" style="width: 250px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                    <div id="u1990-2_div" class="u1990_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1990-2_text" class="text u1990_text" style="visibility: inherit">
-                      <p><span>Reppeto</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 6 (Rectangle) -->
-                  <div id="u1991-2" class="ax_default box_1 u1991" data-label="col 6" style="width: 100px; height: 30px; left: 950px; top: 0px;visibility: inherit">
-                    <div id="u1991-2_div" class="u1991_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                    <div id="u1991-2_text" class="text u1991_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Lupa (Shape) -->
-                  <div id="u1992-2" class="ax_default icon u1992" data-label="Lupa" style="width: 20px; height: 20px; left: 1060px; top: 5px;visibility: inherit">
-                    <img id="u1992-2_img" class="img u1992_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                    <div id="u1992-2_text" class="text u1992_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-                <div id="u1985-3" class="preeval" style="width: 1080px; height: 30px;">
-
-                  <!-- col 5 (Rectangle) -->
-                  <div id="u1986-3" class="ax_default box_1 u1986" data-label="col 5" style="width: 70px; height: 30px; left: 880px; top: 0px;visibility: inherit">
-                    <div id="u1986-3_div" class="u1986_div" style="width: 70px; height: 30px;visibility: inherit"></div>
-                    <div id="u1986-3_text" class="text u1986_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 4 (Rectangle) -->
-                  <div id="u1987-3" class="ax_default box_1 u1987" data-label="col 4" style="width: 230px; height: 30px; left: 650px; top: 0px;visibility: inherit">
-                    <div id="u1987-3_div" class="u1987_div" style="width: 230px; height: 30px;visibility: inherit"></div>
-                    <div id="u1987-3_text" class="text u1987_text" style="visibility: inherit">
-                      <p><span>PROEM</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 3 (Rectangle) -->
-                  <div id="u1988-3" class="ax_default box_1 u1988" data-label="col 3" style="width: 150px; height: 30px; left: 500px; top: 0px;visibility: inherit">
-                    <div id="u1988-3_div" class="u1988_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                    <div id="u1988-3_text" class="text u1988_text" style="visibility: inherit">
-                      <p><span>41.256.863</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 2 (Rectangle) -->
-                  <div id="u1989-3" class="ax_default box_1 u1989" data-label="col 2" style="width: 250px; height: 30px; left: 250px; top: 0px;visibility: inherit">
-                    <div id="u1989-3_div" class="u1989_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1989-3_text" class="text u1989_text" style="visibility: inherit">
-                      <p><span>Analía</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 1 (Rectangle) -->
-                  <div id="u1990-3" class="ax_default box_1 u1990" data-label="col 1" style="width: 250px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                    <div id="u1990-3_div" class="u1990_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1990-3_text" class="text u1990_text" style="visibility: inherit">
-                      <p><span>Valenzuela</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 6 (Rectangle) -->
-                  <div id="u1991-3" class="ax_default box_1 u1991" data-label="col 6" style="width: 100px; height: 30px; left: 950px; top: 0px;visibility: inherit">
-                    <div id="u1991-3_div" class="u1991_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                    <div id="u1991-3_text" class="text u1991_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Lupa (Shape) -->
-                  <div id="u1992-3" class="ax_default icon u1992" data-label="Lupa" style="width: 20px; height: 20px; left: 1060px; top: 5px;visibility: inherit">
-                    <img id="u1992-3_img" class="img u1992_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                    <div id="u1992-3_text" class="text u1992_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-                <div id="u1985-4" class="preeval" style="width: 1080px; height: 30px;">
-
-                  <!-- col 5 (Rectangle) -->
-                  <div id="u1986-4" class="ax_default box_1 u1986" data-label="col 5" style="width: 70px; height: 30px; left: 880px; top: 0px;visibility: inherit">
-                    <div id="u1986-4_div" class="u1986_div" style="width: 70px; height: 30px;visibility: inherit"></div>
-                    <div id="u1986-4_text" class="text u1986_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 4 (Rectangle) -->
-                  <div id="u1987-4" class="ax_default box_1 u1987" data-label="col 4" style="width: 230px; height: 30px; left: 650px; top: 0px;visibility: inherit">
-                    <div id="u1987-4_div" class="u1987_div" style="width: 230px; height: 30px;visibility: inherit"></div>
-                    <div id="u1987-4_text" class="text u1987_text" style="visibility: inherit">
-                      <p><span>Samsung</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 3 (Rectangle) -->
-                  <div id="u1988-4" class="ax_default box_1 u1988" data-label="col 3" style="width: 150px; height: 30px; left: 500px; top: 0px;visibility: inherit">
-                    <div id="u1988-4_div" class="u1988_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                    <div id="u1988-4_text" class="text u1988_text" style="visibility: inherit">
-                      <p><span>10.783.552</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 2 (Rectangle) -->
-                  <div id="u1989-4" class="ax_default box_1 u1989" data-label="col 2" style="width: 250px; height: 30px; left: 250px; top: 0px;visibility: inherit">
-                    <div id="u1989-4_div" class="u1989_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1989-4_text" class="text u1989_text" style="visibility: inherit">
-                      <p><span>Leandro</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 1 (Rectangle) -->
-                  <div id="u1990-4" class="ax_default box_1 u1990" data-label="col 1" style="width: 250px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                    <div id="u1990-4_div" class="u1990_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1990-4_text" class="text u1990_text" style="visibility: inherit">
-                      <p><span>Prueba1</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 6 (Rectangle) -->
-                  <div id="u1991-4" class="ax_default box_1 u1991" data-label="col 6" style="width: 100px; height: 30px; left: 950px; top: 0px;visibility: inherit">
-                    <div id="u1991-4_div" class="u1991_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                    <div id="u1991-4_text" class="text u1991_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Lupa (Shape) -->
-                  <div id="u1992-4" class="ax_default icon u1992" data-label="Lupa" style="width: 20px; height: 20px; left: 1060px; top: 5px;visibility: inherit">
-                    <img id="u1992-4_img" class="img u1992_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                    <div id="u1992-4_text" class="text u1992_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-                <div id="u1985-5" class="preeval" style="width: 1080px; height: 30px;">
-
-                  <!-- col 5 (Rectangle) -->
-                  <div id="u1986-5" class="ax_default box_1 u1986" data-label="col 5" style="width: 70px; height: 30px; left: 880px; top: 0px;visibility: inherit">
-                    <div id="u1986-5_div" class="u1986_div" style="width: 70px; height: 30px;visibility: inherit"></div>
-                    <div id="u1986-5_text" class="text u1986_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 4 (Rectangle) -->
-                  <div id="u1987-5" class="ax_default box_1 u1987" data-label="col 4" style="width: 230px; height: 30px; left: 650px; top: 0px;visibility: inherit">
-                    <div id="u1987-5_div" class="u1987_div" style="width: 230px; height: 30px;visibility: inherit"></div>
-                    <div id="u1987-5_text" class="text u1987_text" style="visibility: inherit">
-                      <p><span>Samsung</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 3 (Rectangle) -->
-                  <div id="u1988-5" class="ax_default box_1 u1988" data-label="col 3" style="width: 150px; height: 30px; left: 500px; top: 0px;visibility: inherit">
-                    <div id="u1988-5_div" class="u1988_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                    <div id="u1988-5_text" class="text u1988_text" style="visibility: inherit">
-                      <p><span>21.396.865</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 2 (Rectangle) -->
-                  <div id="u1989-5" class="ax_default box_1 u1989" data-label="col 2" style="width: 250px; height: 30px; left: 250px; top: 0px;visibility: inherit">
-                    <div id="u1989-5_div" class="u1989_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1989-5_text" class="text u1989_text" style="visibility: inherit">
-                      <p><span>Agustín</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 1 (Rectangle) -->
-                  <div id="u1990-5" class="ax_default box_1 u1990" data-label="col 1" style="width: 250px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                    <div id="u1990-5_div" class="u1990_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1990-5_text" class="text u1990_text" style="visibility: inherit">
-                      <p><span>Prueba2</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 6 (Rectangle) -->
-                  <div id="u1991-5" class="ax_default box_1 u1991" data-label="col 6" style="width: 100px; height: 30px; left: 950px; top: 0px;visibility: inherit">
-                    <div id="u1991-5_div" class="u1991_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                    <div id="u1991-5_text" class="text u1991_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Lupa (Shape) -->
-                  <div id="u1992-5" class="ax_default icon u1992" data-label="Lupa" style="width: 20px; height: 20px; left: 1060px; top: 5px;visibility: inherit">
-                    <img id="u1992-5_img" class="img u1992_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                    <div id="u1992-5_text" class="text u1992_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-                <div id="u1985-6" class="preeval" style="width: 1080px; height: 30px;">
-
-                  <!-- col 5 (Rectangle) -->
-                  <div id="u1986-6" class="ax_default box_1 u1986" data-label="col 5" style="width: 70px; height: 30px; left: 880px; top: 0px;visibility: inherit">
-                    <div id="u1986-6_div" class="u1986_div" style="width: 70px; height: 30px;visibility: inherit"></div>
-                    <div id="u1986-6_text" class="text u1986_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 4 (Rectangle) -->
-                  <div id="u1987-6" class="ax_default box_1 u1987" data-label="col 4" style="width: 230px; height: 30px; left: 650px; top: 0px;visibility: inherit">
-                    <div id="u1987-6_div" class="u1987_div" style="width: 230px; height: 30px;visibility: inherit"></div>
-                    <div id="u1987-6_text" class="text u1987_text" style="visibility: inherit">
-                      <p><span>Unicef</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 3 (Rectangle) -->
-                  <div id="u1988-6" class="ax_default box_1 u1988" data-label="col 3" style="width: 150px; height: 30px; left: 500px; top: 0px;visibility: inherit">
-                    <div id="u1988-6_div" class="u1988_div" style="width: 150px; height: 30px;visibility: inherit"></div>
-                    <div id="u1988-6_text" class="text u1988_text" style="visibility: inherit">
-                      <p><span>42.888.556</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 2 (Rectangle) -->
-                  <div id="u1989-6" class="ax_default box_1 u1989" data-label="col 2" style="width: 250px; height: 30px; left: 250px; top: 0px;visibility: inherit">
-                    <div id="u1989-6_div" class="u1989_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1989-6_text" class="text u1989_text" style="visibility: inherit">
-                      <p><span>Micaela</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 1 (Rectangle) -->
-                  <div id="u1990-6" class="ax_default box_1 u1990" data-label="col 1" style="width: 250px; height: 30px; left: 0px; top: 0px;visibility: inherit">
-                    <div id="u1990-6_div" class="u1990_div" style="width: 250px; height: 30px;visibility: inherit"></div>
-                    <div id="u1990-6_text" class="text u1990_text" style="visibility: inherit">
-                      <p><span>Prueba2</span></p>
-                    </div>
-                  </div>
-
-                  <!-- col 6 (Rectangle) -->
-                  <div id="u1991-6" class="ax_default box_1 u1991" data-label="col 6" style="width: 100px; height: 30px; left: 950px; top: 0px;visibility: inherit">
-                    <div id="u1991-6_div" class="u1991_div" style="width: 100px; height: 30px;visibility: inherit"></div>
-                    <div id="u1991-6_text" class="text u1991_text" style="visibility: inherit">
-                      <p><span>No</span></p>
-                    </div>
-                  </div>
-
-                  <!-- Lupa (Shape) -->
-                  <div id="u1992-6" class="ax_default icon u1992" data-label="Lupa" style="width: 20px; height: 20px; left: 1060px; top: 5px;visibility: inherit">
-                    <img id="u1992-6_img" class="img u1992_img" src="images/cargar_entidad/lupa_u329.svg"/>
-                    <div id="u1992-6_text" class="text u1992_text" style="display:none; visibility: hidden">
-                      <p></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -473,13 +96,6 @@
         <!-- Col 5 Header (Group) -->
         <div id="u1993" class="ax_default" data-label="Col 5 Header" data-left="1087" data-top="325" data-width="100" data-height="30">
 
-          <!-- col 5 (Rectangle) -->
-          <div id="u1994" class="ax_default box_1 selected" data-label="col 5">
-            <div id="u1994_div" class="selected"></div>
-            <div id="u1994_text" class="text ">
-              <p><span>Administrador</span></p>
-            </div>
-          </div>
 
           <!-- score sort asc (Shape) -->
           <div id="u1995" class="ax_default icon ax_default_hidden selected" data-label="score sort asc" selectiongroup="sorting" style="display:none; visibility: hidden">
@@ -501,13 +117,7 @@
         <!-- Col 4 Header (Group) -->
         <div id="u1997" class="ax_default" data-label="Col 4 Header" data-left="787" data-top="325" data-width="230" data-height="30">
 
-          <!-- col 4 (Rectangle) -->
-          <div id="u1998" class="ax_default box_1 selected" data-label="col 4">
-            <div id="u1998_div" class="selected"></div>
-            <div id="u1998_text" class="text ">
-              <p><span>Empresa / Organización </span></p>
-            </div>
-          </div>
+
 
           <!-- last name sort asc (Shape) -->
           <div id="u1999" class="ax_default icon ax_default_hidden selected" data-label="last name sort asc" selectiongroup="sorting" style="display:none; visibility: hidden">
@@ -529,13 +139,7 @@
         <!-- Col 3 Header (Group) -->
         <div id="u2001" class="ax_default" data-label="Col 3 Header" data-left="637" data-top="325" data-width="150" data-height="30">
 
-          <!-- col 3 (Rectangle) -->
-          <div id="u2002" class="ax_default box_1 selected" data-label="col 3">
-            <div id="u2002_div" class="selected"></div>
-            <div id="u2002_text" class="text ">
-              <p><span>Identificación</span></p>
-            </div>
-          </div>
+
 
           <!-- first name sort asc (Shape) -->
           <div id="u2003" class="ax_default icon ax_default_hidden selected" data-label="first name sort asc" selectiongroup="sorting" style="display:none; visibility: hidden">
@@ -557,13 +161,7 @@
         <!-- Col 2 Header (Group) -->
         <div id="u2005" class="ax_default" data-label="Col 2 Header" data-left="387" data-top="325" data-width="250" data-height="30">
 
-          <!-- col 2 (Rectangle) -->
-          <div id="u2006" class="ax_default box_1 selected" data-label="col 2">
-            <div id="u2006_div" class="selected"></div>
-            <div id="u2006_text" class="text ">
-              <p><span>Nombres</span></p>
-            </div>
-          </div>
+
 
           <!-- email sort asc (Shape) -->
           <div id="u2007" class="ax_default icon ax_default_hidden selected" data-label="email sort asc" selectiongroup="sorting" style="display:none; visibility: hidden">
@@ -585,13 +183,7 @@
         <!-- Col 1 Header (Group) -->
         <div id="u2009" class="ax_default" data-label="Col 1 Header" data-left="137" data-top="325" data-width="250" data-height="30">
 
-          <!-- col 1 (Rectangle) -->
-          <div id="u2010" class="ax_default box_1 selected" data-label="col 1">
-            <div id="u2010_div" class="selected"></div>
-            <div id="u2010_text" class="text ">
-              <p><span>Apellidos</span></p>
-            </div>
-          </div>
+
 
           <!-- id sort asc (Shape) -->
           <div id="u2011" class="ax_default icon ax_default_hidden selected" data-label="id sort asc" selectiongroup="sorting" style="display:none; visibility: hidden">
@@ -613,13 +205,7 @@
         <!-- Col 4 Header (Group) -->
         <div id="u2013" class="ax_default" data-label="Col 4 Header" data-left="1017" data-top="325" data-width="70" data-height="30">
 
-          <!-- col 4 (Rectangle) -->
-          <div id="u2014" class="ax_default box_1 selected" data-label="col 4">
-            <div id="u2014_div" class="selected"></div>
-            <div id="u2014_text" class="text ">
-              <p><span>Revisor</span></p>
-            </div>
-          </div>
+
 
           <!-- score sort asc (Shape) -->
           <div id="u2015" class="ax_default icon ax_default_hidden selected" data-label="score sort asc" selectiongroup="sorting" style="display:none; visibility: hidden">
@@ -640,15 +226,17 @@
       </div>
 
       <!-- AgregarUsuario (Group) -->
-      <div id="u2017" class="ax_default" data-label="AgregarUsuario" data-left="1050" data-top="555" data-width="140" data-height="40">
+        <div id="u2017" class="ax_default" data-label="AgregarUsuario" data-left="1050" data-top="555" data-width="140" data-height="40">
 
         <!-- Unnamed (Rectangle) -->
-        <div id="u2018" class="ax_default primary_button">
+        <div id="u2018" class="ax_default primary_button"> <!--onclick="abrirPopUp()"-->
           <div id="u2018_div" class=""></div>
           <div id="u2018_text" class="text ">
             <p><span>&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Agregar Usuario</span></p>
           </div>
         </div>
+
+
 
         <!-- Unnamed (Shape) -->
         <div id="u2019" class="ax_default icon">
@@ -673,7 +261,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2022" class="ax_default text_field" data-label="Filter Input">
           <div id="u2022_div" class=""></div>
-          <input id="u2022_input" type="text" value="" class="u2022_input"/>
+          <input id="u2022_input" type="text" name="identificacion" value={{identificacionDefaultFiltro}} class="u2022_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -687,7 +275,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2024" class="ax_default text_field" data-label="Filter Input">
           <div id="u2024_div" class=""></div>
-          <input id="u2024_input" type="text" value="" class="u2024_input"/>
+          <input id="u2024_input" name="apellido" type="text" value={{apellidoDefaultFiltro}} class="u2024_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -701,7 +289,7 @@
         <!-- Filter Input (Text Field) -->
         <div id="u2026" class="ax_default text_field" data-label="Filter Input">
           <div id="u2026_div" class=""></div>
-          <input id="u2026_input" type="text" value="" class="u2026_input"/>
+          <input id="u2026_input" name="nombre" type="text" value={{nombreDefaultFiltro}} class="u2026_input"/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -813,25 +401,56 @@
         </div>
 
         <!-- Unnamed (Shape) -->
-        <div id="u2042" class="ax_default icon">
-          <img id="u2042_img" class="img " src="images/administrar_usuarios/u2042.svg"/>
-          <div id="u2042_text" class="text " style="display:none; visibility: hidden">
-            <p></p>
+
+          <div id="filtrado">
+            <img id="u2042_img" class="img " src="images/administrar_usuarios/u2042.svg" style="height:20px; width:20px;"/>
+            <p style="color: rgba(217, 70, 59, 1); font-size:1.5vw; left:5%; top:0%; position:absolute;">Filtrar por entidad: </p>
+
+            <div id="select_empresas">
+              <select id="entidadFiltro">
+                {{#if empresaElegida includeZero=false}}
+                <option value="Seleccione una empresa" selected>Seleccione una empresa</option>
+                {{else}}
+                <option value={{entidad}} selected>{{nombre}}</option>
+                {{/if}}
+                {{#each entidades}}
+                <option value={{entidad}} >{{nombre}}</option>
+                {{/each}}
+              </select>
+            </div>
+
+            <div id="checkbox_revisor">
+              {{#if esRevisor includeZero=true}}
+              <input id="checkedRevisor" type="checkbox" name="esRevisor" style="align: center;" checked />
+              {{else}}
+              <input id="uncheckedRevisor" type="checkbox" name="esRevisor" style="align: center;" />
+              {{/if}}
+              <span>Revisor</span>
+            </div>
+
+            <div id="checkbox_admin">
+              {{#if esAdmin includeZero=true}}
+              <input id="checkedAdmin" type="checkbox" name="esAdmin" selected style="align: center;" checked />
+              {{else}}
+              <input id="uncheckedAdmin" type="checkbox" name="esAdmin" selected style="align: center;"/>
+              {{/if}}
+
+              <span>Administrador</span>
+            </div>
+
+            <div id="cargar_items">
+              <input type="button" class="boton_cargar_items" value="Filtrar" onclick="relodearConFiltros()"/>
+            </div>
+
+
+
           </div>
-        </div>
 
-        <!-- Unnamed (Droplist) -->
-        <div id="u2043" class="ax_default droplist">
-          <div id="u2043_div" class=""></div>
-          <select id="u2043_input" class="u2043_input">
-            <option class="u2043_input_option" value="Añadir Filtro">Añadir Filtro</option>
-            <option class="u2043_input_option" value="Empresa / Organización">Empresa / Organización</option>
-            <option class="u2043_input_option" value="Revisor">Revisor</option>
-            <option class="u2043_input_option" value="Administrador">Administrador</option>
-          </select>
-        </div>
+
+
+
+
       </div>
-
       <!-- Popup (Dynamic Panel) -->
       <div id="u2044" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
         <div id="u2044_state0" class="panel_state" data-label="State1" style="">
@@ -846,7 +465,7 @@
             </div>
 
             <!-- Unnamed (Rectangle) -->
-            <div id="u2046" class="ax_default button">
+            <div id="u2046" class="ax_default button" onclick="cerrarPopUp()">
               <div id="u2046_div" class=""></div>
               <div id="u2046_text" class="text ">
                 <p><span>Cancelar</span></p>
@@ -896,7 +515,7 @@
             <!-- Apellidos (Text Field) -->
             <div id="u2052" class="ax_default text_field" data-label="Apellidos">
               <div id="u2052_div" class=""></div>
-              <input name="apellido" id="u2052_input" type="text" value="" class="u2052_input"/>
+              <input name="apellidoAlta" id="u2052_input" type="text" value={{apellidoDefault}} class="u2052_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -910,7 +529,7 @@
             <!-- Nombres (Text Field) -->
             <div id="u2054" class="ax_default text_field" data-label="Nombres">
               <div id="u2054_div" class=""></div>
-              <input name="nombre" id="u2054_input" type="text" value="" class="u2054_input"/>
+              <input name="nombreAlta" id="u2054_input" type="text" value={{nombreDefault}} class="u2054_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -924,7 +543,7 @@
             <!-- DNI (Text Field) -->
             <div id="u2056" class="ax_default text_field" data-label="DNI">
               <div id="u2056_div" class=""></div>
-              <input name="dni" id="u2056_input" type="text" value="" class="u2056_input"/>
+              <input name="dniAlta" id="u2056_input" type="text" value={{DNIDefault}} class="u2056_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -938,7 +557,7 @@
             <!-- EmailPrincipal (Text Field) -->
             <div id="u2058" class="ax_default text_field" data-label="EmailPrincipal">
               <div id="u2058_div" class=""></div>
-              <input name="email" id="u2058_input" type="text" value="" class="u2058_input"/>
+              <input name="emailAlta" id="u2058_input" type="text" value={{emailDefault}} class="u2058_input"/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -949,19 +568,19 @@
               </div>
             </div>
 
-            <!-- Celular (Text Field) -->
+            <!-- Celular (Text Field)
             <div id="u2060" class="ax_default text_field" data-label="Celular">
               <div id="u2060_div" class=""></div>
               <input name="telefono" id="u2060_input" type="text" value="" class="u2060_input"/>
-            </div>
+            </div> -->
 
-            <!-- Unnamed (Rectangle) -->
+            <!-- Unnamed (Rectangle)
             <div id="u2061" class="ax_default box_1">
               <img id="u2061_img" class="img " src="images/administrar_usuarios/u2061.svg"/>
               <div id="u2061_text" class="text ">
                 <p><span>Teléfono Celular:</span></p>
               </div>
-            </div>
+            </div> -->
 
             <!-- Unnamed (Rectangle) -->
             <div id="u2062" class="ax_default box_1">
@@ -971,39 +590,50 @@
               </div>
             </div>
 
-            <!-- Unnamed (Rectangle) -->
+            <!-- Unnamed (Rectangle)
             <div id="u2063" class="ax_default box_1">
               <img id="u2063_img" class="img " src="images/administrar_usuarios/u2063.svg"/>
               <div id="u2063_text" class="text ">
                 <p><span>Rol en la Empresa / Organización: </span></p>
               </div>
-            </div>
+            </div> -->
 
-            <!-- EmpresaOrganizacion (Text Field) -->
+            <!-- EmpresaOrganizacion (Text Field)
             <div id="u2064" class="ax_default text_field" data-label="EmpresaOrganizacion">
               <div id="u2064_div" class=""></div>
               <input name="empresa" id="u2064_input" type="text" value="" class="u2064_input"/>
+            </div> -->
+
+            <!-- Empresa/Organizacion (Droplist) -->
+            <div id="u1481" class="ax_default droplist" data-label="Entidades">
+              <div id="u1481_div" class=""></div>
+              <select id="u1481_input" class="u1481_input">
+                <option name="empresaAlta" class="u1481_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
+                {{#each entidades}}
+                <option class="u1481_input_option" value="{{entidad}}">{{nombre}}</option>
+                {{/each}}
+              </select>
             </div>
 
-            <!-- Rol (Text Field) -->
+            <!-- Rol (Text Field)
             <div id="u2065" class="ax_default text_field" data-label="Rol">
               <div id="u2065_div" class=""></div>
               <input name="rolEnEmpresa" id="u2065_input" type="text" value="" class="u2065_input"/>
-            </div>
+            </div> -->
 
-            <!-- Usuario (Text Field) -->
+            <!-- Usuario (Text Field)
             <div id="u2066" class="ax_default text_field" data-label="Usuario">
               <div id="u2066_div" class=""></div>
-              <input name="usuario" id="u2066_input" type="text" value="" class="u2066_input"/>
-            </div>
+              <input name="usuarioAlta" id="u2066_input" type="text" value={{usuarioDefault}} class="u2066_input"/>
+            </div> -->
 
-            <!-- Unnamed (Rectangle) -->
+            <!-- Unnamed (Rectangle)
             <div id="u2067" class="ax_default box_1">
               <img id="u2067_img" class="img " src="images/administrar_usuarios/u2067.svg"/>
               <div id="u2067_text" class="text ">
                 <p><span>Usuario:</span></p>
               </div>
-            </div>
+            </div> -->
 
             <!-- Unnamed (Rectangle) -->
             <div id="u2068" class="ax_default box_1">
@@ -1026,47 +656,51 @@
           </div>
         </div>
       </div>
+        <!--<div id="u20466" class="ax_default button" onclick="abrirPopUp()">
+          <div id="u20466_div" class=""></div>
+          <div id="u20466_text" class="text ">
+            <p><span>Abrir</span></p>
+          </div>
+        </div>-->
 
-      <!-- Unnamed (NavBar) -->
-
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (NavBar)
       <div id="u2071" class="ax_default box_1">
         <div id="u2071_div" class=""></div>
         <div id="u2071_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Tabs (Group) -->
       <div id="u2072" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247" data-height="65">
 
-        <!-- Unnamed (Group) -->
+
         <div id="u2073" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u2074" class="ax_default heading_1">
             <div id="u2074_div" class=""></div>
             <div id="u2074_text" class="text ">
               <p><span>GeSoc</span></p>
             </div>
-          </div>
+          </div>  -->
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u2075" class="ax_default box_1">
             <img id="u2075_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
             <div id="u2075_text" class="text ">
               <p><span>Gestión de Proyectos Sociales</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Image) -->
+          <!-- Unnamed (Image)
           <div id="u2076" class="ax_default image">
             <img id="u2076_img" class="img " src="images/pantalla_principal/u7.png"/>
             <div id="u2076_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
-          </div>
-        </div>
+          </div> -->
+    </div>
       </div>
 
       <!-- Unnamed (Rectangle) -->
@@ -1097,29 +731,29 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u2081" class="ax_default icon">
         <img id="u2081_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
         <div id="u2081_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u2082" class="ax_default icon">
         <img id="u2082_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
         <div id="u2082_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u2083" class="ax_default icon">
         <img id="u2083_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
         <div id="u2083_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Criterios de Categorización (Group) -->
       <div id="u2084" class="ax_default ax_default_hidden" data-label="Criterios de Categorización" style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
@@ -1144,6 +778,7 @@
                   <p><span>CREAR CATEGORIA</span></p>
                 </div>
               </div>
+
 
               <!-- Tab Label 3 (Rectangle) -->
               <div id="u2088" class="ax_default box_3" data-label="Tab Label 3" selectiongroup="u2070Tabs">
@@ -1338,25 +973,25 @@
         <div id="u2114_state0" class="panel_state" data-label="State1" style="">
           <div id="u2114_state0_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u2115" class="ax_default icon">
               <img id="u2115_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u2115_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
         <div id="u2114_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
           <div id="u2114_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u2116" class="ax_default icon">
               <img id="u2116_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u2116_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
@@ -1417,13 +1052,13 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u2125" class="ax_default icon">
         <img id="u2125_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
         <div id="u2125_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
       <div id="u2070" style="display:none; visibility:hidden;"></div>
 
       <!-- RUTA ADMINISTRAR USUARIOS (Group) -->
@@ -1437,7 +1072,32 @@
           </div>
         </div>
       </div>
+        <div id="includedContent"></div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
+    <script>
+      function abrirPopUp(){
+        document.getElementById("u2044_lightbox").style.display = "block";
+        document.getElementById("u2044").style.display = "block";
+      }
+      function relodearConFiltros(){
+        var valorRevisor='false';
+        var valorAdmin='false';
+
+        if(document.querySelector('#uncheckedRevisor:checked') !== null || document.querySelector('#checkedRevisor:checked') !== null)
+        valorRevisor='true';
+
+        if(document.querySelector('#checkedAdmin:checked') !== null || document.querySelector('#uncheckedAdmin:checked') !== null )
+          valorAdmin='true';
+
+
+        location.href="/administrar_usuarios?filtroRevisor="+valorRevisor+'&filtroAdministrador='+valorAdmin+'&entidadFiltro='+entidadFiltro.value+'&'+u2024_input.name+'='+u2024_input.value
+        +'&'+u2026_input.name+'='+u2026_input.value+'&'+u2022_input.name+'='+u2022_input.value;
+      }
+      function cerrarPopUp(){
+        document.getElementById("u2044").style.display = "none";
+        document.getElementById("u2044_lightbox").style.display = "none";
+      }
+    </script>
   </body>
 </html>

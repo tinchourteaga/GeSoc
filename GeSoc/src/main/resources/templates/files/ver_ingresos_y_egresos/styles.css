@@ -3,7 +3,7 @@
   background-image:none;
   position:relative;
   left:0px;
-  width:1350px;
+  width:100%;
   margin-left:auto;
   margin-right:auto;
   text-align:left;
@@ -153,6 +153,16 @@
   font-style:normal;
   font-size:16px;
 }
+#tabla_dinamica_fila{
+    border-width:0px;
+    position:absolute;
+    left:7%;
+    top:52%;
+    width:80.1%;
+    overflow-y: auto;
+    height: 5%;
+    display:flex;
+}
 #u1451 .text {
   position:absolute;
   align-self:flex-start;
@@ -170,7 +180,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:1350px;
+  width:100%;
   height:70px;
 }
 .centerTable { margin: 0px auto; }
@@ -183,7 +193,7 @@
   position:absolute;
   left:0px;
   top:0px;
-  width:1350px;
+  width:100%;
   height:70px;
   display:flex;
 }
@@ -324,20 +334,22 @@
   white-space:nowrap;
   text-transform:none;
 }
+
 #u1457 {
   border-width:0px;
   position:absolute;
   left:45px;
   top:292px;
-  width:1260px;
+  width:1000px;
   height:276px;
+  overflow-y:auto;
 }
 #u1457_state0 {
   border-width:0px;
   position:absolute;
   left:0px;
   top:0px;
-  width:1260px;
+  width:1000px;
   height:276px;
   -ms-overflow-x:hidden;
   overflow-x:hidden;
@@ -349,14 +361,14 @@
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
   box-shadow:none;
+  overflow-y:auto;
 }
 #u1457_state0_content {
   border-width:0px;
   position:absolute;
-  left:0px;
+  left:10%;
   top:0px;
-  width:1px;
-  height:1px;
+  overflow-y:auto;
 }
 .u1459_div {
   border-width:0px;
@@ -639,6 +651,7 @@
   -webkit-box-shadow:none;
   box-shadow:none;
   visibility:hidden;
+  overflow-y:auto;
 }
 #u1457_state1_content {
   border-width:0px;
@@ -647,6 +660,7 @@
   top:0px;
   width:1px;
   height:1px;
+  overflow-y:auto;
 }
 .u1465_div {
   border-width:0px;
@@ -932,6 +946,7 @@
   -webkit-box-shadow:none;
   box-shadow:none;
   visibility:hidden;
+  overflow-y:auto;
 }
 #u1457_state2_content {
   border-width:0px;
@@ -940,6 +955,7 @@
   top:0px;
   width:1px;
   height:1px;
+  overflow-y:auto;
 }
 .u1471_div {
   border-width:0px;
@@ -4284,4 +4300,189 @@
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+}
+
+.tablaCSS{
+    border-collapse: collapse;
+    margin 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-size:14px;
+}
+
+.tablaCSS thead tr{
+    background-color: rgba(217, 70, 59, 1);
+    color: white;
+    text-align: center;
+    /*border: 1px solid #515559;*/
+}
+.tablaCSS th,
+.tablaCSS td{
+    padding: 12px 15px;
+}
+
+.tablaCSS tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablaCSS tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.tablaCSS tbody tr:last-of-type{
+    border-bottom: 2px solid rgba(217, 70, 59, 1);
+}
+.variables_fijas{
+  width: 35%;
+  text-align:left;
+  background-color:white;
+  border: 0px;
+}
+
+.form-popup{
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 5px 5px 5px 5px;
+    border: 2px solid rgba(217, 70, 59, 1);
+}
+
+#myPopUp{
+    position: fixed;
+    width:50%;
+    height: 50%;
+    top:20%;
+    left:20%;
+    display:none;
+}
+
+#myPopUpIngreso{
+    position: fixed;
+    width:50%;
+    height: 30%;
+    top:20%;
+    left:20%;
+    display:none;
+}
+
+.lupita{
+   position: absolute;
+   left: 70%;
+}
+
+.botoncito_lupita{
+  position: absolute;
+}
+
+#detalle_posta{
+  position: fixed;
+  width:48%;
+  height: 50%;
+  top:22%;
+  left:21%;
+}
+
+#detalle_posta_ingreso{
+    position: fixed;
+    width:48%;
+    height: auto;
+    top:22%;
+    left:21%;
+}
+
+#fecha_detalle{
+  position: absolute;
+  text-align: right;
+  right: 5%;
+}
+
+#fecha_detalle_ingreso{
+  position: absolute;
+  text-align: right;
+  right: 5%;
+}
+
+.variables_fecha{
+  text-align:right;
+  background-color:white;
+  border: 0px;
+}
+
+.tablaCSS{
+    border-collapse: collapse;
+    margin 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-size:14px;
+}
+
+.nav__overlay{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 90%;
+    background: rgba(0,0,0,0.5);
+    backdrop-filter: blur(3px);
+    visibility: hidden;
+    opacity: 0;
+}
+
+#botoncito_cerrar{
+    position:absolute;
+    top: 0%;
+    right: 0%;
+    width:20px;
+}
+
+#botoncito_cerrar_ingresos{
+    position:absolute;
+    top: 0%;
+    right: 0%;
+    width:20px;
+}
+
+.span_piola{
+   margin-top: 10px;
+   display: block;
+   margin-bottom: 10px;
+}
+
+.div-padre.show .nav__overlay{
+    visibility: visible;
+    opacity: 1;
+}
+
+.tablaCSS thead tr{
+    background-color: rgba(217, 70, 59, 1);
+    color: white;
+    text-align: center;
+    /*border: 1px solid #515559;*/
+}
+.tablaCSS th,
+.tablaCSS td{
+    padding: 6px 9px;
+}
+
+.tablaCSS tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablaCSS tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.tablaCSS tbody tr:last-of-type{
+    border-bottom: 2px solid rgba(217, 70, 59, 1);
 }

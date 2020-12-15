@@ -38,16 +38,29 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/usuario/data.js"></script>
+    <!--<script src="files/usuario/data.js"></script>-->
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
   </head>
   <body>
     <div id="base" class="">
-      <form action="/cambiarContrasenia" method="post">
+      <form id="formAEnviar" action="/cambiarContrasenia" method="post">
 
       <!-- Unnamed (Image) -->
       <div id="u178" class="ax_default image">
@@ -57,24 +70,26 @@
         </div>
       </div>
 
+
+
       <!-- Unnamed (Group) -->
       <div id="u179" class="ax_default" data-left="45" data-top="2" data-width="249" data-height="68">
 
-        <!-- Unnamed (Rectangle) -->
+        <!-- Unnamed (Rectangle)
         <div id="u180" class="ax_default heading_1">
           <div id="u180_div" class=""></div>
           <div id="u180_text" class="text ">
             <p style="font-size:35px;"><span style="font-family:'Calibri Bold Italic', 'Calibri Regular', 'Calibri', sans-serif;font-style:italic;color:#D9463B;">GeSoc</span></p><p style="font-size:15px;"><span style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;font-style:normal;color:#000000;">Gestión de Proyectos Sociales</span></p>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Unnamed (Image) -->
+        <!-- Unnamed (Image)
         <div id="u181" class="ax_default image">
           <img id="u181_img" class="img " src="images/usuario/u181.png"/>
           <div id="u181_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- Unnamed (Group) -->
@@ -87,10 +102,8 @@
           <div id="u184" class="ax_default" data-left="46" data-top="200" data-width="338" data-height="249">
 
             <!-- Unnamed (Rectangle) -->
-            <div id="u185" class="ax_default heading_1">
-              <div id="u185_div" class=""></div>
-              <div id="u185_text" class="text ">
-                <p><span>Usuario Prueba</span></p>
+            <div id="nombre_usuario">
+                <p><span>{{nickname}}</span></p>
               </div>
             </div>
 
@@ -126,13 +139,7 @@
               </div>
             </div>
 
-            <!-- Unnamed (Rectangle) -->
-            <div id="u190" class="ax_default heading_1">
-              <div id="u190_div" class=""></div>
-              <div id="u190_text" class="text ">
-                <p><span>Perfil de Acceso:</span></p>
-              </div>
-            </div>
+
 
             <!-- Unnamed (Shape) -->
             <div id="u191" class="ax_default icon">
@@ -145,7 +152,7 @@
             <!-- Unnamed (Rectangle) -->
             <div id="u192" class="ax_default heading_1">
               <div id="u192_div" class=""></div>
-              <div id="u192_text" class="text ">
+              <div id="u192_text" class="text " placeholder={{nombre}}>
                 <p><span>Nombre:</span></p>
               </div>
             </div>
@@ -163,38 +170,48 @@
           <div id="u194" class="ax_default primary_button">
             <div id="u194_div" class=""></div>
             <div id="u194_text" class="text ">
-              <p><span>Cambiar Contraseña</span></p>
+              <p><span onclick="showw()">Cambiar contraseña</span></p>
             </div>
           </div>
-        </div>
+
+          <!--<div id="u1944" class="ax_default primary_button">
+            <div id="u1944_div" class=""></div>
+            <div id="u1944_text" class="text ">
+              <p><span>Cambiar datos</span></p>
+            </div>
+          </div>
+        </div>-->
 
         <!-- TipoUsuario (Droplist) -->
-        <div id="u195" class="ax_default droplist" data-label="TipoUsuario">
-          <div id="u195_div" class=""></div>
-          <select id="u195_input" class="u195_input">
-            <option class="u195_input_option" value="Usuario">Usuario</option>
-            <option class="u195_input_option" value="Administrador">Administrador</option>
-          </select>
-        </div>
 
         <!-- Username Input (Text Field) -->
         <div id="u196" class="ax_default text_field" data-label="Username Input">
           <div id="u196_div" class=""></div>
-          <input id="u196_input" type="text" value="" class="u196_input"/>
+          <input id="u196_input" type="text" value="" class="u196_input" placeholder={{nombre}} disabled/>
         </div>
 
         <!-- Username Input (Text Field) -->
         <div id="u197" class="ax_default text_field" data-label="Username Input">
           <div id="u197_div" class=""></div>
-          <input id="u197_input" type="text" value="" class="u197_input"/>
+          <input id="u197_input" type="text" value="" class="u197_input" placeholder={{apellido}} disabled/>
         </div>
 
         <!-- Username Input (Text Field) -->
         <div id="u198" class="ax_default text_field" data-label="Username Input">
           <div id="u198_div" class=""></div>
-          <input id="u198_input" type="text" value="" class="u198_input"/>
+          <input id="u198_input" type="text" value="" class="u198_input" placeholder={{email}} disabled/>
         </div>
       </div>
+
+        <div id="blurBackground" style="position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 100%;
+        height: 90%;
+        background: rgba(0,0,0,0.5);
+        backdrop-filter: blur(3px);
+        visibility: hidden;
+        opacity: 0;"></div>
 
       <!-- Popup (Dynamic Panel) -->
       <div id="u199" class="ax_default ax_default_hidden" data-label="Popup" style="display:none; visibility: hidden">
@@ -209,11 +226,27 @@
               </div>
             </div>
 
-            <!-- Unnamed (Shape) -->
-            <div id="u201" class="ax_default primary_button">
-              <img id="u201_img" class="img " src="images/usuario/u201.svg"/>
-              <div id="u201_text" class="text ">
-                <p><span>Confirmar</span></p>
+            <div id="u20111" class="ax_default primary_button">
+              <div id="u20111_div" class=""></div>
+              <div id="u20111_text" class="text ">
+                <p>
+                  <button id="u201122_div" onclick="submit">
+                    <span>Confirmar</span>
+                  </button>
+                </p>
+              </div>
+            </div>
+
+            <input id="mensajePassword" name="mensajePassword" value="{{mensaje}}" onclick="chequearContra()" style="display:none; visibility: hidden;">
+
+            <div id="u2011" class="ax_default primary_button">
+              <div id="u2011_div" class=""></div>
+              <div id="u2011_text" class="text ">
+                <p>
+                  <button id="u20112_div" onclick="hide()">
+                    <span>Cancelar</span>
+                  </button>
+                </p>
               </div>
             </div>
 
@@ -252,7 +285,7 @@
             <!-- ContraseñaActual (Text Field) -->
             <div id="u206" class="ax_default text_field" data-label="ContraseñaActual">
               <div id="u206_div" class=""></div>
-              <input name="contraActual" id="u206_input" type="password" value="" class="u206_input"/>
+              <input name="contraActual" id="u206_input" type="password" value="" class="u206_input" required/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -266,7 +299,7 @@
             <!-- ContraseñaNueva (Text Field) -->
             <div id="u208" class="ax_default text_field" data-label="ContraseñaNueva">
               <div id="u208_div" class=""></div>
-              <input name="contraNueva" id="u208_input" type="password" value="" class="u208_input"/>
+              <input name="contraNueva" id="u208_input" type="password" value="" class="u208_input" required/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -280,7 +313,7 @@
             <!-- VerificarContraseñaNueva (Text Field) -->
             <div id="u210" class="ax_default text_field" data-label="VerificarContraseñaNueva">
               <div id="u210_div" class=""></div>
-              <input name="verifContraNueva" id="u210_input" type="password" value="" class="u210_input"/>
+              <input name="verifContraNueva" id="u210_input" type="password" value="" class="u210_input" required/>
             </div>
 
             <!-- Unnamed (Rectangle) -->
@@ -396,13 +429,13 @@
 
       <!-- Unnamed (NavBar) -->
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)
       <div id="u228" class="ax_default box_1">
         <div id="u228_div" class=""></div>
         <div id="u228_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Tabs (Group) -->
       <div id="u229" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247" data-height="65">
@@ -410,29 +443,29 @@
         <!-- Unnamed (Group) -->
         <div id="u230" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u231" class="ax_default heading_1">
             <div id="u231_div" class=""></div>
             <div id="u231_text" class="text ">
               <p><span>GeSoc</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u232" class="ax_default box_1">
             <img id="u232_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
             <div id="u232_text" class="text ">
               <p><span>Gestión de Proyectos Sociales</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Image) -->
+          <!-- Unnamed (Image)
           <div id="u233" class="ax_default image">
             <img id="u233_img" class="img " src="images/pantalla_principal/u7.png"/>
             <div id="u233_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -464,29 +497,29 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u238" class="ax_default icon">
         <img id="u238_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
         <div id="u238_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u239" class="ax_default icon">
         <img id="u239_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
         <div id="u239_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u240" class="ax_default icon">
         <img id="u240_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
         <div id="u240_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Criterios de Categorización (Group) -->
       <div id="u241" class="ax_default ax_default_hidden" data-label="Criterios de Categorización" style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
@@ -705,25 +738,25 @@
         <div id="u271_state0" class="panel_state" data-label="State1" style="">
           <div id="u271_state0_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u272" class="ax_default icon">
               <img id="u272_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u272_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="u271_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
           <div id="u271_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u273" class="ax_default icon">
               <img id="u273_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u273_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -783,14 +816,15 @@
           </div>
         </div>
       </div>
+        <!--<button id="lal" onclick="showw()">TOCAR BOTON</button>-->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u282" class="ax_default icon">
         <img id="u282_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
         <div id="u282_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
       <div id="u227" style="display:none; visibility:hidden;"></div>
 
       <!-- RUTA USUARIO (Group) -->
@@ -804,7 +838,71 @@
           </div>
         </div>
       </div>
+        <div id="includedContent"></div>
     </div>
-    <script src="resources/scripts/axure/ios.js"></script>
+    <script>
+      function hide() {
+        document.getElementById("blurBackground").style.opacity = 0;
+        document.getElementById("blurBackground").style.display = 'none';
+        document.getElementById("blurBackground").style.visibility = "hidden";
+
+        document.getElementById('u199').style.display = 'none';
+        document.getElementById('u199_lightbox').style.display = 'none';
+
+        location.href="/usuario";
+      }
+
+      function showw() {
+        document.getElementById("blurBackground").style.visibility = "visible";
+        document.getElementById("blurBackground").style.display = 'block';
+        document.getElementById("blurBackground").style.opacity = 1;
+
+        document.getElementById("u199").style.display = "block";
+        document.getElementById("u199").style.visibility = "visible";
+      }
+
+      function chequearContra() {
+
+         mensaje = document.getElementById('mensajePassword');
+
+        if (mensaje.value === '') {
+          //no llego nada
+        } else {
+          switch(mensaje.value){
+          case "0":
+            alert('Ocurrió un error interno vuelva a intentar.');
+            showw();
+          break;
+          case "1":
+            alert('La contraseña no posee un número. Vuelva a intentarlo');
+            showw();
+          break;
+          case "2":
+            alert('La contraseña debe tener como mínimo una longitud de 8 caracteres. Vuelva a intentarlo');
+            showw();
+          break;
+          case "3":
+            alert('La contraseña no posee un caracter especial. Vuelva a intentarlo');
+            showw();
+          break;
+          case "4":
+            alert('La contraseña ingresada es muy común. Vuelva a intentarlo');
+            showw();
+          break;
+          case "5":
+            alert('La contraseña fue cambiada de forma exitosa.');
+          break;
+          }
+        }
+
+        //alert("Entré a la función");
+      }
+
+
+      $(document).ready(
+              (chequearContra())
+      );
+
+    </script>
   </body>
 </html>

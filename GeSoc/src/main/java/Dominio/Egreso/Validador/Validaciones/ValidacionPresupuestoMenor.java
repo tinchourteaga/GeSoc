@@ -5,8 +5,8 @@ import Dominio.Egreso.Core.Presupuesto;
 import Dominio.Egreso.Core.Proveedor;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionDeCriterioException;
 import Dominio.Egreso.Validador.Excepciones.NoCumpleValidacionException;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ValidacionPresupuestoMenor implements ValidacionOperacion {
 
@@ -23,17 +23,20 @@ public class ValidacionPresupuestoMenor implements ValidacionOperacion {
     @Override
     public void validar(Egreso unaOperacion) throws NoCumpleValidacionException, NoCumpleValidacionDeCriterioException {
 
-        List<Presupuesto> presupuestoSeleccionados = unaOperacion.getProveedorSeleccionado().getPresupuestos();
 
-        Presupuesto presupuestoSeleccionado = unaOperacion.getCriterio().seleccionarPresupuesto(presupuestoSeleccionados);
+     boolean flag= ! unaOperacion.getPresupuestosAConsiderar().isEmpty();
+     boolean flagPresupuesto;
+     if(flag==false){
+         flagPresupuesto= false;
+     }else{
+         List<Presupuesto>presupuestosPosibles=unaOperacion.getPresupuestosAConsiderar();
+         presupuestosPosibles.sort((Presupuesto presu1, Presupuesto presu2) ->
+                 (int)(presu1.getValor() - presu2.getValor()));
+     flagPresupuesto= presupuestosPosibles.get(0).equals(unaOperacion.getPresupuestoPactado());
 
-        List<List<Presupuesto>> listaPresupuestos = proveedores.stream().map(prov -> prov.getPresupuestos()).collect(Collectors.toList());
+     }
 
-        List<Presupuesto> presupuestos = listaPresupuestos.stream().flatMap(lista->lista.stream()).collect(Collectors.toList());
-
-
-        boolean flag = presupuestos.stream().allMatch(presupuesto -> presupuesto.getValor() >= presupuestoSeleccionado.getValor());
-        if(!flag){
+        if(!flag && flagPresupuesto){
             throw new NoCumpleValidacionDeCriterioException();
         }
     }

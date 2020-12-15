@@ -1,12 +1,12 @@
 package Dominio.Entidad;
 
-import Dominio.Entidad.Categorias.Categoria;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "dom_entidades_juridicas")
-@Embeddable
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="tipoEntidad",
+        discriminatorType = DiscriminatorType.STRING)
 public abstract class TipoEntidadJuridica {
     @Id
     @GeneratedValue
@@ -24,19 +24,25 @@ public abstract class TipoEntidadJuridica {
     @Column(name = "cod_igj")
     protected String codigoDeInscripcion;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "actividad", referencedColumnName = "sector")
     protected Sector actividad;
 
-    @ManyToOne
+    /*@ManyToOne
     @JoinColumn(name = "categoria", referencedColumnName = "categoria")
-    protected Categoria categoria;
+    protected CategoriaCriterio categoria;*/
 
     @Column(name = "cant_personal")
     protected Integer cantidadPersonal;
 
     @Column(name = "prom_ventas_anuales")
     protected Float promedioVentasAnuales;
+
+    public TipoEntidadJuridica() { }
+
+    public int getEntidad_juridica() {
+        return entidad_juridica;
+    }
 
     //GETTERS Y SETTERS
     public String getRazonSocial() {

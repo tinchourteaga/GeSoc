@@ -44,6 +44,15 @@
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
   </head>
   <body>
     <div id="base" class="">
@@ -772,7 +781,7 @@
       <!-- EntradaTotal (Text Field) -->
       <div id="u1606" class="ax_default text_field" data-label="EntradaTotal">
         <div id="u1606_div" class=""></div>
-        <input id="u1606_input" type="text" value="" class="u1606_input"/>
+        <input name="total" id="u1606_input" type="text" value="" class="u1606_input"/>
       </div>
 
       <!-- Unnamed (Rectangle) -->
@@ -845,13 +854,13 @@
 
       <!-- Unnamed (NavBar) -->
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)
       <div id="u1616" class="ax_default box_1">
         <div id="u1616_div" class=""></div>
         <div id="u1616_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Tabs (Group) -->
       <div id="u1617" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247" data-height="65">
@@ -859,29 +868,29 @@
         <!-- Unnamed (Group) -->
         <div id="u1618" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u1619" class="ax_default heading_1">
             <div id="u1619_div" class=""></div>
             <div id="u1619_text" class="text ">
               <p><span>GeSoc</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u1620" class="ax_default box_1">
             <img id="u1620_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
             <div id="u1620_text" class="text ">
               <p><span>Gestión de Proyectos Sociales</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Image) -->
+          <!-- Unnamed (Image)
           <div id="u1621" class="ax_default image">
             <img id="u1621_img" class="img " src="images/pantalla_principal/u7.png"/>
             <div id="u1621_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -913,29 +922,29 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1626" class="ax_default icon">
         <img id="u1626_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
         <div id="u1626_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1627" class="ax_default icon">
         <img id="u1627_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
         <div id="u1627_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1628" class="ax_default icon">
         <img id="u1628_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
         <div id="u1628_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Criterios de Categorización (Group) -->
       <div id="u1629" class="ax_default ax_default_hidden" data-label="Criterios de Categorización" style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
@@ -1154,25 +1163,25 @@
         <div id="u1659_state0" class="panel_state" data-label="State1" style="">
           <div id="u1659_state0_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u1660" class="ax_default icon">
               <img id="u1660_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u1660_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="u1659_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
           <div id="u1659_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u1661" class="ax_default icon">
               <img id="u1661_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u1661_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -1233,13 +1242,13 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1670" class="ax_default icon">
         <img id="u1670_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
         <div id="u1670_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
       <div id="u1615" style="display:none; visibility:hidden;"></div>
 
       <!-- RUTA CREAR PROYECTO DE FINANCIAMIENTO (Group) -->
@@ -1253,6 +1262,7 @@
           </div>
         </div>
       </div>
+        <div id="includedContent"></div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
   </body>

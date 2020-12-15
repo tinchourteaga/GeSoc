@@ -38,12 +38,21 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/crear_criterio/data.js"></script>
+    <!--<script src="files/crear_criterio/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
   </head>
   <body>
     <div id="base" class="">
@@ -147,7 +156,7 @@
         <!-- Unnamed (Text Field) -->
         <div id="u1293" class="ax_default text_field">
           <div id="u1293_div" class=""></div>
-          <input name="nombreCriterio" id="u1293_input" type="text" value="" class="u1293_input"/>
+          <input name="nombreCriterio" id="u1293_input" type="text" class="u1293_input" placeholder="Ingrese un nombre para el Criterio" required/>
         </div>
 
         <!-- Unnamed (Rectangle) -->
@@ -161,10 +170,45 @@
         <!-- Unnamed (Text Area) -->
         <div id="u1295" class="ax_default text_area">
           <div id="u1295_div" class=""></div>
-          <textarea name="descripcion" id="u1295_input" class="u1295_input"></textarea>
+          <textarea name="descripcion" id="u1295_input" class="u1295_input" placeholder="Ingrese una descripción del Criterio" required></textarea>
         </div>
-      </div>
 
+        <div id="u12944" class="ax_default heading_1">
+          <div id="u12944_div" class=""></div>
+          <div id="u12944_text" class="text ">
+            <p><span>Seleccione una Empresa:</span></p>
+          </div>
+        </div>
+
+        <div id="u305" class="ax_default droplist">
+          <div id="u305_div" class=""></div>
+          <select name="entidad" id="u305_input" class="u305_input" required>
+            <option value="">Seleccionar Empresa</option>
+            {{#each entidades}}
+            <option class="u305_input_option" value={{entidad}}>{{nombre}}</option>
+            {{/each}}
+          </select>
+        </div>
+
+        <div id="u129444" class="ax_default heading_1">
+          <div id="u129444_div" class=""></div>
+          <div id="u129444_text" class="text ">
+            <p><span>Seleccione un Criterio:</span></p>
+          </div>
+        </div>
+
+        <div id="u3055" class="ax_default droplist">
+          <div id="u3055_div" class=""></div>
+          <select id="u3055_input" name="criterioPadre" class="u305_input">
+            <option value="">Seleccionar Criterio</option>
+            {{#each criterios}}
+            <option class="u305_input_option" value={{criterio}}>{{nombreCriterio}}</option>
+            {{/each}}
+          </select>
+          </select>
+        </div>
+
+      </div>
       <!-- Unnamed (Rectangle) -->
       <div id="u1296" class="ax_default box_1">
         <img id="u1296_img" class="img " src="images/asociar_ingresos_y_egresos/u844.svg"/>
@@ -173,24 +217,25 @@
         </div>
       </div>
 
+
       <!-- Unnamed (Group) -->
       <div id="u1297" class="ax_default" data-left="45" data-top="2" data-width="249" data-height="68">
 
-        <!-- Unnamed (Rectangle) -->
+        <!-- Unnamed (Rectangle)
         <div id="u1298" class="ax_default heading_1">
           <div id="u1298_div" class=""></div>
           <div id="u1298_text" class="text ">
             <p style="font-size:35px;"><span style="font-family:'Calibri Bold Italic', 'Calibri Regular', 'Calibri', sans-serif;font-style:italic;color:#D9463B;">GeSoc</span></p><p style="font-size:15px;"><span style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;font-style:normal;color:#000000;">Gestión de Proyectos Sociales</span></p>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Unnamed (Image) -->
+        <!-- Unnamed (Image)
         <div id="u1299" class="ax_default image">
           <img id="u1299_img" class="img " src="images/usuario/u181.png"/>
           <div id="u1299_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- Unnamed (Rectangle) -->
@@ -258,13 +303,43 @@
 
       <!-- Unnamed (NavBar) -->
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)
       <div id="u1309" class="ax_default box_1">
         <div id="u1309_div" class=""></div>
         <div id="u1309_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
+
+        <!-- Unnamed (Dynamic Panel) -->
+        <div id="u1984" class="ax_default">
+          <div id="u1984_state0" class="panel_state" data-label="State1" style="">
+            <div id="u1984_state0_content" class="panel_state_content" style="width:100%;">
+              <table id="u57577" class="tablaCSS">
+                <!--cellpadding="0" cellspacing="0" style="margin: 0px auto; font-family:verdana; font-size:110%; color:#515559;"-->
+                <thead>
+                <tr>
+                  <!-- style=" border: 1px solid #515559; background-color:#e5e5e5;" -->
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Nombre</th>
+                  <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Descripción</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#each criterios}}
+                <tr> <!-- style=" border: 1px solid #515559;" -->
+                  <td>{{nombreCriterio}}</td>
+                  <td>{{descripcion}}</td><!-- style=" border: 1px solid #515559;" -->
+                </tr>
+                {{/each}}
+
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+        </div>
+
+
 
       <!-- Tabs (Group) -->
       <div id="u1310" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247" data-height="65">
@@ -272,29 +347,29 @@
         <!-- Unnamed (Group) -->
         <div id="u1311" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u1312" class="ax_default heading_1">
             <div id="u1312_div" class=""></div>
             <div id="u1312_text" class="text ">
               <p><span>GeSoc</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u1313" class="ax_default box_1">
             <img id="u1313_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
             <div id="u1313_text" class="text ">
               <p><span>Gestión de Proyectos Sociales</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Image) -->
+          <!-- Unnamed (Image)
           <div id="u1314" class="ax_default image">
             <img id="u1314_img" class="img " src="images/pantalla_principal/u7.png"/>
             <div id="u1314_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -326,29 +401,29 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1319" class="ax_default icon">
         <img id="u1319_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
         <div id="u1319_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1320" class="ax_default icon">
         <img id="u1320_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
         <div id="u1320_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1321" class="ax_default icon">
         <img id="u1321_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
         <div id="u1321_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Criterios de Categorización (Group) -->
       <div id="u1322" class="ax_default ax_default_hidden" data-label="Criterios de Categorización" style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
@@ -567,25 +642,25 @@
         <div id="u1352_state0" class="panel_state" data-label="State1" style="">
           <div id="u1352_state0_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u1353" class="ax_default icon">
               <img id="u1353_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u1353_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
         <div id="u1352_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
           <div id="u1352_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u1354" class="ax_default icon">
               <img id="u1354_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u1354_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -646,13 +721,13 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u1363" class="ax_default icon">
         <img id="u1363_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
         <div id="u1363_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
       <div id="u1308" style="display:none; visibility:hidden;"></div>
 
       <!-- RUTA CREAR CRITERIO (Group) -->
@@ -666,6 +741,7 @@
           </div>
         </div>
       </div>
+        <div id="includedContent"></div>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
   </body>

@@ -1,0 +1,204 @@
+#titulo_cargar_items {
+  border-width:0px;
+  position:absolute;
+  left:5%;
+  top:15%;
+  width:30%;
+  display:flex;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:700;
+  font-style:normal;
+  font-size:2vw;
+  color:#D9463B;
+}
+
+#proveedor_seleccionado{
+  border-width:0px;
+  position:absolute;
+  left:7%;
+  top:23%;
+  width:10%;
+  display:flex;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:1.3vw;
+  color:black;
+}
+
+#select_proveedor{
+  position:absolute;
+  left:7%;
+  top:27%;
+  width:308px;
+  height:23px;
+}
+
+.selects_bonitos{
+  padding:2px 2px 2px 2px;
+  font-family:'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:13px;
+  letter-spacing:normal;
+  color:#000000;
+  vertical-align:none;
+  text-align:left;
+  text-transform:none;
+  background-color:transparent;
+  border-color:transparent;
+  background-color:rgba(255, 255, 255, 1);
+  box-sizing:border-box;
+  border-width:1px;
+  border-style:solid;
+  border-color:rgba(121, 121, 121, 1);
+  border-radius:5px;
+}
+
+.variables_fijas{
+  width: 35%;
+  text-align:left;
+  background-color:white;
+  border: 0px;
+}
+
+#fecha_seleccionada{
+  position:absolute;
+  left:7%;
+  top:33%;
+  display:flex;
+  font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;
+  font-weight:400;
+  font-style:normal;
+  font-size:1.3vw;
+  color:black;
+}
+
+#fecha_posta {
+  position:absolute;
+  left:7%;
+  top:37%;
+}
+
+#criterio_seleccionado{
+  position:absolute;
+  left:7%;
+  top:43%;
+}
+
+#select_criterio{
+  position:absolute;
+  left:7%;
+  top:47%;
+}
+
+#egreso_seleccionado{
+  position:absolute;
+  left:7%;
+  top:53%;
+}
+
+#select_egreso{
+  position:absolute;
+  left:7%;
+  top:57%;
+}
+
+#detalle_posta{
+  position: absolute;
+  left: 30%;
+  top: 23%;
+  width: 60%;
+  height: 45%;
+}
+
+#proveedor{
+  position: absolute;
+  left: 10%;
+  top: 1%;
+}
+
+#proveedorr{
+  position: absolute;
+  left: 19%;
+  top: 0.5%;
+}
+
+#fecha_detalle{
+  position: absolute;
+  right: 0%;
+  top: 1%;
+}
+
+.variables_fecha{
+  text-align:right;
+  background-color:white;
+  border: 0px;
+}
+
+
+#pago{
+  position: absolute;
+  left: 15%;
+  top: 8%;
+}
+.tablaCSS{
+    border-collapse: collapse;
+    margin 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-size:14px;
+}
+
+.tablaCSS thead tr{
+    background-color: rgba(217, 70, 59, 1);
+    color: white;
+    text-align: center;
+    /*border: 1px solid #515559;*/
+}
+.tablaCSS th,
+.tablaCSS td{
+    padding: 6px 9px;
+}
+
+.tablaCSS tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablaCSS tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.tablaCSS tbody tr:last-of-type{
+    border-bottom: 2px solid rgba(217, 70, 59, 1);
+}
+
+#ingresos{
+  position: absolute;
+  left: 17%;
+  top: 40%;
+}
+
+#cricat{
+  position: absolute;
+  left: 22%;
+  top: 47%;
+}
+
+#prep{
+  position: absolute;
+  left: 19%;
+  top: 54%;
+}
+
+#prepasoc{
+  position: absolute;
+  left: 22%;
+  top: 62%;
+}

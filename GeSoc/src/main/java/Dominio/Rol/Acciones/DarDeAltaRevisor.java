@@ -1,7 +1,6 @@
 package Dominio.Rol.Acciones;
 
 import Dominio.Egreso.Core.Egreso;
-import Dominio.Rol.Revisor;
 import Dominio.Usuario.Usuario;
 
 public class DarDeAltaRevisor implements Accion {
@@ -15,8 +14,6 @@ public class DarDeAltaRevisor implements Accion {
 
     @Override
     public void realizar() {
-        Revisor rolRevisor = new Revisor();
-        revisor.setRol(rolRevisor);
-        rolRevisor.agregarEgreso(egreso);
+        //esto esta deprecado
     }
 }

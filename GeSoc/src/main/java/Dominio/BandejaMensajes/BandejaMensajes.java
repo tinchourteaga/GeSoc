@@ -37,4 +37,7 @@ public class BandejaMensajes {
         mensajes.remove(mensaje);
     }
 
+    public List<Mensaje> getMensajes() {
+        return mensajes;
+    }
 }

@@ -1480,6 +1480,7 @@
   -moz-box-shadow:none;
   -webkit-box-shadow:none;
   box-shadow:none;
+  overflow-y:auto;
 }
 #u1833 {
   border-width:0px;
@@ -1487,8 +1488,9 @@
   left:45px;
   top:241px;
   width:1235px;
-  height:30px;
+  height:150px;
   display:flex;
+  overflow-y:auto;
 }
 #u1833 .text {
   position:absolute;
@@ -1496,12 +1498,14 @@
   padding:2px 2px 2px 2px;
   box-sizing:border-box;
   width:100%;
+  overflow-y:auto;
 }
 #u1833_text {
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
   visibility:hidden;
+  overflow-y:auto;
 }
 #u1834_div {
   border-width:0px;
@@ -4838,4 +4842,42 @@
   border-width:0px;
   word-wrap:break-word;
   text-transform:none;
+}
+.tablaCSS{
+    top:15%;
+    position:absolute;
+    border-collapse: collapse;
+    margin 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    font-family:'Calibri Light', 'Calibri Regular', 'Calibri', sans-serif;
+    font-weight:300;
+    font-style:normal;
+    font-size:14px;
+}
+
+.tablaCSS thead tr{
+    background-color: rgba(217, 70, 59, 1);
+    color: white;
+    text-align: center;
+    /*border: 1px solid #515559;*/
+}
+.tablaCSS th,
+.tablaCSS td{
+    padding: 12px 15px;
+}
+
+.tablaCSS tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablaCSS tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.tablaCSS tbody tr:last-of-type{
+    border-bottom: 2px solid rgba(217, 70, 59, 1);
 }

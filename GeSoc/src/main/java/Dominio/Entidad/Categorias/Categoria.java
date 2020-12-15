@@ -1,7 +1,7 @@
 package Dominio.Entidad.Categorias;
 
+import Dominio.Entidad.Empresa;
 import Dominio.Entidad.Sector;
-import Dominio.Entidad.TipoEntidadJuridica;
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,8 +28,11 @@ public class Categoria{
     @Column(name = "ventas_anuales")
     private double ventasAnuales;
 
-    @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL)
-    private List<TipoEntidadJuridica> entidades_juridicas;
+    @OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+    @JoinColumn(name = "categoria",insertable = false, updatable = false)
+    private List<Empresa> entidades_juridicas;
+
+    public Categoria() { }
 
     public Categoria(Sector sector, TipoCategoria nombre, Integer personalMaximo,Float ventasAnuales){
         this.sector=sector;

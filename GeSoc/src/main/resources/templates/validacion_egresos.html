@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Validación de Egresos</title>
+
+    <!--Import para el css de cargar_items-->
+    <link rel="stylesheet" href="files/validacion_egreso/style.css">
+
+    <!--Import para el boton-->
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+
+    <!--Magia JavaScript-->
+    <script src="resources/scripts/jquery-3.2.1.min.js"></script>
+    <script src="jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!--Import para la sidebar-->
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+</head>
+<body>
+<form action="/validarEgreso" method="POST">
+    <div id="base" class="">
+
+        <div id="titulo_cargar_items">
+            <p><span>Validación de Egresos</span></p>
+        </div>
+
+        <div id="proveedor_seleccionado">
+            <p><span>Estrategia de validación: </span></p>
+            <!--<input type="datosTraidos" name="txt" class="variables_fijas" value="  ProveedorX" disabled/>-->
+        </div>
+
+        <div id="select_estrategias">
+            <select id="estrategia" name="estrategia" class="select_bonito" onchange="disableCheckBox(this)" required>
+                <option value="">Seleccione una estrategia</option>
+                <option value="Manual">Manual</option>
+                <option value="Automática">Automática</option>
+            </select>
+        </div>
+
+        <div id="egresos">
+            <p><span>Egreso: </span></p>
+        </div>
+
+        <div id="select_egresos">
+            <select id="egreso" name="egreso" class="select_bonito" required>
+                <option value="">Seleccione un egreso:</option>
+                {{#each egreso}}
+                <option value={{egreso}}>{{fecha}}:{{valor.importe}}</option>
+                {{/each}}
+            </select>
+        </div>
+
+        <div id="fecha">
+            <p><span>Hora: </span></p>
+            <!--<input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>-->
+        </div>
+
+        <div id="select_horas">
+            <select id="horas" name="hora" disabled class="select_bonito" required>
+                <option value="">Seleccione una hora</option>
+                <option value="0">00:00hs</option>
+                <option value="1">01:00hs</option>
+                <option value="2">02:00hs</option>
+                <option value="3">03:00hs</option>
+                <option value="4">04:00hs</option>
+                <option value="5">05:00hs</option>
+                <option value="6">06:00hs</option>
+                <option value="7">07:00hs</option>
+                <option value="8">08:00hs</option>
+                <option value="9">09:00hs</option>
+                <option value="10">10:00hs</option>
+                <option value="11">11:00hs</option>
+                <option value="12">12:00hs</option>
+                <option value="13">13:00hs</option>
+                <option value="14">14:00hs</option>
+                <option value="15">15:00hs</option>
+                <option value="16">16:00hs</option>
+                <option value="17">17:00hs</option>
+                <option value="18">18:00hs</option>
+                <option value="19">19:00hs</option>
+                <option value="20">20:00hs</option>
+                <option value="21">21:00hs</option>
+                <option value="22">22:00hs</option>
+                <option value="23">23:00hs</option>
+            </select>
+        </div>
+
+        <div id="metodo_de_pago">
+            <p><span>Minuto: </span></p>
+            <!--<input type="datosTraidos" name="txt" class="variables_fijas" value="  ACA VA LA VARIABLE" disabled/>-->
+        </div>
+
+        <div id="select_minutos">
+            <select id="minutos" name="minutos" disabled class="select_bonito" required>
+                <option value="">Seleccione un minuto</option>
+                <option value="0">00min</option>
+                <option value="5">05min</option>
+                <option value="10">10min</option>
+                <option value="15">15min</option>
+                <option value="20">20min</option>
+                <option value="25">25min</option>
+                <option value="30">30min</option>
+                <option value="35">35min</option>
+                <option value="40">40min</option>
+                <option value="45">45min</option>
+                <option value="50">50min</option>
+                <option value="55">55min</option>
+
+            </select>
+        </div>
+
+        <div id="cargar_items">
+            <button type="submit" class="boton_cargar_items" value="" >
+                <p><span>Iniciar Validación</span></p>
+            </button>
+        </div>
+
+        <div id="u539" class="ax_default">
+            <div id="u539_state0" class="panel_state" data-label="State1" style="">
+                <div id="u539_state0_content" class="panel_state_content" style="width:100%;">
+                    <table class="tablaCSS" style="width:100%;">
+                        <thead>
+                        <tr>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Organizacion</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Método de pago</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Documento comercial</th>
+                            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Total</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {{#each egreso}}
+                        <tr>
+                            <td>{{entidad.nombre}}</td>
+                            <td>{{fecha}}</td>
+                            <td>{{metodoDePago.tipo}}</td>
+                            <td>{{documentoComercial.tipo}}</td>
+                            <td>{{valor.importe}}</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div id="includedContent"></div>
+
+    </div>
+    <script>
+        function disableCheckBox(v) {
+            if (v.value == 'Automática'){
+                horas.disabled = false;
+                minutos.disabled = false;
+            }else{
+                horas.disabled = true;
+                minutos.disabled = true;
+            }
+        }
+    </script>
+</form>
+</body>
+</html>

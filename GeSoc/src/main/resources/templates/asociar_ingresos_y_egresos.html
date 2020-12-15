@@ -38,16 +38,25 @@
     <script src="resources/scripts/axure/math.js"></script>
     <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
     <script src="data/document.js"></script>
-    <script src="files/asociar_ingresos_y_egresos/data.js"></script>
+    <!--<script src="files/asociar_ingresos_y_egresos/data.js"></script>-->
     <script type="text/javascript">
       $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
       $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
       $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
     </script>
+
+    <script src="jquery.js"></script>
+
+    <script>
+    $(function(){
+      $("#includedContent").load("sidebar.html");
+    });
+    </script>
+
   </head>
   <body>
     <div id="base" class="">
-      <form action="/asociarIngresosYEgresos" method="post">
+      <form id="form_posta" action="/asociarIngresosYEgresos" method="post" onsubmit="return chequearLosCheckboxes()">
 
       <!-- Unnamed (Group) -->
       <div id="u842" class="ax_default" data-left="45" data-top="348" data-width="42" data-height="28">
@@ -72,31 +81,31 @@
       <!-- Unnamed (Group) -->
       <div id="u845" class="ax_default" data-left="45" data-top="2" data-width="249" data-height="68">
 
-        <!-- Unnamed (Rectangle) -->
+        <!-- Unnamed (Rectangle)
         <div id="u846" class="ax_default heading_1">
           <div id="u846_div" class=""></div>
           <div id="u846_text" class="text ">
             <p style="font-size:35px;"><span style="font-family:'Calibri Bold Italic', 'Calibri Regular', 'Calibri', sans-serif;font-style:italic;color:#D9463B;">GeSoc</span></p><p style="font-size:15px;"><span style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif;font-style:normal;color:#000000;">Gestión de Proyectos Sociales</span></p>
           </div>
-        </div>
+        </div> -->
 
-        <!-- Unnamed (Image) -->
+        <!-- Unnamed (Image)
         <div id="u847" class="ax_default image">
           <img id="u847_img" class="img " src="images/usuario/u181.png"/>
           <div id="u847_text" class="text " style="display:none; visibility: hidden">
             <p></p>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <!-- Unnamed (Droplist) -->
       <div id="u848" class="ax_default droplist">
         <div id="u848_div" class=""></div>
-        <select name="egreso" id="u848_input" class="u848_input">
-          <option class="u848_input_option" value="Seleccionar Egreso">Seleccionar Egreso</option>
-          <option class="u848_input_option" value="Egreso 1">Egreso 1</option>
-          <option class="u848_input_option" value="Egreso 2">Egreso 2</option>
-          <option class="u848_input_option" value="Egreso 3">Egreso 3</option>
+        <select name="egreso" id="u848_input" disabled class="u848_input" required>
+          <option class="u848_input_option" value="">Seleccionar Egreso</option>
+         {{#each egresos}}
+          <option class="u848_input_option" value={{egreso}}>{{descripcion}} | Valor: {{valor.importe}}</option>
+          {{/each}}
         </select>
       </div>
 
@@ -104,20 +113,28 @@
       <div id="u849" class="ax_default heading_1">
         <div id="u849_div" class=""></div>
         <div id="u849_text" class="text ">
-          <p><span>Método de pago:</span></p>
+          <p><span>Criterios de vinculación:</span></p>
         </div>
       </div>
 
       <!-- Unnamed (Droplist) -->
-      <div id="u850" class="ax_default droplist">
-        <div id="u850_div" class=""></div>
-        <select name="metodoPago" id="u850_input" class="u850_input">
-          <option class="u850_input_option" value="Seleccionar Método de Pago">Seleccionar Método de Pago</option>
-          <option class="u850_input_option" value="Crédito">Crédito</option>
-          <option class="u850_input_option" value="Débito">Débito</option>
-          <option class="u850_input_option" value="Transferencia Bancaria">Transferencia Bancaria</option>
-        </select>
+      <div id="u850">
+
+        <div id="chk_uno">
+          <input type="checkbox" name="OVPE" id="chk_unos" disabled style="text-align:center; vertical-align:middle;"/> Orden valor primero egreso
+        </div>
+
+        <div id="chk_dos">
+          <input type="checkbox" name="OVPI" id="chk_doss" disabled style="text-align:center; vertical-align:middle;"/> Orden valor primero ingreso
+        </div>
+
+        <div id="chk_tres">
+          <input type="checkbox" name="OrdenFecha" id="chk_tress" disabled style="text-align:center; vertical-align:middle;"/> Por fecha
+        </div>
+
       </div>
+
+
 
       <!-- Unnamed (Rectangle) -->
       <button id="u851" class="ax_default primary_button">
@@ -139,26 +156,33 @@
       <div id="u853" class="ax_default heading_1">
         <div id="u853_div" class=""></div>
         <div id="u853_text" class="text ">
-          <p><span>Fecha:</span></p>
+          <p><span>Fecha período de aceptabilidad:</span></p>
         </div>
       </div>
 
       <!-- Unnamed (Text Field) -->
       <div id="u854" class="ax_default text_field">
         <div id="u854_div" class=""></div>
-        <input name="fecha" id="u854_input" type="date" value="Fecha" class="u854_input"/>
+        <input name="fecha" id="u854_input" disabled type="date" value="Fecha" class="u854_input" required/>
       </div>
 
       <!-- Unnamed (Droplist) -->
       <div id="u855" class="ax_default droplist">
         <div id="u855_div" class=""></div>
-        <select name="ingreso" id="u855_input" class="u855_input">
-          <option class="u855_input_option" value="Seleccionar Ingreso">Seleccionar Ingreso</option>
-          <option class="u855_input_option" value="Ingreso 1">Ingreso 1</option>
-          <option class="u855_input_option" value="Ingreso 2">Ingreso 2</option>
-          <option class="u855_input_option" value="Ingreso 3">Ingreso 3</option>
+        <select name="ingreso" id="u855_input" disabled class="u855_input" required>
+          <option class="u855_input_option" value="">Seleccionar Ingreso</option>
+          {{#each ingresos}}
+          <option class="u855_input_option" value={{ingreso}}>{{descripcion}} | Valor: {{valor.importe}}</option>
+          {{/each}}
         </select>
       </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u8566" class="ax_default heading_1">
+          <div id="u8566_div" class=""></div>
+          <div id="u8566_text" class="text ">
+          </div>
+        </div>
 
       <!-- Unnamed (Rectangle) -->
       <div id="u856" class="ax_default heading_1">
@@ -170,30 +194,35 @@
 
       <!-- Unnamed (Dynamic Panel) -->
       <div id="u857" class="ax_default">
-        <table id="u5959" class="centerTable" cellpadding="0" cellspacing="0" style="margin: 0px auto; font-family:verdana; font-size:110%; color:#515559" >
+
+        <div id="fecha_filtrado_div_div" class="ax_default heading_1">
+          <div id="fecha_filtrado_div" class=""></div>
+          <div id="fecha_filtrado" class="text ">
+            <p><span>Filtrar por fecha:</span></p>
+          </div>
+        </div>
+
+        <div id="fecha_posta_div_div" class="ax_default text_field">
+          <div id="fecha_posta_div" class=""></div>
+          <input name="fecha" id="fecha_posta" type="date" value="Fecha" class="u8544_input"/>
+        </div>
+
+        <table class="tablaCSS"  style="width:100%;">
           <thead>
           <tr>
-            <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Entidad</th>
-            <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Fecha</th>
-            <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Ingreso</th>
-            <th style=" border: 1px solid #515559; background-color:#e5e5e5;">Egreso</th>
+            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Entidad</th>
+            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Fecha</th>
+            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Ingreso</th>
+            <th style="font-family:'Calibri Bold', 'Calibri Regular', 'Calibri', sans-serif; font-weight:300; font-style:normal; font-size:14px;">Egreso</th>
           </tr>
           </thead>
           <tbody>
           {{#each egreso}}
-          <tr style=" border: 1px solid #515559;">
-            <td style=" border: 1px solid #515559;">
-              {{entidad.nombre}}
-            </td>
-            <td style=" border: 1px solid #515559;">
-              {{fecha}}
-            </td>
-            <td style=" border: 1px solid #515559;">
-              {{ingreso.fecha}}:{{ingreso.valor.importe}}
-            </td>
-            <td style=" border: 1px solid #515559;">
-              {{fecha}}:{{valor.importe}}
-            </td>
+          <tr>
+            <td>{{entidad.nombre}}</td>
+            <td>{{fecha}}</td>
+            <td>{{ingreso.descripcion}}</td>
+            <td>{{descripcion}}</td>
           </tr>
           {{/each}}
           </tbody>
@@ -272,11 +301,10 @@
       <!-- Entidades (Droplist) -->
       <div id="u879" class="ax_default droplist" data-label="Entidades">
         <div id="u879_div" class=""></div>
-        <select name="entidad" id="u879_input" class="u879_input">
-          <option class="u879_input_option" value="Seleccione una Entidad">Seleccione una Entidad</option>
-          <option class="u879_input_option" value="Entidad 1">Entidad 1</option>
-          <option class="u879_input_option" value="Entidad 2">Entidad 2</option>
-          <option class="u879_input_option" value="Entidad 3">Entidad 3</option>
+        <select name="estrategia" id="u879_input" class="u879_input" onchange="disableCheckBox(this)" required>
+          <option class="u879_input_option" value="">Seleccione una estrategia</option>
+          <option class="u879_input_option" value="Manual">Manual</option>
+          <option class="u879_input_option" value="Automática">Automática</option>
         </select>
       </div>
 
@@ -284,20 +312,20 @@
       <div id="u880" class="ax_default heading_1">
         <div id="u880_div" class=""></div>
         <div id="u880_text" class="text ">
-          <p><span>Entidad:</span></p>
+          <p><span>Estrategia de vinculación:</span></p>
         </div>
       </div>
 
 
       <!-- Unnamed (NavBar) -->
 
-      <!-- Unnamed (Rectangle) -->
+      <!-- Unnamed (Rectangle)
       <div id="u883" class="ax_default box_1">
         <div id="u883_div" class=""></div>
         <div id="u883_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Tabs (Group) -->
       <div id="u884" class="ax_default" data-label="Tabs" data-left="45" data-top="1" data-width="247" data-height="65">
@@ -305,29 +333,29 @@
         <!-- Unnamed (Group) -->
         <div id="u885" class="ax_default" data-left="45" data-top="1" data-width="247" data-height="65">
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u886" class="ax_default heading_1">
             <div id="u886_div" class=""></div>
             <div id="u886_text" class="text ">
               <p><span>GeSoc</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Rectangle) -->
+          <!-- Unnamed (Rectangle)
           <div id="u887" class="ax_default box_1">
             <img id="u887_img" class="img " src="images/pantalla_principal_usuario/u127.svg"/>
             <div id="u887_text" class="text ">
               <p><span>Gestión de Proyectos Sociales</span></p>
             </div>
-          </div>
+          </div> -->
 
-          <!-- Unnamed (Image) -->
+          <!-- Unnamed (Image)
           <div id="u888" class="ax_default image">
             <img id="u888_img" class="img " src="images/pantalla_principal/u7.png"/>
             <div id="u888_text" class="text " style="display:none; visibility: hidden">
               <p></p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -359,29 +387,29 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u893" class="ax_default icon">
         <img id="u893_img" class="img " src="images/pantalla_principal_usuario/u133.svg"/>
         <div id="u893_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u894" class="ax_default icon">
         <img id="u894_img" class="img " src="images/pantalla_principal_usuario/u134.svg"/>
         <div id="u894_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u895" class="ax_default icon">
         <img id="u895_img" class="img " src="images/pantalla_principal_usuario/u135.svg"/>
         <div id="u895_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
 
       <!-- Criterios de Categorización (Group) -->
       <div id="u896" class="ax_default ax_default_hidden" data-label="Criterios de Categorización" style="display:none; visibility: hidden" data-left="300" data-top="220" data-width="200" data-height="30">
@@ -600,25 +628,25 @@
         <div id="u926_state0" class="panel_state" data-label="State1" style="">
           <div id="u926_state0_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u927" class="ax_default icon">
               <img id="u927_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u927_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
         <div id="u926_state1" class="panel_state" data-label="State2" style="visibility: hidden;">
           <div id="u926_state1_content" class="panel_state_content">
 
-            <!-- Unnamed (Shape) -->
+            <!-- Unnamed (Shape)
             <div id="u928" class="ax_default icon">
               <img id="u928_img" class="img " src="images/pantalla_principal_usuario/u167.svg"/>
               <div id="u928_text" class="text " style="display:none; visibility: hidden">
                 <p></p>
               </div>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
@@ -679,13 +707,13 @@
         </div>
       </div>
 
-      <!-- Unnamed (Shape) -->
+      <!-- Unnamed (Shape)
       <div id="u937" class="ax_default icon">
         <img id="u937_img" class="img " src="images/pantalla_principal_usuario/u177.svg"/>
         <div id="u937_text" class="text " style="display:none; visibility: hidden">
           <p></p>
         </div>
-      </div>
+      </div> -->
       <div id="u882" style="display:none; visibility:hidden;"></div>
 
       <!-- RUTA ASOCIAR INGRESOS A EGRESOS (Group) -->
@@ -699,7 +727,50 @@
           </div>
         </div>
       </div>
+        <div id="includedContent"></div>
+      </form>
     </div>
     <script src="resources/scripts/axure/ios.js"></script>
+    <script>
+    function disableCheckBox(v) {
+
+        if (v.value == 'Automática'){
+            chk_unos.disabled = false;
+            chk_doss.disabled = false;
+            chk_tress.disabled = false;
+            u854_input.disabled = false;
+            u848_input.disabled = true;
+            u855_input.disabled = true;
+        }else if (v.value == 'Manual'){
+            chk_unos.disabled = true;
+            chk_doss.disabled = true;
+            chk_tress.disabled = true;
+            u854_input.disabled = true;
+            u848_input.disabled = false;
+            u855_input.disabled = false;
+        }
+        else{
+            chk_unos.disabled = true;
+            chk_doss.disabled = true;
+            chk_tress.disabled = true;
+            u854_input.disabled = true;
+            u848_input.disabled = true;
+            u855_input.disabled = true;
+		}
+    }
+
+    function chequearLosCheckboxes(){
+
+      var e = document.getElementById("u879_input");
+      var strUser = e.options[e.selectedIndex].text;
+
+      if(strUser == "Automática"  && (!document.getElementById('chk_unos').checked && !document.getElementById('chk_doss').checked && !document.getElementById('chk_tress').checked)){
+        alert("Por lo menos debe seleccionar un criterio");
+        return false;
+      }else{
+        return true;
+      }
+    }
+</script>
   </body>
 </html>

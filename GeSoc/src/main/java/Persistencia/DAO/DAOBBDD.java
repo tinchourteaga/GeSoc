@@ -2,17 +2,25 @@ package Persistencia.DAO;
 
 import Persistencia.EntityManagerHelper;
 
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class DAOBBDD implements DAO {
+public class DAOBBDD <T> implements DAO {
     private String nombredb;
     private String conexionDB;
-    private List<Object> listaElementos;
+    private List<T> listaElementos;
+    private Class<T> clazz;
 
-    public void DAOBBDDUsuario(String nombredb, String usuario, String passwod){
-        //conexion a la DB
-        //aca setearia la lista de usuarios
+    public DAOBBDD(Class<T> classEspecifica){
+       clazz= classEspecifica;
     }
+    public DAOBBDD(){   }
+
     public <T> void agregar(T elemento){
         EntityManagerHelper.getEntityManager().getTransaction().begin();
         EntityManagerHelper.persist(elemento);
@@ -29,29 +37,38 @@ public class DAOBBDD implements DAO {
         EntityManagerHelper.getEntityManager().getTransaction().commit();
     }
     public <T> boolean existe(T elemento) {
-        return listaElementos.contains(elemento);
+        return getAllElementos().contains(elemento);
     }
-    public <T> int buscar(T elemento) {
-        return listaElementos.indexOf(elemento);
+    public <T> Object buscar(T elemento) {
+        return getAllElementos().stream().filter(e -> e.equals(elemento)).collect(Collectors.toList());
     }
 
     @Override
     public Object buscarPorId(String id) { return null; }
 
     @Override
-    public Object buscarPorPK(int id) { return null; }
-
-    @Override
-    public Object buscarPorNombre(String nombre) {
+    public Object buscarPorPK(int id) {
         return null;
     }
+
+    @Override
+    public Object buscarPorNombre(String nombre) { return null; }
 
     @Override
     public Object buscarPorUsuario(String usuario) { return null; }
 
     @Override
-    public List<Object> getAllElementos() {
-        return listaElementos;
+    public List<T> getAllElementos() {
+        EntityManagerHelper.getEntityManager().getTransaction().begin();
+        EntityManager em=EntityManagerHelper.getEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<T> q = cb.createQuery(clazz);
+        Root<T> c = q.from(clazz);
+        q.select(c);
+        TypedQuery<T> query = em.createQuery(q);
+        List<T> resultados=query.getResultList();
+        EntityManagerHelper.getEntityManager().getTransaction().commit();
+        return resultados;
     }
 
     @Override

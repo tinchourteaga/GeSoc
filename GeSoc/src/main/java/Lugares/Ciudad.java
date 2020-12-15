@@ -16,8 +16,10 @@ public class Ciudad {
     String name;
 
     @ManyToOne
-    @JoinColumn(name = "provincia", referencedColumnName = "provincia")
+    @JoinColumn(name = "provincia")
     private Provincia provincia;
+
+    public Ciudad() { }
 
     public Ciudad(String id, String name){
         this.id = id;
@@ -39,4 +41,6 @@ public class Ciudad {
         return name;
     }
     public void setName(String name) { this.name = name; }
+
+    public int getCiudad(){ return ciudad; }
 }

@@ -43,6 +43,8 @@ class Vinculacion:
         data['condiciones'] = str(list(map(lambda x:str(x.__class__.__name__),self.condiciones)))
         json_data = json.dumps(data)
 
+        print(json_data)
+
         return json_data
 
     def listAJSON(self,list):

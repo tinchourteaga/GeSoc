@@ -8,6 +8,7 @@ import Dominio.Egreso.Core.*;
 import Dominio.Egreso.Validador.EstrategiasRevision.EjecucionAutomatica;
 import Dominio.Egreso.Validador.ValidadorDeOperacion;
 import Dominio.Entidad.Entidad;
+import Dominio.Entidad.EntidadJuridica;
 import Dominio.Ingreso.Ingreso;
 import Dominio.Usuario.Usuario;
 import Persistencia.DAO.DAO;
@@ -45,17 +46,16 @@ public class ControllerEgresos {
         List<String> documentos=Arrays.asList("Remito","debito","credito","FacturaA","FacturaB","FacturaC","Ticket");
         List<String> metodos= Arrays.asList("TarjetaCredito","TarjetaDebito","Efectivo","Cheque");
         List<Egreso> egresos= QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
+
+        DAO DAOEntidadJuridica = new DAOBBDD<EntidadJuridica>(EntidadJuridica.class); //dao generico de BBDD
+        Repositorio repoEntidadJuridica = new Repositorio<EntidadJuridica>(DAOEntidadJuridica); //repositorio que tambien usa generics
+        List<EntidadJuridica> entidadesJuridicas = repoEntidadJuridica.getTodosLosElementos();
+        entidadesJuridicas= entidadesJuridicas.stream().filter(entidadJuridica -> QueriesUtiles.obtenerEntidadDeUsuario(miUsuario).contains(entidadJuridica)).collect(Collectors.toList());
+
+
         List<Entidad> entidades= QueriesUtiles.obtenerEntidadDeUsuario(miUsuario);
-        Set<Entidad> entidadSet=new HashSet<>();
-        entidadSet.addAll(entidades);
-        entidades.clear();
-        entidades.addAll(entidadSet);
 
-        Entidad entidad = miUsuario.getEntidades().get(0);
-
-        Repositorio repoEgreso = new Repositorio(new DAOBBDD<Egreso>(Egreso.class));
-        List<Egreso> egresosPosibles = repoEgreso.getTodosLosElementos();
-        List<Egreso> egresosTabla = egresosPosibles.stream().filter(e -> e.getEntidad().equals(entidad)).collect(Collectors.toList());
+        List<Egreso> egresosPosibles = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
 
         datos.put("entidad",entidades);
         datos.put("criterios",criterios);
@@ -64,7 +64,7 @@ public class ControllerEgresos {
         datos.put("egreso",egresos);
         datos.put("Exito",valor);//tiene "2 si anduvo, 1 si pincho o 0 si es la primera vez que entra
 
-        datos.put("egresoTabla", egresosTabla);
+        datos.put("egresoTabla", egresosPosibles);
         ModelAndView vista = new ModelAndView(datos, "cargar_egreso.html");
 
         return vista;

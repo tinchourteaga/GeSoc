@@ -36,13 +36,7 @@ public class ControllerAsociacion {
         }
 
         List<Egreso> egresos = QueriesUtiles.obtenerEgresosDe(miUsuario.getNickName());
-
-        List<Entidad> entidades= miUsuario.getEntidades();
-        Set<Entidad> entidadSet= new HashSet<>();
-        entidadSet.addAll(entidades);
-        entidades.clear();
-        entidades.addAll(entidadSet);
-        //List<Ingreso> ingresos = egresos.stream().map(e->e.getEntidad().getIngresos()).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList());
+        List<Entidad> entidades= QueriesUtiles.obtenerEntidadDeUsuario(miUsuario);
         final List<Ingreso>[] ingresosQueManejo = new List[]{entidades.stream().map(e -> QueriesUtiles.obtenerTodosLosIngresosDe(e)).collect(Collectors.toList()).stream().flatMap(List::stream).collect(Collectors.toList())};
 
         List<Egreso> egreso = ingresosQueManejo[0].stream().map(i->QueriesUtiles.obtenerEgresosDeIngreso(i)).flatMap(List::stream).collect(Collectors.toList());

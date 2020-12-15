@@ -173,7 +173,7 @@ public class ControllerPresupuesto {
         DAO DAOPresupuesto = new DAOBBDD<Presupuesto>(Presupuesto.class); //dao generico de BBDD
         Repositorio repoPresupuesto = new Repositorio<Presupuesto>(DAOPresupuesto); //repositorio que tambien usa generics
 
-        if(!repoPresupuesto.existe(presupuesto)) {
+        if(presupuesto.getPresupuesto()==0) {
             repoPresupuesto.agregar(presupuesto);
         }else{
             repoPresupuesto.modificar(null,presupuesto);
@@ -182,13 +182,6 @@ public class ControllerPresupuesto {
 
     public static ModelAndView visualizarPantallaItems(Request request, Response response) {
 
-        String idUS= request.queryParams("us");
-        /*
-        if(!idUS.equals(request.session().attribute("idUsuarioActual"))){
-            //a tu casa crack, no podes cargar items de cosas que no te corresponde
-            response.redirect("pantalla_principal_usuario");
-        }
-        */
         Map<String, Object> datos= new HashMap<>();
         String presupeustoId=  request.queryParams("Presupuesto");
 

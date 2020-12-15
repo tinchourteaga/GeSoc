@@ -62,8 +62,8 @@
         <div id="u1798_div" class=""></div>
         <select id="u1798_input" class="u1798_input" onchange="location.href='ver_ingresos_y_egresos?egreso='+this.value;">
           <option class="u1798_input_option" selected value="Seleccione un Egreso" >Seleccione un Egreso</option>
-         {{#each egresos}}
-          <option class="u1798_input_option" value="{{egreso}}">{{fecha}}:{{valor.importe}}</option>
+         {{#each egreso}}
+          <option class="u1798_input_option" value="{{egreso}}">{{descripcion}}</option>
           {{/each}}
         </select>
       </div>

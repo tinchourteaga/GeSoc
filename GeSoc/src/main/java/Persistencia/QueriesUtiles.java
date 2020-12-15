@@ -150,4 +150,11 @@ public class QueriesUtiles {
         query.setParameter("username", nickName);
         return query.getResultList();
     }
+
+    public static Optional<Presupuesto> obtenerPresupeustoPorPK(String presupeustoId) {
+        String queryString = "SELECT p FROM Presupuesto p WHERE p.presupuesto = :idPresupuesto";
+        TypedQuery<Presupuesto> query = getEntityManager().createQuery(queryString, Presupuesto.class);
+        query.setParameter("idPresupuesto", presupeustoId);
+        return query.getResultList().stream().findFirst();
+    }
 }

@@ -189,14 +189,13 @@ public class ControllerPresupuesto {
         List<Presupuesto> presupeustos= repoPresu.getTodosLosElementos();
         List<Presupuesto> presupuestosPosibles= presupeustos.stream().filter(p->p.getPresupuesto()==Integer.valueOf(presupeustoId).intValue()).collect(Collectors.toList());
 
-        if(presupuestosPosibles.isEmpty()){
-            response.redirect("pantalla_principal_usuario?pre="+presupeustoId);
-            return null;
-        }else {
-            Presupuesto presupuestofinal=presupuestosPosibles.get(0);
+        Optional<Presupuesto> presupuestofinal=QueriesUtiles.obtenerPresupeustoPorPK(presupeustoId);
+        if(presupuestofinal.isPresent()){
             datos.put("presupuesto", presupuestofinal);
             return new ModelAndView(datos, "cargar_items_presupuestos.html");
         }
+        response.redirect("pantalla_principal_usuario?pre="+presupeustoId);
+        return null;
     }
 
     public static Object cargarItem(Request request, Response response) {
